@@ -1,0 +1,20 @@
+Set-env: uri=/ site_id=247 domain:
+Looking for minisite wih uri: / domain: vpatina.com
+Set-env: uri=/ site_id=247 domain:
+Looking for minisite wih uri: / domain: vpatina.com
+Set-env: uri=/ site_id=247 domain:
+Looking for minisite wih uri: / domain: vpatina.com
+Set-env: uri=/ site_id=247 domain:
+Looking for minisite wih uri: / domain: vpatina.com
+Set-env: uri=/backend site_id=247 domain:
+Looking for minisite wih uri: /backend domain: vpatina.com
+Set-env: uri=/ site_id=247 domain:
+Looking for minisite wih uri: / domain: vpatina.com
+Set-env: uri=/backend site_id=247 domain:
+Looking for minisite wih uri: /backend domain: vpatina.com
+Set-env: uri=/login/ site_id=247 domain:
+Looking for minisite wih uri: /login/ domain: vpatina.com
+Set-env: uri=/backend site_id=247 domain:
+Looking for minisite wih uri: /backend domain: vpatina.com
+Set-env: uri=/backend/vault site_id=247 domain:
+Looking for minisite wih uri: /backend/vault domain: vpatina.com
