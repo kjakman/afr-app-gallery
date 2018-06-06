@@ -1,0 +1,8 @@
+/vendor
+/bower_components
+/includes/old
+/smarty/templates/
+/smarty/templates_c/
+*.bak
+*.old
+*~
