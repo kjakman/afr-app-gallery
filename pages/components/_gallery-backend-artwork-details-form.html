@@ -1,7 +1,7 @@
 
       {$artwork = $scope.artwork}
 
-      <form class="ajax-submit" data-handler="save-artwork" data-success_handler="gbe_artwork_handler">
+      <form class="ajax-submit" data-handler="save-artwork" data-success_handler="gbe_artwork_handler" id="artwork">
         <input hidden="1" name="id" type="hidden" value="{$artwork.id}">
         <input hidden="1" name="obj_id" type="hidden" value="{$artwork.id}">
         <input hidden="1" name="obj_type" type="hidden" value="artwork">      
@@ -157,7 +157,7 @@
             <textarea class="summernote form-control special" data-height="50" name="comment">{$artwork.comment}</textarea>
           </div>
         </div>
-        <input type="submit" class="btn btn-success" value="Save">
+        <input type="submit" class="btn btn-success" value="Save" id="submit">
             
       </form>
       <div class="gap gap-small"></div>

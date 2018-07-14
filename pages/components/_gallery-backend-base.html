@@ -40,7 +40,7 @@
 
 {$settings_quick = ['dot' => 'Availability', 'gallery' => 'Gallery/Curator', 'artwork' => "Title", 'technique' => 'Technique', 
           'artist' => 'Artist', 'year' => 'Primary Year', 'secondary' => 'Secondary Year',
-          'size' => 'Dimensions','series' => 'Number of Editions', 'price' => 'Price']}
+          'size' => 'Dimensions','series' => 'Number of Editions', 'price' => 'Price', 'price_option' => 'Price Option']}
 {$settings_full = $settings_quick}
 {$settings_full.description = 'Description'}
            
@@ -77,7 +77,7 @@
       {$buttons = 1}
       <li><a href="{$view_link}{if ($obj_type != 'plugin')}?_pv=1{/if}" class="btn btn-primary ajax-loader" {if ($obj_type == 'plugin')}data-breakout=1{/if} data-target="#subview-container"><i class="fa fa-eye"></i> Preview</a></li>
     {/if}
-    {if ($list && $obj_type|in_array:['artwork', 'media_collection', 'minisite'])}
+    {if ($list && $obj_type|in_array:['artwork', 'media_collection', 'minisite', 'artist'])} <!--pradeepa-->
       {$buttons = 1}
       <li><a href="{$add_link}?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i> Create {$what}</a></li>
     {/if}

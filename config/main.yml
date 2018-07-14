@@ -7,7 +7,7 @@ site_id: 247
 settings:
   live:
     password_file: config/private.txt
-  dev:
+  dev:  
     password_file: config/private-dev.txt
 
 system_cache: off

@@ -9,7 +9,7 @@
 {block name=main}
 
   {if ($add)}
-    {"Cannot add profile"|alert:"error"}
+    {{"include": "_network-form-basic.html"}}	
   {elseif ($edit)}
     {{"include": "_gallery-backend-profile-tabs.html"}}
   {else}
