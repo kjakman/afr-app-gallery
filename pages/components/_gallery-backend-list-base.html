@@ -149,8 +149,30 @@
     }else{
       return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="phide" class="phide'+row.id+'" data-col="price_option" data-value='+row.id+'>Price on enquiry</span><div class="shows"  id="shows'+row.id+'"></div></span>';
     } 
-// '<select id= "select" class="select" style="display:none"><option id= "option">Show price</option><option  id= "option">Hide price</option><option  id= "option">Price on enquiry</option></select>'
      
+  }  //pradeepa
+
+  function bstArtworkStatusFormatter(value, row, index) { 
+
+    var print_val = value ? value : "[Untitled]";
+    var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    console.log("base_link = " + base_link + " pv=" + pv);
+
+    if(value==10){
+      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+'>Available</span><div class="cstatus" id="cstatus'+row.id+'"></div></span>';
+    }else if(value==20){
+      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+'>Reserved</span><div class="cstatus"  id="cstatus'+row.id+'"></div></span>';
+    }else if(value==30){
+      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+'>Sold</span><div class="cstatus"  id="cstatus'+row.id+'"></div></span>';
+    }else if(value==40){
+      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+'>Inactive</span><div class="cstatus"  id="cstatus'+row.id+'"></div></span>';
+    }else if(value==50){
+      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+'>On loan, etc.</span><div class="cstatus"  id="cstatus'+row.id+'"></div></span>';
+    }else{
+      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+'>-</span><div class="cstatus"  id="cstatus'+row.id+'"></div></span>';
+    }  
   }  //pradeepa
 
   function bstActionFormatter(value, row, index) {
@@ -228,7 +250,7 @@
     
     var thumb = filename.replace('/square', '/tiny');
     var print_val = "<img class='table-thumb' src='" + thumb + "'/>";
-    return '<a href="{$base_link}/'+ row.id + '?_pv=' + pv + '" class="' +link_class + '" data-target="#subview-container">' + print_val + '</a>';
+    return '<a href="{$base_link}/'+ row.id + '/edit/image?_pv=' + pv + '" class="' +link_class + '" data-target="#subview-container">' + print_val + '</a>';
   }
 
   function bstMediaContextFormatter(value, row, index) {
