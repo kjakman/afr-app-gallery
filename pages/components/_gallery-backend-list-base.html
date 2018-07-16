@@ -103,7 +103,8 @@
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     console.log("base_link = " + base_link + " pv=" + pv);
-    return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+    //return '<span type="hidden" class="edit" name="edit" data-col="title" data-value='+row.id+' >'+value+'</span>';
+    return '<span type="hidden" class="edit" name="edit" data-col="title" data-value='+row.id+' >'+value+'</span>';
   }
 
   function bstPriceFormatter(value, row, index) {
@@ -192,7 +193,9 @@
     var buttons = bstActionFormatter(value, row, index);
     var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>'; 
 
-    var pop_btn = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">Clone</a>';   
+    // var pop_btn = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">Clone</a>';   
+     // Neelamegam_clone
+     var pop_btn = '<a id="' + row.id + '" class="clone" data-target="#subview-container">Clone<input type="hidden" value="1" id="clone_hidden '+ row.id +'" class="clone_hidden"/></a>';   
     return buttons + ' ' + plugin_button + ' ' + pop_btn;    
   }
   
