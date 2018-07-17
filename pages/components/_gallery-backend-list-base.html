@@ -46,7 +46,7 @@
      data-detail-view="false"
      data-detail-formatter="detailFormatter"
      data-show-pagination-switch="true"
-     data-search="true">
+  >
      
     <thead>     
       <tr>
@@ -195,7 +195,7 @@
 
     // var pop_btn = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">Clone</a>';   
      // Neelamegam_clone
-     var pop_btn = '<a id="' + row.id + '" class="clone" data-target="#subview-container">Clone<input type="hidden" value="1" id="clone_hidden '+ row.id +'" class="clone_hidden"/></a>';   
+     var pop_btn = '<a id="' + row.id + '" class="clone' + row.id + '" data-target="#subview-container">Clone<input type="hidden" value="" id="clone_hidden '+ row.id +'" class="clone_hidden"/></a>';   
     return buttons + ' ' + plugin_button + ' ' + pop_btn;    
   }
   
