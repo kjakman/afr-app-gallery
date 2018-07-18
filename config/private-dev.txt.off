@@ -1,8 +1,8 @@
 {
-  "db": {"user":"root","host":"localhost","db":"patina","dev":"vpatinadev","pass":"root123"},
+  "db": {"user":"root","host":"localhost","db":"patina","dev":"patinadev","pass":"root123"},
   "sites": {
-    "247": {
-      "name": "vPatina",
+    "100": {
+      "name": "Patina",
       "fb": "facebook-key",
       "fbs" : "facebook-secret",
       "ppu": "paypal_api1.kjakman.com",

@@ -326,7 +326,7 @@ $(document).on("click", "#phide", function() {
       $('#shows'+id).show();
       $('#select').remove();      
       $('#shows'+id).append('<select id= "select" class="select'+id+'"><option id= "option" value="1">Show price</option><option  id= "option" value="0">Hide price</option><option  id= "option" value="-1">Price on enquiry</option></select>');
-      $(document).on("click", "#select", function() {
+      $(document).on("click", "#select", function() { 
             var value1 = $(this).parent().prop('id');
             value1 = value1.replace('shows','');
             var value = $('#shows'+value1+' #select').val();
@@ -678,54 +678,40 @@ function gallery_backend_ready() {
 
 
 // Neelamegam_clone
-
+// From list-base.html to clone.php
 
 $(document).on("click", ".clone", function() {  
- 
- var row_id = $(this).attr('id');
- row_id = row_id.replace('clone','');
+  var row_id = $(this).attr('id');
+  row_id = row_id.replace('clone','');
   var obj_type= "artwork";
- var value1 = $(this).children().prop('id');
- value1 = value1.replace('clone_hidden','');
- var value2 = $(this).children().val();
- alert(value2);
-
- $.ajax({ 
-  url: "/clone.php",
-   type: "POST",
+  var value1 = $(this).children().prop('id');
+  value1 = value1.replace('clone_hidden','');
+  var value2 = $(this).children().val();
+  $.ajax({ 
+    url: "/clone.php",
+    type: "POST",
     datatype:"json",
     data: {
-        type : obj_type,
-        row_id : row_id,
-        value1 : value1,
-        value2 : value2,
-       },
-        success: function( result ) {
-            
-           var data = JSON.parse(result);
-
-          $.each(data, function(index, el) { 
-            if(index=="values")
-            {
-            $('#clone_hidden'+row_id).val(el);
-             var el=el;
-            }
-
-            });
-        }
-      });
- $('#clone_hidden'+row_id).val(el);
-  
-}); 
-
-
-
-/**
-$(document).ready(function() {  
+    type : obj_type,
+    row_id : row_id,
+    value1 : value1,
+    value2 : value2,
+  },
+  success: function( result ) {
+    var data = JSON.parse(result);
+    $.each(data, function(index, el) { 
+      if(index=="values"){
+        $('#clone_hidden'+row_id).val(el);
+      }
+    }); 
+    }
+  }); 
   var $table = $("TABLE.table");
-  $table.bootstrapTable().on('load-success.bs.table', function(e, data) {      
+  $table.bootstrapTable().on('load-success.bs.table', function(e, data) {  
+    alert($('#clone_hidden'+row_id).val());
     console.log("load data=", data);
     var totals = data.totals || [];
+    alert(totals);
     $.each(totals, function(k, v) {
       console.log("total k=" + k + " v=" + v);
       if(v) {
@@ -733,13 +719,22 @@ $(document).ready(function() {
         v = v.toFixed(2);
         var $target = $("TH[data-total-field='" + k + "']");
         if(v && $target.length) {
-          $target.html(v);
+         $target.html(v);
         }
       }
     });
     $.each(totals, function(k, v) {
-      
+
     });
   });
-});
-*/
+}); 
+
+ // $("img").load(function(){
+       
+ //    });
+
+
+ 
+  
+
+

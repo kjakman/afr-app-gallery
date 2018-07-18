@@ -193,10 +193,14 @@
     var buttons = bstActionFormatter(value, row, index);
     var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>'; 
 
-    // var pop_btn = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">Clone</a>';   
-     // Neelamegam_clone
-     var pop_btn = '<a id="' + row.id + '" class="clone' + row.id + '" data-target="#subview-container">Clone<input type="hidden" value="" id="clone_hidden '+ row.id +'" class="clone_hidden"/></a>';   
-    return buttons + ' ' + plugin_button + ' ' + pop_btn;    
+   // Neelamegam_clone
+     // To afr_gallery_backend.js
+     
+      var pop_btn = '<a id="clone_modal'+row.id + '" class="clone_modal" data-toggle="modal" data-target="#clone_modals">Clone</a>';
+
+      // var pop_btn = '<a id="clone'+row.id + '" class="clone" data-toggle="modal" data-target="#clone_modal" >Clone<input type="hidden" value="1" id="clone_hidden'+row.id +'" class="clone_hidden"/></a>';   
+    return buttons + ' ' + plugin_button + ' ' + pop_btn;
+ 
   }
   
   function bstVaultTypeFormatter(value, row, index) {
@@ -247,13 +251,16 @@
     if(!filename) return bstIDFormatter(value, row, index);
 
     var base_link = '{$base_link}';
+    //var filter_link= urlencode($filter_json);
+    //console.log("filter_link = " + filter_link);
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     console.log("base_link = " + base_link + " pv=" + pv);
     
     var thumb = filename.replace('/square', '/tiny');
     var print_val = "<img class='table-thumb' src='" + thumb + "'/>";
-    return '<a href="{$base_link}/'+ row.id + '/edit/image?_pv=' + pv + '" class="' +link_class + '" data-target="#subview-container">' + print_val + '</a>';
+    return '<a href="{$base_link}/'+ row.id + '/edit/image?_pv=' + pv +'&ref=/ajax.php?oper=get-rows&obj_type=artwork&search='+
+    '" class="' +link_class + '" data-target="#subview-container">' + print_val + '</a>';
   }
 
   function bstMediaContextFormatter(value, row, index) {
@@ -293,5 +300,26 @@
   
     
   </script>
+
+  <div class="modal modal-admin fade" id="clone_modals" data-backdrop="static" data-keyboard="false" 
+     tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <b class="overlay-title">Clone</b>
+      </div>
+       
+      <form name="booking-form" class="cal-form ajax-submit" id="event_dialog_form" 
+        data-handler="save-event" data-reload_link="#gbe_events_link">
+        <div class="modal-body">
+          
+        </div>
+       
+      </form>
+    </div>
+  </div>
+</div>
 
 {/block}
