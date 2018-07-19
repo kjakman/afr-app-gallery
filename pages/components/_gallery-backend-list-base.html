@@ -199,6 +199,7 @@
       var pop_btn = '<a id="clone_modal'+row.id + '" class="clone_modal" data-toggle="modal" data-target="#clone_modals">Clone</a>';
 
       // var pop_btn = '<a id="clone'+row.id + '" class="clone" data-toggle="modal" data-target="#clone_modal" >Clone<input type="hidden" value="1" id="clone_hidden'+row.id +'" class="clone_hidden"/></a>';   
+
     return buttons + ' ' + plugin_button + ' ' + pop_btn;
  
   }
@@ -261,6 +262,7 @@
     var print_val = "<img class='table-thumb' src='" + thumb + "'/>";
     return '<a href="{$base_link}/'+ row.id + '/edit/image?_pv=' + pv +'&ref=/ajax.php?oper=get-rows&obj_type=artwork&search='+
     '" class="' +link_class + '" data-target="#subview-container">' + print_val + '</a>';
+    // return '<a id="image_modal'+row.id + '" class="image_modal" data-toggle="modal" data-target="#image_modal">'+print_val+'</a>';
   }
 
   function bstMediaContextFormatter(value, row, index) {
@@ -297,7 +299,27 @@
   }
 
   var selections = [];
-  
+
+
+// Search bar id value
+
+$(window).load(function() {
+  $('.form-control').attr('id', 'searchbar');
+});
+
+$(document).ready(function() {
+  $('.form-control').attr('id', 'searchbar');
+});
+
+var $table = $('#table');
+$table.bootstrapTable().on('load-success.bs.table', function(e, data) {
+  $('.form-control').attr('id', 'searchbar');
+});
+
+$('load-success.bs.table').load(function() {
+  $('.form-control').attr('id', 'searchbar');
+});
+
     
   </script>
 
@@ -321,5 +343,6 @@
     </div>
   </div>
 </div>
+
 
 {/block}
