@@ -15,7 +15,7 @@
 
 
 
-  <a href="{$list_link}?_pv=1" class="btn btn-danger ajax-loader" id="back" data-target="#subview-container">Back
+  <a href="{$list_link}?_pv=1&obj_type=artwork&search={$smarty.session.searchSearch}" class="btn btn-danger ajax-loader" id="back" data-target="#subview-container">Back
   	<input type="hidden" id="searchFilters" name="searchFiltesr" value='{$smarty.session.searchFilters}'>
   	<input type="hidden" id="searchSearch" name="searchSearch" value="{$smarty.session.searchSearch}">
   	<input type="hidden" id="searchOrder" name="searchOrder" value="{$smarty.session.searchOrder}">
@@ -32,17 +32,14 @@
 <script type="text/javascript">
 
 	$(document).on("click", "#back", function() {  
-
 		var searchFilters = $('#searchFilters').val();
 		var searchSearch = $('#searchSearch').val();
 		var searchOrder = $('#searchOrder').val();
 		var searchOffset = $('#searchOffset').val();
 		var searchLimit = $('#searchLimit').val();
 		var searches = $('#searches').val();
-		var link = $(this);
 		var obj_type = 'artwork';
 		var oper = 'get-rows';
-		
 		$.ajax({ 
 			url: "/ajax.php?oper="+oper,
 			type: "GET",
@@ -55,9 +52,12 @@
 				limit:searchLimit,
 				_:searches,
 			}
-		});
-	});    
+		});   
+		$( document ).ajaxComplete(function() {
+  		$(this).data('requestRunning', false);
+		}); 
+ 		
+	});
 
-		
 </script>
 
