@@ -5,34 +5,255 @@
         <div class="form-group">
           <label for="Fonts">Fonts</label>
           <div class="row">
-            {$fonts = ['', 'Helvetica', 'Arial', 'sans-serif', 'Verdana', 'Comic Sans']}
+            {$titleFont = ['Select Title Font', 'Helvetica', 'Arial', 'sans-serif', 'Verdana', 'Comic Sans']}
             <div class="form-group col-sm-3">
-              <select class="form-control auto-select" id="title-font" value="title-font" data-default="Menu on Top Logo top Right" data-value="{$minisite.fonts|default:'Menu on Top Logo top Right'}">
-                {foreach from=$fonts item=type}
+              <select class="form-control auto-select" id="titleFont" data-value="{$minisite.titleFont|default:'Select Title Font'}">
+                {foreach from=$titleFont item=type}
+                  <option value="{$type}">{$type}</option>
+                {/foreach}                                            
+              </select>
+            </div>
+            {$titleFontSize = ['Select Title Font Size', '10px', '11px', '12px', '13px', '14px', '15px', '16px', '17px', '18px', '19px', '20px']}
+            <div class="form-group col-sm-3">
+              <select class="form-control auto-select" id="titleFontSize" data-value="{$minisite.titleFontSize|default:'Select Title Font Size'}">
+                {foreach from=$titleFontSize item=type}
+                  <option value="{$type}">{$type}</option>
+                {/foreach}                                            
+              </select>
+            </div>
+            {$bodyFont = ['Select Body Font', 'Helvetica', 'Arial', 'sans-serif', 'Verdana', 'Comic Sans']}
+            <div class="form-group col-sm-3">
+              <select class="form-control auto-select" id="bodyFont" data-value="{$minisite.bodyFont|default:'Select Body Font'}">
+                {foreach from=$bodyFont item=type}
+                  <option value="{$type}">{$type}</option>
+                {/foreach}                                            
+              </select>
+            </div>
+            {$bodyFontSize = ['Select Body Font Size', '10px', '11px', '12px', '13px', '14px', '15px', '16px', '17px', '18px', '19px', '20px']}
+            <div class="form-group col-sm-3">
+              <select class="form-control auto-select" id="bodyFontSize" data-value="{$minisite.bodyFontSize|default:'Select Body Font Size'}">
+                {foreach from=$bodyFontSize item=type}
+                  <option value="{$type}">{$type}</option>
+                {/foreach}                                            
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Colours">Colours</label>
+          <div class="row">
+            {$fontColor = ['Select Font Colour', 'Blue', 'Red', 'Black', 'White', 'Grey']}
+            <div class="form-group col-sm-3">
+              <select class="form-control auto-select" id="fontColor" data-value="{$minisite.fontColor|default:'Select Font Colour'}">
+                {foreach from=$fontColor item=type}
+                  <option value="{$type}">{$type}</option>
+                {/foreach}                                            
+              </select>
+            </div>
+            {$backgroundColor = ['Select Background Colour', 'Blue', 'Red', 'Black', 'White', 'Grey']}
+            <div class="form-group col-sm-3">
+              <select class="form-control auto-select" id="backgroundColor" data-value= "{$minisite.backgroundColor|default:'Select Background Colour'}">
+                {foreach from=$backgroundColor item=type}
+                  <option value="{$type}">{$type}</option>
+                {/foreach}                                            
+              </select>
+            </div>
+            {$linkColor = ['Select Link Colour', 'Blue', 'Red', 'Black', 'White', 'Grey']}
+            <div class="form-group col-sm-3">
+              <select class="form-control auto-select" id="linkColor" data-value="{$minisite.linkColor|default:'Select Link Colour'}">
+                {foreach from=$linkColor item=type}
+                  <option value="{$type}">{$type}</option>
+                {/foreach}                                            
+              </select>
+            </div>
+            {$hoverColor = ['Select Hover Colour', 'Blue', 'Red', 'Black', 'White', 'Grey']}
+            <div class="form-group col-sm-3">
+              <select class="form-control auto-select" id="hoverColor" data-value="{$minisite.hoverColor|default:'Select Hover Colour'}">
+                {foreach from=$hoverColor item=type}
+                  <option value="{$type}">{$type}</option>
+                {/foreach}                                            
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Art Viewing Style">Art Viewing Style</label>
+          <div class="row">
+            {$artStyle = ['Art Mouseover Effects', 'flip', 'Zoom']}
+            <div class="form-group col-sm-3">
+              <select class="form-control auto-select" id="artStyle" data-value="{$minisite.artStyle|default:'Art Mouseover Effects'}">
+                {foreach from=$artStyle item=type}
+                  <option value="{$type}">{$type}</option>
+                {/foreach}                                            
+              </select>
+            </div>
+            {$layout = ['Select Layout', 'One column', 'Two column', 'Three column', 'Four column']}
+            <div class="form-group col-sm-2">
+              <select class="form-control auto-select" id="layout" data-value= "{$minisite.layout|default:'Select Layout'}">
+                {foreach from=$layout item=type}
                   <option value="{$type}">{$type}</option>
                 {/foreach}                                            
               </select>
             </div>
             <div class="form-group col-sm-3">
-              <select class="form-control auto-select" id="layout-structure" name="layout-structure" data-default="Menu on Top Logo top Right" data-value="{$minisite.fonts|default:'Menu on Top Logo top Right'}">
-                {foreach from=$fonts item=type}
+              <label for="Art Mouseover Main Text">Art Mouseover Main Text</label>
+              <table>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="title" value="title" style= "width:15px"></td>
+                  <td>Title</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="technique" value="technique" style= "width:15px"></td>
+                  <td>Technique</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="editions" value="editions" style= "width:15px"></td>
+                  <td>Number of editions</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="year" value="year" style= "width:15px"></td>
+                  <td>Year</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="artistName" value="artistName" style= "width:15px"></td>
+                  <td>Artist Name</td>
+                </tr>
+              </table>
+            </div>
+            <div class="form-group col-sm-2">
+              <label for="Art Mouseover Secondary Text">Art Mouseover Secondary Text</label>
+              <table>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="title" value="title" style= "width:15px"></td>
+                  <td>Title</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="technique" value="technique" style= "width:15px"></td>
+                  <td>Technique</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="editions" value="editions" style= "width:15px"></td>
+                  <td>Number of editions</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="year" value="year" style= "width:15px"></td>
+                  <td>Year</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="artistName" value="artistName" style= "width:15px"></td>
+                  <td>Artist Name</td>
+                </tr>
+              </table>
+            </div>
+            <div class="form-group col-sm-2">
+              <label for="Text Under Artwork">Art- Text Under Artwork</label>
+              <table>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="title" value="title" style= "width:15px"></td>
+                  <td>Title</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="technique" value="technique" style= "width:15px"></td>
+                  <td>Technique</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="editions" value="editions" style= "width:15px"></td>
+                  <td>Number of editions</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="year" value="year" style= "width:15px"></td>
+                  <td>Year</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="artistName" value="artistName" style= "width:15px"></td>
+                  <td>Artist Name</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Exhibition View Styling">Exhibition View Styling</label>
+          <div class="row">
+            {$exhibitionStyle = ['Exhibition Shape', 'Original Shape', 'Square', 'Oval', 'Round']}
+            <div class="form-group col-sm-3">
+              <select class="form-control auto-select" id="exhibitionStyle" data-value= "{$minisite.exhibitionStyle|default:'Exhibition Shape'}">
+                {foreach from=$exhibitionStyle item=type}
                   <option value="{$type}">{$type}</option>
                 {/foreach}                                            
               </select>
             </div>
-            <div class="form-group col-sm-3">
-              <select class="form-control auto-select" id="layout-structure" name="layout-structure" data-default="Menu on Top Logo top Right" data-value="{$minisite.fonts|default:'Menu on Top Logo top Right'}">
-                {foreach from=$fonts item=type}
+            {$layout = ['Select Layout', 'Timeline','One column', 'Two column', 'Three column', 'Four column']}
+            <div class="form-group col-sm-2">
+              <select class="form-control auto-select" id="layout" data-value= "{$minisite.layout|default:'Select Layout'}">
+                {foreach from=$layout item=type}
                   <option value="{$type}">{$type}</option>
                 {/foreach}                                            
               </select>
             </div>
+             <div class="form-group col-sm-3">
+              <label for="Text Under Exhibition">Exhibition- Text Under Exhibition</label>
+              <table>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="title" value="title" style= "width:15px"></td>
+                  <td>Title</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="city" value="city" style= "width:15px"></td>
+                  <td>City, Country</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="date" value="date" style= "width:15px"></td>
+                  <td>Start - End Date</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="curator" value="curator" style= "width:15px"></td>
+                  <td>Curator</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="artist" value="artist" style= "width:15px"></td>
+                  <td>Name Artists</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="location" value="location" style= "width:15px"></td>
+                  <td>Location</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Artist View Styling">Artist View Styling</label>
+          <div class="row">
+            {$artistStyle = ['Artist Photo Shape', 'Original Shape', 'Square', 'Oval']}
             <div class="form-group col-sm-3">
-              <select class="form-control auto-select" id="layout-structure" name="layout-structure" data-default="Menu on Top Logo top Right" data-value="{$minisite.fonts|default:'Menu on Top Logo top Right'}">
-                {foreach from=$fonts item=type}
+              <select class="form-control auto-select" id="artistStyle" data-value= "{$minisite.artistStyle|default:'Artist Photo Shape'}">
+                {foreach from=$artistStyle item=type}
                   <option value="{$type}">{$type}</option>
                 {/foreach}                                            
               </select>
+            </div>
+            {$artistlayout = ['Select Layout','One column', 'Two column', 'Three column', 'Four column']}
+            <div class="form-group col-sm-2">
+              <select class="form-control auto-select" id="artistlayout" data-value= "{$minisite.artistlayout|default:'Select Layout'}">
+                {foreach from=$artistlayout item=type}
+                  <option value="{$type}">{$type}</option>
+                {/foreach}                                            
+              </select>
+            </div>
+             <div class="form-group col-sm-3">
+              <label for="Text Under Exhibition">Exhibition- Text Under Exhibition</label>
+              <table>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="Name" value="Name" style= "width:15px"></td>
+                  <td>Name</td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" class="form-control" name="location" value="location" style= "width:15px"></td>
+                  <td>City, Country</td>
+                </tr>
+              </table>
             </div>
           </div>
         </div>
