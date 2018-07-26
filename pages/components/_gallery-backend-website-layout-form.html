@@ -59,7 +59,7 @@
                 <table class= "table table-hover">
                   <td><input type="text" class="form-control" name="title" value="" maxlength="100"></td>
                   <td><input type="text" class="form-control" name="title" value="" maxlength="100"></td>
-                  <td><button type="button" class="add">+</button></td>
+                  <td><button type="button" class="add btn btn-success">+</button></td>
                 </table>
               </div>
             </div>
@@ -69,23 +69,25 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    var max_fields = 10; //maximum input boxes allowed
+    var max_fields = 20; //maximum input boxes allowed
     var wrapper = $("#wrapper"); //Fields wrapper
     var add = $(".add"); //Add button ID
+   
      
     var x = 1; //initlal text box count
     $(add).click(function(e){ //on add input button click
       e.preventDefault();
       if(x < max_fields){ //max input box allowed
         x++; //text box increment
-        $(wrapper).append('<div><table class= "table table-hover"><td><input type="text" class="form-control" name="title" value="{$collection.title}" maxlength="100"></td><td><input type="text" class="form-control" name="title" value="{$collection.title}" maxlength="100"></td><td><button type="button" class="remove">x</button></td></table></div>'); //add input box
+        $(wrapper).append('<div id="newadd"><table class= "table table-hover"><td><input type="text" class="form-control" name="title" value="{$collection.title}" maxlength="100"></td><td><input type="text" class="form-control" name="title" value="{$collection.title}" maxlength="100"></td><td><button type="button" class="remove btn btn-danger">x</button></td></table></div>'); //add input box
       }
     });
+
+    //Remove button ID
    
-    $(wrapper).on("click",".remove", function(e){ //user click on remove field
-      e.preventDefault(); 
-      $(this).parent('div').remove(); 
-      x--;
-    })
+     $('#wrapper').on('click','.remove', function(e){ //user click on remove field
+      $('#newadd').remove(); 
+       x--; 
+    });
   });
 </script>     
