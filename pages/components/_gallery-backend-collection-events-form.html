@@ -10,12 +10,12 @@
             <a data-toggle="tooltip" title="If there is an opening, book signing, performance, or other event connected to the exhibition, add it here so collectors can add it to their diaries."> <i class="fa fa-info-circle"></i></a>
             
             {$rows = []}
-            {$rows[] = ["Name", "Start", "End", "Location"]}
+            {$rows[] = ["Name", "Start", "End", "Location", "Action"]}
             {foreach from=$events item=event key=val}
-              {$rows[] = [$event.title, $event.start_time, $event.end_time, "{$event.address_street} {$event.address_number}"]}                   
+              {$rows[] = [$event.title, $event.start_time, $event.end_time, "{$event.address_street} {$event.address_number}", "<button id='event_delete' class='btn btn-xs btn-danger delete' data-toggle='confirmation' data-type='DELETE' data-original-title='Sure?' Onclick= 'delete($event.id)'> <i class='glyphicon glyphicon-trash'></i></button>"]}                   
             {/foreach}                                            
     
-            {$rows|table:["class" => "table table-bordered table-striped table-booking-history"]}
+            {$rows|table:["class" => "bootstrap-table table table-hover"]}
             
           </div>
         </div>
@@ -27,5 +27,11 @@
           </div>
         </div>
         
-        {{"include": "_gallery-backend-collection-event-dialog.html"}}                          
+        {{"include": "_gallery-backend-collection-event-dialog.html"}}         
+
+<script type="text/javascript">
+  function delete($id){
+    alert($id);
+  }
+</script>                 
         

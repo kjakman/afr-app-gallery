@@ -21,7 +21,7 @@
         <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to {if ($add_to)}exhibition{else}...{/if}</a></li>
         <li><a href="#" id="sel_show">Show</a></li>
         <li><a href="#" id="sel_clear">Clear</a></li>
-        <li><a href="#" id="sel_del">Delete</a></li> <!--pradeepa-->
+        <li><a href="#" id="sel_del" data-toggle="modal" data-target="#del_modals">Delete</a></li> <!--pradeepa-->
       </ul>            
     </div>
   </div> 
@@ -361,22 +361,25 @@ $('load-success.bs.table').load(function() {
     
   </script>
 
-  <div class="modal modal-admin fade" id="clone_modals" data-backdrop="static" data-keyboard="false" 
+<div class="modal modal-admin fade" id="del_modals" data-backdrop="static" data-keyboard="false" 
      tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
      
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <b class="overlay-title">Clone</b>
+        <b class="overlay-title" style="font-size: 25px;">Are you sure you want to permanently delete this</b>
       </div>
        
       <form name="booking-form" class="cal-form ajax-submit" id="event_dialog_form" 
         data-handler="save-event" data-reload_link="#gbe_events_link">
-        <div class="modal-body">
-          
+        <div class="modal-body" style="font-size: 20px;">
+            <p>This action cannot be undone</p>
         </div>
-       
+       <div class="modal-footer">
+          <button type="button" id="sel_del_success" class="btn btn-danger" data-dismiss="modal">Delete</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+        </div>
       </form>
     </div>
   </div>
