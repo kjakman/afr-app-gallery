@@ -1,10 +1,11 @@
       {$artwork = $scope.artwork}
       {$artist_id = $artwork.artist_id|default:$scope.artist_id}
-      <form class="ajax-submit" data-handler="save-artwork" data-success_handler="gbe_artwork_handler">        
-        <input hidden="1" name="user_id" type="hidden" value="{$user.id}">
+      <form class="ajax-submit" data-handler="save-minisite" data-success_handler="gbe_artwork_handler">        
+        <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id|default:$user_id}">
         <input hidden="1" name="artist_id" type="hidden" value="{$artist_id}">
         <input hidden="1" name="curator_id" type="hidden" value="{$curator_id}">
-        <input hidden="1" name="site_id" type="hidden" value="{$artwork.site_id|default:$site.id}"> <!-- pradeepa -->
+        <input hidden="1" name="site_id" type="hidden" value="{$minisite.site_id|default:$site.id}"> <!-- pradeepa -->
+        <input hidden="1" name="row_id" type="hidden" value="{$minisite.id|default:$id}"> <!-- pradeepa -->
        
         {$artist_ids_json = $artwork.artist_ids}
         {$artist_ids = $artist_ids_json|@json_decode}
@@ -22,10 +23,6 @@
           <input type="submit" class="btn btn-success" value="Create Page">
         </div>            
       </form>
-
-      {$rows[] = ["Type", "Name", "Last Modified", "Publish", "Style"]}                                         
-        
-      {$rows|table:["class" => "table table-bordered table-striped"]}
    
       <script>
       $(function() {

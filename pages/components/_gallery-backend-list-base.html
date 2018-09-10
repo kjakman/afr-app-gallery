@@ -71,7 +71,8 @@
     var print_val = value;
     var base_link = '{$base_link}';
     var link_class = 'ajax-loader';
-    return '<a href="{$base_link}/'+ row.id + '?_pv=1" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+    return '<a href="{$base_link}/'+ row.id + '?_pv=1" class="' + link_class + '" data-target="#subview-container" id="url" name="url" data-value='+row.id+'>' + print_val + '</a>';
+    //return '<span type="hidden" class="url" name="url" data-col="url" data-value='+row.id+' >'+value+'</span>';
   }
 
   function bstDomainFormatter(value, row, index) {
