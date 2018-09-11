@@ -1,3 +1,4 @@
+      {$artists = $scope.artists}
       {$artwork = $scope.artwork}
       {$artist_id = $artwork.artist_id|default:$scope.artist_id}
       <form class="ajax-submit" data-handler="save-minisite" data-success_handler="gbe_artwork_handler">        
@@ -23,6 +24,16 @@
           <input type="submit" class="btn btn-success" value="Create Page">
         </div>            
       </form>
+
+      <div class="row">
+          <div class="form-group col-xs-10">
+            <h4>ARTISTS</h4>  
+            {foreach from=$artists item=artist}
+              <h4>{$artist.display_name}</h4>             
+            {/foreach}                                          
+            
+          </div>
+        </div>
    
       <script>
       $(function() {
