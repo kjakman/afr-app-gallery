@@ -1,4 +1,5 @@
-      {$artists[] = $scope.viewartist}
+      
+      {$artists = $scope.viewartist}
       {$artwork = $scope.artwork}
       {$artist_id = $artwork.artist_id|default:$scope.artist_id}
       <form class="ajax-submit" data-handler="save-minisite" data-success_handler="gbe_artwork_handler">        
@@ -25,14 +26,18 @@
         </div>            
       </form>
      
-      <!-- <div class="row">
+      <div class="row">
           <div class="form-group col-xs-10">
-            {foreach from=$artists item=artist}
-              <li>{$artist['id']}</li>
-            {/foreach}                                          
+            {$rows = []}
+            {$rows[] = ["Name", "Type", "Location", "Action"]}
+            {foreach from=$artists item=artist key=val}
+              {$rows[] = [$artist.display_name, $artist.type, $artist.location, "<button id='event_delete' class='btn btn-xs btn-danger delete' data-toggle='confirmation' data-type='DELETE' data-original-title='Sure?' Onclick= 'delete($event.id)'> <i class='glyphicon glyphicon-trash'></i></button>"]}                   
+            {/foreach}                                            
+    
+            {$rows|table:["class" => "bootstrap-table table table-hover"]}                                        
             
           </div>
-        </div> -->
+        </div>  
    
       <script>
       $(function() {
