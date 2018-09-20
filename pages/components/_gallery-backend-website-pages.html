@@ -32,7 +32,7 @@
           {$rows = []}
           {$rows[] = ["Id", "Name", "Type", "Location", "Action"]}
           {foreach from=$artists item=artist key=val}
-            {$rows[] = [$artist.id, $artist.display_name, $artist.type, $artist.location, "<button id='soft_delete' class='btn btn-xs btn-danger delete' data-value='{$artist.id}'> <i class='glyphicon glyphicon-trash'></i></button>"]}                   
+            {$rows[] = [$artist.id, $artist.display_name, $artist.type, $artist.location, "<button id='web_delete' class='btn btn-xs btn-danger delete' data-value='{$artist.id}'> <i class='glyphicon glyphicon-trash'></i></button>"]}                   
           {/foreach}                                            
   
           {$rows|table:["class" => "bootstrap-table table table-hover"]}                                        
