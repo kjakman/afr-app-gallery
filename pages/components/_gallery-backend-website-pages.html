@@ -11,7 +11,7 @@
        
         {$artist_ids_json = $artwork.artist_ids}
         {$artist_ids = $artist_ids_json|@json_decode}
-        {if (!$artist_ids)}
+        {if (!$artist_ids)}  
          {$artist_ids = [$artist_id]}
         {/if}
         <div class="row">
@@ -22,7 +22,7 @@
             {/foreach}  
             </ul>
           </div>
-          <input type="submit" class="btn btn-success" value="Create Page">
+          <input type="submit" class="btn btn-success ajax-submit" value="Create Page" id= 'show_web'>
         </div>            
       </form>
 
@@ -57,5 +57,9 @@
           $(".type-" + val).show();  
         }
       }
+      $(document).on("click",'#web_delete',function() {
+        $(this).closest("tr").remove();
+      });
+      
       </script>
       
