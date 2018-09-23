@@ -22,7 +22,7 @@
         
         {if ($curator.location_id)}
         {else}
-          {$profile_link  = 'edit-profile:id'|rroute:['id' => $curator.user_id]}
+          {$profile_link  = 'backend:edit-profile:id'|rroute:['id' => $curator.user_id]}
           <div class="alert alert-warning" role="alert"><a href="#" class="close" data-dismiss="alert">×</a><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> 
             You do not have an address set in your profile. Please add an address <a href="{$profile_link}">here</a>.
           </div>          
