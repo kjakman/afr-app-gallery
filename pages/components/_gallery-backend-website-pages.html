@@ -2,27 +2,29 @@
       {$artists = $scope.viewartist}
       {$artwork = $scope.artwork}
       {$artist_id = $artwork.artist_id|default:$scope.artist_id}
-      <form class="ajax-submit" data-handler="save-minisite-page" data-success_handler="gbe_artwork_handler">        
+      <form class="ajax-submit" data-handler="save-minisite-page" data-success_handler="gbe_website_handler"> 
+
         <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id|default:$user_id}">
-        <input hidden="1" name="artist_id" type="hidden" value="{$artist_id}">
-        <input hidden="1" name="curator_id" type="hidden" value="{$curator_id}">
+        <!--<input hidden="1" name="artist_id" type="hidden" value="{$artist_id}">
+        <input hidden="1" name="curator_id" type="hidden" value="{$curator_id}"> -->
         <input hidden="1" name="site_id" type="hidden" value="{$minisite.site_id|default:$site.id}"> <!-- pradeepa -->
         <input hidden="1" name="row_id" type="hidden" value="{$minisite.id|default:$id}">  <!-- pradeepa -->
-       
+        
         {$artist_ids_json = $artwork.artist_ids}
         {$artist_ids = $artist_ids_json|@json_decode}
         {if (!$artist_ids)}  
          {$artist_ids = [$artist_id]}
         {/if}
+
         <div class="row">
-          <div class="form-group col-xs-4">
+          <div class="form-group col-xs-6">
             <ul id="artistTags" >
             {foreach from=$artist_ids item=$artist_id}
               <li>{$artist_id|display_name}|{$artist_id}</li>
             {/foreach}  
             </ul>
           </div>
-          <input type="submit" class="btn btn-success ajax-submit" value="Create Page" id= 'show_web'>
+          <input type="submit" class="btn btn-success ajax-submit" value="Add Artist to page" id= 'show_web'>
         </div>            
       </form>
 
@@ -30,9 +32,9 @@
       <div class="row">
         <div class="form-group col-xs-10">
           {$rows = []}
-          {$rows[] = ["Id", "Name", "Type", "Location", "Action"]}
+          {$rows[] = ["Name", "Created", "Age", "City", "Country","Action"]}
           {foreach from=$artists item=artist key=val}
-            {$rows[] = [$artist.id, $artist.display_name, $artist.type, $artist.location, "<button id='web_delete' class='btn btn-xs btn-danger delete' data-value='{$artist.id}'> <i class='glyphicon glyphicon-trash'></i></button>"]}                   
+            {$rows[] = [$artist.display_name, $artist.created, $artist.age, $artist.city, $artist.country, "<button id='soft_delete' class='btn btn-xs btn-danger delete' data-value='{$artist.id}'> <i class='glyphicon glyphicon-trash'></i></button>"]}                   
           {/foreach}                                            
   
           {$rows|table:["class" => "bootstrap-table table table-hover"]}                                        
@@ -57,9 +59,8 @@
           $(".type-" + val).show();  
         }
       }
-      $(document).on("click",'#web_delete',function() {
+      $(document).on("click",'#soft_delete',function() {
         $(this).closest("tr").remove();
       });
-      
       </script>
       
