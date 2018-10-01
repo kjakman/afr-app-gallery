@@ -1,31 +1,32 @@
       <form class="ajax-submit" data-handler="save-minisite" data-success_handler="gbe_exhibition_link">
         <input hidden="1" name="id" type="hidden" value="{$scope.obj_id}">
+        <input hidden="1" name="obj_id" type="hidden" value="{$scope.obj_id}">
         <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">      
                 
         <div>
           <div class="form-group">
             <div class="row">
             <div class="form-group col-sm-8">
-              <label for="artwork-title">Menu Title</label>
-              <input type="text" class="form-control" name="title" value="{$artwork.title}" maxlength="255" required>
+              <label for="menu-title">Menu Title</label>
+              <input type="text" class="form-control" maxlength="255" required>
             </div>
             <div class="form-group col-sm-8">
-              <label for="artwork-technique">Page Title</label>
-              <input type="text" class="form-control" name="technique" value="{$artwork.technique}" maxlength="255" required>
+              <label for="page-title">Page Title</label>
+              <input type="text" class="form-control" maxlength="255" required>
             </div>
           </div>  
         </div>
       </div>
         <div class="form-group col-sm-12">
-          <label for="Fonts">Filter Exhibitions by Dates</label>
+          <label for="Dates">Filter Exhibitions by Dates</label>
           <div class="row">
             <table>
                 <tr>
-                  <td><input type="checkbox" class="form-control" name="title" value="title" style= "width:20px"></td>
+                  <td><input type="checkbox" class="form-control" style= "width:20px"></td>
                   <td style= "width:200px">Previous Exhibitions</td>
-                  <td><input type="checkbox" class="form-control" name="title" value="title" style= "width:20px"></td>
+                  <td><input type="checkbox" class="form-control" style= "width:20px"></td>
                   <td style= "width:200px">Current Exhibitions</td>
-                  <td><input type="checkbox" class="form-control" name="title" value="title" style= "width:20px"></td>
+                  <td><input type="checkbox" class="form-control" style= "width:20px"></td>
                   <td style= "width:200px">Future Exhibitions</td>
                 </tr>
             </table>
@@ -33,15 +34,15 @@
         </div>
 
         <div class="form-group col-sm-12">
-          <label for="Fonts">Filter Exhibitions by type</label>
+          <label for="type">Filter Exhibitions by type</label>
           <div class="row">
             <table>
                 <tr>
-                  <td><input type="checkbox" class="form-control" name="title" value="title" style= "width:20px"></td>
+                  <td><input type="checkbox" class="form-control" name="exhibition_type[]" value="10" style= "width:20px"></td>
                   <td style= "width:200px">Gallery Exhibitions</td>
-                  <td><input type="checkbox" class="form-control" name="title" value="title" style= "width:20px"></td>
+                  <td><input type="checkbox" class="form-control" name="exhibition_type[]" value="20" style= "width:20px" ></td>
                   <td style= "width:200px">Art Fairs</td>
-                  <td><input type="checkbox" class="form-control" name="title" value="title" style= "width:20px"></td>
+                  <td><input type="checkbox" class="form-control" name="exhibition_type[]" value="30" style= "width:20px" ></td>
                   <td style= "width:200px">Other Events</td>
                 </tr>
             </table>
@@ -55,13 +56,13 @@
             <table>
                 <tr>
                   <td style= "width:200px">Previous/ Current/ Future</td>
-                  <td style= "width:200px"><input name="active" value="1" type="checkbox" {if ($collection.active)}checked{/if} class="bootstrap-toggle" id="gbe_collection_active"></td>
+                  <!-- <td style= "width:200px"><input name="active" value="1" type="checkbox" class="bootstrap-toggle" id="gbe_collection_active"></td> -->
                   <td style= "width:200px">Gallery/ Fair/ Other</td>
-                  <td style= "width:200px"><input name="active" value="1" type="checkbox" {if ($collection.active)}checked{/if} class="bootstrap-toggle" id="gbe_collection_active"></td>                 
+                  <td style= "width:200px"><input name="active" value="1" type="checkbox" class="bootstrap-toggle" id="gbe_collection_active"></td>                 
                 </tr>
             </table>
             
           </div>
         </div>
-
+        <input type="submit" class="btn btn-success" value="Save">
       </form>
