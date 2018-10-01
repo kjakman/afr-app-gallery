@@ -1,5 +1,5 @@
 {
-   "db": {"user":"root","host":"localhost","db":"patina","dev":"vpatinadev","pass":"root123"},
+  "db": {"user":"vpatina","host":"localhost","db":"vpatina","devdb":"vpatinadev","pass":"Patinad3v!"},
   "sites": {
     "247": {
       "name": "AFR Gallery Site",
