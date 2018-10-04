@@ -10,31 +10,32 @@
     <div class="row">
       <div class="col-md-3 text-left">
         <div class="exhibition-sub-nav">
-          {if ($minisiteobj == '0')}
+          
           <ul class="hidden-sm-down sub-nav-ul">
             <li><a href="{$basepath}/exhibitions/current">Current</a></li>
             <li><a href="{$basepath}/exhibitions/future" >Future</a></li>
             <li><a href="{$basepath}/exhibitions/past"   >Past</a></li>            
             <li><a href="{$basepath}/exhibitions/all"   >All</a></li>            
           </ul>
-          {/if}
-          {if ($minisiteobj == '1')}
+          
+          <!-- {if ($minisiteobj == '1')}
           <ul class="hidden-sm-down sub-nav-ul">
             {if ($current == '20')}<li ><a href="{$basepath}/exhibitions/current">Current</a></li>{/if}
             {if ($future == '30')}<li ><a href="{$basepath}/exhibitions/future" >Future</a></li>{/if}
-            {if ($past == '10')}<li ><a href="{$basepath}/exhibitions/past"   >Past</a></li>{/if}            
+            {if ($past == '10')}<li ><a href="{$basepath}/exhibitions/past"   >Past</a></li>{/if} 
+            <li><a href="{$basepath}/exhibitions/all"   >All</a></li>                       
           </ul>
-          {/if}
+          {/if}  -->
           <div class="hidden-md-up btn-group pull-left sub-nav-ul exhibition-sub-nav-ul mobile-sub-nav-ul">
             <button type="button" class="btn dropdown-toggle btn-location-dropdown btn-sub-nav-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               When
             </button>
-            <!-- <div class="dropdown-menu location-dropdown-menu">
+            <div class="dropdown-menu location-dropdown-menu">
               <li class="sub-nav-li"><a href="{$basepath}/exhibitions/current" class="dropdown-item active">Current</a></li>
               <li class="sub-nav-li"><a href="{$basepath}/exhibitions/future"  class="dropdown-item ">Future</a></li>
               <li class="sub-nav-li"><a href="{$basepath}/exhibitions/past"    class="dropdown-item ">Past</a></li>
               <li class="sub-nav-li"><a class="dropdown-item" href="{$basepath}/exhibitions/all" >All</a></li>
-            </div> -->
+            </div>
           </div>
           <div class="row hidden-md-up"> </div>
         </div>
