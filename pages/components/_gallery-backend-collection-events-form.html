@@ -12,7 +12,7 @@
             {$rows = []}
             {$rows[] = ["Name", "Start", "End", "Location", "Action"]}
             {foreach from=$events item=event key=val}
-              {$rows[] = [$event.title, $event.start_time, $event.end_time, "{$event.address_street} {$event.address_number}", "<button id='soft_delete' class='btn btn-xs btn-danger delete' data-toggle='confirmation' data-type='DELETE' data-original-title='Sure?' data-value = {$event.id}> <i class='glyphicon glyphicon-trash'></i></button>"]}                   
+              {$rows[] = [$event.title, $event.start_time, $event.end_time, "{$event.address_street} {$event.address_number}", "<button id='event_delete' class='btn btn-xs btn-danger delete' data-toggle='confirmation' data-type='DELETE' data-original-title='Sure?' data-value = {$event.id}> <i class='glyphicon glyphicon-trash'></i></button>"]}                   
             {/foreach}                                            
     
             {$rows|table:["class" => "bootstrap-table table table-hover"]}

@@ -2,11 +2,11 @@
       {$artists = $scope.viewartist}
       {$artwork = $scope.artwork}
       {$artist_id = $artwork.artist_id|default:$scope.artist_id}
-      <form class="ajax-submit" data-handler="save-minisite-page" data-success_handler="gbe_website_handler"> 
+      <form class="ajax-submit" data-handler="save-minisite"> 
 
-        <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id|default:$user_id}">
-        <input hidden="1" name="site_id" type="hidden" value="{$minisite.site_id|default:$site.id}"> <!-- pradeepa -->
-        <input hidden="1" name="row_id" type="hidden" value="{$minisite.id|default:$id}">  <!-- pradeepa -->
+        <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
+        <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">
+        <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">
         <input hidden="1" name="next_tab" type="hidden" value="exhibition">
 
         <div>
@@ -14,15 +14,19 @@
             <div class="row">
               <div class="form-group col-sm-8">
                 <label for="menu-title">Menu Title</label>
-                <input type="text" class="form-control" maxlength="255" value="Artist">
+                <input type="text" class="form-control" maxlength="255" name="artist_menu_title" value="{$minisite.artist_menu_title}">
               </div>
               <div class="form-group col-sm-8">
                 <label for="page-title">Page Title</label>
-                <input type="text" class="form-control" maxlength="255" value="Artist">
+                <input type="text" class="form-control" maxlength="255" name="artist_page_title" value="{$minisite.artist_page_title}">
+              </div>
+              <div class="form-group col-sm-8">
+                <input type="submit" class="btn btn-success ajax-submit" value="Add Title" >
               </div>
             </div>  
           </div>
         </div>
+      </form>
         
         {$artist_ids_json = $artwork.artist_ids}
         {$artist_ids = $artist_ids_json|@json_decode}
@@ -30,6 +34,7 @@
          {$artist_ids = [$artist_id]}
         {/if}
 
+      <form class="ajax-submit" data-handler="save-minisite-page" data-success_handler="gbe_website_handler"> 
         <div class="row">
           <div class="form-group col-xs-6">
             <ul id="artistTags" >
@@ -55,7 +60,8 @@
           
         </div>
       </div> 
-  
+      
+
       <script>
       $(function() {
         console.log( "ready!" );
@@ -75,9 +81,6 @@
       }
       $(document).on("click",'#soft_delete',function() {
         $(this).closest("tr").remove();
-      });
-      $(document).ready(function(){
-        $("#gbe_exhibition_link").hide();
       });
       </script>
       

@@ -4,12 +4,14 @@
   {$past = $scope.past}
   {$current = $scope.current}
   {$future = $scope.future}
+  {$minisiteobj = $scope.minisiteobj}
   
   
-      <form class="ajax-submit" data-handler="save-minisite" >
+      <form class="ajax-submit" data-handler="save-minisite">
         <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
         <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">
         <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">  
+        <input hidden="1" name="page_id" type="hidden" value="{$minisite_page.id|default:$id}">
         <input hidden="1" name="next_tab" type="hidden" value="styling">    
                 
         <div>
@@ -17,11 +19,11 @@
             <div class="row">
             <div class="form-group col-sm-8">
               <label for="menu-title">Menu Title</label>
-              <input type="text" class="form-control" maxlength="255" value="Exhibitions">
+              <input type="text" class="form-control" maxlength="255" name="exhibition_menu_title" value="{$minisite.exhibition_menu_title}">
             </div>
             <div class="form-group col-sm-8">
               <label for="page-title">Page Title</label>
-              <input type="text" class="form-control" maxlength="255" value="Exhibitions">
+              <input type="text" class="form-control" maxlength="255" name="exhibition_page_title" value="{$minisite.exhibition_page_title}">
             </div>
           </div>  
         </div>
@@ -81,9 +83,4 @@
         </div> -->
         <input type="submit" class="btn btn-success" value="Save">
       </form>  
-      <script type="text/javascript">
-        $(document).ready(function(){
-          $("#gbe_artist_link").hide();
-        });
-      </script>
 
