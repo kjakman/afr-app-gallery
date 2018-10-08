@@ -1,8 +1,8 @@
 
   {{"extend": "minisites/index.html"}}
-
+  
   {block name=title}
-    <h2>{if ($slug)}{$slug|upper} {/if}EXHIBITIONS</h2>      
+    <h2>{if ($slug)}{$slug|upper} {/if}{$mObj.exhibition_page_title}</h2>      
   {/block}
 
   {block name=content}
