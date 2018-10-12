@@ -1,5 +1,6 @@
 {$mObj = $scope.mObj}
 {$aObj = $scope.aObj}
+{$cObj = $scope.cObj}
 
 
       <ul class="nav navbar-nav">
@@ -11,9 +12,9 @@
         <li class="nav-item"><a class="nav-link" href="{$basepath}/artists">{$aObj.artist_menu_title}</a></li>
         <li class="nav-item"><a class="nav-link" href="{$basepath}/exhibitions">{$aObj.exhibition_menu_title}</a></li>
         <li class="nav-item"><a class="nav-link" href="{$basepath}/contact">Contact</a></li>
-        {else}
-        <li class="nav-item"><a class="nav-link" href="{$basepath}/artists">Artist</a></li>
-        <li class="nav-item"><a class="nav-link" href="{$basepath}/exhibitions">Exhibition</a></li>
+        {elseif ($cObj)}
+        <li class="nav-item"><a class="nav-link" href="{$basepath}/artists">{$cObj.artist_menu_title}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{$basepath}/exhibitions">{$cObj.exhibition_menu_title}</a></li>
         <li class="nav-item"><a class="nav-link" href="{$basepath}/contact">Contact</a></li>
         {/if}
 

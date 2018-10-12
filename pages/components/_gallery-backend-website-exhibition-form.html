@@ -5,7 +5,6 @@
         <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
         <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">
         <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">  
-        <input hidden="1" name="page_id" type="hidden" value="{$minisite_page.id|default:$id}">
         <input hidden="1" name="next_tab" type="hidden" value="styling">    
                 
         <div>
@@ -23,30 +22,47 @@
         </div>
       </div>
       <div class="form-group col-sm-12">
+        <label for="Dates">Order of Exhibitions by Start Date</label>
+        <div class="row">
+          <table>
+            <tr>
+              <td>
+                <input type="radio" {if ($minisiteobj.show_recent == '1')}checked{/if} class="form-control" name="show_recent" value="1" style= "width:20px">
+              </td>
+              <td style= "width:200px">Show Most Recent First</td>
+              <td>
+                <input type="radio" {if ($minisiteobj.show_recent == '0')}checked{/if} class="form-control" name="show_recent" value="0" style= "width:20px">
+              </td>
+              <td style= "width:200px">Show Most Recent Last</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="form-group col-sm-12">
         <label for="Dates">Filter Exhibitions by Dates</label>
         <div class="row">
           <table>
               <tr>
                 <td>
-                  <input name='show_gallery' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($past == '10')}checked{/if} class="form-control" name="exhibition_date[]" value="10" style= "width:20px">
+                  <input name='show_past' value='0' type='hidden'>  
+                  <input type="checkbox" {if ($minisiteobj.show_past == '1')}checked{/if} class="form-control" name="show_past" value="1" style= "width:20px">
                 </td>
                 <td style= "width:200px">Previous Exhibitions</td>
                 <td>
-                  <input name='show_gallery' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($current == '20')}checked{/if} class="form-control" name="exhibition_date[]" value="20" style= "width:20px">
+                  <input name='show_current' value='0' type='hidden'>  
+                  <input type="checkbox" {if ($minisiteobj.show_current == '1')}checked{/if} class="form-control" name="show_current" value="1" style= "width:20px">
                 </td>
                 <td style= "width:200px">Current Exhibitions</td>
                 <td>
-                  <input name='show_gallery' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($future == '30')}checked{/if} class="form-control" name="exhibition_date[]" value="30" style= "width:20px">
+                  <input name='show_future' value='0' type='hidden'>  
+                  <input type="checkbox" {if ($minisiteobj.show_future == '1')}checked{/if} class="form-control" name="show_future" value="1" style= "width:20px">
                 </td>
                 <td style= "width:200px">Future Exhibitions</td>
                 <td>
-                  <input name='show_gallery' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($future == '30')}checked{/if} class="form-control" name="exhibition_date[]" value="30" style= "width:20px">
+                  <input name='show_latest' value='0' type='hidden'>  
+                  <input type="checkbox" {if ($minisiteobj.show_latest == '1')}checked{/if} class="form-control" name="show_latest" value="1" style= "width:20px">
                 </td>
-                <td style= "width:500px">Include Latest Exhibition (regardless of when it was scheduled)</td>
+                <td style= "width:500px">Display Latest Exhibition in cases where page would otherwise be empty</td>
               </tr>
           </table>
         </div>
@@ -78,7 +94,7 @@
           </div>
         </div>
 
-        <div class="form-group col-sm-12">
+        <!-- <div class="form-group col-sm-12">
           <label for="Fonts">Add Filters for Page(Optional)</label>
           <div class="row">
             <table>
@@ -94,10 +110,9 @@
                     <input type="checkbox" {if ($minisite.type_filter)}checked{/if} class="bootstrap-toggle" value="1" name="type_filter" id="gbe_collection_active">
                   </td>                 
                 </tr>
-            </table>
-            
+            </table>    
           </div>
-        </div>
+        </div> -->
         <input type="submit" class="btn btn-success" value="Save">
       </form>  
 

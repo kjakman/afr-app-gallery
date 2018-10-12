@@ -1,0 +1,40 @@
+{{"extend": "minisites/index.html"}}
+{$filter_exhibitions = $scope.filter_exhibitions}
+
+
+{block name=title}
+    <h2>Filter Page</h2> 
+    
+{/block}
+
+{block name=content}
+
+<div class="col-md-8 col-sm-12 detail-text">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 detail-text comm_padd comm_padd_show">
+        <div class="row artists-row mobile-row artists-list-row artists-grid grid_view">
+        {foreach from=$filter_exhibitions item=filter_exhibition}
+          {if ($filter_exhibitions.current == "current")}
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 text-left artist-grid-col comm_padd artist_grid">          
+               <div class="artist_grid_cont">
+                 <div class="artist-name text-center mt10">         
+                  <h4>{$filter_exhibitions|artists}</h4>
+                  <a href="{$basepath}/exhibition/{$exhibition.slug}">{$filter_exhibitions.title}</a>
+                  <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$filter_exhibitions.start_date|date_format:"%e %B %Y"} - {$filter_exhibitions.end_date|date_format:"%e %B %Y"}</small></p>      
+                  </div>
+                <div class="image-container">  
+                  <a href="{$basepath}/exhibition/{$exhibition.slug}" class="img-container">
+                    <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
+                  </a>
+                </div>         
+              </div>         
+            </div>
+          {/if}
+          
+        {/foreach}
+        </div>    
+      </div>
+    </div>
+</div>
+{* "include": "minisites/_exhibitions.html" *}
+ {/block}
