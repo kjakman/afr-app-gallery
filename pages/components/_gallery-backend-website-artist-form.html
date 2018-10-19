@@ -2,23 +2,23 @@
       {$artists = $scope.viewartist}
       {$artwork = $scope.artwork}
       {$artist_id = $artwork.artist_id|default:$scope.artist_id}
+      {$minisiteobj = $scope.martist}
       <form class="ajax-submit" data-handler="save-minisite"> 
-
         <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
         <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">
-        <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">
-        <input hidden="1" name="next_tab" type="hidden" value="exhibition">
+        <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id}">
+        <input hidden="1" name="obj_type" type="hidden" value="minisite_artist_page">  
 
         <div>
           <div class="form-group">
             <div class="row">
               <div class="form-group col-sm-8">
                 <label for="menu-title">Menu Title</label>
-                <input type="text" class="form-control" maxlength="255" name="artist_menu_title" value="{$minisite.artist_menu_title}">
+                <input type="text" class="form-control" maxlength="255" name="menu_title" value="{$minisiteobj.menu_title}">
               </div>
               <div class="form-group col-sm-8">
                 <label for="page-title">Page Title</label>
-                <input type="text" class="form-control" maxlength="255" name="artist_page_title" value="{$minisite.artist_page_title}">
+                <input type="text" class="form-control" maxlength="255" name="page_title" value="{$minisiteobj.page_title}">
               </div>
               <div class="form-group col-sm-8">
                 <input type="submit" class="btn btn-success ajax-submit" value="Add Title" >

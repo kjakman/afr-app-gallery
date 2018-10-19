@@ -1,16 +1,14 @@
-	<form class="ajax-submit" data-handler="">
-		<input hidden="1" name="id" type="hidden" value="{$scope.obj_id}">
-        <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">      
+	<form class="ajax-submit" data-handler="save-minisite">
+		<input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
+    <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">
+    <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">  
+    <input hidden="1" name="next_tab" type="hidden" value="styling">    
                 
-        {$layout = ['', 'Timeline', 'Single column']}
-          <div class="row">
-            <div class="form-group col-sm-6 col-xs-12">
-              <label for="minisite-layout-structure">Layout</label>
-              <select class="form-control auto-select" id="layout-structure" name="layout-structure" data-default="Menu on Top Logo top Right" data-value="{$minisite.layout|default:'Timeline'}">
-                {foreach from=$layout item=type}
-                  <option value="{$type}">{$type}</option>
-                {/foreach}                                            
-              </select>
-            </div>
-          </div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label for="minisite-layout-structure">Layout</label>
+            {"layout"|object_select:"minisite_layout":["class" => "form-control", "value" => $minisite.layout]}
+        </div>
+      </div>
+      <input type="submit" class="btn btn-success" value="Save">
 	</form>

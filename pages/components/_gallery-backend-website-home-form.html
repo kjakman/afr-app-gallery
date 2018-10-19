@@ -1,13 +1,13 @@
-  {$minisiteobj = $scope.mExhibition}
+  {$minisiteobj = $scope.mhome}
   
       <form class="ajax-submit" data-handler="save-minisite">
         <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
         <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">
         <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id}">
-        <input hidden="1" name="obj_type" type="hidden" value="minisite_exhibition_page">  
+        <input hidden="1" name="obj_type" type="hidden" value="minisite_home_page">  
         <input hidden="1" name="next_tab" type="hidden" value="basic">    
                 
-        <div>
+        <!-- <div>
           <div class="form-group">
             <div class="row">
             <div class="form-group col-sm-8">
@@ -20,7 +20,14 @@
             </div>
           </div>  
         </div>
+      </div> -->
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label for="minisite-layout-structure">Layout Templates</label>
+            {"layout"|object_select:"minisite_layout":["class" => "form-control", "value" => $minisite.layout]}
+        </div>
       </div>
+      
       <div class="form-group col-sm-12">
         <label for="Dates">Order of Exhibitions by Start Date</label>
         <div class="row">
@@ -62,7 +69,7 @@
                   <input name='show_latest' value='0' type='hidden'>  
                   <input type="checkbox" {if ($minisiteobj.show_latest == '1')}checked{/if} class="form-control" name="show_latest" value="1" style= "width:20px">
                 </td>
-                <td style= "width:500px">All</td>
+                <td style= "width:500px">Display Latest Exhibition in cases where page would otherwise be empty</td>
               </tr>
           </table>
         </div>

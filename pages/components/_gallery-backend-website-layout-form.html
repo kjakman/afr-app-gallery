@@ -1,8 +1,123 @@
       <form class="ajax-submit" data-handler="save-minisite">
-        <input hidden="1" name="id" type="hidden" value="{$scope.obj_id}">
-        <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">      
+        <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
+        <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">
+        <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">  
+        <input hidden="1" name="next_tab" type="hidden" value="styling"> 
+
+          <div class="col-sm-12">
+            <label for="HEADER">HEADER</label>
+            <table cellspacing="2"> 
+              <tr style="height: 15px;"/>
+              <tr>
+                <td style= "width:200px">
+                  <label for="Title">Site Title</label>
+                </td>
+                <td width="20%">
+                  <div class="input-group">
+                    <input name='name' value='0' type='hidden'> 
+                    <input type="checkbox" {if ($minisite.name)}checked{/if} class="bootstrap-toggle" value="1" name="name" id="name">
+                  </div>
+                </td>
+                <td >
+                  <div class="input-group">
+                    <input name="name" id="name" class="form-control" value="{$minisite.name}" type="text" /> 
+                  </div>
+                </td>
+              </tr>
+              <tr style="height: 15px;"/>
+              <tr>
+                <td style= "width:200px">
+                  <label for="Sub title">Site Sub Title</label>
+                </td>
+                <td width="20%">
+                  <div class="input-group">
+                    <input name='sub_title' value='0' type='hidden'> 
+                    <input type="checkbox" {if ($minisite.sub_title)}checked{/if} class="bootstrap-toggle" value="1" name="sub_title" id="sub_title">
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <input name="sub_title" id="sub_title" class="form-control" value="{$minisite.sub_title}" type="text" />
+                  </div>
+                </td>
+              </tr>
+              <tr style="height: 15px;"/>
+              <tr style="height: 15px;"/>
+            </table>
+          </div>
+
+          <div class="col-sm-12">
+            <label for="media-name">Icon</label>
+            <a data-toggle="tooltip" data-placement="right" title="Select the main image to represent the artwork"> <i class="fa fa-info-circle"></i></a>
+            {"minisite"|object_uploader:$collection.id:"title_image":["resize" => 1, "cloud" => 1, "view" => "list"]}
+          </div>
+
+          <div class="col-sm-12">
+            <label for="FOOTER">FOOTER</label>
+            <table cellspacing="2"> 
+              <tr style="height: 15px;"/>
+              <tr>
+                <td style= "width:200px">
+                  <label for="footer">Footer Text</label>
+                </td>
+                <td >
+                  <div class="input-group">
+                    <input name="footer" id="footer" class="form-control" value="{$minisite.footer}" type="text" /> 
+                  </div>
+                </td>
+              </tr>
+              <tr style="height: 15px;"/>
+              <tr>
+                <td style= "width:200px">
+                  <label for="Social Media">Follow on Social Media</label>
+                </td>
+                <td width="20%">
+                  <div class="input-group">
+                    <input name='social' value='0' type='hidden'> 
+                    <input type="checkbox" {if ($minisite.social)}checked{/if} class="bootstrap-toggle" value="1" name="social" id="">
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#gbe_profile_dialog">Edit Details on Profile Page</button>
+                  </div>
+                </td>
+              </tr>
+              <tr style="height: 15px;"/>
+              <tr>
+                <td >
+                  <label for="Opening">Opening Times</label>
+                </td>
+                <td width="20%">
+                  <div class="input-group">
+                    <input name='opening' value='0' type='hidden'> 
+                    <input type="checkbox" {if ($minisite.opening)}checked{/if} class="bootstrap-toggle" value="1" name="opening" id="">
+                  </div>
+                </td>
+                <td >
+                  <div class="input-group" >
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#gbe_profile_dialog"> Edit Details on Profile Page</button>
+                  </div>
+                </td>
+              </tr>
+              <tr style="height: 15px;"/>
+              <tr style="height: 15px;"/>
+            </table>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-10">
+              <label for="SEARCH">SEARCH ENGINE OPTIMIZATION</label><br>
+              <label for="description">Site description</label>
+                <textarea class="summernote form-control special" data-height="50" name="description"></textarea>
+                Will be visible in search results on Google etc. It will not be displayed on your site. We recommend a text with 140-160 characters.
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="Domain Name">Domain Name</label><br>
+              <input name="domain" id="domain" class="form-control" value="{$minisite.domain}" type="text" /> 
+            </div>
+          </div> 
                 
-        {$layout = ['', 'Menu on Top Logo top Right', 'Menu on Top Logo top Left', 'Menu on Left Logo top Left']}
+        <!-- {$layout = ['', 'Menu on Top Logo top Right', 'Menu on Top Logo top Left', 'Menu on Left Logo top Left']}
           <div class="row">
             <div class="form-group col-sm-6 col-xs-12">
               <label for="minisite-layout-structure">Layout Structure</label>
@@ -38,7 +153,7 @@
               <label for="description">Comments</label>
               <textarea class="summernote form-control special" data-height="50" name="description"></textarea>
             </div>
-          </div> -->
+          </div> 
           <div class="row">
             <div class="form-group col-sm-6 col-xs-12">
               <label for="media-name">Page Footer</label>
@@ -65,11 +180,12 @@
                 </table>
               </div>
             </div>
-          </div>
+          </div> -->
           <input type="submit" class="btn btn-success" value="Save" id="submit">
       </form>
+      {{"include": "_gallery-backend-website-profile-dialog.html"}}
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $(document).ready(function() {
     var max_fields = 20; //maximum input boxes allowed
     var wrapper = $("#wrapper"); //Fields wrapper
@@ -92,4 +208,4 @@
        x--; 
     });
   });
-</script>     
+</script>  -->    

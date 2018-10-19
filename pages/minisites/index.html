@@ -14,9 +14,13 @@
 {$exhibitions = $scope.exhibitions}
 {$filter_exhibitions = $scope.filter_exhibitions}
 {$latest_exhibitions = $scope.latest_exhibitions}
-
 {$mObj = $scope.mObj}
-{$aObj = $scope.aObj}
+
+{$homeObj = $scope.homeObj}
+{$exhibition_Obj = $scope.exhibition_Obj}
+{$artist_Objs = $scope.artist_Objs}
+{$contact_Obj = $scope.contact_Obj}
+
 
 {$vp = '//test.vpatina.com'}
 {$cachebust = "?ts`$smarty.now`"}
@@ -134,9 +138,13 @@
       </div>
       
       <div class="row" id="title">
-        <div class="col-md-3 col-sm-2 col-xs-2 text-left">
+        <div class="col-md-3 col-sm-2 col-xs-2 text-left">  
         </div>
+      
         <div class="col-md-8 col-sm-10 col-xs-10 text-center pt20">
+          <div>
+           <h2>{$mObj.sub_title}</h2>
+          </div>
           {block name=title}{/block}
           {if ($scope.header_text)}
           <div>{$scope.header_text}</div>
@@ -187,7 +195,7 @@
           <div class="addthis_inline_share_toolbox"></div>
         </div>
         <div class="col-md-9 col-sm-12 col-xs-12 text-left copyright">
-          Copyright &copy; 2017 {$minisite_name}; All rights reserved.
+          {$mObj.footer}
         </div>
         <div class="col-md-3 col-sm-12 col-xs-12 text-left caravan">
           <a href="https://www.vpatina.com" target="_blank">fueled by <span class="interactive">vPatina</span></a>

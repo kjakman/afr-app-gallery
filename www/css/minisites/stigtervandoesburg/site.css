@@ -16,7 +16,7 @@ body.exhibition .btn-sub-nav-dropdown,body.exhibitions .btn-sub-nav-dropdown {
 
 
 body.home { background:#b2cda1 !important; }
-body.exhibition .exhibition_home  h5 { text-align:center; }
+body.home .exhibition_home  h5 { text-align:center; }
 body.home .timeline-panel  { text-align:center; }
 
 
