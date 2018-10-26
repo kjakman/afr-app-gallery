@@ -1,0 +1,46 @@
+
+      {$pagelist = $scope.pagelist}
+    
+
+      <form> 
+        <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
+        <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id|default:$user_id}">
+        <input hidden="1" name="site_id" type="hidden" value="{$minisite.site_id|default:$site.id}"> <!-- pradeepa -->
+        <input hidden="1" name="row_id" type="hidden" value="{$minisite.id|default:$id}">  <!-- pradeepa -->
+        <input hidden="1" name="next_tab" type="hidden" value="home">
+      
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <input type="text" class="form-control" maxlength="255"> 
+        </div>
+        <input type="submit" class="btn btn-success" value="Create page">
+      </div> 
+      </form> 
+        
+      <div class="row">
+        <div class="form-group col-xs-10">
+          {$rows = []}
+          {$rows[] = ["Type", "Name", "Created", "Published", "Style", "Action"]}
+          {foreach $pagelist as $pagelists}
+            {$rows[] = [$pagelists.type, $pagelists.page_name, $pagelists.created, " ", " ", "<button id= 'getpagelist' class='btn btn-xs btn-success' data-value='{$pagelists.id}'> <i class='glyphicon glyphicon-pencil'></i></button> <button class='btn btn-xs btn-danger delete' data-value='{$pagelists.id}'> <i class='glyphicon glyphicon-trash'></i></button>
+            <input hidden='1' name='page_id' type='hidden' value='{$pagelists.id}'>"]}                   
+          {/foreach}                                            
+  
+          {$rows|table:["class" => "bootstrap-table table table-hover"]}                                        
+          
+        </div>
+      </div>
+      <script type="text/javascript">
+        $(document).ready( function() {
+          $("#gbe_artist_link").hide();
+          $("#gbe_exhibition_link").hide();
+          $("#gbe_styling_link").hide();
+          $("#gbe_basic_link").hide();
+        });
+      </script>
+
+
+
+  
+      
+      

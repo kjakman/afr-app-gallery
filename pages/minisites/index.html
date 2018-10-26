@@ -15,6 +15,8 @@
 {$filter_exhibitions = $scope.filter_exhibitions}
 {$latest_exhibitions = $scope.latest_exhibitions}
 {$mObj = $scope.mObj}
+{$timings = $scope.timings}
+{$profileObj = $scope.profileObj}
 
 {$homeObj = $scope.homeObj}
 {$exhibition_Obj = $scope.exhibition_Obj}
@@ -143,7 +145,9 @@
       
         <div class="col-md-8 col-sm-10 col-xs-10 text-center pt20">
           <div>
-           <h2>{$mObj.sub_title}</h2>
+            {if ($mObj.show_subtitle == '1')}
+              <h2>{$mObj.sub_title}</h2>
+            {/if}
           </div>
           {block name=title}{/block}
           {if ($scope.header_text)}
@@ -162,6 +166,18 @@
         <div class="col-md-3 col-sm-6 col-xs-6">
           <a href="{$basepath}/contact#opening-hours">Opening hours</a> <br />
           <!--a href="{$basepath}/about">About The Gallery</a><br /-->
+          {if ($mObj.show_timing == '1')}
+            {foreach from=$timings item=timing}
+              <table>
+                <tr>
+                  <td style= "width:100px"> {$timing.day} </td>
+                  <td> : </td>
+                  <td> {$timing.opening_time} - </td>
+                  <td> {$timing.closing_time} </td>
+                </tr>
+              </table>
+            {/foreach}
+          {/if}
           <p></p>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-6">
@@ -170,17 +186,16 @@
           <p></p>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12 footer-follow-col" style="padding-right:0px;">
-          {$social_links = $ms.social|@json_decode|obj2array}
-          {if ($social_links|@count > 0)}
+          {if ($profileObj.show_social == '1')}
             <strong>FOLLOW US</strong><br />
-            {if ($social_links.twitter)}
-            <a class="footer-social-icon" href="{$social_links.twitter}"><img src="{$vp}/img/footer/footer-tw@2x.png" /></a>
+            {if ($profileObj.twitter)}
+            <a class="footer-social-icon" href="{$profileObj.twitter}"><img src="{$vp}/img/footer/footer-tw@2x.png" /></a>
             {/if}
-            {if ($social_links.facebook)}
-            <a class="footer-social-icon" href="{$social_links.facebook}"><img src="{$vp}/img/footer/footer-fb@2x.png" /></a>
+            {if ($profileObj.facebook)}
+            <a class="footer-social-icon" href="{$profileObj.facebook}"><img src="{$vp}/img/footer/footer-fb@2x.png" /></a>
             {/if}
-            {if ($social_links.instagram)}
-            <a class="footer-social-icon" href="{$social_links.instagram}" target="_blank"><img src="{$vp}/img/footer/footer-in@2x.png" /></a>
+            {if ($profileObj.instagram)}
+            <a class="footer-social-icon" href="{$profileObj.instagram}" target="_blank"><img src="{$vp}/img/footer/footer-in@2x.png" /></a>
             {/if}
           {/if}
           <!--a class="footer-social-icon" href="#"><img src="{$vp}/img/footer/footer-mail@2x.png" /></a>   

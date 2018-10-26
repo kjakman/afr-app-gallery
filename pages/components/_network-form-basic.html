@@ -59,7 +59,7 @@
               <div class="col-sm-6">
                 <label for="phone">Phone</label>
                 <div class="form-group">
-                  <input name="phone" id="phone" class="form-control" value="{$profile.phone}" type="text" />
+                  <input name="phone" id="phone" class="form-control" value="{$profile.phone}" type="tel" />
                 </div>         
               </div>  
                   
@@ -117,13 +117,13 @@
                     </td>
                     <td style= "width:200px">
                       <div class="input-group" style= "width:150px">
-                        <input type="text" name="mon_start_time" class="form-control input-small timepicker" value="{$scope.profile.mon_start_time|date_format:'H:i'}" >
+                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div>
                     </td>
                     <td >
                       <div class="input-group" style= "width:150px">
-                        <input type="text" name="mon_end_time" class="form-control input-small timepicker" value="{$scope.profile.mon_end_time|date_format:'H:i'}" data-time-format="H:i" >
+                        <input type="text" name="closing_time[]" class="form-control input-small timepicker" >
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div>
                     </td>
@@ -135,13 +135,13 @@
                     </td>
                     <td >
                       <div class="input-group" style= "width:150px">
-                        <input type="text" name="tues_start_time" class="form-control input-small timepicker" value="{$scope.profile.tues_start_time|date_format:'H:i'}" data-time-format="H:i">
+                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div>
                     </td>
                     <td style= "width:200px">
                       <div class="input-group" style= "width:150px">
-                       <input type="text" name="tues_end_time" class="form-control input-small timepicker" value="{$scope.profile.tues_end_time|date_format:'H:i'}" data-time-format="H:i">
+                       <input type="text" name="closing_time[]" class="form-control input-small timepicker" >
                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div>
                     </td>
@@ -153,13 +153,13 @@
                     </td>
                     <td >
                       <div class="input-group" style= "width:150px">
-                        <input type="text" name="wed_start_time" class="form-control input-small timepicker" value="{$scope.profile.wed_start_time|date_format:'H:i'}" data-time-format="H:i" >
+                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div>
                     </td>
                     <td style= "width:200px">
                       <div class="input-group" style= "width:150px">
-                       <input type="text" name="wed_end_time" class="form-control input-small timepicker" value="{$scope.profile.wed_end_time|date_format:'H:i'}" data-time-format="H:i" >
+                       <input type="text" name="closing_time[]" class="form-control input-small timepicker"  >
                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div>
                     </td>
@@ -171,13 +171,13 @@
                     </td>
                     <td style= "width:200px">
                       <div class="input-group" style= "width:150px">
-                        <input type="text" name="thur_start_time" class="form-control input-small timepicker" value="{$scope.profile.thur_start_time|date_format:'H:i'}" data-time-format="H:i" >
+                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div>
                     </td>
                     <td >
                       <div class="input-group" style= "width:150px">
-                        <input type="text" name="thur_end_time" class="form-control input-small timepicker" value="{$scope.profile.thur_end_time|date_format:'H:i'}" data-time-format="H:i" >
+                        <input type="text" name="closing_time[]" class="form-control input-small timepicker"  >
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div>
                     </td>
@@ -189,13 +189,49 @@
                     </td>
                     <td style= "width:200px">
                       <div class="input-group" style= "width:150px">
-                        <input type="text" name="fri_start_time" class="form-control input-small timepicker" value="{$scope.profile.fri_start_time|date_format:'H:i'}" data-time-format="H:i">
+                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div>
                     </td>
                     <td >
                       <div class="input-group" style= "width:150px">
-                       <input type="text" name="fri_end_time" class="form-control input-small timepicker" value="{$scope.profile.fri_end_time|date_format:'H:i'}" data-time-format="H:i">
+                       <input type="text" name="closing_time[]" class="form-control input-small timepicker" >
+                       <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr style="height: 15px;"/>
+                  <tr>
+                    <td >
+                      <label for="Saturday">Saturday</label>
+                    </td>
+                    <td style= "width:200px">
+                      <div class="input-group" style= "width:150px">
+                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                      </div>
+                    </td>
+                    <td >
+                      <div class="input-group" style= "width:150px">
+                       <input type="text" name="closing_time[]" class="form-control input-small timepicker" >
+                       <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr style="height: 15px;"/>
+                  <tr>
+                    <td >
+                      <label for="Sunday">Sunday</label>
+                    </td>
+                    <td style= "width:200px">
+                      <div class="input-group" style= "width:150px">
+                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                      </div>
+                    </td>
+                    <td >
+                      <div class="input-group" style= "width:150px">
+                       <input type="text" name="closing_time[]" class="form-control input-small timepicker" >
                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                       </div>
                     </td>

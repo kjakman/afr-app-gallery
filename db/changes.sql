@@ -133,3 +133,47 @@ ADD `fri_end_time` datetime NOT NULL AFTER `fri_start_time`,
 ADD `instagram` varchar(50) NOT NULL AFTER `fri_end_time`,
 ADD `facebook` varchar(50) NOT NULL AFTER `instagram`,
 ADD `twitter` varchar(50) NOT NULL AFTER `facebook`;
+
+ALTER TABLE `user_profile`
+DROP `mon_start_time`,
+DROP `mon_end_time`,
+DROP `tues_start_time`,
+DROP `tues_end_time`,
+DROP `wed_start_time`,
+DROP `wed_end_time`,
+DROP `thur_start_time`,
+DROP `thur_end_time`,
+DROP `fri_start_time`,
+DROP `fri_end_time`;
+
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+VALUES ('opening_hours', '1000');
+
+CREATE TABLE `minisite_pages` (
+  `id` int(8) NOT NULL,
+  `created` date NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `active` tinyint(1) NULL DEFAULT '1',
+  `site_id` int(8) NOT NULL,
+  `client_id` int(8) NOT NULL,
+  `user_id` int(8) NOT NULL,
+  `type` varchar(32) NOT NULL,
+  `page_name` varchar(32) NOT NULL
+);
+
+ALTER TABLE `minisite`
+ADD `show_title` tinyint(1) NOT NULL DEFAULT '1',
+ADD `show_subtitle` tinyint(1) NOT NULL DEFAULT '1' AFTER `show_title`,
+ADD `show_timing` tinyint(1) NOT NULL DEFAULT '1' AFTER `show_subtitle`,
+ADD `show_social` tinyint(1) NOT NULL DEFAULT '1' AFTER `show_timing`;
+
+CREATE TABLE `opening_hours` (
+  `id` int(8) NOT NULL,
+  `created` date NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user_id` int(8) NOT NULL, 
+  `day` varchar(128) NOT NULL,
+  `opening_time` time NOT NULL AFTER `day`,
+  `closing_time` time NOT NULL AFTER `opening_time`,
+  `holiday` tinyint(1) NULL DEFAULT '1',
+);
