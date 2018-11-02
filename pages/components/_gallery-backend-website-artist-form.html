@@ -3,9 +3,11 @@
       {$artwork = $scope.artwork}
       {$artist_id = $artwork.artist_id|default:$scope.artist_id}
       {$minisiteobj = $scope.martist}
+      {$page_id = $scope.page_id}
+
       <form class="ajax-submit" data-handler="save-minisite"> 
-        <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
-        <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">
+        <input hidden="1" name="minisite_id" type="hidden" value="{$minisite.id|default:$id}">
+        <input hidden="1" name="page_id" type="hidden" value="{$page_id}">
         <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id}">
         <input hidden="1" name="obj_type" type="hidden" value="minisite_artist_page">  
 
@@ -34,7 +36,7 @@
          {$artist_ids = [$artist_id]}
         {/if}
 
-      <form class="ajax-submit" data-handler="save-minisite-page" data-success_handler="gbe_website_handler"> 
+      <form class="ajax-submit" data-handler="save-minisite-artist" data-success_handler="gbe_website_handler"> 
         <div class="row">
           <div class="form-group col-xs-6">
             <ul id="artistTags" >
@@ -66,7 +68,9 @@
       $(function() {
         console.log( "ready!" );
         awb_set_type($("#type").val());
-        if($("#artistTags").length) gbe_artists_tagit();          
+        if($("#artistTags").length) gbe_artists_tagit();
+        $("#gbe_exhibition_link").hide();
+        $("#gbe_home_link").hide();          
       });
       $(document).on("change",'#type',function() {
         var val = $(this).val();
@@ -82,5 +86,6 @@
       $(document).on("click",'#soft_delete',function() {
         $(this).closest("tr").remove();
       });
+
       </script>
       

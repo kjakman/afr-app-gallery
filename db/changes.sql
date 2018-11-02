@@ -21,7 +21,7 @@ ADD `show_others` tinyint(1) NULL DEFAULT '0' AFTER `show_artfair`,
 ADD `show_past` tinyint(1) NULL DEFAULT '0' AFTER `show_others`,
 ADD `show_current` tinyint(1) NULL DEFAULT '0' AFTER `show_past`,
 ADD `show_future` tinyint(1) NULL DEFAULT '0' AFTER `show_current`,
-ADD `show_latest` tinyint(1) NULL DEFAULT '1' AFTER `show_future`;
+ADD `show_latest` tinyint(1) NULL DEFAULT '1' AFTER `show_future`,
 ADD `show_recent` tinyint(1) NULL DEFAULT '1' AFTER `show_latest`;
 
 ALTER TABLE `minisite`
@@ -39,8 +39,8 @@ DROP `show_latest`,
 DROP `show_recent`,
 
 ALTER TABLE `minisite`
-ADD `sub_title` varchar(128) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `name`;
-ADD `description` varchar(225) COLLATE 'utf8_general_ci' NOT NULL AFTER `sub_title`;
+ADD `sub_title` varchar(128) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `name`,
+ADD `description` varchar(225) COLLATE 'utf8_general_ci' NOT NULL AFTER `sub_title`,
 ADD `footer` varchar(255) NOT NULL;
 
 CREATE TABLE `minisite_exhibition_page` (
@@ -177,3 +177,12 @@ CREATE TABLE `opening_hours` (
   `closing_time` time NOT NULL AFTER `opening_time`,
   `holiday` tinyint(1) NULL DEFAULT '1',
 );
+
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+VALUES ('minisite_pages', '101');
+
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+VALUES ('minisite_artist_page', '1001');
+
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+VALUES ('minisite_exhibition_page', '1001');

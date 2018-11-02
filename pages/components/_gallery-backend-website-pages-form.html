@@ -2,41 +2,100 @@
       {$pagelist = $scope.pagelist}
     
 
-      <form> 
-        <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
+      <form class="ajax-submit" data-handler="save-minisite-page"> 
+        <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">  
         <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id|default:$user_id}">
-        <input hidden="1" name="site_id" type="hidden" value="{$minisite.site_id|default:$site.id}"> <!-- pradeepa -->
-        <input hidden="1" name="row_id" type="hidden" value="{$minisite.id|default:$id}">  <!-- pradeepa -->
-        <input hidden="1" name="next_tab" type="hidden" value="home">
-      
+        <input hidden="1" name="site_id" type="hidden" value="{$minisite.site_id|default:$site.id}"> 
+        
       <div class="row">
         <div class="form-group col-sm-6">
-          <input type="text" class="form-control" maxlength="255"> 
+          {"type"|object_select:"minisite_page_type":["class" => "form-control", "value" => $minisite_pages.type]}
         </div>
-        <input type="submit" class="btn btn-success" value="Create page">
+        <input type="submit" class="btn btn-success" id= 'create_page' value="Create page">
       </div> 
       </form> 
         
       <div class="row">
-        <div class="form-group col-xs-10">
-          {$rows = []}
-          {$rows[] = ["Type", "Name", "Created", "Published", "Style", "Action"]}
+        <div class="form-group col-xs-12">
+          <table class = "bootstrap-table table table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Created</th>
+                <th>Published</th>
+                <th>Style</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+          
+              {foreach $pagelist as $pagelists}              
+                <tr id= "{$pagelists.id}">
+                  <td>{$pagelists.page_name}</td>
+                  <td>{$pagelists.created}</td>
+                  <td>{$pagelists.timestamp}</td>
+                  <td></td>
+                  <td>
+                    {if ({$pagelists.type} == 10)}
+                      {$tab = 'home'}
+                    {/if}
+                    {if ({$pagelists.type} == 20)}
+                      {$tab = 'artist'}
+                    {/if}
+                    {if ({$pagelists.type} == 30)}
+                      {$tab = 'exhibition'}
+                    {/if}
+                    <a href="/backend/website/{$minisite.id|default:$id}/edit/{$tab}?_pv=1&amp;page_id={$pagelists.id}&amp;user_id={$minisite.user_id|default:$user_id}" class="btn btn-success ajax-loader" data-target="#subview-container"><button id= 'getpagelist' class='btn btn-xs btn-success' data-value='{$minisite.user_id}|{$pagelists.id}'> <i class='glyphicon glyphicon-pencil'></i></button></a>
+                    <button class='btn btn-xs btn-danger delete' id= 'page_delete' data-value='{$pagelists.id}'> <i class='glyphicon glyphicon-trash'></i></button>
+                  </td>
+                </tr>
+                
+              {/foreach} 
+            </tbody>
+          </table>
+        </div>
+        <input type="submit" class="btn btn-success" id= 'submit_order' value="Submit Ordering">
+      </div>
+          <!-- {$rows = []}
+          {$rows[] = ["Name", "Created", "Published", "Style", "Action"]}
           {foreach $pagelist as $pagelists}
-            {$rows[] = [$pagelists.type, $pagelists.page_name, $pagelists.created, " ", " ", "<button id= 'getpagelist' class='btn btn-xs btn-success' data-value='{$pagelists.id}'> <i class='glyphicon glyphicon-pencil'></i></button> <button class='btn btn-xs btn-danger delete' data-value='{$pagelists.id}'> <i class='glyphicon glyphicon-trash'></i></button>
-            <input hidden='1' name='page_id' type='hidden' value='{$pagelists.id}'>"]}                   
+            {$rows[] = [$pagelists.page_name, $pagelists.created, $pagelists.timestamp, " ", "<button id= 'getpagelist' class='btn btn-xs btn-success' data-value='{$minisite.user_id}|{$pagelists.id}'> <i class='glyphicon glyphicon-pencil'></i></button> <button class='btn btn-xs btn-danger delete' id= 'page_delete'data-value='{$pagelists.id}'> <i class='glyphicon glyphicon-trash'></i></button>"]}                   
           {/foreach}                                            
   
-          {$rows|table:["class" => "bootstrap-table table table-hover"]}                                        
-          
-        </div>
-      </div>
+          {$rows|table:["class" => "bootstrap-table table table-hover", "id" => "page_table"]}                                        
+             -->
+        
       <script type="text/javascript">
         $(document).ready( function() {
           $("#gbe_artist_link").hide();
           $("#gbe_exhibition_link").hide();
           $("#gbe_styling_link").hide();
           $("#gbe_basic_link").hide();
+          $("#gbe_home_link").hide();
         });
+
+        $('tbody').sortable({
+          stop: function ( event, ui ) {
+                  // parameters will be a string "id[]=1&id[]=3&id[]=10"...etc
+                  var parameters = $sortable.sortable( "serialize" );
+
+                  // send new sort data to process
+                  //$.post("/sort/my/data.php?"+parameters);        
+            }
+    
+        });
+
+        $(document).on("click",'#page_delete',function() {
+          $(this).closest("tr").remove();
+        });
+
+        $(document).on("click",'#create_page',function() {
+           setTimeout(function() { 
+            $("#gbe_page_link").trigger('click');
+          }, 1000);
+        });
+        
+
       </script>
 
 

@@ -116,74 +116,15 @@
               <input name="domain" id="domain" class="form-control" value="{$minisite.domain}" type="text" /> 
             </div>
           </div> 
-                
-        <!-- {$layout = ['', 'Menu on Top Logo top Right', 'Menu on Top Logo top Left', 'Menu on Left Logo top Left']}
-          <div class="row">
-            <div class="form-group col-sm-6 col-xs-12">
-              <label for="minisite-layout-structure">Layout Structure</label>
-              <select class="form-control auto-select" id="layout-structure" name="layout-structure" data-default="Menu on Top Logo top Right" data-value="{$minisite.layout|default:'Menu on Top Logo top Right'}">
-                {foreach from=$layout item=type}
-                  <option value="{$type}">{$type}</option>
-                {/foreach}                                            
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-sm-6 col-xs-12">
-                <label for="media-name">Domain Name</label>
-                <input type="text" class="form-control" name="title" value="" maxlength="100">
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-sm-6 col-xs-12">
-              <label for="media-name">Site Title</label>
-              <input type="text" class="form-control" name="title" value="" maxlength="100">
-              Shown in header and title pages
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-sm-12">
-              <label for="description">Site Description</label>
-              <textarea class="summernote form-control special" data-height="50" name="description"></textarea>
-              Will be visible in search results on Google etc. It will not be displayed on your site. We recommend a text with 140-160 characters.
-            </div>
-          </div>
-          <!-- <div class="row">
-            <div class="form-group col-sm-12">
-              <label for="description">Comments</label>
-              <textarea class="summernote form-control special" data-height="50" name="description"></textarea>
-            </div>
-          </div> 
-          <div class="row">
-            <div class="form-group col-sm-6 col-xs-12">
-              <label for="media-name">Page Footer</label>
-              <input type="text" class="form-control" name="title" value="" maxlength="100">
-              Shown in header and title pages
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-sm-6 col-xs-12">
-              <label for="media-name">Icon</label>
-              <a data-toggle="tooltip" data-placement="right"> <i class="fa fa-info-circle"></i></a>
-              {"minisite"|object_uploader:$artwork.id:"title_image":["resize" => 1, "cloud" => 1, "view" => "list"]}
-            </div>
-          </div>
-          
-          <div class="row">
-            <div class="form-group col-sm-6 col-xs-12">
-              <label for="minisite-layout-structure">Social Media Link</label>
-              <div id="wrapper">
-                <table class= "table table-hover">
-                  <td><input type="text" class="form-control" name="title" value="" maxlength="100"></td>
-                  <td><input type="text" class="form-control" name="title" value="" maxlength="100"></td>
-                  <td><button type="button" class="add btn btn-success">+</button></td>
-                </table>
-              </div>
-            </div>
-          </div> -->
           <input type="submit" class="btn btn-success" value="Save" id="submit">
       </form>
       {{"include": "_gallery-backend-website-profile-dialog.html"}}
+
+      <script type="text/javascript">
+        $("#gbe_artist_link").hide();
+        $("#gbe_exhibition_link").hide();
+        $("#gbe_home_link").hide();
+      </script>
 
 <!-- <script type="text/javascript">
   $(document).ready(function() {
