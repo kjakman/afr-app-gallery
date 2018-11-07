@@ -1,5 +1,5 @@
 /vendor
-/config/*.txt
+config/*.txt
 /bower_components
 /includes/old
 /smarty/templates/

@@ -233,7 +233,7 @@ function bstArtworkStatusFormatter(value, row, index) {
     var buttons = bstActionFormatter(value, row, index);
     var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>'; 
 
-    var pop_btn = '<a id="clone_modal'+row.id + '" class="clone_modal" data-toggle="modal" data-target="#clone_modals"><i class="fa fa-clone"></i></a>';
+    var pop_btn = '<a id="'+row.id + '" class="clone_modal_icon" data-toggle="modal" data-target="#clone_modals"><i class="fa fa-clone"></i></a>';
 
     return buttons + ' ' + plugin_button + ' ' + pop_btn;
  
@@ -392,17 +392,24 @@ $('load-success.bs.table').load(function() {
         <b class="overlay-title" style="font-size: 25px;">Are you sure you want to clone this artwork?</b>
       </div>
        
-      <form name="clone-form" class="cal-form ajax-submit" id="clone_dialog_form"  data-handler="clone-artwork" data-reload_link="#gbe_clone_artwork">
-        <div class="modal-body" style="font-size: 20px;">
-            <p>This action cannot be undone</p>
-        </div>
-        <input type="text" class="form-control" name="title" value="">
-        
-       <div class="modal-footer">
-          <button type="button" id="sel_clone_success" class="btn btn-success" data-dismiss="modal">Clone</button>
+      <form name="clone-form" class="ajax-submit" id="clone_dialog_form"  data-handler="clone-artwork" data-reload_link="#gbe_clone_artwork">
+        <div class="modal-body">
+          <p>This action cannot be undone</p>
+          
+          <div class="form-group">
+            <label for="clone-title">Title</label>
+            <input type="text" class="form-control" name="title" value="" id="clone-title">
+          </div>
+          
+          <input type="hidden" class="form-control" name="obj_id" value="">
+          <input type="hidden" class="form-control" name="obj_type" value="artwork">
+          <input type="submit" class="btn btn-success" value="Clone">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        </div>
+        </div>        
       </form>
+      <div class="modal-footer">
+      </div>
+      
     </div>
   </div>
 </div>
