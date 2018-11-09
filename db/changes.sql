@@ -2,41 +2,6 @@
 
 alter table user_map add column soft_delete tinyint(1) not null default 0;
 
-ALTER TABLE `minisite`
-ADD `artist_menu_title` varchar(255) NOT NULL AFTER `location_id`,
-ADD `artist_page_title` varchar(255) NOT NULL AFTER `artist_menu_title`,
-ADD `exhibition_menu_title` varchar(255) NOT NULL AFTER `artist_page_title`,
-ADD `exhibition_page_title` varchar(255) NOT NULL AFTER `exhibition_menu_title`;
-
-ALTER TABLE `minisite`
-ADD `exhibition_type` varchar(64) NOT NULL;
-
-ALTER TABLE `minisite`
-DROP `exhibition_type`;
-
-ALTER TABLE `minisite`
-ADD `show_gallery` tinyint(1) NULL DEFAULT '0' AFTER `exhibition_page_title`,
-ADD `show_artfair` tinyint(1) NULL DEFAULT '0' AFTER `show_gallery`,
-ADD `show_others` tinyint(1) NULL DEFAULT '0' AFTER `show_artfair`,
-ADD `show_past` tinyint(1) NULL DEFAULT '0' AFTER `show_others`,
-ADD `show_current` tinyint(1) NULL DEFAULT '0' AFTER `show_past`,
-ADD `show_future` tinyint(1) NULL DEFAULT '0' AFTER `show_current`,
-ADD `show_latest` tinyint(1) NULL DEFAULT '1' AFTER `show_future`,
-ADD `show_recent` tinyint(1) NULL DEFAULT '1' AFTER `show_latest`;
-
-ALTER TABLE `minisite`
-DROP `artist_menu_title`,
-DROP `artist_page_title`,
-DROP `exhibition_menu_title`,
-DROP `exhibition_page_title`,
-DROP `show_gallery`,
-DROP `show_artfair`,
-DROP `show_others`,
-DROP `show_past`,
-DROP `show_current`,
-DROP `show_future`,
-DROP `show_latest`,
-DROP `show_recent`,
 
 ALTER TABLE `minisite`
 ADD `sub_title` varchar(128) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `name`,
@@ -98,53 +63,40 @@ CREATE TABLE `minisite_artist_page` (
   `page_title` varchar(128) NOT NULL
 );
 
-INSERT INTO `minisite_artist_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`)
-VALUES ('1000', now(), now(), '247', '1004', '20361', '100', '1', 'Artist Page', 'Artist Page');
+IF NOT EXISTS (SELECT * FROM minisite_artist_page WHERE id = '1000')
+BEGIN
+  INSERT INTO `minisite_artist_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`)
+  VALUES ('1000', now(), now(), '247', '1004', '20361', '100', '1', 'Artist Page', 'Artist Page');
+END
 
-INSERT INTO `minisite_home_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `layout`, `active`, `menu_title`, `page_title`, 'show_gallery', 'show_artfair', 'show_others', 'show_past', 'show_current', 'show_future', 'show_latest', 'show_recent')
-VALUES ('1000', now(), now(), '247', '1004', '20361', '100', '1', 'Home Page', 'Home Page', '1', '1', '1', '1','1', '1', '1', '1');
+IF NOT EXISTS (SELECT * FROM minisite_home_page WHERE id = '1000')
+BEGIN
+  INSERT INTO `minisite_home_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `layout`, `active`, `menu_title`, `page_title`, 'show_gallery', 'show_artfair', 'show_others', 'show_past', 'show_current', 'show_future', 'show_latest', 'show_recent')
+  VALUES ('1000', now(), now(), '247', '1004', '20361', '100', '1', 'Home Page', 'Home Page', '1', '1', '1', '1','1', '1', '1', '1');
+END
 
-INSERT INTO `minisite_exhibition_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`, 'show_gallery', 'show_artfair', 'show_others', 'show_past', 'show_current', 'show_future', 'show_latest', 'show_recent')
-VALUES ('1000', now(), now(), '247', '1004', '20361', '100', '1', 'Exhibition Page', 'Exhibition Page', '1', '1', '1','1', '1', '1', '1');
+IF NOT EXISTS (SELECT * FROM minisite_exhibition_page WHERE id = '1000')
+BEGIN
+  INSERT INTO `minisite_exhibition_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`, 'show_gallery', 'show_artfair', 'show_others', 'show_past', 'show_current', 'show_future', 'show_latest', 'show_recent')
+  VALUES ('1000', now(), now(), '247', '1004', '20361', '100', '1', 'Exhibition Page', 'Exhibition Page', '1', '1', '1','1', '1', '1', '1');
+END
 
 CREATE TABLE `minisite_layout` (
   `id` tinyint(2) NOT NULL DEFAULT '0',
   `name` varchar(20) NULL
 );
 
-INSERT INTO `minisite_layout` (`id`, `name`)
-VALUES ('1', 'single column');
+IF NOT EXISTS (SELECT * FROM minisite_layout WHERE id = '1')
+BEGIN
+  INSERT INTO `minisite_layout` (`id`, `name`)
+  VALUES ('1', 'single column');
+END
 
-INSERT INTO `minisite_layout` (`id`, `name`)
-VALUES ('2', 'timeline');
-
-ALTER TABLE `user_profile`
-ADD `gallery_name` varchar(50) COLLATE 'utf8_general_ci' NULL DEFAULT '' AFTER `display_name`,
-ADD `mon_start_time` datetime NOT NULL,
-ADD `mon_end_time` datetime NOT NULL AFTER `mon_start_time`,
-ADD `tues_start_time` datetime NOT NULL AFTER `mon_end_time`,
-ADD `tues_end_time` datetime NOT NULL AFTER `tues_start_time`,
-ADD `wed_start_time` datetime NOT NULL AFTER `tues_end_time`,
-ADD `wed_end_time` datetime NOT NULL AFTER `wed_start_time`,
-ADD `thur_start_time` datetime NOT NULL AFTER `wed_end_time`,
-ADD `thur_end_time` datetime NOT NULL AFTER `thur_start_time`,
-ADD `fri_start_time` datetime NOT NULL AFTER `thur_end_time`,
-ADD `fri_end_time` datetime NOT NULL AFTER `fri_start_time`,
-ADD `instagram` varchar(50) NOT NULL AFTER `fri_end_time`,
-ADD `facebook` varchar(50) NOT NULL AFTER `instagram`,
-ADD `twitter` varchar(50) NOT NULL AFTER `facebook`;
-
-ALTER TABLE `user_profile`
-DROP `mon_start_time`,
-DROP `mon_end_time`,
-DROP `tues_start_time`,
-DROP `tues_end_time`,
-DROP `wed_start_time`,
-DROP `wed_end_time`,
-DROP `thur_start_time`,
-DROP `thur_end_time`,
-DROP `fri_start_time`,
-DROP `fri_end_time`;
+IF NOT EXISTS (SELECT * FROM minisite_layout WHERE id = '2')
+BEGIN
+  INSERT INTO `minisite_layout` (`id`, `name`)
+  VALUES ('2', 'timeline');
+END
 
 CREATE TABLE `minisite_pages` (
   `id` int(8) NOT NULL,
@@ -175,20 +127,35 @@ CREATE TABLE `opening_hours` (
   `holiday` tinyint(1) NULL DEFAULT '1',
 );
 
-INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-VALUES ('opening_hours', '1000');
+IF NOT EXISTS (SELECT * FROM db_sequence WHERE seq_name = 'opening_hours')
+BEGIN
+  INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+  VALUES ('opening_hours', '1000');
+END
 
-INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-VALUES ('minisite_pages', '101');
+IF NOT EXISTS (SELECT * FROM db_sequence WHERE seq_name = 'minisite_pages')
+BEGIN
+  INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+  VALUES ('minisite_pages', '101');
+END
 
-INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-VALUES ('minisite_artist_page', '1001');
+IF NOT EXISTS (SELECT * FROM db_sequence WHERE seq_name = 'minisite_artist_page')
+BEGIN
+  INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+  VALUES ('minisite_artist_page', '1001');
+END
 
-INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-VALUES ('minisite_exhibition_page', '1001');
+IF NOT EXISTS (SELECT * FROM db_sequence WHERE seq_name = 'minisite_exhibition_page')
+BEGIN
+  INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+  VALUES ('minisite_exhibition_page', '1001');
+END
 
-INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-VALUES ('minisite_home_page', '1001');
+IF NOT EXISTS (SELECT * FROM db_sequence WHERE seq_name = 'minisite_home_page')
+BEGIN
+  INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+  VALUES ('minisite_home_page', '1001');
+END
 
 
 CREATE TABLE `minisite_page_type` (
@@ -196,23 +163,41 @@ CREATE TABLE `minisite_page_type` (
   `name` varchar(32) NOT NULL
 );
 
+IF NOT EXISTS (SELECT * FROM minisite_page_type WHERE id = '10')
+BEGIN
 INSERT INTO `minisite_page_type` (`id`, `name`)
 VALUES ('10', 'home');
+END
+
+IF NOT EXISTS (SELECT * FROM minisite_page_type WHERE id = '20')
+BEGIN
 INSERT INTO `minisite_page_type` (`id`, `name`)
 VALUES ('20', 'artist');
+END
+
+IF NOT EXISTS (SELECT * FROM minisite_page_type WHERE id = '30')
+BEGIN
 INSERT INTO `minisite_page_type` (`id`, `name`)
 VALUES ('30', 'exhibition');
+END
 
-
+IF NOT EXISTS (SELECT * FROM minisite_pages WHERE id = '100')
+BEGIN
 INSERT INTO `minisite_pages` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`)
 VALUES ('100', now(), now(), '1', '247', '1004', '20361', '10', 'home');
+END
 
+IF NOT EXISTS (SELECT * FROM minisite_pages WHERE id = '101')
+BEGIN
 INSERT INTO `minisite_pages` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`)
 VALUES ('101', now(), now(), '1', '247', '1004', '20361', '30', 'exhibition');
+END
 
+IF NOT EXISTS (SELECT * FROM minisite_pages WHERE id = '102')
+BEGIN
 INSERT INTO `minisite_pages` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`)
 VALUES ('102', now(), now(), '1', '247', '1004', '20361', '20', 'artist');
-
+END
 
 ALTER TABLE `minisite_pages`
 RENAME TO `minisite_page`;
@@ -223,5 +208,10 @@ ADD `path` varchar(128) COLLATE 'utf8mb4_general_ci' NOT NULL DEFAULT '';
 UPDATE `db_sequence` SET
 `seq_name` = 'minisite_page',
 `nextid` = '103'
-WHERE `seq_name` = 'minisite_pages' AND `seq_name` = 'minisite_pages' COLLATE utf8mb4_bin;
+WHERE `seq_name` = 'minisite_pages' AND `seq_name` = 'minisite_pages';
+
+ALTER TABLE `user_profile`
+CHANGE `facebook` `facebook` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `data`,
+CHANGE `instagram` `instagram` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `facebook`,
+CHANGE `twitter` `twitter` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `instagram`;
 
