@@ -63,40 +63,30 @@ CREATE TABLE `minisite_artist_page` (
   `page_title` varchar(128) NOT NULL
 );
 
-IF NOT EXISTS (SELECT * FROM minisite_artist_page WHERE id = '1000')
-BEGIN
-  INSERT INTO `minisite_artist_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`)
-  VALUES ('1000', now(), now(), '247', '1004', '20361', '100', '1', 'Artist Page', 'Artist Page');
-END
+INSERT INTO `minisite_artist_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`)
+SELECT '1000', now(), now(), '247', '1004', '20361', '100', '1', 'Artist Page', 'Artist Page'from dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_artist_page` WHERE `id` = '1000');
 
-IF NOT EXISTS (SELECT * FROM minisite_home_page WHERE id = '1000')
-BEGIN
-  INSERT INTO `minisite_home_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `layout`, `active`, `menu_title`, `page_title`, 'show_gallery', 'show_artfair', 'show_others', 'show_past', 'show_current', 'show_future', 'show_latest', 'show_recent')
-  VALUES ('1000', now(), now(), '247', '1004', '20361', '100', '1', 'Home Page', 'Home Page', '1', '1', '1', '1','1', '1', '1', '1');
-END
+INSERT INTO `minisite_home_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `layout`, `active`, `menu_title`, `page_title`, 'show_gallery', 'show_artfair', 'show_others', 'show_past', 'show_current', 'show_future', 'show_latest', 'show_recent')
+SELECT '1000', now(), now(), '247', '1004', '20361', '100', '1', 'Home Page', 'Home Page', '1', '1', '1', '1','1', '1', '1', '1' FROM dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_home_page` WHERE `id` = '1000');
 
-IF NOT EXISTS (SELECT * FROM minisite_exhibition_page WHERE id = '1000')
-BEGIN
-  INSERT INTO `minisite_exhibition_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`, 'show_gallery', 'show_artfair', 'show_others', 'show_past', 'show_current', 'show_future', 'show_latest', 'show_recent')
-  VALUES ('1000', now(), now(), '247', '1004', '20361', '100', '1', 'Exhibition Page', 'Exhibition Page', '1', '1', '1','1', '1', '1', '1');
-END
+INSERT INTO `minisite_exhibition_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`, 'show_gallery', 'show_artfair', 'show_others', 'show_past', 'show_current', 'show_future', 'show_latest', 'show_recent')
+SELECT '1000', now(), now(), '247', '1004', '20361', '100', '1', 'Exhibition Page', 'Exhibition Page', '1', '1', '1','1', '1', '1', '1' FROM dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_exhibition_page` WHERE `id` = '1000');
 
 CREATE TABLE `minisite_layout` (
   `id` tinyint(2) NOT NULL DEFAULT '0',
   `name` varchar(20) NULL
 );
 
-IF NOT EXISTS (SELECT * FROM minisite_layout WHERE id = '1')
-BEGIN
-  INSERT INTO `minisite_layout` (`id`, `name`)
-  VALUES ('1', 'single column');
-END
+INSERT INTO `minisite_layout` (`id`, `name`)
+SELECT '1', 'single column' from dual
+WHERE NOT EXISTS (SELECT * FROM minisite_layout WHERE id = '1');
 
-IF NOT EXISTS (SELECT * FROM minisite_layout WHERE id = '2')
-BEGIN
-  INSERT INTO `minisite_layout` (`id`, `name`)
-  VALUES ('2', 'timeline');
-END
+INSERT INTO `minisite_layout` (`id`, `name`)
+SELECT '2', 'timeline' from dual
+WHERE NOT EXISTS (SELECT * FROM minisite_layout WHERE id = '2');
 
 CREATE TABLE `minisite_pages` (
   `id` int(8) NOT NULL,
@@ -127,35 +117,25 @@ CREATE TABLE `opening_hours` (
   `holiday` tinyint(1) NULL DEFAULT '1',
 );
 
-IF NOT EXISTS (SELECT * FROM db_sequence WHERE seq_name = 'opening_hours')
-BEGIN
-  INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-  VALUES ('opening_hours', '1000');
-END
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+SELECT 'opening_hours', '1000' from dual
+WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'opening_hours');
 
-IF NOT EXISTS (SELECT * FROM db_sequence WHERE seq_name = 'minisite_pages')
-BEGIN
-  INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-  VALUES ('minisite_pages', '101');
-END
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+SELECT 'minisite_pages', '101' from dual
+WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'minisite_pages');
 
-IF NOT EXISTS (SELECT * FROM db_sequence WHERE seq_name = 'minisite_artist_page')
-BEGIN
-  INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-  VALUES ('minisite_artist_page', '1001');
-END
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+SELECT 'minisite_artist_page', '1001' from dual
+WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'minisite_artist_page');
 
-IF NOT EXISTS (SELECT * FROM db_sequence WHERE seq_name = 'minisite_exhibition_page')
-BEGIN
-  INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-  VALUES ('minisite_exhibition_page', '1001');
-END
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+SELECT 'minisite_exhibition_page', '1001' from dual
+WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'minisite_exhibition_page');
 
-IF NOT EXISTS (SELECT * FROM db_sequence WHERE seq_name = 'minisite_home_page')
-BEGIN
-  INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-  VALUES ('minisite_home_page', '1001');
-END
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+SELECT 'minisite_home_page', '1001' from dual
+WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'minisite_home_page');
 
 
 CREATE TABLE `minisite_page_type` (
@@ -163,41 +143,32 @@ CREATE TABLE `minisite_page_type` (
   `name` varchar(32) NOT NULL
 );
 
-IF NOT EXISTS (SELECT * FROM minisite_page_type WHERE id = '10')
-BEGIN
+
 INSERT INTO `minisite_page_type` (`id`, `name`)
-VALUES ('10', 'home');
-END
+SELECT '10', 'home' from dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '10');
 
-IF NOT EXISTS (SELECT * FROM minisite_page_type WHERE id = '20')
-BEGIN
+
 INSERT INTO `minisite_page_type` (`id`, `name`)
-VALUES ('20', 'artist');
-END
+SELECT '20', 'artist' FROM dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '20');
 
-IF NOT EXISTS (SELECT * FROM minisite_page_type WHERE id = '30')
-BEGIN
+
 INSERT INTO `minisite_page_type` (`id`, `name`)
-VALUES ('30', 'exhibition');
-END
+SELECT '30', 'exhibition' FROM dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '30');
 
-IF NOT EXISTS (SELECT * FROM minisite_pages WHERE id = '100')
-BEGIN
 INSERT INTO `minisite_pages` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`)
-VALUES ('100', now(), now(), '1', '247', '1004', '20361', '10', 'home');
-END
+SELECT '100', now(), now(), '1', '247', '1004', '20361', '10', 'home' from dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_pages` WHERE `id` = '100');
 
-IF NOT EXISTS (SELECT * FROM minisite_pages WHERE id = '101')
-BEGIN
 INSERT INTO `minisite_pages` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`)
-VALUES ('101', now(), now(), '1', '247', '1004', '20361', '30', 'exhibition');
-END
+SELECT '101', now(), now(), '1', '247', '1004', '20361', '30', 'exhibition' from dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_pages` WHERE `id` = '101');
 
-IF NOT EXISTS (SELECT * FROM minisite_pages WHERE id = '102')
-BEGIN
 INSERT INTO `minisite_pages` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`)
-VALUES ('102', now(), now(), '1', '247', '1004', '20361', '20', 'artist');
-END
+SELECT '102', now(), now(), '1', '247', '1004', '20361', '20', 'artist' from dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_pages` WHERE `id` = '102');
 
 ALTER TABLE `minisite_pages`
 RENAME TO `minisite_page`;
