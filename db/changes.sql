@@ -52,8 +52,8 @@ CREATE TABLE `minisite_exhibition_page` (
   `user_id` int(8) NOT NULL,
   `page_id` int(8) NOT NULL,
   `active` tinyint(1) NULL DEFAULT '1',
-  `exhibition_menu_title` varchar(255) NOT NULL,
-  `exhibition_page_title` varchar(255) NOT NULL,
+  `menu_title` varchar(255) NOT NULL,
+  `page_title` varchar(255) NOT NULL,
   `show_gallery` tinyint(1) NULL DEFAULT '1' AFTER `page_title`,
   `show_artfair` tinyint(1) NULL DEFAULT '1' AFTER `show_gallery`,
   `show_others` tinyint(1) NULL DEFAULT '1' AFTER `show_artfair`,
@@ -101,8 +101,8 @@ CREATE TABLE `minisite_artist_page` (
 INSERT INTO `minisite_artist_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`)
 VALUES ('1000', now(), now(), '247', '1004', '20361', '100', '1', 'Artist Page', 'Artist Page');
 
-INSERT INTO `minisite_home_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`, 'show_gallery', 'show_artfair', 'show_others', 'show_past', 'show_current', 'show_future', 'show_latest', 'show_recent')
-VALUES ('1000', now(), now(), '247', '1004', '20361', '100', '1', 'Home Page', 'Home Page', '1', '1', '1','1', '1', '1', '1');
+INSERT INTO `minisite_home_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `layout`, `active`, `menu_title`, `page_title`, 'show_gallery', 'show_artfair', 'show_others', 'show_past', 'show_current', 'show_future', 'show_latest', 'show_recent')
+VALUES ('1000', now(), now(), '247', '1004', '20361', '100', '1', 'Home Page', 'Home Page', '1', '1', '1', '1','1', '1', '1', '1');
 
 INSERT INTO `minisite_exhibition_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`, 'show_gallery', 'show_artfair', 'show_others', 'show_past', 'show_current', 'show_future', 'show_latest', 'show_recent')
 VALUES ('1000', now(), now(), '247', '1004', '20361', '100', '1', 'Exhibition Page', 'Exhibition Page', '1', '1', '1','1', '1', '1', '1');
@@ -113,7 +113,7 @@ CREATE TABLE `minisite_layout` (
 );
 
 INSERT INTO `minisite_layout` (`id`, `name`)
-VALUES ('1', 'default');
+VALUES ('1', 'single column');
 
 INSERT INTO `minisite_layout` (`id`, `name`)
 VALUES ('2', 'timeline');
@@ -146,9 +146,6 @@ DROP `thur_end_time`,
 DROP `fri_start_time`,
 DROP `fri_end_time`;
 
-INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-VALUES ('opening_hours', '1000');
-
 CREATE TABLE `minisite_pages` (
   `id` int(8) NOT NULL,
   `created` date NULL,
@@ -179,6 +176,9 @@ CREATE TABLE `opening_hours` (
 );
 
 INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+VALUES ('opening_hours', '1000');
+
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
 VALUES ('minisite_pages', '101');
 
 INSERT INTO `db_sequence` (`seq_name`, `nextid`)
@@ -186,3 +186,42 @@ VALUES ('minisite_artist_page', '1001');
 
 INSERT INTO `db_sequence` (`seq_name`, `nextid`)
 VALUES ('minisite_exhibition_page', '1001');
+
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+VALUES ('minisite_home_page', '1001');
+
+
+CREATE TABLE `minisite_page_type` (
+  `id` smallint(4) NOT NULL,
+  `name` varchar(32) NOT NULL
+);
+
+INSERT INTO `minisite_page_type` (`id`, `name`)
+VALUES ('10', 'home');
+INSERT INTO `minisite_page_type` (`id`, `name`)
+VALUES ('20', 'artist');
+INSERT INTO `minisite_page_type` (`id`, `name`)
+VALUES ('30', 'exhibition');
+
+
+INSERT INTO `minisite_pages` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`)
+VALUES ('100', now(), now(), '1', '247', '1004', '20361', '10', 'home');
+
+INSERT INTO `minisite_pages` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`)
+VALUES ('101', now(), now(), '1', '247', '1004', '20361', '30', 'exhibition');
+
+INSERT INTO `minisite_pages` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`)
+VALUES ('102', now(), now(), '1', '247', '1004', '20361', '20', 'artist');
+
+
+ALTER TABLE `minisite_pages`
+RENAME TO `minisite_page`;
+
+ALTER TABLE `minisite_page`
+ADD `path` varchar(128) COLLATE 'utf8mb4_general_ci' NOT NULL DEFAULT '';
+
+UPDATE `db_sequence` SET
+`seq_name` = 'minisite_page',
+`nextid` = '103'
+WHERE `seq_name` = 'minisite_pages' AND `seq_name` = 'minisite_pages' COLLATE utf8mb4_bin;
+

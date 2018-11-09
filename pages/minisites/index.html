@@ -172,8 +172,12 @@
                 <tr>
                   <td style= "width:100px"> {$timing.day} </td>
                   <td> : </td>
-                  <td> {$timing.opening_time} - </td>
-                  <td> {$timing.closing_time} </td>
+                  {if ($timing.opening_time && $timing.closing_time == "00:00:00")}
+                    <td> Holiday </td>
+                  {else}
+                    <td> {$timing.opening_time} - </td>
+                    <td> {$timing.closing_time} </td>
+                  {/if}                  
                 </tr>
               </table>
             {/foreach}

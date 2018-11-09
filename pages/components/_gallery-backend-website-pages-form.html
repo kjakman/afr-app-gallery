@@ -2,18 +2,21 @@
       {$pagelist = $scope.pagelist}
     
 
-      <form class="ajax-submit" data-handler="save-minisite-page"> 
+      <!-- <form class="ajax-submit" data-handler="save-minisite-page"> 
         <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">  
         <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id|default:$user_id}">
         <input hidden="1" name="site_id" type="hidden" value="{$minisite.site_id|default:$site.id}"> 
         
       <div class="row">
         <div class="form-group col-sm-6">
-          {"type"|object_select:"minisite_page_type":["class" => "form-control", "value" => $minisite_pages.type]}
-        </div>
-        <input type="submit" class="btn btn-success" id= 'create_page' value="Create page">
+          {"type"|object_select:"minisite_page_type":["class" => "form-control", "value" => $minisite_page.type]}
+        </div> 
+        <input type="button" class="btn btn-success" id= 'create_page' value="Create page">
       </div> 
-      </form> 
+      </form>  -->
+      <div class="input-group" >
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#gbe_create_page_dialog"> Create Page</button>
+      </div><br>
         
       <div class="row">
         <div class="form-group col-xs-12">
@@ -54,49 +57,43 @@
             </tbody>
           </table>
         </div>
-        <input type="submit" class="btn btn-success" id= 'submit_order' value="Submit Ordering">
+        <!-- <input type="submit" class="btn btn-success" id= 'submit_order' value="Submit Ordering"> -->
       </div>
-          <!-- {$rows = []}
-          {$rows[] = ["Name", "Created", "Published", "Style", "Action"]}
-          {foreach $pagelist as $pagelists}
-            {$rows[] = [$pagelists.page_name, $pagelists.created, $pagelists.timestamp, " ", "<button id= 'getpagelist' class='btn btn-xs btn-success' data-value='{$minisite.user_id}|{$pagelists.id}'> <i class='glyphicon glyphicon-pencil'></i></button> <button class='btn btn-xs btn-danger delete' id= 'page_delete'data-value='{$pagelists.id}'> <i class='glyphicon glyphicon-trash'></i></button>"]}                   
-          {/foreach}                                            
+
+{{"include": "_gallery-backend-website-createpage-dialog.html"}}
+        
+<script type="text/javascript">
+  $(document).ready( function() {
+    $("#gbe_artist_link").hide();
+    $("#gbe_exhibition_link").hide();
+    $("#gbe_styling_link").hide();
+    //$("#gbe_basic_link").hide();
+    $("#gbe_home_link").hide();
+  });
+
+  $('tbody').sortable({
+    stop: function ( event, ui ) {
+            // parameters will be a string "id[]=1&id[]=3&id[]=10"...etc
+            var parameters = $sortable.sortable( "serialize" );
+
+            // send new sort data to process
+            //$.post("/sort/my/data.php?"+parameters);        
+      }
+
+  });
+
+  $(document).on("click",'#page_delete',function() {
+    $(this).closest("tr").remove();
+  });
+
+  /*$(document).on("click",'#create_page',function() {
+     setTimeout(function() { 
+      $("#gbe_page_link").trigger('click');
+    }, 1000);
+  });*/
   
-          {$rows|table:["class" => "bootstrap-table table table-hover", "id" => "page_table"]}                                        
-             -->
-        
-      <script type="text/javascript">
-        $(document).ready( function() {
-          $("#gbe_artist_link").hide();
-          $("#gbe_exhibition_link").hide();
-          $("#gbe_styling_link").hide();
-          $("#gbe_basic_link").hide();
-          $("#gbe_home_link").hide();
-        });
 
-        $('tbody').sortable({
-          stop: function ( event, ui ) {
-                  // parameters will be a string "id[]=1&id[]=3&id[]=10"...etc
-                  var parameters = $sortable.sortable( "serialize" );
-
-                  // send new sort data to process
-                  //$.post("/sort/my/data.php?"+parameters);        
-            }
-    
-        });
-
-        $(document).on("click",'#page_delete',function() {
-          $(this).closest("tr").remove();
-        });
-
-        $(document).on("click",'#create_page',function() {
-           setTimeout(function() { 
-            $("#gbe_page_link").trigger('click');
-          }, 1000);
-        });
-        
-
-      </script>
+</script>
 
 
 
