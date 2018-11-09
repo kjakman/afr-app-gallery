@@ -1,15 +1,12 @@
 {$homeObj = $scope.homeObj}
 {$exhibition_Obj = $scope.exhibition_Obj}
-{$exhibition_menu = $scope.exhibition_menu}
 {$artist_Objs = $scope.artist_Objs}
 {$contact_Obj = $scope.contact_Obj}
 
       <ul class="nav navbar-nav">
         {if ($homeObj) || (contact_Obj)}
             <li class="nav-item"><a class="nav-link" href="{$basepath}/artists">{$artist_Objs.menu_title}</a></li>
-            {foreach from=$exhibition_menu item=exhibition_menus}
-                <li class="nav-item"><a class="nav-link" href="{$basepath}/exhibitions{$exhibition_menus.path}">{$exhibition_menus.page_name}</a></li>
-            {/foreach}
+            <li class="nav-item"><a class="nav-link" href="{$basepath}/exhibitions">{$exhibition_Obj.menu_title}</a></li>
             <li class="nav-item"><a class="nav-link" href="{$basepath}/contact">Contact</a></li>
         {elseif ($artist_Objs)}
             <li class="nav-item"><a class="nav-link" href="{$basepath}/artists">{$artist_Objs.menu_title}</a></li>

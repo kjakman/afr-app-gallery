@@ -19,14 +19,14 @@ CREATE TABLE `minisite_exhibition_page` (
   `active` tinyint(1) NULL DEFAULT '1',
   `menu_title` varchar(255) NOT NULL,
   `page_title` varchar(255) NOT NULL,
-  `show_gallery` tinyint(1) NULL DEFAULT '1' AFTER `page_title`,
-  `show_artfair` tinyint(1) NULL DEFAULT '1' AFTER `show_gallery`,
-  `show_others` tinyint(1) NULL DEFAULT '1' AFTER `show_artfair`,
-  `show_past` tinyint(1) NULL DEFAULT '1' AFTER `show_others`,
-  `show_current` tinyint(1) NULL DEFAULT '1' AFTER `show_past`,
-  `show_future` tinyint(1) NULL DEFAULT '1' AFTER `show_current`,
-  `show_latest` tinyint(1) NULL DEFAULT '1' AFTER `show_future`,
-  `show_recent` tinyint(1) NULL DEFAULT '1' AFTER `show_latest`
+  `show_gallery` tinyint(1) NULL DEFAULT '1',
+  `show_artfair` tinyint(1) NULL DEFAULT '1',
+  `show_others` tinyint(1) NULL DEFAULT '1',
+  `show_past` tinyint(1) NULL DEFAULT '1',
+  `show_current` tinyint(1) NULL DEFAULT '1',
+  `show_future` tinyint(1) NULL DEFAULT '1',
+  `show_latest` tinyint(1) NULL DEFAULT '1',
+  `show_recent` tinyint(1) NULL DEFAULT '1'
 );
 
 CREATE TABLE `minisite_home_page` (
@@ -64,15 +64,15 @@ CREATE TABLE `minisite_artist_page` (
 );
 
 INSERT INTO `minisite_artist_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`)
-SELECT '1000', now(), now(), '247', '1004', '20361', '100', '1', 'Artist Page', 'Artist Page'from dual
+SELECT '1000', now(), now(), '247', '1004', '20361', '100', '1', 'Artist Page', 'Artist Page' FROM dual
 WHERE NOT EXISTS (SELECT * FROM `minisite_artist_page` WHERE `id` = '1000');
 
-INSERT INTO `minisite_home_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `layout`, `active`, `menu_title`, `page_title`, 'show_gallery', 'show_artfair', 'show_others', 'show_past', 'show_current', 'show_future', 'show_latest', 'show_recent')
-SELECT '1000', now(), now(), '247', '1004', '20361', '100', '1', 'Home Page', 'Home Page', '1', '1', '1', '1','1', '1', '1', '1' FROM dual
+INSERT INTO `minisite_home_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `layout`, `active`, `menu_title`, `page_title`, `show_gallery`, `show_artfair`, `show_others`, `show_past`, `show_current`, `show_future`, `show_latest`, `show_recent`)
+SELECT '1000', now(), now(), '247', '1004', '20361', '100', '1', '1', 'Home Page', 'Home Page', '1', '1', '1', '1','1', '1', '1', '1' FROM dual
 WHERE NOT EXISTS (SELECT * FROM `minisite_home_page` WHERE `id` = '1000');
 
-INSERT INTO `minisite_exhibition_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`, 'show_gallery', 'show_artfair', 'show_others', 'show_past', 'show_current', 'show_future', 'show_latest', 'show_recent')
-SELECT '1000', now(), now(), '247', '1004', '20361', '100', '1', 'Exhibition Page', 'Exhibition Page', '1', '1', '1','1', '1', '1', '1' FROM dual
+INSERT INTO `minisite_exhibition_page` (`id`, `created`, `timestamp`, `site_id`, `client_id`, `user_id`, `page_id`, `active`, `menu_title`, `page_title`, `show_gallery`, `show_artfair`, `show_others`, `show_past`, `show_current`, `show_future`, `show_latest`, `show_recent`)
+SELECT '1000', now(), now(), '247', '1004', '20361', '100', '1', 'Exhibition Page', 'Exhibition Page','1', '1', '1', '1','1', '1', '1', '1' FROM dual
 WHERE NOT EXISTS (SELECT * FROM `minisite_exhibition_page` WHERE `id` = '1000');
 
 CREATE TABLE `minisite_layout` (
@@ -88,7 +88,11 @@ INSERT INTO `minisite_layout` (`id`, `name`)
 SELECT '2', 'timeline' from dual
 WHERE NOT EXISTS (SELECT * FROM minisite_layout WHERE id = '2');
 
-CREATE TABLE `minisite_pages` (
+DROP TABLE `minisite_pages`;
+
+DELETE FROM `db_sequence` WHERE `seq_name`='minisite_pages';
+
+CREATE TABLE `minisite_page` (
   `id` int(8) NOT NULL,
   `created` date NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -98,7 +102,26 @@ CREATE TABLE `minisite_pages` (
   `user_id` int(8) NOT NULL,
   `type` varchar(32) NOT NULL,
   `page_name` varchar(32) NOT NULL
+  `path` varchar(128) NOT NULL DEFAULT '';
 );
+
+TRUNCATE TABLE `minisite_page`;
+
+INSERT INTO `minisite_page` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`, `path`)
+SELECT '100', now(), now(), '1', '247', '1004', '20361', '10', 'home', '/homepage/' FROM dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_page` WHERE `id` = '100');
+
+INSERT INTO `minisite_page` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`, `path`)
+SELECT '101', now(), now(), '1', '247', '1004', '20361', '30', 'exhibition', '/exhibitionpage/' FROM dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_page` WHERE `id` = '101');
+
+INSERT INTO `minisite_page` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`, `path`)
+SELECT '102', now(), now(), '1', '247', '1004', '20361', '20', 'artist', '/artistpage/' FROM dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_page` WHERE `id` = '102');
+
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+SELECT 'minisite_page', '101' from dual
+WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'minisite_page');
 
 ALTER TABLE `minisite`
 ADD `show_title` tinyint(1) NOT NULL DEFAULT '1',
@@ -114,16 +137,12 @@ CREATE TABLE `opening_hours` (
   `day` varchar(128) NOT NULL,
   `opening_time` time NOT NULL AFTER `day`,
   `closing_time` time NOT NULL AFTER `opening_time`,
-  `holiday` tinyint(1) NULL DEFAULT '1',
+  `holiday` tinyint(1) NULL DEFAULT '1'
 );
 
 INSERT INTO `db_sequence` (`seq_name`, `nextid`)
 SELECT 'opening_hours', '1000' from dual
 WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'opening_hours');
-
-INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-SELECT 'minisite_pages', '101' from dual
-WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'minisite_pages');
 
 INSERT INTO `db_sequence` (`seq_name`, `nextid`)
 SELECT 'minisite_artist_page', '1001' from dual
@@ -158,31 +177,11 @@ INSERT INTO `minisite_page_type` (`id`, `name`)
 SELECT '30', 'exhibition' FROM dual
 WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '30');
 
-INSERT INTO `minisite_pages` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`)
-SELECT '100', now(), now(), '1', '247', '1004', '20361', '10', 'home' from dual
-WHERE NOT EXISTS (SELECT * FROM `minisite_pages` WHERE `id` = '100');
-
-INSERT INTO `minisite_pages` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`)
-SELECT '101', now(), now(), '1', '247', '1004', '20361', '30', 'exhibition' from dual
-WHERE NOT EXISTS (SELECT * FROM `minisite_pages` WHERE `id` = '101');
-
-INSERT INTO `minisite_pages` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`)
-SELECT '102', now(), now(), '1', '247', '1004', '20361', '20', 'artist' from dual
-WHERE NOT EXISTS (SELECT * FROM `minisite_pages` WHERE `id` = '102');
-
-ALTER TABLE `minisite_pages`
-RENAME TO `minisite_page`;
-
-ALTER TABLE `minisite_page`
-ADD `path` varchar(128) COLLATE 'utf8mb4_general_ci' NOT NULL DEFAULT '';
-
-UPDATE `db_sequence` SET
-`seq_name` = 'minisite_page',
-`nextid` = '103'
-WHERE `seq_name` = 'minisite_pages' AND `seq_name` = 'minisite_pages';
 
 ALTER TABLE `user_profile`
 CHANGE `facebook` `facebook` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `data`,
 CHANGE `instagram` `instagram` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `facebook`,
 CHANGE `twitter` `twitter` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `instagram`;
+
+
 

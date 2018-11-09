@@ -7,21 +7,46 @@
   {/block}
   
   {block name=content}
-  
+    <!-- {$userdetail.url_web|dump} -->
     <div class="row">
       <div class="col-md-4 col-lg-3 col-sm-12 text-left small-text">
 
-        {if ($scope.custom_content)}
-          {$scope.custom_content}
-        {else}
         <div class="row">
           <div class="col">
-            [address]
-            <a href="http://www.xxx.com">www.xxx.com</a><br>
-            [email]
-            [phone]
+            <header id="main-header">
+              <strong>Address</strong><br>  
+              {$userdetail.address}
+            </header><br>
+            <section id="content_container">   
+              <a href="{$userdetail.url_web}">{$userdetail.url_web}</a><br>     
+              {$userdetail.email_address}
+              {$userdetail.phone}
+            </section><br>
+            <section id="content_container">
+              <strong>General enquiries</strong><br><a href="{$userdetail.url_web}"> {$userdetail.url_web}</a><br><br>
+              <div id="opening-hours">
+                <strong>Opening hours:</strong><br> 
+                {if ($mObj.show_timing == '1')}
+                  {foreach from=$timings item=timing}
+                    <table>
+                      <tr>
+                        <td style= "width:100px"> {$timing.day} </td>
+                        <td> : </td>
+                        {if ($timing.opening_time && $timing.closing_time == "00:00:00")}
+                          <td> CLOSED </td>
+                        {else}
+                          <td> {$timing.opening_time} - </td>
+                          <td> {$timing.closing_time} </td>
+                        {/if}                  
+                      </tr>
+                    </table>
+                  {/foreach}
+                {/if}
+              </div>
+            </section>
+            
           </div>
-          <div class="col">
+          <!-- <div class="col">
             <strong>General enquiries</strong><br><a href="mailto:mail@xxx.com"> mail@xxx.com</a><br><br>
             <div id="opening-hours">
               <strong>Opening hours:</strong><br> 
@@ -29,10 +54,9 @@
               11.00 - 18.00 &nbsp;<br> Saturday<br> 
               13.00 - 18.00&nbsp;<br> and by appointment<br>
             </div>
-          </div>
+          </div> -->
         </div>
-        {/if}
-        
+       
         
       </div>
       <div class="col-md-8 col-lg-9 col-sm-12 detail-text">

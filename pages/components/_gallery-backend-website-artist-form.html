@@ -88,5 +88,11 @@
         $(this).closest("tr").remove();
       });
 
+      $(document).on("click",'#show_web',function() {
+         setTimeout(function() { 
+          $("#gbe_artist_link").trigger('click');
+        }, 1000);
+      });
+
       </script>
       
