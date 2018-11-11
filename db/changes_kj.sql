@@ -183,9 +183,9 @@ UPDATE `db_sequence` SET
 `nextid` = '103'
 WHERE `seq_name` = 'minisite_pages' AND `seq_name` = 'minisite_pages';
 
-ALTER TABLE `user_profile`
-CHANGE `facebook` `facebook` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `data`,
-CHANGE `instagram` `instagram` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `facebook`,
-CHANGE `twitter` `twitter` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `instagram`;
+
+ALTER TABLE `user_profile` ADD COLUMN `facebook` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
+ALTER TABLE `user_profile` ADD COLUMN `instagram` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
+ALTER TABLE `user_profile` ADD COLUMN `twitter` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
 
 ALTER TABLE `user_profile` ADD COLUMN gallery_name  varchar(128) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
