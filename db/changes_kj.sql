@@ -192,17 +192,24 @@ ALTER TABLE `user_profile` ADD COLUMN `twitter` varchar(64) COLLATE 'utf8_genera
 DROP table minisite_pages;
 ALTER TABLE `user_profile` ADD COLUMN gallery_name  varchar(128) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
                                         
+insert into minisite_page_type values (1, 'generic');
 insert into minisite_page_type values (40, 'exhibitions');
 alter table minisite_page add column path varchar(64) not null default '';
 alter table minisite_page add column slug varchar(64) not null default '';
 alter table minisite_page add column search text not null default '';
+alter table minisite_page add column minisite_id int(11) not null;
 
-update db_sequence set nextid = 103 where seq_name='minisite_pages';
 
 -- INSERT INTO minisite_pages ('id', 'created', 'timestamp', 'active', 'site_id', 'client_id', 'user_id', 'type', 'page_name', 'path', 'slug', 'search')
 -- VALUES (103,'2018-11-11','','','','','','','');
  
-INSERT INTO `minisite_page` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`, `path`,`slug`,`search` )
-SELECT '103', now(), now(), '1', '247', '1004', '20361', '40', 'Art Fairs', '', 'art-fairs', '{"id": [2789, 2786, 2783]} ' from dual
+INSERT INTO `minisite_page` (`id`, `minisite_id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`, `path`,`slug`,`search` )
+SELECT '103', 1000, now(), now(), '1', '247', '1004', '20361', '40', 'Art Fairs', '', 'art-fairs', '{"id": [2789, 2786, 2783]}' from dual
 WHERE NOT EXISTS (SELECT * FROM `minisite_page` WHERE `id` = '103');
+
+INSERT INTO `minisite_page` (`id`, `minisite_id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`, `path`,`slug`,`search` )
+SELECT '104', 1000, now(), now(), '1', '247', '1004', '20361', '1', 'Test Page', 'test-page', '', '' from dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_page` WHERE `id` = '104');
+
+update db_sequence set nextid = 104 where seq_name='minisite_pages';
 

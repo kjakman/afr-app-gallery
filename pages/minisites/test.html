@@ -1,0 +1,10 @@
+  {{"extend": "minisites/index.html"}}
+  {$ms_page = $scope.minisite_page}
+  
+  {block name=title}
+  <h3>{$ms_page.title}</h3>
+  {/block}
+    
+  {block name=content}
+  <div class="">{$ms_page.content}</div>
+  {/block}  
