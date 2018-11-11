@@ -4,6 +4,7 @@
 {$minisite_name = $ms.name}
 {$version = $app.version}
 {$page = $scope.page}
+{$ms_page = $scope.minisite_page}
 {$type = $scope.minisite_type}
 
 {$slug = $scope.slug}
@@ -90,6 +91,12 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqzndmgSgkwaD6AEATZOkeEWUo4foizEo&amp;libraries=places&amp;language=en"></script>  
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   
+    {if ($ms_page.css)}
+    <style>
+      {$ms_page.css}
+    </style>
+    {/if}
+    
   </head>
   <body id="" class="{$page}">
   
