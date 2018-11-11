@@ -159,7 +159,7 @@ WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '20');
 INSERT INTO `minisite_page_type` (`id`, `name`)
 SELECT '30', 'exhibition' FROM dual
 WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '30');
-
+                       
 INSERT INTO `minisite_pages` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`)
 SELECT '100', now(), now(), '1', '247', '1004', '20361', '10', 'home' from dual
 WHERE NOT EXISTS (SELECT * FROM `minisite_pages` WHERE `id` = '100');
@@ -183,9 +183,26 @@ UPDATE `db_sequence` SET
 `nextid` = '103'
 WHERE `seq_name` = 'minisite_pages' AND `seq_name` = 'minisite_pages';
 
-
+-- Changed by Kjetil              
 ALTER TABLE `user_profile` ADD COLUMN `facebook` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
 ALTER TABLE `user_profile` ADD COLUMN `instagram` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
 ALTER TABLE `user_profile` ADD COLUMN `twitter` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
 
+-- Added by Kjetil
+DROP table minisite_pages;
 ALTER TABLE `user_profile` ADD COLUMN gallery_name  varchar(128) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
+                                        
+insert into minisite_page_type values (40, 'exhibitions');
+alter table minisite_page add column path varchar(64) not null default '';
+alter table minisite_page add column slug varchar(64) not null default '';
+alter table minisite_page add column search text not null default '';
+
+update db_sequence set nextid = 103 where seq_name='minisite_pages';
+
+-- INSERT INTO minisite_pages ('id', 'created', 'timestamp', 'active', 'site_id', 'client_id', 'user_id', 'type', 'page_name', 'path', 'slug', 'search')
+-- VALUES (103,'2018-11-11','','','','','','','');
+ 
+INSERT INTO `minisite_page` (`id`, `created`, `timestamp`, `active`, `site_id`, `client_id`, `user_id`, `type`, `page_name`, `path`,`slug`,`search` )
+SELECT '103', now(), now(), '1', '247', '1004', '20361', '40', 'Art Fairs', '', 'art-fairs', '{"id": [2789, 2786, 2783]} ' from dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_page` WHERE `id` = '103');
+

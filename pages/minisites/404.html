@@ -8,7 +8,7 @@
 
 {$slug = $scope.slug}
 {$subview = $scope.subview}
-{$debug = $scope.debug}
+{$debug = 0}
 
 {$artworks = $scope.artworks}
 {$exhibitions = $scope.exhibitions}
@@ -105,8 +105,7 @@
     {/if}
     </div>
     {$edit_menu}
-    {if (0)}{{"include": "minisites/_debug.html"}}{/if}
-
+    {if ($debug)}{{"include": "minisites/_debug.html"}}{/if}
     <div class="container">
       <div class="row header" id="header">
         <div class="col-md-3 col-sm-2 col-xs-2 text-left">
@@ -154,17 +153,26 @@
           {if ($scope.header_text)}
           <div>{$scope.header_text}</div>
           {/if}
-          
         </div>
       </div>
       <hr>
-
-      
-      {{"include": "_page-messages.html"}}
       
       <!-- content -->
-      {block name=content}{/block}    
-  
+      {block name=content}    
+        <div class="full-center">
+          <div class="container mb50">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <p class="text-hero">{$page.http_code|default:"404"}</p>
+                <h1>{$page.http_status_name|default:"Not found"}</h1>
+                <p>We're sorry, but this page could not be found</p>
+                {if ($scope.error)}{$scope.error|alert:"error"}{/if}
+                <a class="btn btn-success btn-ghost btn-lg mt5" href="{$basepath}"><i class="fa fa-long-arrow-left"></i>Back to Homepage</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {/block}  
       <br />
   
       <div class="row footer" id="footer">
@@ -309,4 +317,5 @@
         vp_search();
       });
     </script>   
+    
   </body>                    
