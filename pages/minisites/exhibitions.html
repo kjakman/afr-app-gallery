@@ -13,10 +13,10 @@
         <div class="exhibition-sub-nav">
           
           <ul class="hidden-sm-down sub-nav-ul">
-            {if ($exhibition_Obj.show_current == '1')}<li><a href="{$basepath}/exhibitions/current">Current</a></li>{/if}
-            {if ($exhibition_Obj.show_future == '1')}<li><a href="{$basepath}/exhibitions/future" >Future</a></li>{/if}
-            {if ($exhibition_Obj.show_past == '1')}<li><a href="{$basepath}/exhibitions/past"   >Past</a></li> {/if}           
-            {if ($exhibition_Obj.show_latest == '1')}<li><a href="{$basepath}/exhibitions/all"   >All</a></li>{/if}            
+            {if ($exhibitionpage.show_current == '1')}<li><a href="{$basepath}/exhibitions/{$page_slug}/current">Current</a></li>{/if}
+            {if ($exhibitionpage.show_future == '1')}<li><a href="{$basepath}/exhibitions/{$page_slug}/future" >Future</a></li>{/if}
+            {if ($exhibitionpage.show_past == '1')}<li><a href="{$basepath}/exhibitions/{$page_slug}/past"   >Past</a></li> {/if}           
+            {if ($exhibitionpage.show_latest == '1')}<li><a href="{$basepath}/exhibitions/{$page_slug}/all"   >All</a></li>{/if}            
           </ul>
           
           <!-- {if ($minisiteobj == '1')}
@@ -41,42 +41,42 @@
           <div class="row hidden-md-up"> </div>
         </div>
       </div>
-
-
+      
       <div class="col-md-9 exhibition_page text-left"> 
         <ul class="timeline">
-                                         
+                                      
           {$i = 0}
           {foreach from=$exhibitions item=exhibition}
-            {if ($exhibition.current == "past")}
-              {$badge_class = "danger"}  
-            {elseif ($exhibition.current == "current")}
-              {$badge_class = "success"}  
-            {elseif ($exhibition.current == "future")}
-              {$badge_class = "info"}  
-            {/if}
-          {if ((!$slug && $exhibition.current != "past") || $slug == $exhibition.current || $slug == 'all')}
-          <li {if ($i%2)}class="timeline-inverted"{/if}>
-            <div class="timeline-badge timeline-badge-small {$badge_class}"><i class="glyphicon glyphicon-check"></i></div>
-            <div class="timeline-panel">
-              <div class="timeline-heading">
-                <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-                  <a href="{$basepath}/exhibition/{$exhibition.slug}">{$exhibition.title}</a>
-                </h6>
-                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
-              </div>
-              <div class="timeline-body">
-                <a href="{$basepath}/exhibition/{$exhibition.slug}" class="img-container">
-                  <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
-                </a>
-              
-                <!--p>{* $exhibition.description *}</p-->
-              </div>
-            </div>
-          </li>
-            {$i = $i + 1}
-          {/if}
-          
+
+              {if ($exhibition.current == "past")}
+                {$badge_class = "danger"}  
+              {elseif ($exhibition.current == "current")}
+                {$badge_class = "success"}  
+              {elseif ($exhibition.current == "future")}
+                {$badge_class = "info"}  
+              {/if}
+
+              {if ((!$sub_slug && $exhibition.current != "past") || $sub_slug == $exhibition.current || $sub_slug == 'all')}
+                <li {if ($i%2)}class="timeline-inverted"{/if}>
+                  <div class="timeline-badge timeline-badge-small {$badge_class}"><i class="glyphicon glyphicon-check"></i></div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
+                        <a href="{$basepath}/exhibition/{$exhibition.slug}">{$exhibition.title}</a>
+                      </h6>
+                      <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
+                    </div>
+                    <div class="timeline-body">
+                      <a href="{$basepath}/exhibition/{$exhibition.slug}" class="img-container">
+                        <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
+                      </a>
+                    
+                      <!--p>{* $exhibition.description *}</p-->
+                    </div>
+                  </div>
+                </li>
+                {$i = $i + 1}
+              {/if}
           {/foreach}
           
         </ul>

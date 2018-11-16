@@ -25,8 +25,8 @@
             <section id="content_container">
               <strong>General enquiries</strong><br><a href="{$userdetail.url_web}"> {$userdetail.url_web}</a><br><br>
               <div id="opening-hours">
-                <strong>Opening hours:</strong><br> 
                 {if ($mObj.show_timing == '1')}
+                  <strong>Opening hours:</strong><br> 
                   {foreach from=$timings item=timing}
                     <table>
                       <tr>

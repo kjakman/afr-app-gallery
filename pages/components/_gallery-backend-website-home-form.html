@@ -1,7 +1,7 @@
   {$minisiteobj = $scope.mhome}
   {$page_id = $scope.page_id}
   
-      <form class="ajax-submit" data-handler="save-minisite">
+      <form class="ajax-submit" data-handler="edit-minisite-page">
         <input hidden="1" name="minisite_id" type="hidden" value="{$minisite.id|default:$id}">
         <input hidden="1" name="page_id" type="hidden" value="{$page_id}">
         <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id}">

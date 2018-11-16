@@ -1,19 +1,6 @@
 
       {$pagelist = $scope.pagelist}
-    
 
-      <!-- <form class="ajax-submit" data-handler="save-minisite-page"> 
-        <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">  
-        <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id|default:$user_id}">
-        <input hidden="1" name="site_id" type="hidden" value="{$minisite.site_id|default:$site.id}"> 
-        
-      <div class="row">
-        <div class="form-group col-sm-6">
-          {"type"|object_select:"minisite_page_type":["class" => "form-control", "value" => $minisite_page.type]}
-        </div> 
-        <input type="button" class="btn btn-success" id= 'create_page' value="Create page">
-      </div> 
-      </form>  -->
       <div class="input-group" >
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#gbe_create_page_dialog"> Create Page</button>
       </div><br>
@@ -23,31 +10,32 @@
           <table class = "bootstrap-table table table-hover">
             <thead>
               <tr>
-                <th>Name</th>
+                <th>Menu Title</th>
+                <th>Page Title</th>
+                <th>Page Type</th>
                 <th>Created</th>
-                <th>Published</th>
-                <th>Style</th>
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id= "sortable-row">
           
               {foreach $pagelist as $pagelists}              
                 <tr id= "{$pagelists.id}">
-                  <td>{$pagelists.page_name}</td>
+                  <td>{$pagelists.menu_title}</td>
+                  <td>{$pagelists.page_title}</td> 
+                  {if ({$pagelists.type} == 10)}
+                    {$tab = 'home'}
+                  {/if}
+                  {if ({$pagelists.type} == 20)}
+                    {$tab = 'artist'}
+                  {/if}
+                  {if ({$pagelists.type} == 30)}
+                    {$tab = 'exhibition'}
+                  {/if}
+                  <td>{$tab}</td>
                   <td>{$pagelists.created}</td>
-                  <td>{$pagelists.timestamp}</td>
-                  <td></td>
                   <td>
-                    {if ({$pagelists.type} == 10)}
-                      {$tab = 'home'}
-                    {/if}
-                    {if ({$pagelists.type} == 20)}
-                      {$tab = 'artist'}
-                    {/if}
-                    {if ({$pagelists.type} == 30)}
-                      {$tab = 'exhibition'}
-                    {/if}
+                    
                     <a href="/backend/website/{$minisite.id|default:$id}/edit/{$tab}?_pv=1&amp;page_id={$pagelists.id}&amp;user_id={$minisite.user_id|default:$user_id}" class="btn btn-success ajax-loader" data-target="#subview-container"><button id= 'getpagelist' class='btn btn-xs btn-success' data-value='{$minisite.user_id}|{$pagelists.id}'> <i class='glyphicon glyphicon-pencil'></i></button></a>
                     <button class='btn btn-xs btn-danger delete' id= 'page_delete' data-value='{$pagelists.id}'> <i class='glyphicon glyphicon-trash'></i></button>
                   </td>
@@ -57,7 +45,7 @@
             </tbody>
           </table>
         </div>
-        <!-- <input type="submit" class="btn btn-success" id= 'submit_order' value="Submit Ordering"> -->
+        <input type="submit" class="btn btn-success" id= 'submit_order' value="Submit Ordering" onClick="saveOrder();">
       </div>
 
 {{"include": "_gallery-backend-website-createpage-dialog.html"}}
@@ -67,30 +55,37 @@
     $("#gbe_artist_link").hide();
     $("#gbe_exhibition_link").hide();
     $("#gbe_styling_link").hide();
-    //$("#gbe_basic_link").hide();
     $("#gbe_home_link").hide();
   });
-
-  $('tbody').sortable({
-    stop: function ( event, ui ) {
-            // parameters will be a string "id[]=1&id[]=3&id[]=10"...etc
-            var parameters = $sortable.sortable( "serialize" );
-
-            // send new sort data to process
-            //$.post("/sort/my/data.php?"+parameters);        
-      }
-
-  });
+  $(function() {
+      $( 'tbody' ).sortable();
+    });
+    
+    function saveOrder() {
+      var order_id = new Array();
+      $('tbody#sortable-row tr').each(function() {
+      order_id.push($(this).attr("id"));
+      });
+      $.ajax({
+        url: "/ajax.php?oper=submit-order",
+        type: "POST",
+        data: {
+          oper: "submit-order",
+          val: order_id
+        },
+      });
+      //alert(order_id);
+    }
 
   $(document).on("click",'#page_delete',function() {
     $(this).closest("tr").remove();
   });
 
-  /*$(document).on("click",'#create_page',function() {
+  $(document).on("click",'#submit_order',function() {
      setTimeout(function() { 
       $("#gbe_page_link").trigger('click');
     }, 1000);
-  });*/
+  });
   
 
 </script>

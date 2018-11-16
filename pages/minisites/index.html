@@ -13,6 +13,7 @@
 
 {$artworks = $scope.artworks}
 {$exhibitions = $scope.exhibitions}
+{$exhibitionpage = $scope.exhibitionpage}
 {$filter_exhibitions = $scope.filter_exhibitions}
 {$latest_exhibitions = $scope.latest_exhibitions}
 {$mObj = $scope.mObj}
@@ -24,6 +25,10 @@
 {$exhibition_Obj = $scope.exhibition_Obj}
 {$artist_Objs = $scope.artist_Objs}
 {$contact_Obj = $scope.contact_Obj}
+{$page_slug = $scope.page_slug}
+{$sub_slug = $scope.sub_slug}
+
+{$artist_menu = $scope.artist_menu}
 
 {$vp = '//test.vpatina.com'}
 {$cachebust = "?ts`$smarty.now`"}
@@ -176,9 +181,10 @@
   
       <div class="row footer" id="footer">
         <div class="col-md-3 col-sm-6 col-xs-6">
-          <a href="{$basepath}/contact#opening-hours">Opening hours</a> <br />
+          
           <!--a href="{$basepath}/about">About The Gallery</a><br /-->
           {if ($mObj.show_timing == '1')}
+            <a href="{$basepath}/contact#opening-hours">Opening hours</a> <br />
             {foreach from=$timings item=timing}
               <table>
                 <tr>
