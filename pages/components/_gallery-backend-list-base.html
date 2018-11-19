@@ -359,7 +359,7 @@ $('load-success.bs.table').load(function() {
   </script>
 
 <div class="modal modal-admin fade" id="del_modals" data-backdrop="static" data-keyboard="false" 
-     tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
      
@@ -368,8 +368,7 @@ $('load-success.bs.table').load(function() {
         <b class="overlay-title" style="font-size: 25px;">Are you sure you want to permanently delete this?</b>
       </div>
        
-      <form name="booking-form" class="cal-form ajax-submit" id="event_dialog_form" 
-        data-handler="save-event">
+      <form name="delete-form" class="cal-form ajax-submit" data-reload_link="#gbe_artworks_link">
         <div class="modal-body" style="font-size: 20px;">
         <p>This action cannot be undone</p>
         </div>
@@ -414,5 +413,10 @@ $('load-success.bs.table').load(function() {
   </div>
 </div>
 
+<script type="text/javascript">
+  $(document).on("click",'#sel_del_success',function() {
+      $("#gbe_artworks_link").trigger('click');
+  });
+</script>
 
 {/block}
