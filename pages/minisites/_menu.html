@@ -9,12 +9,16 @@
             {if ($menuObjs.type == '30')}
                 {$type = 'exhibitions'}
             {/if}
-            {if ($menuObjs.type != '10')}
+            {if ($menuObjs.type != '10') && ($menuObjs.type == '20')}
                 <li class="nav-item"><a class="nav-link" href="{$basepath}/{$type}{$menuObjs.slug}">{$menuObjs.menu_title}
+            {/if}
+            {if ($menuObjs.type != '10') && ($menuObjs.type == '30')}
+                <li class="nav-item"><a class="nav-link" href="{$basepath}/{$type}{$menuObjs.slug}all">{$menuObjs.menu_title}
             {/if}
            </a></li>
        {/foreach} 
     {/if}
+    <li class="nav-item"><a class="nav-link" href="{$basepath}/contact">Contact</a></li>
   </ul>
 
         {*
