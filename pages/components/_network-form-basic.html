@@ -5,17 +5,17 @@
             <input type="hidden" name="site_id" value="{$site.id}" />
             <div class="row">              
               <div class="col-sm-6">
-                <label for="first_name">First Name *</label>
+                <label for="first_name">First Name network*</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                  <input name="first_name" id="first_name" class="form-control" value="{$profile.first_name}" type="text" />
+                  <input name="first_name" id="first_name" class="form-control" type="text" />
                 </div>         
               </div>      
               <div class="col-sm-6">
                 <label for="last_name">Last Name *</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                  <input name="last_name" id="last_name" class="form-control" value="{$profile.last_name}" type="text" />
+                  <input name="last_name" id="last_name" class="form-control" type="text" />
                 </div>         
               </div>      
             </div>
@@ -25,14 +25,14 @@
                 <label for="display_name">Display Name</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                  <input name="display_name" id="display_name" class="form-control" value="{$profile.display_name}" type="text" />
+                  <input name="display_name" id="display_name" class="form-control" type="text" />
                 </div>         
               </div>      
               <div class="col-sm-6">
                 <label for="email_address">Email</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                  <input name="email_address" id="email_address" class="form-control" value="{$profile.email_address}" type="email" />
+                  <input name="email_address" id="email_address" class="form-control" type="email" />
                 </div>         
               </div>      
             </div>
@@ -41,7 +41,7 @@
             <div class="col-sm-6">
             <label>Date of birth</label>
               <div class="input-group">
-                <input type="text" id="date_of_birth" value="{$profile.date_of_birth}" class="form-control datepicker" name="date_of_birth" placeholder="Date of birth">
+                <input type="text" id="date_of_birth" class="form-control datepicker" name="date_of_birth" placeholder="Date of birth">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
               </div>
             <!--div class="help-block with-errors">Whole Number</div-->                          
@@ -50,7 +50,7 @@
               <label>Gallery Name</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input name="gallery_name" id="gallery_name" class="form-control" value="{$scope.profile.gallery_name}" type="text" />
+                <input name="gallery_name" id="gallery_name" class="form-control" type="text" />
               </div>
               </div>
           </div>
@@ -59,7 +59,7 @@
               <div class="col-sm-6">
                 <label for="phone">Phone</label>
                 <div class="form-group">
-                  <input name="phone" id="phone" class="form-control" value="{$profile.phone}" type="tel" />
+                  <input name="phone" id="phone" class="form-control" type="tel" />
                 </div>         
               </div>  
                   
@@ -67,7 +67,7 @@
                 <label for="languages">Which languages do you speak?</label>
                 <div class="form-group">
                   <div id="language-tag-list" class="tag-list" data-langs="{$profile.languages}"></div>                  
-                  <input name="languages" id="languages" class="form-control" value="{$profile.languages}"/>
+                  <input name="languages" id="languages" class="form-control"/>
                 </div>         
               </div>      
             </div>
@@ -87,7 +87,7 @@
                 <label for="url_web">Website</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-                  <input name="url_web" id="url_web" class="form-control" value="{$profile.url_web}" type="url" />
+                  <input name="url_web" id="url_web" class="form-control" type="url" />
                 </div>         
                   <div class="help-block with-errors">Full URL including http:// or https://</div>
               </div>      
@@ -104,44 +104,7 @@
                          {{"include": "_geocomplete-fields.html"}}                          
                 </div>
               </div>
-            </div> 
-            {foreach from=$timings  item=$timing}
-              {if ($timing.day == 'monday')}
-                {$mon_start_time = $timing.opening_time}
-                {$mon_end_time = $timing.closing_time}
-                {$mon_holiday = $timing.holiday}
-              {/if}
-              {if ($timing.day == 'tuesday')}
-                {$tue_start_time = $timing.opening_time}
-                {$tue_end_time = $timing.closing_time}
-                {$tue_holiday = $timing.holiday}
-              {/if}
-              {if ($timing.day == 'wednesday')}
-                {$wed_start_time = $timing.opening_time}
-                {$wed_end_time = $timing.closing_time}
-                {$wed_holiday = $timing.holiday}
-              {/if}
-              {if ($timing.day == 'thursday')}
-                {$thur_start_time = $timing.opening_time}
-                {$thur_end_time = $timing.closing_time}
-                {$thur_holiday = $timing.holiday}
-              {/if}
-              {if ($timing.day == 'friday')}
-                {$fri_start_time = $timing.opening_time}
-                {$fri_end_time = $timing.closing_time}
-                {$fri_holiday = $timing.holiday}
-              {/if}
-              {if ($timing.day == 'saturday')}
-                {$sat_start_time = $timing.opening_time}
-                {$sat_end_time = $timing.closing_time}
-                {$sat_holiday = $timing.holiday}
-              {/if}
-              {if ($timing.day == 'sunday')}
-                {$sun_start_time = $timing.opening_time}
-                {$sun_end_time = $timing.closing_time}
-                {$sun_holiday = $timing.holiday}
-              {/if}
-            {/foreach}   
+            </div>  
 
             <div class="row mb20">
               <div class="col-sm-12">
@@ -165,7 +128,7 @@
                       </div>
                     </td>
                     <td>
-                      <input type="checkbox" {if ($mon_holiday == '1')}checked{/if} class="form-control" name="holiday[0]" value="1" style= "width:20px">
+                      <input type="checkbox" class="form-control" name="holiday[0]" value="1" style= "width:20px">
                     </td> 
                     <td style= "width:200px">Closed</td> 
                   </tr>
@@ -187,7 +150,7 @@
                       </div>
                     </td>
                     <td>
-                      <input type="checkbox" {if ($tue_holiday == '1')}checked{/if} class="form-control" name="holiday[1]" value="1" style= "width:20px">
+                      <input type="checkbox" class="form-control" name="holiday[1]" value="1" style= "width:20px">
                     </td> 
                     <td style= "width:200px">Closed</td> 
                   </tr>
@@ -209,7 +172,7 @@
                       </div>
                     </td>
                     <td>
-                      <input type="checkbox" {if ($wed_holiday == '1')}checked{/if} class="form-control" name="holiday[2]" value="1" style= "width:20px">
+                      <input type="checkbox" class="form-control" name="holiday[2]" value="1" style= "width:20px">
                     </td> 
                     <td style= "width:200px">Closed</td> 
                   </tr>
@@ -231,7 +194,7 @@
                       </div>
                     </td>
                     <td>
-                      <input type="checkbox" {if ($thur_holiday == '1')}checked{/if} class="form-control" name="holiday[3]" value="1" style= "width:20px">
+                      <input type="checkbox" class="form-control" name="holiday[3]" value="1" style= "width:20px">
                     </td> 
                     <td style= "width:200px">Closed</td> 
                   </tr>
@@ -253,7 +216,7 @@
                       </div>
                     </td>
                     <td>
-                      <input type="checkbox" {if ($fri_holiday == '1')}checked{/if} class="form-control" name="holiday[5]" value="1" style= "width:20px">
+                      <input type="checkbox" class="form-control" name="holiday[4]" value="1" style= "width:20px">
                     </td> 
                     <td style= "width:200px">Closed</td> 
                   </tr>
@@ -275,7 +238,7 @@
                       </div>
                     </td>
                     <td>
-                      <input type="checkbox" {if ($sat_holiday == '1')}checked{/if} class="form-control" name="holiday[6]" value="1" style= "width:20px">
+                      <input type="checkbox" class="form-control" name="holiday[5]" value="1" style= "width:20px">
                     </td> 
                     <td style= "width:200px">Closed</td> 
                   </tr>
@@ -297,7 +260,7 @@
                       </div>
                     </td>
                     <td>
-                      <input type="checkbox" {if ($sun_holiday == '1')}checked{/if} class="form-control" name="holiday[7]" value="1" style= "width:20px">
+                      <input type="checkbox" class="form-control" name="holiday[6]" value="1" style= "width:20px">
                     </td> 
                     <td style= "width:200px">Closed</td> 
                   </tr>
@@ -318,7 +281,7 @@
                     </td>
                     <td style= "width:500px">
                       <div class="input-group" style= "width:300px">
-                        <input name="instagram" id="instagram" class="form-control" value="{$scope.profile.instagram}" type="text" /> 
+                        <input name="instagram" id="instagram" class="form-control" type="text" /> 
                       </div>
                     </td>
                   </tr>
@@ -329,7 +292,7 @@
                     </td>
                     <td style= "width:500px">
                       <div class="input-group" style= "width:300px">
-                        <input name="facebook" id="facebook" class="form-control" value="{$scope.profile.facebook}" type="text" />
+                        <input name="facebook" id="facebook" class="form-control" type="text" />
                       </div>
                     </td>
                   </tr>
@@ -340,7 +303,7 @@
                     </td>
                     <td style= "width:500px">
                       <div class="input-group" style= "width:300px">
-                        <input name="twitter" id="twitter" class="form-control" value="{$scope.profile.twitter}" type="text" />
+                        <input name="twitter" id="twitter" class="form-control" type="text" />
                       </div>
                     </td>
                   </tr>
