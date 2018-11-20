@@ -225,7 +225,7 @@ function bstArtworkStatusFormatter(value, row, index) {
     var edit_button = '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>';
     return view_button + ' ' + edit_button;
   }
-
+//For artwork page with clone icon
   function bstCollectionActionFormatter(value, row, index) {
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
@@ -235,8 +235,18 @@ function bstArtworkStatusFormatter(value, row, index) {
 
     var pop_btn = '<a id="'+row.id + '" class="clone_modal_icon" data-toggle="modal" data-target="#clone_modals"><i class="fa fa-clone"></i></a>';
 
-    return buttons + ' ' + plugin_button + ' ' + pop_btn;
- 
+    return buttons + ' ' + plugin_button + ' ' + pop_btn; 
+  }
+
+//For exhibition page without clone icon
+  function bstCollectionActionFormatter1(value, row, index) {
+    var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    var buttons = bstActionFormatter(value, row, index);
+    var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>'; 
+
+    return buttons + ' ' + plugin_button;  
   }
   
   function bstVaultTypeFormatter(value, row, index) {
@@ -412,11 +422,5 @@ $('load-success.bs.table').load(function() {
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $(document).on("click",'#sel_del_success',function() {
-      $("#gbe_artworks_link").trigger('click');
-  });
-</script>
 
 {/block}
