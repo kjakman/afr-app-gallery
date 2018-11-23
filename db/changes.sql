@@ -4,8 +4,8 @@ alter table user_map add column soft_delete tinyint(1) not null default 0;
 
 
 ALTER TABLE `minisite`
-ADD `sub_title` varchar(128) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `name`,
-ADD `description` varchar(225) COLLATE 'utf8_general_ci' NOT NULL AFTER `sub_title`,
+ADD `sub_title` varchar(128) COLLATE 'utf8_general_ci' NOT NULL,
+ADD `description` varchar(225) COLLATE 'utf8_general_ci' NOT NULL,
 ADD `footer` varchar(255) NOT NULL;
 
 CREATE TABLE `minisite_exhibition_page` (
@@ -135,8 +135,8 @@ CREATE TABLE `opening_hours` (
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(8) NOT NULL, 
   `day` varchar(128) NOT NULL,
-  `opening_time` time NOT NULL AFTER `day`,
-  `closing_time` time NOT NULL AFTER `opening_time`,
+  `opening_time` time NOT NULL,
+  `closing_time` time NOT NULL,
   `holiday` tinyint(1) NULL DEFAULT '1'
 );
 
