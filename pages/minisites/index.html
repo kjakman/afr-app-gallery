@@ -34,7 +34,8 @@
 {$cachebust = "?ts`$smarty.now`"}
 {$title = "STIGTER<br>VAN DOESBURG"}
 {if ($ms.logo)}
-  {$logo = "`$vp`/img/minisites/{$minisite}/{$ms.logo}"}
+  <!-- {$logo = "`$vp`/img/minisites/{$minisite}/{$ms.logo}"} -->
+  {$logo = "/img/minisites/{$minisite}/{$ms.logo}"}
 {/if}
 
 {$user_id = $scope.user_id}
@@ -211,13 +212,14 @@
           {if ($mObj.show_social == '1')}
             <strong>FOLLOW US</strong><br />
             {if ($profileobj.twitter)}
-            <a class="footer-social-icon" href="{$profileobj.twitter}"><img src="{$vp}/img/footer/footer-tw@2x.png" /></a>
+              <!-- <a class="footer-social-icon" href="{$profileobj.twitter}"><img src="{$vp}/img/footer/footer-tw@2x.png" /></a> -->
+              <a class="footer-social-icon" href="{$profileobj.twitter}"><img src="/img/footer/footer-tw@2x.png" /></a>
             {/if}
             {if ($profileobj.facebook)}
-            <a class="footer-social-icon" href="{$profileobj.facebook}"><img src="{$vp}/img/footer/footer-fb@2x.png" /></a>
+              <a class="footer-social-icon" href="{$profileobj.facebook}"><img src="/img/footer/footer-fb@2x.png" /></a>
             {/if}
             {if ($profileobj.instagram)}
-            <a class="footer-social-icon" href="{$profileobj.instagram}" target="_blank"><img src="{$vp}/img/footer/footer-in@2x.png" /></a>
+              <a class="footer-social-icon" href="{$profileobj.instagram}" target="_blank"><img src="/img/footer/footer-in@2x.png" /></a>
             {/if}
           {/if}
           <!--a class="footer-social-icon" href="#"><img src="{$vp}/img/footer/footer-mail@2x.png" /></a>   

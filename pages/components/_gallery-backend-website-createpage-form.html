@@ -1,26 +1,28 @@
   <div>
     <div class="row">              
       <div class="col-sm-6">
-        <label for="page_name">Page Title</label>
+        <label for="menu_title">Menu Title</label>
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-user"></i></span>
-          <input name="page_name" id="page_name" class="form-control" type="text" required/>
+          <input name="menu_title" id="menu_title" class="form-control" type="text" required/>
         </div>         
       </div>   
 
       <div class="row">
         <div class="form-group col-sm-6">
-          <label for="first_name">Page type</label>
-          {"type"|object_select:"minisite_page_type":["class" => "form-control"]}
+          <label for="page_title">Page Title</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            <input name="page_title" id="page_title" class="form-control" type="text" required/>
+          </div>          
         </div>
       </div>   
     </div>
     
     <div class="row mt20">
       <div class="form-group col-sm-8">
-        <label for="media-digital_price">Path *</label>
-        <a data-toggle="tooltip" title="The relative path. Must start with slash (/) and be unique for this site."> <i class="fa fa-info-circle"></i></a>
-        <input type="text" class="form-control" name="path" maxlength="128" required/>
+        <label for="first_name">Page type</label>
+        {"type"|object_select:"minisite_page_type":["class" => "form-control"]}
       </div>     
     </div>
   </div>      
