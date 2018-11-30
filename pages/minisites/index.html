@@ -194,8 +194,10 @@
                   {if ($timing.opening_time && $timing.closing_time == "00:00:00")}
                     <td> CLOSED </td>
                   {else}
-                    <td> {$timing.opening_time} - </td>
-                    <td> {$timing.closing_time} </td>
+                    {$opening_time = substr( $timing.opening_time, 0, -3 )}
+                    {$closing_time = substr( $timing.closing_time, 0, -3 )}
+                    <td> {$opening_time} - </td>
+                    <td> {$closing_time} </td>
                   {/if}                  
                 </tr>
               </table>

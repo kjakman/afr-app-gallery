@@ -219,6 +219,10 @@ ALTER TABLE `minisite_page`
 ADD `menu_title` varchar(32) NOT NULL,
 ADD `page_title` varchar(32) NOT NULL ;
 
+ALTER TABLE `minisite_page`
+DROP `page_name`,
+DROP `path`;
+
 
 
 
