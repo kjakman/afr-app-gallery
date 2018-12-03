@@ -25,25 +25,20 @@
                 <input type="radio" name="title_image"> Choose an artwork in exhibition as Title Image for exhibition<br>
               <select name="title_image" class="form-control">
                 <option value="">Title Image</option>   
-              {foreach from=$images item=image}
-                <option value="{$image.media_id}" {if ($collection.title_image == $image.media_id)}SELECTED{/if}>{$image.name}</option>
-              {/foreach}
+                {foreach from=$images item=image}
+                  <option value="{$image.media_id}" {if ($collection.title_image == $image.media_id)}SELECTED{/if}>{$image.name}</option>
+                {/foreach}
               </select>
-
               <br>
-              <input type="submit" class="btn btn-success" value="Attach" id="save">
-
-            </div> 
-
-          
+            </div>           
             <div class="gap gap-small"></div>
-
             <div class="row form-group">
               <input type="radio" name= "title_image">Upload/attach image to use as Title image for exhibition<br><br>
               {"media_collection"|object_uploader:$collection.id:"title_image":["resize" => 1, "cloud" => 1, "view" => 'grid', "handler" => "gbe_title_image_handler"]}
             </div>
           </div>
         </div>
-        
+
+        <input type="submit" class="btn btn-success" value="Save Changes" id="save">
         <div class="gap gap-small"></div>
 </form>
