@@ -19,7 +19,7 @@ body.exhibition .btn-sub-nav-dropdown,body.exhibitions .btn-sub-nav-dropdown {
 .fixed-table-toolbar .pull-right.search { float:left !Important; }
 .fixed-table-toolbar .columns.columns-right { float:none !Important; }
 .fixed-table-toolbar .export.btn-group { position:relative; }
-.fixed-table-toolbar .export.btn-group .btn.dropdown-toggle {   width: 170px;  text-align: right; }
+.fixed-table-toolbar .export.btn-group .btn.dropdown-toggle {   width: 200px;  text-align: right; }
 .fixed-table-toolbar .export.btn-group .export_datan {       position: absolute;   left: 4px;     z-index: 99;
     color: #000; }
  .fixed-table-pagination .page-list {
@@ -28,3 +28,27 @@ body.exhibition .btn-sub-nav-dropdown,body.exhibitions .btn-sub-nav-dropdown {
     top: 7px;
     right: 10px;
 }   
+.fixed-table-toolbar .keep-open.btn-group { position:relative; }
+.fixed-table-toolbar .keep-open.btn-group .btn.dropdown-toggle {   width: 150px;  text-align: right; }
+.fixed-table-toolbar .keep-open.btn-group .export_datan {       position: absolute;   left: 4px;     z-index: 99;  color: #000; }
+.fixed-table-toolbar  .columns.columns-right  button[name=toggle] {     position: relative;  width: 40px;  height: 34px; }
+.fixed-table-toolbar  .columns.columns-right  button[name=toggle]:before { position: absolute;
+    top: 5px;
+    left: 6px;
+    content: '\f00b';
+    font-family: fontawesome;
+    font-size: 17px;
+    width: 25px;
+    height: 25px; }
+
+.fixed-table-toolbar { padding-top:40px; padding-left:12px; }
+.fixed-table-toolbar .bs-bars.pull-left { position: absolute; top: -5px;  left: 10px; }
+
+/**3.dec**/
+.fixed-table-pagination .dropup .dropdown-menu { top:32px; }
+.fixed-table-pagination .dropup .dropdown-menu li  { background:#fff;  }
+.dropup .caret, .navbar-fixed-bottom .dropdown .caret {  border-bottom:0px;   border-top: 4px dashed; }
+
+.fixed-table-pagination .pagination-detail { margin-left:10px; }
+
+

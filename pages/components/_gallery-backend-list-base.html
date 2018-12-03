@@ -23,7 +23,7 @@
         <li><a href="#" id="sel_show">Show</a></li>
         <li><a href="#" id="sel_clear">Clear</a></li>
         <!-- <li><a href="#" id="sel_del">Delete</a></li> -->
-        <li><a href="#" id="sel_del" data-toggle="modal" data-target="#del_modals">Delete</a></li>  <!--pradeepa-->
+        <li><a href="#" id="sel_del" data-toggle="modal" data-target="#del_modals">Delete</a></li> 
       </ul>            
     </div>
   </div> 
@@ -410,12 +410,9 @@ $('load-success.bs.table').load(function() {
   $('.form-control').attr('id', 'searchbar');
 });
 
- $(".export.btn-group").append(" <span class='export_datan'><b>Download Record</b></span>");
-   
-    $(" .btn").click(function(){
-      console.log("click");
-    $(".btn-group").removeClass(".dropup");
-});
+ 
+  
+    
 </script>
 
 <div class="modal modal-admin fade" id="del_modals" data-backdrop="static" data-keyboard="false" 
