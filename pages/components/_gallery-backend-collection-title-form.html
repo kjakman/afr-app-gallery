@@ -22,23 +22,53 @@
         
           <div class="col-xs-12">
             <div class="form-group">
-                <input type="radio" name="title_image"> Choose an artwork in exhibition as Title Image for exhibition<br>
-              <select name="title_image" class="form-control">
-                <option value="">Title Image</option>   
-                {foreach from=$images item=image}
-                  <option value="{$image.media_id}" {if ($collection.title_image == $image.media_id)}SELECTED{/if}>{$image.name}</option>
-                {/foreach}
-              </select>
+                <input type="radio" name="title_image_option" id="radio1" value="0" {if ($collection.title_image_option == '0')}CHECKED{/if}> Choose an artwork in exhibition as Title Image for exhibition<br>
+                <div class="artwork_image">
+                    <select name="title_image" class="form-control">
+                      <option value="">Select Title Image</option>   
+                      {foreach from=$images item=image}
+                        <option value="{$image.media_id}" {if ($collection.title_image == $image.media_id)}SELECTED{/if}>{$image.name}</option>
+                      {/foreach}
+                    </select>
+                </div>              
               <br>
             </div>           
             <div class="gap gap-small"></div>
+              <b> OR </b>
+            <div class="gap gap-small"></div>
             <div class="row form-group">
-              <input type="radio" name= "title_image">Upload/attach image to use as Title image for exhibition<br><br>
-              {"media_collection"|object_uploader:$collection.id:"title_image":["resize" => 1, "cloud" => 1, "view" => 'grid', "handler" => "gbe_title_image_handler"]}
+              <input type="radio" name= "title_image_option" id="radio2" value="1" {if ($collection.title_image_option == '1')}CHECKED{/if} >Upload/attach image to use as Title image for exhibition<br><br>
+              <div class="upload_image">
+                {"media_collection"|object_uploader:$collection.id:"title_image":["resize" => 1, "cloud" => 1, "view" => 'grid', "handler" => "gbe_title_image_handler"]}
+              </div>
+              
             </div>
           </div>
         </div>
-
-        <input type="submit" class="btn btn-success" value="Save Changes" id="save">
         <div class="gap gap-small"></div>
+        <input type="submit" class="btn btn-success" value="Save Changes" id="save">
+        
 </form>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var val = $('input[name=title_image_option]:checked').val();
+    if(val == '0'){
+      $(".upload_image").hide();
+      $(".artwork_image").show();
+    }else{
+      $(".artwork_image").hide();
+      $(".upload_image").show();
+    }
+  });
+
+  $(document).on("click", '#radio1', function(){
+    $(".artwork_image").show();
+    $(".upload_image").hide();
+  });
+
+  $(document).on("click", '#radio2', function(){
+    $(".artwork_image").hide();
+    $(".upload_image").show();
+  });
+</script>
