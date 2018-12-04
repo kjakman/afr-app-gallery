@@ -223,6 +223,8 @@ ALTER TABLE `minisite_page`
 DROP `page_name`,
 DROP `path`;
 
+ALTER TABLE `media_collection`
+ADD `title_image_option` tinyint(1) NOT NULL DEFAULT '1';
 
 
 

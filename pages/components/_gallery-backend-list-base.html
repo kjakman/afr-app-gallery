@@ -108,7 +108,7 @@
     var link_class = pv ? 'ajax-loader' : '';
     console.log("base_link = " + base_link + " pv=" + pv);
     //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
-    return '<span type="hidden" class="edit" name="edit" data-col="title" data-value='+row.id+' >'+value+'</span>';
+    return '<span><span type="hidden" class="edit" name="edit" data-col="title" data-value='+row.id+' >'+value+'</span></span>';
   }
 
   function bstTitleFormatter(value, row, index) {
@@ -118,7 +118,7 @@
     var link_class = pv ? 'ajax-loader' : '';
     console.log("base_link = " + base_link + " pv=" + pv);
     //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
-    return '<span type="hidden" class="edit_exhibition" name="edit_exhibition" data-col="title" data-value='+row.id+' >'+value+'</span>';
+    return '<span><span type="hidden" class="edit_exhibition" name="edit_exhibition" data-col="title" data-value='+row.id+' >'+value+'</span></span>';
   
   }
 
@@ -139,7 +139,7 @@
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     console.log("base_link = " + base_link + " pv=" + pv);
-   return '<span type="hidden" class="edit" name="edit" data-col="price" data-value='+row.id+' >'+value+'</span>';
+   return '<span><span type="hidden" class="edit" name="edit" data-col="price" data-value='+row.id+' >'+value+'</span></span>';
   }
 
   function bstYearFormatter(value, row, index) {
@@ -148,7 +148,7 @@
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     console.log("base_link = " + base_link + " pv=" + pv);
-   return '<span type="hidden" class="edit" name="edit" data-col="primary_year" data-value='+row.id+' >'+value+'</span>';
+   return '<span><span type="hidden" class="edit" name="edit" data-col="primary_year" data-value='+row.id+' >'+value+'</span></span>';
   }
 
   function bstHeightFormatter(value, row, index) {
@@ -159,9 +159,9 @@
     console.log("base_link = " + base_link + " pv=" + pv);
     if(row.type == '50'){
       var value = 'N/A';
-      return '<span type="hidden" class="edit" name="edit" data-col="height" data-value='+row.id+' style="cursor: default;" >'+value+'</span>';
+      return '<span><span type="hidden" class="edit" name="edit" data-col="height" data-value='+row.id+' style="cursor: default;" >'+value+'</span></span>';
     }else{
-      return '<span type="hidden" class="edit" name="edit" data-col="height" data-value='+row.id+' >'+value+'</span>';
+      return '<span><span type="hidden" class="edit" name="edit" data-col="height" data-value='+row.id+' >'+value+'</span></span>';
     }
    
   }
@@ -174,9 +174,9 @@
     console.log("base_link = " + base_link + " pv=" + pv);
     if(row.type == '50'){
       var value = 'N/A';
-      return '<span type="hidden" class="edit" name="edit" data-col="width" data-value='+row.id+' style="cursor: default;" >'+value+'</span>';
+      return '<span><span type="hidden" class="edit" name="edit" data-col="width" data-value='+row.id+' style="cursor: default;" >'+value+'</span></span>';
     }else{
-      return '<span type="hidden" class="edit" name="edit" data-col="width" data-value='+row.id+' >'+value+'</span>';
+      return '<span><span type="hidden" class="edit" name="edit" data-col="width" data-value='+row.id+' >'+value+'</span></span>';
     }
     
   }
@@ -358,6 +358,7 @@ function bstArtworkStatusFormatter(value, row, index) {
     if(!value) return '';
     var json_field = field + '_json';
     var json = row[json_field];
+    //console.log("row option is" + row.title_image_option);
     //console.log("field=" + field + " json=" + json_field + " json=" + json);
     
     if(!json) return bstIDFormatter(value, row, index);
@@ -380,6 +381,7 @@ function bstArtworkStatusFormatter(value, row, index) {
     
     var thumb = filename.replace('/square', '/tiny');
     var print_val = "<img class='table-thumb' src='" + thumb + "'/>";
+
     return '<a href="{$base_link}/'+ row.id + '/edit/title?_pv=' + pv +
     '" class="' +link_class + '" data-target="#subview-container">'+print_val+'</a>';
   }
