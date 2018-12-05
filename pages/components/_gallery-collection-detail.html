@@ -1,10 +1,14 @@
 {{"extend": "_gallery-detail-base.html"}}
 
+
 {block name=image}
   <img id="collection_title_image" src="{$collection_id|collection_photo:'big'}" class=""><br>
 {/block}
 
-{block name=aside}  
+{block name=aside} 
+{$collection_id}
+{$collection_id|collection_photo:'big'}
+
   <h2>{$collection.title}</h2>
   {if ($collection.start_date && $collection.end_date)}
     {{"include": "_gallery-collection-date"}}

@@ -38,6 +38,7 @@
             <div class="gap gap-small"></div>
             <div class="row form-group">
               <input type="radio" name= "title_image_option" id="radio2" value="1" {if ($collection.title_image_option == '1')}CHECKED{/if} >Upload/attach image to use as Title image for exhibition<br><br>
+              <input hidden="1" name="title_image" type="hidden" value="{$collection.title_image}"> 
               <div class="upload_image">
                 {"media_collection"|object_uploader:$collection.id:"title_image":["resize" => 1, "cloud" => 1, "view" => 'grid', "handler" => "gbe_title_image_handler"]}
               </div>
