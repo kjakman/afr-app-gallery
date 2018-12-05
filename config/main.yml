@@ -2,14 +2,19 @@
 # live section is used for live (www.) and test (test.)
 # dev section is used for dev (dev.)
 
+name: vPatina
+description: "Enabling you to make a living from your passion!"
 site_id: 247
 
 settings:
   config_file: config/config.json
+  data_path: /web/data/
+  slug: vpatina
 
-system_cache: off
-redis_cache: off
-mongo_cache: on
+cache:
+  system: 0
+  redis: 0
+  mongo: 0
 
 some:
   other:
