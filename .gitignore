@@ -1,9 +1,7 @@
 /vendor
 config/*.txt
+config/*.json
 /bower_components
-/includes/old
-/smarty/templates/
-/smarty/templates_c/
 *.bak
 *.old
 *~

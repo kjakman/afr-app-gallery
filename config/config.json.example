@@ -1,11 +1,12 @@
 {
-  "db": {"user":"root","host":"localhost","db":"patina","devdb":"vpatinadev","pass":"root123"},
+  "db": {"host":"localhost","db":"db name","user":"db username","pass":"db password"},
+  "devdb": {"host":"localhost","db":"db name","user":"db username","pass":"db password"},
   "sites": {
     "247": {
       "name": "AFR Gallery Site",
       "fb": "facebook-key",
       "fbs" : "facebook-secret",
-      "ppu": "paypal_api1.kjakman.com",
+      "ppu": "paypal-user",
       "ppp": "paypal-secret",
       "ppe": "https://api-3t.paypal.com/nvp",
       "pps": "paypal-test-secret",
