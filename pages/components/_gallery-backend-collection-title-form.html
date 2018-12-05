@@ -17,8 +17,14 @@
         <input hidden="1" name="artist_id" type="hidden" value="{$artist_id}">
         <input hidden="1" name="curator_id" type="hidden" value="{$curator_id}">        
         {/if}
-
         <div class="row form-group">
+          <p>Upload/attach image to use as Title image for exhibition</p><br><br>
+          <div class="upload_image">
+            {"media_collection"|object_uploader:$collection.id:"title_image":["resize" => 1, "cloud" => 1, "view" => 'grid', "handler" => "gbe_title_image_handler"]}
+          </div>
+        </div>
+
+        <!-- <div class="row form-group">
         
           <div class="col-xs-12">
             <div class="form-group">
@@ -47,11 +53,11 @@
           </div>
         </div>
         <div class="gap gap-small"></div>
-        <input type="submit" class="btn btn-success" value="Save Changes" id="save">
+        <input type="submit" class="btn btn-success" value="Save Changes" id="save"> -->
         
 </form>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $(document).ready(function(){
     var val = $('input[name=title_image_option]:checked').val();
     if(val == '0'){
@@ -72,4 +78,4 @@
     $(".artwork_image").hide();
     $(".upload_image").show();
   });
-</script>
+</script> -->
