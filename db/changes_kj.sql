@@ -187,6 +187,7 @@ WHERE `seq_name` = 'minisite_pages' AND `seq_name` = 'minisite_pages';
 ALTER TABLE `user_profile` ADD COLUMN `facebook` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
 ALTER TABLE `user_profile` ADD COLUMN `instagram` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
 ALTER TABLE `user_profile` ADD COLUMN `twitter` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
+ALTER TABLE `user_profile` ADD COLUMN `artist` tinyint(1) NOT NULL DEFAULT 0;
 
 -- Added by Kjetil
 DROP table minisite_pages;
