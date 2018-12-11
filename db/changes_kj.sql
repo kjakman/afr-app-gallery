@@ -200,6 +200,7 @@ alter table minisite_page add column slug varchar(64) not null default '';
 alter table minisite_page add column search text not null default '';
 alter table minisite_page add column minisite_id int(11) not null;
 
+ALTER TABLE `media_collection` ADD COLUMN `title_image_option` tinyint(1) NOT NULL DEFAULT 0;
 
 -- INSERT INTO minisite_pages ('id', 'created', 'timestamp', 'active', 'site_id', 'client_id', 'user_id', 'type', 'page_name', 'path', 'slug', 'search')
 -- VALUES (103,'2018-11-11','','','','','','','');
