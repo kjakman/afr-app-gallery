@@ -3,16 +3,17 @@
   {{"extend": "minisites/index.html"}}
   
   {$artist = $scope.artist}
+  {$artist.page_slug}
   {block name=content}         
-    
   <div class="row detail-page-row">
     <div class="col-md-3 col-sm-12 text-left artist-subnav-container">
       <div class="artist-sub-nav">
-        <h1 class="sub-nav-header artist-sub-nav-header"><a href="{$basepath}/{$page}/{$slug}">{$artist.display_name}</a></h1>
+        <h1 class="sub-nav-header artist-sub-nav-header"><a href="{$basepath}{$artist.page_slug}{$slug}">{$artist.display_name}</a></h1>
           <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
-            <li><a href="{$basepath}/{$page}/{$slug}/images"       class="">Images</a></li>
-            {if ($scope.show_bio)}<li><a href="{$basepath}/{$page}/{$slug}/biography"    class="">Biography</a></li>{/if}
-            {if ($scope.show_pub)}<li><a href="{$basepath}/{$page}/{$slug}/publications" class="">Publications</a></li>{/if}
+
+            <li><a href="{$basepath}{$artist.page_slug}{$slug}/images"       class="">Images</a></li>
+            {if ($scope.show_bio)}<li><a href="{$basepath}{$artist.page_slug}{$slug}/biography"    class="">Biography</a></li>{/if}
+            {if ($scope.show_pub)}<li><a href="{$basepath}{$artist.page_slug}{$slug}/publications" class="">Publications</a></li>{/if}
           </ul>
         </p>
         <!-- mobile layout -->
@@ -21,8 +22,8 @@
             About Artist
           </button>
           <div class="dropdown-menu">
-              <li class="sub-nav-li"><a href="{$basepath}/{$page}/{$slug}/images"       class="dropdown-item">Images</a></li>
-            {if ($scope.show_bio)}<li class="sub-nav-li"><a href="{$basepath}/{$page}/{$slug}/biography"    class="dropdown-item">Biography</a></li>{/if}
+              <li class="sub-nav-li"><a href="{$basepath}/{$page}/{$slug}/images" class="dropdown-item">Images</a></li>
+            {if ($scope.show_bio)}<li class="sub-nav-li"><a href="{$basepath}/{$page}/{$slug}/biography" class="dropdown-item">Biography</a></li>{/if}
             {if ($scope.show_pub)}<li class="sub-nav-li"><a href="{$basepath}/{$page}/{$slug}/publications" class="dropdown-item">Publications</a></li>{/if}
           </div>
         </div>

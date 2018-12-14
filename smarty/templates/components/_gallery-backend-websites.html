@@ -1,0 +1,24 @@
+{* automatically generated on 2018-12-14 07:30:52 from /web/sites/afr-app-gallery/pages/components/_gallery-backend-websites.html. DO NOT EDIT *}
+{$what = 'website'}
+{$plural = 'websites'}
+
+{$form = "_gallery-backend-website-form.html"}
+{extends file="/web/sites/afr-app-gallery/smarty/templates/components/_gallery-backend-list-base.html"}
+
+{block name=main}              
+{/block}
+
+{block name="fields"}
+  <!--th data-field="state" data-checkbox="true">Check</th>
+  <th data-field="id" data-sortable="true" data-formatter="bstIDFormatter">ID</th>
+  <th data-field="title_image" data-formatter="bstTitleImageFormatter">Image</th-->
+  <th data-field="created" data-sortable="true" data-formatter="bstDateFormatter">Created</th>
+  <th data-field="url" data-sortable="true" data-formatter="bstUrlFormatter">URL</th>
+  <th data-field="domain" data-sortable="true" data-formatter="bstDomainFormatter">Domain</th>
+  <th data-field="type" data-sortable="true">Type</th>
+  <th data-field="user_id" data-sortable="true" data-formatter="bstMinisiteArtistFormatter">User</th>
+{/block}
+
+{block name="script"}
+{/block}
+

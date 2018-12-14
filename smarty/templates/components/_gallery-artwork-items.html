@@ -1,0 +1,11 @@
+{* automatically generated on 2018-12-14 07:31:10 from /web/sites/afr-app-gallery/pages/components/_gallery-artwork-items.html. DO NOT EDIT *}
+                      {$count = $scope.items|@count}
+                      <ul class="photo-grid gallery-list list">
+                        {$index = 0}
+                        {foreach from=$items item=artwork}                          
+                          {include file="/web/sites/afr-app-gallery/smarty/templates/components/_gallery-artwork-item.html" }
+                          {$index = $index + 1}
+                        {/foreach}
+                      </ul>
+
+

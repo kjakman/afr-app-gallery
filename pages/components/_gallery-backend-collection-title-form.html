@@ -6,7 +6,7 @@
 
       {$images = $scope.images}
         
-<form id="gbe_collection_title_form" class="ajax-submit" data-handler="save-collection">
+<form id="gbe_collection_title_form" class="ajax-submit" data-handler="save-collection" enctype="multipart/form-data">
     <input hidden="1" name="id" type="hidden" value="{$collection.id}">
         <input hidden="1" name="obj_id" type="hidden" value="{$collection.id}">
         <input hidden="1" name="obj_type" type="hidden" value="media_collection">      
@@ -17,47 +17,42 @@
         <input hidden="1" name="artist_id" type="hidden" value="{$artist_id}">
         <input hidden="1" name="curator_id" type="hidden" value="{$curator_id}">        
         {/if}
-        <div class="row form-group">
-          <p>Upload/attach image to use as Title image for exhibition</p><br><br>
-          <div class="upload_image">
-            {"media_collection"|object_uploader:$collection.id:"title_image":["resize" => 1, "cloud" => 1, "view" => 'grid', "handler" => "gbe_title_image_handler"]}
-          </div>
-        </div>
 
-        <!-- <div class="row form-group">
+        <div class="row form-group">
         
           <div class="col-xs-12">
-            <div class="form-group">
-                <input type="radio" name="title_image_option" id="radio1" value="0" {if ($collection.title_image_option == '0')}CHECKED{/if}> Choose an artwork in exhibition as Title Image for exhibition<br>
-                <div class="artwork_image">
-                    <select name="title_image" class="form-control">
-                      <option value="">Select Title Image</option>   
-                      {foreach from=$images item=image}
-                        <option value="{$image.media_id}" {if ($collection.title_image == $image.media_id)}SELECTED{/if}>{$image.name}</option>
-                      {/foreach}
-                    </select>
-                </div>              
-              <br>
-            </div>           
+                <div class="form-group">
+                    <input type="radio" name="title_image_option" id="radio1" value="0" {if ($collection.title_image_option == '0')}CHECKED{/if}> Choose an artwork in exhibition as Title Image for exhibition<br>
+                    <div class="artwork_image">
+                      <select name="title_image" class="form-control">
+                        <option value="">Select Title Image</option>   
+                        {foreach from=$images item=image}
+                          <option value="{$image.media_id}" {if ($collection.title_image == $image.media_id)}SELECTED{/if}>{$image.name}</option>
+                        {/foreach}
+                      </select>
+                    </div>              
+                  <br>
+                </div>           
+                <div class="gap gap-small"></div>
+                  <b> OR </b>
+                <div class="gap gap-small"></div>
+                <div class="row form-group">
+                  <input type="radio" name= "title_image_option" id="radio2" value="1" {if ($collection.title_image_option == '1')}CHECKED{/if} >Upload/attach image to use as Title image for exhibition<br><br>
+                  
+                  <div class="upload_image">
+                    {"media_collection"|object_uploader:$collection.id:"title_image":["resize" => 1, "cloud" => 1, "view" => 'list', "handler" => "gbe_title_image_handler"]}
+                  </div>                
+                </div>
+            
             <div class="gap gap-small"></div>
-              <b> OR </b>
-            <div class="gap gap-small"></div>
-            <div class="row form-group">
-              <input type="radio" name= "title_image_option" id="radio2" value="1" {if ($collection.title_image_option == '1')}CHECKED{/if} >Upload/attach image to use as Title image for exhibition<br><br>
-              <input hidden="1" name="title_image" type="hidden" value="{$collection.title_image}"> 
-              <div class="upload_image">
-                {"media_collection"|object_uploader:$collection.id:"title_image":["resize" => 1, "cloud" => 1, "view" => 'grid', "handler" => "gbe_title_image_handler"]}
-              </div>
-              
-            </div>
+    
+            <button class="btn btn-success" id="title_image_upload">Save Changes</button>
           </div>
         </div>
-        <div class="gap gap-small"></div>
-        <input type="submit" class="btn btn-success" value="Save Changes" id="save"> -->
         
 </form>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
   $(document).ready(function(){
     var val = $('input[name=title_image_option]:checked').val();
     if(val == '0'){
@@ -78,4 +73,4 @@
     $(".artwork_image").hide();
     $(".upload_image").show();
   });
-</script> -->
+</script>

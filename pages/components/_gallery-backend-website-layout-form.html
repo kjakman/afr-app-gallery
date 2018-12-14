@@ -49,7 +49,7 @@
           <div class="col-sm-12">
             <label for="media-name">Icon</label>
             <a data-toggle="tooltip" data-placement="right" title="Select the main image to represent the artwork"> <i class="fa fa-info-circle"></i></a>
-            {"minisite"|object_uploader:$collection.id:"title_image":["resize" => 1, "cloud" => 1, "view" => "list"]}
+            {"minisite"|object_uploader:$minisite.id:"logo":["resize" => 1, "cloud" => 1, "view" => "list"]}
           </div>
 
           <div class="col-sm-12">
@@ -114,6 +114,10 @@
             <div class="form-group col-sm-4">
               <label for="Domain Name">Domain Name</label><br>
               <input name="domain" id="domain" class="form-control" value="{$minisite.domain}" type="text" /> 
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="Domain Name">URL</label><br>
+              <input name="url" id="url" class="form-control" value="{$minisite.url}" type="text" /> 
             </div>
           </div> 
           <input type="submit" class="btn btn-success" value="Save" id="submit">

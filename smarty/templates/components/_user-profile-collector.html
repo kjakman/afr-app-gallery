@@ -1,0 +1,19 @@
+{* automatically generated on 2018-12-06 11:31:28 from /web/sites/afr-app-gallery/pages/components/_user-profile-collector.html. DO NOT EDIT *}
+{extends file="/web/sites/afr-app-gallery/smarty/templates/components/_user-profile-base.html"}
+
+{block name=profile}
+  <h1>(Collector)!</h1>
+  <h1 class='black'> {$scope.profile.display_name}</h1>
+
+  {$profile = $scope.profile}
+  {include file="/web/sites/afr-app-gallery/smarty/templates/components/_gallery-collector-information.html" }
+
+  {include file="/web/sites/afr-app-gallery/smarty/templates/components/_gallery-contact-information.html" }
+  
+{/block}
+
+{block name=description}
+  <p>{$scope.profile.description}</p>
+{/block}
+
+

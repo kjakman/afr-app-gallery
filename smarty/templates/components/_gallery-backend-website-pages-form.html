@@ -1,0 +1,99 @@
+{* automatically generated on 2018-12-14 07:31:27 from /web/sites/afr-app-gallery/pages/components/_gallery-backend-website-pages-form.html. DO NOT EDIT *}
+
+      {$pagelist = $scope.pagelist}
+
+      <div class="input-group" >
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#gbe_create_page_dialog"> Create Page</button>
+      </div><br>
+        
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <table class = "bootstrap-table table table-hover">
+            <thead>
+              <tr>
+                <th>Menu Title</th>
+                <th>Page Title</th>
+                <th>Page Type</th>
+                <th>Created</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id= "sortable-row">
+          
+              {foreach $pagelist as $pagelists}              
+                <tr id= "{$pagelists.id}">
+                  <td>{$pagelists.menu_title}</td>
+                  <td>{$pagelists.page_title}</td> 
+                  {if ({$pagelists.type} == 10)}
+                    {$tab = 'home'}
+                  {/if}
+                  {if ({$pagelists.type} == 20)}
+                    {$tab = 'artist'}
+                  {/if}
+                  {if ({$pagelists.type} == 30)}
+                    {$tab = 'exhibition'}
+                  {/if}
+                  <td>{$tab}</td>
+                  <td>{$pagelists.created}</td>
+                  <td>                    
+                    <a href="/backend/website/{$minisite.id|default:$id}/edit/{$tab}?_pv=1&amp;page_id={$pagelists.id}&amp;user_id={$minisite.user_id|default:$user_id}" class="btn btn-success ajax-loader" data-target="#subview-container"><button id= 'getpagelist' class='btn btn-xs btn-success' data-value='{$minisite.user_id}|{$pagelists.id}'> <i class='glyphicon glyphicon-pencil'></i></button></a>
+                    {if ($tab != 'home')}
+                      <button class='btn btn-xs btn-danger delete' id= 'page_delete' data-value='{$pagelists.id}'> <i class='glyphicon glyphicon-trash'></i></button>
+                    {/if}
+                  </td>
+                </tr>
+                
+              {/foreach} 
+            </tbody>
+          </table>
+        </div>
+        <input type="submit" class="btn btn-success" id= 'submit_order' value="Save page order" onClick="saveOrder();">
+      </div>
+
+{include file="/web/sites/afr-app-gallery/smarty/templates/components/_gallery-backend-website-createpage-dialog.html" }
+        
+<script type="text/javascript">
+  $(document).ready( function() {
+    $("#gbe_artist_link").hide();
+    $("#gbe_exhibition_link").hide();
+    $("#gbe_styling_link").hide();
+    $("#gbe_home_link").hide();
+  });
+  $(function() {
+      $( 'tbody' ).sortable();
+    });
+    
+    function saveOrder() {
+      var order_id = new Array();
+      $('tbody#sortable-row tr').each(function() {
+      order_id.push($(this).attr("id"));
+      });
+      $.ajax({
+        url: "/ajax.php?oper=submit-order",
+        type: "POST",
+        data: {
+          oper: "submit-order",
+          val: order_id
+        },
+      });
+      //alert(order_id);
+    }
+
+  $(document).on("click",'#page_delete',function() {
+    $(this).closest("tr").remove();
+  });
+
+  $(document).on("click",'#submit_order',function() {
+     setTimeout(function() { 
+      $("#gbe_page_link").trigger('click');
+    }, 1000);
+  });
+  
+
+</script>
+
+
+
+  
+      
+      

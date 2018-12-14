@@ -1,0 +1,25 @@
+{* automatically generated on 2018-12-14 06:11:33 from /web/sites/afr-app-gallery/www/afr-lib/pages/login.html. DO NOT EDIT *}
+  {extends file="/web/sites/afr-app-gallery/smarty/templates/base/default.html"}
+  {block name=content}
+  
+
+                  <div class="container">
+                    {if ($user.id)}
+                    <h2>Welcome {$user.display_name}</h2>   
+                    <a href="?act=logout&amp;_aid=0">Log out</a>
+                    <br><br>
+                    {else}
+                      <h3>Login</h3>
+                      {if ($scope.provider_keys)}
+                        {$providers = $scope.provider_keys}
+                        {include file="/web/sites/afr-app-gallery/smarty/templates/components/_user-login-third-party.html" }
+                        <div class='gap gap-small'></div>                      
+                      {/if}
+                      {include file="/web/sites/afr-app-gallery/smarty/templates/components/_user-login-form.html" }          
+                      <a href="{$smarty.const.PAGE_REGISTER|link}{$query_string}">New To {$site.name}?</a><br>
+                      <a href="{$smarty.const.PAGE_PASSWORD|link}{$query_string}">Forgot Password?</a>
+                    {/if}
+                  </div>
+  {/block}
+
+

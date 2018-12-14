@@ -206,6 +206,10 @@ CREATE TABLE `page_map` (
   `active` int(8) NOT NULL
 );
 
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+SELECT 'page_map', '10' from dual
+WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'page_map');
+
 ALTER TABLE `minisite_artist_page`
 ADD `slug` varchar(64) NOT NULL;
 
@@ -225,6 +229,15 @@ DROP `path`;
 
 ALTER TABLE `media_collection`
 ADD `title_image_option` tinyint(1) NOT NULL DEFAULT '1';
+
+ALTER TABLE `minisite_page`
+ADD `data` varchar(100) NOT NULL DEFAULT '';
+
+DROP TABLE `minisite_home_page`;
+
+DROP TABLE `minisite_artist_page`;
+
+DROP TABLE `minisite_exhibition_page`;
 
 
 

@@ -1,6 +1,8 @@
   {{"extend": "minisites/index.html"}}
 
   {block name=content}
+  {$data = json_decode($minisite_pageObj.data, TRUE)}
+  
 	   <div class="row">
 	     <div class="col-md-3 text-left">
 	     </div>
@@ -15,9 +17,11 @@
 	       {/if}
 	     {/foreach}
 
-	     	{if ($homeObj.show_recent == 1)}
+	     
+	     
+	     	{if ($data.show_recent == 1)}
 			     {$i = 0}   
-			     {if ($homeObj.show_future == 1) && ($future_exists == 1)}
+			     {if ($data.show_future == 1) && ($future_exists == 1)}
 			       {$future = 1}
 			       <h5>Future Exhibition</h5>
 			       <ul class="timeline">
@@ -28,12 +32,12 @@
 			               <div class="timeline-panel">
 			                 <div class="timeline-heading">
 			                   <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-			                     <a href="{$basepath}/exhibition/{$exhibition.slug}">{$exhibition.title}</a>
+			                     <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}">{$exhibition.title}</a>
 			                   </h6>
 			                   <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
 			                 </div>
 			                 <div class="timeline-body">
-			                   <a href="{$basepath}/exhibition/{$exhibition.slug}" class="img-container">
+			                   <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}" class="img-container">
 			                     <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
 			                   </a>
 			                 </div>
@@ -46,7 +50,7 @@
 			     {/if}
 			     
 			  
-			     {if ($homeObj.show_current == 1) && ($current_exists == 1)}      
+			     {if ($data.show_current == 1) && ($current_exists == 1)}      
 			       {$current = 1}
 			       <h5>Current Exhibition</h5>
 			       <ul class="timeline">
@@ -57,12 +61,12 @@
 			               <div class="timeline-panel">
 			                 <div class="timeline-heading">
 			                   <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-			                     <a href="{$basepath}/exhibition/{$exhibition.slug}">{$exhibition.title}</a>
+			                     <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}">{$exhibition.title}</a>
 			                   </h6>
 			                   <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
 			                 </div>
 			                 <div class="timeline-body">
-			                   <a href="{$basepath}/exhibition/{$exhibition.slug}" class="img-container">
+			                   <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}" class="img-container">
 			                     <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
 			                   </a>
 			                 </div>
@@ -75,7 +79,7 @@
 			     {/if}
 
 
-			     {if ($homeObj.show_past == 1) && ($past_exists == 1)}      
+			     {if ($data.show_past == 1) && ($past_exists == 1)}      
 			       {$past = 1}  
 			       <h5>Past Exhibition</h5>
 			       <ul class="timeline">
@@ -86,12 +90,12 @@
 			               <div class="timeline-panel">
 			                 <div class="timeline-heading">
 			                   <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-			                     <a href="{$basepath}/exhibition/{$exhibition.slug}">{$exhibition.title}</a>
+			                     <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}">{$exhibition.title}</a>
 			                   </h6>
 			                   <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
 			                 </div>
 			                 <div class="timeline-body">
-			                   <a href="{$basepath}/exhibition/{$exhibition.slug}" class="img-container">
+			                   <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}" class="img-container">
 			                     <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
 			                   </a>
 			                 </div>
@@ -106,7 +110,7 @@
 			 {else}
 	     		{$i = 0} 
 
-	     		{if ($homeObj.show_past == 1) && ($past_exists == 1)}      
+	     		{if ($data.show_past == 1) && ($past_exists == 1)}      
 	     		  {$past = 1}  
 	     		  <h5>Past Exhibition</h5>
 	     		  <ul class="timeline">
@@ -117,12 +121,12 @@
 	     		          <div class="timeline-panel">
 	     		            <div class="timeline-heading">
 	     		              <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-	     		                <a href="{$basepath}/exhibition/{$exhibition.slug}">{$exhibition.title}</a>
+	     		                <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}">{$exhibition.title}</a>
 	     		              </h6>
 	     		              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
 	     		            </div>
 	     		            <div class="timeline-body">
-	     		              <a href="{$basepath}/exhibition/{$exhibition.slug}" class="img-container">
+	     		              <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}" class="img-container">
 	     		                <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
 	     		              </a>
 	     		            </div>
@@ -134,7 +138,7 @@
 	     		  </ul>
 	     		{/if}
 
-	     		{if ($homeObj.show_current == 1) && ($current_exists == 1)}      
+	     		{if ($data.show_current == 1) && ($current_exists == 1)}      
 	     		  {$current = 1}
 	     		  <h5>Current Exhibition</h5>
 	     		  <ul class="timeline">
@@ -145,12 +149,12 @@
 	     		          <div class="timeline-panel">
 	     		            <div class="timeline-heading">
 	     		              <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-	     		                <a href="{$basepath}/exhibition/{$exhibition.slug}">{$exhibition.title}</a>
+	     		                <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}">{$exhibition.title}</a>
 	     		              </h6>
 	     		              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
 	     		            </div>
 	     		            <div class="timeline-body">
-	     		              <a href="{$basepath}/exhibition/{$exhibition.slug}" class="img-container">
+	     		              <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}" class="img-container">
 	     		                <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
 	     		              </a>
 	     		            </div>
@@ -162,7 +166,7 @@
 	     		  </ul>
 	     		{/if}
 
-	     		{if ($homeObj.show_future == 1) && ($future_exists == 1)}
+	     		{if ($data.show_future == 1) && ($future_exists == 1)}
 	     		  {$future = 1}
 	     		  <h5>Future Exhibition</h5>
 	     		  <ul class="timeline">
@@ -173,12 +177,12 @@
 	     		          <div class="timeline-panel">
 	     		            <div class="timeline-heading">
 	     		              <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-	     		                <a href="{$basepath}/exhibition/{$exhibition.slug}">{$exhibition.title}</a>
+	     		                <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}">{$exhibition.title}</a>
 	     		              </h6>
 	     		              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
 	     		            </div>
 	     		            <div class="timeline-body">
-	     		              <a href="{$basepath}/exhibition/{$exhibition.slug}" class="img-container">
+	     		              <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}" class="img-container">
 	     		                <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
 	     		              </a>
 	     		            </div>
@@ -193,7 +197,7 @@
 
 	     {if ($future!=1) && ($current!=1) && ($past!=1)}
 	       {$i = 0}
-	       {if ($homeObj.show_latest == 1)}
+	       {if ($data.show_latest == 1)}
 	           <h5>Latest Exhibition</h5>
 	           <ul class="timeline">
 	             {foreach from=$latest_exhibitions item=exhibition}
@@ -202,12 +206,12 @@
 	                 <div class="timeline-panel">
 	                   <div class="timeline-heading">
 	                     <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-	                       <a href="{$basepath}/exhibition/{$exhibition.slug}">{$exhibition.title}</a>
+	                       <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}">{$exhibition.title}</a>
 	                     </h6>
 	                     <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
 	                   </div>
 	                   <div class="timeline-body">
-	                     <a href="{$basepath}/exhibition/{$exhibition.slug}" class="img-container">
+	                     <a href="{$basepath}{$exhibition.page_slug}/{$exhibition.slug}" class="img-container">
 	                       <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
 	                     </a>
 	                   </div>

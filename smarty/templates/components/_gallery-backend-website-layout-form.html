@@ -1,0 +1,157 @@
+{* automatically generated on 2018-12-14 07:31:27 from /web/sites/afr-app-gallery/pages/components/_gallery-backend-website-layout-form.html. DO NOT EDIT *}
+      <form class="ajax-submit" data-handler="save-minisite-basic">
+        <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
+        <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">
+        <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">  
+        <input hidden="1" name="next_tab" type="hidden" value="styling"> 
+
+          <div class="col-sm-12">
+            <label for="HEADER">HEADER</label>
+            <table cellspacing="2"> 
+              <tr style="height: 15px;"/>
+              <tr>
+                <td style= "width:200px">
+                  <label for="Title">Site Title</label>
+                </td>
+                <td width="20%">
+                  <div class="input-group">
+                    <input name='show_title' value='0' type='hidden'> 
+                    <input type="checkbox" {if ($minisite.show_title)}checked{/if} class="bootstrap-toggle" value="1" name="show_title" id="name">
+                  </div>
+                </td>
+                <td >
+                  <div class="input-group">
+                    <input name="name" id="name" class="form-control" value="{$minisite.name}" type="text" /> 
+                  </div>
+                </td>
+              </tr>
+              <tr style="height: 15px;"/>
+              <tr>
+                <td style= "width:200px">
+                  <label for="Sub title">Site Sub Title</label>
+                </td>
+                <td width="20%">
+                  <div class="input-group">
+                    <input name='show_subtitle' value='0' type='hidden'> 
+                    <input type="checkbox" {if ($minisite.show_subtitle)}checked{/if} class="bootstrap-toggle" value="1" name="show_subtitle" id="sub_title">
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <input name="sub_title" id="sub_title" class="form-control" value="{$minisite.sub_title}" type="text" />
+                  </div>
+                </td>
+              </tr>
+              <tr style="height: 15px;"/>
+              <tr style="height: 15px;"/>
+            </table>
+          </div>
+
+          <div class="col-sm-12">
+            <label for="media-name">Icon</label>
+            <a data-toggle="tooltip" data-placement="right" title="Select the main image to represent the artwork"> <i class="fa fa-info-circle"></i></a>
+            {"minisite"|object_uploader:$minisite.id:"logo":["resize" => 1, "cloud" => 1, "view" => "list"]}
+          </div>
+
+          <div class="col-sm-12">
+            <label for="FOOTER">FOOTER</label>
+            <table cellspacing="2"> 
+              <tr style="height: 15px;"/>
+              <tr>
+                <td style= "width:200px">
+                  <label for="footer">Footer Text</label>
+                </td>
+                <td >
+                  <div class="input-group">
+                    <input name="footer" id="footer" class="form-control" value="{$minisite.footer}" type="text" /> 
+                  </div>
+                </td>
+              </tr>
+              <tr style="height: 15px;"/>
+              <tr>
+                <td style= "width:200px">
+                  <label for="Social Media">Follow on Social Media</label>
+                </td>
+                <td width="20%">
+                  <div class="input-group">
+                    <input name='show_social' value='0' type='hidden'> 
+                    <input type="checkbox" {if ($minisite.show_social)}checked{/if} class="bootstrap-toggle" value="1" name="show_social" id="">
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#gbe_profile_dialog">Edit Details on Profile Page</button>
+                  </div>
+                </td>
+              </tr>
+              <tr style="height: 15px;"/>
+              <tr>
+                <td >
+                  <label for="Opening">Opening Times</label>
+                </td>
+                <td width="20%">
+                  <div class="input-group">
+                    <input name='show_timing' value='0' type='hidden'> 
+                    <input type="checkbox" {if ($minisite.show_timing)}checked{/if} class="bootstrap-toggle" value="1" name="show_timing" id="">
+                  </div>
+                </td>
+                <td >
+                  <div class="input-group" >
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#gbe_profile_dialog"> Edit Details on Profile Page</button>
+                  </div>
+                </td>
+              </tr>
+              <tr style="height: 15px;"/>
+              <tr style="height: 15px;"/>
+            </table>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-10">
+              <label for="SEARCH">SEARCH ENGINE OPTIMIZATION</label><br>
+              <label for="description">Site description</label>
+                <textarea class="summernote form-control special" data-height="50" name="description"></textarea>
+                Will be visible in search results on Google etc. It will not be displayed on your site. We recommend a text with 140-160 characters.
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="Domain Name">Domain Name</label><br>
+              <input name="domain" id="domain" class="form-control" value="{$minisite.domain}" type="text" /> 
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="Domain Name">URL</label><br>
+              <input name="url" id="url" class="form-control" value="{$minisite.url}" type="text" /> 
+            </div>
+          </div> 
+          <input type="submit" class="btn btn-success" value="Save" id="submit">
+      </form>
+      {include file="/web/sites/afr-app-gallery/smarty/templates/components/_gallery-backend-website-profile-dialog.html" }
+
+      <script type="text/javascript">
+        $("#gbe_artist_link").hide();
+        $("#gbe_exhibition_link").hide();
+        $("#gbe_home_link").hide();
+      </script>
+
+<!-- <script type="text/javascript">
+  $(document).ready(function() {
+    var max_fields = 20; //maximum input boxes allowed
+    var wrapper = $("#wrapper"); //Fields wrapper
+    var add = $(".add"); //Add button ID
+   
+     
+    var x = 1; //initlal text box count
+    $(add).click(function(e){ //on add input button click
+      e.preventDefault();
+      if(x < max_fields){ //max input box allowed
+        x++; //text box increment
+        $(wrapper).append('<div id="newadd"><table class= "table table-hover"><td><input type="text" class="form-control" name="title" value="{$collection.title}" maxlength="100"></td><td><input type="text" class="form-control" name="title" value="{$collection.title}" maxlength="100"></td><td><button type="button" class="remove btn btn-danger">x</button></td></table></div>'); //add input box
+      }
+    });
+
+    //Remove button ID
+   
+     $('#wrapper').on('click','.remove', function(e){ //user click on remove field
+      $('#newadd').remove(); 
+       x--; 
+    });
+  });
+</script>  -->    

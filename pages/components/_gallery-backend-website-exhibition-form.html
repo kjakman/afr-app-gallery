@@ -1,22 +1,23 @@
-  {$minisiteobj = $scope.mExhibition}
-  {$page_id = $scope.page_id}
-      <form class="ajax-submit" data-handler="edit-minisite-page">
+  {$minisitepage = $scope.minisitepage}
+  {$obj_id = $scope.page_id}
+  {$data = json_decode($minisitepage.data, TRUE)}
+
+      <form class="ajax-submit" data-handler="save-minisite-page">
         <input hidden="1" name="minisite_id" type="hidden" value="{$minisite.id|default:$id}">
-        <input hidden="1" name="page_id" type="hidden" value="{$page_id}">
+        <input hidden="1" name="obj_id" type="hidden" value="{$obj_id}">
         <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id}">
-        <input hidden="1" name="obj_type" type="hidden" value="minisite_exhibition_page">  
-        <!-- <input hidden="1" name="next_tab" type="hidden" value="basic">  -->   
+        <input hidden="1" name="obj_type" type="hidden" value="minisite_page">  
                 
         <div>
           <div class="form-group">
             <div class="row">
             <div class="form-group col-sm-8">
               <label for="menu-title">Menu Title</label>
-              <input type="text" class="form-control" maxlength="255" name="menu_title" value="{$minisiteobj.menu_title}">
+              <input type="text" class="form-control" maxlength="255" name="menu_title" value="{$minisitepage.menu_title}">
             </div>
             <div class="form-group col-sm-8">
               <label for="page-title">Page Title</label>
-              <input type="text" class="form-control" maxlength="255" name="page_title" value="{$minisiteobj.page_title}">
+              <input type="text" class="form-control" maxlength="255" name="page_title" value="{$minisitepage.page_title}">
             </div>
           </div>  
         </div>
@@ -27,11 +28,11 @@
           <table>
             <tr>
               <td>
-                <input type="radio" {if ($minisiteobj.show_recent == '1')}checked{/if} class="form-control" name="show_recent" value="1" style= "width:20px">
+                <input type="radio" {if ($data.show_recent == '1')}checked{/if} class="form-control" name="data[show_recent]" value="1" style= "width:20px">
               </td>
               <td style= "width:200px">Show Most Recent First</td>
               <td>
-                <input type="radio" {if ($minisiteobj.show_recent == '0')}checked{/if} class="form-control" name="show_recent" value="0" style= "width:20px">
+                <input type="radio" {if ($data.show_recent == '0')}checked{/if} class="form-control" name="data[show_recent]" value="0" style= "width:20px">
               </td>
               <td style= "width:200px">Show Most Recent Last</td>
             </tr>
@@ -44,25 +45,25 @@
           <table>
               <tr>
                 <td>
-                  <input name='show_past' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($minisiteobj.show_past == '1')}checked{/if} class="form-control" name="show_past" value="1" style= "width:20px">
+                  <input name='data[show_past]' value='0' type='hidden'>  
+                  <input type="checkbox" {if ($data.show_past == '1')}checked{/if} class="form-control" name="data[show_past]" value="1" style= "width:20px">
                 </td>
                 <td style= "width:200px">Previous Exhibitions</td>
                 <td>
-                  <input name='show_current' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($minisiteobj.show_current == '1')}checked{/if} class="form-control" name="show_current" value="1" style= "width:20px">
+                  <input name='data[show_current]' value='0' type='hidden'>  
+                  <input type="checkbox" {if ($data.show_current == '1')}checked{/if} class="form-control" name="data[show_current]" value="1" style= "width:20px">
                 </td>
                 <td style= "width:200px">Current Exhibitions</td>
                 <td>
-                  <input name='show_future' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($minisiteobj.show_future == '1')}checked{/if} class="form-control" name="show_future" value="1" style= "width:20px">
+                  <input name='data[show_future]' value='0' type='hidden'>  
+                  <input type="checkbox" {if ($data.show_future == '1')}checked{/if} class="form-control" name="data[show_future]" value="1" style= "width:20px">
                 </td>
                 <td style= "width:200px">Future Exhibitions</td>
                 <td>
-                  <input name='show_latest' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($minisiteobj.show_latest == '1')}checked{/if} class="form-control" name="show_latest" value="1" style= "width:20px">
+                  <input name='data[show_latest]' value='0' type='hidden'>  
+                  <input type="checkbox" {if ($data.show_latest == '1')}checked{/if} class="form-control" name="data[show_latest]" value="1" style= "width:20px">
                 </td>
-                <td style= "width:500px">All</td>
+                <td style= "width:500px">Display Latest Exhibition in cases where page would otherwise be empty</td>
               </tr>
           </table>
         </div>
@@ -74,18 +75,18 @@
             <table>
                 <tr>
                   <td>
-                    <input name='show_gallery' value='0' type='hidden'>  
-                    <input type="checkbox" {if ($minisiteobj.show_gallery == '1')}checked{/if} class="form-control" name="show_gallery" value="1" style= "width:20px">
+                    <input name='data[show_gallery]' value='0' type='hidden'>  
+                    <input type="checkbox" {if ($data.show_gallery == '1')}checked{/if} class="form-control" name="data[show_gallery]" value="1" style= "width:20px">
                   </td>
                   <td style= "width:200px">Gallery Exhibitions</td>
                   <td>
-                    <input name='show_artfair' value='0' type='hidden'> 
-                    <input type="checkbox" {if ($minisiteobj.show_artfair == '1')}checked{/if} class="form-control" name="show_artfair" value="1" style= "width:20px" >
+                    <input name='data[show_artfair]' value='0' type='hidden'> 
+                    <input type="checkbox" {if ($data.show_artfair == '1')}checked{/if} class="form-control" name="data[show_artfair]" value="1" style= "width:20px" >
                   </td>
                   <td style= "width:200px">Art Fairs</td>
                   <td>
-                    <input name='show_others' value='0' type='hidden'> 
-                    <input type="checkbox" {if ($minisiteobj.show_others == '1')}checked{/if} class="form-control" name="show_others" value="1" style= "width:20px" >
+                    <input name='data[show_others]' value='0' type='hidden'> 
+                    <input type="checkbox" {if ($data.show_others == '1')}checked{/if} class="form-control" name="data[show_others]" value="1" style= "width:20px" >
                   </td>
                   <td style= "width:200px">Other Events</td>
                 </tr>

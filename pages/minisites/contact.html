@@ -24,8 +24,10 @@
                     {if ($timing.opening_time && $timing.closing_time == "00:00:00")}
                       <td style= "font-size: 12px;"> CLOSED </td>
                     {else}
-                      <td style= "font-size: 12px;"> {$timing.opening_time} - </td>
-                      <td style= "font-size: 12px;"> {$timing.closing_time} </td>
+                      {$opening_time = substr( $timing.opening_time, 0, -3 )}
+                      {$closing_time = substr( $timing.closing_time, 0, -3 )}
+                      <td style= "font-size: 12px;"> {$opening_time} - </td>
+                      <td style= "font-size: 12px;"> {$closing_time} </td>
                     {/if}                  
                   </tr>
                 </table>

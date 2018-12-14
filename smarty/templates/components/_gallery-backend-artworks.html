@@ -1,0 +1,37 @@
+{* automatically generated on 2018-12-14 07:34:52 from /web/sites/afr-app-gallery/pages/components/_gallery-backend-artworks.html. DO NOT EDIT *}
+{$what = 'artwork'}
+{$plural = 'artworks'}
+
+{$form = "_gallery-backend-artwork-form.html"}
+{extends file="/web/sites/afr-app-gallery/smarty/templates/components/_gallery-backend-list-base.html"}
+
+{block name=main}              
+{/block}
+
+{block name="fields"}
+  
+
+
+  <th data-field="state" data-checkbox="true">Check</th>
+  <th data-field="actions" data-formatter="bstCloneActionFormatter">Actions</th>
+  <!--th data-field="id" data-sortable="true" data-formatter="bstIDFormatter">ID</th-->
+  <th data-field="title_image" data-formatter="bstTitleImageFormatter">Image</th>
+  <th data-field="title" data-filter-control="input" data-formatter="bstTitleArtistFormatter">Title</th>
+  <th data-field="created" data-filter="input" data-formatter="bstDateFormatter">Created</th>
+  <th data-field="artist_id" data-sortable="true" data-formatter="bstArtistFormatter">Artist</th>
+  <th data-field="primary_year" data-sortable="true" data-formatter="bstYearFormatter">Year</th>
+  <th data-field="technique" data-sortable="true" data-formatter="bstTechniqueFormatter">Technique</th>
+  <th data-field="type" data-sortable="true" data-formatter="bstArtworkTypeFormatter">Category</th>
+  <th data-field="height" data-sortable="true" data-formatter="bstHeightFormatter">Height</th>
+  <th data-field="width" data-sortable="true" data-formatter="bstWidthFormatter">Width</th>
+  <th data-field="price" data-filter-control="input" data-formatter= "bstPriceFormatter" >Price</th>
+  <th data-field="price_option" data-filter-control="select" data-formatter= "bstPriceOptionFormatter"> Price Option</th> 
+  <th data-field="status" data-sortable="true" data-formatter="bstArtworkStatusFormatter">Status</th>       
+
+       
+{/block}
+
+
+
+
+
