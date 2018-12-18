@@ -1,7 +1,8 @@
-/vendor
+vendor/
 config/*.txt
 config/*.json
-/bower_components
+/smarty/
+bower_components/
 *.bak
 *.old
 *~
