@@ -70,6 +70,7 @@
     return '<a href="{$base_link}/'+ value + '?_pv='+ pv +'" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
   }
 
+
   function bstUrlFormatter(value, row, index) {
     if(!value) return '';
     var print_val = value;
@@ -360,17 +361,20 @@ function bstArtworkStatusFormatter(value, row, index) {
     var json = row[json_field];
     //console.log("row option is" + row.title_image_option);
     //console.log("field=" + field + " json=" + json_field + " json=" + json);
+    //console.log("row json is" + json);
     
-    if(!json) return bstIDFormatter(value, row, index);
+    if(!json) return bstIDFormatter1(value, row, index);
     var obj = jQuery.parseJSON(json);
-    
-    if(!obj || !obj.length) return bstIDFormatter(value, row, index);
+    //console.log("obj = ", obj);
+    //console.log("obj.length = ", obj.filename);
+
+    if(!obj || !obj.length) return bstIDFormatter1(value, row, index);
     var first = obj[0];
     //console.log("first = ", first);
     
     var filename = first.filename;
     //console.log("filename = " + filename);
-    if(!filename) return bstIDFormatter(value, row, index);
+    if(!filename) return bstIDFormatter1(value, row, index);
 
     var base_link = '{$base_link}';
     //var filter_link= urlencode($filter_json);
@@ -378,12 +382,23 @@ function bstArtworkStatusFormatter(value, row, index) {
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     console.log("base_link = " + base_link + " pv=" + pv);
-    
+
     var thumb = filename.replace('/square', '/tiny');
     var print_val = "<img class='table-thumb' src='" + thumb + "'/>";
-
+    
     return '<a href="{$base_link}/'+ row.id + '/edit/title?_pv=' + pv +
     '" class="' +link_class + '" data-target="#subview-container">'+print_val+'</a>';
+  }
+
+  function bstIDFormatter1(value, row, index) {
+    if(!value) return '';
+    var print_val = value;
+    var base_link = '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    console.log("row.id of id formatter" + row.id);
+    //console.log("base_link of id formatter" + base_link);
+    return '<a href="{$base_link}/'+ row.id + '/edit/title?_pv='+ pv +'" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
   }
 
   function bstUserPhotoFormatter(value, row, index) {

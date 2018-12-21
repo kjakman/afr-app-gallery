@@ -106,167 +106,38 @@
                 </div>
               </div>
             </div>  
-
+            {$days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']}
+            {$i = 0}
             <div class="row mb20">
               <div class="col-sm-12">
                 <label for="Time">Opening Times</label>
-                <table cellspacing="20">
-                  <tr style="height: 15px;"/> 
-                  <tr>
-                    <td style= "width:200px">
-                      <label for="Monday">Monday</label>
-                    </td>
-                    <td style= "width:200px">
-                      <div class="input-group" style= "width:150px">
-                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td >
-                      <div class="input-group" style= "width:150px">
-                        <input type="text" name="closing_time[]" class="form-control input-small timepicker" >
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td>
-                      <input type="checkbox" class="form-control" name="holiday[0]" value="1" style= "width:20px">
-                    </td> 
-                    <td style= "width:200px">Closed</td> 
-                  </tr>
-                  <tr style="height: 15px;"/>
-                  <tr>
-                    <td style= "width:200px">
-                      <label for="Tuesday">Tuesday</label>
-                    </td>
-                    <td >
-                      <div class="input-group" style= "width:150px">
-                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td style= "width:200px">
-                      <div class="input-group" style= "width:150px">
-                       <input type="text" name="closing_time[]" class="form-control input-small timepicker" >
-                       <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td>
-                      <input type="checkbox" class="form-control" name="holiday[1]" value="1" style= "width:20px">
-                    </td> 
-                    <td style= "width:200px">Closed</td> 
-                  </tr>
-                  <tr style="height: 15px;"/>
-                  <tr>
-                    <td style= "width:200px">
-                      <label for="Wednesday">Wednesday</label>
-                    </td>
-                    <td >
-                      <div class="input-group" style= "width:150px">
-                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td style= "width:200px">
-                      <div class="input-group" style= "width:150px">
-                       <input type="text" name="closing_time[]" class="form-control input-small timepicker"  >
-                       <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td>
-                      <input type="checkbox" class="form-control" name="holiday[2]" value="1" style= "width:20px">
-                    </td> 
-                    <td style= "width:200px">Closed</td> 
-                  </tr>
-                  <tr style="height: 15px;"/>
-                  <tr>
-                    <td >
-                      <label for="Thursday">Thursday</label>
-                    </td>
-                    <td style= "width:200px">
-                      <div class="input-group" style= "width:150px">
-                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td >
-                      <div class="input-group" style= "width:150px">
-                        <input type="text" name="closing_time[]" class="form-control input-small timepicker"  >
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td>
-                      <input type="checkbox" class="form-control" name="holiday[3]" value="1" style= "width:20px">
-                    </td> 
-                    <td style= "width:200px">Closed</td> 
-                  </tr>
-                  <tr style="height: 15px;"/>
-                  <tr>
-                    <td >
-                      <label for="Friday">Friday</label>
-                    </td>
-                    <td style= "width:200px">
-                      <div class="input-group" style= "width:150px">
-                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td >
-                      <div class="input-group" style= "width:150px">
-                       <input type="text" name="closing_time[]" class="form-control input-small timepicker" >
-                       <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td>
-                      <input type="checkbox" class="form-control" name="holiday[4]" value="1" style= "width:20px">
-                    </td> 
-                    <td style= "width:200px">Closed</td> 
-                  </tr>
-                  <tr style="height: 15px;"/>
-                  <tr>
-                    <td >
-                      <label for="Saturday">Saturday</label>
-                    </td>
-                    <td style= "width:200px">
-                      <div class="input-group" style= "width:150px">
-                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td >
-                      <div class="input-group" style= "width:150px">
-                       <input type="text" name="closing_time[]" class="form-control input-small timepicker" >
-                       <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td>
-                      <input type="checkbox" class="form-control" name="holiday[5]" value="1" style= "width:20px">
-                    </td> 
-                    <td style= "width:200px">Closed</td> 
-                  </tr>
-                  <tr style="height: 15px;"/>
-                  <tr>
-                    <td >
-                      <label for="Sunday">Sunday</label>
-                    </td>
-                    <td style= "width:200px">
-                      <div class="input-group" style= "width:150px">
-                        <input type="text" name="opening_time[]" class="form-control input-small timepicker" >
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td >
-                      <div class="input-group" style= "width:150px">
-                       <input type="text" name="closing_time[]" class="form-control input-small timepicker" >
-                       <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                      </div>
-                    </td>
-                    <td>
-                      <input type="checkbox" class="form-control" name="holiday[6]" value="1" style= "width:20px">
-                    </td> 
-                    <td style= "width:200px">Closed</td> 
-                  </tr>
-                  <tr style="height: 15px;"/>
-                  <tr style="height: 15px;"/>
+                <table cellspacing="20">  
+                  {foreach from=$days  item=$day}
+                    <tr>
+                      <tr style="height: 15px;"/> 
+                      <td style= "width:200px">
+                        <label for="Monday">{$day}</label>
+                      </td>
+                      <td style= "width:200px">
+                        <div class="input-group" style= "width:150px">
+                          <input type="text" name="opening_time[]" value="{$opening_time|default:'0:00'}" class="form-control input-small timepicker" >
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        </div>
+                      </td>
+                      <td style= "width:200px">
+                        <div class="input-group" style= "width:150px">
+                          <input type="text" name="closing_time[]" value="{$closing_time|default:'0:00'}" class="form-control input-small timepicker" >
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        </div>
+                      </td>
+                      <td>
+                        <input type="checkbox" class="form-control" name="holiday[{$i}]" value="1" style= "width:20px">
+                      </td> 
+                      <td style= "width:200px">Closed</td> 
+                    </tr>
+                    {$i = $i + 1}
+                  {/foreach}
+                  
                 </table>           
               </div> 
             </div> 

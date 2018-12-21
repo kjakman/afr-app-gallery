@@ -20,17 +20,18 @@
         <input hidden="1" name="address_formatted" type="hidden" value="{$collection.address_formatted}">
         *}
         
-        {if ($curator.location_id)}
+        {if ($curator.address_formatted)}
         {else}
           {$profile_link  = 'backend:edit-profile:id'|rroute:['id' => $curator.user_id]}
           <div class="alert alert-warning" role="alert"><a href="#" class="close" data-dismiss="alert">×</a><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> 
-            You do not have an address set in your profile. Please add an address <a href="{$profile_link}">here</a>.
+            You do not have an address set in your profile. Please add an address <a href="{$profile_link}?_pv=1" class="ajax-loader" data-target="#subview-container">here</a>.
           </div>          
         {/if}
 
         {*
         {$locations|dump}
         loc = {$collection.location_id}
+        {$locations[1]|dump}
         *}
         <div class="row input-daterange">
           <div class="col-sm-4  col-xs-6 relative ">
@@ -47,10 +48,11 @@
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </div>
+      
           <div class="form-group col-sm-4">
             <label for="location_id">Location</label>
-            <select class="form-control auto-select" id="gbe_loc_id" name="location_id" required
-                    data-value="{$collection.location_id}" data-default="{$curator.location_id}" required>
+            <select class="form-control auto-select" id="gbe_loc_id" name="location_id"
+                    data-value="{$collection.location_id}" data-default="{$curator.address_formatted}" required>
               {foreach from=$locations item=loc key=val}
                 <option value="{$val}">{$loc}</option>
               {/foreach}                                            
