@@ -16,21 +16,20 @@
           <div id="opening-hours">
             {if ($mObj.show_timing == '1')}
               <strong>Opening hours:</strong><br> 
-              {foreach from=$timings item=timing}
-                <table>
-                  <tr>
-                    <td style= "width:100px;font-size: 12px;"> {$timing.day} </td>
-                    <td style= "font-size: 12px;"> : </td>
-                    {if ($timing.opening_time && $timing.closing_time == "00:00:00")}
-                      <td style= "font-size: 12px;"> CLOSED </td>
-                    {else}
-                      {$opening_time = substr( $timing.opening_time, 0, -3 )}
-                      {$closing_time = substr( $timing.closing_time, 0, -3 )}
-                      <td style= "font-size: 12px;"> {$opening_time} - </td>
-                      <td style= "font-size: 12px;"> {$closing_time} </td>
-                    {/if}                  
-                  </tr>
-                </table>
+                {$timings = json_decode($profileobj.working_hours,True)}
+                {$days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']}
+                {foreach from=$days item=day}              
+                  <table>
+                    <tr>
+                      <td style= "width:100px"> {$day} </td>
+                      <td> : </td>
+                      {if ($timings[$day] == "0:00-0:00")}
+                        <td> CLOSED </td>
+                      {else}                    
+                        <td> {$timings[$day]}  </td>
+                      {/if}                  
+                    </tr>
+                  </table>
               {/foreach}
             {/if}
           </div>

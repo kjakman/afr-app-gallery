@@ -82,3 +82,6 @@ body.exhibition .btn-sub-nav-dropdown,body.exhibitions .btn-sub-nav-dropdown {
     max-width: 100% !Important;
 }
 
+/**26,Dec**/
+.datepicker.dropdown-menu { z-index: 999 !Important; }
+

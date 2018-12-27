@@ -120,18 +120,18 @@
                       </td>
                       <td style= "width:200px">
                         <div class="input-group" style= "width:150px">
-                          <input type="text" name="opening_time[]" value="{$opening_time|default:'0:00'}" class="form-control input-small timepicker" >
+                          <input type="text" name="opening_time[{$days[$i]}]" value="{$opening_time|default:'0:00'}" class="form-control input-small timepicker" >
                           <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                         </div>
                       </td>
                       <td style= "width:200px">
                         <div class="input-group" style= "width:150px">
-                          <input type="text" name="closing_time[]" value="{$closing_time|default:'0:00'}" class="form-control input-small timepicker" >
+                          <input type="text" name="closing_time[{$days[$i]}]" value="{$closing_time|default:'0:00'}" class="form-control input-small timepicker" >
                           <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                         </div>
                       </td>
                       <td>
-                        <input type="checkbox" class="form-control" name="holiday[{$i}]" value="1" style= "width:20px">
+                        <input type="checkbox" class="form-control" name="holiday[{$days[$i]}]" value="1" style= "width:20px">
                       </td> 
                       <td style= "width:200px">Closed</td> 
                     </tr>

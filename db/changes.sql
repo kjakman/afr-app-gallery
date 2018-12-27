@@ -260,7 +260,10 @@ DROP TABLE `minisite_artist_page`;
 DROP TABLE `minisite_exhibition_page`;
 
 ALTER TABLE `user_profile`
-ADD `awards` text COLLATE 'utf8_general_ci' NOT NULL;
+ADD `awards` text NOT NULL;
+
+ALTER TABLE `user_profile`
+ADD `working_hours` text NOT NULL;
 
 
 

@@ -180,18 +180,17 @@
           <!--a href="{$basepath}/about">About The Gallery</a><br /-->
           {if ($mObj.show_timing == '1')}
             <a href="{$basepath}/contact#opening-hours">Opening hours</a> <br />
-            {foreach from=$timings item=timing}
+              {$timings = json_decode($profileobj.working_hours,True)}
+              {$days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']}
+              {foreach from=$days item=day}              
               <table>
                 <tr>
-                  <td style= "width:100px"> {$timing.day} </td>
+                  <td style= "width:100px"> {$day} </td>
                   <td> : </td>
-                  {if ($timing.opening_time && $timing.closing_time == "00:00:00")}
+                  {if ($timings[$day] == "0:00-0:00")}
                     <td> CLOSED </td>
-                  {else}
-                    {$opening_time = substr( $timing.opening_time, 0, -3 )}
-                    {$closing_time = substr( $timing.closing_time, 0, -3 )}
-                    <td> {$opening_time} - </td>
-                    <td> {$closing_time} </td>
+                  {else}                    
+                    <td> {$timings[$day]}  </td>
                   {/if}                  
                 </tr>
               </table>
