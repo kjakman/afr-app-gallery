@@ -9,11 +9,11 @@
             {if ($menuObjs.type == '30')}
                 {$type = 'exhibitions'}
             {/if}
-            {if ($menuObjs.type != '10') && ($menuObjs.type == '20')}
+            {if ($menuObjs.type != '10') && ($menuObjs.type == '20')}       <!-- artist page -->
                 <li class="nav-item"><a class="nav-link" href="{$basepath}{$menuObjs.slug}">{$menuObjs.menu_title}
             {/if}
-            {if ($menuObjs.type != '10') && ($menuObjs.type == '30')}
-                <li class="nav-item"><a class="nav-link" href="{$basepath}{$menuObjs.slug}">{$menuObjs.menu_title}
+            {if ($menuObjs.type != '10') && ($menuObjs.type == '30')}  <!-- exhibition page -->
+                <li class="nav-item"><a class="nav-link" href="{$basepath}{$menuObjs.slug}all/exhibitions">{$menuObjs.menu_title}
             {/if}
            </a></li>
        {/foreach} 

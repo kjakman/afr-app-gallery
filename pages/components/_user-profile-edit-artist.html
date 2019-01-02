@@ -32,8 +32,8 @@
                           <td width="45%"><label>Awards</label></td>
                           <td width="47%">
                             <div class="input-group">
-                              <input name='show_subtitle' value='0' type='hidden'> 
-                              <input type="checkbox" class="bootstrap-toggle" value="1" name="show_subtitle" id="sub_title">
+                              <input name='show_awards' value='0' type='hidden'> 
+                              <input type="checkbox" class="bootstrap-toggle" value="1" name="show_awards" id="show_awards" {if ($scope.profile.show_awards == '1')} checked {/if}>
                             </div>
                           </td>
                           <td ><button type="button" class="btn btn-primary add">ADD</button></td>

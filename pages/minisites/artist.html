@@ -14,6 +14,7 @@
             <li><a href="{$basepath}{$artist.page_slug}{$slug}/images"       class="">Images</a></li>
             {if ($scope.show_bio)}<li><a href="{$basepath}{$artist.page_slug}{$slug}/biography"    class="">Biography</a></li>{/if}
             {if ($scope.show_pub)}<li><a href="{$basepath}{$artist.page_slug}{$slug}/publications" class="">Publications</a></li>{/if}
+            {if ($artist.show_awards)}<li><a href="{$basepath}{$artist.page_slug}{$slug}/awards"    class="">Awards</a></li>{/if}
           </ul>
         </p>
         <!-- mobile layout -->
@@ -66,6 +67,24 @@
         <div class="col-md-12">
           <h4>Publications</h4>
           <p>{$artist.publications}</p>
+        </div>
+      </div>
+    {elseif ($subview == 'awards')}
+      {$awards = json_decode($artist.awards, True)}
+      <div class="row text-left">
+        <div class="col-md-12">
+          <h4>Awards</h4>
+          <table>
+            {foreach from =$awards item=$award}
+              {$split = explode('-', $award['year'])}
+                <tr>
+                  <td style= "width: 40px">{$split[0]}</td>
+                  <td style= "width: 70px">{$split[1]}</td>
+                  <td>{$award['description']}</td>
+                </tr>
+            {/foreach}
+          </table>
+          
         </div>
       </div>
     
