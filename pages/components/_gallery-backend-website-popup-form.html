@@ -73,6 +73,21 @@
         </div>  -->        
       </div>      
     </div>
+
+    <div class="row mt20">
+      <div class="col-sm-6">
+        <label for="Mobile">Mobile</label>
+        <div class="form-group">
+          <input name="mobile" id="mobile" class="form-control" value ="{$profile.mobile}" type="tel" />
+        </div>         
+      </div> 
+      <div class="col-sm-6">
+        <label for="Mobile">Fax</label>
+        <div class="form-group">
+          <input name="fax" id="fax" class="form-control" value ="{$profile.fax}" type="tel" />
+        </div>         
+      </div> 
+    </div>
     
     <div class="row mt20">
 
@@ -206,6 +221,41 @@
             </td>
           </tr>
         </table>
+      </div>
+    </div>
+
+    {$contact = json_decode($profile.contact, True)}
+    <div class="row mb20">
+      <div class="col-sm-12">
+        <label for="contacts">Add More Contact</label>       
+          <table>
+            <tr>
+              <td><input name="contact[]" id="name" class="form-control" value="{$contact[0]}" type="text" placeholder="Name" /></td>
+              <td style= "width: 5px"></td>
+              <td><input type="tel" id="contact" class="form-control" name="contact[]" value="{$contact[1]}"></td>
+            </tr>
+            <tr>
+              <td><input name="contact[]" id="name" class="form-control" value="{$contact[2]}" type="text" placeholder="Name" /></td>
+              <td style= "width: 5px"></td>
+              <td><input type="tel" id="contact" class="form-control" name="contact[]" value="{$contact[3]}"></td>
+            </tr>
+            <tr>
+              <td><input name="contact[]" id="name" class="form-control" value="{$contact[4]}" type="text" placeholder="Name" /></td>
+              <td style= "width: 5px"></td>
+              <td><input type="tel" id="contact" class="form-control" name="contact[]" value="{$contact[5]}"></td>
+            </tr>
+            <tr>
+              <td><input name="contact[]" id="name" class="form-control" value="{$contact[6]}" type="text" placeholder="Name" /></td>
+              <td style= "width: 5px"></td>
+              <td><input type="tel" id="contact" class="form-control" name="contact[]" value="{$contact[7]}"></td>
+            </tr>
+            <tr>
+              <td><input name="contact[]" id="name" class="form-control" value="{$contact[8]}" type="text" placeholder="Name" /></td>
+              <td style= "width: 5px"></td>
+              <td><input type="tel" id="contact" class="form-control" name="contact[]" value="{$contact[9]}"></td>
+            </tr>      
+          </table>   
+        
       </div>
     </div>
   </div>   
