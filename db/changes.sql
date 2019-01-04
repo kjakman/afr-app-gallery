@@ -197,12 +197,6 @@ INSERT INTO `minisite_page_type` (`id`, `name`)
 SELECT '30', 'exhibition' FROM dual
 WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '30');
 
-
-ALTER TABLE `user_profile`
-CHANGE `facebook` `facebook` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '',
-CHANGE `instagram` `instagram` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '',
-CHANGE `twitter` `twitter` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
-
 #insert into minisite_page_type (`id`, `name`)
 #SELECT 1, 'generic' FROM dual
 #WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '1');
@@ -276,5 +270,13 @@ ALTER TABLE `user_profile`
 ADD `show_awards` tinyint(1) NOT NULL DEFAULT '1';
 
 
+ALTER TABLE `user_profile`
+ADD `social` varchar(128) NOT NULL DEFAULT '';
 
+ALTER TABLE `user_profile`
+ADD `gallery_name` varchar(128) NOT NULL DEFAULT '';
 
+ALTER TABLE `user_profile` add `facebook` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
+ALTER TABLE `user_profile` add `instagram` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
+ALTER TABLE `user_profile` add `twitter` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
+ALTER TABLE `user_profile` ADD `artist` tinyint(1) NOT NULL DEFAULT '1';
