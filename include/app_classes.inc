@@ -27,6 +27,20 @@ $__CLASSES= array_merge($__CLASSES, array(
 
 ));
 
+
+// extensions to existing classes
+$__CLASS_ATTRIBUTES["user_profile"] = array_merge($__CLASS_ATTRIBUTES["user_profile"], array(                                
+     'gallery_solo_shows'   => array('Solo Shows'  ,      'html',     '', 0),
+     'gallery_group_shows'  => array('Group Shows'  ,      'html',     '', 0),
+     'press'                => array('Press'  ,      'html',     '', 0),
+     'show_awards'          => array('Show Awards'     ,     'int',      0, 0, 6),
+     'awards'=>        array('Awards',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
+     'artist'  =>       array('artist',      'bool',     1,  AF_HIDE_ADD, 1),
+     'working_hours'=>        array('Working Hours',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
+     
+));
+
+
 $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(                                
 
   "plugin" => 
