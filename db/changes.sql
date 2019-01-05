@@ -284,3 +284,8 @@ ALTER TABLE `user_profile` add `instagram` varchar(64) COLLATE 'utf8_general_ci'
 ALTER TABLE `user_profile` add `twitter` varchar(64) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '';
 ALTER TABLE `user_profile` ADD `artist` tinyint(1) NOT NULL DEFAULT '1';
 
+update minisite_page set data='{"layout":"1","show_recent":"1","show_past":"1","show_current":"1","show_future":"1","show_latest":"1","show_gallery":"1","show_artfair":"1","show_others":"1"}' where id=100;
+update user_profile set gallery_name='Stigter Van Doesburg' where id=2389;
+update user_profile set working_hours='{"Monday":"0:00-0:00","Tuesday":"0:00-0:00","Wednesday":"11:00-18:00","Thursday":"11:00-18:00","Friday":"11:00-18:00","Saturday":"13:00-18:00","Sunday":"0:00-0:00"}' where id=2389;
+update user_profile set facebook='https://www.facebook.com/stigtervandoesburg/' where id=2389;
+update user_profile set instagram='https://www.instagram.com/explore/locations/285426524/stigter-va' where id=2389;
