@@ -259,9 +259,9 @@ ADD `awards` text NOT NULL;
 ALTER TABLE `user_profile`
 ADD `working_hours` text NOT NULL;
 
-ALTER TABLE `user_profile`
-ADD `mobile` varchar(20) NOT NULL,
-ADD `fax` varchar(20) NOT NULL ;
+
+ALTER TABLE `user_profile` ADD `mobile` varchar(20) NOT NULL;
+ALTER TABLE `user_profile` ADD `fax` varchar(20) NOT NULL ;
 
 ALTER TABLE `user_profile`
 ADD `contact` text  NOT NULL;
