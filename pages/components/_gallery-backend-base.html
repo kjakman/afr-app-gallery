@@ -9,6 +9,7 @@
 {$form = $add || $edit}
 {$list = ($page.subview == $page.listview) ? 1 : 0}
 {$add_to = $scope.add_to}
+{$add_to_profile = $scope.add_to_profile}
 
 {$edit_link = 'backend:subview:id:action'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit']}
 {$list_link = 'backend:subview'|rroute:['subview' => $page.listview]}
@@ -61,7 +62,11 @@
   {if ($add_to)}
     {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'exhibition', 'id' => $add_to, 'action' => 'edit']}  
     {$buttons = 1}
-    <li><a href="{$ex_link}/media?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to exhibition</a></li>  
+    <li><a href="{$ex_link}/media?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to exhibition</a></li> 
+  {elseif ($add_to_profile)} 
+    {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'profile', 'id' => $add_to_profile, 'action' => 'edit']}  
+    {$buttons = 1}
+    <li><a href="{$ex_link}/art?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to profile</a></li> 
   {else}
     {if (!$list && !$form)}
       {$buttons = 1}

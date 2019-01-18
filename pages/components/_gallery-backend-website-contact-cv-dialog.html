@@ -1,0 +1,54 @@
+
+{$profile = $scope.userprofile}
+{$awards = $scope.awards}
+{$solo_shows = $scope.solo_shows}
+{$group_shows = $scope.group_shows}
+{$press_data = $scope.press_data}
+
+{$awards = json_decode($awards,True)}
+{$solo_shows = json_decode($solo_shows,True)}
+{$group_shows = json_decode($group_shows,True)}
+{$press_data = json_decode($press_data,True)}
+{$show_data = json_decode($profileshow_data,True)}
+
+<!-- Gallery Backend Event Dialog -->
+<div class="modal modal-admin fade" id="gbe_contact_cv_dialog" data-backdrop="static" data-keyboard="false" 
+     tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <b class="overlay-title">Edit CV</b>
+      </div>
+       
+      <form name="edit-profile" class="cal-form ajax-submit" id="profile_dialog_cv_form" 
+        data-handler="save-cv" data-reload_link="#gbe_pages_link" data-toggle="validator" data-reload_link="#user-verification-link">
+        <!-- <input type="hidden" name="obj_type" value="user_profile" /> -->
+        <input type="hidden" name="obj_type" value="user_profile" />
+        <input type="hidden" name="id"  value="{$profile.profile_id}" />
+        <input type="hidden" name="user_id" value="{$profile.user_id}" />
+        <input type="hidden" name="site_id" value="{$site.id}" />
+        <input type="hidden" name="description" value="{$profile.description}" />
+        <input type="hidden" name="page"  value="Edit-CV" />
+        
+        <div class="modal-body">
+          {{"include": "_gallery-backend-website-contact-cv-form.html"}}
+        </div>
+
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="button" class="btn btn-danger" id="cd-cancel" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-success" id="cd-save">Save</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- /.modal -->
+
+
+     

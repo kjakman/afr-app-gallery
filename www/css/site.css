@@ -83,5 +83,6 @@ body.exhibition .btn-sub-nav-dropdown,body.exhibitions .btn-sub-nav-dropdown {
 }
 
 /**26,Dec**/
-.datepicker.dropdown-menu { z-index: 999 !Important; }
+.datepicker.dropdown-menu { z-index: 9999 !Important; }
 
+.bootstrap-table .table>thead>tr>th {   vertical-align: top !Important; }

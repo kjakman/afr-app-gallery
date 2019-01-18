@@ -1,4 +1,5 @@
 {$menuObj = $scope.menuObj}
+{$view = ''}
 
   <ul class="nav navbar-nav">
     {if ($menuObj)}
@@ -9,16 +10,39 @@
             {if ($menuObjs.type == '30')}
                 {$type = 'exhibitions'}
             {/if}
+            {if ($menuObjs.type == '40')}
+                {$type = 'contact'}
+            {/if}
             {if ($menuObjs.type != '10') && ($menuObjs.type == '20')}       <!-- artist page -->
                 <li class="nav-item"><a class="nav-link" href="{$basepath}{$menuObjs.slug}">{$menuObjs.menu_title}
             {/if}
             {if ($menuObjs.type != '10') && ($menuObjs.type == '30')}  <!-- exhibition page -->
-                <li class="nav-item"><a class="nav-link" href="{$basepath}{$menuObjs.slug}all/exhibitions">{$menuObjs.menu_title}
+              {$data = json_decode($menuObjs.data, True)}
+              
+              {if ($data['show_current'] == 1) } {$view = 'current'} 
+              {elseif ($data['show_future'] == 1)} {$view = 'future'}
+              {elseif ($data['show_past'] == 1)} {$view = 'past'}
+              {/if}
+            
+              <li class="nav-item"><a class="nav-link" href="{$basepath}{$menuObjs.slug}exhibitions/{$view}">{$menuObjs.menu_title}
+              
+              <!-- {if ($view == 'current')}
+                <li class="nav-item"><a class="nav-link" href="{$basepath}{$menuObjs.slug}exhibitions/current">{$menuObjs.menu_title}
+              {/if}
+              {if ($view == 'future')}
+                <li class="nav-item"><a class="nav-link" href="{$basepath}{$menuObjs.slug}exhibitions/future">{$menuObjs.menu_title}
+              {/if}
+              {if ($view == 'past')}
+                <li class="nav-item"><a class="nav-link" href="{$basepath}{$menuObjs.slug}exhibitions/past">{$menuObjs.menu_title}
+              {/if} -->
             {/if}
-           </a></li>
+            {if ($menuObjs.type != '10') && ($menuObjs.type == '40')}  <!-- exhibition page -->
+              <li class="nav-item"><a class="nav-link" href="{$basepath}{$menuObjs.slug}">{$menuObjs.menu_title}
+            {/if}
+           
        {/foreach} 
     {/if}
-    <li class="nav-item"><a class="nav-link" href="{$basepath}/contact">Contact</a></li>
+    <!-- <li class="nav-item"><a class="nav-link" href="{$basepath}/contact">Contact</a></li> -->
   </ul>
 
         {*

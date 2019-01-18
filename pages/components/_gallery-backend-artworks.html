@@ -8,25 +8,51 @@
 {/block}
 
 {block name="fields"}
-  
-
 
   <th data-field="state" data-checkbox="true">Check</th>
   <th data-field="actions" data-formatter="bstCloneActionFormatter">Actions</th>
   <!--th data-field="id" data-sortable="true" data-formatter="bstIDFormatter">ID</th-->
   <th data-field="title_image" data-formatter="bstTitleImageFormatter">Image</th>
-  <th data-field="title" data-filter-control="input" data-formatter="bstTitleArtistFormatter">Title</th>
-  <th data-field="created" data-filter="input" data-formatter="bstDateFormatter">Created</th>
+  <th data-field="title" data-sortable="true" data-formatter="bstTitleArtistFormatter">Title</th>
+  <th data-field="created" data-sortable="true" data-formatter="bstDateFormatter">Created</th>
   <th data-field="artist_id" data-sortable="true" data-formatter="bstArtistFormatter">Artist</th>
   <th data-field="primary_year" data-sortable="true" data-formatter="bstYearFormatter">Year</th>
   <th data-field="technique" data-sortable="true" data-formatter="bstTechniqueFormatter">Technique</th>
-  <th data-field="type" data-sortable="true" data-formatter="bstArtworkTypeFormatter">Category</th>
+  <th data-field="type" data-filter-control="select" data-formatter="bstArtworkTypeFormatter" data-filter-data="var:type">Category</th>
   <th data-field="height" data-sortable="true" data-formatter="bstHeightFormatter">Height</th>
   <th data-field="width" data-sortable="true" data-formatter="bstWidthFormatter">Width</th>
-  <th data-field="price" data-filter-control="input" data-formatter= "bstPriceFormatter" >Price</th>
-  <th data-field="price_option" data-filter-control="select" data-formatter= "bstPriceOptionFormatter"> Price Option</th> 
-  <th data-field="status" data-sortable="true" data-formatter="bstArtworkStatusFormatter">Status</th>       
+  <th data-field="price" data-formatter= "bstPriceFormatter" >Price</th>
+  <th data-field="price_option" data-filter-control="select" data-formatter= "bstPriceOptionFormatter" data-filter-data="var:price_option"> Price Option</th> 
+  <th data-field="status" data-sortable="true" data-formatter="bstArtworkStatusFormatter" data-filter-control="select" >Status</th>       
 
+<script type="text/javascript">
+  var price_option = {
+    "0": "Hide Price",
+    "1": "Show Price",
+    "-1": "Price on enquiry"
+  };
+  var type = {
+    "10": "Photography",
+    "20": "Painting",
+    "30": "Sculpture",
+    "40": "Cast (Bronze, etc)",
+    "50": "Film & Video",
+    "60": "Installation",
+    "11": "Print",
+    "99": "Other",
+    "21": "Drawing",
+    "22": "Mixed Media on paper/canvas",
+    "70": " Performance"
+  };
+
+  /*var status = {
+    "10": "Available",
+    "20": "Reserved",
+    "30": "Sold",
+    "40": "Inactive",
+    "50": "On loan, etc.",
+  };*/
+</script>
        
 {/block}
 

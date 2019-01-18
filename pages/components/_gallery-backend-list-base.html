@@ -11,6 +11,11 @@
       <i class="fa fa-plus"></i> Add
     </a>
     {/if}
+    {if (0 && !$scope.add_to_profile)}
+    <a class="btn btn-primary" href="/backend/artworks/add">
+      <i class="fa fa-plus"></i> Add
+    </a>
+    {/if}
     <button id="remove" class="btn btn-danger collapse">
       <i class="glyphicon glyphicon-remove"></i> Delete
     </button>
@@ -19,7 +24,13 @@
         Selected (<span id="sel_count">0</span>) <i class="fa fa-caret-down"></i>
       </button>
       <ul class="dropdown-menu">
-        <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to {if ($add_to)}exhibition{else}...{/if}</a></li>
+        {if ($add_to)}
+          <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to exhibition</a></li>
+        {elseif ($add_to_profile)}
+          <li><a href="#" id="sel_add_profile" data-target_id="{$add_to_profile}">Add to profile</a></li>
+        {else}
+          <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to ...</a></li>
+        {/if}
         <li><a href="#" id="sel_show">Show</a></li>
         <li><a href="#" id="sel_clear">Clear</a></li>
         <!-- <li><a href="#" id="sel_del">Delete</a></li> -->
@@ -452,6 +463,7 @@ $(window).load(function() {
 
 $(document).ready(function() {
   $('.form-control').attr('id', 'searchbar');
+  
 });
 
 var $table = $('#table');

@@ -1,0 +1,65 @@
+{$minisitepage = $scope.minisitepage}
+{$obj_id = $scope.page_id}
+{$data = json_decode($minisitepage.data, TRUE)}
+
+    <form class="ajax-submit" data-handler="save-minisite-page">
+      <input hidden="1" name="minisite_id" type="hidden" value="{$minisite.id|default:$id}">
+      <input hidden="1" name="obj_id" type="hidden" value="{$obj_id}">
+      <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id}">
+      <input hidden="1" name="obj_type" type="hidden" value="minisite_page">  
+              
+      <div>
+        <div class="form-group">
+          <div class="row">
+            <div class="form-group col-sm-8">
+              <label for="menu-title">Menu Title</label>
+              <input type="text" class="form-control" maxlength="255" name="menu_title" value="{$minisitepage.menu_title}">
+            </div>
+            <div class="form-group col-sm-8">
+              <label for="page-title">Page Title</label>
+              <input type="text" class="form-control" maxlength="255" name="page_title" value="{$minisitepage.page_title}">
+            </div>
+          </div>  
+        </div>
+        <input type="submit" class="btn btn-success" value="Save" id="submit">
+      </div>
+    </form>
+      
+      <!-- {$profile_link  = 'backend:edit-profile:id'|rroute:['id' => $minisite.user_id]}
+      <div class="form-group">
+        <div class="row mt20">
+          <a href="{$profile_link}?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container">Edit  Profile Information</a>
+        </div>
+      </div> -->
+      
+    <div class="form-group">
+      <table>
+        <tr>
+          <td style="padding: 20px;">
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#gbe_contact_basic_dialog"> Edit Basic Info on Profile Page</button>
+            {{"include": "_gallery-backend-website-contact-basic-dialog.html"}}
+          </td>
+          <td style="padding: 20px;">
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#gbe_contact_bio_dialog"> Edit Bio/Photo on Profile Page</button>
+            {{"include": "_gallery-backend-website-contact-bio-dialog.html"}}
+          </td>
+          <td style="padding: 20px;">
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#gbe_contact_cv_dialog"> Edit CV on Profile Page</button>
+            {{"include": "_gallery-backend-website-contact-cv-dialog.html"}}
+          </td>
+          <td style="padding: 20px;">
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#gbe_contact_information_dialog"> Edit details on Profile Page</button>
+            {{"include": "_gallery-backend-website-contact-information-dialog.html"}}
+          </td>
+         
+        </tr>
+      </table>
+    </div>
+
+<script type="text/javascript">
+    $("#gbe_home_link").hide();
+    $("#gbe_artist_link").hide();
+    $("#gbe_exhibition_link").hide();
+    //$("#gbe_styling_link").hide();
+    //$("#gbe_basic_link").hide();
+</script>

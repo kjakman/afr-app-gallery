@@ -1,35 +1,17 @@
-{$profile = $scope.profile}
-{$awards = $scope.awards}
-{$solo_shows = $scope.solo_shows}
-{$group_shows = $scope.group_shows}
-{$press_data = $scope.press_data}
-
-{$awards = json_decode($awards,True)}
-{$solo_shows = json_decode($solo_shows,True)}
-{$group_shows = json_decode($group_shows,True)}
-{$press_data = json_decode($press_data,True)}
-{$show_data = json_decode($scope.profile.show_data,True)}
           
-<form id="user_overview_form" class="ajax-submit"  data-handler="save-cv" data-toggle="validator">
-  <input type="hidden" name="obj_type" value="user_profile" />
-  <input type="hidden" name="id"  value="{$scope.profile.profile_id}" />
-  <input type="hidden" name="user_id" value="{$scope.profile.user_id}" />
-  <input type="hidden" name="site_id" value="{$site.id}" />
-  <input type="hidden" name="description" value="{$scope.profile.description}" />
-              
 <div class="form-group form-group-icon-left">
   <label>Solo Shows</label>
-  <textarea name="gallery_solo_shows" class="summernote form-control" placeholder="List of solo shows">{$scope.profile.gallery_solo_shows}</textarea>
+  <textarea name="gallery_solo_shows" class="summernote form-control" placeholder="List of solo shows">{$profile.gallery_solo_shows}</textarea>
 </div>
 
 <div class="form-group form-group-icon-left">
   <label>Group Shows</label>
-  <textarea name="gallery_group_shows" class="summernote form-control" placeholder="List of group shows">{$scope.profile.gallery_group_shows}</textarea>
+  <textarea name="gallery_group_shows" class="summernote form-control" placeholder="List of group shows">{$profile.gallery_group_shows}</textarea>
 </div>
 
 <div class="form-group form-group-icon-left">
   <label>Press</label>
-  <textarea name="press" class="summernote form-control" placeholder="List of press mentions">{$scope.profile.press}</textarea>
+  <textarea name="press" class="summernote form-control" placeholder="List of press mentions">{$profile.press}</textarea>
 </div>
 
 <div class="form-group form-group-icon-left">
@@ -52,22 +34,22 @@
       {foreach from=$solo_shows item=$solo_show}
         {$data = explode("-", $solo_show['year'])}
         <tr>
-          <td width="10%">
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="yearpicker" class="form-control datepicker yearpick" name="solo_shows_[year][]" value="{$data[0]}" maxlength="100" placeholder="Year" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="15%">
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="monthpicker" class="form-control datepicker monthpick" name="solo_shows_[month][]" value="{$data[1]}" maxlength="100" placeholder="Month" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="25%"><input type="text" class="form-control" name="solo_shows_[description][]" value="{$solo_show['description']}" maxlength="100" style="padding-left: 5px;"></td>
-          <td width="5%"></td>
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;"><input type="text" class="form-control" name="solo_shows_[description][]" value="{$solo_show['description']}" maxlength="100" style="padding-left: 5px;"></td>
+          <td style="padding: 5px;"></td>
           <td><button type="button" class="btn btn-danger remove">x</button></td>   
         </tr>
         <tr style="height: 5px;"/>
@@ -75,23 +57,23 @@
        
       {if (($solo_show['year']== '') && ($solo_show['month']=='') && ($solo_show['description'] == ''))}
         <tr>
-          <td width="10%">
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="yearpicker" class="form-control datepicker yearpick" name="solo_shows_[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="15%">
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="monthpicker" class="form-control datepicker monthpick" name="solo_shows_[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="25%">
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;">
             <input type="text" class="form-control" name="solo_shows_[description][]" maxlength="100" placeholder="Solo Shows" style="padding-left: 5px;" ></td>
-          <td width="5%"></td>
+          <td style="padding: 5px;"></td>
           <td><button type="button" class="btn btn-danger remove_solo">x</button></td>
         </tr>
         <tr style="height: 5px;"/>   
@@ -120,22 +102,22 @@
       {foreach from=$group_shows item=$group_show}
         {$data = explode("-", $group_show['year'])}
         <tr>
-          <td width="10%">
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="yearpicker" class="form-control datepicker yearpick" name="group_shows_[year][]" value="{$data[0]}" maxlength="100" placeholder="Year" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="15%">
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="monthpicker" class="form-control datepicker monthpick" name="group_shows_[month][]" value="{$data[1]}" maxlength="100" placeholder="Month" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="25%"><input type="text" class="form-control" name="group_shows_[description][]" value="{$group_show['description']}" maxlength="100" style="padding-left: 5px;"></td>
-          <td width="5%"></td>
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;"><input type="text" class="form-control" name="group_shows_[description][]" value="{$group_show['description']}" maxlength="100" style="padding-left: 5px;"></td>
+          <td style="padding: 5px;"></td>
           <td><button type="button" class="btn btn-danger remove">x</button></td>   
         </tr>
         <tr style="height: 5px;"/>
@@ -143,23 +125,23 @@
        
       {if (($group_show['year']== '') && ($group_show['month']=='') && ($group_show['description'] == ''))}
         <tr>
-          <td width="10%">
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="yearpicker" class="form-control datepicker yearpick" name="group_shows_[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="15%">
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="monthpicker" class="form-control datepicker monthpick" name="group_shows_[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="25%">
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;">
             <input type="text" class="form-control" name="group_shows_[description][]" maxlength="100" placeholder="Group Shows" style="padding-left: 5px;" ></td>
-          <td width="5%"></td>
+          <td style="padding: 5px;"></td>
           <td><button type="button" class="btn btn-danger remove_group">x</button></td>
         </tr>
         <tr style="height: 5px;"/>   
@@ -188,22 +170,22 @@
       {foreach from=$press_data item=$press_gal}
         {$data = explode("-", $press_gal['year'])}
         <tr>
-          <td width="10%">
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="yearpicker" class="form-control datepicker yearpick" name="press_data[year][]" value="{$data[0]}" maxlength="100" placeholder="Year" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="15%">
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="monthpicker" class="form-control datepicker monthpick" name="press_data[month][]" value="{$data[1]}" maxlength="100" placeholder="Month" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="25%"><input type="text" class="form-control" name="press_data[description][]" value="{$press_gal['description']}" maxlength="100" style="padding-left: 5px;"></td>
-          <td width="5%"></td>
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;"><input type="text" class="form-control" name="press_data[description][]" value="{$press_gal['description']}" maxlength="100" style="padding-left: 5px;"></td>
+          <td style="padding: 5px;"></td>
           <td><button type="button" class="btn btn-danger remove">x</button></td>   
         </tr>
         <tr style="height: 5px;"/>
@@ -211,23 +193,23 @@
        
       {if (($press_gal['year']== '') && ($press_gal['month']=='') && ($press_gal['description'] == ''))}
         <tr>
-          <td width="10%">
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="yearpicker" class="form-control datepicker yearpick" name="press_data[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="15%">
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="monthpicker" class="form-control datepicker monthpick" name="press_data[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="25%">
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;">
             <input type="text" class="form-control" name="press_data[description][]" maxlength="100" placeholder="Press" style="padding-left: 5px;" ></td>
-          <td width="5%"></td>
+          <td style="padding: 5px;"></td>
           <td><button type="button" class="btn btn-danger remove_gal_press">x</button></td>
         </tr>
         <tr style="height: 5px;"/>
@@ -257,22 +239,22 @@
       {foreach from=$awards item=$award}
         {$data = explode("-", $award['year'])}
         <tr>
-          <td width="10%">
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="yearpicker" class="form-control datepicker yearpick" name="awards[year][]" value="{$data[0]}" maxlength="100" placeholder="Year" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="15%">
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="monthpicker" class="form-control datepicker monthpick" name="awards[month][]" value="{$data[1]}" maxlength="100" placeholder="Month" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="25%"><input type="text" class="form-control" name="awards[description][]" value="{$award['description']}" maxlength="100" style="padding-left: 5px;"></td>
-          <td width="5%"></td>
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;"><input type="text" class="form-control" name="awards[description][]" value="{$award['description']}" maxlength="100" style="padding-left: 5px;"></td>
+          <td style="padding: 5px;"></td>
           <td><button type="button" class="btn btn-danger remove">x</button></td>   
         </tr>
         <tr style="height: 5px;"/>
@@ -280,23 +262,23 @@
        
       {if (($award['year']== '') && ($award['month']=='') && ($award['description'] == ''))}
         <tr>
-          <td width="10%">
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="yearpicker" class="form-control datepicker yearpick" name="awards[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="15%">
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;">
             <div class="input-group">
               <input type="text" id="monthpicker" class="form-control datepicker monthpick" name="awards[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </td>
-          <td width="2%"></td>
-          <td width="25%">
+          <td style="padding: 5px;"></td>
+          <td style="padding: 5px;">
             <input type="text" class="form-control" name="awards[description][]" maxlength="100" style="padding-left: 5px;" ></td>
-          <td width="5%"></td>
+          <td style="padding: 5px;"></td>
           <td><button type="button" class="btn btn-danger remove">x</button></td>
         </tr>
         <tr style="height: 5px;"/>
@@ -305,8 +287,8 @@
   </div>                
 </div>
 
-<input type="submit" class="btn btn-primary" value="Save" id="save-cv">
-
+<!-- <input type="submit" class="btn btn-primary" value="Save" id="save-cv">
+ -->
 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -319,7 +301,7 @@
       e.preventDefault();
       if(x < max_fields){ //max input box allowed
         x++; //text box increment
-        $(shows).append('<table cellspacing="2"><tr><td width="10%"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="solo_shows_[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="15%"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="solo_shows_[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="25%"><input type="text" class="form-control" name="solo_shows_[description][]" maxlength="100" style="padding-left: 5px;"></td><td width="5%"></td><td><button type="button" class="btn btn-danger remove_solo">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
+        $(shows).append('<table cellspacing="2"><tr><td style="padding: 5px;"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="solo_shows_[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td style="padding: 5px;"></td><td style="padding: 5px;"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="solo_shows_[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td style="padding: 5px;"></td><td style="padding: 5px;"><input type="text" class="form-control" name="solo_shows_[description][]" maxlength="100" style="padding-left: 5px;"></td><td style="padding: 5px;"></td><td><button type="button" class="btn btn-danger remove_solo">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
 
         $( ".yearpick" ).datepicker({
            minViewMode: 2,
@@ -349,7 +331,7 @@
       e.preventDefault();
       if(x < max_fields){ //max input box allowed
         x++; //text box increment
-        $(group).append('<table cellspacing="2"><tr><td width="10%"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="group_shows_[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="15%"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="group_shows_[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="25%"><input type="text" class="form-control" name="group_shows_[description][]" maxlength="100" style="padding-left: 5px;"></td><td width="5%"></td><td><button type="button" class="btn btn-danger remove_group">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
+        $(group).append('<table cellspacing="2"><tr><td style="padding: 5px;"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="group_shows_[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td style="padding: 5px;"></td><td style="padding: 5px;"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="group_shows_[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td style="padding: 5px;"></td><td style="padding: 5px;"><input type="text" class="form-control" name="group_shows_[description][]" maxlength="100" style="padding-left: 5px;"></td><td style="padding: 5px;"></td><td><button type="button" class="btn btn-danger remove_group">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
 
         $( ".yearpick" ).datepicker({
            minViewMode: 2,
@@ -379,7 +361,7 @@
       e.preventDefault();
       if(x < max_fields){ //max input box allowed
         x++; //text box increment
-        $(gal_press).append('<table cellspacing="2"><tr><td width="10%"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="press_data[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="15%"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="press_data[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="25%"><input type="text" class="form-control" name="press_data[description][]" maxlength="100" style="padding-left: 5px;"></td><td width="5%"></td><td><button type="button" class="btn btn-danger remove_gal_press">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
+        $(gal_press).append('<table cellspacing="2"><tr><td style="padding: 5px;"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="press_data[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td style="padding: 5px;"></td><td style="padding: 5px;"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="press_data[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td style="padding: 5px;"></td><td style="padding: 5px;"><input type="text" class="form-control" name="press_data[description][]" maxlength="100" style="padding-left: 5px;"></td><td style="padding: 5px;"></td><td><button type="button" class="btn btn-danger remove_gal_press">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
 
         $( ".yearpick" ).datepicker({
            minViewMode: 2,
@@ -409,7 +391,7 @@
       e.preventDefault();
       if(x < max_fields){ //max input box allowed
         x++; //text box increment
-        $(wrapper).append('<table cellspacing="2"><tr><td width="10%"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="awards[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="15%"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="awards[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="25%"><input type="text" class="form-control" name="awards[description][]" maxlength="100" style="padding-left: 5px;"></td><td width="5%"></td><td><button type="button" class="btn btn-danger remove">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
+        $(wrapper).append('<table cellspacing="2"><tr><td style="padding: 5px;"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="awards[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td style="padding: 5px;"></td><td style="padding: 5px;"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="awards[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td style="padding: 5px;"></td><td style="padding: 5px;"><input type="text" class="form-control" name="awards[description][]" maxlength="100" style="padding-left: 5px;"></td><td style="padding: 5px;"></td><td><button type="button" class="btn btn-danger remove">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
 
         $( ".yearpick" ).datepicker({
            minViewMode: 2,
@@ -445,11 +427,11 @@
     autoclose : true
   });
 
-$(document).on("click",'#save-cv',function() {
+/*$(document).on("click",'#save-cv',function() {
    setTimeout(function() { 
     $("#gbe_cv_link").trigger('click');
   }, 1000);
-});
+});*/
 
   
 </script>     
