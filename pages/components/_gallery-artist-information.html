@@ -1,4 +1,4 @@
-                            <h1 class='black'>
+                            <h2 class='black'>
                             {if ($profile_link)}
                               {$data = ["site_id" => $site.id, "obj_type" => "user", "obj_id" => $profile.user_id, "obj_subtype" => $smarty.const.USER_ROLE_ARTIST]}
                               {$json = $data|@json_encode}
@@ -6,6 +6,6 @@
                             {else}
                               {$profile.display_name}
                             {/if}
-                            </h1> 
+                            </h2> 
                             <h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
 

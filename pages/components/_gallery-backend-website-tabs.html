@@ -5,10 +5,11 @@
   {$tab2_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'home']}
   {$tab3_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artist']}
   {$tab4_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'exhibition']}
-  {$tab5_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'basic']}
-  {$tab6_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'styling']}
+  {$tab5_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'contact']}
+  {$tab6_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'basic']}
+  {$tab7_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'styling']}
   
-  {$tab6_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'settings']}
+  {$tab8_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'settings']}
   
   {$tab = $page.tab|default:'page'}
 
@@ -17,10 +18,11 @@
     <li {if ($tab == 'home')  }class="active"{/if}><a href="{$tab2_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_home_link">Home</a></li>
     <li {if ($tab == 'artist')  }class="active"{/if}><a href="{$tab3_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_artist_link">Artist</a></li>
     <li {if ($tab == 'exhibition')  }class="active"{/if}><a href="{$tab4_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_exhibition_link">Exhibition</a></li>
-    <li {if ($tab == 'basic') }class="active"{/if}><a href="{$tab5_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_basic_link">Basic</a></li>
-    <!--<li {if ($tab == 'styling') }class="active"{/if}><a href="{$tab5_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_styling_link">styling</a></li>
+    <li {if ($tab == 'contact')  }class="active"{/if}><a href="{$tab5_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_contact_link">Contact</a></li>
+    <li {if ($tab == 'basic') }class="active"{/if}><a href="{$tab6_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_basic_link">Basic</a></li>
+    <!--<li {if ($tab == 'styling') }class="active"{/if}><a href="{$tab7_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_styling_link">styling</a></li>
     
-    <li {if ($tab == 'settings')}class="active"{/if}><a href="{$tab4_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_settings_link">Settings</a></li> -->
+    <li {if ($tab == 'settings')}class="active"{/if}><a href="{$tab8_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_settings_link">Settings</a></li> -->
   </ul>
   
   <div class="tab-content">
@@ -33,6 +35,8 @@
       {{"include": "_gallery-backend-website-artist-form.html"}} 
     {elseif ($tab == 'exhibition')}
       {{"include": "_gallery-backend-website-exhibition-form.html"}} 
+    {elseif ($tab == 'contact')}
+      {{"include": "_gallery-backend-website-contact-form.html"}} 
     {elseif ($tab == 'basic')}
       {{"include": "_gallery-backend-website-layout-form.html"}}
     {elseif ($tab == 'styling')}

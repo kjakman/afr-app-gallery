@@ -33,6 +33,10 @@
                     
                       {$item_data = ["user_id" => $user.id, "site_id" => $site.id, "parent_type" => "media", "parent_id" => $artwork.media_id]}
                       {$item_json = $item_data|@json_encode}
+
+                      {$artwork_data = ["site_id" => $site.id, "obj_type" => "artwork", "obj_id" => $artwork.artwork_id]}
+                      
+                      
                       
                       <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item" 
                           data-index="{$index}" data-media_id="{$artwork.media_id}" id="map_{$artwork.id}">
@@ -59,6 +63,7 @@
                           <a href="{$profile_link}{$artwork.artist_name|slugify}~{$artwork.artist_id}" class="cms-link gallery-link" data-data='{$json}'><h2 class="black">{$artwork.artist_name}</h2></a>
                           <a href="{$artwork_link}" class="cms-link gallery-link" data-data='{$json}'><h3>{$artwork.name}, <span>{$artwork.original_year}</span></h3></a>
                           <a href="{$profile_link}{$artwork.curator_name|slugify}~{$artwork.curator_id}" class="cms-link gallery-link" data-data='{$json}'><h4>{$artwork.curator_name}</h4></a>
+                          {$artwork_data|dump}
                         </div>
                       </li>
 

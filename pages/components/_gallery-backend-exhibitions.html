@@ -10,15 +10,27 @@
   <th data-field="actions" data-formatter="bstCollectionActionFormatter">Actions</th>
   <!--th data-field="id" data-sortable="true" data-formatter="bstIDFormatter">ID</th-->
   <th data-field="title_image" data-formatter="bstTitleImageFormatter1">Image</th>
-  <th data-field="title" data-filter-control="input" data-formatter="bstTitleFormatter">Title</th>
+  <th data-field="title" data-sortable="true" data-formatter="bstTitleFormatter">Title</th>
   <th data-field="artist_ids" data-sortable="true" data-formatter="bstArtistsFormatter">Artist</th>
   <th data-field="created" data-sortable="true" data-formatter="bstDateFormatter">Created</th>
-  <th data-field="subtype" data-sortable="true" data-formatter="bstCollectionSubtypeFormatter">Type</th>
+  <th data-field="subtype" data-sortable="true" data-formatter="bstCollectionSubtypeFormatter" data-filter-control="select" data-filter-data="var:subtype">Type</th>
   <th data-field="start_date" data-sortable="true" data-formatter="bstStartDateFormatter">Start</th>
   <th data-field="end_date" data-sortable="true" data-formatter="bstEndDateFormatter">End</th> 
   <th data-field="location" data-sortable="true" data-formatter="bstLocationFormatter">Location</th> 
-  <th data-field="active" data-sortable="true" data-formatter="bstPublishedFormatter">Published</th>
-{/block}
+  <th data-field="active" data-sortable="true" data-formatter="bstPublishedFormatter" data-filter-control="select" data-filter-data="var:active">Published</th>
 
-{block name="script"}
+<script type="text/javascript">
+  var subtype = {
+    "10": "Gallery",
+    "20": "Art Fair",
+    "30": "Other Event",
+    "40": "Selection"
+  };
+
+  var active = {
+    "1": "ON",
+    "0": "OFF"
+  };
+</script>
+
 {/block}

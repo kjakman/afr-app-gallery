@@ -11,6 +11,11 @@
       <i class="fa fa-plus"></i> Add
     </a>
     {/if}
+    {if (0 && !$scope.add_to_profile)}
+    <a class="btn btn-primary" href="/backend/artworks/add">
+      <i class="fa fa-plus"></i> Add
+    </a>
+    {/if}
     <button id="remove" class="btn btn-danger collapse">
       <i class="glyphicon glyphicon-remove"></i> Delete
     </button>
@@ -19,7 +24,13 @@
         Selected (<span id="sel_count">0</span>) <i class="fa fa-caret-down"></i>
       </button>
       <ul class="dropdown-menu">
-        <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to {if ($add_to)}exhibition{else}...{/if}</a></li>
+        {if ($add_to)}
+          <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to exhibition</a></li>
+        {elseif ($add_to_profile)}
+          <li><a href="#" id="sel_add_profile" data-target_id="{$add_to_profile}">Add to profile</a></li>
+        {else}
+          <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to ...</a></li>
+        {/if}
         <li><a href="#" id="sel_show">Show</a></li>
         <li><a href="#" id="sel_clear">Clear</a></li>
         <!-- <li><a href="#" id="sel_del">Delete</a></li> -->
@@ -107,7 +118,7 @@
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    //console.log("base_link = " + base_link + " pv=" + pv);
+    console.log("base_link = " + base_link + " pv=" + pv);
     //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
     return '<span><span type="hidden" class="edit" name="edit" data-col="title" data-value='+row.id+' >'+value+'</span></span>';
   }
@@ -117,7 +128,7 @@
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    //console.log("base_link = " + base_link + " pv=" + pv);
+    console.log("base_link = " + base_link + " pv=" + pv);
     //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
     return '<span><span type="hidden" class="edit_exhibition" name="edit_exhibition" data-col="title" data-value='+row.id+' >'+value+'</span></span>';
   
@@ -128,7 +139,7 @@
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    //console.log("base_link = " + base_link + " pv=" + pv);
+    console.log("base_link = " + base_link + " pv=" + pv);
     return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
     //return '<span type="hidden" class="edit_exhibition" name="edit_exhibition" data-col="title" data-value='+row.id+' >'+value+'</span>';
   
@@ -139,7 +150,7 @@
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    //console.log("base_link = " + base_link + " pv=" + pv);
+    console.log("base_link = " + base_link + " pv=" + pv);
    return '<span><span type="hidden" class="edit" name="edit" data-col="price" data-value='+row.id+' >'+value+'</span></span>';
   }
 
@@ -148,7 +159,7 @@
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    //console.log("base_link = " + base_link + " pv=" + pv);
+    console.log("base_link = " + base_link + " pv=" + pv);
    return '<span><span type="hidden" class="edit" name="edit" data-col="primary_year" data-value='+row.id+' >'+value+'</span></span>';
   }
 
@@ -157,7 +168,7 @@
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    //console.log("base_link = " + base_link + " pv=" + pv);
+    console.log("base_link = " + base_link + " pv=" + pv);
     if(row.type == '50'){
       var value = 'N/A';
       return '<span><span type="hidden" class="edit" name="edit" data-col="height" data-value='+row.id+' style="cursor: default;" >'+value+'</span></span>';
@@ -172,7 +183,7 @@
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    //console.log("base_link = " + base_link + " pv=" + pv);
+    console.log("base_link = " + base_link + " pv=" + pv);
     if(row.type == '50'){
       var value = 'N/A';
       return '<span><span type="hidden" class="edit" name="edit" data-col="width" data-value='+row.id+' style="cursor: default;" >'+value+'</span></span>';
@@ -187,7 +198,7 @@
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    //console.log("base_link = " + base_link + " pv=" + pv);
+    console.log("base_link = " + base_link + " pv=" + pv);
    return '<span type="hidden" class="edit" name="edit" data-col="technique" data-value='+row.id+' >'+value+'</span>';
   }
 
@@ -208,7 +219,7 @@ function bstPriceOptionFormatter(value, row, index) {
   var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
   var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
   var link_class = pv ? 'ajax-loader' : '';
-  //console.log("base_link = " + base_link + " pv=" + pv);
+  console.log("base_link = " + base_link + " pv=" + pv);
     
     if(value==0){
       return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="phide" class="phide'+row.id+'" data-col="price_option" data-value='+row.id+' style="cursor: pointer">Hide Price</span><div class="shows" id="shows'+row.id+'"></div></span>';
@@ -245,7 +256,7 @@ function bstArtworkStatusFormatter(value, row, index) {
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    //console.log("base_link = " + base_link + " pv=" + pv);
+    console.log("base_link = " + base_link + " pv=" + pv);
 
     if(value==10){
       return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' style="cursor: pointer"><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+'>Available</span><div class="cstatus" id="cstatus'+row.id+'"></div></span>';
@@ -266,7 +277,7 @@ function bstArtworkStatusFormatter(value, row, index) {
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    //console.log("base_link = " + base_link + " pv=" + pv);
+    console.log("base_link = " + base_link + " pv=" + pv);
     var view_button = '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-eye"></i></a>';
     var edit_button = '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>';
     return view_button + ' ' + edit_button;
@@ -293,6 +304,17 @@ function bstArtworkStatusFormatter(value, row, index) {
     var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>'; 
 
     return buttons + ' ' + plugin_button;  
+  }
+
+//For Artist table without clone and plugin icon
+  function bstArtistActionFormatter(value, row, index) {
+    var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    var buttons = bstActionFormatter(value, row, index);
+    //var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>'; 
+
+    return buttons;  
   }
   
   function bstVaultTypeFormatter(value, row, index) {
@@ -342,7 +364,7 @@ function bstArtworkStatusFormatter(value, row, index) {
     //console.log("filter_link = " + filter_link);
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    //console.log("base_link = " + base_link + " pv=" + pv);
+    console.log("base_link = " + base_link + " pv=" + pv);
     
     var thumb = filename.replace('/square', '/tiny');
     var print_val = "<img class='table-thumb' src='" + thumb + "'/>";
@@ -381,7 +403,7 @@ function bstArtworkStatusFormatter(value, row, index) {
     //console.log("filter_link = " + filter_link);
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    //console.log("base_link = " + base_link + " pv=" + pv);
+    console.log("base_link = " + base_link + " pv=" + pv);
 
     var thumb = filename.replace('/square', '/tiny');
     var print_val = "<img class='table-thumb' src='" + thumb + "'/>";
@@ -452,6 +474,7 @@ $(window).load(function() {
 
 $(document).ready(function() {
   $('.form-control').attr('id', 'searchbar');
+  
 });
 
 var $table = $('#table');

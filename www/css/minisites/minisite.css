@@ -2551,3 +2551,80 @@ display:none
 color:#000;
 opacity:.75
 }
+
+/**21 Jan**/
+body.coverpage,body.landscape_time,body.coverpage_landscape,body.natural_time,body.natural{ 
+background-color: #b2cda1 !Important;
+}
+
+/** 23 Jan**/
+.photo-grid.hybrid, {
+column-count: 4;
+}
+
+.photo-grid.natural_grid, {
+column-count: 4;
+}
+
+.hybrid  .__vp-plugin-container IMG {
+    width: 200px;
+    margin: 0 auto;
+    height: 159px;
+}
+
+.landscape_time .__vp-plugin-container IMG {
+    width: 200px;
+    margin: 0 auto;
+    height: 159px;
+}
+
+.hybrid  .exhibition-title.text-center.mt10 { min-height:40px;  }
+
+/**/
+.photo-grid.landscape_time, .photo-grid.natural,.photo-grid.tiles{
+    column-count: 4;
+    display: flex;
+    flex-wrap: wrap;
+}
+.photo-grid.landscape_time .photo-grid-container, .photo-grid.tiles .photo-grid-container {      width: 25% !important; padding:15px;  }
+/**/ 
+ .photo-grid.natural .photo-grid-container {      width: 33% !important; padding:15px;  }
+/**28.jan**/
+.artist-grid-col { font-family: gotham_lightregular,Arial,sans-serif !important; }
+ 
+ 
+@media only screen and (min-width : 992px) and (max-width: 1200px){ 
+
+
+}
+
+@media only screen and (max-width:991px) and (min-width:768px){ 
+.photo-grid.landscape_time, .photo-grid.tiles {
+    column-count: 3;
+}
+/**/
+.photo-grid.landscape_time .photo-grid-container, .photo-grid.natural .photo-grid-container, .photo-grid.tiles .photo-grid-container {      width: 33% !important; }
+/**/
+
+}
+
+@media (max-width: 767px) {
+.photo-grid.landscape_time, .photo-grid.tiles {
+    column-count: 2;
+}
+/**/
+.photo-grid.landscape_time .photo-grid-container, .photo-grid.natural .photo-grid-container .photo-grid.tiles .photo-grid-container {      width: 50% !important; }
+/**/
+
+}
+
+@media (max-width: 480px) {
+.photo-grid.landscape_time, .photo-grid.tiles {
+    column-count: 1;
+}
+/**/
+.photo-grid.landscape_time .photo-grid-container, .photo-grid.natural .photo-grid-container, .photo-grid.tiles .photo-grid-container {      width: 100% !important; }
+/**/
+
+
+}

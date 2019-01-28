@@ -12,9 +12,10 @@
                         </a>
                         <div class="photo-grid-title artinfo">
                           <a href="{$link}{$collection.title|slugify}~{$collection.id}" class="cms-link gallery-link" data-data='{$json}'>
+                            <h4>{$collection.title}</h4>
                             <h2>{$profile.display_name}</h2> 
                             <h3>{$profile.city}, {$profile.country|get:countries:name} </h3> 
-                            <h4>{$collection.title}</h4>
+                            
                           </a>
                         </div>
                       </li>

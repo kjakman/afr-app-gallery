@@ -85,3 +85,21 @@ body.exhibition .btn-sub-nav-dropdown,body.exhibitions .btn-sub-nav-dropdown {
 /**26,Dec**/
 .datepicker.dropdown-menu { z-index: 999 !Important; }
 
+/**21 Jan**/
+body.single_column { background-color: #b2cda1 !Important;}
+
+/**25.jan**/
+.profileinfo .gallery-artwork-detail { margin:50px 0px;  }
+.gallery-artwork-detail .profileinfo h1 { font-size:36px;  }
+.gallery-artwork-detail .photo-grid-title h2 { font-size:16px;  }
+.gallery-artwork-detail .photo-grid-title h3 { font-size:14px;  }
+.gallery-artwork-detail .photo-grid-title h4 { font-size:16px;  }
+
+.gallery-artwork-detail .photo-grid .photo-grid-title, .photo-grid-5 .photo-grid-title { height:auto;  }
+.gallery-artwork-detail .photo-grid .photo-grid-container IMG {
+    padding-bottom: 120px;
+}
+
+.gallery-artwork-detail #curator_exhibitions .photo-grid .photo-grid-container IMG { max-height:350px;     object-fit: contain;
+    margin: 0 auto;
+    display: block; }

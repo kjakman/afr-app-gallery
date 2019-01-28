@@ -37,31 +37,63 @@
       {{"include": "minisites/_artworks.html"}}
       
     {elseif ($subview == 'biography')}
-      {if ($scope.show_solo)}
-      <div class="row text-left">
-        <div class="col-md-12">
-          <h4>Solo</h4>
-          <p>{$artist.gallery_solo_shows}</p>
+      {$show_data = json_decode($artist.show_data, True)}
+
+      {if ($show_data['solo_shows'] == 1)}
+        {$solo_shows_ = json_decode($artist.solo_shows_, True)}
+        <div class="row text-left">
+          <div class="col-md-12">
+            <h4>solo</h4>
+            <table>
+              {foreach from =$solo_shows_ item=$solo_shows}
+                {$split = explode('-', $solo_shows['year'])}
+                  <tr style="line-height: 26px;">
+                    <td style= "width: 40px">{$split[0]}</td>
+                    <!-- <td style= "width: 70px">{$split[1]}</td> -->
+                    <td>{$solo_shows['description']}</td>
+                  </tr>
+              {/foreach}
+            </table>            
+          </div>
         </div>
-      </div>
-      {/if}
-      {if ($scope.show_group)}
-      <div class="row text-left">
-        <div class="col-md-12">
-          <h4>Group</h4>
-          <p>{$artist.gallery_group_shows}</p>
+      {/if}<br>
+      {if ($show_data['group_shows'] == 1)}
+        {$group_shows_ = json_decode($artist.group_shows_, True)}
+        <div class="row text-left">
+          <div class="col-md-12">
+            <h4>Group</h4>
+            <table>
+              {foreach from =$group_shows_ item=$group_shows}
+                {$split = explode('-', $group_shows['year'])}
+                  <tr style="line-height: 26px;">
+                    <td style= "width: 40px">{$split[0]}</td>
+                    <!-- <td style= "width: 70px">{$split[1]}</td> -->
+                    <td>{$group_shows['description']}</td>
+                  </tr>
+              {/foreach}
+            </table>            
+          </div>
         </div>
-      </div>
-      {/if}
-      {if ($scope.show_press)}
-      <div class="row text-left">
-        <div class="col-md-12">
-          <h4>Press</h4>
-          <p>{$artist.press}</p>
+      {/if}<br>
+      {if ($show_data['press'] == 1)}
+        {$press_data = json_decode($artist.press_data, True)}
+        <div class="row text-left">
+          <div class="col-md-12">
+            <h4>Press</h4>
+            <table>
+              {foreach from =$press_data item=$press}
+                {$split = explode('-', $press['year'])}
+                  <tr style="line-height: 26px;">
+                    <td style= "width: 40px">{$split[0]}</td>
+                    <!-- <td style= "width: 70px">{$split[1]}</td> -->
+                    <td>{$press['description']}</td>
+                  </tr>
+              {/foreach}
+            </table>            
+          </div>
         </div>
-      </div>
-      {/if}
-      {if ($artist.show_awards)}
+      {/if}<br>
+      {if ($show_data['awards'] == 1)}
         {$awards = json_decode($artist.awards, True)}
         <div class="row text-left">
           <div class="col-md-12">
@@ -69,7 +101,7 @@
             <table>
               {foreach from =$awards item=$award}
                 {$split = explode('-', $award['year'])}
-                  <tr>
+                  <tr style="line-height: 26px;">
                     <td style= "width: 40px">{$split[0]}</td>
                     <!-- <td style= "width: 70px">{$split[1]}</td> -->
                     <td>{$award['description']}</td>

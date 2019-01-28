@@ -22,7 +22,23 @@
     </div>
     {$profile = $scope.profile} {* reset variable if needed later *}    
   {/if}
+
+  <div>
+    {if ($profile.gallery_solo_shows)} 
+      <h4>Solo Shows: </h4>
+      <div>{$profile.gallery_solo_shows}</div>
+    {/if}
+    {if ($profile.gallery_group_shows)} 
+      <h4>Group Shows: </h4>
+      <div>{$profile.gallery_group_shows}</div>
+    {/if}
+    {if ($profile.press)} 
+      <h4>Press : </h4>
+      <div>{$profile.press}</div>
+    {/if}
+  </div>
   
+   
 {/block}
 
 {block name=description}

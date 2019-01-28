@@ -13,12 +13,14 @@
 
 {$artworks = $scope.artworks}
 {$exhibitions = $scope.exhibitions}
+{$data_exist = $scope.data_exist}
 {$filter_exhibitions = $scope.filter_exhibitions}
 {$latest_exhibitions = $scope.latest_exhibitions}
 {$mObj = $scope.mObj}
 {$timings = $scope.timings}
 {$profileobj = $scope.profileobj}
 {$userdetail = $scope.userdetail}
+{$future_past = $scope.future_past}
 
 {$minisite_pageObj = $scope.minisite_pageObj}
 {$page_slug = $scope.page_slug}
@@ -204,17 +206,18 @@
           <p></p>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12 footer-follow-col" style="padding-right:0px;">
+          {$social = json_decode($profileobj.social,True)}
           {if ($mObj.show_social == '1')}
             <strong>FOLLOW US</strong><br />
-            {if ($profileobj.twitter)}
+            {if ($social['twit'])}
               <!-- <a class="footer-social-icon" href="{$profileobj.twitter}"><img src="{$vp}/img/footer/footer-tw@2x.png" /></a> -->
-              <a class="footer-social-icon" href="{$profileobj.twitter}"><img src="/img/footer/footer-tw@2x.png" /></a>
+              <a class="footer-social-icon" href="{$social['twit']}"><img src="/img/footer/footer-tw@2x.png" /></a>
             {/if}
-            {if ($profileobj.facebook)}
-              <a class="footer-social-icon" href="{$profileobj.facebook}"><img src="/img/footer/footer-fb@2x.png" /></a>
+            {if ($social['fbook'])}
+              <a class="footer-social-icon" href="{$social['fbook']}"><img src="/img/footer/footer-fb@2x.png" /></a>
             {/if}
-            {if ($profileobj.instagram)}
-              <a class="footer-social-icon" href="{$profileobj.instagram}" target="_blank"><img src="/img/footer/footer-in@2x.png" /></a>
+            {if ($social['insta'])}
+              <a class="footer-social-icon" href="{$social['insta']}" target="_blank"><img src="/img/footer/footer-in@2x.png" /></a>
             {/if}
           {/if}
           <!--a class="footer-social-icon" href="#"><img src="{$vp}/img/footer/footer-mail@2x.png" /></a>   

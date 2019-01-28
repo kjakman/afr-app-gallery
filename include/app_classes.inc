@@ -34,14 +34,10 @@ $__CLASS_ATTRIBUTES["user_profile"] = array_merge($__CLASS_ATTRIBUTES["user_prof
      'gallery_solo_shows'   => array('Solo Shows'  ,      'html',     '', 0),
      'gallery_group_shows'  => array('Group Shows'  ,      'html',     '', 0),
      'press'                => array('Press'  ,      'html',     '', 0),
-     'show_awards'          => array('Show Awards'     ,     'int',      0, 0, 6),
      'awards'=>        array('Awards',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
      'artist'  =>       array('artist',      'bool',     1,  AF_HIDE_ADD, 1),
      'working_hours'=>        array('Working Hours',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
      'social'=>        array('Social',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
-     'facebook'=>      array('Facebook',     'str',  '', AF_SEARCHABLE, 64 ),
-     'instagram'=>     array('Instagram',    'str',  '', AF_SEARCHABLE, 64 ),
-     'twitter'=>       array('Twitter',      'str',  '', AF_SEARCHABLE, 64 ),
      'contact'=>        array('More Contacts',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
      
 ));
