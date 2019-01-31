@@ -3,6 +3,9 @@
 {block name=profile}
   {$profile = $scope.profile}
   {{"include": "_gallery-curator-information.html"}}
+  <div class="profileinfo">
+  	<h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+  </div>
   {{"include": "_gallery-contact-information.html"}}
   
 {/block}

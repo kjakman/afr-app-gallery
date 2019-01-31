@@ -291,8 +291,9 @@ function bstArtworkStatusFormatter(value, row, index) {
     var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>'; 
 
     var pop_btn = '<a id="'+row.id + '" class="clone_modal_icon" data-toggle="modal" data-target="#clone_modals"><i class="fa fa-clone"></i></a>';
+    var share_btn = '<a href="https://www.facebook.com/sharer/sharer.php?u=http://new.vpatina.dci.in/item/lets-sail-for-over-there-and-see-what-we-come-across?_aid=20361" id="'+row.id + '" class="share" ><i class="glyphicon glyphicon-share"></i></a>';
 
-    return buttons + ' ' + plugin_button + ' ' + pop_btn; 
+    return buttons + ' ' + plugin_button + ' ' + pop_btn + ' ' + share_btn; 
   }
 
 //For exhibition page without clone icon

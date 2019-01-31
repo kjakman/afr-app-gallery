@@ -1,31 +1,120 @@
-                            
+                            <!-- {$artwork|dump} -->
                             <h3 class="relative">
-                              {if ($artwork.available)}                            
-                              <span class="dot_outside mt6 {if ($artwork.available==1)}green{else}red{/if}">&#x25cf;</span>
+                              {if ($artwork.status == 10)}                            
+                              <span class="dot_outside mt6 {if ($artwork.status==10)}green{else}red{/if}">&#x25cf;</span>
                               {/if}
-                              {$artwork.title}, <span>{$artwork.primary_year}</span>                            
+                              {$artwork.title}<br>
+                              {if ($artwork.primary_year)} 
+                                {$artwork.primary_year} {if ($artwork.primary_year_type)} ({$artwork.primary_year_type}) {/if}
+                              {/if} 
+                              {if ($artwork.secondary_year)} 
+                                , {$artwork.secondary_year} {if ($artwork.secondary_year_type)} ({$artwork.secondary_year_type}) {/if}
+                              {/if}<br>                 
                             </h3> 
+                            <h5>
+                              {if ($artwork.technique == 'Film')}
+                                <p class='italic'>
+                                  {$artwork.technique}<br>
+
+                                  {if ($artwork.video_time)}  
+                                    Time : {$artwork.video_time} 
+                                  {/if}<br>
+                                  {if ($artwork.video_producer)}  
+                                    Producer : {$artwork.video_producer} 
+                                  {/if}<br>
+                                  {if ($artwork.video_narrator)}  
+                                    Narrator : {$artwork.video_narrator} 
+                                  {/if}<br>
+                                  {if ($artwork.video_sound)}  
+                                    Sound : {$artwork.video_sound} 
+                                  {/if}<br>
+                                  {if ($artwork.video_editor)}  
+                                    Editor : {$artwork.video_editor} 
+                                  {/if}<br>
+                                  {if ($artwork.video_cast)}  
+                                    Cast : {$artwork.video_cast} 
+                                  {/if}
+                                </p>
+                              {else}
+                                <p class='italic'>
+                                  {$artwork.technique}<br>
+
+                                  {if ($artwork.height > 0 && $artwork.width > 0)}
+                                    {$artwork.height} x {$artwork.width} 
+                                    {if ($artwork.depth)} x {$artwork.depth} {/if}
+                                    {$artwork.unit} <br>
+                                  {/if}
+
+                                  {if ($artwork.frame == -1)}
+                                    Unframed
+                                  {elseif ($artwork.frame == 1)}
+                                    Framed
+                                  {/if}
+
+                                  {if ($artwork.passepartout == -1)}
+                                    , No Passe-partout <br>
+                                  {elseif ($artwork.frame == 1)}
+                                    , Passe-partout <br>
+                                  {/if} 
+
+                                  {if ($artwork.edition > 1)}  
+                                    Series of {$artwork.editions} <br>
+                                  {elseif ($artwork.edition == 1)}
+                                    Unique <br>
+                                  {/if}
+                                </p>
+                              {/if}
+                            </h5>
+                              <h3 class="relative">
+                                  {if (($artwork.status == 10) && ($artwork.price_option == 1))}
+                                    {if ($artwork.price > 0)}
+                                      {$artwork.currency|currency} {$artwork.price|price}   
+                                    {else if ($artwork.status > 0)}
+                                      Price on inquiry
+                                    {/if}
+                                  {elseif (($artwork.status == 10) && ($artwork.price_option == -1))}
+                                    Price on inquiry
+                                  {/if}           
+                              </h3> 
+                              
+                              
+                              <!-- <p class='italic'>
+                                {$artwork.technique}<br>
+                                {if ($artwork.height > 0 && $artwork.width > 0)}
+                                {$artwork.height} x {$artwork.width} cm <br>
+                                {/if}
+                              
+                                {$count = $artwork.count}
+                                {if ($count == 1)}
+                                Unique
+                                {elseif ($count > 0)}
+                                Edition of {$count}
+                                {/if}
+
+                                {if ($artwork.frame == -1)}
+                                  Unframed,
+                                {elseif ($artwork.frame == 1)}
+                                  Framed,
+                                {else}
+                                {/if}
+
+                                {if ($artwork.passepartout == -1)}
+                                  No Passe-partout
+                                {elseif ($artwork.frame == 1)}
+                                  Passe-partout
+                                {else}
+                                {/if}
+
+                              </p>    -->
                             
-                            <p class='italic'>
-                              {$artwork.technique}<br>
-                              {if ($artwork.height > 0 && $artwork.width > 0)}
-                              {$artwork.height} x {$artwork.width} cm <br>
-                              {/if}
-  
-                              {$count = $artwork.count}
-                              {if ($count == 1)}
-                              Unique
-                              {elseif ($count > 0)}
-                              Edition of {$count}
-                              {/if}
-                            </p>                             
-                            <h4>
-                              {if ($artwork.available)}
+                                                      
+                            <!-- <h4>
+                              {if ($artwork.status == 10)}
                                 {if ($artwork.price > 0)}
                                 {$artwork.currency|currency} {$artwork.price|price}   
-                                {else if ($artwork.available > 0)}
+                                {else if ($artwork.status > 0)}
                                 Price on inquiry
                                 {/if}
                               {/if}
-                            </h4>
+                            </h4> -->
 

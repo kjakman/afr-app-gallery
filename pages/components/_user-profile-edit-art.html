@@ -1,5 +1,4 @@
 {$profile = $scope.profile}
-
 <input type="hidden" name="obj_type" value="user_profile" />
 <input type="hidden" name="id"  value="{$scope.profile.profile_id}" />
 <input type="hidden" name="user_id" value="{$scope.profile.user_id}" />
@@ -19,8 +18,8 @@
   
   <div class="row form-group">
     <label for="media-name">Upload related images</label>
-  
-    {"profile_media_map"|object_uploader:"126345":"map_profile":["resize" => 1, "cloud" => 1, "view" => "list"]}
+    {"user_profile"|object_uploader:$profile.profile_id:"map_profile":["resize" => 1, "cloud" => 1, "view" => 'grid']}
+    
   </div>
   
   <div class="gap gap-small"></div>

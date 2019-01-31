@@ -22,7 +22,7 @@
   {if (($collection.type == $smarty.const.MEDIA_COLLECTION_TYPE_EXHIBITION))}
     {$collection_link = $smarty.const.PAGE_GALLERY|link:"media_collection":$collection.type}
   
-    <div class='italic'>Featured in exhibtion:</div>
+    <h5><div class='italic'>Featured in exhibtion:</div></h5>
     <h2><a href="{$collection_link}{$collection.title|slugify}~{$collection.id}">{$collection.title}</a></h2>
     {if ($collection.start_date && $collection.end_date)}
       {{"include": "_gallery-collection-date"}}

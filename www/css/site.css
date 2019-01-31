@@ -90,16 +90,41 @@ body.single_column { background-color: #b2cda1 !Important;}
 
 /**25.jan**/
 .profileinfo .gallery-artwork-detail { margin:50px 0px;  }
-.gallery-artwork-detail .profileinfo h1 { font-size:36px;  }
-.gallery-artwork-detail .photo-grid-title h2 { font-size:16px;  }
-.gallery-artwork-detail .photo-grid-title h3 { font-size:14px;  }
-.gallery-artwork-detail .photo-grid-title h4 { font-size:16px;  }
-
 .gallery-artwork-detail .photo-grid .photo-grid-title, .photo-grid-5 .photo-grid-title { height:auto;  }
-.gallery-artwork-detail .photo-grid .photo-grid-container IMG {
-    padding-bottom: 120px;
-}
+.gallery-artwork-detail .photo-grid .photo-grid-container IMG {   padding-bottom: 120px; }
+.gallery-artwork-detail #curator_exhibitions .photo-grid .photo-grid-container IMG { max-height:350px;     object-fit: contain; margin: 0 auto;  display: block; }
+	
+/**30.jan**/
+#curator_artworks .profileinfo h1, #curator_exhibitions .profileinfo h1, #artist_artworks .profileinfo h1, #artist_exhibitions .profileinfo h1, .gallery-artwork-detail .profileinfo h1, .profileinfo.italic.mb10 h1  { font-size:36px;  }
 
-.gallery-artwork-detail #curator_exhibitions .photo-grid .photo-grid-container IMG { max-height:350px;     object-fit: contain;
-    margin: 0 auto;
-    display: block; }
+#curator_artworks .photo-grid-title h2, #curator_exhibitions .photo-grid-title h2, #artist_artworks .photo-grid-title h2, #artist_exhibitions .photo-grid-title h2, .gallery-artwork-detail .photo-grid-title h2 { font-size:16px;  }
+
+#curator_artworks .photo-grid-title h3, #curator_exhibitions .photo-grid-title h3, #artist_artworks .photo-grid-title h3, #artist_exhibitions .photo-grid-title h3, .gallery-artwork-detail .photo-grid-title h3, .photo-grid-title.artinfo h3  { font-size:14px;  }
+
+#curator_artworks .photo-grid-title h4, #curator_exhibitions .photo-grid-title h4, #artist_artworks .photo-grid-title h4, #artist_exhibitions .photo-grid-title h4, .gallery-artwork-detail .photo-grid-title h4 , .photo-grid-title.artinfo h4  { font-size: 16px;}
+
+.gallery-artwork-detail .photo-grid .photo-grid-container .pdf-thumb-box-overlay { display:none; }
+.gallery-artwork-detail .photo-grid .photo-grid-container .photo-grid-title.artinfo { position:relative;  }
+.gallery-artwork-detail .photo-grid .photo-grid-container IMG {  padding-bottom: 20px; }
+
+/*31jan si*/
+/* .photo-grid-title.artinfo h2  { font-size:15px}
+.photo-grid .photo-grid-title, .photo-grid-5 .photo-grid-title {
+    position: absolute;
+    bottom: -4px !important;
+    height: 110px !important;
+    width: 100%;
+    text-align: center;
+    color: black;
+    border: 0px solid black;
+    line-height: 1.2em;
+} */
+
+.photo-grid .photo-grid-container, .photo-grid-5 .photo-grid-container { display:inline-block; }
+
+
+
+
+@media  (max-width: 767px){
+.gallery-artwork-detail .photo-grid .photo-grid-container .photo-grid-title.artinfo { position:relative; padding:0px 20px;  }
+}

@@ -11,7 +11,7 @@ DROP `show_awards`;
 ALTER TABLE `user_profile`
 ADD `solo_shows_` text COLLATE 'utf8_general_ci' NOT NULL,
 ADD `group_shows_` text COLLATE 'utf8_general_ci' NOT NULL ,
-ADD `press_` text COLLATE 'utf8_general_ci' NOT NULL ,
+ADD `press_data` text COLLATE 'utf8_general_ci' NOT NULL ,
 ADD `show_data` text COLLATE 'utf8_general_ci' NOT NULL;
 
 INSERT INTO `minisite_page_type` (`id`, `name`)
@@ -44,3 +44,63 @@ ADD `filter` tinyint(1) NOT NULL DEFAULT '1';
 INSERT INTO `db_sequence` (`seq_name`, `nextid`)
 SELECT 'profile_media_map', '100' from dual
 WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'profile_media_map');
+
+#jan 28
+
+CREATE TABLE `minisite_exhibition_layout` (
+  `Id` int(10) NOT NULL,
+  `name` varchar(50) NOT NULL
+);
+
+INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+VALUES ('10', 'Cover Page');
+
+INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+VALUES ('20', 'Landscape With Time Separator');
+
+INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+VALUES ('30', 'Cover Page & Landscape');
+
+INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+VALUES ('40', 'Timeline');
+
+INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+VALUES ('50', 'Natural With Time Separator');
+
+INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+VALUES ('60', 'Natural');
+
+INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+VALUES ('70', 'tiles');
+
+TRUNCATE TABLE `minisite_page_type`;
+
+CREATE TABLE `minisite_page_type` (
+  `id` smallint(4) NOT NULL,
+  `name` varchar(32) NOT NULL
+);
+
+
+INSERT INTO `minisite_page_type` (`id`, `name`)
+SELECT '10', 'Home' from dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '10');
+
+
+INSERT INTO `minisite_page_type` (`id`, `name`)
+SELECT '20', 'Artists/Contacts' FROM dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '20');
+
+
+INSERT INTO `minisite_page_type` (`id`, `name`)
+SELECT '30', 'Exhibitions - Smart Filter' FROM dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '30');
+
+insert into `minisite_page_type` (`id`, `name`)
+SELECT '40', 'Contact/Bio' FROM dual
+WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '40');
+
+UPDATE `exhibition_type` SET
+`id` = '40',
+`name` = 'Showroom/Selection',
+`description` = ''
+WHERE `id` = '40';

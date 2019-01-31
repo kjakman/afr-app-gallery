@@ -22,8 +22,11 @@
     </div>
     {$profile = $scope.profile} {* reset variable if needed later *}    
   {/if}
+   
+{/block}
 
-  <div>
+{block name=description}
+  <div style="text-align: left;">
     {if ($profile.gallery_solo_shows)} 
       <h4>Solo Shows: </h4>
       <div>{$profile.gallery_solo_shows}</div>
@@ -37,11 +40,6 @@
       <div>{$profile.press}</div>
     {/if}
   </div>
-  
-   
-{/block}
-
-{block name=description}
   <p>{$scope.profile.description}</p>
 {/block}
 

@@ -62,16 +62,14 @@
   {else}
     Error: {$collection_type} is neither project nor exhibition
   {/if}
-
-  {if ($collection.description)}
-    <div class="gap gap-small"></div>
-    <h3>About {$collection.title}</h3>
-    {$collection.description}
-  {/if}
   
 {/block}
 
 
 {block name=below}
-
+  {if ($collection.description)}
+    <div class="gap gap-small"></div>
+    <h3>About {$collection.title}</h3>
+    {$collection.description}
+  {/if}
 {/block}
