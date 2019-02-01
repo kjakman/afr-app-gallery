@@ -1,4 +1,4 @@
-                            <!-- {$artwork|dump} -->
+                            
                             <h3 class="relative">
                               {if ($artwork.status == 10)}                            
                               <span class="dot_outside mt6 {if ($artwork.status==10)}green{else}red{/if}">&#x25cf;</span>
@@ -12,7 +12,7 @@
                               {/if}<br>                 
                             </h3> 
                             <h5>
-                              {if ($artwork.technique == 'Film')}
+                              {if ($artwork.type == 50)}
                                 <p class='italic'>
                                   {$artwork.technique}<br>
 
@@ -32,7 +32,15 @@
                                     Editor : {$artwork.video_editor} 
                                   {/if}<br>
                                   {if ($artwork.video_cast)}  
-                                    Cast : {$artwork.video_cast} 
+                                    Cast : {$artwork.video_cast}<br>
+                                  {/if}
+                                  
+                                  {if ($artwork.edition > 1)}  
+                                    Series of {$artwork.editions} <br>
+                                    Edition : {$artwork.edition}<br>
+                                  {elseif ($artwork.edition == 1)}
+                                    Unique <br>
+                                    Edition : {$artwork.edition}<br>
                                   {/if}
                                 </p>
                               {else}
@@ -41,7 +49,9 @@
 
                                   {if ($artwork.height > 0 && $artwork.width > 0)}
                                     {$artwork.height} x {$artwork.width} 
-                                    {if ($artwork.depth)} x {$artwork.depth} {/if}
+                                    {if (($artwork.depth) && ($artwork.type == 30))} 
+                                      x {$artwork.depth} 
+                                    {/if}
                                     {$artwork.unit} <br>
                                   {/if}
 
@@ -59,8 +69,10 @@
 
                                   {if ($artwork.edition > 1)}  
                                     Series of {$artwork.editions} <br>
+                                    Edition : {$artwork.edition}<br>
                                   {elseif ($artwork.edition == 1)}
                                     Unique <br>
+                                    Edition : {$artwork.edition}<br>
                                   {/if}
                                 </p>
                               {/if}

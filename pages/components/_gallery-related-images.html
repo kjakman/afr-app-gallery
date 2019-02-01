@@ -9,6 +9,27 @@
                           </div>
                           {/if}
 
+                          {if ($artist_name && $scope.artist_artworks|@count)}
+                          <div class="gallery-related" id="artist_artworks">
+                           <div class="profileinfo italic mb10">
+                            <h1>Selected Artwork by {$artist_name}</h1>
+                           </div>
+                            {$items = $scope.artist_artworks}
+                            {{"include": "_gallery-artwork-items.html"}}
+                          </div>
+                          {/if}
+
+                          {if ($artist_name && $scope.artworks|@count)}
+                          <div class="gallery-related" id="collection_artworks">
+                           <div class="profileinfo italic mb10">
+                            <h1>Other Art in the {$collection_type_name}</h1>
+                           </div>
+                            {$items = $scope.artworks}
+                            {$scope.obj_type = 'artwork'}
+                            {{"include": "_gallery-artwork-items.html"}}
+                          </div>
+                          {/if}
+
                           {if ($artist_name && $scope.artist_exhibitions|@count)}
                           <div class="gallery-related" id="artist_exhibitions">
                            <div class="profileinfo italic mb10">
@@ -29,7 +50,7 @@
                           </div>
                           {/if}
                           
-                          {if ($curator_name && $scope.curator_artworks|@count)}
+                          <!-- {if ($curator_name && $scope.curator_artworks|@count)}
                           <div class="gallery-related" id="curator_artworks">
                             {$items = $scope.curator_artworks}
                            <div class="profileinfo italic mb10">
@@ -37,7 +58,7 @@
                            </div>
                             {{"include": "_gallery-artwork-items.html"}}
                           </div>
-                          {/if}
+                          {/if} -->
                           
                           {if (0 && $artist_name && $scope.artist_projects|@count)}
                           <div class="gallery-related" id="artist_projects">
@@ -49,13 +70,5 @@
                           </div>
                           {/if}
 
-                          {if ($artist_name && $scope.artist_artworks|@count)}
-                          <div class="gallery-related" id="artist_artworks">
-                           <div class="profileinfo italic mb10">
-                            <h1>Other Artwork by {$artist_name}</h1>
-                           </div>
-                            {$items = $scope.artist_artworks}
-                            {{"include": "_gallery-artwork-items.html"}}
-                          </div>
-                          {/if}
+                          
 

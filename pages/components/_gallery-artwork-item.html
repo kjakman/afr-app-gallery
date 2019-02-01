@@ -7,6 +7,7 @@
                         {if ($artwork.artwork_id)}
                           {$link = '/artwork/'}
                           {$artwork_id = $artwork.artwork_id}
+                          {$media_id = $artwork.media_collection_id}
                         {else}
                           {$artwork_id = $artwork.id}
                           {$link = '/item/'}                          
@@ -15,9 +16,10 @@
                         {$artwork_id = $artwork.id}
                         {$link = '/artwork/'}
                         {$title = $artwork.title}
+                        {$media_id = $artwork.media_collection_id}
                       {/if}
                       
-                      
+                      <!-- {$artwork|dump} -->
                       
                       {$artwork_link = ($link && $artwork) ? "`$link``$title|slugify`~`$artwork_id`" : "#"}
                       {$profile_link = $smarty.const.PAGE_PROFILE|link}
