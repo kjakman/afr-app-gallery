@@ -9,7 +9,19 @@
                           </div>
                           {/if}
 
-                          {if ($artist_name && $scope.artist_artworks|@count)}
+                          <!-- to display other exhibition from exhibition id -->
+                          {if ($artist_name && $scope.other_exhibitions|@count)} 
+                          <div class="gallery-related" id="collection_artworks">
+                           <div class="profileinfo italic mb10">
+                            <h1>Other Art in the {$collection_type_name}</h1>
+                           </div>
+                            {$items = $scope.other_exhibitions}
+                            {$scope.obj_type = 'artwork'}
+                            {{"include": "_gallery-artwork-items.html"}}
+                          </div>
+                          {/if}
+
+                          {if ($artist_name && $scope.artist_artworks|@count)} 
                           <div class="gallery-related" id="artist_artworks">
                            <div class="profileinfo italic mb10">
                             <h1>Selected Artwork by {$artist_name}</h1>
@@ -36,6 +48,17 @@
                             <h1>Other Exhibition featuring {$artist_name}</h1>
                            </div>
                             {$items = $scope.artist_exhibitions}
+                            {{"include": "_gallery-collection-items.html"}}
+                          </div>
+                          {/if}
+
+                          <!-- to display curator exhibition 'controller_artist_profile' -->
+                          {if ($artist_name && $scope.curator_exhibitions|@count)} 
+                          <div class="gallery-related" id="curator_exhibitions">
+                           <div class="profileinfo italic mb10">
+                            <h1>Other Exhibition curated by {$scope.curator_name}</h1>
+                           </div>
+                            {$items = $scope.curator_exhibitions}
                             {{"include": "_gallery-collection-items.html"}}
                           </div>
                           {/if}

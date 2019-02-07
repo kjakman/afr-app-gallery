@@ -91,7 +91,7 @@ body.single_column { background-color: #b2cda1 !Important;}
 /**25.jan**/
 .profileinfo .gallery-artwork-detail { margin:50px 0px;  }
 .gallery-artwork-detail .photo-grid .photo-grid-title, .photo-grid-5 .photo-grid-title { height:auto;  }
-.gallery-artwork-detail .photo-grid .photo-grid-container IMG {   padding-bottom: 120px; }
+/* .gallery-artwork-detail .photo-grid .photo-grid-container IMG {   padding-bottom: 120px; } */
 .gallery-artwork-detail #curator_exhibitions .photo-grid .photo-grid-container IMG { max-height:350px;     object-fit: contain; margin: 0 auto;  display: block; }
 	
 /**30.jan**/
@@ -122,9 +122,17 @@ body.single_column { background-color: #b2cda1 !Important;}
 
 .photo-grid .photo-grid-container, .photo-grid-5 .photo-grid-container { display:inline-block; }
 
-
+/**2.feb**/
+.gallery-artwork-detail #curator_exhibitions .photo-grid .photo-grid-container IMG { max-height: 100%; }
+#curator_exhibitions .photo-grid-container.gallery-list-item .photo-grid-title {
+    position: relative;
+    bottom: 10px;
+    height: 100%;
+}
+#curator_exhibitions .photo-grid .photo-grid-container IMG {  padding-bottom: 20px !important;  }
 
 
 @media  (max-width: 767px){
 .gallery-artwork-detail .photo-grid .photo-grid-container .photo-grid-title.artinfo { position:relative; padding:0px 20px;  }
+#curator_exhibitions .photo-grid-container.gallery-list-item .photo-grid-title { padding:0px 20px;  }
 }

@@ -104,6 +104,7 @@
                                   {$url = $url|add_query_var:'_aid':$aff_id}
                                 {/if}
                               
+                              {if ($object.active)}
                                 {$url_encoded = $url|urlencode}
                                 <a href="#" title="Share on Facebook" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?u={$url_encoded}">
                                   <span class="fa fa-stack fa-2x">
@@ -144,7 +145,7 @@
                                   </span>
                                 </a>
                               {/if}
-                              
+                            {/if}  
                             </nav>
                             {/if}
                           </section>

@@ -14,7 +14,12 @@
   
   {if ($collection.event)}
     {$event = $collection.event}
-    {{"include": "_gallery-collection-event.html"}}
+    {$end_date = explode(' ', $event.end_time)}
+    {$today = today()}
+    {if ($end_date[0] < $today)}
+    {else}
+      {{"include": "_gallery-collection-event.html"}}
+    {/if}
   {/if}
   
   {$profile_link = $smarty.const.PAGE_PROFILE|link}

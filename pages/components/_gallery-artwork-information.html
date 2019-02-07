@@ -35,12 +35,14 @@
                                     Cast : {$artwork.video_cast}<br>
                                   {/if}
                                   
-                                  {if ($artwork.edition > 1)}  
+                                  {if ($artwork.editions > 1)}  
                                     Series of {$artwork.editions} <br>
-                                    Edition : {$artwork.edition}<br>
-                                  {elseif ($artwork.edition == 1)}
+                                  {elseif ($artwork.editions == 1)}
                                     Unique <br>
-                                    Edition : {$artwork.edition}<br>
+                                  {/if}
+
+                                  {if ($artwork.edition)}  
+                                    Edition : {$artwork.edition} <br>
                                   {/if}
                                 </p>
                               {else}
@@ -67,12 +69,14 @@
                                     , Passe-partout <br>
                                   {/if} 
 
-                                  {if ($artwork.edition > 1)}  
+                                  {if ($artwork.editions > 1)}  
                                     Series of {$artwork.editions} <br>
-                                    Edition : {$artwork.edition}<br>
-                                  {elseif ($artwork.edition == 1)}
+                                  {elseif ($artwork.editions == 1)}
                                     Unique <br>
-                                    Edition : {$artwork.edition}<br>
+                                  {/if}
+
+                                  {if ($artwork.edition)}  
+                                    Edition : {$artwork.edition} <br>
                                   {/if}
                                 </p>
                               {/if}

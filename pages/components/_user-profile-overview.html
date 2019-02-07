@@ -28,23 +28,12 @@
 {block name=description}
   <div style="text-align: left;">
     <ul class="list-inline">
-      <li><a href="{$profile_link}{$profile.user_id}">Art/Exhibitions </a></li>
-      <li><a href="{$profile_link}{$profile.user_id}/overview">Overview </a></li>
-      <li><a href="{$profile_link}{$profile.user_id}/cv">CV </a></li>
+      <li id="art"><a href="#">Art/Exhibitions </a></li>
+      <li id="overview" ><a href="#">Overview </a></li>
+      <li id="cv"><a href="#">CV </a></li>
     </ul>
-    {if ($profile.gallery_solo_shows)} 
-      <h4>Solo Shows: </h4>
-      <div>{$profile.gallery_solo_shows}</div>
-    {/if}
-    {if ($profile.gallery_group_shows)} 
-      <h4>Group Shows: </h4>
-      <div>{$profile.gallery_group_shows}</div>
-    {/if}
-    {if ($profile.press)} 
-      <h4>Press : </h4>
-      <div>{$profile.press}</div>
-    {/if}
   </div>
+  <p>{$scope.profile.description}</p>
 {/block}
 
 

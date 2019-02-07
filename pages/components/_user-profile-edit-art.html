@@ -3,7 +3,7 @@
 <input type="hidden" name="id"  value="{$scope.profile.profile_id}" />
 <input type="hidden" name="user_id" value="{$scope.profile.user_id}" />
 <input type="hidden" name="site_id" value="{$site.id}" />
-<input type="hidden" name="description" value="{$scope.profile.description}" />
+
 
   <div class="row form-group">
     <label for="media-name">Attach existing art or images</label>
@@ -18,7 +18,7 @@
   
   <div class="row form-group">
     <label for="media-name">Upload related images</label>
-    {"user_profile"|object_uploader:$profile.profile_id:"map_profile":["resize" => 1, "cloud" => 1, "view" => 'grid']}
+    {"user"|object_uploader:$scope.profile.user_id:"map_profile":["resize" => 1, "cloud" => 1, "view" => 'grid']}
     
   </div>
   

@@ -73,6 +73,18 @@ VALUES ('60', 'Natural');
 INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
 VALUES ('70', 'tiles');
 
+CREATE TABLE `minisite_contact_layout` (
+  `Id` int(10) NOT NULL,
+  `name` varchar(50) NOT NULL
+);
+TRUNCATE TABLE `minisite_contact_layout`;
+
+INSERT INTO `minisite_contact_layout` (`id`, `name`)
+VALUES ('10', 'Contact');
+
+INSERT INTO `minisite_contact_layout` (`id`, `name`)
+VALUES ('20', 'Bio & CV');
+
 TRUNCATE TABLE `minisite_page_type`;
 
 CREATE TABLE `minisite_page_type` (

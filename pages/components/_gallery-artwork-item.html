@@ -12,16 +12,19 @@
                           {$artwork_id = $artwork.id}
                           {$link = '/item/'}                          
                         {/if}
-                      {else} {$artwork}
-                        {$artwork_id = $artwork.id}
+                      {else} 
+                        {$artwork_id = $artwork.artwork_id}
                         {$link = '/artwork/'}
-                        {$title = $artwork.title}
+                        {$title = $artwork.name}
                         {$media_id = $artwork.media_collection_id}
                       {/if}
                       
-                      <!-- {$artwork|dump} -->
+                      {if ($media_id)}
+                        {$artwork_link = ($link && $artwork) ? "`$link``$media_id`/`$title|slugify`~`$artwork_id`" : "#"}
+                      {else}
+                        {$artwork_link = ($link && $artwork) ? "`$link``$title|slugify`~`$artwork_id`" : "#"}
+                      {/if}
                       
-                      {$artwork_link = ($link && $artwork) ? "`$link``$title|slugify`~`$artwork_id`" : "#"}
                       {$profile_link = $smarty.const.PAGE_PROFILE|link}
                       {if ($artwork.media_id|in_array:$scope.user_collection)}
                         {$fav_class = "fa-star"}

@@ -28,9 +28,9 @@
 {block name=description}
   <div style="text-align: left;">
     <ul class="list-inline">
-      <li><a href="{$profile_link}{$profile.user_id}">Art/Exhibitions </a></li>
-      <li><a href="{$profile_link}{$profile.user_id}/overview">Overview </a></li>
-      <li><a href="{$profile_link}{$profile.user_id}/cv">CV </a></li>
+      <li><a href="#">Art/Exhibitions </a></li>
+      <li><a href="#">Overview </a></li>
+      <li><a href="#">CV </a></li>
     </ul>
     {if ($profile.gallery_solo_shows)} 
       <h4>Solo Shows: </h4>
@@ -45,6 +45,7 @@
       <div>{$profile.press}</div>
     {/if}
   </div>
+  <p>{$scope.profile.description}</p>
 {/block}
 
 
