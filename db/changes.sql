@@ -2,11 +2,11 @@
 
 # Jan -18
 
-ALTER TABLE `user_profile`
-DROP `facebook`,
-DROP `instagram`,
-DROP `twitter`,
-DROP `show_awards`;
+# ALTER TABLE `user_profile`
+# DROP `facebook`,
+# DROP `instagram`,
+# DROP `twitter`,
+# DROP `show_awards`;
 
 ALTER TABLE `user_profile`
 ADD `solo_shows_` text COLLATE 'utf8_general_ci' NOT NULL,
@@ -115,4 +115,23 @@ UPDATE `exhibition_type` SET
 `id` = '40',
 `name` = 'Showroom/Selection',
 `description` = ''
+<<<<<<< HEAD
 WHERE `id` = '40';
+=======
+WHERE `id` = '40';  
+
+
+CREATE TABLE `minisite_exhibition_layout` (
+  `id` tinyint(2) NOT NULL ,
+  `name` varchar(20) DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `minisite_contact_layout` (
+  `id` tinyint(2) NOT NULL,
+  `name` varchar(20) DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+insert into db_sequence values ('minisite_layout', 1000);
+insert into db_sequence values ('minisite_exhibition_layout', 1000);
+insert into db_sequence values ('minisite_contact_layout', 1000);
+>>>>>>> a40135ef21efbeae0c20135b1d0c820417550c7a
