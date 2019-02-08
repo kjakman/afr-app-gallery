@@ -92,7 +92,7 @@
           <td width="25%">
             <input type="text" class="form-control" name="solo_shows_[description][]" maxlength="100" placeholder="Solo Shows" style="padding-left: 5px;" ></td>
           <td width="5%"></td>
-          <td><button type="button" class="btn btn-danger remove_solo">x</button></td>
+          <td><button type="button" class="btn btn-danger remove">x</button></td>
         </tr>
         <tr style="height: 5px;"/>   
       {/if}             
@@ -160,7 +160,7 @@
           <td width="25%">
             <input type="text" class="form-control" name="group_shows_[description][]" maxlength="100" placeholder="Group Shows" style="padding-left: 5px;" ></td>
           <td width="5%"></td>
-          <td><button type="button" class="btn btn-danger remove_group">x</button></td>
+          <td><button type="button" class="btn btn-danger remove">x</button></td>
         </tr>
         <tr style="height: 5px;"/>   
       {/if}             
@@ -228,7 +228,7 @@
           <td width="25%">
             <input type="text" class="form-control" name="press_data[description][]" maxlength="100" placeholder="Press" style="padding-left: 5px;" ></td>
           <td width="5%"></td>
-          <td><button type="button" class="btn btn-danger remove_gal_press">x</button></td>
+          <td><button type="button" class="btn btn-danger remove">x</button></td>
         </tr>
         <tr style="height: 5px;"/>
       {/if}                
@@ -319,7 +319,7 @@
       e.preventDefault();
       if(x < max_fields){ //max input box allowed
         x++; //text box increment
-        $(shows).append('<table cellspacing="2"><tr><td width="10%"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="solo_shows_[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="15%"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="solo_shows_[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="25%"><input type="text" class="form-control" name="solo_shows_[description][]" maxlength="100" style="padding-left: 5px;"></td><td width="5%"></td><td><button type="button" class="btn btn-danger remove_solo">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
+        $(shows).append('<table cellspacing="2"><tr><td width="10%"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="solo_shows_[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="15%"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="solo_shows_[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="25%"><input type="text" class="form-control" name="solo_shows_[description][]" maxlength="100" style="padding-left: 5px;"></td><td width="5%"></td><td><button type="button" class="btn btn-danger remove">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
 
         $( ".yearpick" ).datepicker({
            minViewMode: 2,
@@ -335,7 +335,7 @@
       }
     });
 
-    $('#shows').on('click','.remove_solo', function(e){ //user click on remove field
+    $('#shows').on('click','.remove', function(e){ //user click on remove field
       console.log("removed");
       $(this).closest('tr').remove();
        x--; 
@@ -349,7 +349,7 @@
       e.preventDefault();
       if(x < max_fields){ //max input box allowed
         x++; //text box increment
-        $(group).append('<table cellspacing="2"><tr><td width="10%"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="group_shows_[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="15%"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="group_shows_[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="25%"><input type="text" class="form-control" name="group_shows_[description][]" maxlength="100" style="padding-left: 5px;"></td><td width="5%"></td><td><button type="button" class="btn btn-danger remove_group">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
+        $(group).append('<table cellspacing="2"><tr><td width="10%"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="group_shows_[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="15%"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="group_shows_[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="25%"><input type="text" class="form-control" name="group_shows_[description][]" maxlength="100" style="padding-left: 5px;"></td><td width="5%"></td><td><button type="button" class="btn btn-danger remove">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
 
         $( ".yearpick" ).datepicker({
            minViewMode: 2,
@@ -365,7 +365,7 @@
       }
     });
 
-    $('#group').on('click','.remove_group', function(e){ //user click on remove field
+    $('#group').on('click','.remove', function(e){ //user click on remove field
       console.log("removed");
       $(this).closest('tr').remove();
        x--; 
@@ -379,7 +379,7 @@
       e.preventDefault();
       if(x < max_fields){ //max input box allowed
         x++; //text box increment
-        $(gal_press).append('<table cellspacing="2"><tr><td width="10%"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="press_data[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="15%"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="press_data[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="25%"><input type="text" class="form-control" name="press_data[description][]" maxlength="100" style="padding-left: 5px;"></td><td width="5%"></td><td><button type="button" class="btn btn-danger remove_gal_press">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
+        $(gal_press).append('<table cellspacing="2"><tr><td width="10%"><div class="input-group"><input type="text" id="yearpicker1" class="form-control datepicker yearpick" name="press_data[year][]" maxlength="100" placeholder="Year" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="15%"><div class="input-group"><input type="text" id="monthpicker1" class="form-control datepicker monthpick" name="press_data[month][]" maxlength="100" placeholder="Month" style="padding-left: 5px;" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></td><td width="2%"></td><td width="25%"><input type="text" class="form-control" name="press_data[description][]" maxlength="100" style="padding-left: 5px;"></td><td width="5%"></td><td><button type="button" class="btn btn-danger remove">x</button></td></tr><tr style="height: 5px;"/></table>'); //  add input box
 
         $( ".yearpick" ).datepicker({
            minViewMode: 2,
@@ -395,7 +395,7 @@
       }
     });
 
-    $('#gal_press').on('click','.remove_gal_press', function(e){ //user click on remove field
+    $('#gal_press').on('click','.remove', function(e){ //user click on remove field
       console.log("removed");
       $(this).closest('tr').remove();
        x--; 
