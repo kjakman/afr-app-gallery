@@ -83,7 +83,7 @@ body.exhibition .btn-sub-nav-dropdown,body.exhibitions .btn-sub-nav-dropdown {
 }
 
 /**26,Dec**/
-.datepicker.dropdown-menu { z-index: 999 !Important; }
+.datepicker.dropdown-menu { z-index: 9999 !Important; }
 
 /**21 Jan**/
 body.single_column { background-color: #b2cda1 !Important;}

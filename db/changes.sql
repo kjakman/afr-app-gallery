@@ -51,6 +51,7 @@ CREATE TABLE `minisite_exhibition_layout` (
   `Id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL
 );
+TRUNCATE TABLE `minisite_exhibition_layout`;
 
 INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
 VALUES ('10', 'Cover Page');

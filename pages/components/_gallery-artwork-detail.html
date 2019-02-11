@@ -59,11 +59,8 @@
     
 {/block}
 
-{block name=below}
-                        
-  <p>{$artwork.comment}<br>
-   {$artwork.short_description}<br>
-  </p>
-
+{block name=below}                      
+  {if ($artwork.comment)}<p>{$artwork.comment}</p><br>{/if}
+  {if ($artwork.description)}<p>{$artwork.description}</p>{/if}
 {/block}
 
