@@ -1,7 +1,7 @@
                           {if ($collection_type_name && $scope.artworks|@count)}
                           <div class="gallery-related" id="collection_artworks">
                            <div class="profileinfo italic mb10">
-                            <h1>Other Art in the {$collection_type_name}</h1>
+                            <h1>Other Art in the test {$collection_type_name}</h1>
                            </div>
                             {$items = $scope.artworks}
                             {$scope.obj_type = 'artwork'}
@@ -9,7 +9,7 @@
                           </div>
                           {/if}
 
-                          <!-- to display other exhibition from exhibition id -->
+                          <!-- to display other exhibition from exhibition id (Added by pradeepa)-->
                           {if ($artist_name && $scope.other_exhibitions|@count)} 
                           <div class="gallery-related" id="collection_artworks">
                            <div class="profileinfo italic mb10">

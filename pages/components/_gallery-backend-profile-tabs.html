@@ -5,6 +5,12 @@
   {$tab5_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'details']}
   {$tab6_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'curator']}
   {$tab7_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'collector']}
+  <!-- subtabs -->
+  {$tab8_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'solo']}
+  {$tab9_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'group']}
+  {$tab10_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'press']}
+  {$tab11_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'awards']}
+  {$tab12_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'freetext']}
   
   {$tab = $page.tab|default:'basic'}
   
@@ -36,7 +42,7 @@
     {elseif ($tab == 'about')}
       {{"include": "_user-profile-edit-overview.html"}}    
     {elseif ($tab == 'artist')}
-      {{"include": "_user-profile-edit-artist.html"}} 
+      {{"include": "_gallery-backend-profile-solo.html"}} 
     {elseif ($tab == 'art')}
       {{"include": "_user-profile-edit-art.html"}} 
     {elseif ($tab == 'details')}
@@ -45,6 +51,17 @@
       {{"include": "_user-profile-edit-gallery.html"}}    
     {elseif ($tab == 'collector')}
       {{"include": "_user-profile-edit-collector.html"}}    
+    {elseif ($tab == 'solo')}
+      {{"include": "_gallery-backend-profile-solo.html"}}    
+    {elseif ($tab == 'group')}
+      {{"include": "_gallery-backend-profile-group.html"}}    
+    {elseif ($tab == 'press')}
+      {{"include": "_gallery-backend-profile-press.html"}}    
+    {elseif ($tab == 'awards')}
+      {{"include": "_gallery-backend-profile-awards.html"}}  
+    {elseif ($tab == 'freetext')}
+      {{"include": "_gallery-backend-profile-freetext.html"}}   
+     
     {else}
       {"Unknown tab `$tab`"|alert:"error"}
     {/if}    

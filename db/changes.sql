@@ -19,7 +19,7 @@ SELECT '40', 'contact' from dual
 WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '40');
 
 ALTER TABLE `media_collection`
-ADD `about_title` varchar(100) NOT NULL DEFAULT ;
+ADD `about_title` varchar(100) NOT NULL;
 
 CREATE TABLE `profile_media_map` (
   `id` int(8) NOT NULL,
@@ -86,12 +86,13 @@ VALUES ('10', 'Contact');
 INSERT INTO `minisite_contact_layout` (`id`, `name`)
 VALUES ('20', 'Bio & CV');
 
-TRUNCATE TABLE `minisite_page_type`;
 
 CREATE TABLE `minisite_page_type` (
   `id` smallint(4) NOT NULL,
   `name` varchar(32) NOT NULL
 );
+
+TRUNCATE TABLE `minisite_page_type`;
 
 
 INSERT INTO `minisite_page_type` (`id`, `name`)
