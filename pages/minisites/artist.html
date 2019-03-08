@@ -23,9 +23,9 @@
             About Artist
           </button>
           <div class="dropdown-menu">
-              <li class="sub-nav-li"><a href="{$basepath}/{$page}/{$slug}/images" class="dropdown-item">Images</a></li>
-            {if ($scope.show_bio)}<li class="sub-nav-li"><a href="{$basepath}/{$page}/{$slug}/biography" class="dropdown-item">Biography</a></li>{/if}
-            {if ($scope.show_pub)}<li class="sub-nav-li"><a href="{$basepath}/{$page}/{$slug}/publications" class="dropdown-item">Publications</a></li>{/if}
+              <li class="sub-nav-li"><a href="{$basepath}{$artist.page_slug}{$slug}/images" class="dropdown-item">Images</a></li>
+            {if ($scope.show_bio)}<li class="sub-nav-li"><a href="{$basepath}{$artist.page_slug}{$slug}/biography" class="dropdown-item">Biography</a></li>{/if}
+            {if ($scope.show_pub)}<li class="sub-nav-li"><a href="{$basepath}{$artist.page_slug}{$slug}/publications" class="dropdown-item">Publications</a></li>{/if}
           </div>
         </div>
       </div>
