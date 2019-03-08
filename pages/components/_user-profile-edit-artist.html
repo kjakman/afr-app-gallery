@@ -1,8 +1,9 @@
 <!-- subtabs -->
-{$tab8_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'solo']}
-{$tab9_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'group']}
-{$tab10_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'press']}
-{$tab11_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'awards']}
+{$tab9_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'solo']}
+{$tab10_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'group']}
+{$tab11_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'press']}
+{$tab12_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'awards']}
+{$tab13_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'freetext']}
 
 {$tab = 'solo'}
 
@@ -17,6 +18,8 @@
     {{"include": "_gallery-backend-profile-press.html"}}    
   {elseif ($tab == 'awards')}
     {{"include": "_gallery-backend-profile-awards.html"}}    
+  {elseif ($tab == 'freetext')}
+    {{"include": "_gallery-backend-profile-freetext.html"}} 
    
   {else}
     {"Unknown tab `$tab`"|alert:"error"}

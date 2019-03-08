@@ -1,11 +1,11 @@
 {$profile = $scope.profile}
 
 <ul class="nav nav-tabs">
-  <li><a href="{$tab8_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_solo_link">Solo Exhibitions</a></li>
-  <li><a href="{$tab9_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_group_link">Group Exhibitions</a></li>
-  <li><a href="{$tab10_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_about_link">Press</a></li>
-  <li ><a href="{$tab11_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_awards_link">Awards</a></li>  
-  <li class="active"><a href="{$tab12_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_free_link">Free Text</a></li>
+  <li><a href="{$tab9_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_solo_link">Solo Exhibitions</a></li>
+  <li><a href="{$tab10_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_group_link">Group Exhibitions</a></li>
+  <li><a href="{$tab11_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_about_link">Press</a></li>
+  <li ><a href="{$tab12_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_awards_link">Awards</a></li>  
+  <li class="active"><a href="{$tab13_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_free_link">Free Text</a></li>
 </ul>
           
 <form id="user_overview_form" class="ajax-submit"  data-handler="save-cv" data-toggle="validator">
@@ -13,20 +13,9 @@
   <input type="hidden" name="id"  value="{$scope.profile.profile_id}" />
   <input type="hidden" name="user_id" value="{$scope.profile.user_id}" />
   <input type="hidden" name="site_id" value="{$site.id}" />
-  <input type="hidden" name="description" value="{$scope.profile.description}" />
               
-<div class="form-group form-group-icon-left">
-  <label>Solo Shows</label>
+<div class="form-group form-group-icon-left mt20">
   <textarea name="gallery_solo_shows" class="summernote form-control" placeholder="List of solo shows">{$scope.profile.gallery_solo_shows}</textarea>
 </div>
 
-<div class="form-group form-group-icon-left">
-  <label>Group Shows</label>
-  <textarea name="gallery_group_shows" class="summernote form-control" placeholder="List of group shows">{$scope.profile.gallery_group_shows}</textarea>
-</div>
-
-<div class="form-group form-group-icon-left">
-  <label>Press</label>
-  <textarea name="press" class="summernote form-control" placeholder="List of press mentions">{$scope.profile.press}</textarea>
-</div>
 

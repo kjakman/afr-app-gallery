@@ -1,0 +1,65 @@
+
+{$tab1_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'basic']}
+{$tab2_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'bio']}
+{$tab3_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'details']}
+{$tab4_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artist']}
+{$tab5_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'art']}
+{$tab6_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'notification']}
+{$tab7_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'password']}
+{$tab8_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'verification']}
+
+{$tab9_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'solo']}
+{$tab10_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'group']}
+{$tab11_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'press']}
+{$tab12_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'awards']}
+{$tab13_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'freetext']}
+
+
+{$tab = $page.tab|default:'basic'}
+
+<ul class="nav nav-tabs mt20">
+    <li {if ($tab == 'basic')  }class="active"{/if}><a href="{$tab1_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_basic">Basic</a></li>
+    <li {if ($tab == 'bio')  }class="active"{/if}><a href="{$tab2_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_bio">Bio/Photo</a></li>
+    <li {if ($tab == 'details')  }class="active"{/if}><a href="{$tab3_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_details">Details</a></li>
+    <li {if ($tab == 'artist')  }class="active"{/if}><a href="{$tab4_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_cv">CV</a></li>
+    <li {if ($tab == 'art')  }class="active"{/if}><a href="{$tab5_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_art">Selected Art</a></li>
+    <li {if ($tab == 'notification')  }class="active"{/if}><a href="{$tab6_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="account_notifications">Notification</a></li>
+    <li {if ($tab == 'password')  }class="active"{/if}><a href="{$tab7_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="account_password">Password</a></li>
+    <li {if ($tab == 'verification')  }class="active"{/if}><a href="{$tab8_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="verify">Verification</a></li>  
+</ul>
+
+<div class="tab-content">
+  <div id="tab_content" class="tab-pane fade in active pt20">
+    {if ($tab == 'basic')}
+      {{"include": "_user-profile-edit-settings.html"}}
+    {elseif ($tab == 'bio')}
+      {{"include": "_user-profile-edit-overview.html"}}
+    {elseif ($tab == 'details')}
+      {{"include": "_user-profile-edit-details.html"}}
+    {elseif ($tab == 'artist')}
+      {{"include": "_gallery-backend-profile-solo.html"}} 
+    {elseif ($tab == 'art')}
+      {{"include": "_user-profile-edit-art.html"}}
+    {elseif ($tab == 'notification')}
+      {{"include": "_user-account-notifications.html"}}
+    {elseif ($tab == 'password')}
+      {{"include": "_user-account-password.html"}}
+    {elseif ($tab == 'verification')}
+      {{"include": "_user-profile-edit-verification.html"}}
+    {elseif ($tab == 'solo')}
+      {{"include": "_gallery-backend-profile-solo.html"}}    
+    {elseif ($tab == 'group')}
+      {{"include": "_gallery-backend-profile-group.html"}}    
+    {elseif ($tab == 'press')}
+      {{"include": "_gallery-backend-profile-press.html"}}    
+    {elseif ($tab == 'awards')}
+      {{"include": "_gallery-backend-profile-awards.html"}}   
+    {elseif ($tab == 'freetext')}
+      {{"include": "_gallery-backend-profile-freetext.html"}} 
+    {else}
+      {"Unknown tab `$tab`"|alert:"error"}
+    {/if}  
+  </div>
+</div>
+
+

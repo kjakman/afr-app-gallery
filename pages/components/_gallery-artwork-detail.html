@@ -40,13 +40,24 @@
     
     {$profile_link = $smarty.const.PAGE_PROFILE|link}
     
-    <hr class="full">
-    <br>
-  
-    <div class='italic'>For more information:</div>
-    {$profile = $curator}    
-    {{"include": "_gallery-curator-information"}}
-    
+    {$artist_ids = $collection.artist_ids|@json_decode}
+    {if (!$artist_ids)} 
+      {$artist_ids = [$collection.artist_id]}
+    {/if}
+    {if ($artist_ids|@count > 0)}
+      {if ($artist_ids|@count == 1)}
+        {$artist = 1}
+      {/if}
+    {/if}
+
+    {if (($artist) && ($artist_ids[0] != $curator.id))}
+      <hr class="full">
+      <br>
+      <div class='italic'>For more information:</div>
+      {$profile = $curator}    
+      {{"include": "_gallery-curator-information"}}
+    {/if}
+
     {if ($collection.location_id)}
       {{"include": "_gallery-collection-location"}}
     {else}

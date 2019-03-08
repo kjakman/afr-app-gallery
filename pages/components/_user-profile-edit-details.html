@@ -1,8 +1,8 @@
 {$profile = $scope.profile}
 <form id="user_profile_form" class="ajax-submit" data-handler="save-details" data-toggle="validator" data-reload_link="#user-verification-link">
   <!-- <input type="hidden" name="obj_type" value="user_profile" /> -->
-  <input type="hidden" name="obj_id"  value="{$scope.user.profile_id}" />
-  <input type="hidden" name="user_id" value="{$scope.user.user_id}" />
+  <input type="hidden" name="obj_id"  value="{$profile.profile_id}" />
+  <input type="hidden" name="user_id" value="{$profile.user_id}" />
   <input type="hidden" name="site_id" value="{$site.id}" />
   <input type="hidden" name="page"  value="profile" />
   <input type="hidden" name="artist" value="1" />
@@ -10,7 +10,7 @@
 
   <div class="row mb20">
     <div class="col-sm-6">
-    <label>Gallery Name</label>
+    <label>Gallery/Collective/Business Name (Optional)</label>
     <div class="input-group">
       <span class="input-group-addon"><i class="fa fa-user"></i></span>
       <input name="gallery_name" id="gallery_name" class="form-control" value="{$scope.profile.gallery_name}" type="text"  />

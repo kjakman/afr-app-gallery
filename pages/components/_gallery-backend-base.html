@@ -92,8 +92,9 @@
     {/if}
     
     {if (!$list && $obj_type == 'media_collection')}
-      {$buttons = 1}
-      <li><a href="/backend/plugin/add?_pv=1&amp;_pt=media_collection&amp;_pid={$id}" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i> Create Plugin</a></li>
+      {$buttons = 1}  
+      <!-- Temporarily hidden 
+        <li><a href="/backend/plugin/add?_pv=1&amp;_pt=media_collection&amp;_pid={$id}" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i> Create Plugin</a></li> -->
     {/if}
     
     {if ($object && !$form && $auth_edit_backend)}

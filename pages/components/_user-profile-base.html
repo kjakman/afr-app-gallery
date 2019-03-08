@@ -17,11 +17,19 @@
           </div>
 
           {/if}
+          
 
 {/if}
+        {if ($scope.backend)}
+          {$new_url = str_replace("/backend", "", $url)}
+          {$new_url = str_replace("?_pv=1", "", $new_url)}
+          <div class="mb20">
+            <h3>URL: <a href="{$new_url}">{$new_url}</a> </h3>
+          </div>
+        {/if}
 
 
-<div class="container">
+<div class="container mt40">
   <div class="row">
     <div class="col-lg-5 col-md-4 col-sm-3">
       <div id="user" class="mb20">
@@ -39,7 +47,7 @@
                     
           {if ($url)}
             {$url_encoded = $url|urlencode}
-            <a href="#" title="Share on Facebook" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?u={$url_encoded}">
+            <a href="#" title="Share on Facebooks" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?u={$url_encoded}">
               <span class="fa fa-stack fa-2x">
                 <i class="fa fa-circle-thin fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x"></i>

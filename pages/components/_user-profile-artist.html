@@ -9,7 +9,9 @@
   {$curator_ids = $scope.curator_ids}
   {if ($curator_ids|@count)}
     {$profile_link = $smarty.const.PAGE_PROFILE|link}
-  <h3>{if ($curator_ids|@count == 1)}Represented by:{else}Represented by:{/if}</h3>
+    {if ($profile.id != $curator_ids[0])}
+      <h3>{if ($curator_ids|@count == 1)}Represented by:{else}Represented by:{/if}</h3>
+    
     <div class="profileinfo">
     {foreach from=$curator_ids item=curator_id}
       {$profile = $curator_id|get_user|obj2array}
@@ -20,6 +22,7 @@
       {{"include": "_gallery-contact-information.html"}}
     {/foreach}
     </div>
+  {/if}
     {$profile = $scope.profile} {* reset variable if needed later *}    
   {/if}
    

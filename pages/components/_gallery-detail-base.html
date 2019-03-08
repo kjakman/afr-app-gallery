@@ -60,17 +60,24 @@
                     {block name=top}
                     {if (!$object.active)}
                       {"This `$what` has not been published and is not visible to the public."|alert:"warning"}
+                    {else}
+                      {$url = $scope.url|default:$this_full_url}
+                      {if ($scope.backend)}
+                        {if (!$artwork)}
+                          <div class="mt20">
+                            <h3>URL: <a href="{$url}">{$url}</a> </h3>
+                          </div>
+                        {/if}
+                      {/if}
                     {/if}
                     {/block}
 
-                    
+                    {$url = $scope.url|default:$this_full_url}
                     <div class="profileinfo"> 
                       <div class="gallery-artwork-detail">
                         <article class="row mt20">
                           <section class="col-sm-6 mr20">
                             {block name=image}{/block}
-
-                            {$url = $scope.url|default:$this_full_url}
                               
                             {if (!$plugin)}
                             <nav class="actions-buttons mt20 center" data-item='{$item_json}'>

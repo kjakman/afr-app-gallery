@@ -26,7 +26,7 @@
     
   <br>
   
-  
+  {$artist = 0}
   {if ($collection_type == $smarty.const.MEDIA_COLLECTION_TYPE_PROJECT)}
     {$profile = $artist}
     {{"include": "_gallery-artist-information"}}
@@ -38,21 +38,24 @@
     {/if}
     {if ($artist_ids|@count > 0)}
       {if ($artist_ids|@count == 1)}
-      <h2>Artist:</h2>
+        <h2>Artist:</h2>
+        {$artist = 1}
       {else}
-      <h2>Artists:</h2>
+        <h2>Artists:</h2>
       {/if}
       
-      {foreach from=$artist_ids item=artist_id}      
+      {foreach from=$artist_ids item=artist_id}
         {$profile = $artist_id|get_user:1}
         {{"include": "_gallery-artist-information"}}
       {/foreach}
       <br>
     {/if}
-  
-    <h2>Represented by:</h2>
-    {$profile = $curator}    
-    {{"include": "_gallery-curator-information"}}
+    
+    {if (($artist) && ($artist_ids[0] != $curator.id))}
+      <h2>Representeds by:</h2>
+      {$profile = $curator} 
+      {{"include": "_gallery-curator-information"}}
+    {/if}
     
     {if ($collection.location_id)}
       {{"include": "_gallery-collection-location"}}

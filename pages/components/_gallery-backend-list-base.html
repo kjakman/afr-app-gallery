@@ -282,18 +282,28 @@ function bstArtworkStatusFormatter(value, row, index) {
     var edit_button = '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>';
     return view_button + ' ' + edit_button;
   }
+// For network page
+  function bstActionFormatter1(value, row, index) {
+    var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    console.log("base_link = " + base_link + " pv=" + pv);
+    var view_button = '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-share-alt" style="color:#2B60DE"></i></a>';
+    var edit_button = '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>';
+    return view_button + ' ' + edit_button;
+  }
 //For artwork page with clone icon
   function bstCloneActionFormatter(value, row, index) {
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     var buttons = bstActionFormatter(value, row, index);
-    var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>'; 
+    /*var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>'; */
 
     var pop_btn = '<a id="'+row.id + '" class="clone_modal_icon" data-toggle="modal" data-target="#clone_modals"><i class="fa fa-clone"></i></a>';
     var share_btn = '<a href="https://www.facebook.com/sharer/sharer.php?u=http://new.vpatina.dci.in/item/lets-sail-for-over-there-and-see-what-we-come-across?_aid=20361" id="'+row.id + '" class="share" ><i class="glyphicon glyphicon-share"></i></a>';
 
-    return buttons + ' ' + plugin_button + ' ' + pop_btn; 
+    return buttons + ' ' + pop_btn; 
   }
 
 //For exhibition page without clone icon
@@ -302,9 +312,15 @@ function bstArtworkStatusFormatter(value, row, index) {
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     var buttons = bstActionFormatter(value, row, index);
-    var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>'; 
+    var share_btn = '<a href="' + base_link + '/' + row.id + '/edit/publish?_pv=' + pv + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-share-alt" style="color:#2B60DE"></i></a>';
 
-    return buttons + ' ' + plugin_button;  
+    return buttons + ' ' + share_btn; 
+
+    /*
+      Temporarily hidden
+      var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>';
+      return buttons + ' ' + plugin_button;  
+    */ 
   }
 
 //For Artist table without clone and plugin icon
@@ -312,7 +328,7 @@ function bstArtworkStatusFormatter(value, row, index) {
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    var buttons = bstActionFormatter(value, row, index);
+    var buttons = bstActionFormatter1(value, row, index);
     //var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>'; 
 
     return buttons;  

@@ -4,11 +4,11 @@
 {$show_data = json_decode($scope.profile.show_data,True)}
 
 <ul class="nav nav-tabs">
-  <li><a href="{$tab8_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_solo_link">Solo Exhibitions</a></li>
-  <li class="active"><a href="{$tab9_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_group_link">Group Exhibitions</a></li>
-  <li><a href="{$tab10_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_press_link">Press</a></li>
-  <li><a href="{$tab11_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_awards_link">Awards</a></li>
-  <li><a href="{$tab12_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_free_link">Free Text</a></li>
+  <li><a href="{$tab9_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_solo_link">Solo Exhibitions</a></li>
+  <li class="active"><a href="{$tab10_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_group_link">Group Exhibitions</a></li>
+  <li><a href="{$tab11_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_press_link">Press</a></li>
+  <li><a href="{$tab12_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_awards_link">Awards</a></li>
+  <li><a href="{$tab13_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_free_link">Free Text</a></li>
 </ul>
           
 <form id="user_overview_form" class="ajax-submit"  data-handler="save-cv" data-toggle="validator">
@@ -21,7 +21,7 @@
   <input type="hidden" name="show_data[press]" {if ($show_data['press'] == '1')} value="1" {else} value="0" {/if} />
   <input type="hidden" name="show_data[awards]" {if ($show_data['awards'] == '1')} value="1" {else} value="0" {/if} />
 
-<div class="form-group form-group-icon-left mt40">
+<div class="form-group form-group-icon-left mt20">
   <table cellspacing="10">
     <tr>
       <td width="40%"><label>Group Shows</label></td>
