@@ -46,7 +46,7 @@
           </div>
                     
           {if ($url)}
-            {$url_encoded = $url|urlencode}
+            {$url_encoded = "`$site_url``$url`"|urlencode}
             <a href="#" title="Share on Facebooks" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?u={$url_encoded}">
               <span class="fa fa-stack fa-2x">
                 <i class="fa fa-circle-thin fa-stack-2x"></i>
@@ -59,7 +59,7 @@
                 <i class="fa fa-twitter fa-stack-1x"></i>
               </span>
             </a>
-            <a href="#" title="Share on Google Plus" class="fb-loader-popup" data-url="https://plus.google.com/share?url={$url_encoded}">
+            <!-- <a href="#" title="Share on Google Plus" class="fb-loader-popup" data-url="https://plus.google.com/share?url={$url_encoded}">
               <span class="fa fa-stack fa-2x">
                 <i class="fa fa-circle-thin fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x"></i>
@@ -70,8 +70,21 @@
                 <i class="fa fa-circle-thin fa-stack-2x"></i>
                 <i class="fa fa-digg fa-stack-1x"></i>
               </span>
+            </a> -->
+            <a href="#" title="Share on Pinterest" class="fb-loader-popup" data-url='https://pinterest.com/pin/create/button/?url={$url_encoded}&amp;media={$site_url}{$picture}&amp;description={$title}'>
+              <span class="fa fa-stack fa-2x">
+                <i class="fa fa-circle-thin fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x"></i>
+              </span>
             </a>
-            <a href="#" title="Share by email" class="fb-loader-popup" data-url="/share/?url={$url_encoded}">
+            <a href="#" title="Share on LinkedIn" class="fb-loader-popup" data-url='https://www.linkedin.com/shareArticle?mini=true&amp;url={$url_encoded}&amp;title={$title}'>
+              <span class="fa fa-stack fa-2x">
+                <i class="fa fa-circle-thin fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x"></i>
+              </span>
+            </a>
+            <a href="#" title="Share by email" class="fb-loader-popup" data-url="/share/?url={$url_encoded}" data-template="{$scope.mail_template}" data-controller="{$scope.mail_controller}"
+                                    data-obj_type="{$scope.obj_type}" data-obj_id="{$scope.obj_id}">
               <span class="fa fa-stack fa-2x">
                 <i class="fa fa-circle-thin fa-stack-2x"></i>
                 <i class="fa fa-envelope fa-stack-1x"></i>

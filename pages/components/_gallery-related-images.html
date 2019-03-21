@@ -14,7 +14,7 @@
                           {if ($artist_name && $scope.other_exhibitions|@count)} 
                           <div class="gallery-related" id="collection_artworks">
                            <div class="profileinfo italic mb10">
-                            <h1>Other Art in the {$collection_type_name}</h1>
+                            <h1>Other Art in the Exhibition</h1>
                            </div>
                             {$items = $scope.other_exhibitions}
                             {$scope.obj_type = 'artwork'}
@@ -69,7 +69,7 @@
                           {if ($scope.curator_name && $scope.my_projects|@count)}
                           <div class="gallery-related" id="artist_exhibitions">
                            <div class="profileinfo italic mb10">
-                            <h1>My Projects and Exhibitions curator</h1>
+                            <h1>Projects and Exhibitions by {$scope.curator_name}</h1>
                            </div>
                             {$items = $scope.my_projects}
                             {{"include": "_gallery-collection-items.html"}}
@@ -79,7 +79,7 @@
                           {if ($artist_name && $scope.artist_exhibitions|@count)}
                           <div class="gallery-related" id="artist_exhibitions">
                            <div class="profileinfo italic mb10">
-                            <h1>Other Exhibition featuring {$artist_name}</h1>
+                            <h1>Exhibitions featuring {$artist_name}</h1>
                            </div>
                             {$items = $scope.artist_exhibitions}
                             {{"include": "_gallery-collection-items.html"}}
@@ -100,7 +100,7 @@
                           {if ($scope.curator_name && $scope.curator_exhibition|@count)} 
                           <div class="gallery-related" id="curator_exhibitions">
                            <div class="profileinfo italic mb10">
-                            <h1>Other Exhibition curated by {$scope.curator_name}</h1>
+                            <h1>Exhibitions curated by {$scope.curator_name}</h1>
                            </div>
                             {$items = $scope.curator_exhibition}
                             {{"include": "_gallery-collection-items.html"}}
@@ -115,7 +115,7 @@
                           {if ($curator_name && $scope.curator_exhibitions|@count)} 
                           <div class="gallery-related" id="curator_exhibitions">
                            <div class="profileinfo italic mb10">
-                            <h1>Other Exhibition curated by {$curator_name}</h1>
+                            <h1>Exhibitions curated by {$curator_name}</h1>
                            </div>
                             {$items = $scope.curator_exhibitions}
                             {{"include": "_gallery-collection-items.html"}}

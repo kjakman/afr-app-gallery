@@ -10,7 +10,7 @@
   {if ($curator_ids|@count)}
     {$profile_link = $smarty.const.PAGE_PROFILE|link}
     {if ($profile.id != $curator_ids[0])}
-      <h3>{if ($curator_ids|@count == 1)}Represented by:{else}Represented by:{/if}</h3>
+      <h3>{if ($curator_ids|@count == 1)}Presented by:{else}Presented by:{/if}</h3>
     
     <div class="profileinfo">
     {foreach from=$curator_ids item=curator_id}

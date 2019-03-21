@@ -56,6 +56,17 @@
   {$item_json = $item_data|@json_encode}
                           
   {$fav_class = ($scope.collected) ? "fa-star" : "fa-star-o"}
+
+  {$url = $scope.url|default:$this_full_url}
+  {$media = "http://new.vpatina.dci.in`$picture`"}
+  
+  <head>
+    <meta property="og:url"           content="{$url}" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Vpatina" />
+    <meta property="og:description"   content="{$title}" />
+    <meta property="og:image"         content="{$media}" />
+  </head>
   
                     {block name=top}
                     {if (!$object.active)}
@@ -113,7 +124,10 @@
                               
                               {if ($object.active)}
                                 {$url_encoded = $url|urlencode}
-                                <a href="#" title="Share on Facebook" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?u={$url_encoded}">
+                                
+                                <!-- {$media = "`$site_url``$picture`"} -->
+                                
+                                <a href="#" title="Share on Facebook" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?u={$url}">
                                   <span class="fa fa-stack fa-2x">
                                     <i class="fa fa-circle-thin fa-stack-2x"></i>
                                     <i class="fa fa-facebook fa-stack-1x"></i>
@@ -125,12 +139,12 @@
                                     <i class="fa fa-twitter fa-stack-1x"></i>
                                   </span>
                                 </a>
-                                <a href="#" title="Share on Google Plus" class="fb-loader-popup" data-url="https://plus.google.com/share?url={$url_encoded}">
+                                <!-- <a href="#" title="Share on Google Plus" class="fb-loader-popup" data-url="https://plus.google.com/share?url={$url_encoded}">
                                   <span class="fa fa-stack fa-2x">
                                     <i class="fa fa-circle-thin fa-stack-2x"></i>
                                     <i class="fa fa-google-plus fa-stack-1x"></i>
                                   </span>
-                                </a>
+                                </a> -->
                                 <a href="#" title="Share on Pinterest" class="fb-loader-popup" data-url='https://pinterest.com/pin/create/button/?url={$url_encoded}&amp;media={$site_url}{$picture}&amp;description={$title}'>
                                   <span class="fa fa-stack fa-2x">
                                     <i class="fa fa-circle-thin fa-stack-2x"></i>

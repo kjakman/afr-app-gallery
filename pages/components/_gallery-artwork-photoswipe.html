@@ -1,0 +1,76 @@
+{$all_exhi = []}
+
+{$other_exhi = $scope.other_exhibitions}
+  {foreach from=$other_exhi item=exhibition}
+    {if ($artwork.title_image == $exhibition.media_id)}
+        {$exhibitions = $exhibition}
+    {/if}
+  {/foreach}
+{$all_exhi = array($exhibitions)+$other_exhi}
+
+{$cachebust = "?ts`$smarty.now`"}
+<link rel="stylesheet" type="text/css" media="all" href="/afr/js/vp/photoswipe.css?v=4.1.1-1.0.5" / >
+<link rel="stylesheet" type="text/css" media="all" href="/afr/js/vp/default-skin/default-skin.css{$cachebust}" / >
+<link rel="stylesheet" type="text/css" media="all" href="/afr/js/vp/vp.min.css{$cachebust}" / >
+{$index = 0}
+{$container_id = "artwork_`$all_exhi[0].id`"}
+{$data = ["obj_type" => "media_collection","obj_id" => $all_exhi[0].media_collection_id, "plugin_id" => "1355","container_id" => $container_id]}
+{$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}
+
+    <figure id="{$container_id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-defined="1" class="__vp-plugin-container vp-loader-photoswipe">
+      <a href="#" data-caption="{$all_exhi[0].name}">
+        <img src="{$all_exhi[0].media_id|photo:'big'}" class="" id="__vp-view-button-1355"><br>
+      </a>
+    </figure>
+    
+
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>                                 
+    <div class="pswp__scroll-wrap">
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+      <div class="pswp__ui pswp__ui--hidden">
+        <div class="pswp__top-bar">
+          <div class="pswp__counter"></div>
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+          <button class="pswp__button pswp__button--like vp__favorite-link pswp__element--disabled" title="Like" id="likeBtn"></button>
+          <button class="pswp__button pswp__button--user pswp__element--disabled" title="User" id="userBtn"></button>
+          <button class="pswp__button pswp__button--chat pswp__element--disabled" title="Chat" id="chatBtn"></button>
+          <button class="pswp__button pswp__button--contact pswp__element--disabled" title="Contact" id="contactBtn"></button>
+          <button class="pswp__button pswp__button--calendar pswp__element--disabled" title="Calendar" id="calendarBtn"></button>
+          <button class="pswp__button pswp__button--map" title="Map" id="mapBtn"></button>
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+          <button class="pswp__button pswp__button--info" title="Info" id="vp__infoBtn"></button>
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap" id="vp__share-modal">
+          <div id="vp__share-modal-content" class="vp__share-modal-content arrow-box"></div> 
+        </div>    
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>    
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>    
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>    
+      </div>    
+    </div>    
+  </div>  
+  <div id="vp__my_modal" class="w3-modal my-modal-off" style="position:absolute;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,0.6);display:none">
+    <div class="w3-modal-content vp__my-modal-content w3-animate-opacity" style="background-color: #fff;color:#000">
+      <span onclick="document.getElementById('vp__my_modal').style.display='none'" style="padding-top: 0px !important;padding-bottom: 6px !important" class="w3-button w3-xlarge w3-display-topright">&times;</span>
+      <div id="vp__my-modal-content" class="w3-container-off">
+      </div>
+    </div>
+  </div>
+
+<script src="/afr/js/vp/vp.js?ts1552641027"></script>
