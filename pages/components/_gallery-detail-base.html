@@ -1,6 +1,7 @@
   {$collection = $scope.collection}
   {$artwork = $scope.artwork}
   {$plugin = $scope.plugin}
+  {$picture = ""}
   
   {if ($collection)}
     {$object = $collection}
@@ -32,10 +33,10 @@
   {/if}
     
   {if ($collection_id)}  
-    {$picture = $collection_id|collection_photo:'big'}
+    {$picture = $collection.title_image|photo:'big'}
     {$title = "`$collection.title` by `$curator_name`"}
   {else}
-    {$picture = $artwork.media_id|photo:"big"}
+    {$picture = $artwork.title_image|photo:"big"}
     {$title = "`$artwork.name` by `$artist_name`"}
   {/if}
   
@@ -58,15 +59,6 @@
   {$fav_class = ($scope.collected) ? "fa-star" : "fa-star-o"}
 
   {$url = $scope.url|default:$this_full_url}
-  {$media = "http://new.vpatina.dci.in`$picture`"}
-  
-  <head>
-    <meta property="og:url"           content="{$url}" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Vpatina" />
-    <meta property="og:description"   content="{$title}" />
-    <meta property="og:image"         content="{$media}" />
-  </head>
   
                     {block name=top}
                     {if (!$object.active)}
@@ -124,10 +116,12 @@
                               
                               {if ($object.active)}
                                 {$url_encoded = $url|urlencode}
+                                <!-- {$media = "http://new.vpatina.dci.in`$picture`"} -->
+                                {$media = "`$site_url``$picture`"}
+                                {$img = $media|urlencode}
+                                {$descp = $title|urlencode}
                                 
-                                <!-- {$media = "`$site_url``$picture`"} -->
-                                
-                                <a href="#" title="Share on Facebook" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?u={$url}">
+                                <a href="#" title="Share on Facebook" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?u[url]={$url_encoded}&amp;u[image]={$img}&amp;u[description]={$descp}">
                                   <span class="fa fa-stack fa-2x">
                                     <i class="fa fa-circle-thin fa-stack-2x"></i>
                                     <i class="fa fa-facebook fa-stack-1x"></i>
