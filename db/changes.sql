@@ -118,3 +118,11 @@ UPDATE `exhibition_type` SET
 `name` = 'Showroom/Selection',
 `description` = ''
 WHERE `id` = '40';
+
+#22 Mar 2019
+
+ALTER TABLE `user_profile`
+CHANGE `description` `bio_description` text COLLATE 'utf8_general_ci' NOT NULL;
+
+ALTER TABLE `user_profile`
+ADD `free_text` text NOT NULL;

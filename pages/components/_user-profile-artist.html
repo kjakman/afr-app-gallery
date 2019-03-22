@@ -34,19 +34,20 @@
     
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#empty">Art/Exhibitions </a></li>
-      {if ($profile.description)}<li><a data-toggle="tab" href="#description">Overview </a></li>{/if}
+      {if ($profile.bio_description != '')}<li><a data-toggle="tab" href="#description">Overview </a></li>{/if}
       {if (($show_data['solo_shows'] == 1) && ($profile.solo_shows_ != '[]'))}<li><a data-toggle="tab" href="#solo_text">Solo Shows</a></li>{/if}
       {if (($show_data['group_shows'] == 1) && ($profile.group_shows_ != '[]'))}<li><a data-toggle="tab" href="#group_text">Group Shows</a></li>{/if}  
       {if (($show_data['press'] == 1) && ($profile.press_data != '[]'))}<li><a data-toggle="tab" href="#press_text">Press </a></li>{/if}
       {if (($show_data['awards'] == 1) && ($profile.awards != '[]'))}<li><a data-toggle="tab" href="#award_text">Awards </a></li>{/if}
+      {if ($profile.free_text != '')}<li><a data-toggle="tab" href="#free_text">Free Text </a></li>{/if}
     </ul>
     <div class="tab-content">
       <div id="empty" class="tab-pane fade mt20 in active mb20">
         
       </div>
       <div id="description" class="tab-pane fade mt20 mb20">
-        {if ($profile.description)}
-          <div>{$profile.description}</div>
+        {if ($profile.bio_description)}
+          <div>{$profile.bio_description}</div>
         {/if}
       </div>
 
@@ -113,6 +114,10 @@
         </table>       
       </div>
       {/if}
+      <div id="free_text" class="tab-pane fade mt20 mb20">
+        <h4>Free Text : </h4>
+          {$profile.free_text}
+      </div>
   </div>
 </div>
 

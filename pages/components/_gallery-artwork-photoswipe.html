@@ -16,13 +16,15 @@
 {$container_id = "artwork_`$all_exhi[0].id`"}
 {$data = ["obj_type" => "media_collection","obj_id" => $all_exhi[0].media_collection_id, "plugin_id" => "1355","container_id" => $container_id]}
 {$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}
-
-    <figure id="{$container_id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-defined="1" class="__vp-plugin-container vp-loader-photoswipe">
+  {if ($all_exhi[0].media_collection_id)}
+    <figure id="{$container_id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index={$index} class="__vp-plugin-container vp-loader-photoswipe">
       <a href="#" data-caption="{$all_exhi[0].name}">
         <img src="{$all_exhi[0].media_id|photo:'big'}" class="" id="__vp-view-button-1355"><br>
       </a>
     </figure>
-    
+  {else}
+    <img src="{$artwork.title_image|photo:'big'}" class=""><br>
+  {/if} 
 
   <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="pswp__bg"></div>                                 
