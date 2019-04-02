@@ -1,16 +1,23 @@
 {{"extend": "_user-profile-base.html"}}
 
 {block name=profile}
+<div class="artistProfile">
   {$profile = $scope.profile}
   {{"include": "_gallery-curator-information.html"}}
   <div class="profileinfo">
-  	<h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+    {if ($profile.address_formatted)}
+      <h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+      {{"include": "_gallery-profile-location"}}
+    {else}
+      <h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+    {/if}
   </div>
   {{"include": "_gallery-contact-information.html"}}
-  
+</div>  
 {/block}
 
 {block name=description}
+<div class="artistProfile">
    <p>{$scope.profile.description}</p>
 
      <div style="text-align: left;">
@@ -99,4 +106,5 @@
          {/if}
      </div>
    </div>
+</div>
 {/block}

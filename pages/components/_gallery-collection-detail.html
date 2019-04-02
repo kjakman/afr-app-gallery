@@ -38,10 +38,10 @@
     {/if}
     {if ($artist_ids|@count > 0)}
       {if ($artist_ids|@count == 1)}
-        <h2>Artist:</h2>
+        <h3>Artist:</h3>
         {$artist = 1}
       {else}
-        <h2>Artists:</h2>
+        <h3>Artists:</h3>
       {/if}
       
       {foreach from=$artist_ids item=artist_id}
@@ -52,7 +52,7 @@
     {/if}
     
     {if (($artist) && ($artist_ids[0] != $curator.id))}
-      <h2>Presented by:</h2>
+      <h3>Presented by:</h3>
       {$profile = $curator} 
       {{"include": "_gallery-curator-information"}}
     {/if}

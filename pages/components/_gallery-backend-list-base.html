@@ -502,9 +502,6 @@ $table.bootstrapTable().on('load-success.bs.table', function(e, data) {
 $('load-success.bs.table').load(function() {
   $('.form-control').attr('id', 'searchbar');
 });
-
- 
-  
     
 </script>
 
@@ -541,7 +538,7 @@ $('load-success.bs.table').load(function() {
         <b class="overlay-title" style="font-size: 25px;">Make a Duplicate of this Art Record with a new name?</b>
       </div>
        
-      <form name="clone-form" class="ajax-submit" id="clone_dialog_form"  data-handler="clone-artwork" data-reload_link="#gbe_artworks_link">
+      <form name="clone-form" class="cal-form ajax-submit" id="clone_dialog_form"  data-handler="clone-artwork" data-reload_link="#gbe_artworks_link">
         <div class="modal-body">
           <p>This action cannot be undone</p>
           
@@ -552,7 +549,8 @@ $('load-success.bs.table').load(function() {
           
           <input type="hidden" class="form-control" name="obj_id" value="">
           <input type="hidden" class="form-control" name="obj_type" value="artwork">
-          <input type="submit" class="btn btn-success" value="Duplicate">
+          <button type="submit" class="btn btn-success">Duplicate</button>
+          <!-- <input type="submit" class="btn btn-success" value="Duplicate"> -->
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
         </div>        
       </form>

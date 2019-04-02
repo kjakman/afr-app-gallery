@@ -1,5 +1,9 @@
 
+    {if (!strpos($this_url, 'login'))}
+      <div class="header-top navbar navbar-default nav-header-hide {$nav_class}">
+    {else}
       <div class="header-top navbar navbar-default {$nav_class}">
+    {/if}
         <div class="container">
           <!--div class="row"-->
             <!--div class="col-xs-12"-->

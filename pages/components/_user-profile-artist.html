@@ -2,29 +2,46 @@
 
 {block name=profile}
   {$profile = $scope.profile}
-  {{"include": "_gallery-artist-information.html"}}
-
-  {{"include": "_gallery-contact-information.html"}}
-  
   {$curator_ids = $scope.curator_ids}
-  {if ($curator_ids|@count)}
-    {$profile_link = $smarty.const.PAGE_PROFILE|link}
-    {if ($profile.id != $curator_ids[0])}
-      <h3>{if ($curator_ids|@count == 1)}Presented by:{else}Presented by:{/if}</h3>
-    
-    <div class="profileinfo">
-    {foreach from=$curator_ids item=curator_id}
-      {$profile = $curator_id|get_user|obj2array}
-      {$data = ["site_id" => $site.id, "obj_type" => "user", "obj_id" => $profile.user_id, "obj_subtype" => $smarty.const.USER_ROLE_CURATOR]}
-      {$json = $data|@json_encode}
-      <h1><a href="{$profile_link}{$profile.user_id}" class="cms-link gallery-link" data-data='{$json}'>{$profile.display_name}</a></h1>
-      <h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+  <div class="artistProfile">
+    {if ($profile.id == $curator_ids[0])}
+      {{"include": "_gallery-artist-information.html"}}
+      {if ($profile.address_formatted)}
+        {{"include": "_gallery-profile-location"}}
+      {else}
+        <h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+      {/if}
       {{"include": "_gallery-contact-information.html"}}
-    {/foreach}
-    </div>
-  {/if}
-    {$profile = $scope.profile} {* reset variable if needed later *}    
-  {/if}
+
+    {else}
+      {{"include": "_gallery-artist-information.html"}}
+      {{"include": "_gallery-contact-information.html"}}
+    
+      {if ($curator_ids|@count)}
+        {$profile_link = $smarty.const.PAGE_PROFILE|link}
+          <h3>{if ($curator_ids|@count == 1)}Presented by:{else}Presented by:{/if}</h3>
+          <div class="profileinfo">
+          {foreach from=$curator_ids item=curator_id}
+            {$profile = $curator_id|get_user|obj2array}
+            {$data = ["site_id" => $site.id, "obj_type" => "user", "obj_id" => $profile.user_id, "obj_subtype" => $smarty.const.USER_ROLE_CURATOR]}
+            {$json = $data|@json_encode}
+            <h1><a href="{$profile_link}{$profile.user_id}" class="cms-link gallery-link" data-data='{$json}'>{$profile.display_name}</a></h1>
+
+            {if ($profile.address_formatted)}
+              <h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+              {{"include": "_gallery-profile-location"}}
+            {else}
+              <h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+            {/if}
+            
+            {{"include": "_gallery-contact-information.html"}}
+          {/foreach}
+          </div>
+        
+        {$profile = $scope.profile} {* reset variable if needed later *}    
+      {/if}
+    {/if}
+  </div>
    
 {/block}
 
@@ -39,9 +56,9 @@
       {if (($show_data['group_shows'] == 1) && ($profile.group_shows_ != '[]'))}<li><a data-toggle="tab" href="#group_text">Group Shows</a></li>{/if}  
       {if (($show_data['press'] == 1) && ($profile.press_data != '[]'))}<li><a data-toggle="tab" href="#press_text">Press </a></li>{/if}
       {if (($show_data['awards'] == 1) && ($profile.awards != '[]'))}<li><a data-toggle="tab" href="#award_text">Awards </a></li>{/if}
-      {if ($profile.free_text != '')}<li><a data-toggle="tab" href="#free_text">Free Text </a></li>{/if}
+      {if ($profile.free_text != '')}<li><a data-toggle="tab" href="#free_text">CV </a></li>{/if}
     </ul>
-    <div class="tab-content">
+    <div class="tab-content profileDetails">
       <div id="empty" class="tab-pane fade mt20 in active mb20">
         
       </div>
@@ -115,7 +132,7 @@
       </div>
       {/if}
       <div id="free_text" class="tab-pane fade mt20 mb20">
-        <h4>Free Text : </h4>
+        <h4>CV : </h4>
           {$profile.free_text}
       </div>
   </div>

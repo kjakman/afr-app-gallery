@@ -136,3 +136,49 @@ body.single_column { background-color: #b2cda1 !Important;}
 .gallery-artwork-detail .photo-grid .photo-grid-container .photo-grid-title.artinfo { position:relative; padding:0px 20px;  }
 #curator_exhibitions .photo-grid-container.gallery-list-item .photo-grid-title { padding:0px 20px;  }
 }
+
+/**27.mar 2019**/
+.pagination-info { display:none !important; }
+
+/**28.mar 2019**/
+@media  (max-width: 480px){
+
+#curator_artworks .profileinfo h1, #curator_exhibitions .profileinfo h1, #artist_artworks .profileinfo h1, #artist_exhibitions .profileinfo h1, .gallery-artwork-detail .profileinfo h1, .profileinfo.italic.mb10 h1 {
+    font-size: 36px;
+    padding: 0px 15px;
+}
+
+.gallery-artwork-detail article.row h3 { padding:0px 15px;  }
+.gallery-artwork-detail article.row p { padding:0px 15px;  }
+.gallery-artwork-detail article.row .photo-grid-title a h3  { padding:0px 0px;  }
+/* #curator_artworks .photo-grid-title h4, #curator_exhibitions .photo-grid-title h4, #artist_artworks .photo-grid-title h4, #artist_exhibitions .photo-grid-title h4, .gallery-artwork-detail .photo-grid-title h4, .photo-grid-title.artinfo h4 {  
+    padding: 0px 15px;
+}
+#curator_artworks .photo-grid-title h2, #curator_exhibitions .photo-grid-title h2, #artist_artworks .photo-grid-title h2, #artist_exhibitions .photo-grid-title h2, .gallery-artwork-detail .photo-grid-title h2 {    
+    padding: 0px 15px;
+}
+#curator_artworks .photo-grid-title h3, #curator_exhibitions .photo-grid-title h3, #artist_artworks .photo-grid-title h3, #artist_exhibitions .photo-grid-title h3, .gallery-artwork-detail .photo-grid-title h3, .photo-grid-title.artinfo h3 { padding:0px 15px;  }
+#curator_exhibitions .photo-grid-container.gallery-list-item .photo-grid-title {
+    padding: 0px 0px;
+} */
+.profileinfo .tab-content.profileDetails { padding:0px 15px;  }
+.artistProfile { padding:0px 15px;  }
+
+}
+/**29.mar 2019**/
+.nav-header-hide { display:none; }
+.__edit_page-off{ display:none; }
+.slimmenu-menu-collapser{ display:none !important; }
+/* #main-footer{ display:none; }
+
+*/
+
+h1 {font-size:28px  !Important;  }
+h2 { font-size:25px !Important; }
+h3 { font-size:21px !Important; }
+h4 { font-size:18px !Important; }
+p { font-size:16px !Important;  }
+
+h2.subtitle{ font-size: 16px !important; }
+h4.subtitle{ font-size: 16px !important; }
+h3.subtitle{ font-size: 14px !important; }
