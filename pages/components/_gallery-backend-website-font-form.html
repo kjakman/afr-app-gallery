@@ -1,0 +1,24 @@
+<form class="ajax-submit" data-handler="save-minisite-design">
+  <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
+  <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">
+  <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">  
+  <input hidden="1" name="next_tab" type="hidden" value="styling"> 
+
+    <div class="col-sm-12">
+      <label for="Fonts">Fonts</label>
+      <div class="form-group">
+        <input type="radio" name="font_type" id="radio1" value="1" > Modern
+      </div>
+      <div class="form-group">
+        <input type="radio" name="font_type" id="radio1" value="2" > Classic
+      </div>
+    </div>
+    
+    <input type="submit" class="btn btn-success" value="Save" id="submit">
+</form>
+<script type="text/javascript">
+  $("#gbe_artist_link").hide();
+  $("#gbe_exhibition_link").hide();
+  $("#gbe_home_link").hide();
+  $("#gbe_contact_link").hide();
+</script>
