@@ -119,48 +119,22 @@ UPDATE `exhibition_type` SET
 `description` = ''
 WHERE `id` = '40';
 
-#22 Mar 2019
+# 22 Mar 2019
 
-ALTER TABLE `user_profile`
-CHANGE `description` `bio_description` text COLLATE 'utf8_general_ci' NOT NULL;
+ALTER TABLE `user_profile` ADD `bio_description` text COLLATE 'utf8_general_ci' NOT NULL default '';
+ALTER TABLE `user_profile` ADD `free_text` text NOT NULL default '';
 
-ALTER TABLE `user_profile`
-ADD `free_text` text NOT NULL;
+# 4 April 2019
 
-#4 April 2019
-
-ALTER TABLE `minisite_contact_layout`
-ADD PRIMARY KEY `id` (`id`);
-
-ALTER TABLE `minisite_contact_layout`
-CHANGE `id` `id` smallint(3) unsigned NOT NULL DEFAULT '0' FIRST;
-
-ALTER TABLE `minisite_exhibition_layout`
-ADD PRIMARY KEY `id` (`id`);
-
-ALTER TABLE `minisite_exhibition_layout`
-CHANGE `id` `id` smallint(3) unsigned NOT NULL DEFAULT '0' FIRST;
-
-ALTER TABLE `minisite_layout`
-ADD PRIMARY KEY `id` (`id`);
-
-ALTER TABLE `minisite_layout`
-CHANGE `id` `id` smallint(3) unsigned NOT NULL DEFAULT '0' FIRST;
-
-ALTER TABLE `minisite_page`
-ADD PRIMARY KEY `id` (`id`);
-
-ALTER TABLE `minisite_page_type`
-ADD PRIMARY KEY `id` (`id`);
-
-ALTER TABLE `minisite_page_type`
-CHANGE `id` `id` smallint(4) unsigned NOT NULL DEFAULT '0' FIRST;
-
-ALTER TABLE `opening_hours`
-ADD PRIMARY KEY `id` (`id`);
-
-ALTER TABLE `page_map`
-ADD PRIMARY KEY `id` (`id`);
-
-ALTER TABLE `profile_media_map`
-ADD PRIMARY KEY `id` (`id`);
+ALTER TABLE `minisite_contact_layout` ADD PRIMARY KEY `id` (`id`);
+ALTER TABLE `minisite_contact_layout` CHANGE `id` `id` smallint(3) unsigned NOT NULL DEFAULT '0' FIRST;
+ALTER TABLE `minisite_exhibition_layout` ADD PRIMARY KEY `id` (`id`);
+ALTER TABLE `minisite_exhibition_layout` CHANGE `id` `id` smallint(3) unsigned NOT NULL DEFAULT '0' FIRST;
+ALTER TABLE `minisite_layout` ADD PRIMARY KEY `id` (`id`);
+ALTER TABLE `minisite_layout` CHANGE `id` `id` smallint(3) unsigned NOT NULL DEFAULT '0' FIRST;
+ALTER TABLE `minisite_page` ADD PRIMARY KEY `id` (`id`);
+ALTER TABLE `minisite_page_type` ADD PRIMARY KEY `id` (`id`);
+ALTER TABLE `minisite_page_type` CHANGE `id` `id` smallint(4) unsigned NOT NULL DEFAULT '0' FIRST;
+ALTER TABLE `opening_hours` ADD PRIMARY KEY `id` (`id`);
+ALTER TABLE `page_map` ADD PRIMARY KEY `id` (`id`);
+ALTER TABLE `profile_media_map` ADD PRIMARY KEY `id` (`id`);
