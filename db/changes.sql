@@ -48,34 +48,34 @@ WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'profile_media_
 #jan 28
 
 CREATE TABLE `minisite_exhibition_layout` (
-  `Id` int(10) NOT NULL,
+  `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL
 );
 TRUNCATE TABLE `minisite_exhibition_layout`;
 
-INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
 VALUES ('10', 'Cover Page');
 
-INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
 VALUES ('20', 'Landscape With Time Separator');
 
-INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
 VALUES ('30', 'Cover Page & Landscape');
 
-INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
 VALUES ('40', 'Timeline');
 
-INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
 VALUES ('50', 'Natural With Time Separator');
 
-INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
 VALUES ('60', 'Natural');
 
-INSERT INTO `minisite_exhibition_layout` (`Id`, `name`)
+INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
 VALUES ('70', 'tiles');
 
 CREATE TABLE `minisite_contact_layout` (
-  `Id` int(10) NOT NULL,
+  `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL
 );
 TRUNCATE TABLE `minisite_contact_layout`;
@@ -136,10 +136,10 @@ ALTER TABLE `minisite_contact_layout`
 CHANGE `id` `id` smallint(3) unsigned NOT NULL DEFAULT '0' FIRST;
 
 ALTER TABLE `minisite_exhibition_layout`
-ADD PRIMARY KEY `Id` (`Id`);
+ADD PRIMARY KEY `id` (`id`);
 
 ALTER TABLE `minisite_exhibition_layout`
-CHANGE `Id` `Id` smallint(3) unsigned NOT NULL DEFAULT '0' FIRST;
+CHANGE `id` `id` smallint(3) unsigned NOT NULL DEFAULT '0' FIRST;
 
 ALTER TABLE `minisite_layout`
 ADD PRIMARY KEY `id` (`id`);
