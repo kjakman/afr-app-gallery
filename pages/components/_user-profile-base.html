@@ -46,8 +46,7 @@
           </div>
                     
           {if ($url)}
-            {$url_encoded = "`$site_url``$url`"|urlencode}
-            {$full_url = "`$site_url``$url`"}
+            {$url_encoded = $url|urlencode}
             <a href="#" title="Share on Facebooks" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?u={$url_encoded}">
               <span class="fa fa-stack fa-2x">
                 <i class="fa fa-circle-thin fa-stack-2x"></i>

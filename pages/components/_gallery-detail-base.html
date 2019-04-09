@@ -121,7 +121,8 @@
                                 {$img = $media|urlencode}
                                 {$descp = $title|urlencode}
                                 
-                                <a href="#" title="Share on Facebook" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?u[url]={$url_encoded}&amp;u[image]={$img}&amp;u[description]={$descp}">
+                                <!-- <a href="#" title="Share on Facebook" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?u[url]={$url_encoded}&u[image]={$img}&u[description]={$descp}"> -->
+                                <a href="#" title="Share on Facebook" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?url={$url_encoded}">
                                   <span class="fa fa-stack fa-2x">
                                     <i class="fa fa-circle-thin fa-stack-2x"></i>
                                     <i class="fa fa-facebook fa-stack-1x"></i>
