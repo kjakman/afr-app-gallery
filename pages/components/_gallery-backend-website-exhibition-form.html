@@ -2,7 +2,9 @@
   {$obj_id = $scope.page_id}
   {$data = json_decode($minisitepage.data, TRUE)}
 
-    <form class="ajax-submit" data-handler="save-minisite-page">
+  {{"include": "_gallery-backend-website-subtab.html"}}
+
+    <form class="ajax-submit" data-handler="save-minisite-page" id="exhibition_form">
         <input hidden="1" name="minisite_id" type="hidden" value="{$minisite.id|default:$id}">
         <input hidden="1" name="obj_id" type="hidden" value="{$obj_id}">
         <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id}">
@@ -13,16 +15,16 @@
             <div class="row">
             <div class="form-group col-sm-8">
               <label for="menu-title">Menu Title</label>
-              <input type="text" class="form-control" maxlength="255" name="menu_title" value="{$minisitepage.menu_title}">
+              <input type="text" class="form-control" maxlength="15" name="menu_title" value="{$minisitepage.menu_title}">
             </div>
             <div class="form-group col-sm-8">
               <label for="page-title">Page Title</label>
-              <input type="text" class="form-control" maxlength="255" name="page_title" value="{$minisitepage.page_title}">
+              <input type="text" class="form-control" maxlength="15" name="page_title" value="{$minisitepage.page_title}">
             </div>
-            <div class="form-group col-sm-8">
+            <!-- <div class="form-group col-sm-8">
               <label for="minisite-exhibition-layout">Exhibitions - Smart Filter</label>
               {"data[layout]"|object_select:"minisite_exhibition_layout":["class" => "form-control", "value" => $data.layout]}
-            </div>
+            </div> -->
           </div>  
         </div>
       </div>
@@ -51,22 +53,22 @@
               <tr>
                 <td>
                   <input name='data[show_past]' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($data.show_past == '1')}checked{/if} class="form-control" name="data[show_past]" value="1" style= "width:20px">
+                  <input type="checkbox" {if ($data.show_past == '1')}checked{/if} class="form-control datefilter" name="data[show_past]" value="1" style= "width:20px">
                 </td>
                 <td style= "width:200px">Previous Exhibitions</td>
                 <td>
                   <input name='data[show_current]' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($data.show_current == '1')}checked{/if} class="form-control" name="data[show_current]" value="1" style= "width:20px">
+                  <input type="checkbox" {if ($data.show_current == '1')}checked{/if} class="form-control datefilter" name="data[show_current]" value="1" style= "width:20px">
                 </td>
                 <td style= "width:200px">Current Exhibitions</td>
                 <td>
                   <input name='data[show_future]' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($data.show_future == '1')}checked{/if} class="form-control" name="data[show_future]" value="1" style= "width:20px">
+                  <input type="checkbox" {if ($data.show_future == '1')}checked{/if} class="form-control datefilter" name="data[show_future]" value="1" style= "width:20px">
                 </td>
                 <td style= "width:200px">Future Exhibitions</td>
                 <td>
                   <input name='data[show_latest]' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($data.show_latest == '1')}checked{/if} class="form-control" name="data[show_latest]" value="1" style= "width:20px">
+                  <input type="checkbox" {if ($data.show_latest == '1')}checked{/if} class="form-control datefilter" name="data[show_latest]" value="1" style= "width:20px">
                 </td>
                 <td style= "width:500px">Display Latest Exhibition in cases where page would otherwise be empty</td>
               </tr>
@@ -81,17 +83,17 @@
               <tr>
                 <td>
                   <input name='data[show_gallery]' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($data.show_gallery == '1')}checked{/if} class="form-control" name="data[show_gallery]" value="1" style= "width:20px">
+                  <input type="checkbox" {if ($data.show_gallery == '1')}checked{/if} class="form-control typefilter" name="data[show_gallery]" value="1" style= "width:20px">
                 </td>
                 <td style= "width:200px">Gallery Exhibitions</td>
                 <td>
                   <input name='data[show_artfair]' value='0' type='hidden'> 
-                  <input type="checkbox" {if ($data.show_artfair == '1')}checked{/if} class="form-control" name="data[show_artfair]" value="1" style= "width:20px" >
+                  <input type="checkbox" {if ($data.show_artfair == '1')}checked{/if} class="form-control typefilter" name="data[show_artfair]" value="1" style= "width:20px" >
                 </td>
                 <td style= "width:200px">Art Fairs</td>
                 <td>
                   <input name='data[show_others]' value='0' type='hidden'> 
-                  <input type="checkbox" {if ($data.show_others == '1')}checked{/if} class="form-control" name="data[show_others]" value="1" style= "width:20px" >
+                  <input type="checkbox" {if ($data.show_others == '1')}checked{/if} class="form-control typefilter" name="data[show_others]" value="1" style= "width:20px" >
                 </td>
                 <td style= "width:200px">Other Events</td>
               </tr>
@@ -106,6 +108,20 @@
         $("#gbe_home_link").hide();
         $("#gbe_artist_link").hide();
         $("#gbe_contact_link").hide();
+        $("#gbe_bio_link").hide();
         //$("#gbe_styling_link").hide();
         //$("#gbe_basic_link").hide();
+
+        $("#exhibition_form").submit(function(){
+            var checked = $(".datefilter:checked").length;
+            if (!checked){
+                alert("Filter Exhibitions by Dates - Please check at least one checkbox");
+                return false;
+            }
+            var checked = $(".typefilter:checked").length > 0;
+            if (!checked){
+                alert("Filter Exhibitions by type - Please check at least one checkbox");
+                return false;
+            }
+        });
     </script>

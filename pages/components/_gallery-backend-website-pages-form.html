@@ -35,6 +35,9 @@
                   {if ({$pagelists.type} == 40)}
                     {$tab = 'contact'}
                   {/if}
+                  {if ({$pagelists.type} == 50)}
+                    {$tab = 'bio'}
+                  {/if}
                   <td>{$tab}</td>
                   <td>{$pagelists.created}</td>
                   <td>                    
@@ -61,6 +64,7 @@
     $("#gbe_styling_link").hide();
     $("#gbe_home_link").hide();
     $("#gbe_contact_link").hide();
+    $("#gbe_bio_link").hide();
   });
   $(function() {
       $( 'tbody' ).sortable();

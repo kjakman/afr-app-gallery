@@ -2,8 +2,12 @@
 
 {$collections = $scope.collection_data}
 
+{block name=title}
+  <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
+{/block}
 
 {block name=content}
+
 {$count = 0}
 {$current = ''} {$past = ''} {$future = ''} {$latest = ''}
 {$data = json_decode($minisite_pageObj.data, TRUE)}

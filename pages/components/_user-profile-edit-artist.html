@@ -1,28 +1,8 @@
-<!-- subtabs -->
-{$tab9_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'solo']}
-{$tab10_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'group']}
-{$tab11_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'press']}
-{$tab12_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'awards']}
-{$tab13_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'freetext']}
 
-{$tab = 'solo'}
-
-<div class="tab-content">
-  <div id="tab_content" class="tab-pane fade in active pt20">       
-      
-  {if ($tab == 'solo')}
-    {{"include": "_gallery-backend-profile-solo.html"}}    
-  {elseif ($tab == 'group')}
-    {{"include": "_gallery-backend-profile-group.html"}}    
-  {elseif ($tab == 'press')}
-    {{"include": "_gallery-backend-profile-press.html"}}    
-  {elseif ($tab == 'awards')}
-    {{"include": "_gallery-backend-profile-awards.html"}}    
-  {elseif ($tab == 'freetext')}
-    {{"include": "_gallery-backend-profile-freetext.html"}} 
-   
-  {else}
-    {"Unknown tab `$tab`"|alert:"error"}
-  {/if}    
-  </div>
-</div>
+<ul class="nav nav-tabs">
+  <li {if ($tab == 'solo') || ($tab == 'artist') }class="active"{/if}><a {if ($getpv)} href= "{$tab9_link}?_pv=viewartistpage&site_id={$site_id}&page_id={$page_id}&user_id={$scope.obj_id}" {else} href= "{$tab9_link}?_pv=1" {/if} class="ajax-loader" data-target="#subview-container" id="gbe_solo_link">Solo Exhibitions</a></li>
+  <li {if ($tab == 'group')  }class="active"{/if}><a {if ($getpv)} href= "{$tab10_link}?_pv=viewartistpage&site_id={$site_id}&page_id={$page_id}&user_id={$scope.obj_id}" {else} href= "{$tab10_link}?_pv=1" {/if} class="ajax-loader" data-target="#subview-container" id="gbe_group_link">Group Exhibitions</a></li>
+  <li {if ($tab == 'press')  }class="active"{/if}><a {if ($getpv)} href= "{$tab11_link}?_pv=viewartistpage&site_id={$site_id}&page_id={$page_id}&user_id={$scope.obj_id}" {else} href= "{$tab11_link}?_pv=1" {/if} class="ajax-loader" data-target="#subview-container" id="gbe_press_link">Press</a></li>
+  <li {if ($tab == 'awards')  }class="active"{/if} ><a {if ($getpv)} href= "{$tab12_link}?_pv=viewartistpage&site_id={$site_id}&page_id={$page_id}&user_id={$scope.obj_id}" {else} href= "{$tab12_link}?_pv=1" {/if} class="ajax-loader" data-target="#subview-container" id="gbe_awards_link">Awards</a></li>
+  <li {if ($tab == 'freetext')  }class="active"{/if} ><a {if ($getpv)} href= "{$tab13_link}?_pv=viewartistpage&site_id={$site_id}&page_id={$page_id}&user_id={$scope.obj_id}" {else} href= "{$tab13_link}?_pv=1" {/if} class="ajax-loader" data-target="#subview-container" id="gbe_free_link">Free Text</a></li>
+</ul>

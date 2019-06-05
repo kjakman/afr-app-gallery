@@ -1,0 +1,48 @@
+
+  {{"extend": "minisites/index.html"}}
+  {block name=title}
+    <h2 class = "default">{$minisite_pageObj.page_title}</h2>    
+    <h2 class="title">{$scope.title} Exhibition</h2>
+  {/block}  
+
+  {block name=content}                        
+    <div class="row">
+      <div class="col-md-3 text-left">
+      </div>
+      
+      <div class="col-md-9 exhibition_page text-left"> 
+        <ul class="timeline">        
+          {$i = 0}
+          {foreach from=$exhibitions item=exhibition}
+              {if ($exhibition.current == "past")}
+                {$badge_class = "danger"}
+              {elseif ($exhibition.current == "current")}
+                {$badge_class = "success"}      
+              {elseif ($exhibition.current == "future")}
+                {$badge_class = "info"} 
+              {/if}
+              
+              <li {if ($i%2)}class="timeline-inverted"{/if}>
+                <div class="timeline-badge timeline-badge-small {$badge_class}"><i class="glyphicon glyphicon-check"></i></div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
+                      <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
+                    </h6>
+                    <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
+                  </div>
+                  <div class="timeline-body">
+                    <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="img-container">
+                      <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
+                    </a>
+                  
+                    <!--p>{* $exhibition.description *}</p-->
+                  </div>
+                </div>
+              </li>
+              {$i = $i + 1}   
+          {/foreach}         
+        </ul>
+      </div>
+    </div>
+  {/block}

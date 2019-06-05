@@ -1,13 +1,11 @@
 
   {{"extend": "minisites/index.html"}}
-
-
   {block name=title}
     <h2 class = "default">{$minisite_pageObj.page_title}</h2>    
     <h2 class="title">{$scope.title} Exhibition</h2>
-  {/block}                          
+  {/block}  
 
-  {block name=content}
+  {block name=content}                        
 
   {$past =0} {$current =0} {$future = 0}
   {foreach from=$exhibitions item=exhibition}       
@@ -81,12 +79,12 @@
                       <div class="timeline-panel">
                         <div class="timeline-heading">
                           <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-                            <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}">{$exhibition.title}</a>
+                            <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
                           </h6>
                           <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
                         </div>
                         <div class="timeline-body">
-                          <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}" class="img-container">
+                          <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="img-container">
                             <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
                           </a>
                         
@@ -103,12 +101,12 @@
                         <div class="timeline-panel">
                           <div class="timeline-heading">
                             <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-                              <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}">{$exhibition.title}</a>
+                              <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
                             </h6>
                             <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
                           </div>
                           <div class="timeline-body">
-                            <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}" class="img-container">
+                            <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="img-container">
                               <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
                             </a>
                           
@@ -132,12 +130,12 @@
                 <div class="timeline-panel">
                   <div class="timeline-heading">
                     <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-                      <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}">{$exhibition.title}</a>
+                      <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
                     </h6>
                     <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
                   </div>
                   <div class="timeline-body">
-                    <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}" class="img-container">
+                    <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="img-container">
                       <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
                     </a>
                   </div>
@@ -159,11 +157,5 @@
   if($count == 2){
     $('h2.title').text("Latest Exhibition");
   }
-  /*$past_exists = "{$past_exists}";
-  $current_exists = '{$current_exists}';
-  $future_exists = '{$future_exists}';
-  if(!$past_exists) $('.past').hide();
-  if(!$current_exists) $('.current').hide();
-  if(!$future_exists) $('.future').hide();*/
 </script>
   {/block}

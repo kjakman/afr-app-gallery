@@ -1,14 +1,12 @@
 
-
 {{"extend": "minisites/index.html"}}
 {$latestexhibitions = $scope.latest}
-
 {block name=title}
-  <h2>{$minisite_pageObj.page_title}</h2>    
+  <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
 {/block}
-
 {block name=content}
-<!-- {$exhibitions|dump} -->
+
+
 
 {$data = json_decode($minisite_pageObj.data, TRUE)}
 {$arr = []}
@@ -22,7 +20,7 @@
   <div class="row">
     {foreach from=$arr key=key item=val}
       {if (($val) && ($data_exist[$key]))}
-        <h5>{$key}</h5>
+        <h5 class="sidemenu">{$key}</h5>
         <div class="row photo-grid-row col-md-12">
           <ul class="photo-grid gallery-list landscape_time col-md-12">
             {foreach from=$exhibitions item=exhibition}
@@ -55,9 +53,9 @@
                           </div>         
                         </div> 
                         <div class="exhibition-title text-center mt10">
-                          <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}"><h6 style="font-size: 14px ;">{$exhibition.title}</h6></a>
-                          <p>{$exhibition|artists}</p>
-                          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</small></p>
+                          <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h4 class="description">{$exhibition.title}</h4></a>
+                          <h2 class="description">{$exhibition|artists}</h2>
+                          <h3 class="description"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h3>
                         </div>        
                       </figure>
                     </a>
@@ -73,7 +71,7 @@
     {/foreach}
     
     {if (($data.show_latest) && (!$count))}
-      <h5>Latest</h5>
+      <h5 class="sidemenu">Latest</h5>
       <div class="row photo-grid-row col-md-12">
         <ul class="photo-grid gallery-list landscape_time col-md-12">
           {foreach from=$latestexhibitions item=exhibition}
@@ -105,9 +103,9 @@
                       </div>         
                     </div> 
                     <div class="exhibition-title text-center mt10">
-                      <a href="{$basepath}{$exhibition.page_slug}{$exhibition.slug}"><h6 style="font-size: 14px ;">{$exhibition.title}</h6></a>
-                      <p>{$exhibition|artists}</p>
-                      <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</small></p>
+                      <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h4 class="description">{$exhibition.title}</h4></a>
+                      <h2 class="description">{$exhibition|artists}</h2>
+                      <h3 class="description"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h3>
                     </div>        
                   </figure>
                 </a>
@@ -119,28 +117,4 @@
       </div>
     {/if}
   </div>
-
-  <!-- <div class="row">      exhibition in artwork view
-    <div class="col-md-2 text-left">
-    </div>
-    <div class="col-md-8 col-sm-12 detail-text">
-      <div class="row artists-row mobile-row artists-list-row artists-grid">
-        {foreach from=$exhibitions item=exhibition}          
-          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 text-left artist-grid-col">
-            <div class="image-container">  
-              <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
-                <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
-              </a>
-            </div>
-            <div class="artist-name text-center mt10">
-              <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h4>{$exhibition.title}</h4></a>
-              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition|artists}</small></p>
-              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</small></p>
-            </div>
-          </div>      
-        {/foreach}
-      </div>    
-    </div>
-  </div>  -->
-
 {/block}

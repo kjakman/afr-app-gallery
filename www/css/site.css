@@ -1,3 +1,44 @@
+@font-face {    
+    font-family: 'gotham_lightregular';
+    src: url('/css/fonts/gotham-light-webfont.eot');
+    src: url('/css/fonts/gotham-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/gotham-light-webfont.woff') format('woff'),
+         url('/css/fonts/gotham-light-webfont.ttf') format('truetype'),
+         url('/css/fonts/gotham-light-webfont.svg#gotham_lightregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {    
+    font-family: 'Helvetica Neue';
+    src: url('/css/fonts/HelveticaNeue.eot');
+    src: url('/css/fonts/HelveticaNeue.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/HelveticaNeue.woff') format('woff'),
+         url('/css/fonts/HelveticaNeue.ttf') format('truetype'),
+         url('/css/fonts/HelveticaNeue.svg#HelveticaNeue') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {    
+    font-family: 'Avenir';
+    src: url('/css/fonts/AvenirLTStd-Black.eot');
+    src: url('/css/fonts/AvenirLTStd-Black.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/AvenirLTStd-Black.woff') format('woff'),
+         url('/css/fonts/AvenirLTStd-Black.ttf') format('truetype'),
+         url('/css/fonts/AvenirLTStd-Black.svg#AvenirLTStd-Black') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {    
+    font-family: 'Helvetica';
+    src: url('/css/fonts/Helvetica.eot');
+    src: url('/css/fonts/Helvetica.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/Helvetica.woff') format('woff'),
+         url('/css/fonts/Helvetica.ttf') format('truetype'),
+         url('/css/fonts/Helvetica.svg#Helvetica') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body.artist,body.artists {
   background-color: #9cc1cb;
 }
@@ -131,7 +172,6 @@ body.single_column { background-color: #b2cda1 !Important;}
 }
 #curator_exhibitions .photo-grid .photo-grid-container IMG {  padding-bottom: 20px !important;  }
 
-
 @media  (max-width: 767px){
 .gallery-artwork-detail .photo-grid .photo-grid-container .photo-grid-title.artinfo { position:relative; padding:0px 20px;  }
 #curator_exhibitions .photo-grid-container.gallery-list-item .photo-grid-title { padding:0px 20px;  }
@@ -182,3 +222,100 @@ p { font-size:16px !Important;  }
 h2.subtitle{ font-size: 16px !important; }
 h4.subtitle{ font-size: 16px !important; }
 h3.subtitle{ font-size: 14px !important; }
+
+/*---Apr 16th shiva---*/
+.fontsty_box
+{
+    background: #b2cda1;
+    padding: 20px;
+    color: #222;
+    border:2px solid #222;
+    min-height: 225px;
+}  
+
+.fontsty_box h3
+{
+    margin:0;
+    color: #222;
+} 
+.fontsty_box h4
+{
+    color: #222;
+    margin:15px 0;
+}
+.fontsty_box p
+{
+    margin:0
+}
+.selrad_box
+{
+    background:#ed8323;
+    color: #222;
+    padding: 5px 20px;
+}
+/*---Apr 16th shiva styles end here---*/
+
+/* Apr 22 */
+ul.tabs {
+    display: inline-flex;
+    list-style-type: none;
+    position: relative;
+    right: 48px;
+}
+
+/** 7-5-2019 **/
+.menuview_vertical{
+	
+}
+.menuview_vertical .menuviewsidenav{
+	width: 25%;
+    display: block;
+    float: left;
+	padding: 0px 20px;
+}
+.menuview_vertical .menuviewsidenav a{
+	display: block;
+    width: 100%;
+    float: left;
+    text-align: left;
+    color: #000;
+    font-size: 18px;
+    line-height: 30px;
+}
+.menuview_vertical .menuviewmain{
+	width: 75%;
+    display: block;
+    float: left;
+    padding: 0px 20px;
+}
+.menuvietitle{
+	float: left;
+    font-size: 30px !important;
+    margin-bottom: 30px !important;
+    font-weight: 400;
+}
+.menuvietext{
+	width:100%;
+	float:left;
+    display: block;
+}
+.menuview_horizontal{
+	
+}
+.menuview_horizontal .menuviewsidenav{
+	float: right;
+}
+.menuview_horizontal .menuviewsidenav a{
+	display: block;
+    float: left;
+    font-size: 16px;
+    color: #000;
+    padding: 5px;
+}
+.fontsty_box hr{
+	width:100%;
+	clear:both;
+}
+.no-padding{
+	padding:0px !Important;
+}

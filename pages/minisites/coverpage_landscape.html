@@ -2,7 +2,7 @@
 {$collection = $scope.collection}
 
 {block name=title}
-  <h2>Latest Exhibition</h2>    
+    <h2 class="page_title">Latest Exhibition</h2>  
 {/block}
 
 {block name=content}
@@ -112,7 +112,6 @@
         {$arr = ['past' => $data.show_past, 'current' => $data.show_current, 'future' => $data.show_future]}
       {/if}
     
-      <div class="row">
         {foreach from=$arr key=key item=val}
           {if (($val) && ($data_exist[$key]))}
             <h5>{$key}</h5>
@@ -176,7 +175,6 @@
           {$arr = ['past' => $data.show_past, 'current' => $data.show_current, 'future' => $data.show_future]}
         {/if}
       
-      <div class="row">
         {foreach from=$arr key=key item=val}
           {if (($val) && ($data_exist[$key]))}
             <h5>{$key}</h5>

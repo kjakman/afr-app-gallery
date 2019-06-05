@@ -1,0 +1,33 @@
+{$minisitepage = $scope.minisitepage}
+{$obj_id = $scope.page_id}
+
+{{"include": "_gallery-backend-website-subtab.html"}}
+<input hidden="1" name="minisite_id" class="minisite_id" type="hidden" value="{$minisite.id|default:$id}">
+<input hidden="1" name="obj_id" class="obj_id" type="hidden" value="{$obj_id}">
+
+<div class="mt20">
+	<label>Page Background colour</label>
+	 <div class="row mt10">
+		<div class="col-sm-3">
+		  <div class="input-group">
+			<input type="radio" class="bg_colour" name="artist_colour" value="1" {if ($minisitepage.colour == '')}checked{/if} > Default
+		  </div>
+	 	</div>
+		<div class="col-sm-3">
+		  <div class="input-group">
+			<input type="radio" class="bg_colour" name="artist_colour" value="2" {if ($minisitepage.colour != '')}checked{/if} > Custom
+			<input id="focus-demo" class="colour"  value="{$minisitepage.colour}">
+		  </div>
+	 	</div>
+	 </div>
+</div>
+
+<script type="text/javascript">
+	$("#gbe_exhibition_link").hide();
+	$("#gbe_home_link").hide();   
+	$("#gbe_artist_link").hide();  
+
+	$('#focus-demo').colorpicker({
+	  	showOn:'focus'
+	  });
+</script>

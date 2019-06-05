@@ -1,0 +1,117 @@
+
+<style type="text/css">
+	body{
+		{$font_style.font_family};
+		{if ($minisite_pageObj.colour)}
+			background-color: {$minisite_pageObj.colour} !important;
+		{elseif (($minisite_pageObj.type == 10) || ($minisite_pageObj.type == 30) )}
+			/*background-color: #b2cda1;*/
+			background-color: #fff;
+		{elseif ($minisite_pageObj.type == 20)}
+			/*background-color: #9cc1cb;*/
+			background-color: #fff;
+		{else}
+			background-color: #fff;
+		{/if}
+	}
+
+	{if ($mObj.menu_type == 1)}
+		.minisite-logo h1{		
+			font-size: 36px;
+		}
+
+		h2.subtitle {
+			font-size: 12px;
+		}
+		
+		.navbar-site .nav-item .nav-link{
+			font-size: 12px;
+		}	
+	{elseif ($mObj.menu_type == 2)}
+		.minisite-logo h1{		
+			font-size: 28px;
+		}
+
+		h2.subtitle {
+			font-size: 15px;
+		}
+		
+		.nav-item .nav-link{
+			font-size: 12px;
+		}
+	{else}
+		.minisite-logo h1{		
+			{$font_style.title}
+		}
+
+		#title H2 {
+			{$font_style.sub_title}
+		}
+		
+		.navbar-site .nav-item .nav-link{
+			{$font_style.menu_title}
+		}	
+	{/if}	
+		
+	p {
+		{$font_style.p}
+	}
+	
+	h1 {
+		{$font_style.h1}
+	}
+	
+	h2 {
+		{$font_style.h2}
+	}
+	h3 {
+		{$font_style.h3}
+	}
+	h4 {
+		{$font_style.h4}
+	}
+	h5 {
+		{$font_style.h5}
+	}
+	h6 {
+		{$font_style.h6}
+	}	
+	.page_title {
+		font-size: 12px !important;
+		color: #000;
+		padding: 2em;
+		text-align: center;
+	}
+	/*h2.subtitle {
+		font-size: 12px;
+	    color: #000;
+	    text-align: left;
+	    line-height: 22px;
+	}*/
+	/*h2.sitesubtitle{
+		font-size: 12px !important; 
+	    text-align: center !important;
+	    line-height: 14px;
+	}*/
+	h2.default, h2.title{
+		font-size: 12px !important; 
+	    text-align: center !important;
+	    line-height: 14px;
+	}
+	h4.description{
+		font-size: 13px;
+		line-height: 0.625rem;
+		text-transform: capitalize;
+	}
+	h2.description{
+		font-size: 18px;
+		text-transform: capitalize;
+		font-style: italic;
+	}
+	h3.description{
+		font-size: 16px;
+		text-transform: capitalize;
+		font-weight: normal;
+	}
+
+</style>

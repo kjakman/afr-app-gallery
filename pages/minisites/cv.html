@@ -3,17 +3,19 @@
 {{"extend": "minisites/index.html"}}
 
 {$artist = $scope.artist}
-{$artist.page_slug}
-{block name=content}  
-      
+
+{block name=content} 
+{block name=title}
+  <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
+{/block} 
+
 <div class="row detail-page-row">
   <div class="col-md-3 col-sm-12 text-left artist-subnav-container">
     <div class="artist-sub-nav">
       <!-- <h1 class="sub-nav-header artist-sub-nav-header"><a href="{$basepath}{$artist.page_slug}{$slug}">{$artist.display_name}</a></h1> -->
         <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
-
-          <li><a href="{$basepath}{$artist.page_slug}/{$slug}/images"       class="">Images</a></li>
-          <li><a href="{$basepath}{$artist.page_slug}/{$slug}/biography"    class="">Biography</a></li>
+          <li><a href="{$basepath}/{$page_slug}/images" class="">Images</a></li>
+          <li><a href="{$basepath}/{$page_slug}/biography" class="">Biography</a></li>
           <!-- {if ($scope.show_pub)}<li><a href="{$basepath}{$artist.page_slug}{$slug}/publications" class="">Publications</a></li>{/if} -->
           <!-- {if ($artist.show_awards)}<li><a href="{$basepath}{$artist.page_slug}{$slug}/awards"    class="">Awards</a></li>{/if} -->
         </ul>

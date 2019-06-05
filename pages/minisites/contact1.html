@@ -1,0 +1,88 @@
+
+  {{"extend": "minisites/index.html"}}
+  
+  {block name=title}
+    <h2 class="page_title">{$minisite_pageObj.page_title}</h2>
+  {/block} 
+  {block name=content}
+  
+  <style type="text/css">
+    a.link{
+      color: blue;
+    }
+  </style>
+  <div class="row">
+    <div class="col-lg-2 col-md-3 col-sm-12">
+    </div>
+    <div class="col-lg-8 col-md-9 col-sm-12 text-left">
+      <div class="entry-content">
+        <h4>{$profileobj.display_name}</h4>
+        <p>{$profileobj.address_formatted}</p>
+        {if ({$profileobj.phone})} <p>T {$profileobj.phone}</p> {/if}
+        {if ({$profileobj.mobile})} <p>M {$profileobj.mobile}</p> {/if}
+        {if ({$profileobj.fax})} <p>F {$profileobj.fax}</p> {/if}
+        <p>
+        <p><a class="webs link" href="http://{$profileobj.url_web}">{$profileobj.url_web}</a></p>
+        <div class="gapn">
+          <h4>General Enquires</h4>
+          <p><a class="mail_to" href="mailto:{$profileobj.email_address}" target="_blank">{$profileobj.email_address}</a></p> 
+        </div>
+        <div class="gapn gapn1">
+          {$contact = json_decode($profileobj.contact,True)}
+          {foreach from=$contact item=contacts}  
+            <h4>{$contacts['title']}</h4>
+           <p><a class="mail_to link" href="mailto:{$contacts['email']}" target="_blank">{$contacts['email']}</a>
+           {$contacts['phone']}</p>
+          {/foreach}
+        </div>
+        <p>&nbsp;</p>
+        <div id="opening-hours">
+          {if ($mObj.show_timing == '1')}
+            <h4>Opening hours:</h4>
+              {$timings = json_decode($profileobj.working_hours,True)}
+              {$days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']}
+              {foreach from=$days item=day}              
+                <table>
+                  <tr>
+                    <td style= "width:100px"> {$day} </td>
+                    <td> : </td>
+                    {if ($timings[$day] == "0:00-0:00")}
+                      <td> CLOSED </td>
+                    {else}                    
+                      <td> {$timings[$day]}  </td>
+                    {/if}                  
+                  </tr>
+                </table>
+            {/foreach}
+          {/if}
+        </div><br>
+        <p>&nbsp;</p>
+         
+        {$social = json_decode($profileobj.social,True)}
+        {if ($mObj.show_social == '1')}          
+          <h4>Follow us on</h4>
+          {if ($social['twit'])}
+            <p><a href="{$social['twit']}" class="link" target="_blank" rel="noopener">Twitter</a></p>
+          {/if} 
+          {if ($social['fbook'])}
+            <p><a href="{$social['fbook']}" class="link" target="_blank" rel="noopener">Facebook</a></p>
+          {/if}
+          {if ($social['insta'])}
+            <p><a href="{$social['insta']}" class="link" target="_blank" rel="noopener">Instagram</a></p>
+          {/if}
+        {/if}
+          <p>&nbsp;</p>
+
+        {$loc = $scope.user}
+        {$loc.name = $loc.display_name}
+        {{"include":"_gallery-collection-map.html"}}
+
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-12">
+        
+
+      </div>
+    </div>
+  </div>
+
+  {/block}

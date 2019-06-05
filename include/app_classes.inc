@@ -24,6 +24,7 @@ $__CLASSES= array_merge($__CLASSES, array(
     'minisite_page_type' =>   array(USER_LEVEL_ADMIN, 'site', '', '', NF_CACHE|NF_COMPACT_LIST, 'name', '', ''),
     'minisite_page' =>       array(USER_LEVEL_ADMIN, 'site', '', '', NF_CACHE|NF_COMPACT_LIST, 'page_name', '', ''),
     'minisite_layout' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
+    'minisite_font' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
 
 ));
 
@@ -242,6 +243,8 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
      'show_subtitle'  =>    array('Show subtitle',      'bool',     1,  AF_HIDE_ADD, 0),
      'show_timing'  =>      array('Show timing',        'bool',     1,  AF_HIDE_ADD, 0),
      'show_social'  =>      array('Show social',        'bool',     1,  AF_HIDE_ADD, 0),
+     'font_type' =>         array('Fonts',              'link',  0, AF_SEARCHABLE|AF_HIDE, 'minisite_font'),
+     'menu_type' =>         array('Menu Style',         'bool',     1,  AF_HIDE_ADD, 0),
    ),
 
    "minisite_page_type" => 
@@ -262,11 +265,14 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'user_id' =>           array('User ID',          'link', ATT_DEFAULT_USER_ID, 0, 'user'),
       'type' =>              array('Type',             'many2one', 0, AF_LOG|AF_SEARCHABLE , 'minisite_page_type'),
       'menu_title'=>         array('Menu Title',  'str',  '', AF_OBLIGATORY|AF_SEARCHABLE, 128 ),
-      'page_title'=>         array('Page Title',  'str',  '', AF_OBLIGATORY|AF_SEARCHABLE, 128 ),
+      'page_title'=>         array('Page Title',  'str',  '', AF_SEARCHABLE, 128 ),
       'slug'=>               array('Slug',             'str',   '', 0, 128 ),
       'search'=>             array('Search',           'json',   ''),
       'row_order'=>          array('Row Order',        'int',   '', 0, 11 ),
       'data'=>               array('data',              'json',     '', AF_HIDE_ADD),
+      'colour'=>             array('Page Colour',       'str',   '', 0, 600 ),
+      'page_layout'=>        array('Page Layout',       'int',   '', 0, 25 ),
+      'exhibition_layout'=>  array('Exhibition Layout',       'int',   '', 0, 25 ),
    ),
 
    "minisite_layout" => 
@@ -274,5 +280,24 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'id'=>            array('ID',                'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 2),
       'name'=>          array('Name',              'str',   '', 1, 20 ),
    ),
-   
+
+    "minisite_font" => 
+   array(
+      'id'=>                 array('ID',               'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 8),
+      'created'=>            array('Created',          'datetime', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT),
+      'timestamp'=>          array('Timestamp',        'timestamp', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT, 14 ),
+      'active'  =>           array('Active?',          'bool',     1,  AF_HIDE_ADD, 0),
+      'name'=>         array('Name',      'str',   '', 0, 255 ),
+      'h1'=>           array('h1',        'str',   '', 0, 100 ),
+      'h2'=>           array('h2',        'txt',   '', ),
+      'h3'=>           array('h3',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+      'h4'=>           array('h4',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+      'h5'=>           array('h5',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+      'h6'=>           array('h6',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+      'p'=>            array('p',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+      'title'=>        array('Title',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+      'sub_title'=>    array('Sub Title',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+      'menu_title'=>   array('Menu Title',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+      'font_family'=>  array('Font Family',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+   ),   
 ));

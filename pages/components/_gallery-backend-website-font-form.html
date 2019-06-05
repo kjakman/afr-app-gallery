@@ -1,24 +1,168 @@
-<form class="ajax-submit" data-handler="save-minisite-design">
-  <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
-  <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">
-  <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">  
-  <input hidden="1" name="next_tab" type="hidden" value="styling"> 
+{$minisite = $scope.minisiteobj}
+{$fonts = $scope.fonts}
 
+{{"include": "_gallery-backend-website-style.html"}}
+
+  <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$minisite.id|default:$id}">
+  <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">     
     <div class="col-sm-12">
-      <label for="Fonts">Fonts</label>
-      <div class="form-group">
-        <input type="radio" name="font_type" id="radio1" value="1" > Modern
-      </div>
-      <div class="form-group">
-        <input type="radio" name="font_type" id="radio1" value="2" > Classic
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="fontsty_boxblk">
+            <div class="fontsty_box classic">
+              <div class="card-title classic">Exceptional Exhibition</div>
+              <ul class="tabs classic">
+                <li class="card-title">Exhibition</li>
+                <li class="card-title">Project</li>
+                <li class="card-title">News</li>
+                <li class="card-title">Team</li>
+                <li class="card-title">Contact</li>
+              </ul>
+              <hr style="margin-top: -12px; margin-bottom: 0px;">
+              <ul class="tabs classic">
+                <li class="card-title">Latest News</li>
+              </ul>
+              <p class="classic">We have some great events coming up in the next month that we would love to invite you.</p>
+            </div>
+            <div class="form-group">
+              <div class="selrad_box">
+                <input type="radio" class="font_type" name="font_type" id="radio1" value="1" {if ($minisite.font_type == '1')}CHECKED{/if}> Gotham Light
+              </div> 
+            </div> 
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="fontsty_boxblk">
+            <div class="fontsty_box modern">
+              <div class="card-title modern">Exceptional Exhibition</div>
+              <ul class="tabs modern">
+                <li class="card-title">Exhibition</li>
+                <li class="card-title">Project</li>
+                <li class="card-title">News</li>
+                <li class="card-title">Team</li>
+                <li class="card-title">Contact</li>
+              </ul>
+              <hr style="margin-top: -12px; margin-bottom: 0px;">
+              <ul class="tabs modern">
+                <li class="card-title">Latest News</li>
+              </ul>
+              <p class="modern">We have some great events coming up in the next month that we would love to invite you.</p>
+            </div>
+            <div class="form-group">
+             <div class="selrad_box">
+                <input type="radio" class="font_type" name="font_type" id="radio1" value="2" {if ($minisite.font_type == '2')}CHECKED{/if}> Helvetica Neue
+              </div> 
+            </div> 
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="fontsty_boxblk">
+            <div class="fontsty_box avenir-close">
+              <div class="card-title avenir-close">Exceptional Exhibition</div>
+              <ul class="tabs avenir-close">
+                <li class="card-title">Exhibition</li>
+                <li class="card-title">Project</li>
+                <li class="card-title">News</li>
+                <li class="card-title">Team</li>
+                <li class="card-title">Contact</li>
+              </ul>
+              <hr style="margin-top: -12px; margin-bottom: 0px;">
+              <ul class="tabs avenir-close">
+                <li class="card-title">Latest News</li>
+              </ul>
+              <p class="avenir-close">We have some great events coming up in the next month that we would love to invite you.</p>
+            </div>
+            <div class="form-group">
+             <div class="selrad_box">
+                <input type="radio" class="font_type" name="font_type" id="radio1" value="3" {if ($minisite.font_type == '3')}CHECKED{/if}> Avenir - Close
+              </div> 
+            </div> 
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="fontsty_boxblk">
+            <div class="fontsty_box gotham">
+              <div class="card-title gotham">Exceptional Exhibition</div>
+              <ul class="tabs gotham">
+                <li class="card-title">Exhibition</li>
+                <li class="card-title">Project</li>
+                <li class="card-title">News</li>
+                <li class="card-title">Team</li>
+                <li class="card-title">Contact</li>
+              </ul>
+              <hr style="margin-top: -12px; margin-bottom: 0px;">
+              <ul class="tabs gotham">
+                <li class="card-title">Latest News</li>
+              </ul>
+              <p class="gotham">We have some great events coming up in the next month that we would love to invite you.</p>
+            </div>
+            <div class="form-group">
+             <div class="selrad_box">
+                <input type="radio" class="font_type" name="font_type" id="radio1" value="4" {if ($minisite.font_type == '4')}CHECKED{/if}> Gotham Light - Close
+              </div> 
+            </div> 
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="fontsty_boxblk">
+            <div class="fontsty_box helvetica">
+              <div class="card-title helvetica">Exceptional Exhibition</div>
+              <ul class="tabs helvetica">
+                <li class="card-title">Exhibition</li>
+                <li class="card-title">Project</li>
+                <li class="card-title">News</li>
+                <li class="card-title">Team</li>
+                <li class="card-title">Contact</li>
+              </ul>
+              <hr style="margin-top: -12px; margin-bottom: 0px;">
+              <ul class="tabs helvetica">
+                <li class="card-title">Latest News</li>
+              </ul>
+              <p class="helvetica">We have some great events coming up in the next month that we would love to invite you.</p>
+            </div>
+            <div class="form-group">
+             <div class="selrad_box">
+                <input type="radio" class="font_type" name="font_type" id="radio1" value="5" {if ($minisite.font_type == '5')}CHECKED{/if}> Helvetica Neue - Close
+              </div> 
+            </div> 
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="fontsty_boxblk">
+            <div class="fontsty_box avenir">
+              <div class="card-title avenir">Exceptional Exhibition</div>
+              <ul class="tabs avenir">
+                <li class="card-title">Exhibition</li>
+                <li class="card-title">Project</li>
+                <li class="card-title">News</li>
+                <li class="card-title">Team</li>
+                <li class="card-title">Contact</li>
+              </ul>
+              <hr style="margin-top: -12px; margin-bottom: 0px;">
+              <ul class="tabs avenir">
+                <li class="card-title">Latest News</li>
+              </ul>
+              <p class="avenir">We have some great events coming up in the next month that we would love to invite you.</p>
+            </div>
+            <div class="form-group">
+             <div class="selrad_box">
+                <input type="radio" class="font_type" name="font_type" id="radio1" value="6" {if ($minisite.font_type == '6')}CHECKED{/if}> Avenir
+              </div> 
+            </div> 
+          </div>
+        </div>
+
       </div>
     </div>
-    
-    <input type="submit" class="btn btn-success" value="Save" id="submit">
-</form>
 <script type="text/javascript">
   $("#gbe_artist_link").hide();
   $("#gbe_exhibition_link").hide();
   $("#gbe_home_link").hide();
   $("#gbe_contact_link").hide();
+  $("#gbe_bio_link").hide();
 </script>

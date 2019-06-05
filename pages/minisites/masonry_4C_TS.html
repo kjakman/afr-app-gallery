@@ -1,0 +1,124 @@
+{{"extend": "minisites/index.html"}}
+{$latestexhibitions = $scope.latest}
+
+{block name=title}
+	<h2 class="page_title">{$minisite_pageObj.page_title}</h2>
+{/block}  
+
+{block name=content} 
+<style>
+.item-container{
+	margin:0px auto;
+}
+.item-grid {
+	display: block;
+	padding:0px 15px;
+    float: left;
+	overflow: hidden;
+	z-index: 1;
+}
+.item-grid-contnt{
+	
+}
+.item-grid h3 {
+	color: #000;
+}
+.item-grid p {
+	color: #5b5b5b;
+}
+.item-grid img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+.item-grid-sizer, .item-grid {
+	width: 24%;
+}
+@media screen and (max-width: 993px) {
+	.item-grid-sizer, .item-grid {
+		width: 32%;
+	}
+}
+@media screen and (max-width: 750px) {
+	.item-grid-sizer, .item-grid {
+		width: 46%;
+	}
+}
+@media screen and (max-width: 500px) {
+	.item-grid-sizer, .item-grid {
+		width: 100%;
+	}
+}
+</style>
+{$data = json_decode($minisite_pageObj.data, TRUE)}
+{$count = 0}
+{$arr = []}
+{if ($data.show_recent == 1)}
+  {$arr = ['future' => $data.show_future, 'current' => $data.show_current, 'past' => $data.show_past]}
+{else}
+  {$arr = ['past' => $data.show_past, 'current' => $data.show_current, 'future' => $data.show_future]}
+{/if}
+
+{foreach from=$arr key=key item=val}
+  {if (($val) && ($data_exist[$key]))}
+    <h5 style="text-align: left;">{$key}</h5>
+	<div class="item-container">
+		{foreach from=$exhibitions item=exhibition}
+		  {if ($exhibition.current == $key)} 
+			<div class="item-grid-sizer"></div>
+			<div class="item-gutter-sizer"></div>
+			<div class="item-grid">
+				<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="cms-link gallery-link" data-data='{$json}'>
+					<img src="{$exhibition|collection_photo:'medium'}" class="">
+				</a>
+				<br>
+				<div class="item-grid-contnt">
+					<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="cms-link gallery-link" data-data='{$json}'><h4 class="description">{$exhibition.title}</h4></a>
+					<h2 class="description">{$exhibition|artists} </h2>
+					<h3 class="description">{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h3>
+				</div>
+			</div>
+		  {/if} 
+		  {$count = 1}
+		{/foreach}
+	</div>
+  {/if}
+{/foreach}
+{if (($data.show_latest) && (!$count))}
+    <h5 style="text-align: left;">Latest</h5>
+	<div class="item-container">
+		{foreach from=$exhibitions item=exhibition}
+		  {if ($exhibition.current == $key)} 
+			<div class="item-grid-sizer"></div>
+			<div class="item-gutter-sizer"></div>
+			<div class="item-grid">
+				<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="cms-link gallery-link" data-data='{$json}'>
+					<img src="{$exhibition|collection_photo:'medium'}" class="">
+				</a>
+				<br>
+				<div class="item-grid-contnt">
+					<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="cms-link gallery-link" data-data='{$json}'><h4 class="description">{$exhibition.title}</h4></a>
+					<h2 class="description">{$exhibition|artists} </h2>
+					<h3 class="description">{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h3>
+				</div>
+			</div>
+		  {/if} 
+		{/foreach}
+	</div>
+{/if}
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js'></script>
+<script>
+	jQuery(window).on('load', function() {
+  
+	  $('.item-container').masonry({
+		columnWidth : '.item-grid-sizer',
+		gutter : 15,
+		itemSelector : '.item-grid',
+		percentPosition : 'true',
+		fitWidth: true,
+	  });
+	  
+	});
+</script>
+{/block}

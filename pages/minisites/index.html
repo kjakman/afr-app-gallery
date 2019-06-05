@@ -21,6 +21,7 @@
 {$profileobj = $scope.profileobj}
 {$userdetail = $scope.userdetail}
 {$future_past = $scope.future_past}
+{$font_style = $scope.fonts}
 
 {$minisite_pageObj = $scope.minisite_pageObj}
 {$page_slug = $scope.page_slug}
@@ -94,9 +95,11 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   
     {if ($ms_page.css)}
-    <style>
-      {$ms_page.css}
-    </style>
+      <style>
+        {$ms_page.css}
+      </style>
+    {else}
+      {{"include": "minisites/dynamic_style.html"}}
     {/if}
     
   </head>
@@ -116,66 +119,19 @@
     {$edit_menu}
     {if (0)}{{"include": "minisites/_debug.html"}}{/if}
 
-    <div class="container">
-      <div class="row header" id="header">
-        <div class="col-md-3 col-sm-2 col-xs-2 text-left">
-          <nav class="navbar navbar-light navbar-site navbar-desktop hidden-sm-down" id="navbarSite">
-              {if ($type == "artist")}
-                {{"include": "minisites/_menu-artist.html"}}
-              {else}
-                {{"include": "minisites/_menu.html"}}
-              {/if}
-          </nav>
-          <nav class="hidden-md-up navbar navbar-fixed-top-off navbar-site navbar-mobile navbar-mobile-site" role="navigation">
-            <div class="navbar-header">
-              <button class="navbar-toggler pull-left" id="mobileSiteNavBtn" type="button" data-toggle="collapse" data-target="#mobileSiteCollapsingNav">
-                &#9776;
-              </button>
-              <!--a class="navbar-brand nav-logo site-logo hidden-sm-up" href="{$basepath}">{$title}1</a-->
-            </div>
-            <div class="collapse navbar-toggleable-sm nav-links text-left" id="mobileSiteCollapsingNav">
-              {if ($type == "artist")}
-                {{"include": "minisites/_menu-artist.html"}}
-              {else}
-                {{"include": "minisites/_menu.html"}}
-              {/if}
-            </div>
-          </nav>          
-        </div>
-        <div class="col-md-8 col-sm-10 col-xs-10 text-center pt20">
-          <a class="minisite-logo" href="{$basepath|default:'/'}">
-          {if ($logo)}<img src="{$logo}">{else}<h1>{$minisite_name}</h1>{/if}
-          </a>
-        </div>        
-      </div>
-      
-      <div class="row" id="title">
-        <div class="col-md-3 col-sm-2 col-xs-2 text-left">  
-        </div>
-      
-        <div class="col-md-8 col-sm-10 col-xs-10 text-center pt20">
-          <div>
-            {if ($mObj.show_subtitle == '1')}
-              <h2>{$mObj.sub_title}</h2>
-            {/if}
-          </div>
-          {block name=title}{/block}
-          {if ($scope.header_text)}
-          <div>{$scope.header_text}</div>
-          {/if}
-          
-        </div>
-      </div>
-      <hr>
+  
+    {{"include": "minisites/menu_layout.html"}}
 
+    <div class="container">
       
       {{"include": "_page-messages.html"}}
       
       <!-- content -->
       {block name=content}{/block}    
-  
-      <br />
-  
+    </div>
+      <br/>
+      <hr>
+    <div class="container">
       <div class="row footer" id="footer">
         <div class="col-md-3 col-sm-6 col-xs-6">
           
@@ -210,7 +166,6 @@
           {if ($mObj.show_social == '1')}
             <strong>FOLLOW US</strong><br />
             {if ($social['twit'])}
-              <!-- <a class="footer-social-icon" href="{$profileobj.twitter}"><img src="{$vp}/img/footer/footer-tw@2x.png" /></a> -->
               <a class="footer-social-icon" href="{$social['twit']}"><img src="/img/footer/footer-tw@2x.png" /></a>
             {/if}
             {if ($social['fbook'])}

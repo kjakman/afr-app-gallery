@@ -1,6 +1,9 @@
   {{"extend": "minisites/index.html"}}
 
   {block name=content}
+  {block name=title}
+    <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
+  {/block} 
   {$data = json_decode($minisite_pageObj.data, TRUE)}
   
 	   <div class="row">

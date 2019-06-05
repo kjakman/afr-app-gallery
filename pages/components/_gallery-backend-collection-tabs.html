@@ -7,20 +7,21 @@
   
   {$tab6_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'settings']}
   {$tab7_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'publish']}
+  
   {$tab = $page.tab|default:'basic'}
   <ul class="nav nav-tabs">
-    <li {if ($tab == 'basic')  }class="active"{/if}><a href="{$tab1_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_basic_link">Basic</a></li>
-    {if ($collection.subtype != 40)}
-    <li {if ($tab == 'location')  }class="active"{/if}><a href="{$tab2_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_locations_link">Location</a></li>
+      <li {if ($tab == 'basic')  }class="active"{/if}><a href="{$tab1_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_basic_link">Basic</a></li>
+    {if (($collection.subtype != 40) && ($collection.subtype != 50))}
+      <li {if ($tab == 'location')  }class="active"{/if}><a href="{$tab2_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_locations_link">Location</a></li>
     {/if}
-    <li {if ($tab == 'media')}class="active"{/if}><a href="{$tab3_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_media_link">Art</a></li> 
-    <li {if ($tab == 'title')}class="active"{/if}><a href="{$tab4_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_title_link">Title Image</a></li> 
-    {if ($collection.subtype != 40)}
-    <li {if ($tab == 'events')  }class="active"{/if}><a href="{$tab5_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_events_link">Events</a></li>
+      <li {if ($tab == 'media')}class="active"{/if}><a href="{$tab3_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_media_link">Art</a></li> 
+      <li {if ($tab == 'title')}class="active"{/if}><a href="{$tab4_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_title_link">Title Image</a></li> 
+    {if (($collection.subtype != 40) && ($collection.subtype != 50))}
+      <li {if ($tab == 'events')  }class="active"{/if}><a href="{$tab5_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_events_link">Events</a></li>
     {/if}
     <!-- Temporarily hidden
     <li {if ($tab == 'settings')}class="active"{/if}><a href="{$tab6_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_settings_link">Settings</a></li> -->
-    <li {if ($tab == 'publish') }class="active"{/if}><a href="{$tab7_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_publish_link">Publish/Share</a></li>
+      <li {if ($tab == 'publish') }class="active"{/if}><a href="{$tab7_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_publish_link">Publish/Share</a></li>
   </ul>
   
   <div class="tab-content">

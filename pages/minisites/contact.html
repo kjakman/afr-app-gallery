@@ -1,14 +1,12 @@
 
 
   {{"extend": "minisites/index.html"}}
-  
+
   {block name=title}
-    <h2>{$minisite_pageObj.page_title}</h2>
-  {/block}
+    <h2 class="page_title">{$minisite_pageObj.page_title}</h2>
+  {/block}  
   
   {block name=content}
-  
-  
   <style>
   .small_text h6 { font-size:13px; color:#777; margin-bottom:5px;  }
   .small_text a {  font-size:13px; color:#777;  }
@@ -19,8 +17,9 @@
   .small_text .gapn.gapn1 p  { margin-bottom:20px;  }
   .small_text .gapn a { display:block;  }
   .small_text .gapn .mail_to  { color:#000;   }
-  
+  .page_title { text-align: center; }
   </style>
+
     <div class="row">
       <div class="col-md-4 col-lg-3 col-sm-12 text-left small-text small_text">
         <div class="gapn">

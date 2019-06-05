@@ -36,12 +36,43 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {    
+    font-family: 'Helvetica Neue';
+    src: url('/css/fonts/HelveticaNeue.eot');
+    src: url('/css/fonts/HelveticaNeue.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/HelveticaNeue.woff') format('woff'),
+         url('/css/fonts/HelveticaNeue.ttf') format('truetype'),
+         url('/css/fonts/HelveticaNeue.svg#HelveticaNeue') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {    
+    font-family: 'Avenir', 'Sans Serif';
+    src: url('/css/fonts/AvenirLTStd-Black.eot');
+    src: url('/css/fonts/AvenirLTStd-Black.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/AvenirLTStd-Black.woff') format('woff'),
+         url('/css/fonts/AvenirLTStd-Black.ttf') format('truetype'),
+         url('/css/fonts/AvenirLTStd-Black.svg#AvenirLTStd-Black') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {    
+    font-family: 'Helvetica';
+    src: url('/css/fonts/Helvetica.eot');
+    src: url('/css/fonts/Helvetica.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/Helvetica.woff') format('woff'),
+         url('/css/fonts/Helvetica.ttf') format('truetype'),
+         url('/css/fonts/Helvetica.svg#Helvetica') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
  
 
 body {
   background:#fff;
   font-family:gotham_lightregular,Arial,sans-serif;
-  text-align:center;
+/*   text-align:center; */
   color:#666;
   -webkit-font-smoothing:subpixel-antialiased
 
@@ -116,7 +147,7 @@ small {
 
 .minisite-logo H1 {
   font-size: 2em;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 ::placeholder {
@@ -152,10 +183,6 @@ small {
   margin-bottom: 30px !important;
   margin-left: 0px !important;
   margin-right: 0px !important;
-}
-.photo-grid .photo-grid-container IMG {
-  padding-bottom:0px !important;
-  margin-bottom: 0px !important;
 }
 
 .__vp-flip-back {
@@ -222,7 +249,8 @@ small {
 
 .navbar-site .nav-item .nav-link {
   color:#444;
-  font:.825em gotham_lightregular,"Trebuchet MS",Arial,Sans-Serif;
+  font-family: gotham_lightregular,"Trebuchet MS",Arial,Sans-Serif;
+  font-size:.825em;
   font-weight:400;
   text-transform:uppercase;
   letter-spacing:.4em
@@ -641,6 +669,9 @@ float:none;
 padding:5px;
 display:inline-block
 }
+.vertical_menulayout .navbar-site .nav-item  .nav-link{
+	padding: 6px 6px;
+}
 
 .navbar-site .navbar-header {
 width:100%;
@@ -770,6 +801,10 @@ z-index:300!important;
 position:absolute;
 left:0;
 top:8px
+}
+.horizontal_menulayout .navbar-site.navbar-mobile .navbar-toggler{
+	left: auto;
+    right: 0px;
 }
 
 .navbar-site.navbar-mobile .navbar-header {
@@ -2308,7 +2343,6 @@ display:none
 
 .footer {
 padding-top:28px;
-border-top:1px solid #818181;
 font-family:"Trebuchet MS",Arial,Sans-Serif;
 font-weight:400;
 text-align:left;
@@ -2552,10 +2586,10 @@ color:#000;
 opacity:.75
 }
 
-/**21 Jan**/
+/**21 Jan
 body.coverpage,body.landscape_time,body.coverpage_landscape,body.natural_time,body.natural{ 
 background-color: #b2cda1 !Important;
-}
+} **/
 
 /** 23 Jan**/
 .photo-grid.hybrid, {
@@ -2588,13 +2622,19 @@ column-count: 4;
 }
 .photo-grid.landscape_time .photo-grid-container, .photo-grid.tiles .photo-grid-container {      width: 25% !important; padding:15px;  }
 /**/ 
- .photo-grid.natural .photo-grid-container {      width: 33% !important; padding:15px;  }
+ .photo-grid.natural .photo-grid-container , .photo-grid.landscape_timethree .photo-grid-container{      width: 33% !important; padding:15px;  }
 /**28.jan**/
 .artist-grid-col { font-family: gotham_lightregular,Arial,sans-serif !important; }
  
- 
 @media only screen and (min-width : 992px) and (max-width: 1200px){ 
 
+
+}
+@media only screen and (max-width: 1200px){ 
+
+.horizontal_menulayout  .minisite-logo{
+	float: left;
+}
 
 }
 
@@ -2612,8 +2652,14 @@ column-count: 4;
 .photo-grid.landscape_time, .photo-grid.tiles {
     column-count: 2;
 }
+.horizontal_menulayout {
+    padding: 1rem 15px;
+}
+.horizontal_menulayout .page_title{
+	text-align:center;
+}
 /**/
-.photo-grid.landscape_time .photo-grid-container, .photo-grid.natural .photo-grid-container .photo-grid.tiles .photo-grid-container {      width: 50% !important; }
+.photo-grid.landscape_time .photo-grid-container, .photo-grid.landscape_timethree .photo-grid-container, .photo-grid.natural .photo-grid-container .photo-grid.tiles .photo-grid-container {      width: 50% !important; }
 /**/
 
 }
@@ -2627,4 +2673,192 @@ column-count: 4;
 /**/
 
 
+}
+
+/** 6/5/2019 **/
+.container {
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+img{max-width:100%;}
+.no_margin{
+	margin:0px;
+}
+.navbar{
+	display: block;
+    float: right;
+}
+.norml_menu_brand{
+	float: left !important;
+    text-align: left !important;
+}
+.norml_menu_list{
+	float:right !important;
+}
+.norml_menu .navbar-nav{
+	-webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+	flex-wrap: wrap;
+}
+.norml_menu .navbar-nav .nav-link{
+    padding: 1em 1.1em;
+    font-weight: 500 !important;
+    text-align: center;
+    display: block;
+	float: left;
+	text-transform: capitalize;
+}
+.horizontal_menulayout{
+    padding: 1rem 1.875rem 0.75rem;
+}
+@media only screen and (max-width: 1200px) {
+	.navbar-site.navbar-mobile {
+		width: 100% !important;
+	}
+	.norml_menu .navbar-nav .nav-link{
+		padding: 5px 0px;
+	}
+	.norml_menu .navbar-nav{
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		width: 100%;
+	}
+	.norml_menu .navbar-nav li.nav-item{
+		width: 100%;
+		display:block;
+		float:left;
+	}
+	.norml_menu_brand{
+		text-align:center !important;
+		-webkit-flex: 0 0 100%;
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+}
+@media only screen and (max-width: 993px) {
+	.container {
+		width: 100%;
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+}
+@media only screen and (max-width: 767px) {
+	.container {
+		width: 100%;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+/** 21-5-2019 **/
+.mt20 {
+    margin-top: 20px !important;
+}
+.mr20 {
+    margin-right: 20px !important;
+}
+.center {
+    text-align: center !important;
+}
+article a {
+    color: #ed8323;
+}
+article a:hover {
+    color: #c96810;
+    text-decoration: none;
+}
+article h1, article h2, article h3, article h4, article h5, article h6{
+	text-transform: capitalize;
+	margin-bottom: 10px;
+	text-transform: capitalize;
+    line-height: 1.3em;
+	letter-spacing: 0.2px;
+}
+article h1 {
+    font-size: 28px !Important;
+}
+article h2 {
+    font-size: 25px !Important;
+}
+article h3 {
+    font-size: 21px !Important;
+}
+article h4 {
+    font-size: 18px !Important;
+}
+article p {
+    font-size: 16px !Important;
+}
+article p{
+	font-size:16px;
+	text-align:left;
+	line-height: 22px;
+}
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.gallery-artwork-detail .photo-grid .photo-grid-container img {
+    padding-bottom: 20px !important;
+}
+.photo-grid .photo-grid-container, .photo-grid-5 .photo-grid-container {
+    display: inline-block;
+}
+.gallery-artwork-detail .photo-grid .photo-grid-container .pdf-thumb-box-overlay {
+    display: none;
+}
+.gallery-artwork-detail .photo-grid .photo-grid-title, .photo-grid-5 .photo-grid-title {
+    height: auto;
+}
+.gallery-artwork-detail .photo-grid .photo-grid-container .photo-grid-title.artinfo {
+    position: relative;
+}
+.gap {
+    display: block;
+    position: relative;
+    margin: 30px 0 30px 0;
+    clear: both;
+    width: 100%;
+	float:left;
+}
+.gap-small {
+    margin: 15px 0 15px 0;
+}
+#curator_artworks .profileinfo h1, #curator_exhibitions .profileinfo h1, #artist_artworks .profileinfo h1, #artist_exhibitions .profileinfo h1, .gallery-artwork-detail .profileinfo h1, .profileinfo.italic.mb10 h1 {
+    font-size: 36px !Important;
+    text-transform: capitalize;
+}
+#curator_artworks .photo-grid-title h2, #curator_exhibitions .photo-grid-title h2, #artist_artworks .photo-grid-title h2, #artist_exhibitions .photo-grid-title h2, .gallery-artwork-detail .photo-grid-title h2 {
+    font-size: 16px !Important;
+}
+#curator_artworks .photo-grid-title h3, #curator_exhibitions .photo-grid-title h3, #artist_artworks .photo-grid-title h3, #artist_exhibitions .photo-grid-title h3, .gallery-artwork-detail .photo-grid-title h3, .photo-grid-title.artinfo h3 {
+    font-size: 14px !Important;
+}
+#curator_artworks .photo-grid-title h4, #curator_exhibitions .photo-grid-title h4, #artist_artworks .photo-grid-title h4, #artist_exhibitions .photo-grid-title h4, .gallery-artwork-detail .photo-grid-title h4, .photo-grid-title.artinfo h4 {
+    font-size: 16px !Important;
+}
+
+/** 22-5-2019 **/
+.photo-grid .photo-grid-container IMG{
+    padding: 0px !important;
+	display:block;
+}
+.sidemenu{
+    padding: 15px;
+}
+
+/** VVPR 31-5-2019 **/
+.container{
+    display: block;
+    float: left;
+}
+hr{
+	display: block;
+    float: left;
+    width: 100%;
 }

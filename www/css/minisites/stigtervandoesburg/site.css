@@ -1,5 +1,5 @@
 body.artist,body.artists {
-  background-color: #9cc1cb;
+  /*background-color: #9cc1cb; */
 }
 
 body.artist .btn-sub-nav-dropdown,body.artists .btn-sub-nav-dropdown {
@@ -7,7 +7,7 @@ body.artist .btn-sub-nav-dropdown,body.artists .btn-sub-nav-dropdown {
 }
 
 body.exhibition,body.exhibitions {
-  background-color: #b2cda1;
+  /*background-color: #b2cda1; */
 }
 
 body.exhibition .btn-sub-nav-dropdown,body.exhibitions .btn-sub-nav-dropdown {
