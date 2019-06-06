@@ -1,204 +1,25 @@
 {$minisitepage = $scope.minisitepage}
+{$layouts = $scope.exhibition_layout}
 {$obj_id = $scope.page_id}
 
 {{"include": "_gallery-backend-website-subtab.html"}}
 
     <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$obj_id}">  
      <div class="row mt20">
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout4.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                        <input type="radio" class="page_layout" name="page_layout" id="radio1" value="101" {if ($minisitepage.page_layout == 101)} checked {/if} > Timeline
+        {foreach from=$layouts item=$layout}
+            <div class="col-sm-6">
+                <div class="fontsty_boxblk">
+                    <div class="fontsty_box no-padding">
+                        <img src="/img/{$layout.image}" />
+                    </div>
+                    <div class="form-group">
+                        <div class="selrad_box"> 
+                            <input type="radio" class="page_layout" name="page_layout" id="radio1" value="{$layout.id}" {if ($minisitepage.page_layout == $layout.id)} checked {/if} > {$layout.name}
+                        </div> 
                     </div> 
-                </div> 
-            </div>
-        </div> 
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout13.png" />
                 </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                        <input type="radio" class="page_layout" name="page_layout" id="radio1" value="40" {if ($minisitepage.page_layout == 40)} checked {/if} > Timeline - with filter
-                    </div> 
-                </div> 
-            </div>
-        </div>
-
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout14.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                       <input type="radio" class="page_layout" name="page_layout" id="radio1" value="103" {if ($minisitepage.page_layout == 103)} checked {/if} >   Masonry - 3 Column 
-                    </div> 
-                </div> 
-            </div>
-        </div> 
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout16.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                       <input type="radio" class="page_layout" name="page_layout" id="radio1" value="104" {if ($minisitepage.page_layout == 104)} checked {/if} >   Masonry - 4 Column
-                    </div> 
-                </div> 
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout15.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                       <input type="radio" class="page_layout" name="page_layout" id="radio1" value="105" {if ($minisitepage.page_layout == 105)} checked {/if} >   Masonry - 3 Column; by Past, Current, Future
-                    </div> 
-                </div> 
-            </div>
-        </div> 
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout17.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                       <input type="radio" class="page_layout" name="page_layout" id="radio1" value="106" {if ($minisitepage.page_layout == 106)} checked {/if} >   Masonry - 4 Column; by Past, Current, Future
-                    </div> 
-                </div> 
-            </div>
-        </div>   
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                   <img src="/img/layout10.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                       <input type="radio" class="page_layout" name="page_layout" id="radio1" value="100" {if ($minisitepage.page_layout == 100)} checked {/if} > Landscape- 3 Column
-                    </div> 
-                </div> 
-            </div>
-        </div> 
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                   <img src="/img/layout9.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                       <input type="radio" class="page_layout" name="page_layout" id="radio1" value="90" {if ($minisitepage.page_layout == 90)} checked {/if} > Landscape- 4 Column
-                    </div> 
-                </div> 
-            </div>
-        </div> 
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout8.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                       <input type="radio" class="page_layout" name="page_layout" id="radio1" value="80" {if ($minisitepage.page_layout == 80)} checked {/if} > Landscape- 3 Column; by Past, Current, Future 
-                    </div> 
-                </div> 
-            </div>
-        </div> 
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout2.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                        <input type="radio" class="page_layout" name="page_layout" id="radio1" value="20" {if ($minisitepage.page_layout == 20)} checked {/if}> Landscape- 4 Column; by Past, Current, Future
-                    </div> 
-                </div> 
-            </div>
-        </div>  
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout6.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                        <input type="radio" class="page_layout" name="page_layout" id="radio1" value="60" {if ($minisitepage.page_layout == 60)} checked {/if} > Hanging Line - 3 Coiumn 
-                    </div> 
-                </div> 
-            </div>
-        </div> 
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout7.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                       <input type="radio" class="page_layout" name="page_layout" id="radio1" value="70" {if ($minisitepage.page_layout == 70)} checked {/if} > Hanging Line - 4 Column 
-                    </div> 
-                </div> 
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout11.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                        <input type="radio" class="page_layout" name="page_layout" id="radio1" value="102" {if ($minisitepage.page_layout == 102)} checked {/if} > Hanging Line - 3 Column; by Past, Current, Future
-                    </div> 
-                </div> 
-            </div>
-        </div> 
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout5.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                        <input type="radio" class="page_layout" name="page_layout" id="radio1" value="50" {if ($minisitepage.page_layout == 50)} checked {/if} > Hanging Line - 4 Column; by Past, Current, Future
-                    </div> 
-                </div> 
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout1.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                        <input type="radio" class="page_layout" name="page_layout" id="radio1" value="10" {if ($minisitepage.page_layout == 10)} checked {/if} > Cover Page
-                    </div> 
-                </div> 
-            </div>
-        </div>  
-        
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/layout3.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box"> 
-                        <input type="radio" class="page_layout" name="page_layout" id="radio1" value="30" {if ($minisitepage.page_layout == 30)} checked {/if} > Cover Page & Landscape
-                    </div> 
-                </div> 
-            </div>
-        </div>     
+            </div> 
+        {/foreach}
     </div>
 <script type="text/javascript">
 	$("#gbe_artist_link").hide();

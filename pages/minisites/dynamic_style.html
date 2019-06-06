@@ -16,28 +16,38 @@
 	}
 
 	{if ($mObj.menu_type == 1)}
-		.minisite-logo h1{		
-			font-size: 36px;
+		.minisite-logo h1{	
+			{$font_style.title}
+
+			font-size: 36px !important;
 		}
 
 		h2.subtitle {
-			font-size: 12px;
+			{$font_style.sub_title}
+
+			font-size: 12px !important;
 		}
 		
 		.navbar-site .nav-item .nav-link{
-			font-size: 12px;
+			{$font_style.menu_title}
+
+			font-size: 12px !important;
 		}	
 	{elseif ($mObj.menu_type == 2)}
-		.minisite-logo h1{		
-			font-size: 28px;
+		.minisite-logo h1{	
+			{$font_style.title}	
+			font-size: 28px !important;
 		}
 
 		h2.subtitle {
-			font-size: 15px;
+			{$font_style.sub_title}
+			font-size: 12px !important;
 		}
 		
 		.nav-item .nav-link{
-			font-size: 12px;
+			{$font_style.menu_title}
+
+			font-size: 15px !important;
 		}
 	{else}
 		.minisite-logo h1{		

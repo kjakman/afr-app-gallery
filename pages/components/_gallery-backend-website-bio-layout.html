@@ -1,0 +1,32 @@
+{$minisitepage = $scope.minisitepage}
+{$obj_id = $scope.page_id}
+{$layouts = $scope.bio_layout}
+
+{{"include": "_gallery-backend-website-subtab.html"}}
+
+<input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$obj_id}">  
+ <div class="row mt20">
+    {foreach from=$layouts item=$layout}
+        <div class="col-sm-6">
+            <div class="fontsty_boxblk">
+                <div class="fontsty_box no-padding">
+                    <img src="/img/{$layout.image}" />
+                </div>
+                <div class="form-group">
+                    <div class="selrad_box"> 
+                        <input type="radio" class="page_layout" name="page_layout" id="radio1" value="{$layout.id}" {if ($minisitepage.page_layout == $layout.id)} checked {/if} > {$layout.name}
+                    </div> 
+                </div> 
+            </div>
+        </div> 
+    {/foreach}
+</div>
+
+<script type="text/javascript">
+    $("#gbe_home_link").hide();
+    $("#gbe_artist_link").hide();
+    $("#gbe_exhibition_link").hide();
+    $("#gbe_contact_link").hide();
+    //$("#gbe_styling_link").hide();
+    //$("#gbe_basic_link").hide();
+</script>

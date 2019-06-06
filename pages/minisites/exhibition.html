@@ -6,7 +6,7 @@
   {$artist_id = $collection.artist_id}
   {$artist_ids = $collection.artist_ids|@json_decode}
 
-  {if ($minisite_pageObj['exhibition_layout'] == 1)}
+  {if ($minisite_pageObj['second_layout'] == 1)}
     {block name=title}
       {if ($scope.title)} <h2 class="page_title">{$scope.title}</h2>{/if}      
     {/block}
@@ -108,7 +108,7 @@
       </div>
       
     </div>
-  {elseif ($minisite_pageObj['exhibition_layout'] == 2)}
+  {elseif ($minisite_pageObj['second_layout'] == 2)}
     {$artworks = $scope.artworks}
       {if ($subview)}
         {{"include":"minisites/artwork_layout.html"}}

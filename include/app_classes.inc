@@ -272,13 +272,19 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'data'=>               array('data',              'json',     '', AF_HIDE_ADD),
       'colour'=>             array('Page Colour',       'str',   '', 0, 600 ),
       'page_layout'=>        array('Page Layout',       'int',   '', 0, 25 ),
-      'exhibition_layout'=>  array('Exhibition Layout',       'int',   '', 0, 25 ),
+      'second_layout'=>      array('Second Layout',       'int',   '', 0, 25 ),
    ),
 
    "minisite_layout" => 
    array(
-      'id'=>            array('ID',                'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 2),
-      'name'=>          array('Name',              'str',   '', 1, 20 ),
+      'id'=>                 array('ID',               'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 11),
+      'type'=>               array('Page Type',        'int',   '', 0, 11 ),
+      'name'=>               array('Name',             'str',   '', 1, 255 ),
+      'image'=>              array('Image',            'str',   '', 1, 100 ),
+      'row_order'=>          array('Row Order',        'int',   '', 0, 11 ),
+      'active'  =>           array('Active?',          'bool',     1,  AF_HIDE_ADD, 0),
+      'created'=>            array('Created',          'datetime', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT),
+      'timestamp'=>          array('Timestamp',        'timestamp', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT, 14 ),
    ),
 
     "minisite_font" => 

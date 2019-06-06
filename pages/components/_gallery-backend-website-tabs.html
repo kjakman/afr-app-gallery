@@ -15,6 +15,7 @@
 
   {$tab11_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artistcontent']}
   {$tab12_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artistcolour']}
+  {$tab13_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artistpagelayout']}
 
   {$tab14_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'exhibitioncontent']}
   {$tab15_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'exhibitioncolour']}
@@ -26,6 +27,10 @@
   {$tab18_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'contactpagelayout']}
 
   {$tab20_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'bio']}
+  {$tab23_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'biocontent']}
+  {$tab24_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'biolayout']}
+  {$tab25_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'biocolour']}
+
   
   {$tab = $page.tab|default:'page'}
 
@@ -35,7 +40,7 @@
     <li {if (($tab == 'artist') || ($tab == 'artistcontent') || ($tab == 'artistcolour'))  }class="active"{/if}><a href="{$tab3_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_artist_link">Artist</a></li>
     <li {if (($tab == 'exhibition') || ($tab == 'exhibitioncontent') || ($tab == 'exhibitioncolour'))}class="active"{/if}><a href="{$tab4_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_exhibition_link">Exhibition</a></li>
     <li {if ($tab == 'contact')  || ($tab == 'contactcontent') || ($tab == 'contactcolour') || ($tab == 'contactpagelayout') }class="active"{/if}><a href="{$tab5_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_contact_link">Contact</a></li>
-    <li {if ($tab == 'bio')  || ($tab == 'biocontent') || ($tab == 'biocolour') }class="active"{/if}><a href="{$tab20_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_bio_link">Bio</a></li>
+    <li {if ($tab == 'bio')  || ($tab == 'biocontent') || ($tab == 'biocolour') || ($tab == 'biolayout') } class="active"{/if}><a href="{$tab20_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_bio_link">Bio</a></li>
     <li {if ($tab == 'basic') }class="active"{/if}><a href="{$tab6_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_basic_link">Basic</a></li>
     <li {if ($tab == 'font') }class="active"{/if}><a href="{$tab9_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_font_link">Font</a></li>
     <li {if ($tab == 'menu') }class="active"{/if}><a href="{$tab10_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_font_link">Menu Style</a></li>
@@ -72,6 +77,8 @@
 
     {elseif ($tab == 'artistcontent')}
       {{"include": "_gallery-backend-website-artist-form.html"}}
+    {elseif ($tab == 'artistpagelayout')}
+      {{"include": "_gallery-backend-website-artist-page-form.html"}}
     {elseif ($tab == 'artistcolour')}
       {{"include": "_gallery-backend-website-artist-colour-form.html"}}
 
@@ -89,7 +96,14 @@
     {elseif ($tab == 'contactcolour')}
       {{"include": "_gallery-backend-website-contact-colour.html"}}     
     {elseif ($tab == 'contactpagelayout')}
-      {{"include": "_gallery-backend-website-contact-layout.html"}}  
+      {{"include": "_gallery-backend-website-contact-layout.html"}} 
+
+    {elseif ($tab == 'biocontent')}
+      {{"include": "_gallery-backend-website-bio-form.html"}} 
+    {elseif ($tab == 'biolayout')}
+      {{"include": "_gallery-backend-website-bio-layout.html"}}
+    {elseif ($tab == 'biocolour')}
+      {{"include": "_gallery-backend-website-bio-colour.html"}}
 
     {else}
       {"Unknown tab `$tab`"|alert:"error"}
