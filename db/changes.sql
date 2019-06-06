@@ -233,3 +233,7 @@ INSERT INTO `minisite_layout` (`id`, `type`, `name`, `image`, `row_order`, `acti
 (121, 50, 'Layout 1', '', 2,  1,  '0000-00-00 00:00:00',  '2019-06-06 11:19:56'),
 (122, 50, 'Layout2',  '', 2,  1,  '0000-00-00 00:00:00',  '2019-06-06 11:33:55'),
 (123, 50, 'Layout3',  '', 3,  1,  '2019-06-06 13:57:06',  '2019-06-06 13:57:06');
+
+ALTER TABLE `minisite`
+ADD `font_type` int(25) NOT NULL,
+ADD `menu_type` int(25) NOT NULL;
