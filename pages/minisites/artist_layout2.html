@@ -2,9 +2,6 @@
 {$artworks = $scope.artworks}
 
 {{"extend": "minisites/index.html"}}
-{block name=title}
-  <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
-{/block} 
 
 {block name=content} 
 <style>
@@ -152,36 +149,6 @@
 				<h1>Selected Artworks</h1>
 			</div>
 			{{"include": "minisites/_artworks.html"}}
-			<!-- {$count = $scope.artworks|@count}
-			{if ($count)}
-				<div class="gallery-related" id="collection_artworks">
-					<div class="profileinfo italic mb10">
-						<h1>Selected Artwork</h1>
-					</div>
-				</div>
-				{$index = 0}
-				<ul class="photo-grid gallery-list list">
-					{foreach from=$artworks item=artwork}
-            		{$artwork_slug = "artwork~`$artwork.artwork_id`"}
-						<li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item" data-index="0" data-media_id="{$artwork.media_id}" id="map_5050">
-							<div class="pdf-thumb-box-overlay">
-								<div class="pdf-thumb-box-links">
-									<a href="" class="cms-link gallery-link pull-right" title="Artwork Details">
-										<i class="fa fa-info-circle fa-2x"></i>
-									</a>
-								</div> 
-							</div> 
-							<a href="{$basepath}/{$collection.page_slug}/{$collection.slug}/{$artwork_slug}"><img src="{$artwork.media_id|photo:'medium'}" class=""></a> 
-							<img src="{$artwork.media_id|photo:'medium'}" class="">
-							<br>
-							<div class="photo-grid-title artinfo" style="text-align: left;">
-								<h2 class="black subtitle">{$artwork.name}</h2>
-								{if ($artwork.original_year)}<h3>{$artwork.original_year}, {$artwork.original_technique}</h3>{/if}
-							</div>
-						</li>
-					{/foreach}
-				</ul>
-			{/if} -->
 		</article>
 	</div>
 </div>

@@ -1,0 +1,65 @@
+{$minisitepage = $scope.minisitepage}
+{$obj_id = $scope.page_id}
+
+{{"include": "_gallery-backend-website-subtab.html"}}
+
+    <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$obj_id}">
+    
+     <div class="row mt20">
+        <div class="col-sm-6">
+            <div class="fontsty_boxblk">
+                <div class="fontsty_box no-padding">
+                    <img src="" />
+                </div>
+                <div class="form-group">
+                    <div class="selrad_box">
+                        <input type="radio" class="exhibition_layout" name="second_layout" id="radio1" value="10" {if ($minisitepage.second_layout == 10)} checked {/if} > Default
+                    </div> 
+                </div> 
+            </div> 
+        </div>  
+        <div class="col-sm-6">
+            <div class="fontsty_boxblk">
+                <div class="fontsty_box no-padding">
+                    <img src="" />
+                </div>
+                <div class="form-group">
+                    <div class="selrad_box">
+                        <input type="radio" class="exhibition_layout" name="second_layout" id="radio1" value="20" {if ($minisitepage.second_layout == 20)} checked {/if} > Layout 1
+                    </div> 
+                </div> 
+            </div> 
+        </div>
+        <div class="col-sm-6">
+            <div class="fontsty_boxblk">
+                <div class="fontsty_box no-padding">
+                    <img src="" />
+                </div>
+                <div class="form-group">
+                    <div class="selrad_box">
+                        <input type="radio" class="exhibition_layout" name="second_layout" id="radio1" value="30" {if ($minisitepage.second_layout == 30)} checked {/if} > Layout 2
+                    </div> 
+                </div> 
+            </div> 
+        </div>
+        <div class="col-sm-6">
+            <div class="fontsty_boxblk">
+                <div class="fontsty_box no-padding">
+                    <img src="" />
+                </div>
+                <div class="form-group">
+                    <div class="selrad_box">
+                        <input type="radio" class="exhibition_layout" name="second_layout" id="radio1" value="40" {if ($minisitepage.second_layout == 40)} checked {/if} > Layout 3
+                    </div> 
+                </div> 
+            </div> 
+        </div>  
+    </div>  
+
+
+<script type="text/javascript">
+    $("#gbe_artist_link").hide();
+    $("#gbe_home_link").hide();   
+    $("#gbe_contact_link").hide(); 
+    $("#gbe_bio_link").hide(); 
+</script>

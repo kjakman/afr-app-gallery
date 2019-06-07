@@ -185,7 +185,7 @@ CHANGE `data` `data` text COLLATE 'utf8mb4_general_ci' NOT NULL AFTER `row_order
 
 ALTER TABLE `minisite_page`
 ADD `page_layout` int(25) NOT NULL,
-ADD `exhibition_layout` int(25) NOT NULL AFTER `page_layout`;
+ADD `second_layout` int(25) NOT NULL AFTER `page_layout`;
 
 UPDATE `exhibition_type` SET
 `id` = '40',
@@ -210,30 +210,39 @@ CREATE TABLE `minisite_layout` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `minisite_layout` (`id`, `type`, `name`, `image`, `row_order`, `active`, `created`, `timestamp`) VALUES
-(101, 30, 'Timeline', 'layout4.png',  1,  1,  '2019-06-06 11:34:26',  '2019-06-06 11:34:26'),
-(102, 30, 'Timeline - with Filter', 'layout13.png', 2,  1,  '0000-00-00 00:00:00',  '2019-06-06 06:47:54'),
-(103, 30, 'Masonry - 3 Column', 'layout14.png', 3,  1,  '0000-00-00 00:00:00',  '2019-06-06 06:48:05'),
-(104, 30, 'Masonry - 4 Column', 'layout16.png', 4,  1,  '0000-00-00 00:00:00',  '2019-06-06 06:48:18'),
-(105, 30, 'Masonry - 3 Column; by Past, Current, Future', 'layout15.png', 5,  1,  '0000-00-00 00:00:00',  '2019-06-06 06:48:30'),
-(106, 30, 'Masonry - 4 Column; by Past, Current, Future', 'layout17.png', 6,  1,  '0000-00-00 00:00:00',  '2019-06-06 06:48:41'),
-(107, 30, 'Landscape- 3 Column',  'layout10.png', 7,  1,  '0000-00-00 00:00:00',  '2019-06-06 06:48:51'),
-(108, 30, 'Landscape- 4 Column',  'layout9.png',  8,  1,  '0000-00-00 00:00:00',  '2019-06-06 06:49:03'),
-(109, 30, 'Landscape- 3 Column; by Past, Current, Future',  'layout8.png',  9,  1,  '0000-00-00 00:00:00',  '2019-06-06 06:49:18'),
-(110, 30, 'Landscape- 4 Column; by Past, Current, Future',  'layout2.png',  10, 1,  '0000-00-00 00:00:00',  '2019-06-06 06:49:33'),
-(111, 30, 'Hanging Line - 3 Coiumn',  'layout6.png',  11, 1,  '0000-00-00 00:00:00',  '2019-06-06 06:49:43'),
-(112, 30, 'Hanging Line - 4 Column',  'layout7.png',  12, 1,  '0000-00-00 00:00:00',  '2019-06-06 06:49:56'),
-(113, 30, 'Hanging Line - 3 Column; by Past, Current, Future',  'layout11.png', 13, 1,  '0000-00-00 00:00:00',  '2019-06-06 06:50:07'),
-(114, 30, 'Hanging Line - 4 Column; by Past, Current, Future',  'layout5.png',  14, 1,  '0000-00-00 00:00:00',  '2019-06-06 06:50:18'),
-(115, 30, 'Cover Page', 'layout1.png',  15, 1,  '0000-00-00 00:00:00',  '2019-06-06 06:50:28'),
-(116, 30, 'Cover Page & Landscape', 'layout3.png',  16, 1,  '0000-00-00 00:00:00',  '2019-06-06 06:50:38'),
-(117, 40, 'Default',  'contact_layout1.png',  1,  1,  '0000-00-00 00:00:00',  '2019-06-06 08:00:45'),
-(118, 40, 'Layout 1', 'contact_layout2.png',  2,  1,  '0000-00-00 00:00:00',  '2019-06-06 08:01:35'),
-(119, 20, 'Default',  '', 1,  1,  '0000-00-00 00:00:00',  '2019-06-06 08:42:05'),
-(120, 50, 'Default',  '', 1,  1,  '0000-00-00 00:00:00',  '2019-06-06 11:19:20'),
-(121, 50, 'Layout 1', '', 2,  1,  '0000-00-00 00:00:00',  '2019-06-06 11:19:56'),
-(122, 50, 'Layout2',  '', 2,  1,  '0000-00-00 00:00:00',  '2019-06-06 11:33:55'),
-(123, 50, 'Layout3',  '', 3,  1,  '2019-06-06 13:57:06',  '2019-06-06 13:57:06');
+(101, 30, 'Timeline', 'layout4.png',  1,  1,  now(),  now()),
+(102, 30, 'Timeline - with Filter', 'layout13.png', 2,  1,  now(),  now()),
+(103, 30, 'Masonry - 3 Column', 'layout14.png', 3,  1,  now(),  now()),
+(104, 30, 'Masonry - 4 Column', 'layout16.png', 4,  1,  now(),  now()),
+(105, 30, 'Masonry - 3 Column; by Past, Current, Future', 'layout15.png', 5,  1,  now(),  now()),
+(106, 30, 'Masonry - 4 Column; by Past, Current, Future', 'layout17.png', 6,  1,  now(),  now()),
+(107, 30, 'Landscape- 3 Column',  'layout10.png', 7,  1,  now(),  now()),
+(108, 30, 'Landscape- 4 Column',  'layout9.png',  8,  1,  now(),  now()),
+(109, 30, 'Landscape- 3 Column; by Past, Current, Future',  'layout8.png',  9,  1,  now(),  now()),
+(110, 30, 'Landscape- 4 Column; by Past, Current, Future',  'layout2.png',  10, 1,  now(),  now()),
+(111, 30, 'Hanging Line - 3 Coiumn',  'layout6.png',  11, 1,  now(),  now()),
+(112, 30, 'Hanging Line - 4 Column',  'layout7.png',  12, 1,  now(),  now()),
+(113, 30, 'Hanging Line - 3 Column; by Past, Current, Future',  'layout11.png', 13, 1,  now(),  now()),
+(114, 30, 'Hanging Line - 4 Column; by Past, Current, Future',  'layout5.png',  14, 1,  now(),  now()),
+(115, 30, 'Cover Page', 'layout1.png',  15, 1,  now(),  now()),
+(116, 30, 'Cover Page & Landscape', 'layout3.png',  16, 1,  now(),  now()),
+(117, 40, 'Default',  'contact_layout1.png',  1,  1,  now(),  now()),
+(118, 40, 'Layout 1', 'contact_layout2.png',  2,  1,  now(),  now()),
+(119, 20, 'Default',  '', 1,  1,  now(),  now()),
+(120, 50, 'Default',  'biolayout1.png', 1,  1,  now(),  now()),
+(121, 50, 'Layout 1', 'biolayout2.png', 2,  1,  now(),  now()),
+(122, 50, 'Layout2',  'biolayout3.png', 2,  1,  now(),  now()),
+(123, 50, 'Layout3',  'biolayout4.png', 3,  1,  now(),  now());
 
 ALTER TABLE `minisite`
 ADD `font_type` int(25) NOT NULL,
 ADD `menu_type` int(25) NOT NULL;
+
+INSERT INTO `minisite_layout` (`id`, `type`, `name`, `image`, `row_order`, `active`, `created`, `timestamp`)
+VALUES ('124', '20', 'Layout 1', '', '2', '1', now(), now());
+
+INSERT INTO `minisite_layout` (`id`, `type`, `name`, `image`, `row_order`, `active`, `created`, `timestamp`)
+VALUES ('125', '20', 'Layout 2', '', '3', '1', now(), now());
+
+INSERT INTO `minisite_layout` (`id`, `type`, `name`, `image`, `row_order`, `active`, `created`, `timestamp`)
+VALUES ('126', '20', 'Layout 3', '', '4', '1', now(), now());

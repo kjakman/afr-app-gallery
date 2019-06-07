@@ -2,9 +2,10 @@
 {$userid = $scope.userid}
 
 <ul class="nav nav-tabs">
-	{if (($tab == 'artist') || ($tab == 'artistcontent') || ($tab == 'artistpagelayout') || ($tab == 'artistcolour'))}
+	{if (($tab == 'artist') || ($tab == 'artistcontent') || ($tab == 'artistpagelayout') || ($tab == 'artistsecondpage') || ($tab == 'artistcolour'))}
 	  <li {if (($tab == 'artistcontent') || ($tab == 'artist'))  }class="active"{/if}><a href="{$tab11_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_artist_content_link">Content</a></li>
 	  <li {if ($tab == 'artistpagelayout')  }class="active"{/if}><a href="{$tab13_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_artist_page_link">Page Layout</a></li>
+	  <li {if ($tab == 'artistsecondpage')  }class="active"{/if}><a href="{$tab26_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_artist_2_link">Artits Layout</a></li>
 	  <li {if ($tab == 'artistcolour')  }class="active"{/if}><a href="{$tab12_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_artist_colour_link">Colour</a></li>
 
 	{elseif (($tab == 'exhibition') || ($tab == 'exhibitioncontent') || ($tab == 'exhibitioncolour') || ($tab == 'exhibitionpage') || ($tab == 'exhibitionlayout') )}

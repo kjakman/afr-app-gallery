@@ -3,10 +3,6 @@
 
 {{"extend": "minisites/index.html"}}
 
-{block name=title}
-  <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
-{/block} 
-
 {block name=content} 
 
 <div class="row detail-page-row">
@@ -14,7 +10,6 @@
     <div class="artist-sub-nav">
         <h1 class="sub-nav-header artist-sub-nav-header"><a href="{$basepath}/{$slug}">{$artist.display_name}</a></h1>
         <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
-          <li><a href="{$basepath}/{$page_slug}/images" class="">Selected Art</a></li>
           <li><a href="{$basepath}/{$page_slug}/biography" class="">Biography</a></li>
         </ul>
       </p>
@@ -33,10 +28,9 @@
   </div>
   
   <div class="col-md-8 col-sm-12 detail-text">
-  {if ($subview == 'images')}
-    {{"include": "minisites/_artworks.html"}}
 
-  {elseif ($subview == 'biography')}
+  {if ($subview == 'biography')}
+
     {if ({$artist.free_text})}
       <h4>CV</h4>
       {$artist.free_text}<br>
@@ -126,8 +120,6 @@
     </div>
   
   {else}
-    {$first =  $artworks[0]}
-    {$title_artwork = $first.media_id}
     <div class="image-container-max-height">
       <img src="{$artist|userphoto:'big'}" alt="{$artist.display_name}" class="img-responsive center-block" /><br />
     </div>
@@ -136,6 +128,7 @@
       <p>{$artist.bio_description}</p>
     </div>
     <p>&nbsp;</p>
+    {{"include": "minisites/_artworks.html"}}
   {/if}
   </div>
   

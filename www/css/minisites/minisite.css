@@ -2862,3 +2862,20 @@ hr{
     float: left;
     width: 100%;
 }
+/** VVPR 7-6-2019 **/
+.img-circle {
+    border-radius: 50%;
+}
+.image-container{
+    margin: 0 auto;
+	max-width:100%;
+}
+.image-container-200 {
+    width: 200px;
+}
+.image-container-300 {
+    width: 300px;
+}
+.image-container-400 {
+    width: 400px;
+}
