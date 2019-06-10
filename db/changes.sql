@@ -140,7 +140,7 @@ ALTER TABLE `page_map` ADD PRIMARY KEY `id` (`id`);
 ALTER TABLE `profile_media_map` ADD PRIMARY KEY `id` (`id`);
 
 #6 June 2019
-
+#statically updated
 DROP TABLE IF EXISTS `minisite_font`;
 CREATE TABLE `minisite_font` (
   `id` int(8) NOT NULL,
@@ -196,6 +196,7 @@ WHERE `id` = '40';
 INSERT INTO `exhibition_type` (`id`, `name`, `description`)
 VALUES ('50', 'Showroom/Private Link', NULL);
 
+#statically updated
 DROP TABLE IF EXISTS `minisite_layout`;
 CREATE TABLE `minisite_layout` (
   `id` int(11) NOT NULL DEFAULT '0',
@@ -210,29 +211,32 @@ CREATE TABLE `minisite_layout` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `minisite_layout` (`id`, `type`, `name`, `image`, `row_order`, `active`, `created`, `timestamp`) VALUES
-(101, 30, 'Timeline', 'layout4.png',  1,  1,  now(),  now()),
-(102, 30, 'Timeline - with Filter', 'layout13.png', 2,  1,  now(),  now()),
-(103, 30, 'Masonry - 3 Column', 'layout14.png', 3,  1,  now(),  now()),
-(104, 30, 'Masonry - 4 Column', 'layout16.png', 4,  1,  now(),  now()),
-(105, 30, 'Masonry - 3 Column; by Past, Current, Future', 'layout15.png', 5,  1,  now(),  now()),
-(106, 30, 'Masonry - 4 Column; by Past, Current, Future', 'layout17.png', 6,  1,  now(),  now()),
-(107, 30, 'Landscape- 3 Column',  'layout10.png', 7,  1,  now(),  now()),
-(108, 30, 'Landscape- 4 Column',  'layout9.png',  8,  1,  now(),  now()),
-(109, 30, 'Landscape- 3 Column; by Past, Current, Future',  'layout8.png',  9,  1,  now(),  now()),
-(110, 30, 'Landscape- 4 Column; by Past, Current, Future',  'layout2.png',  10, 1,  now(),  now()),
-(111, 30, 'Hanging Line - 3 Coiumn',  'layout6.png',  11, 1,  now(),  now()),
-(112, 30, 'Hanging Line - 4 Column',  'layout7.png',  12, 1,  now(),  now()),
-(113, 30, 'Hanging Line - 3 Column; by Past, Current, Future',  'layout11.png', 13, 1,  now(),  now()),
-(114, 30, 'Hanging Line - 4 Column; by Past, Current, Future',  'layout5.png',  14, 1,  now(),  now()),
-(115, 30, 'Cover Page', 'layout1.png',  15, 1,  now(),  now()),
-(116, 30, 'Cover Page & Landscape', 'layout3.png',  16, 1,  now(),  now()),
-(117, 40, 'Default',  'contact_layout1.png',  1,  1,  now(),  now()),
-(118, 40, 'Layout 1', 'contact_layout2.png',  2,  1,  now(),  now()),
-(119, 20, 'Default',  '', 1,  1,  now(),  now()),
-(120, 50, 'Default',  'biolayout1.png', 1,  1,  now(),  now()),
-(121, 50, 'Layout 1', 'biolayout2.png', 2,  1,  now(),  now()),
-(122, 50, 'Layout2',  'biolayout3.png', 2,  1,  now(),  now()),
-(123, 50, 'Layout3',  'biolayout4.png', 3,  1,  now(),  now());
+(101, 30, 'Timeline', 'layout4.png',  1,  1,  '2019-06-06 11:34:26',  '2019-06-07 09:59:14'),
+(102, 30, 'Timeline - with Filter', 'layout13.png', 2,  1,  '2019-06-10 07:37:55',  '2019-06-10 07:37:55'),
+(103, 30, 'Masonry - 3 Column', 'layout14.png', 3,  1,  '2019-06-10 07:38:11',  '2019-06-10 07:38:11'),
+(104, 30, 'Masonry - 4 Column', 'layout16.png', 4,  1,  '2019-06-10 07:38:17',  '2019-06-10 07:38:17'),
+(105, 30, 'Masonry - 3 Column; by Past, Current, Future', 'layout15.png', 5,  1,  '2019-06-10 07:38:23',  '2019-06-10 07:38:23'),
+(106, 30, 'Masonry - 4 Column; by Past, Current, Future', 'layout17.png', 6,  1,  '2019-06-10 07:38:29',  '2019-06-10 07:38:29'),
+(107, 30, 'Landscape- 3 Column',  'layout10.png', 7,  1,  '2019-06-10 07:38:35',  '2019-06-10 07:38:35'),
+(108, 30, 'Landscape- 4 Column',  'layout9.png',  8,  1,  '2019-06-10 07:38:49',  '2019-06-10 07:38:49'),
+(109, 30, 'Landscape- 3 Column; by Past, Current, Future',  'layout8.png',  9,  1,  '2019-06-10 07:38:57',  '2019-06-10 07:38:57'),
+(110, 30, 'Landscape- 4 Column; by Past, Current, Future',  'layout2.png',  10, 1,  '2019-06-10 07:39:03',  '2019-06-10 07:39:03'),
+(111, 30, 'Hanging Line - 3 Coiumn',  'layout6.png',  11, 1,  '2019-06-10 07:39:25',  '2019-06-10 07:39:25'),
+(112, 30, 'Hanging Line - 4 Column',  'layout7.png',  12, 1,  '2019-06-10 07:39:33',  '2019-06-10 07:39:33'),
+(113, 30, 'Hanging Line - 3 Column; by Past, Current, Future',  'layout11.png', 13, 1,  '2019-06-10 07:39:41',  '2019-06-10 07:39:41'),
+(114, 30, 'Hanging Line - 4 Column; by Past, Current, Future',  'layout5.png',  14, 1,  '2019-06-10 07:39:47',  '2019-06-10 07:39:47'),
+(115, 30, 'Cover Page', 'layout1.png',  15, 1,  '2019-06-10 08:04:21',  '2019-06-10 08:04:21'),
+(116, 30, 'Cover Page & Landscape', 'layout3.png',  16, 1,  '2019-06-10 08:04:29',  '2019-06-10 08:04:29'),
+(117, 40, 'Default',  'contact_layout1.png',  1,  1,  '2019-06-10 08:04:37',  '2019-06-10 08:04:37'),
+(118, 40, 'Layout 1', 'contact_layout2.png',  2,  1,  '2019-06-10 08:04:55',  '2019-06-10 08:04:55'),
+(119, 20, 'Default',  'artistpage-layout1.png', 1,  1,  '2019-06-10 07:37:41',  '2019-06-10 07:37:41'),
+(120, 50, 'Default',  'biolayout1.png', 1,  1,  '2019-06-10 08:04:46',  '2019-06-10 08:04:46'),
+(121, 50, 'Layout 1', 'biolayout2.png', 2,  1,  '2019-06-10 08:05:04',  '2019-06-10 08:05:04'),
+(122, 50, 'Layout2',  'biolayout3.png', 2,  1,  '2019-06-10 07:38:06',  '2019-06-10 07:38:06'),
+(123, 50, 'Layout3',  'biolayout4.png', 3,  1,  '2019-06-06 13:57:06',  '2019-06-07 07:31:07'),
+(124, 20, 'Layout 1', 'artistpage-layout2.png', 2,  1,  '2019-06-07 06:48:42',  '2019-06-10 07:36:35'),
+(125, 20, 'Layout 2', 'artistpage-layout4.png', 3,  1,  '2019-06-07 06:56:25',  '2019-06-10 08:05:26'),
+(126, 20, 'Layout 3', 'artistpage-layout3.png', 4,  1,  '2019-06-07 06:57:09',  '2019-06-10 08:05:34');
 
 ALTER TABLE `minisite`
 ADD `font_type` int(25) NOT NULL,

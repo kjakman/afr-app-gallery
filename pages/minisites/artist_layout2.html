@@ -11,7 +11,7 @@
 	    border: 1px solid transparent;
 	    border-radius: 4px 4px 0 0;
 	}
-	a.nav-link {
+	a.sublink {
 	    color: #ed8323;
 	    text-decoration: none;
 	}
@@ -61,13 +61,13 @@
 		    {$show_data = json_decode($profile.show_data, True)}
 		    
 		   <ul class="nav nav-tabs">
-		      <li class="active nav-item"><a class="nav-link"  data-toggle="tab" href="#empty">Selected Artworks </a></li>
+		      <li class="active nav-item"><a class="nav-link sublink"  data-toggle="tab" href="#empty">Selected Artworks </a></li>
 		      <!-- {if ($profile.bio_description != '')}<li class="nav-item"><a href="" class="nav-link"  data-toggle="tab" data-target="#description">Overview </a></li>{/if} -->
-		      {if (($show_data['solo_shows'] == 1) && ($profile.solo_shows_ != '[]'))}<li class="nav-item"><a href="" class="nav-link"  data-toggle="tab" data-target="#solo_text">Solo Shows</a></li>{/if}
-		      {if (($show_data['group_shows'] == 1) && ($profile.group_shows_ != '[]'))}<li class="nav-item"><a href=""class="nav-link"  data-toggle="tab" data-target="#group_text">Group Shows</a></li>{/if}  
-		      {if (($show_data['press'] == 1) && ($profile.press_data != '[]'))}<li class="nav-item"><a href="" class="nav-link"  data-toggle="tab" data-target="#press_text">Press </a></li>{/if}
-		      {if (($show_data['awards'] == 1) && ($profile.awards != '[]'))}<li class="nav-item"><a href="" class="nav-link" data-toggle="tab" data-target="#award_text">Awards </a></li>{/if}
-		      {if ($profile.free_text != '')}<li class="nav-item"><a href="" class="nav-link"  data-toggle="tab" data-target="#free_text">CV </a></li>{/if}
+		      {if (($show_data['solo_shows'] == 1) && ($profile.solo_shows_ != '[]'))}<li class="nav-item sublink"><a href="" class="nav-link"  data-toggle="tab" data-target="#solo_text">Solo Shows</a></li>{/if}
+		      {if (($show_data['group_shows'] == 1) && ($profile.group_shows_ != '[]'))}<li class="nav-item sublink"><a href=""class="nav-link"  data-toggle="tab" data-target="#group_text">Group Shows</a></li>{/if}  
+		      {if (($show_data['press'] == 1) && ($profile.press_data != '[]'))}<li class="nav-item sublink"><a href="" class="nav-link"  data-toggle="tab" data-target="#press_text">Press </a></li>{/if}
+		      {if (($show_data['awards'] == 1) && ($profile.awards != '[]'))}<li class="nav-item sublink"><a href="" class="nav-link" data-toggle="tab" data-target="#award_text">Awards </a></li>{/if}
+		      {if ($profile.free_text != '')}<li class="nav-item"><a href="" class="nav-link sublink"  data-toggle="tab" data-target="#free_text">CV </a></li>{/if}
 		    </ul>
 
 		    <div class="tab-content profileDetails">
