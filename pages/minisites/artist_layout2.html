@@ -11,7 +11,7 @@
 	    border: 1px solid transparent;
 	    border-radius: 4px 4px 0 0;
 	}
-	a {
+	a.nav-link {
 	    color: #ed8323;
 	    text-decoration: none;
 	}
@@ -48,6 +48,12 @@
 			<div class="col-lg-7 col-md-8 col-sm-9">
 				<h1> {$profile.display_name}</h1> <br>
 				<h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+				<div id="description" class="mt20 mb20" style="text-align: justify;">
+				  {if ($profile.bio_description)}
+				    <div>{$profile.bio_description}</div>
+				  {/if}
+				</div>
+
 			</div>
 		</div>
 		{block name=description}
@@ -56,7 +62,7 @@
 		    
 		   <ul class="nav nav-tabs">
 		      <li class="active nav-item"><a class="nav-link"  data-toggle="tab" href="#empty">Selected Artworks </a></li>
-		      {if ($profile.bio_description != '')}<li class="nav-item"><a href="" class="nav-link"  data-toggle="tab" data-target="#description">Overview </a></li>{/if}
+		      <!-- {if ($profile.bio_description != '')}<li class="nav-item"><a href="" class="nav-link"  data-toggle="tab" data-target="#description">Overview </a></li>{/if} -->
 		      {if (($show_data['solo_shows'] == 1) && ($profile.solo_shows_ != '[]'))}<li class="nav-item"><a href="" class="nav-link"  data-toggle="tab" data-target="#solo_text">Solo Shows</a></li>{/if}
 		      {if (($show_data['group_shows'] == 1) && ($profile.group_shows_ != '[]'))}<li class="nav-item"><a href=""class="nav-link"  data-toggle="tab" data-target="#group_text">Group Shows</a></li>{/if}  
 		      {if (($show_data['press'] == 1) && ($profile.press_data != '[]'))}<li class="nav-item"><a href="" class="nav-link"  data-toggle="tab" data-target="#press_text">Press </a></li>{/if}
@@ -67,11 +73,6 @@
 		    <div class="tab-content profileDetails">
 		      <div id="empty" class="tab-pane fade mt20 in active mb20">
 		        
-		      </div>
-		      <div id="description" class="tab-pane fade mt20 mb20">
-		        {if ($profile.bio_description)}
-		          <div>{$profile.bio_description}</div>
-		        {/if}
 		      </div>
 
 		      {if ($show_data['solo_shows'] == 1)} 

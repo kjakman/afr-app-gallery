@@ -4,13 +4,12 @@
 {{"extend": "minisites/index.html"}}
 
 {block name=content} 
-
 <div class="row detail-page-row">
   <div class="col-md-3 col-sm-12 text-left artist-subnav-container">
     <div class="artist-sub-nav">
-        <h1 class="sub-nav-header artist-sub-nav-header"><a href="{$basepath}/{$slug}">{$artist.display_name}</a></h1>
+        <h1 class="sub-nav-header artist-sub-nav-header"><a href="{$basepath}{$artist.page_slug}{$slug}">{$artist.display_name}</a></h1>
         <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
-          <li><a href="{$basepath}/{$page_slug}/biography" class="">Biography</a></li>
+          <li><a href="{$basepath}/{$page_slug}/{$slug}/biography" class="">Biography</a></li>
         </ul>
       </p>
       <!-- mobile layout -->
@@ -30,7 +29,6 @@
   <div class="col-md-8 col-sm-12 detail-text">
 
   {if ($subview == 'biography')}
-
     {if ({$artist.free_text})}
       <h4>CV</h4>
       {$artist.free_text}<br>

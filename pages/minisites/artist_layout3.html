@@ -12,7 +12,7 @@
 	    border: 1px solid transparent;
 	    border-radius: 4px 4px 0 0;
 	}
-	a {
+	a.nav-link {
 	    color: #ed8323;
 	    text-decoration: none;
 	}
@@ -49,14 +49,15 @@
 			<div class="col-lg-7 col-md-8 col-sm-9">
 				<h1> {$profile.display_name}</h1> <br>
 				<h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+				<div id="description" style="text-align: justify;" class="mt20">
+				  {if ($profile.bio_description)}
+				    <div>{$profile.bio_description}</div>
+				  {/if}
+				</div>
 			</div>
 		</div>
 		{block name=description}
-			<div id="description" class="mt20">
-			  {if ($profile.bio_description)}
-			    <div>{$profile.bio_description}</div>
-			  {/if}
-			</div>
+			
 		  <div style="text-align: left;" class="mt20">
 		    {$show_data = json_decode($profile.show_data, True)}
 		    

@@ -1,3 +1,4 @@
+
 {$minisitepage = $scope.minisitepage}
 {$obj_id = $scope.page_id}
 {$data = json_decode($minisitepage.data, TRUE)}
@@ -20,10 +21,6 @@
               <label for="page-title">Page Title</label>
               <input type="text" class="form-control" maxlength="15" name="page_title" value="{$minisitepage.page_title}">
             </div>
-            <!-- <div class="form-group col-sm-8">
-              <label for="minisite-contact-layout">Contact Layout</label>
-              {"data[layout]"|object_select:"minisite_contact_layout":["class" => "form-control", "value" => $data.layout]}
-            </div> -->
           </div>  
         </div>
         <input type="submit" class="btn btn-success" value="Save" id="submit">
