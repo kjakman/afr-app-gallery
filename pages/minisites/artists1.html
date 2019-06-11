@@ -1,0 +1,252 @@
+{{"extend": "minisites/index.html"}}
+
+  {block name=title}
+      <h2 class="page_title">{$minisite_pageObj.page_title}</h2>  
+  {/block}
+  
+  {block name=content}
+  	<style>
+		#artists {
+			margin-top: 53px;
+			min-height: 696px;
+		}
+		#artists .list ul {
+			list-style: none;
+			margin-bottom: 63px;
+		}
+		#publications h4, #artists a {
+			font-size: 25px;
+			margin-bottom: 0;
+			color: #000;
+			text-decoration: none;
+		}
+		.artists .list li img {
+			display: none
+		}
+
+		.artists.notouch .list a:hover img {
+			opacity: 1
+		}
+		@media screen and (max-width:1325px) and (min-width:640px) {
+			.artists .list a img {
+				right: 50%;
+				margin-right: -480px;
+				left: auto
+			}
+		}
+		@media screen and (min-width:640px) {
+			#artists .list ul {
+				width: 596px;
+				-webkit-column-count: 2;
+				-moz-column-count: 2;
+				-webkit-column-gap: 51px;
+				column-count: 2;
+				column-gap: 51px;
+			}
+			.artists .list a img {
+				position: fixed;
+				left: 50%;
+				top: 170px;
+				-webkit-transform: translate(28px, 0);
+				transform: translate(28px, 0);
+				opacity: 0;
+				transition: opacity .2s
+			}
+			.popup .artists .list a img {
+				position: absolute;
+				top: 265px
+			}
+			.popup .artists .list.scrolled a img {
+				position: fixed;
+				top: 40px
+			}
+			.artists .list li:hover img {
+				display: block
+			}
+		}
+	</style>
+    <script type="text/javascript">var detecttouch=function(){window.removeEventListener('touchstart',detecttouch);document.getElementById('artists').className="artists";} window.addEventListener('touchstart',detecttouch);</script>
+  
+			<div class="container">
+		<div id="artists" class="artists notouch">
+			<div class="list">
+				<ul>
+					<li>
+						<a href="http://www.xavierhufkens.com/artists/saadane-afif">Saâdane Afif  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/saadane-afif/x00-251x376.91878333504.jpg.pagespeed.ic.jd50RFRnIs.webp" width="251" height="377" srcset="http://www.xavierhufkens.com/thumbs/artists/saadane-afif/x00-355x533.04365530558.jpg.pagespeed.ic.NJX9KCStDD.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/david-altmejd">David Altmejd  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/david-altmejd/x00-281x355.05123631103.jpg.pagespeed.ic.pIf96fRVI_.webp" width="281" height="355" srcset="http://www.xavierhufkens.com/thumbs/artists/david-altmejd/x00-397.86334235265x502.jpg.pagespeed.ic.xnrK76SvOb.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/richard-artschwager">Richard Artschwager  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/richard-artschwager/x00-243x382.30353931239.jpg.pagespeed.ic.mLOtgBfB1E.webp" width="243" height="382" srcset="http://www.xavierhufkens.com/thumbs/artists/richard-artschwager/x00-343.66554621963x540.jpg.pagespeed.ic.mA64PJKSR3.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/katherine-bernhardt">Katherine Bernhardt  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/katherine-bernhardt/x00-282.94472333341x354.jpg.pagespeed.ic.sd8cxdvqHT.webp" width="283" height="354" srcset="http://www.xavierhufkens.com/thumbs/artists/katherine-bernhardt/x00-400x500.30247558409.jpg.pagespeed.ic.aN2FwUy-tq.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/louise-bourgeois">Louise Bourgeois  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/louise-bourgeois/x00-291.81720262396x346.jpg.pagespeed.ic.clUpA2ntXT.webp" width="292" height="346" srcset="http://www.xavierhufkens.com/proxy/3-artists/0-louise-bourgeois/x00.jpg.pagespeed.ic.88CKoJvM6w.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/cris-brodahl">Cris Brodahl  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/cris-brodahl/x00-271.70251841345x362.jpg.pagespeed.ic.TiVvGHw-J5.webp" width="272" height="362" srcset="http://www.xavierhufkens.com/thumbs/artists/cris-brodahl/x00-384x512.61436087529.jpg.pagespeed.ic.QW6Y3AtPJ0.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/daniel-buren">Daniel Buren  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/daniel-buren/x00-251x376.91878333504.jpg.pagespeed.ic.SuDEqvS63C.webp" width="251" height="377" srcset="http://www.xavierhufkens.com/thumbs/artists/daniel-buren/x00-355x533.04365530558.jpg.pagespeed.ic.lMhcdHC6H6.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/george-condo">George Condo  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/george-condo/x00-304.69412134132x335.jpg.pagespeed.ic.BNByBJB3Zm.webp" width="305" height="335" srcset="http://www.xavierhufkens.com/thumbs/artists/george-condo/x00-430.90255877625x474.jpg.pagespeed.ic.rRVellMON0.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/matt-connors">Matt Connors  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/matt-connors/x00-243x382.19832466501.jpg.pagespeed.ic.spxdKjlmGc.webp" width="243" height="382" srcset="http://www.xavierhufkens.com/thumbs/artists/matt-connors/x00-343.89952202136x540.jpg.pagespeed.ic.Ocu0VUpF6q.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/thierry-de-cordier">Thierry De Cordier  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/thierry-de-cordier/x00-315x325.54676168952.jpg.pagespeed.ic.mef8kY7bVH.webp" width="315" height="326" srcset="http://www.xavierhufkens.com/thumbs/artists/thierry-de-cordier/x00-445x460.39264556796.jpg.pagespeed.ic.Wr_CpdZ5pw.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/willem-de-kooning">Willem de Kooning  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/willem-de-kooning/x00-266.98031219482x366.jpg.pagespeed.ic.HXRuwwOJz0.webp" width="267" height="366" srcset="http://www.xavierhufkens.com/thumbs/artists/willem-de-kooning/x00-377.56717839252x517.jpg.pagespeed.ic.qse2QR80vl.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/tracey-emin">Tracey Emin  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/tracey-emin/x00-360.47047649439x274.jpg.pagespeed.ic.CBKerf-Fon.webp" width="360" height="274" srcset="http://www.xavierhufkens.com/thumbs/artists/tracey-emin/x00-510x387.99493701828.jpg.pagespeed.ic.VsQVpm9wWp.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/zhang-enli">Zhang Enli  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/zhang-enli/x00-320x320.31937187751.jpg.pagespeed.ic.7tofvkY91t.webp" width="320" height="320" srcset="http://www.xavierhufkens.com/thumbs/artists/zhang-enli/x00-453x453.jpg.pagespeed.ic.u6XnreLtr2.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/michel-francois">Michel François  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/michel-francois/x00-377.03475385863x251.jpg.pagespeed.ic.x-34-qT3gT.webp" width="377" height="251" srcset="http://www.xavierhufkens.com/proxy/3-artists/0-michel-francois/x00.jpg.pagespeed.ic.RPQrL2eDYT.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/adam-fuss">Adam Fuss  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/adam-fuss/x00-293x345.2720724055.jpg.pagespeed.ic.mQv_c8ROLX.webp" width="293" height="345" srcset="http://www.xavierhufkens.com/thumbs/artists/adam-fuss/x00-414.71965474718x488.jpg.pagespeed.ic.WA2Oe2d8N3.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/antony-gormley">Antony Gormley  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/antony-gormley/x00-271.8x362.jpg.pagespeed.ic.0D8FDY6f0Z.webp" width="272" height="362" srcset="http://www.xavierhufkens.com/thumbs/artists/antony-gormley/x00-384x512.51099500401.jpg.pagespeed.ic.EEDSgDftVe.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/evan-holloway">Evan Holloway   
+							<img src="http://www.xavierhufkens.com/thumbs/artists/evan-holloway/x00-247.78338855309x379.jpg.pagespeed.ic.dHKY-4fsTH.webp" width="248" height="379" srcset="http://www.xavierhufkens.com/thumbs/artists/evan-holloway/x00-350x536.30661446069.jpg.pagespeed.ic.LVNFxkoX20.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/roni-horn">Roni Horn  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/roni-horn/x00-325x315.89034562942.jpg.pagespeed.ic.p6DbA-36U2.webp" width="325" height="316" srcset="http://www.xavierhufkens.com/thumbs/artists/roni-horn/x00-459x446.73641101186.jpg.pagespeed.ic.4D3ArnYjVd.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/jonathan-horowitz">Jonathan Horowitz  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/jonathan-horowitz/x00-353x283.88981275619.jpg.pagespeed.ic.SFmSqj-YRm.webp" width="353" height="284" srcset="http://www.xavierhufkens.com/thumbs/artists/jonathan-horowitz/x00-499.23055638303x401.jpg.pagespeed.ic.rLav-A9uKY.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/thomas-houseago">Thomas Houseago  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/thomas-houseago/x00-271.84908989258x362.jpg.pagespeed.ic._dcR3TLVLF.webp" width="272" height="362" srcset="http://www.xavierhufkens.com/thumbs/artists/thomas-houseago/x00-384x512.45891996252.jpg.pagespeed.ic._v_92mY-st.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/wyatt-kahn">Wyatt Kahn  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/wyatt-kahn/x00-298x340.83475444795.jpg.pagespeed.ic.SP1vAW2srP.webp" width="298" height="341" srcset="http://www.xavierhufkens.com/thumbs/artists/wyatt-kahn/x00-421.99684870958x482.jpg.pagespeed.ic.o2RG7qXDyH.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/esther-klas">Esther Kläs  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/esther-klas/x00-251x376.94709728028.jpg.pagespeed.ic.eIg7fosKZG.webp" width="251" height="377" srcset="http://www.xavierhufkens.com/thumbs/artists/esther-klas/x00-355x533.08369727094.jpg.pagespeed.ic.fECOxh-osC.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/bertrand-lavier">Bertrand Lavier  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/bertrand-lavier/x00-343.60140128177x295.jpg.pagespeed.ic.t7L8mISsDN.webp" width="344" height="295" srcset="http://www.xavierhufkens.com/thumbs/artists/bertrand-lavier/x00-485.92576174308x417.jpg.pagespeed.ic._PHSli0-m6.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/sherrie-levine">Sherrie Levine  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/sherrie-levine/x00-376.94709728028x251.jpg.pagespeed.ic.3w5plYKL0a.webp" width="377" height="251" srcset="http://www.xavierhufkens.com/thumbs/artists/sherrie-levine/x00-533.08369727094x355.jpg.pagespeed.ic.aAAUmjcADc.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/robert-mapplethorpe">Robert Mapplethorpe  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/robert-mapplethorpe/x00-323.37671871248x317.jpg.pagespeed.ic.CHLNqshm5e.webp" width="323" height="317" srcset="http://www.xavierhufkens.com/thumbs/artists/robert-mapplethorpe/x00-457x448.63459027308.jpg.pagespeed.ic.4EsmttFo5Z.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/paul-mccarthy">Paul McCarthy  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/paul-mccarthy/x01-254x374.89474356496.jpg.pagespeed.ic.DAASTUvzzO.webp" width="254" height="375" srcset="http://www.xavierhufkens.com/proxy/3-artists/0-paul-mccarthy/x01.jpg.pagespeed.ic.mrR8xyEyB3.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/malcolm-morley">Malcolm Morley  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/malcolm-morley/x00-361.19618360712x273.jpg.pagespeed.ic._mCYR-VAjg.webp" width="361" height="273" srcset="http://www.xavierhufkens.com/thumbs/artists/malcolm-morley/x00-510x386.64277297695.jpg.pagespeed.ic.D4Mu8O2KbM.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/alice-neel">Alice Neel  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/alice-neel/x00-260x370.90774382591.jpg.pagespeed.ic.svQ6Y7cP5W.webp" width="260" height="371" srcset="http://www.xavierhufkens.com/thumbs/artists/alice-neel/x00-367.79463174434x524.jpg.pagespeed.ic._cM4IF345K.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/nicolas-party">Nicolas Party  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/nicolas-party/x00-282.52272838002x354.jpg.pagespeed.ic.alhuVzwU7c.webp" width="283" height="354" srcset="http://www.xavierhufkens.com/thumbs/artists/nicolas-party/x00-399.54747415368x500.jpg.pagespeed.ic.t_FblHggWJ.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/alessandro-pessoli">Alessandro Pessoli  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/alessandro-pessoli/x00-299x340.25605265454.jpg.pagespeed.ic.Iv6U2BmulH.webp" width="299" height="340" srcset="http://www.xavierhufkens.com/thumbs/artists/alessandro-pessoli/x00-422.92982546032x481.jpg.pagespeed.ic.QPzzahDxb7.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/jack-pierson">Jack Pierson  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/jack-pierson/x00-362x271.8.jpg.pagespeed.ic.w3U8JPbDZb.webp" width="362" height="272" srcset="http://www.xavierhufkens.com/thumbs/artists/jack-pierson/x00-512.51099500401x384.jpg.pagespeed.ic.TJxReWb7FF.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/ken-price">Ken Price  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/ken-price/x00-279x356.74807445447.jpg.pagespeed.ic.ZOlJ-VjIdT.webp" width="279" height="357" srcset="http://www.xavierhufkens.com/thumbs/artists/ken-price/x00-394.81593527372x504.jpg.pagespeed.ic.8s74YFDOTv.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/tim-rollins-and-kos">Tim Rollins and K.O.S.  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/tim-rollins-and-kos/x00-362x271.85116927519.jpg.pagespeed.ic.s2ALlZeS3c.webp" width="362" height="272" srcset="http://www.xavierhufkens.com/thumbs/artists/tim-rollins-and-kos/x00-512.45671380852x384.jpg.pagespeed.ic.s3MTxYa9rT.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/sterling-ruby">Sterling Ruby  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/sterling-ruby/x00-359x275.61948927668.jpg.pagespeed.ic.4cjlt00WvE.webp" width="359" height="276" srcset="http://www.xavierhufkens.com/thumbs/artists/sterling-ruby/x00-508x389.78481978943.jpg.pagespeed.ic.bLwdRsxt2s.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/robert-ryman">Robert Ryman  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/robert-ryman/x00-254.85027141913x374.jpg.pagespeed.ic.tTRjF5MrsK.webp" width="255" height="374" srcset="http://www.xavierhufkens.com/thumbs/artists/robert-ryman/x00-360x529.64202846375.jpg.pagespeed.ic.5C2hWZ_F5r.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/josh-smith">Josh Smith  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/josh-smith/x00-284.51650082505x352.jpg.pagespeed.ic.v-khYUipXs.webp" width="285" height="352" srcset="http://www.xavierhufkens.com/thumbs/artists/josh-smith/x00-402x498.51652080602.jpg.pagespeed.ic.8NzIeGtkYt.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/walter-swennen">Walter Swennen  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/walter-swennen/x00-349x287.50779648122.jpg.pagespeed.ic.T1yJDSZXjo.webp" width="349" height="288" srcset="http://www.xavierhufkens.com/thumbs/artists/walter-swennen/x00-495x406.59742507174.jpg.pagespeed.ic.X568UtgzT4.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/padraig-timoney">Pádraig Timoney  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/padraig-timoney/x00-376.91878333504x251.jpg.pagespeed.ic.0LZ2rHaqxR.webp" width="377" height="251" srcset="http://www.xavierhufkens.com/thumbs/artists/padraig-timoney/x00-533.04365530558x355.jpg.pagespeed.ic.9VKSlmY8-N.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/lesley-vance">Lesley Vance  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/lesley-vance/x00-257.90053277212x372.jpg.pagespeed.ic.NBMesB5YXd.webp" width="258" height="372" srcset="http://www.xavierhufkens.com/thumbs/artists/lesley-vance/x00-364.72643118958x526.jpg.pagespeed.ic.UXh6V1Wi2l.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/jan-vercruysse">Jan Vercruysse  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/jan-vercruysse/x00-354x281.83175938427.jpg.pagespeed.ic.39XzBnXOoS.webp" width="354" height="282" srcset="http://www.xavierhufkens.com/thumbs/artists/jan-vercruysse/x00-501x398.57029642871.jpg.pagespeed.ic.hy6uluJyGg.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/danh-vo">Danh Vo  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/danh-vo/x00-245.55793191606x380.jpg.pagespeed.ic.Iv-4ACiLb1.webp" width="246" height="380" srcset="http://www.xavierhufkens.com/thumbs/artists/danh-vo/x00-347x538.34989007727.jpg.pagespeed.ic.PTmHoNUIWy.webp 2x" alt=""> 
+						</a>
+					</li>
+					<li><a href="http://www.xavierhufkens.com/artists/cathy-wilkes">Cathy Wilkes  
+							<img src="http://www.xavierhufkens.com/thumbs/artists/cathy-wilkes/x00-362x271.85116927519.jpg.pagespeed.ic.4P-hgzdkWQ.webp" width="362" height="272" srcset="http://www.xavierhufkens.com/thumbs/artists/cathy-wilkes/x00-512.45671380852x384.jpg.pagespeed.ic.hvQIS1sZbm.webp 2x" alt=""> 
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+  
+  
+  
+  
+  
+  {/block}

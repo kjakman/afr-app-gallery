@@ -1,9 +1,11 @@
+{{"extend": "minisites/index.html"}}
 
+{$artist = $scope.artist}
+{$artist.page_slug}
 
-  {{"extend": "minisites/index.html"}}
-  
-  {$artist = $scope.artist}
-  {$artist.page_slug}
+  {block name=title}
+    <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
+  {/block} 
   {block name=content}       
   <div class="row detail-page-row">
     <div class="col-md-3 col-sm-12 text-left artist-subnav-container">
@@ -11,7 +13,7 @@
         <h1 class="sub-nav-header artist-sub-nav-header"><a href="{$basepath}{$artist.page_slug}{$slug}">{$artist.display_name}</a></h1>
           <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
 
-            <li><a href="{$basepath}{$artist.page_slug}{$slug}/images"       class="">Images</a></li>
+            <li><a href="{$basepath}{$artist.page_slug}{$slug}/images"       class="">Selected Art</a></li>
             <li><a href="{$basepath}{$artist.page_slug}{$slug}/biography"    class="">Biography</a></li>
             {if ($scope.show_pub)}<li><a href="{$basepath}{$artist.page_slug}{$slug}/publications" class="">Publications</a></li>{/if}
             <!-- {if ($artist.show_awards)}<li><a href="{$basepath}{$artist.page_slug}{$slug}/awards"    class="">Awards</a></li>{/if} -->
@@ -124,7 +126,7 @@
       {$first =  $artworks[0]}
       {$title_artwork = $first.media_id}
       <div class="image-container-max-height">
-        <img src="{$artist|userphoto:'medium'}" alt="{$artist.display_name}" class="img-responsive"/><br />
+        <img src="{$artist|userphoto:'medium'}" alt="{$artist.display_name}" class="img-responsive center-block"/><br />
       </div>
       <br />
       <div style="text-align: justify;">

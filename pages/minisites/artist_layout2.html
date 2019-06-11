@@ -5,34 +5,34 @@
 
 {block name=content} 
 <style>
-	.nav-tabs>li>a {
+	.submenu-toggle{
+		padding: 0px;
+		list-style: none;
+	    text-align: center;
+	    border-bottom: 1px solid #e8e8e8;
+	}
+	.submenu-toggle>li{
+	    display: inline-block;
+	}
+	.submenu-toggle>li>a {
 	    margin-right: 2px;
 	    line-height: 1.42857143;
 	    border: 1px solid transparent;
 	    border-radius: 4px 4px 0 0;
 	}
-	a.sublink {
-	    color: #ed8323;
-	    text-decoration: none;
-	}
-	.nav>li>a{
+	.submenu-toggle>li>a{
 	    position: relative;
 	    display: block;
 	    padding: 10px 15px;	
+	    color: #ed8323;
+	    text-decoration: none;
 	}
-	.nav-tabs>li>a:hover {
+	.submenu-toggle>li>a:hover {
 	    border-color: #eee #eee #ddd;
 	}
-		.nav>li>a:focus, .nav>li>a:hover {
+	.submenu-toggle>li>a:focus, .submenu-toggle>li>a:hover {
 	    text-decoration: none;
 	    background-color: #eee;
-	}
-	.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-	    color: #555;
-	    cursor: default;
-	    background-color: #fff;
-	    border: 1px solid #ddd;
-	    border-bottom-color: transparent;
 	}
 </style>
 <div class="profileinfo"> 
@@ -60,24 +60,21 @@
 		  <div style="text-align: left;" class="mt20">
 		    {$show_data = json_decode($profile.show_data, True)}
 		    
-		   <ul class="nav nav-tabs">
-		      <li class="active nav-item"><a class="nav-link sublink"  data-toggle="tab" href="#empty">Selected Artworks </a></li>
-		      <!-- {if ($profile.bio_description != '')}<li class="nav-item"><a href="" class="nav-link"  data-toggle="tab" data-target="#description">Overview </a></li>{/if} -->
-		      {if (($show_data['solo_shows'] == 1) && ($profile.solo_shows_ != '[]'))}<li class="nav-item sublink"><a href="" class="nav-link"  data-toggle="tab" data-target="#solo_text">Solo Shows</a></li>{/if}
-		      {if (($show_data['group_shows'] == 1) && ($profile.group_shows_ != '[]'))}<li class="nav-item sublink"><a href=""class="nav-link"  data-toggle="tab" data-target="#group_text">Group Shows</a></li>{/if}  
-		      {if (($show_data['press'] == 1) && ($profile.press_data != '[]'))}<li class="nav-item sublink"><a href="" class="nav-link"  data-toggle="tab" data-target="#press_text">Press </a></li>{/if}
-		      {if (($show_data['awards'] == 1) && ($profile.awards != '[]'))}<li class="nav-item sublink"><a href="" class="nav-link" data-toggle="tab" data-target="#award_text">Awards </a></li>{/if}
-		      {if ($profile.free_text != '')}<li class="nav-item"><a href="" class="nav-link sublink"  data-toggle="tab" data-target="#free_text">CV </a></li>{/if}
+		   <ul class="submenu-toggle">
+		      <li><a class="sublink" href="#empty">Selected Artworks </a></li>
+		      <!-- {if ($profile.bio_description != '')}<li><a href="" class="link" data-toggle="tab" href="#description">Overview </a></li>{/if} -->
+		      {if (($show_data['solo_shows'] == 1) && ($profile.solo_shows_ != '[]'))}<li><a class="sublink" href="#solo_text">Solo Shows</a></li>{/if}
+		      {if (($show_data['group_shows'] == 1) && ($profile.group_shows_ != '[]'))}<li><a class="sublink" href="#group_text">Group Shows</a></li>{/if}  
+		      {if (($show_data['press'] == 1) && ($profile.press_data != '[]'))}<li><a class="sublink" href="#press_text">Press </a></li>{/if}
+		      {if (($show_data['awards'] == 1) && ($profile.awards != '[]'))}<li><a class="sublink" href="#award_text">Awards </a></li>{/if}
+		      {if ($profile.free_text != '')}<li><a class="sublink" href="#free_text">CV </a></li>{/if}
 		    </ul>
 
-		    <div class="tab-content profileDetails">
-		      <div id="empty" class="tab-pane fade mt20 in active mb20">
-		        
-		      </div>
+		    <div class=" profileDetails">
 
 		      {if ($show_data['solo_shows'] == 1)} 
 		      {$solo_shows_ = json_decode($profile.solo_shows_, True)}
-		      <div id="solo_text" class="tab-pane fade mt20 mb20">
+		      <div id="solo_text" class="mt20 mb20">
 		        <h4>Solo Shows: </h4>
 		        <table>
 		          {foreach from =$solo_shows_ item=$solo_shows}
@@ -93,7 +90,7 @@
 		      
 		      {if ($show_data['group_shows'] == 1)}
 		      {$group_shows_ = json_decode($profile.group_shows_, True)}
-		      <div id="group_text" class="tab-pane fade mt20 mb20">
+		      <div id="group_text" class="mt20 mb20">
 		          <h4>Group Shows: </h4>
 		          <table>
 		            {foreach from =$group_shows_ item=$group_shows}
@@ -109,7 +106,7 @@
 
 		      {if ($show_data['press'] == 1)}
 		      {$press_data = json_decode($profile.press_data, True)}
-		      <div id="press_text" class="tab-pane fade mt20 mb20">
+		      <div id="press_text" class="mt20 mb20">
 		        <h4>Press : </h4>
 		        <table>
 		          {foreach from =$press_data item=$press}
@@ -125,7 +122,7 @@
 
 		      {if ($show_data['awards'] == 1)}
 		      {$awards = json_decode($profile.awards, True)}
-		      <div id="award_text" class="tab-pane fade mt20 mb20">
+		      <div id="award_text" class="mt20 mb20">
 		        <h4>Awards : </h4>
 		        <table>
 		          {foreach from =$awards item=$award}
@@ -138,21 +135,41 @@
 		        </table>       
 		      </div>
 		      {/if}
-		      <div id="free_text" class="tab-pane fade mt20 mb20">
+		      <div id="free_text" class="mt20 mb20">
 		        <h4>CV : </h4>
 		          {$profile.free_text}
+		      </div>
+		      <div id="empty" class="mt20  mb20">
+					<article class="row">
+						<div class="profileinfo italic mb10">
+							<h1>Selected Artworks</h1>
+						</div>
+						{{"include": "minisites/_artworks.html"}}
+					</article>
 		      </div>
 		  	</div>
 		  </div>
 		{/block}
-		<article class="row">
-			<div class="profileinfo italic mb10">
-				<h1>Selected Artworks</h1>
-			</div>
-			{{"include": "minisites/_artworks.html"}}
-		</article>
 	</div>
 </div>
+<script>
 
+jQuery( document ).ready( function( $ ) { 	
+	// Single page menu
+	$(".submenu-toggle .sublink").on('click', function(event) {
+		var hash = this.hash;
+		if (this.hash !== "") {
+			event.preventDefault();
+			$('html, body').animate({
+				scrollTop: $(hash).offset().top
+			}, 1000, function(){
+				window.location.hash = hash;
+			});
+		} 
+	});
+		
+});	
+
+</script>
 {/block}
 

@@ -250,3 +250,16 @@ VALUES ('125', '20', 'Layout 2', '', '3', '1', now(), now());
 
 INSERT INTO `minisite_layout` (`id`, `type`, `name`, `image`, `row_order`, `active`, `created`, `timestamp`)
 VALUES ('126', '20', 'Layout 3', '', '4', '1', now(), now());
+
+DROP TABLE IF EXISTS `minisite_page_type`;
+CREATE TABLE `minisite_page_type` (
+  `id` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `minisite_page_type` (`id`, `name`) VALUES
+(20,  'Artists'),
+(30,  'Exhibitions - Smart Filter'),
+(40,  'Contacts'),
+(50,  'Bio');
