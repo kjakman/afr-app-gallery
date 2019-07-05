@@ -217,3 +217,9 @@ INSERT INTO `minisite_layout` (`id`, `parent_id`, `type`, `subtype`, `separator`
 ALTER TABLE `minisite`
 ADD `font_type` int(25) NOT NULL,
 ADD `menu_type` int(25) NOT NULL;
+
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+VALUES ('exhibition_map', '10');
+
+ALTER TABLE `minisite`
+ADD `icon_size` int(8) NOT NULL;
