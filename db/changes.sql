@@ -218,6 +218,19 @@ ALTER TABLE `minisite`
 ADD `font_type` int(25) NOT NULL,
 ADD `menu_type` int(25) NOT NULL;
 
+CREATE TABLE `exhibition_map` (
+  `id` int(8) NOT NULL,
+  `media_collection_id` int(8) NOT NULL,
+  `media_id` int(8) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `site_id` int(11) NOT NULL,
+  `artist_id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `curator_id` int(11) NOT NULL,
+  `page_id` int(8) NOT NULL
+);
+
 INSERT INTO `db_sequence` (`seq_name`, `nextid`)
 VALUES ('exhibition_map', '10');
 
