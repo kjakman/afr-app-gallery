@@ -223,3 +223,28 @@ VALUES ('exhibition_map', '10');
 
 ALTER TABLE `minisite`
 ADD `icon_size` int(8) NOT NULL;
+
+DROP TABLE IF EXISTS `minisite_parent_layout`;
+CREATE TABLE `minisite_parent_layout` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `type` int(11) NOT NULL,
+  `row_order` int(11) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `created` datetime NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `minisite_parent_layout` (`id`, `name`, `image`, `type`, `row_order`, `active`, `created`, `timestamp`) VALUES
+(10,  'Masonry',  'MasonryScreenshot.png',  30, 1,  1,  '2019-06-14 12:59:31',  '2019-07-05 10:07:23'),
+(20,  'Landscape Resized',  'LandsscapeScreenshot.png', 30, 2,  1,  '2019-06-17 08:38:17',  '2019-07-05 10:19:47'),
+(30,  'Hanging',  'HangingScreenshot.png',  30, 3,  1,  '2019-06-17 08:40:16',  '2019-07-05 10:08:15'),
+(40,  'Timeline', 'LandscapeScreenShot.png',  30, 7,  1,  '2019-06-17 12:39:30',  '2019-07-05 10:09:05'),
+(50,  'Square Artist',  'ArtistsLayoutSquare.png',  20, 1,  1,  '2019-06-18 06:32:29',  '2019-06-24 14:00:46'),
+(60,  'Circle artist',  'ArtistsLayoutCircle.png',  20, 2,  1,  '2019-06-18 06:33:07',  '2019-06-24 14:01:14'),
+(70,  'List Mouseover', 'ArtistsLayoutList.png',  20, 3,  1,  '2019-06-18 06:33:45',  '2019-06-24 14:01:02'),
+(80,  'Single page Exhibition', '', 60, 1,  1,  '2019-06-24 12:15:10',  '2019-06-24 12:35:03'),
+(90,  'Baltimore (16:9)', 'BaltimoreScreenshot.png',  30, 5,  1,  '2019-07-02 12:55:02',  '2019-07-05 10:04:56'),
+(100, 'Casablanca (4:3)', 'CasablancaScreenshot.png', 30, 6,  1,  '2019-07-04 05:45:32',  '2019-07-05 10:04:33'),
+(101, 'Standing ',  'StandingScreenshot.png', 30, 4,  1,  '2019-07-05 07:16:12',  '2019-07-05 10:03:03');
