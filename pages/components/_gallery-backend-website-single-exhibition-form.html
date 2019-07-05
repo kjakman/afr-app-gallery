@@ -1,0 +1,112 @@
+{$minisitepage = $scope.minisitepage}
+{$single_exhibition = $scope.single_exhibition}
+{$obj_id = $scope.page_id}
+{$data = json_decode($minisitepage.data, True)}
+{{"include": "_gallery-backend-website-subtab.html"}}
+
+<form class="ajax-submit" data-handler="save-minisite-page" id="single_exhibition">
+  <input hidden="1" name="minisite_id" type="hidden" value="{$minisite.id|default:$id}">
+  <input hidden="1" name="obj_id" class="obj_id" type="hidden" value="{$obj_id}">
+  <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id}">
+  <input hidden="1" name="obj_type" type="hidden" value="minisite_page">
+    
+  <div class="form-group">
+    <div class="row">
+      <div class="form-group col-sm-8">
+        <label for="menu-title">Menu Title</label>
+        <input type="text" class="form-control" maxlength="15" name="menu_title" value="{$minisitepage.menu_title}">
+      </div>
+      <div class="form-group col-sm-8">
+        <label for="page-title">Page Title</label>
+        <input type="text" class="form-control" maxlength="15" name="page_title" value="{$minisitepage.page_title}">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="form-group col-sm-12">
+        <label for="page-title">How do you want to select the Single Exhibition that is displayed on the page?</label>
+      </div>
+		<div class="col-sm-4" style="border-bottom:1px solid #000; border-right:1px solid #000;">
+			<div class="form-group">
+				<input type="radio" class="show_recent" name="data[eType]" value="1" onclick="change_radio(this);" {if ($data['eType'] == '1')} checked {/if} required > Show Most Recent Exhibition
+			</div>
+		</div>
+		<div class="col-sm-6" style="border-bottom:1px solid #000;">
+			<div class="form-group">
+				<input type="radio" class="show_recent1" name="data[eType]" value="2" onclick="change_radio(this);" {if ($data['eType'] == '2')} checked {/if} required >Attach a Single Exhibition Manually
+			</div>
+		</div>
+		<div class="col-sm-4" style="border-right:1px solid #000;">
+			<div class="radio_group" style="padding: 15px;">
+				<div class="form-group">
+				  <input type="checkbox" class="datefilter" name="data[gallery]" value="10" {if (($data['eType'] == '1') && ($data['gallery'] == '10') )} checked {/if} > Gallery
+				</div>
+				 <div class="form-group">
+				  <input type="checkbox" class="datefilter" name="data[artfair]" value="20" {if (($data['eType'] == '1') && ($data['artfair'] == '20') )} checked {/if} > Artfairs
+				</div>
+				 <div class="form-group">
+				  <input type="checkbox" class="datefilter" name="data[others]" value="30" {if (($data['eType'] == '1') && ($data['others'] == '30') )} checked {/if} > Other Events
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6" style="padding: 15px;">
+			<div class="upload_image">
+        <a href="/backend/exhibitions?add_to_website={$minisitepage.minisite_id}&amp;_pv=1&page_id={$obj_id}&user_id={$minisitepage.user_id}" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Attach Single Exhibition</a>
+        <br><br>
+        {if ($single_exhibition)}
+          <img src="{$single_exhibition.media_id|photo:'medium'}" style="height: 150px; width: auto;"><br><br>
+          <button class='btn btn-danger delete' id= 'delete_image' value="{$obj_id}"> Delete </button>
+        {/if}
+			</div> 
+		</div>
+    </div>  
+    <div class="form-group col-sm-8">
+      <input type="submit" class="btn btn-success" value="Save" >
+    </div>
+  </div>
+  
+</form>
+<script type="text/javascript">
+  function change_radio(element) {
+    var eType = $('input:radio.show_recent:checked').val();
+    if(eType == 1){
+      $(".radio_group").find("input:checkbox").attr('disabled',false);
+      $(".radio_group").find("input:checkbox").prop("checked", true);
+    }else{
+      $(".radio_group").find("input:checkbox").removeAttr('checked');
+      $(".radio_group").find("input:checkbox").attr('disabled',true);
+    }
+  }
+ 
+  $(document).on("click", '#delete_image', function(){
+    $(this).closest("img").remove();
+    var page_id = $(this).val();
+    var obj_type = "exhibition_map";
+      $.ajax({
+        url: "/ajax.php",
+        dataType: "json",
+        data: {
+          oper: "single_image",
+          page_id: page_id
+        }, 
+        success:function(response_data_json) {
+          $("#gbe_single_content_link").trigger('click').one();
+        }     
+      });        
+  });
+
+  $("#single_exhibition").submit(function(){
+      var type = $(".show_recent:checked").val()
+      var checked = $(".datefilter:checked").length;
+      if ((type) && (!checked)){
+          alert("Show Most Recent Exhibition - Please check at least one checkbox");
+          return false;
+      }
+     
+  });
+
+</script>
+
+  

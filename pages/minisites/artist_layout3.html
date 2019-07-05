@@ -6,34 +6,51 @@
 
 {block name=content} 
 <style>
-	.nav-tabs>li>a {
+	.profile_infotab{
+		padding: 0px;
+		list-style: none;
+	    text-align: center;
+	    border-bottom: 1px solid #e8e8e8;
+	    display: block;
+	}
+	.profile_infotab>li{
+		margin-bottom: 0px !important;
+	    display: inline-block;
+	}
+	.profile_infotab>li>a {
 	    margin-right: 2px;
 	    line-height: 1.42857143;
 	    border: 1px solid transparent;
 	    border-radius: 4px 4px 0 0;
+		border:0px !important;
 	}
-	a.sublink {
-	    color: #ed8323;
-	    text-decoration: none;
-	}
-	.nav>li>a{
+	.profile_infotab>li>a{
 	    position: relative;
 	    display: block;
 	    padding: 10px 15px;	
-	}
-	.nav-tabs>li>a:hover {
-	    border-color: #eee #eee #ddd;
-	}
-		.nav>li>a:focus, .nav>li>a:hover {
+		color: #5d5d5d;
 	    text-decoration: none;
-	    background-color: #eee;
+		font-size: 16px;
+        transition: all .2s ease-in-out;
 	}
-	.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-	    color: #555;
-	    cursor: default;
-	    background-color: #fff;
-	    border: 1px solid #ddd;
-	    border-bottom-color: transparent;
+	.profile_infotab>li>a:after {
+        content: '';
+        border-bottom: 2px solid #000000;
+        left: 0;
+        position: absolute;
+        top: 100%;
+        transition: all .2s ease-in-out;
+        width: 0;
+    }
+    .profile_infotab>li>a:hover:after, .profile_infotab>li>a.active:hover:after{
+        width: 100%;
+    }
+	.profile_infotab>li>a:hover {
+		color: #000000;
+	}
+	.profile_infotab>li>a:focus, .profile_infotab>li>a:visited, .profile_infotab>li>a.active{
+		color: #000000;
+		font-weight: bold !important;
 	}
 </style>
 <div class="profileinfo"> 
@@ -61,9 +78,9 @@
 		  <div style="text-align: left;" class="mt20">
 		    {$show_data = json_decode($profile.show_data, True)}
 		    
-		   <ul class="nav nav-tabs">
-		      <li class="active nav-item"><a href="" class="nav-link sublink"  data-toggle="tab" data-target="#empty">Selected Artworks </a></li>
-		      <li class="nav-item"><a href="" class="nav-link sublink"  data-toggle="tab" data-target="#cv">CV</a></li>
+		   <ul class="profile_infotab nav nav-tabs">
+		      <li class="active nav-item"><a href="javascript:void(0)"  class="nav-link sublink"  data-toggle="tab" data-target="#empty">Selected Artworks </a></li>
+		      <li class="nav-item"><a href="javascript:void(0)"  class="nav-link sublink"  data-toggle="tab" data-target="#cv">CV</a></li>
 		     
 		    </ul>
 
@@ -75,6 +92,11 @@
 		      </div>
 
 		      <div id="cv" class="tab-pane fade mt20 mb20">
+		      	{if ({$profile.free_text})}
+		      	  <h4>CV :</h4>
+		      	  {$profile.free_text}<br>
+		      	{/if}
+
 		      	{if ($show_data['solo_shows'] == 1)} 
 		      		{$solo_shows_ = json_decode($profile.solo_shows_, True)}
 		        	<h4>Solo Shows: </h4>
@@ -131,10 +153,7 @@
 			      </table>       
 			    {/if}
 
-			    <div id="free_text" class="tab-pane fade mt20 mb20">
-			      <h4>CV : </h4>
-			        {$profile.free_text}
-			    </div>
+			    
 		      </div> 
 		  	</div>
 		  </div>

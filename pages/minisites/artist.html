@@ -1,22 +1,29 @@
 {{"extend": "minisites/index.html"}}
 
 {$artist = $scope.artist}
-{$artist.page_slug}
+{$artworks = $scope.artworks}
 
   {block name=title}
     <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
   {/block} 
-  {block name=content}       
+
+  {block name=content} 
+  {$link = ''}
+  {if ($artist.page_slug)} 
+    {$link="{$basepath}{$artist.page_slug}{$slug}"}
+  {else} 
+    {$link="{$basepath}/{$slug}"}
+  {/if}
+
   <div class="row detail-page-row">
     <div class="col-md-3 col-sm-12 text-left artist-subnav-container">
       <div class="artist-sub-nav">
-        <h1 class="sub-nav-header artist-sub-nav-header"><a href="{$basepath}{$artist.page_slug}{$slug}">{$artist.display_name}</a></h1>
+        <h1 class="sub-nav-header artist-sub-nav-header"><a href="{$link}">{$artist.display_name}</a></h1>
+        {if ($artist.city)} <h3 class="bioaddress"> {$artist.city}, {$artist.country|get:countries:name}</h3> {/if}
           <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
-
-            <li><a href="{$basepath}{$artist.page_slug}{$slug}/images"       class="">Selected Art</a></li>
-            <li><a href="{$basepath}{$artist.page_slug}{$slug}/biography"    class="">Biography</a></li>
+            <li><a href="{$link}/images" class="">Selected Art</a></li>
+            <li><a href="{$link}/biography"    class="">Biography</a></li>
             {if ($scope.show_pub)}<li><a href="{$basepath}{$artist.page_slug}{$slug}/publications" class="">Publications</a></li>{/if}
-            <!-- {if ($artist.show_awards)}<li><a href="{$basepath}{$artist.page_slug}{$slug}/awards"    class="">Awards</a></li>{/if} -->
           </ul>
         </p>
         <!-- mobile layout -->
@@ -25,8 +32,8 @@
             About Artist
           </button>
           <div class="dropdown-menu">
-              <li class="sub-nav-li"><a href="{$basepath}{$artist.page_slug}{$slug}/images" class="dropdown-item">Images</a></li>
-            <li class="sub-nav-li"><a href="{$basepath}{$artist.page_slug}{$slug}/biography" class="dropdown-item">Biography</a></li>
+              <li class="sub-nav-li"><a href="{$link}/images class="dropdown-item">Images</a></li>
+            <li class="sub-nav-li"><a href="{$link}/biography" class="dropdown-item">Biography</a></li>
             {if ($scope.show_pub)}<li class="sub-nav-li"><a href="{$basepath}{$artist.page_slug}{$slug}/publications" class="dropdown-item">Publications</a></li>{/if}
           </div>
         </div>
@@ -35,10 +42,14 @@
     
     <div class="col-md-8 col-sm-12 detail-text">
     {if ($subview == 'images')}
-    
       {{"include": "minisites/_artworks.html"}}
       
     {elseif ($subview == 'biography')}
+      {if ({$artist.free_text})}
+        <h4>CV</h4>
+        {$artist.free_text}<br>
+      {/if}
+
       {$show_data = json_decode($artist.show_data, True)}
 
       {if ($show_data['solo_shows'] == 1)}
@@ -51,7 +62,6 @@
                 {$split = explode('-', $solo_shows['year'])}
                   <tr style="line-height: 26px;">
                     <td style= "width: 40px">{$split[0]}</td>
-                    <!-- <td style= "width: 70px">{$split[1]}</td> -->
                     <td>{$solo_shows['description']}</td>
                   </tr>
               {/foreach}
@@ -69,7 +79,6 @@
                 {$split = explode('-', $group_shows['year'])}
                   <tr style="line-height: 26px;">
                     <td style= "width: 40px">{$split[0]}</td>
-                    <!-- <td style= "width: 70px">{$split[1]}</td> -->
                     <td>{$group_shows['description']}</td>
                   </tr>
               {/foreach}
@@ -87,7 +96,6 @@
                 {$split = explode('-', $press['year'])}
                   <tr style="line-height: 26px;">
                     <td style= "width: 40px">{$split[0]}</td>
-                    <!-- <td style= "width: 70px">{$split[1]}</td> -->
                     <td>{$press['description']}</td>
                   </tr>
               {/foreach}
@@ -105,7 +113,6 @@
                 {$split = explode('-', $award['year'])}
                   <tr style="line-height: 26px;">
                     <td style= "width: 40px">{$split[0]}</td>
-                    <!-- <td style= "width: 70px">{$split[1]}</td> -->
                     <td>{$award['description']}</td>
                   </tr>
               {/foreach}
@@ -130,7 +137,7 @@
       </div>
       <br />
       <div style="text-align: justify;">
-       {$artist.description}
+       {$artist.bio_description}
       </div>
       <p>&nbsp;</p>
     {/if}

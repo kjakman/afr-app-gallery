@@ -10,6 +10,7 @@
 {$list = ($page.subview == $page.listview) ? 1 : 0}
 {$add_to = $scope.add_to}
 {$add_to_profile = $scope.add_to_profile}
+{$add_to_website = $scope.add_to_website}
 {$getpv = $scope.getpv}
 {$site_id = $scope.site_id}
 {$page_id = $scope.page_id}
@@ -67,6 +68,7 @@
     {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'exhibition', 'id' => $add_to, 'action' => 'edit']}  
     {$buttons = 1}
     <li><a href="{$ex_link}/media?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to exhibition</a></li> 
+
   {elseif ($add_to_profile)} 
     {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'profile', 'id' => $add_to_profile, 'action' => 'edit']}  
     {$buttons = 1}
@@ -75,10 +77,17 @@
     {else}
       <li><a href="{$ex_link}/art?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to profile</a></li> 
     {/if}
+
+  {elseif ($add_to_website)} 
+    {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'website', 'id' =>$site_id , 'action' => 'edit']} 
+    {$buttons = 1}
+    <li><a href="{$ex_link}/singleExhibition?_pv=1&page_id={$page_id}&user_id={$user_id}" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to website</a></li> 
+
   {elseif ($getpv == 'viewartistpage')}
     {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'website', 'id' =>$site_id , 'action' => 'edit']} 
     {$buttons = 1}
     <li><a href="{$ex_link}/artist?_pv=1&page_id={$page_id}&user_id={$user_id}" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Back</a></li>
+  
   {else}
     {if (!$list && !$form)}
       {$buttons = 1}

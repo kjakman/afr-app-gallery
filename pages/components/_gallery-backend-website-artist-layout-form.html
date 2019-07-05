@@ -1,4 +1,5 @@
 {$minisitepage = $scope.minisitepage}
+{$layouts = $scope.artist_layout1}
 {$obj_id = $scope.page_id}
 
 {{"include": "_gallery-backend-website-subtab.html"}}
@@ -6,60 +7,18 @@
     <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$obj_id}">
     
      <div class="row mt20">
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/biolayout1.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box">
-                        <input type="radio" class="exhibition_layout" name="second_layout" id="radio1" value="10" {if ($minisitepage.second_layout == 10)} checked {/if} > Berlin - Full
+        {foreach from=$layouts item=$layout}
+            <div class="col-sm-6">
+                <div class="fontsty_boxblk">
+                    <div class="fontsty_box no-padding">
+                        <img src="/img/{$layout.image}" />
+                    </div>
+                    <div class="form-group">
+                        <div class="selrad_box">
+                            <input type="radio" class="second_layout" name="second_layout" id="radio1" value="{$layout.id}" {if ($minisitepage.second_layout == $layout.id)} checked {/if} > {$layout.name}
+                        </div> 
                     </div> 
                 </div> 
-            </div> 
-        </div>  
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/biolayout2.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box">
-                        <input type="radio" class="exhibition_layout" name="second_layout" id="radio1" value="20" {if ($minisitepage.second_layout == 20)} checked {/if} > Berlin Slim
-                    </div> 
-                </div> 
-            </div> 
-        </div>
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/biolayout3.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box">
-                        <input type="radio" class="exhibition_layout" name="second_layout" id="radio1" value="30" {if ($minisitepage.second_layout == 30)} checked {/if} > Manhattan Full
-                    </div> 
-                </div> 
-            </div> 
-        </div>
-        <div class="col-sm-6">
-            <div class="fontsty_boxblk">
-                <div class="fontsty_box no-padding">
-                    <img src="/img/biolayout4.png" />
-                </div>
-                <div class="form-group">
-                    <div class="selrad_box">
-                        <input type="radio" class="exhibition_layout" name="second_layout" id="radio1" value="40" {if ($minisitepage.second_layout == 40)} checked {/if} > Manhattan Slim
-                    </div> 
-                </div> 
-            </div> 
-        </div>  
+            </div>  
+        {/foreach} 
     </div>  
-
-
-<script type="text/javascript">
-    $("#gbe_artist_link").hide();
-    $("#gbe_home_link").hide();   
-    $("#gbe_contact_link").hide(); 
-    $("#gbe_bio_link").hide(); 
-</script>

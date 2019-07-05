@@ -1,0 +1,65 @@
+
+<div class="profileinfo"> 
+	<div class="gallery-artwork-detail">
+		<article class="row mt20">
+			<section class="col-sm-6 mr20" style="text-align: center;">
+				<img src="{$collection.id|collection_photo:'medium'}" alt="{$collection.title}" class="img-responsive" /><br>
+			</section>
+			<aside class="col-sm-5">
+				<h2>{$collection.title}</h2>
+				{if ($collection.start_date && $collection.end_date)}
+				  {{"include": "_gallery-collection-date.html"}}
+				{/if}
+				<br>
+				<h3>Artist:</h3>
+				<h1 class="black">
+					{foreach from=$artist_ids item=$artist_id}
+					  {$artist_name = $artist_id|displayname}
+					  {$artist_name}
+					{/foreach}
+				</h1> 
+				{if ($collection.location_id)}
+				  {{"include": "_gallery-collection-location"}}
+				{/if}
+				<br>
+			</aside>
+		</article>
+		<article class="row mt40">
+			<div class="gap gap-small"></div>
+			{if ($collection.description)}
+				<h3>About {$collection.title}</h3>
+				<p>{$collection.description}</p>
+			{/if}
+			<div class="gap"></div>
+			{$count = $scope.artworks|@count}
+			{if ($count)}
+				<div class="gallery-related" id="collection_artworks">
+					<div class="profileinfo italic mb10">
+						<h2>Other Art in {$collection.title}</h2>
+					</div>
+				</div>
+				{$index = 0}
+				<ul class="photo-grid gallery-list list">
+					{foreach from=$artworks item=artwork}
+            		{$artwork_slug = "artwork~`$artwork.artwork_id`"}
+						<li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item" data-index="0" data-media_id="{$artwork.media_id}" id="map_5050">
+							<div class="pdf-thumb-box-overlay">
+								<div class="pdf-thumb-box-links">
+									<a href="" class="cms-link gallery-link pull-right" title="Artwork Details">
+										<i class="fa fa-info-circle fa-2x"></i>
+									</a>
+								</div> 
+							</div> 
+							<a href="{$basepath}/{$page_slug}/{$collection.slug}/{$artwork_slug}"><img src="{$artwork.media_id|photo:'medium'}" class=""></a>
+							<br>
+							<div class="photo-grid-title artinfo" style="text-align: left;">
+								<h2 class="black subtitle">{$artwork.name}</h2>
+								{if ($artwork.original_year)}<h3>{$artwork.original_year}, {$artwork.original_technique}</h3>{/if}
+							</div>
+						</li>
+					{/foreach}
+				</ul>
+			{/if}
+		</article>
+	 </div>
+</div>

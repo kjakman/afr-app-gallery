@@ -1,29 +1,180 @@
 {$minisitepage = $scope.minisitepage}
 {$layouts = $scope.exhibition_layout}
+{$sub_layouts = $scope.exhibition_sub_layout}
 {$obj_id = $scope.page_id}
+{$page_layout = find_object('minisite_layout', ['id' => $minisitepage.page_layout, 'active' => 1])}
 
 {{"include": "_gallery-backend-website-subtab.html"}}
 
     <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$obj_id}">  
-     <div class="row mt20">
-        {foreach from=$layouts item=$layout}
+     
+     <div class="row mt20"> 
+        {foreach from=$layouts item=$layout}  
+          {if ($layout.id != 40)}  
             <div class="col-sm-6">
                 <div class="fontsty_boxblk">
                     <div class="fontsty_box no-padding">
                         <img src="/img/{$layout.image}" />
                     </div>
                     <div class="form-group">
-                        <div class="selrad_box"> 
-                            <input type="radio" class="page_layout" name="page_layout" id="radio1" value="{$layout.id}" {if ($minisitepage.page_layout == $layout.id)} checked {/if} > {$layout.name}
-                        </div> 
-                    </div> 
-                </div>
+                      <div class="selrad_box"> 
+                        <input type="radio" class="new_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
+                        <div class="radio_group">
+                            {foreach from=$sub_layouts item=$sub_layout}
+                              {if ($layout.id == $sub_layout.parent_id)}
+                                {if ($sub_layout.separator == 3C)}
+                                  <input hidden="1" type="hidden" class="3C_{$layout.id}" value="{$sub_layout.id}">
+                                {elseif ($sub_layout.separator == 4C)}
+                                  <input hidden="1" type="hidden" class="4C_{$layout.id}" value="{$sub_layout.id}">
+                                {elseif ($sub_layout.separator == 3CT)}
+                                  <input hidden="1" type="hidden" class="3CT_{$layout.id}" value="{$sub_layout.id}">
+                                {elseif ($sub_layout.separator == 4CT)}
+                                  <input hidden="1" type="hidden" class="4CT_{$layout.id}" value="{$sub_layout.id}">
+                                {elseif ($sub_layout.separator == 3CY)}
+                                  <input hidden="1" type="hidden" class="3CY_{$layout.id}" value="{$sub_layout.id}">
+                                {elseif ($sub_layout.separator == 4CY)}
+                                  <input hidden="1" type="hidden" class="4CY_{$layout.id}" value="{$sub_layout.id}">
+                                {/if}
+                              {/if}
+                            {/foreach}
+                             <span style="margin-right:10px">Number Columns</span>  
+                             <span style="margin-right:10px"><input type="radio" class="col_{$layout.id}" name="col_{$layout.id}" id="newradio1" value="1" onclick="btn_click(this);" {if ((($page_layout->separator == 3C) || ($page_layout->separator == 3CT) || ($page_layout->separator == 3CY)) && ($page_layout->parent_id == $layout.id))} checked {/if} > 3C </span>
+                             <span style="margin-right:10px"><input type="radio" class="col1_{$layout.id}" name="col_{$layout.id}" id="newradio1" value="2" onclick="btn_click(this);" {if ( (($page_layout->separator == 4C) || ($page_layout->separator == 4CT) || ($page_layout->separator == 4CY)) && ($page_layout->parent_id == $layout.id))} checked {/if}> 4C </span>
+                             <br>
+                             <span style="margin-right:10px">Separators</span>  
+                             <span style="margin-right:10px"><input type="radio" class="sep_{$layout.id}" name="sep_{$layout.id}" id="newradio1" value="1" onclick="btn_click(this);" {if (($page_layout->separator == 3C || $page_layout->separator == 4C) && ($page_layout->parent_id == $layout.id))} checked {/if}> None </span>
+                             <span style="margin-right:10px"><input type="radio" class="sep1_{$layout.id}" name="sep_{$layout.id}" id="newradio1" value="2" onclick="btn_click(this);" {if (($page_layout->separator == 3CT || $page_layout->separator == 4CT) && ($page_layout->parent_id == $layout.id))} checked {/if} > Past Current Future</span>
+                             <span style="margin-right:10px"><input type="radio" class="sep1_{$layout.id}" name="sep_{$layout.id}" id="newradio1" value="3" onclick="btn_click(this);" {if (($page_layout->separator == 3CY || $page_layout->separator == 4CY) && ($page_layout->parent_id == $layout.id))} checked {/if} > Year </span>
+                        </div>
+                      </div>  
+                    </div>
+                </div> 
+            </div>
+          {else}
+            <div class="col-sm-6">
+                <div class="fontsty_boxblk">
+                    <div class="fontsty_box no-padding">
+                        <img src="/img/{$layout.image}" />
+                    </div>
+                    <div class="form-group">
+                      <div class="selrad_box"> 
+                        <input type="radio" class="new_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
+                        <div class="radio_group">
+                          {foreach from=$sub_layouts item=$sub_layout}
+                            {if ($layout.id == $sub_layout.parent_id)}
+                              {if ($sub_layout.separator == off)}
+                                <input hidden="1" type="hidden" class="3C_{$layout.id}" value="{$sub_layout.id}">
+                              {elseif ($sub_layout.separator == on)}
+                                <input hidden="1" type="hidden" class="4C_{$layout.id}" value="{$sub_layout.id}">
+                              {/if}
+                            {/if}
+                          {/foreach}
+                           <span style="margin-right:10px">Filter</span>  
+                           <span style="margin-right:10px"><input type="radio" class="col_{$layout.id}" name="col_{$layout.id}" id="newradio1" value="1" onclick="btn_click(this);" {if (($page_layout->separator == off) && ($page_layout->parent_id == $layout.id))} checked {/if} > Off </span>
+                           <span style="margin-right:10px"><input type="radio" class="col1_{$layout.id}" name="col_{$layout.id}" id="newradio1" value="2" onclick="btn_click(this);" {if (($page_layout->separator == on) && ($page_layout->parent_id == $layout.id))} checked {/if}> On </span><br>
+                           <span style="margin-right:10px"></span>  
+                        </div>
+                      </div>  
+                    </div>
+                </div> 
             </div> 
-        {/foreach}
-    </div>
+
+          {/if}  
+        {/foreach}    
+     </div>
+
 <script type="text/javascript">
 	$("#gbe_artist_link").hide();
 	$("#gbe_home_link").hide();   
 	$("#gbe_contact_link").hide(); 
 	$("#gbe_bio_link").hide(); 
+
+  $(document).ready(function() {
+    $(".radio_group").find("input:radio").attr('disabled',true);
+    var page_layout = $('.new_layout:checked').val();
+    $('input[name=col_'+page_layout+']').attr('disabled',false);
+    $('input[name=sep_'+page_layout+']').attr('disabled',false);
+  });
+
+  $(".new_layout").change(function() {
+    $(".radio_group").find("input:radio").removeAttr('checked');
+    $(".radio_group").find("input:radio").attr('disabled',true);
+    var page_layout = $('.new_layout:checked').val();
+    var obj_id = $('.obj_id').val();
+    var value = 0;
+    if(page_layout){
+      $(".col_"+page_layout).prop('checked', true);
+      $(".sep_"+page_layout).prop('checked', true);
+    }
+    var col = $('input[name=col_'+page_layout+']:checked').val();
+    var sep = $('input[name=sep_'+page_layout+']:checked').val();
+
+    $('input[name=col_'+page_layout+']').attr('disabled',false);
+    $('input[name=sep_'+page_layout+']').attr('disabled',false);
+    
+    var col_val = $('.3C_'+page_layout).val();
+    var sep_val = $('.3CT_'+page_layout).val();
+
+    if((col == 1 && sep == 1) || (col == 1))
+      value = col_val;
+    else if((col == 2 && sep == 1) || (col == 2))
+      value = col_val;
+
+    $.ajax({
+      url: "/ajax.php",
+      dataType: "json",
+      data: {
+        oper: "save-minisite-layout",
+        obj_id: obj_id,
+        obj_type:'minisite_page',
+        page_layout: value
+      }
+    });
+  });
+
+  function btn_click(element) {
+    var obj_id = $('.obj_id').val();
+    var page_layout = $('.new_layout:checked').val();
+    var value = 0;
+    var col = $('input[name=col_'+page_layout+']:checked').val();
+    var sep = $('input[name=sep_'+page_layout+']:checked').val();
+    
+    var col_val1 = $('.3C_'+page_layout).val();
+    var col_val2 = $('.4C_'+page_layout).val();
+    var sep_val1 = $('.3CT_'+page_layout).val();
+    var sep_val2 = $('.4CT_'+page_layout).val();
+    var sep_val3 = $('.3CY_'+page_layout).val();
+    var sep_val4 = $('.4CY_'+page_layout).val();
+
+    if(col == 1 && sep == 1)
+      value = col_val1;
+    else if(col == 1 && sep == 2)
+      value = sep_val1;
+    else if(col == 1 && sep == 3)
+      value = sep_val3;
+    else if(col == 2 && sep == 1)
+      value = col_val2;
+    else if(col == 2 && sep == 2)
+      value = sep_val2;
+    else if(col == 2 && sep == 3)
+      value = sep_val4;
+    else if(col == 1)
+      value = col_val1;
+    else if(col == 2)
+      value = col_val2;
+
+    $.ajax({
+      url: "/ajax.php",
+      dataType: "json",
+      data: {
+        oper: "save-minisite-layout",
+        obj_id: obj_id,
+        obj_type:'minisite_page',
+        page_layout: value
+      }
+    });
+    
+   }
+
+
 </script>

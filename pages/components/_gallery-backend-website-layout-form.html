@@ -1,6 +1,6 @@
-      <form class="ajax-submit" data-handler="save-minisite-basic">
+     <form class="ajax-submit" data-handler="save-minisite-basic">
         <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
-        <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}">
+        <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}" class="obj_id">
         <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">  
         <input hidden="1" name="next_tab" type="hidden" value="styling"> 
 
@@ -49,7 +49,41 @@
           <div class="col-sm-12">
             <label for="media-name">Icon</label>
             <a data-toggle="tooltip" data-placement="right" title="Select the main image to represent the artwork"> <i class="fa fa-info-circle"></i></a>
-            {"minisite"|object_uploader:$minisite.id:"logo":["resize" => 1, "cloud" => 1, "view" => "list"]}
+            {"minisite"|object_uploader:$minisite.id:"logo":["resize" => 1, "cloud" => 1, "view" => "list", "allow_multiple" => 0]}
+          </div>
+          <div class="col-sm-12">
+            <table cellspacing="2"> 
+              <tr>
+                <td style= "width:200px">
+                  <label for="footer">Icon Size </label>
+                </td>
+                <td style= "width:100px">
+                  <div class="input-group">
+                    <input type="radio" class="icon_type" name="icon_type" value="1" {if ($minisite.icon_size == 1)} checked {/if} required > Automatic
+                  </div>
+                </td>
+                <td >
+                  <div class="input-group">
+                    <input type="radio" class="icon_type" name="icon_type" value="2" {if ($minisite.icon_size != 1)} checked {/if} required > Manual
+                  </div>
+                </td>
+              </tr>
+              <tr style="height: 15px;"/>
+            </table>
+          </div>
+          <div class="col-sm-12">
+            <table cellspacing="2">
+               <tr class="icon_size">
+                 <td style= "width:200px">
+                   <label for="footer">Icon Size - Manual Control</label>
+                 </td>
+                 <td style= "width:200px">
+                    <input type="range" name="icon_size" min="10" max="50" step="10" class="icon_range" value="{$minisite.icon_size}">
+                 </td>
+               </tr>
+               <tr style="height: 15px;"/>
+               <tr style="height: 15px;"/>
+            </table>
           </div>
 
           <div class="col-sm-12">
@@ -115,22 +149,72 @@
               <label for="Domain Name">Domain Name</label><br>
               <input name="domain" id="domain" class="form-control" value="{$minisite.domain}" type="text" /> 
             </div>
-            <div class="form-group col-sm-4">
+            <!-- <div class="form-group col-sm-4">
               <label for="Domain Name">URL on vpatina.com</label><br>
-              <input name="url" id="url" class="form-control" value="{$minisite.url}" type="text" /> 
-            </div>
+              <input name="url" id="url" class="form-control" value="{$minisite.url}" type="text" disabled/> 
+            </div> -->
           </div> 
           <input type="submit" class="btn btn-success" value="Save" id="submit">
       </form>
       {{"include": "_gallery-backend-website-profile-dialog.html"}}
 
-      <script type="text/javascript">
-        $("#gbe_artist_link").hide();
-        $("#gbe_exhibition_link").hide();
-        $("#gbe_home_link").hide();
-        $("#gbe_contact_link").hide();
-        $("#gbe_bio_link").hide();     
-      </script>
+<script type="text/javascript">
+  $("#gbe_artist_link").hide();
+  $("#gbe_exhibition_link").hide();
+  $("#gbe_singleExhibition_link").hide();
+  $("#gbe_contact_link").hide();
+  $("#gbe_bio_link").hide();
+
+  $(document).ready(function(){
+    var icon_type = $("input[name='icon_type']:checked").val();
+    if(icon_type == 1){
+      $(".icon_size").hide();
+    }else{
+      $(".icon_size").show();
+    }
+  });  
+
+  $(document).on("change", '.icon_range, .icon_type', function(){
+    var icon_type = $("input[name='icon_type']:checked").val();
+    var obj_id = $(".obj_id").val();
+    if(icon_type == 1){
+      $(".icon_size").hide();
+      var range = 1;
+    }else{
+      $(".icon_size").show();
+      var range = $(".icon_range").val()
+    }
+    $.ajax({
+      url: "/ajax.php",
+      dataType: "json",
+      data: {
+        oper: "save-minisite-basic",
+        icon_size: range,
+        obj_id: obj_id,
+        obj_type: "minisite"
+      },     
+    });
+  });
+
+  /*$(document).on("change", '.icon_range', function(){
+    var range = $(this).val();
+    var obj_id = $(".obj_id").val();
+    if(range){
+      $.ajax({
+        url: "/ajax.php",
+        dataType: "json",
+        data: {
+          oper: "save-minisite-basic",
+          icon_size: range,
+          obj_id: obj_id,
+          obj_type: "minisite"
+        },     
+      });
+    }
+
+  });*/
+
+</script>
 
 <!-- <script type="text/javascript">
   $(document).ready(function() {

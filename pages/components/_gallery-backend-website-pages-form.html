@@ -1,5 +1,6 @@
 
       {$pagelist = $scope.pagelist}
+      {$count = $pagelist|@COUNT}
 
       <div class="input-group" >
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#gbe_create_page_dialog"> Create Page</button>
@@ -25,23 +26,22 @@
                   <td>{$pagelists.page_title}</td> 
                   {if ({$pagelists.type} == 20)}
                     {$tab = 'artist'}
-                  {/if}
-                  {if ({$pagelists.type} == 30)}
+                  {else if ({$pagelists.type} == 30)}
                     {$tab = 'exhibition'}
-                  {/if}
-                  {if ({$pagelists.type} == 40)}
+                  {else if ({$pagelists.type} == 40)}
                     {$tab = 'contact'}
-                  {/if}
-                  {if ({$pagelists.type} == 50)}
+                  {else if ({$pagelists.type} == 50)}
                     {$tab = 'bio'}
+                  {else if ({$pagelists.type} == 60)}
+                    {$tab = 'singleExhibition'}
                   {/if}
                   <td>{$tab}</td>
                   <td>{$pagelists.created}</td>
                   <td>                    
-                    <a href="/backend/website/{$minisite.id|default:$id}/edit/{$tab}?_pv=1&amp;page_id={$pagelists.id}&amp;user_id={$minisite.user_id|default:$user_id}" class="btn btn-success ajax-loader" data-target="#subview-container"><button id= 'getpagelist' class='btn btn-xs btn-success' data-value='{$minisite.user_id}|{$pagelists.id}'> <i class='glyphicon glyphicon-pencil'></i></button></a>
-                    
-                    <button class='btn btn-xs btn-danger delete' id= 'page_delete' data-value='{$pagelists.id}'> <i class='glyphicon glyphicon-trash'></i></button>
-                    
+                    <a href="/backend/website/{$minisite.id|default:$id}/edit/{$tab}?_pv=1&amp;page_id={$pagelists.id}&amp;user_id={$minisite.user_id|default:$user_id}" class="btn btn-success ajax-loader" data-target="#subview-container"><button id= 'getpagelist' class='btn btn-xs btn-success' data-value='{$minisite.user_id}|{$pagelists.id}' onclick="show_tabs('{$tab}');"> <i class='glyphicon glyphicon-pencil'></i></button></a>
+                    {if ($count != 1 )}
+                      <button class='btn btn-xs btn-danger delete' id= 'page_delete' value="{$count}" data-value='{$pagelists.id}'> <i class='glyphicon glyphicon-trash'></i></button>
+                    {/if}
                   </td>
                 </tr>
                 
@@ -62,6 +62,7 @@
     $("#gbe_home_link").hide();
     $("#gbe_contact_link").hide();
     $("#gbe_bio_link").hide();
+    $("#gbe_singleExhibition_link").hide();
   });
   $(function() {
       $( 'tbody' ).sortable();
@@ -83,9 +84,6 @@
       });
     }
 
-  $(document).on("click",'#page_delete',function() {
-    $(this).closest("tr").remove();
-  });
 </script>
 
 

@@ -1,7 +1,8 @@
 
 {$list_view = 1}
 {{"extend": "_gallery-backend-base.html"}}
-
+{$page_id = $scope.page_id}
+{$user_id = $scope.user_id}
 {block name="table"}
   
 
@@ -13,6 +14,11 @@
     {/if}
     {if (0 && !$scope.add_to_profile)}
     <a class="btn btn-primary" href="/backend/artworks/add">
+      <i class="fa fa-plus"></i> Add
+    </a>
+    {/if}
+    {if (0 && !$scope.add_to_website)}
+    <a class="btn btn-primary" href="/backend/exhibitions/add">
       <i class="fa fa-plus"></i> Add
     </a>
     {/if}
@@ -28,6 +34,8 @@
           <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to exhibition</a></li>
         {elseif ($add_to_profile)}
           <li><a href="#" id="sel_add_profile" data-target_id="{$add_to_profile}">Add to profile</a></li>
+        {elseif ($add_to_website)}
+          <li><a href="#" id="sel_add_website" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$add_to_website}">Add to exhibition</a></li>
         {else}
           <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to ...</a></li>
         {/if}
@@ -472,7 +480,13 @@ function bstArtworkStatusFormatter(value, row, index) {
   }
   
   var obj_type = '{$scope.obj_type}';
-  var add_what = obj_type == 'artwork' ? 'add_art' : 'add_media';
+  if(obj_type == 'artwork')
+    var add_what = 'add_art';
+  else if(obj_type == 'media_collection')
+    var add_what = 'add_exb';
+  else
+    var add_what = 'add_media';
+  //var add_what = (obj_type == 'artwork' || obj_type == 'media_collection')? 'add_art' : 'add_media';
   console.log("Add = " + add_what + " sub=" + obj_type);
   
   if({$add_to}) {
@@ -549,7 +563,7 @@ $('load-success.bs.table').load(function() {
           
           <input type="hidden" class="form-control" name="obj_id" value="">
           <input type="hidden" class="form-control" name="obj_type" value="artwork">
-          <button type="submit" class="btn btn-success">Duplicate</button>
+          <button type="submit" class="btn btn-success" id="formSubmit" onsubmit="closemodal()" >Duplicate</button>
           <!-- <input type="submit" class="btn btn-success" value="Duplicate"> -->
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
         </div>        
@@ -560,5 +574,12 @@ $('load-success.bs.table').load(function() {
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  function closemodal(){
+      e.preventDefault();
+      console.log("modal close");
+      $('#clone_modals').removeClass('show');
+  }
+</script>
 
 {/block}

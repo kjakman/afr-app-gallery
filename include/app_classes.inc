@@ -11,6 +11,7 @@ $__CLASSES= array_merge($__CLASSES, array(
     'media_collection' =>     array(USER_LEVEL_USER,   'gallery', '', '', 0, 'title', 'media_collection.rank ', ''),
     'media_collection_type' =>array(USER_LEVEL_USER,   'gallery', '', '', NF_CACHE_ASSOC, 'name', 'name ', ''),
     'media_collection_map' => array(USER_LEVEL_USER,   'gallery', '', '', 0, '', 'rank', ''),
+    'exhibition_map' =>       array(USER_LEVEL_USER,   'gallery', '', '', 0, '', '', ''),
 
 // artwork
     'artwork' =>                array(USER_LEVEL_OWNER,  'artwork', '', '', NF_LOG, 'title', 'artwork.id desc', ''),
@@ -25,6 +26,7 @@ $__CLASSES= array_merge($__CLASSES, array(
     'minisite_page' =>       array(USER_LEVEL_ADMIN, 'site', '', '', NF_CACHE|NF_COMPACT_LIST, 'page_name', '', ''),
     'minisite_layout' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
     'minisite_font' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
+    'minisite_parent_layout' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
 
 ));
 
@@ -184,6 +186,22 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
      'artist_name'=>         array('Artist Name',     'str',   '', AF_SEARCHABLE, 50),
      'curator_name'=>        array('Curator Name',    'str',   '', AF_SEARCHABLE, 50),
   ),
+  
+    "exhibition_map" => 
+    array(
+       'id'=>                    array('ID',              'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 8),
+   //    'created'=>           array('Created',           'datetime',   ATT_DEFAULT_NOW, AF_HIDE_LIST, 6 ),
+  //     'timestamp'=>         array('Timestamp',         'timestamp',   ATT_DEFAULT_NOW, AF_HIDE|AF_READONLY, 14 ),
+       'site_id'=>           array('Site',              'link',   ATT_DEFAULT_SITE_ID, AF_READONLY|AF_HIDE_ADD, 'site'),
+       'user_id'=>           array('User',              'link',  ATT_DEFAULT_USER_ID, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
+       'artist_id'=>         array('Artist',            'link',  ATT_DEFFAUL_NULL, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
+       'curator_id'=>        array('Curator',            'link',  ATT_DEFAULT_NULL, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
+       'active'=>            array('Active',            'bool',   1, 0),      
+       'media_collection_id'=> array('Collection',      'link',   '', AF_OBLIGATORY, 'media_collection'),
+       'media_id'=>            array('Media',           'link',   '', AF_OBLIGATORY, 'media'),
+       'page_id'=>             array('Minisite_page',         'link',   ATT_DEFAULT_NULL, 0, 'artwork'),
+       'name'=>                array('Name',            'str',   '', AF_SEARCHABLE, 128),
+    ),
 
   "gallery" => 
   array(
@@ -245,12 +263,14 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
      'show_social'  =>      array('Show social',        'bool',     1,  AF_HIDE_ADD, 0),
      'font_type' =>         array('Fonts',              'link',  0, AF_SEARCHABLE|AF_HIDE, 'minisite_font'),
      'menu_type' =>         array('Menu Style',         'bool',     1,  AF_HIDE_ADD, 0),
+     'icon_size' =>         array('Icon Size',         'bool',     1,  AF_HIDE_ADD, 0),
    ),
 
    "minisite_page_type" => 
    array(
       'id'=>            array('ID',                'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 4),
       'name'=>          array('Name',              'str',   '', 1, 32 ),
+      'row_order'=>     array('Row Order',            'int',   '', 0, 10 ),
    ),
 
     "minisite_page" => 
@@ -278,10 +298,25 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
    "minisite_layout" => 
    array(
       'id'=>                 array('ID',               'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 11),
+      'parent_id'=>          array('Parent Id',        'int',   '', 0, 11 ),
       'type'=>               array('Page Type',        'int',   '', 0, 11 ),
+      'subtype'=>            array('Second Page Type', 'int',   '', 0, 11 ),
       'name'=>               array('Name',             'str',   '', 1, 255 ),
+      'separator'=>          array('Separator',             'str',   '', 1, 255 ),
       'image'=>              array('Image',            'str',   '', 1, 100 ),
       'row_order'=>          array('Row Order',        'int',   '', 0, 11 ),
+      'active'  =>           array('Active?',          'bool',     1,  AF_HIDE_ADD, 0),
+      'created'=>            array('Created',          'datetime', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT),
+      'timestamp'=>          array('Timestamp',        'timestamp', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT, 14 ),
+   ),
+
+   "minisite_parent_layout" => 
+   array(
+      'id'=>                 array('ID',               'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 11),
+      'name'=>               array('Name',             'str',   '', 1, 255 ),
+      'image'=>              array('Image',            'str',   '', 1, 255 ),
+      'type'=>               array('Page Type',        'int',   '', 0, 11 ),
+      'row_order'=>          array('Row Order',            'int',   '', 0, 11 ),
       'active'  =>           array('Active?',          'bool',     1,  AF_HIDE_ADD, 0),
       'created'=>            array('Created',          'datetime', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT),
       'timestamp'=>          array('Timestamp',        'timestamp', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT, 14 ),

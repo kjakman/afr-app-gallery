@@ -1,0 +1,151 @@
+{{"extend": "minisites/index.html"}}
+{$latestexhibitions = $scope.latest}
+{$years = $scope.exhibition_years}
+
+{block name=title}
+	<h2 class="page_title">{$minisite_pageObj.page_title}</h2>
+{/block}  
+
+{block name=content} 
+<style>
+.item-container{
+	margin:0px auto;
+}
+.item-grid {
+	display: block;
+	padding:0px 15px;
+    float: left;
+	overflow: hidden;
+	z-index: 1;
+}
+.item-grid-contnt{
+	
+}
+.item-grid h3 {
+	color: #000;
+}
+.item-grid p {
+	color: #5b5b5b;
+}
+.item-grid img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+.item-grid-sizer, .item-grid {
+	width: 24%;
+}
+@media screen and (max-width: 993px) {
+	.item-grid-sizer, .item-grid {
+		width: 32%;
+	}
+}
+@media screen and (max-width: 750px) {
+	.item-grid-sizer, .item-grid {
+		width: 46%;
+	}
+}
+@media screen and (max-width: 500px) {
+	.item-grid-sizer, .item-grid {
+		width: 100%;
+	}
+}
+</style>
+{$data = json_decode($minisite_pageObj.data, TRUE)}
+{$count = 0}
+
+{foreach from=$years item=year}
+	<h1>{$year['year']}</h1> <br>
+	<div class="item-container">
+		{foreach from=$exhibitions item=exhibition}
+ 			{$parts = explode('-', $exhibition.start_date)}
+ 			{$exh_year = $parts[0]}
+ 			{if ($year['year'] == $exh_year)}
+				<div class="item-grid-sizer"></div>
+				<div class="item-gutter-sizer"></div>
+				<div class="item-grid">
+					 <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
+						<div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
+						  <div class="__vp-flipper">             
+							<div class="__vp-flip-front">               
+							  <img class="__vp-plugin-image center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">             
+							</div>             
+							<div class="__vp-flip-back __vp-plugin-hover">               
+							  <img class="__vp-flip-back-image" src="{$exhibition|collection_photo:'small'}" alt="{$exhibition.name}">               
+							  <div class="__vp-flip-back-card"> 
+								<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">                
+								  <h2>{$exhibition.title}</h2>   
+								  <!-- <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="__vp-info __vp-view-button" id="__vp-view-button-1355">View</a>  -->
+								  <div class="mt10">{$exhibition|artists}</div> 
+								  <div>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</div>    
+								</a>               
+							  </div>                                                                
+							</div>           
+						  </div>         
+						</div> 
+						<div class="exhibition-title text-center mt10">
+						  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h4 class="description">{$exhibition.title}</h4></a>
+						  <h2 class="description">{$exhibition|artists}</h2>
+						  <h3 class="description"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h3>
+						</div>        
+					</figure>
+				</div>
+ 			{/if}
+		  {$count = 1}
+		{/foreach}
+	</div><br>
+{/foreach}
+
+{if (($data.show_latest) && (!$count))}
+    <h5 style="text-align: left;">Latest</h5>
+	<div class="item-container">
+		{foreach from=$latestexhibitions item=exhibition}
+			<div class="item-grid-sizer"></div>
+			<div class="item-gutter-sizer"></div>
+			<div class="item-grid">
+				 <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
+					<div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
+					  <div class="__vp-flipper">             
+						<div class="__vp-flip-front">               
+						  <img class="__vp-plugin-image center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">             
+						</div>             
+						<div class="__vp-flip-back __vp-plugin-hover">               
+						  <img class="__vp-flip-back-image" src="{$exhibition|collection_photo:'small'}" alt="{$exhibition.name}">               
+						  <div class="__vp-flip-back-card"> 
+							<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">                
+							  <h2>{$exhibition.title}</h2>   
+							  <!-- <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="__vp-info __vp-view-button" id="__vp-view-button-1355">View</a>  -->
+							  <div class="mt10">{$exhibition|artists}</div> 
+							  <div>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</div>    
+							</a>               
+						  </div>                                                                
+						</div>           
+					  </div>         
+					</div> 
+					<div class="exhibition-title text-center mt10">
+					  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h4 class="description">{$exhibition.title}</h4></a>
+					  <h2 class="description">{$exhibition|artists}</h2>
+					  <h3 class="description"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h3>
+					</div>        
+				</figure>
+			</div>
+		  {$count = 1}
+		{/foreach}
+	</div>
+{/if}
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js'></script>
+<script>
+	jQuery(window).on('load', function() {
+  
+	  $('.item-container').masonry({
+		columnWidth : '.item-grid-sizer',
+		gutter : 15,
+		itemSelector : '.item-grid',
+		percentPosition : 'true',
+		fitWidth: true,
+	  });
+	  
+	});
+</script>
+{/block}

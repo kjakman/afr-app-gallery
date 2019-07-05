@@ -1,3 +1,4 @@
+{$icon_size = 0}
 
 <style type="text/css">
 	body{
@@ -16,15 +17,20 @@
 	}
 
 	{if ($mObj.menu_type == 1)}
+		{if ($mObj.icon_size == 10)}		{$icon_size = 40}
+		{else if ($mObj.icon_size == 20)}	{$icon_size = 50}
+		{else if ($mObj.icon_size == 30)}	{$icon_size = 60}
+		{else if ($mObj.icon_size == 40)}	{$icon_size = 70}
+		{else}								{$icon_size = 80}
+		{/if}
+
 		.minisite-logo h1{	
 			{$font_style.title}
-
 			font-size: 36px !important;
 		}
 
 		h2.subtitle {
 			{$font_style.sub_title}
-
 			font-size: 12px !important;
 		}
 		
@@ -32,8 +38,26 @@
 			{$font_style.menu_title}
 
 			font-size: 12px !important;
-		}	
+		}
+		{if ($mObj.icon_size == 1)}	
+			.minisiteLogo{
+				height: 36px !important;
+			}
+		{else}
+			.minisiteLogo{
+				height: {$icon_size}px !important;
+			}
+		{/if}
+
 	{elseif ($mObj.menu_type == 2)}
+
+		{if ($mObj.icon_size == 10)}		{$icon_size = 28}
+		{else if ($mObj.icon_size == 20)}	{$icon_size = 35}
+		{else if ($mObj.icon_size == 30)}	{$icon_size = 40}
+		{else if ($mObj.icon_size == 40)}	{$icon_size = 45}
+		{else}								{$icon_size = 50}
+		{/if}
+
 		.minisite-logo h1{	
 			{$font_style.title}	
 			font-size: 28px !important;
@@ -46,21 +70,18 @@
 		
 		.nav-item .nav-link{
 			{$font_style.menu_title}
-
 			font-size: 15px !important;
 		}
-	{else}
-		.minisite-logo h1{		
-			{$font_style.title}
-		}
-
-		#title H2 {
-			{$font_style.sub_title}
-		}
 		
-		.navbar-site .nav-item .nav-link{
-			{$font_style.menu_title}
-		}	
+		{if ($mObj.icon_size == 1)}	
+			.minisiteLogo{
+				height: 36px !important;
+			}
+		{else}
+			.minisiteLogo{
+				height: {$icon_size}px !important;
+			}
+		{/if}
 	{/if}	
 		
 	p {
@@ -110,18 +131,30 @@
 	}
 	h4.description{
 		font-size: 13px;
-		line-height: 0.625rem;
-		text-transform: capitalize;
+		line-height: 1rem;
+		text-transform: uppercase;
 	}
 	h2.description{
-		font-size: 18px;
-		text-transform: capitalize;
+		font-size: 15px;
 		font-style: italic;
+		text-transform: none;
 	}
 	h3.description{
-		font-size: 16px;
+		font-size: 13px;
 		text-transform: capitalize;
 		font-weight: normal;
+		letter-spacing: 0.2px;
 	}
-
+	h1.artist-name-3C{
+		font-size: 15px;
+	}
+	h1.artist-name-4C{
+		font-size: 13px;
+	}
+	h4.art-details{
+		font-size: 18px;
+	}
+	h3.bioaddress{
+		font-size: 14px;
+	}
 </style>

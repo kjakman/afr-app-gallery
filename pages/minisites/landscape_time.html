@@ -5,18 +5,15 @@
   <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
 {/block}
 {block name=content}
-
-
-
-{$data = json_decode($minisite_pageObj.data, TRUE)}
-{$arr = []}
-  {if ($data.show_recent == 1)}
-    {$arr = ['future' => $data.show_future, 'current' => $data.show_current, 'past' => $data.show_past]}
-  {else}
-    {$arr = ['past' => $data.show_past, 'current' => $data.show_current, 'future' => $data.show_future]}
-  {/if}
-{$index = 0} 
-{$count = 0}
+  {$data = json_decode($minisite_pageObj.data, TRUE)}
+  {$arr = []}
+    {if ($data.show_recent == 1)}
+      {$arr = ['future' => $data.show_future, 'current' => $data.show_current, 'past' => $data.show_past]}
+    {else}
+      {$arr = ['past' => $data.show_past, 'current' => $data.show_current, 'future' => $data.show_future]}
+    {/if}
+  {$index = 0} 
+  {$count = 0}
   <div class="row">
     {foreach from=$arr key=key item=val}
       {if (($val) && ($data_exist[$key]))}

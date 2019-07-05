@@ -7,13 +7,20 @@
   <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
 {/block} 
 
-{block name=content} 
+{block name=content}
+{$link = ''}
+{if ($artist.page_slug)} 
+  {$link="{$basepath}{$artist.page_slug}{$slug}"}
+{else} 
+  {$link="{$basepath}/{$slug}"}
+{/if} 
 <div class="row detail-page-row">
   <div class="col-md-3 col-sm-12 text-left artist-subnav-container">
     <div class="artist-sub-nav">
-        <h1 class="sub-nav-header artist-sub-nav-header"><a href="{$basepath}{$artist.page_slug}{$slug}">{$artist.display_name}</a></h1>
+        <h1 class="sub-nav-header artist-sub-nav-header"><a href="{$link}">{$artist.display_name}</a></h1>
+        {if ($artist.city)} <h3 class="bioaddress"> {$artist.city}, {$artist.country|get:countries:name}</h3> {/if}
         <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
-          <li><a href="{$basepath}/{$page_slug}/{$slug}/biography" class="">Biography</a></li>
+          <li><a href="{$link}/biography" class="">Biography</a></li>
         </ul>
       </p>
       <!-- mobile layout -->

@@ -1,38 +1,64 @@
 {$minisite = $scope.minisiteobj}
 {$fonts = $scope.fonts}
+<style type="text/css">
+  {foreach $fonts as $fontstyle}
+    .fontsty_box_{$fontstyle.id}{
+      {$fontstyle.font_family}
+    }
+    .card-title_{$fontstyle.id} {
+      {$fontstyle.title}
+    }
+    ul.tabs_{$fontstyle.id} li{
+      font-weight: bold;
+      text-transform: uppercase; 
+      {$fontstyle.menu_title}    
+    }
+    ul.tabs li{  
+      padding: 10px !important;  
+    }
+    p.classic_{$fontstyle.id}{
+      line-height: 15px;
+      {$fontstyle.p}  
+    }
 
-{{"include": "_gallery-backend-website-style.html"}}
+  {/foreach} 
+</style>
+
+
 
   <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$minisite.id|default:$id}">
   <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">     
     <div class="col-sm-12">
       <div class="row">
-        <div class="col-sm-6">
-          <div class="fontsty_boxblk">
-            <div class="fontsty_box classic">
-              <div class="card-title classic">Exceptional Exhibition</div>
-              <ul class="tabs classic">
-                <li class="card-title">Exhibition</li>
-                <li class="card-title">Project</li>
-                <li class="card-title">News</li>
-                <li class="card-title">Team</li>
-                <li class="card-title">Contact</li>
-              </ul>
-              <hr style="margin-top: -12px; margin-bottom: 0px;">
-              <ul class="tabs classic">
-                <li class="card-title">Latest News</li>
-              </ul>
-              <p class="classic">We have some great events coming up in the next month that we would love to invite you.</p>
-            </div>
-            <div class="form-group">
-              <div class="selrad_box">
-                <input type="radio" class="font_type" name="font_type" id="radio1" value="1" {if ($minisite.font_type == '1')}CHECKED{/if}> Gotham Light
+       {foreach $fonts as $font} 
+          <div class="col-sm-6">
+            <div class="fontsty_boxblk">
+              <div class="fontsty_box fontsty_box_{$font.id}">
+                <div class="card-title card-title_{$font.id}">Exceptional Exhibition</div>
+                <ul class="tabs tabs_{$font.id}">
+                  <li class="card-title">Exhibition</li>
+                  <li class="card-title">Project</li>
+                  <li class="card-title">News</li>
+                  <li class="card-title">Team</li>
+                  <li class="card-title">Contact</li>
+                </ul>
+                <hr style="margin-top: -12px; margin-bottom: 0px;">
+                <ul class="tabs tabs_{$font.id}">
+                  <li class="card-title">Latest News</li>
+                </ul>
+                <p class="classic_{$font.id}">We have some great events coming up in the next month that we would love to invite you.</p>
+              </div>
+              <div class="form-group">
+                <div class="selrad_box">
+                  <input type="radio" class="font_type" name="font_type" id="radio1" value="{$font.id}" {if ($minisite.font_type == $minisite.font_type)}CHECKED{/if}> {$font.name}
+                </div> 
               </div> 
-            </div> 
-          </div>
+            </div>
         </div>
-
-        <div class="col-sm-6">
+        {/foreach} 
+      </div>
+    </div>
+        <!-- <div class="col-sm-6">
           <div class="fontsty_boxblk">
             <div class="fontsty_box modern">
               <div class="card-title modern">Exceptional Exhibition</div>
@@ -52,81 +78,6 @@
             <div class="form-group">
              <div class="selrad_box">
                 <input type="radio" class="font_type" name="font_type" id="radio1" value="2" {if ($minisite.font_type == '2')}CHECKED{/if}> Helvetica Neue
-              </div> 
-            </div> 
-          </div>
-        </div>
-
-        <div class="col-sm-6">
-          <div class="fontsty_boxblk">
-            <div class="fontsty_box avenir-close">
-              <div class="card-title avenir-close">Exceptional Exhibition</div>
-              <ul class="tabs avenir-close">
-                <li class="card-title">Exhibition</li>
-                <li class="card-title">Project</li>
-                <li class="card-title">News</li>
-                <li class="card-title">Team</li>
-                <li class="card-title">Contact</li>
-              </ul>
-              <hr style="margin-top: -12px; margin-bottom: 0px;">
-              <ul class="tabs avenir-close">
-                <li class="card-title">Latest News</li>
-              </ul>
-              <p class="avenir-close">We have some great events coming up in the next month that we would love to invite you.</p>
-            </div>
-            <div class="form-group">
-             <div class="selrad_box">
-                <input type="radio" class="font_type" name="font_type" id="radio1" value="3" {if ($minisite.font_type == '3')}CHECKED{/if}> Avenir - Close
-              </div> 
-            </div> 
-          </div>
-        </div>
-
-        <div class="col-sm-6">
-          <div class="fontsty_boxblk">
-            <div class="fontsty_box gotham">
-              <div class="card-title gotham">Exceptional Exhibition</div>
-              <ul class="tabs gotham">
-                <li class="card-title">Exhibition</li>
-                <li class="card-title">Project</li>
-                <li class="card-title">News</li>
-                <li class="card-title">Team</li>
-                <li class="card-title">Contact</li>
-              </ul>
-              <hr style="margin-top: -12px; margin-bottom: 0px;">
-              <ul class="tabs gotham">
-                <li class="card-title">Latest News</li>
-              </ul>
-              <p class="gotham">We have some great events coming up in the next month that we would love to invite you.</p>
-            </div>
-            <div class="form-group">
-             <div class="selrad_box">
-                <input type="radio" class="font_type" name="font_type" id="radio1" value="4" {if ($minisite.font_type == '4')}CHECKED{/if}> Gotham Light - Close
-              </div> 
-            </div> 
-          </div>
-        </div>
-
-        <div class="col-sm-6">
-          <div class="fontsty_boxblk">
-            <div class="fontsty_box helvetica">
-              <div class="card-title helvetica">Exceptional Exhibition</div>
-              <ul class="tabs helvetica">
-                <li class="card-title">Exhibition</li>
-                <li class="card-title">Project</li>
-                <li class="card-title">News</li>
-                <li class="card-title">Team</li>
-                <li class="card-title">Contact</li>
-              </ul>
-              <hr style="margin-top: -12px; margin-bottom: 0px;">
-              <ul class="tabs helvetica">
-                <li class="card-title">Latest News</li>
-              </ul>
-              <p class="helvetica">We have some great events coming up in the next month that we would love to invite you.</p>
-            </div>
-            <div class="form-group">
-             <div class="selrad_box">
-                <input type="radio" class="font_type" name="font_type" id="radio1" value="5" {if ($minisite.font_type == '5')}CHECKED{/if}> Helvetica Neue - Close
               </div> 
             </div> 
           </div>
@@ -157,12 +108,37 @@
           </div>
         </div>
 
+        <div class="col-sm-6">
+          <div class="fontsty_boxblk">
+            <div class="fontsty_box opensans">
+              <div class="card-title opensans">Exceptional Exhibition</div>
+              <ul class="tabs opensans">
+                <li class="card-title">Exhibition</li>
+                <li class="card-title">Project</li>
+                <li class="card-title">News</li>
+                <li class="card-title">Team</li>
+                <li class="card-title">Contact</li>
+              </ul>
+              <hr style="margin-top: -12px; margin-bottom: 0px;">
+              <ul class="tabs opensans">
+                <li class="card-title">Latest News</li>
+              </ul>
+              <p class="opensans">We have some great events coming up in the next month that we would love to invite you.</p>
+            </div>
+            <div class="form-group">
+             <div class="selrad_box">
+                <input type="radio" class="font_type" name="font_type" id="radio1" value="7" {if ($minisite.font_type == '7')}CHECKED{/if}> Open Sans Regular
+              </div> 
+            </div> 
+          </div>
+        </div>
+
       </div>
-    </div>
+    </div> -->
 <script type="text/javascript">
   $("#gbe_artist_link").hide();
   $("#gbe_exhibition_link").hide();
-  $("#gbe_home_link").hide();
   $("#gbe_contact_link").hide();
   $("#gbe_bio_link").hide();
+  $("#gbe_singleExhibition_link").hide(); 
 </script>

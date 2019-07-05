@@ -1,0 +1,102 @@
+{$artists = $scope.artists}
+{{"extend": "minisites/index.html"}}
+
+  {block name=title}
+      <h2 class="page_title">{$minisite_pageObj.page_title}</h2>  
+  {/block}
+
+  {block name=content}
+  	{if ($minisite_pageObj.page_layout == 127)}
+  		{$texts = "capitalize"}
+  	{else}
+  		{$texts = "uppercase"}
+  	{/if}
+  	
+  	<style>
+		#artists {
+			margin-top: 0px;
+			min-height: 696px;
+		}
+		#artists .list ul {
+			list-style: none;
+			margin-bottom: 63px;
+		}
+		#publications h4, #artists a {
+			font-size: 22px;
+			margin-bottom: 0;
+			line-height: 30px;
+			color: #000;
+			text-decoration: none;
+			text-transform: {$texts};
+		}
+		.artists .list li img {
+			display: none
+		}
+
+		.artists.notouch .list a:hover img {
+			opacity: 1
+		}
+		@media screen and (max-width:1325px) and (min-width:640px) {
+			.artists .list a img {
+				right: 50%;
+				margin-right: -480px;
+				left: auto
+			}
+		}
+		@media screen and (min-width:640px) {
+			#artists .list ul {
+				width: 596px;
+				-webkit-column-count: 2;
+				-moz-column-count: 2;
+				-webkit-column-gap: 51px;
+				column-count: 2;
+				column-gap: 51px;
+			}
+			.artists .list a img {
+				position: fixed;
+				left: 50%;
+				top: 220px;
+				max-height: 370px;
+				-webkit-transform: translate(28px, 0);
+				transform: translate(28px, 0);
+				opacity: 0;
+				transition: opacity .2s
+			}
+			.popup .artists .list a img {
+				position: absolute;
+				top: 265px
+			}
+			.popup .artists .list.scrolled a img {
+				position: fixed;
+				top: 40px
+			}
+			.artists .list li:hover img {
+				display: block
+			}
+		}
+	</style>
+    
+	<div class="container">
+		<div id="artists" class="artists notouch">
+			<div class="list">
+				<ul>
+					{foreach from=$artists item=artist}
+						<li>
+							<a href="{$basepath}{$artist.page_slug}{$artist.slug}"><h1 class="artist-name-3C">{$artist.display_name}</h1>  
+							<img src="{$artist.title_image|photo:'big'}" alt="{$artist.display_name} Thumbnail" />
+							</a>
+						</li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+	</div>
+  
+	<script type="text/javascript">
+	    var detecttouch=function(){
+	    	window.removeEventListener('touchstart',detecttouch);
+			document.getElementById('artists').className="artists";
+		}; 
+		window.addEventListener('touchstart',detecttouch);
+	</script>
+{/block}

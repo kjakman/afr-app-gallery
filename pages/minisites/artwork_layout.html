@@ -20,7 +20,9 @@
 				<!-- <img src="{$getartwork.title_image|photo:'medium'}" alt="{$collection.title}" class="img-responsive" /><br> -->
 			</section>
 			<aside class="col-sm-5">
-				<h3 class="relative">
+				<h1>{$profile.display_name}</h1>
+				<h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4><br>
+				<h4>
 				  {if ($getartwork.status == 10)}                            
 				  <span class="dot_outside mt6 {if ($artwork.status==10)}green{else}red{/if}">&#x25cf;</span>
 				  {/if}
@@ -31,7 +33,7 @@
 				  {if ($getartwork.secondary_year)} 
 				    , {$getartwork.secondary_year} {if ($getartwork.secondary_year_type)} ({$getartwork.secondary_year_type}) {/if}
 				  {/if}<br>                 
-				</h3> 
+				</h4> 
 				<h5>
 				  {if ($artwork.type == 50)}
 				    <p class='italic'>
@@ -142,7 +144,7 @@
 			{if ($count)}
 				<div class="gallery-related" id="collection_artworks">
 					<div class="profileinfo italic mb10">
-						<h1>Other Art in the exhibition</h1>
+						<h2>Other Art in {$collection.title}</h2>
 					</div>
 				</div>
 				{$index = 0}

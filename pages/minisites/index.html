@@ -8,18 +8,18 @@
 {$type = $scope.minisite_type}
 
 {$slug = $scope.slug}
+{$title = $scope.title}
 {$subview = $scope.subview}
 {$debug = $scope.debug}
 
 {$artworks = $scope.artworks}
 {$exhibitions = $scope.exhibitions}
-{$data_exist = $scope.data_exist}
-{$filter_exhibitions = $scope.filter_exhibitions}
 {$latest_exhibitions = $scope.latest_exhibitions}
+{$data_exist = $scope.data_exist}
+
 {$mObj = $scope.mObj}
 {$timings = $scope.timings}
 {$profileobj = $scope.profileobj}
-{$userdetail = $scope.userdetail}
 {$future_past = $scope.future_past}
 {$font_style = $scope.fonts}
 
@@ -30,10 +30,6 @@
 {$vp = '//test.vpatina.com'}
 {$cachebust = "?ts`$smarty.now`"}
 {$title = "STIGTER<br>VAN DOESBURG"}
-{if ($ms.logo)}
-  <!-- {$logo = "`$vp`/img/minisites/{$minisite}/{$ms.logo}"} -->
-  {$logo = "/img/minisites/{$minisite}/{$ms.logo}"}
-{/if}
 
 {$user_id = $scope.user_id}
 

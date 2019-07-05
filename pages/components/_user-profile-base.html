@@ -2,32 +2,32 @@
 {$url = $scope.url|default:$this_url}
 
 {if ($user.user_level >= $smarty.const.USER_LEVEL_ADMIN)}
-          {if ($user.id != $scope.profile.user_id && $scope.auth_login)}
-          <div class="mb20">
-            <form class="ajax-submit" data-handler="backdoor-login">
-              <input type="hidden" name="user_id" value="{$scope.profile.user_id}">
-              <button type="submit" class="btn btn-success"><i class="fa fa-key"></i> Log in as {$scope.profile.user_id|username}</button>
-            </form>
-          </div>
-          {/if}
-          
-          {if ($scope.auth_edit_user && !$scope.backend)}
-          <div class="mb20">
-            <a href="{$smarty.const.PAGE_EDIT_PROFILE|link}{$scope.profile.user_id}/" class="btn btn-success"><i class="fa fa-pencil-square"></i> Edit</a>
-          </div>
-
-          {/if}
-          
-
+    {if ($user.id != $scope.profile.user_id && $scope.auth_login)}
+    <div class="mb20">
+      <form class="ajax-submit" data-handler="backdoor-login">
+        <input type="hidden" name="user_id" value="{$scope.profile.user_id}">
+        <button type="submit" class="btn btn-success"><i class="fa fa-key"></i> Log in as {$scope.profile.user_id|username}</button>
+      </form>
+    </div>
+    {/if}
+    
+    {if ($scope.auth_edit_user && !$scope.backend)}
+    <div class="mb20">
+      <a href="{$smarty.const.PAGE_EDIT_PROFILE|link}{$scope.profile.user_id}/" class="btn btn-success"><i class="fa fa-pencil-square"></i> Edit</a>
+    </div>
+    {/if}   
 {/if}
-        {if ($scope.backend)}
-          {$new_url = str_replace("/backend", "", $url)}
-          {$new_url = str_replace("?_pv=1", "", $new_url)}
-          <div class="mb20">
-            <h3>URL: <a href="{$new_url}">{$new_url}</a> </h3>
-          </div>
-        {/if}
 
+{if ($scope.backend)}
+  {$new_url = str_replace("/backend", "", $url)}
+  {$new_url = str_replace("?_pv=1", "", $new_url)}
+  <div class="mb20">
+    <h3>URL: <a href="{$new_url}">{$new_url}</a> </h3>
+  </div>
+{/if}
+
+{$picture = $scope.profile.photo|photo:'big'}
+{$title = "`$scope.profile.display_name`"}
 
 <div class="container mt40">
   <div class="row">
@@ -71,7 +71,7 @@
                 <i class="fa fa-digg fa-stack-1x"></i>
               </span>
             </a> -->
-            <a href="#" title="Share on Pinterest" class="fb-loader-popup" data-url='https://pinterest.com/pin/create/button/?url={$url_encoded}&amp;media={$site_url}{$picture}&amp;description={$title}'>
+            <a href="#" title="Share on Pinterest" class="fb-loader-popup" data-url='https://pinterest.com/pin/create/button/?url={$url_encoded}&amp;media={$picture}&amp;description={$title}'>
               <span class="fa fa-stack fa-2x">
                 <i class="fa fa-circle-thin fa-stack-2x"></i>
                 <i class="fa fa-pinterest fa-stack-1x"></i>
