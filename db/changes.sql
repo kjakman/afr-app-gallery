@@ -47,77 +47,25 @@ WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'profile_media_
 
 #jan 28
 
-CREATE TABLE `minisite_exhibition_layout` (
-  `id` int(10) NOT NULL,
-  `name` varchar(50) NOT NULL
-);
-TRUNCATE TABLE `minisite_exhibition_layout`;
+DROP TABLE `minisite_exhibition_layout`;
 
-INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
-VALUES ('10', 'Cover Page');
-
-INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
-VALUES ('20', 'Landscape With Time Separator');
-
-INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
-VALUES ('30', 'Cover Page & Landscape');
-
-INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
-VALUES ('40', 'Timeline');
-
-INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
-VALUES ('50', 'Natural With Time Separator');
-
-INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
-VALUES ('60', 'Natural');
-
-INSERT INTO `minisite_exhibition_layout` (`id`, `name`)
-VALUES ('70', 'tiles');
-
-CREATE TABLE `minisite_contact_layout` (
-  `id` int(10) NOT NULL,
-  `name` varchar(50) NOT NULL
-);
-TRUNCATE TABLE `minisite_contact_layout`;
-
-INSERT INTO `minisite_contact_layout` (`id`, `name`)
-VALUES ('10', 'Contact');
-
-INSERT INTO `minisite_contact_layout` (`id`, `name`)
-VALUES ('20', 'Bio & CV');
+DROP TABLE `minisite_contact_layout`;
 
 
+DROP TABLE IF EXISTS `minisite_page_type`;
 CREATE TABLE `minisite_page_type` (
-  `id` smallint(4) NOT NULL,
-  `name` varchar(32) NOT NULL
-);
+  `id` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(50) NOT NULL,
+  `row_order` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-TRUNCATE TABLE `minisite_page_type`;
-
-
-INSERT INTO `minisite_page_type` (`id`, `name`)
-SELECT '10', 'Home' from dual
-WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '10');
-
-
-INSERT INTO `minisite_page_type` (`id`, `name`)
-SELECT '20', 'Artists/Contacts' FROM dual
-WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '20');
-
-
-INSERT INTO `minisite_page_type` (`id`, `name`)
-SELECT '30', 'Exhibitions - Smart Filter' FROM dual
-WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '30');
-
-insert into `minisite_page_type` (`id`, `name`)
-SELECT '40', 'Contact/Bio' FROM dual
-WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '40');
-
-UPDATE `exhibition_type` SET
-`id` = '40',
-`name` = 'Showroom/Selection',
-`description` = ''
-WHERE `id` = '40';
+INSERT INTO `minisite_page_type` (`id`, `name`, `row_order`) VALUES
+(20,  'Showcase Managed Profiles',  4),
+(30,  'Multiple Exhibitions - Smart Filter',  2),
+(40,  'Contact Page', 5),
+(50,  'Showcase User Profile',  3),
+(60,  'Single Exhibition - Smart Filter', 1);
 
 # 22 Mar 2019
 
@@ -126,10 +74,6 @@ ALTER TABLE `user_profile` ADD `free_text` text NOT NULL default '';
 
 # 4 April 2019
 
-ALTER TABLE `minisite_contact_layout` ADD PRIMARY KEY `id` (`id`);
-ALTER TABLE `minisite_contact_layout` CHANGE `id` `id` smallint(3) unsigned NOT NULL DEFAULT '0' FIRST;
-ALTER TABLE `minisite_exhibition_layout` ADD PRIMARY KEY `id` (`id`);
-ALTER TABLE `minisite_exhibition_layout` CHANGE `id` `id` smallint(3) unsigned NOT NULL DEFAULT '0' FIRST;
 ALTER TABLE `minisite_layout` ADD PRIMARY KEY `id` (`id`);
 ALTER TABLE `minisite_layout` CHANGE `id` `id` smallint(3) unsigned NOT NULL DEFAULT '0' FIRST;
 ALTER TABLE `minisite_page` ADD PRIMARY KEY `id` (`id`);
@@ -159,26 +103,21 @@ CREATE TABLE `minisite_font` (
   `sub_title` text NOT NULL,
   `menu_title` text NOT NULL,
   `font_family` text NOT NULL,
+  `title_image` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `minisite_font` (`id`, `created`, `timestamp`, `active`, `name`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `p`, `title`, `sub_title`, `menu_title`, `font_family`) VALUES
-(1, '2019-04-29', '2019-06-05 12:55:52',  1,  'Gotham Light', 'font-size: 2em; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 12px; color: #000; font-family: gotham_lightregular,Arial,sans-serif;', 'font-size: 1.188em; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 1.2em; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 1.25rem; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 14px; color: #000; font-family: gotham_lightregular,Arial,sans-serif;', 'font-size: 13px; line-height: 15px; font-family: gotham_lightregular,Arial,sans-serif;', 'font-size: 2em; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 12px; color: #000; font-family: gotham_lightregular,Arial,sans-serif;', 'font-size: .825em; font-weight: 400; color: #444; font-family: gotham_lightregular,Arial,sans-serif;', 'font-family: \'gotham_lightregular\', Arial, sans-serif;'),
-(2, '2019-04-29', '2019-06-05 12:57:43',  1,  'Helvetica Neue', 'font-size: 32px; color: #444; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 32px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 26px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 16px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 13.28 px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 12px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 17px;  color: #000;  font-family: Helvetica Neue; ',  '', 'font-size: 32px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 16px;  font-weight: bold; letter-spacing: normal; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;'),
-(3, '2019-05-08', '2019-06-05 13:00:20',  1,  'Avenir - Close', 'font-size: 1.75rem; color: #000000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 32px; font-weight: 500; color: #000000; font-family: \'Avenir\', \'Sans Serif\';',  'font-size: 24px; line-height: 30px; font-weight: 800; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 1rem; font-weight: 900; color: #000000; font-family: \'Avenir\', \'Sans Serif\';',  'font-size: 0.83em; color: #000000; font-family: \'Avenir\', \'Sans Serif\';',  'font-size: 0.75em; color: #000000; font-family: \'Avenir\', \'Sans Serif\';',  'font-size: 1.125rem; color: #000000; line-height: 1.625rem; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 1.75rem; color: #000000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 2rem; font-weight: 500; color: #000000; font-family: \'Avenir\', \'Sans Serif\';',  'padding: 1em 1.1em; font-size: 0.9375rem; font-weight: 500; letter-spacing: normal;  color: #000000; font-family: \'Avenir\', \'Sans Serif\';',  'font-family: \'Avenir\', \'Sans Serif\';'),
-(4, '2019-05-08', '2019-06-05 13:01:29',  1,  'Gotham Light - Close', 'font-size: 1.75rem; color: #000; font-family: \'gotham_lightregular\', Arial, sans-serif;',  'font-size: 32px; font-weight: 600; color: #000; font-family: \'gotham_lightregular\', Arial, sans-serif;', 'font-size: 24px; line-height: 30px; font-weight: 800; font-family: \'gotham_lightregular\', Arial, sans-serif;', 'font-size: 1rem; font-weight: 900; color: #000000; font-family: \'gotham_lightregular\', Arial, sans-serif;',  'font-size: 0.83em; color: #000; font-family: \'gotham_lightregular\', Arial, sans-serif;', 'font-size: 0.75em; color: #000; font-family: \'gotham_lightregular\', Arial, sans-serif;', 'font-size: 1.125rem; color: #000; line-height: 1.625rem; font-family: \'gotham_lightregular\', Arial, sans-serif;',  'font-size: 1.75rem; color: #000; font-family: \'gotham_lightregular\', Arial, sans-serif;',  'font-size: 32px; font-weight: 600; color: #000000; font-family: \'gotham_lightregular\', Arial, sans-serif;',  'font-size: 0.9375rem; font-weight: 500; letter-spacing: normal;  color: #000; font-family: \'gotham_lightregular\', Arial, sans-serif;', 'font-family: \'gotham_lightregular\', Arial, sans-serif;'),
-(5, '2019-05-08', '2019-06-05 13:05:58',  1,  'Helvetica Neue - Close', 'font-size: 1.75rem; color: #000000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 32px; font-weight: 600; color: #000000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 24px; line-height: 30px; font-weight: 800; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 1rem; font-weight: 900; color: #000000; font-family:  \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 0.83em; color: #000000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 0.75em; color: #000000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 1.125rem; color: #000000; line-height: 1.625rem; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 1.75rem; color: #000000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 32px; font-weight: 600; color: #000000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 0.9375rem; font-weight: 500; letter-spacing: normal;  color: #000000; font-family:  \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-family:  \'Helvetica Neue\', Helvetica, Arial, sans-serif;'),
-(6, '2019-05-08', '2019-05-22 10:24:50',  1,  'Avenir', 'font-size: 2em; color: #000; font-family: \'Avenir\', \'Sans Serif\';',  'font-size: 12px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 1.188em; color: #000; font-family: \'Avenir\', \'Sans Serif\';',  'font-size: 1.2em; color: #000; font-family: \'Avenir\', \'Sans Serif\';',  'font-size: 1.25rem; color: #000; font-family: \'Avenir\', \'Sans Serif\';',  'font-size: 14px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 13px; line-height: 15px; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 2em; color: #000; font-family: \'Avenir\', \'Sans Serif\';',  'font-size: 12px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: .825em; font-weight: 400; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-family: \'Avenir\', \'Sans Serif\'; font-family: \'Avenir\', \'Sans Serif\';');
-
+INSERT INTO `minisite_font` (`id`, `created`, `timestamp`, `active`, `name`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `p`, `title`, `sub_title`, `menu_title`, `font_family`, `title_image`) VALUES
+(1, '2019-04-29', '2019-06-25 06:30:54',  1,  'Gotham Light', 'font-size: 2em; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 12px; color: #000; font-family: gotham_lightregular,Arial,sans-serif;', 'font-size: 1.188em; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 1.2em; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 1.25rem; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 14px; color: #000; font-family: gotham_lightregular,Arial,sans-serif;', 'font-size: 13px; line-height: 21px; font-family: gotham_lightregular,Arial,sans-serif;', 'font-size: 2em; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 12px; color: #000; font-family: gotham_lightregular,Arial,sans-serif;', 'font-size: .825em; font-weight: 400; color: #5d5d5d; font-family: gotham_lightregular,Arial,sans-serif;',  'font-family: \'gotham_lightregular\', Arial, sans-serif;', 'height: 2em;'),
+(2, '2019-04-29', '2019-06-25 06:31:37',  1,  'Helvetica Neue', 'font-size: 28px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 24px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 21px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 18px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 14px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 12px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 14px; line-height: 21px; color: #000;  font-family: Helvetica Neue; ',  'font-size: 28px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 24px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 18px;  font-weight: bold; letter-spacing: normal; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'height: 28px;'),
+(6, '2019-05-08', '2019-06-25 06:31:45',  1,  'Avenir', 'font-size: 28px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 24px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 21px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 18px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 12px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 14px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 13px; line-height: 21px; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 28px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 24px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 18px; font-weight: 400; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-family: \'Avenir\', \'Sans Serif\';', 'height: 28px;'),
+(7, '2019-06-19', '2019-06-25 06:31:58',  1,  'Open Sans Regular',  'font-size: 28px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 24px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 21px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 18px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 14px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 12px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 14px; line-height: 21px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';', 'font-size: 28px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 24px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 18px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-family: \'Open Sans\', \'Sans Serif\';',  'height: 28px;');
 
 ALTER TABLE `minisite_page`
 ADD `colour` varchar(600) COLLATE 'utf8mb4_general_ci' NOT NULL;
 
 ALTER TABLE `minisite_page`
 CHANGE `page_title` `page_title` varchar(32) COLLATE 'utf8mb4_general_ci' NOT NULL DEFAULT '' AFTER `menu_title`;
-
-INSERT INTO `minisite_page_type` (`id`, `name`)
-VALUES ('50', 'Bio');
 
 ALTER TABLE `minisite_page`
 CHANGE `data` `data` text COLLATE 'utf8mb4_general_ci' NOT NULL AFTER `row_order`;
@@ -200,66 +139,81 @@ VALUES ('50', 'Showroom/Private Link', NULL);
 DROP TABLE IF EXISTS `minisite_layout`;
 CREATE TABLE `minisite_layout` (
   `id` int(11) NOT NULL DEFAULT '0',
+  `parent_id` int(11) NOT NULL,
   `type` int(11) NOT NULL,
+  `subtype` int(11) NOT NULL DEFAULT '1',
+  `separator` varchar(50) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `image` varchar(100) NOT NULL,
   `row_order` int(10) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `minisite_layout` (`id`, `type`, `name`, `image`, `row_order`, `active`, `created`, `timestamp`) VALUES
-(101, 30, 'Timeline', 'layout4.png',  1,  1,  '2019-06-06 11:34:26',  '2019-06-07 09:59:14'),
-(102, 30, 'Timeline - with Filter', 'layout13.png', 2,  1,  '2019-06-10 07:37:55',  '2019-06-10 07:37:55'),
-(103, 30, 'Masonry - 3 Column', 'layout14.png', 3,  1,  '2019-06-10 07:38:11',  '2019-06-10 07:38:11'),
-(104, 30, 'Masonry - 4 Column', 'layout16.png', 4,  1,  '2019-06-10 07:38:17',  '2019-06-10 07:38:17'),
-(105, 30, 'Masonry - 3 Column; by Past, Current, Future', 'layout15.png', 5,  1,  '2019-06-10 07:38:23',  '2019-06-10 07:38:23'),
-(106, 30, 'Masonry - 4 Column; by Past, Current, Future', 'layout17.png', 6,  1,  '2019-06-10 07:38:29',  '2019-06-10 07:38:29'),
-(107, 30, 'Landscape- 3 Column',  'layout10.png', 7,  1,  '2019-06-10 07:38:35',  '2019-06-10 07:38:35'),
-(108, 30, 'Landscape- 4 Column',  'layout9.png',  8,  1,  '2019-06-10 07:38:49',  '2019-06-10 07:38:49'),
-(109, 30, 'Landscape- 3 Column; by Past, Current, Future',  'layout8.png',  9,  1,  '2019-06-10 07:38:57',  '2019-06-10 07:38:57'),
-(110, 30, 'Landscape- 4 Column; by Past, Current, Future',  'layout2.png',  10, 1,  '2019-06-10 07:39:03',  '2019-06-10 07:39:03'),
-(111, 30, 'Hanging Line - 3 Coiumn',  'layout6.png',  11, 1,  '2019-06-10 07:39:25',  '2019-06-10 07:39:25'),
-(112, 30, 'Hanging Line - 4 Column',  'layout7.png',  12, 1,  '2019-06-10 07:39:33',  '2019-06-10 07:39:33'),
-(113, 30, 'Hanging Line - 3 Column; by Past, Current, Future',  'layout11.png', 13, 1,  '2019-06-10 07:39:41',  '2019-06-10 07:39:41'),
-(114, 30, 'Hanging Line - 4 Column; by Past, Current, Future',  'layout5.png',  14, 1,  '2019-06-10 07:39:47',  '2019-06-10 07:39:47'),
-(115, 30, 'Cover Page', 'layout1.png',  15, 1,  '2019-06-10 08:04:21',  '2019-06-10 08:04:21'),
-(116, 30, 'Cover Page & Landscape', 'layout3.png',  16, 1,  '2019-06-10 08:04:29',  '2019-06-10 08:04:29'),
-(117, 40, 'Default',  'contact_layout1.png',  1,  1,  '2019-06-10 08:04:37',  '2019-06-10 08:04:37'),
-(118, 40, 'Layout 1', 'contact_layout2.png',  2,  1,  '2019-06-10 08:04:55',  '2019-06-10 08:04:55'),
-(119, 20, 'Default',  'artistpage-layout1.png', 1,  1,  '2019-06-10 07:37:41',  '2019-06-10 07:37:41'),
-(120, 50, 'Default',  'biolayout1.png', 1,  1,  '2019-06-10 08:04:46',  '2019-06-10 08:04:46'),
-(121, 50, 'Layout 1', 'biolayout2.png', 2,  1,  '2019-06-10 08:05:04',  '2019-06-10 08:05:04'),
-(122, 50, 'Layout2',  'biolayout3.png', 2,  1,  '2019-06-10 07:38:06',  '2019-06-10 07:38:06'),
-(123, 50, 'Layout3',  'biolayout4.png', 3,  1,  '2019-06-06 13:57:06',  '2019-06-07 07:31:07'),
-(124, 20, 'Layout 1', 'artistpage-layout2.png', 2,  1,  '2019-06-07 06:48:42',  '2019-06-10 07:36:35'),
-(125, 20, 'Layout 2', 'artistpage-layout4.png', 3,  1,  '2019-06-07 06:56:25',  '2019-06-10 08:05:26'),
-(126, 20, 'Layout 3', 'artistpage-layout3.png', 4,  1,  '2019-06-07 06:57:09',  '2019-06-10 08:05:34');
+INSERT INTO `minisite_layout` (`id`, `parent_id`, `type`, `subtype`, `separator`, `name`, `row_order`, `image`, `active`, `created`, `timestamp`) VALUES
+(101, 40, 30, 1,  'off',  'Timeline', 13, '', 1,  '2019-06-06 11:34:26',  '2019-07-01 09:15:15'),
+(102, 40, 30, 1,  'on', 'Timeline - with Filter', 14, '', 1,  '2019-06-10 07:37:55',  '2019-07-01 09:15:27'),
+(103, 10, 30, 1,  '3C', 'Masonry - 3 Column', 1,  '', 1,  '2019-06-10 07:38:11',  '2019-07-01 09:10:28'),
+(104, 10, 30, 1,  '4C', 'Masonry - 4 Column', 3,  '', 1,  '2019-06-10 07:38:17',  '2019-07-01 09:11:29'),
+(105, 10, 30, 1,  '3CT',  'Masonry - 3 Column; by Past, Current, Future', 2,  '', 1,  '2019-06-10 07:38:23',  '2019-07-01 09:10:48'),
+(106, 10, 30, 1,  '4CT',  'Masonry - 4 Column; by Past, Current, Future', 4,  '', 1,  '2019-06-10 07:38:29',  '2019-07-01 09:11:40'),
+(107, 20, 30, 1,  '3C', 'Landscape- 3 Column',  5,  '', 1,  '2019-06-10 07:38:35',  '2019-07-01 09:12:38'),
+(108, 20, 30, 1,  '4C', 'Landscape- 4 Column',  7,  '', 1,  '2019-06-10 07:38:49',  '2019-07-01 09:13:13'),
+(109, 20, 30, 1,  '3CT',  'Landscape- 3 Column; by Past, Current, Future',  6,  '', 1,  '2019-06-10 07:38:57',  '2019-07-01 09:12:54'),
+(110, 20, 30, 1,  '4CT',  'Landscape- 4 Column; by Past, Current, Future',  8,  '', 1,  '2019-06-10 07:39:03',  '2019-07-01 09:13:27'),
+(111, 30, 30, 1,  '3C', 'Hanging Line - 3 Coiumn',  9,  '', 1,  '2019-06-10 07:39:25',  '2019-07-01 09:13:42'),
+(112, 30, 30, 1,  '4C', 'Hanging Line - 4 Column',  11, '', 1,  '2019-06-10 07:39:33',  '2019-07-01 09:14:15'),
+(113, 30, 30, 1,  '3CT',  'Hanging Line - 3 Column; by Past, Current, Future',  10, '', 1,  '2019-06-10 07:39:41',  '2019-07-01 09:14:00'),
+(114, 30, 30, 1,  '4CT',  'Hanging Line - 4 Column; by Past, Current, Future',  12, '', 1,  '2019-06-10 07:39:47',  '2019-07-01 09:14:36'),
+(115, 0,  30, 1,  '', 'Cover Page', 15, '', 1,  '2019-06-10 08:04:21',  '2019-06-10 08:04:21'),
+(116, 0,  30, 1,  '', 'Cover Page & Landscape', 16, '', 1,  '2019-06-10 08:04:29',  '2019-06-10 08:04:29'),
+(117, 0,  40, 1,  '', 'Tosca',  1,  'contact_layout1.png',  1,  '2019-06-10 08:04:37',  '2019-07-01 11:19:17'),
+(118, 0,  40, 1,  '', 'Carmen', 2,  'contact_layout2.png',  1,  '2019-06-10 08:04:55',  '2019-07-01 11:19:29'),
+(119, 50, 20, 1,  '4C', 'Default',  2,  '', 1,  '2019-06-10 07:37:41',  '2019-07-01 09:07:41'),
+(124, 60, 20, 1,  '4C', 'Layout 1', 4,  '', 1,  '2019-06-07 06:48:42',  '2019-07-01 09:08:19'),
+(125, 50, 20, 1,  '3C', 'Layout 2', 1,  '', 1,  '2019-06-07 06:56:25',  '2019-07-01 09:07:03'),
+(126, 60, 20, 1,  '3C', 'Layout 3', 3,  '', 1,  '2019-06-07 06:57:09',  '2019-07-01 09:08:00'),
+(127, 70, 20, 1,  'off',  'Layout 4', 6,  '', 1,  '2019-06-11 12:21:43',  '2019-07-01 09:09:13'),
+(128, 0,  20, 2,  '', 'Berlin 3 Tabs',  1,  'BerlinFullx.png',  1,  '2019-06-11 12:54:19',  '2019-07-03 11:29:34'),
+(129, 0,  20, 2,  '', 'Berlin 2 Tabs',  2,  'BerlinSlimx.png',  1,  '2019-06-11 12:55:01',  '2019-07-03 11:29:48'),
+(130, 0,  20, 2,  '', 'Manhattan 6 Tabs', 3,  'ManhattanFullx.png', 1,  '2019-06-11 12:55:40',  '2019-07-03 11:30:03'),
+(131, 0,  20, 2,  '', 'Manhattan 2 Tabs', 4,  'ManhattanSlimx.png', 1,  '2019-06-11 12:57:33',  '2019-07-03 11:30:18'),
+(132, 0,  30, 2,  '', 'Kyoto',  1,  'kyoto.png',  1,  '2019-06-11 13:23:08',  '2019-07-01 11:12:34'),
+(133, 0,  30, 2,  '', 'Seoul',  2,  'seoul.png',  1,  '2019-06-11 13:23:40',  '2019-07-01 11:12:52'),
+(134, 70, 20, 1,  'on', 'Layout 5', 5,  '', 1,  '2019-07-01 09:09:24',  '2019-07-01 09:09:24'),
+(135, 80, 60, 1,  '', 'Kyoto',  1,  'kyoto.png',  1,  '2019-06-24 12:19:11',  '2019-07-03 06:27:45'),
+(136, 80, 60, 1,  '', 'Seoul',  2,  'seoul.png',  1,  '2019-06-24 12:39:30',  '2019-07-03 06:27:59'),
+(137, 10, 30, 1,  '3CY',  'Masonry - 3 Column; by Year',  17, '', 1,  '2019-07-02 06:19:45',  '2019-07-02 06:19:45'),
+(138, 10, 30, 1,  '4CY',  'Masonry - 4 Column; by Year',  18, '', 1,  '2019-07-02 06:20:42',  '2019-07-02 06:20:42'),
+(139, 20, 30, 1,  '3CY',  'Landscape- 3 Column; by Year', 0,  '', 1,  '2019-07-02 07:24:23',  '2019-07-02 07:24:23'),
+(140, 20, 30, 1,  '4CY',  'Landscape- 4 Column; by Year', 0,  '', 1,  '2019-07-02 07:25:39',  '2019-07-02 07:25:39'),
+(141, 30, 30, 1,  '3CY',  'Hanging Line - 3 Coiumn; by Year', 0,  '', 1,  '2019-07-02 07:27:25',  '2019-07-02 07:27:25'),
+(142, 30, 30, 1,  '4CY',  'Hanging Line - 4 Coiumn; by Year', 0,  '', 1,  '2019-07-02 07:28:08',  '2019-07-02 07:28:08'),
+(143, 90, 30, 1,  '3C', '16:9- 3 Column', 0,  '', 1,  '2019-07-03 04:58:53',  '2019-07-03 05:02:12'),
+(144, 90, 30, 1,  '4C', '16:9- 4 Column', 0,  '', 1,  '2019-07-03 04:59:50',  '2019-07-03 05:02:21'),
+(145, 90, 30, 1,  '3CT',  '16:9- 3 Column; by Past, Current, Future', 0,  '', 1,  '2019-07-03 05:01:40',  '2019-07-03 05:02:46'),
+(146, 90, 30, 1,  '4CT',  '16:9- 4 Column; by Past, Current, Future', 0,  '', 1,  '2019-07-03 05:03:23',  '2019-07-03 05:03:23'),
+(147, 90, 30, 1,  '3CY',  '16:9- 3 Column; by Year',  0,  '', 1,  '2019-07-03 05:04:18',  '2019-07-03 05:04:18'),
+(148, 90, 30, 1,  '4CY',  '16:9- 4 Column; by Year',  0,  '', 1,  '2019-07-03 05:04:53',  '2019-07-03 05:04:53'),
+(149, 100,  30, 1,  '3C', '4:3- 3 Column',  0,  '', 1,  '2019-07-04 05:48:26',  '2019-07-04 05:48:26'),
+(150, 100,  30, 1,  '4C', '4:3- 4 Column',  0,  '', 1,  '2019-07-04 05:50:00',  '2019-07-04 05:50:10'),
+(151, 100,  30, 1,  '3CT',  '4:3- 3 Column; by Past, Current, Future',  0,  '', 1,  '2019-07-04 05:51:01',  '2019-07-04 05:51:01'),
+(152, 100,  30, 1,  '4CT',  '4:3- 4 Column; by Past, Current, Future',  0,  '', 1,  '2019-07-04 05:51:37',  '2019-07-04 05:51:37'),
+(153, 100,  30, 1,  '3CY',  '4:3- 3 Column; by Year', 0,  '', 1,  '2019-07-04 05:59:26',  '2019-07-04 06:00:57'),
+(154, 100,  30, 1,  '4CY',  '4:3- 4 Column; by Year', 0,  '', 1,  '2019-07-04 06:00:48',  '2019-07-04 06:00:48'),
+(155, 0,  20, 2,  '', 'Bio - Berlin Style', 5,  'BioBerlin.png',  1,  '2019-07-04 13:05:33',  '2019-07-05 10:15:46'),
+(156, 0,  20, 2,  '', 'Bio - Manhattan Style',  6,  'BioManhattan.png', 1,  '2019-07-05 05:34:47',  '2019-07-05 10:16:53'),
+(157, 0,  20, 2,  '', 'CV - Berlin Style',  7,  'CV-Berlin.png',  1,  '2019-07-05 05:48:09',  '2019-07-05 10:17:05'),
+(158, 101,  30, 1,  '3C', 'Standing - 3C',  0,  '', 1,  '2019-07-05 07:20:46',  '2019-07-05 07:20:46'),
+(159, 101,  30, 1,  '4C', 'Standing_4C',  0,  '', 1,  '2019-07-05 07:21:25',  '2019-07-05 07:21:25'),
+(160, 101,  30, 1,  '3CT',  'Stanging- 3C; by Past, Current, Future ',  0,  '', 1,  '2019-07-05 07:22:16',  '2019-07-05 07:22:16'),
+(161, 101,  30, 1,  '4CT',  'Stanging- 4C; by Past, Current, Future ',  0,  '', 1,  '2019-07-05 07:22:38',  '2019-07-05 07:22:38'),
+(162, 101,  30, 1,  '3CY',  'Stanging- 3C; by Year',  0,  '', 1,  '2019-07-05 07:23:12',  '2019-07-05 07:23:12'),
+(163, 101,  30, 1,  '4CY',  'Stanging- 4C; by Year',  0,  '', 1,  '2019-07-05 07:23:41',  '2019-07-05 07:23:41'),
+(164, 0,  20, 2,  '', 'Profile Masonry',  8,  'profileMasonry.png', 1,  '2019-07-05 11:04:57',  '2019-07-05 12:44:50');
 
 ALTER TABLE `minisite`
 ADD `font_type` int(25) NOT NULL,
 ADD `menu_type` int(25) NOT NULL;
-
-INSERT INTO `minisite_layout` (`id`, `type`, `name`, `image`, `row_order`, `active`, `created`, `timestamp`)
-VALUES ('124', '20', 'Layout 1', '', '2', '1', now(), now());
-
-INSERT INTO `minisite_layout` (`id`, `type`, `name`, `image`, `row_order`, `active`, `created`, `timestamp`)
-VALUES ('125', '20', 'Layout 2', '', '3', '1', now(), now());
-
-INSERT INTO `minisite_layout` (`id`, `type`, `name`, `image`, `row_order`, `active`, `created`, `timestamp`)
-VALUES ('126', '20', 'Layout 3', '', '4', '1', now(), now());
-
-DROP TABLE IF EXISTS `minisite_page_type`;
-CREATE TABLE `minisite_page_type` (
-  `id` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `name` varchar(32) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-INSERT INTO `minisite_page_type` (`id`, `name`) VALUES
-(20,  'Artists'),
-(30,  'Exhibitions - Smart Filter'),
-(40,  'Contacts'),
-(50,  'Bio');
