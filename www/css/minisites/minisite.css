@@ -3062,6 +3062,12 @@ hr{
     width: 100%;
 }
 .image_vert_bottomin img{
-	max-height: 300px;
-	width:auto !important;
+	max-height: 400px;
+	width:auto;
+}
+.gallery-list-nogap{
+	column-gap: 2px !important;
+}
+.gallery-list-nogap .gallery-list-item figure {
+    margin-bottom: 2px !important;
 }
