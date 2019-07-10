@@ -1,0 +1,16 @@
+{{"extend": "minisites/index.html"}}
+{$collection = $scope.collection}
+{$artworks = $scope.artworks}
+{$profile = $collection.artist_id|get_user:1}
+
+{block name=title}
+  {if ($scope.title)} <h2 class="page_title">{$scope.title}</h2>{/if}      
+{/block}
+
+{block name=content}
+    {if ($subview)}
+      {{"include":"minisites/artwork_layout.html"}}
+    {else}
+      {{"include":"minisites/exhibition_layout1.html"}}
+    {/if}
+{/block}

@@ -1,0 +1,11 @@
+{{"extend": "minisites/index.html"}}
+{$collection = $scope.collection}
+{$artworks = $scope.artworks}
+
+{block name=title}
+  {if ($scope.title)} <h2 class="page_title">{$scope.title}</h2>{/if}      
+{/block}
+
+{block name=content}
+  {{"include": "minisites/selectedartLayout/sa_masonryExt.html"}}
+{/block}

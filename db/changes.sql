@@ -212,7 +212,14 @@ INSERT INTO `minisite_layout` (`id`, `parent_id`, `type`, `subtype`, `separator`
 (161, 101,  30, 1,  '4CT',  'Stanging- 4C; by Past, Current, Future ',  0,  '', 1,  '2019-07-05 07:22:38',  '2019-07-05 07:22:38'),
 (162, 101,  30, 1,  '3CY',  'Stanging- 3C; by Year',  0,  '', 1,  '2019-07-05 07:23:12',  '2019-07-05 07:23:12'),
 (163, 101,  30, 1,  '4CY',  'Stanging- 4C; by Year',  0,  '', 1,  '2019-07-05 07:23:41',  '2019-07-05 07:23:41'),
-(164, 0,  20, 2,  '', 'Profile Masonry',  8,  'profileMasonry.png', 1,  '2019-07-05 11:04:57',  '2019-07-05 12:44:50');
+(164, 0,  20, 2,  '', 'Selected Art Masonry', 8,  'profileMasonry.png', 1,  '2019-07-05 11:04:57',  '2019-07-09 05:46:09'),
+(165, 0,  20, 2,  '', 'Selected Art Hanging', 9,  'SArtHanging.png',  1,  '2019-07-09 06:12:40',  '2019-07-09 12:21:14'),
+(166, 0,  20, 2,  '', 'Selected Art Standing',  10, 'SArtStanding.png', 1,  '2019-07-09 06:54:35',  '2019-07-09 12:21:23'),
+(167, 0,  20, 2,  '', 'Selected Art Masonry Extreme', 11, 'SAmasonryExt.png', 1,  '2019-07-09 07:00:27',  '2019-07-09 12:31:27'),
+(168, 0,  30, 2,  '', 'Art - Masonry',  3,  'profileMasonry.png', 1,  '2019-07-09 10:35:29',  '2019-07-10 05:46:49'),
+(169, 0,  30, 2,  '', 'Art - Hanging',  4,  'SArtHanging.png',  1,  '2019-07-09 10:36:06',  '2019-07-10 05:46:58'),
+(170, 0,  30, 2,  '', 'Art - Standing', 5,  'SArtStanding.png', 1,  '2019-07-09 10:36:52',  '2019-07-10 05:47:08'),
+(171, 0,  30, 2,  '', 'Art - Masonry Extreme',  6,  'SAmasonryExt.png ',  1,  '2019-07-09 10:37:30',  '2019-07-10 05:47:17');
 
 ALTER TABLE `minisite`
 ADD `font_type` int(25) NOT NULL,

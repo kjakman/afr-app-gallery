@@ -1,4 +1,5 @@
 {$icon_size = 0}
+{$default_icon = 0}
 
 <style type="text/css">
 	body{
@@ -17,6 +18,7 @@
 	}
 
 	{if ($mObj.menu_type == 1)}
+		{$default_icon = 36}
 		{if ($mObj.icon_size == 10)}		{$icon_size = 40}
 		{else if ($mObj.icon_size == 20)}	{$icon_size = 50}
 		{else if ($mObj.icon_size == 30)}	{$icon_size = 60}
@@ -28,29 +30,19 @@
 			{$font_style.title}
 			font-size: 36px !important;
 		}
-
-		h2.subtitle {
-			{$font_style.sub_title}
-			font-size: 12px !important;
-		}
 		
 		.navbar-site .nav-item .nav-link{
 			{$font_style.menu_title}
 
 			font-size: 12px !important;
 		}
-		{if ($mObj.icon_size == 1)}	
-			.minisiteLogo{
-				height: 36px !important;
-			}
-		{else}
-			.minisiteLogo{
-				height: {$icon_size}px !important;
-			}
-		{/if}
+		h2.subtitle {
+			{$font_style.sub_title}
+			font-size: 12px !important;
+		}
 
 	{elseif ($mObj.menu_type == 2)}
-
+		{$default_icon = 28}
 		{if ($mObj.icon_size == 10)}		{$icon_size = 28}
 		{else if ($mObj.icon_size == 20)}	{$icon_size = 35}
 		{else if ($mObj.icon_size == 30)}	{$icon_size = 40}
@@ -62,26 +54,69 @@
 			{$font_style.title}	
 			font-size: 28px !important;
 		}
-
 		h2.subtitle {
 			{$font_style.sub_title}
 			font-size: 12px !important;
 		}
-		
 		.nav-item .nav-link{
 			{$font_style.menu_title}
 			font-size: 15px !important;
 		}
 		
-		{if ($mObj.icon_size == 1)}	
-			.minisiteLogo{
-				height: 36px !important;
-			}
-		{else}
-			.minisiteLogo{
-				height: {$icon_size}px !important;
-			}
+	{elseif ($mObj.menu_type == 3)}
+		{$default_icon = 30}
+		{if ($mObj.icon_size == 10)}		{$icon_size = 40}
+		{else if ($mObj.icon_size == 20)}	{$icon_size = 50}
+		{else if ($mObj.icon_size == 30)}	{$icon_size = 60}
+		{else if ($mObj.icon_size == 40)}	{$icon_size = 70}
+		{else}								{$icon_size = 80}
 		{/if}
+
+		.minisite-logo h1{	
+			{$font_style.title}	
+			font-size: 30px !important;
+		}
+		h2.subtitle {
+			{$font_style.sub_title}
+			font-size: 12px !important;
+		}
+		.nav-item .nav-link{
+			{$font_style.menu_title}
+			font-size: 16px !important;
+		}
+		
+	{elseif ($mObj.menu_type == 4)}
+		{$default_icon = 30}
+		{if ($mObj.icon_size == 10)}		{$icon_size = 40}
+		{else if ($mObj.icon_size == 20)}	{$icon_size = 50}
+		{else if ($mObj.icon_size == 30)}	{$icon_size = 60}
+		{else if ($mObj.icon_size == 40)}	{$icon_size = 70}
+		{else}								{$icon_size = 80}
+		{/if}
+
+		.minisite-logo h1{	
+			{$font_style.title}	
+			font-size: 30px !important;
+		}
+		h2.subtitle {
+			{$font_style.sub_title}
+			font-size: 12px !important;
+		}
+		.nav-item .nav-link{
+			{$font_style.menu_title}
+			font-size: 20px !important;
+		}
+
+	{/if}
+
+	{if ($mObj.icon_size == 1)}	
+		.minisiteLogo{
+			height: {$default_icon}px !important;
+		}
+	{else}
+		.minisiteLogo{
+			height: {$icon_size}px !important;
+		}
 	{/if}	
 		
 	p {

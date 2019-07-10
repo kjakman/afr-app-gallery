@@ -6,6 +6,7 @@
 {/block}  
 
 {block name=content} 
+
 <style>
 .item-container{
 	margin:0px auto;
@@ -51,6 +52,7 @@
 	<div class="item-grid-sizer"></div>
 	<div class="item-gutter-sizer"></div>
 	{foreach from=$exhibitions item=exhibition}
+
 		<div class="item-grid">
 			<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="cms-link gallery-link" data-data='{$json}'>
 				 <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
@@ -72,11 +74,7 @@
 						</div>           
 					  </div>         
 					</div> 
-					<div class="exhibition-title text-center mt10">
-					  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h4 class="description">{$exhibition.title}</h4></a>
-					  <h2 class="description">{$exhibition|artists}</h2>
-					  <h3 class="description"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h3>
-					</div>        
+					{{"include": "minisites/exh_details.html"}}
 				</figure>
 			</a>
 		</div>
@@ -105,11 +103,7 @@
 					</div>           
 				  </div>         
 				</div> 
-				<div class="exhibition-title text-center mt10">
-				  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h4 class="description">{$exhibition.title}</h4></a>
-				  <h2 class="description">{$exhibition|artists}</h2>
-				  <h3 class="description"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h3>
-				</div>        
+				{{"include": "minisites/exh_details.html"}}       
 			</figure>
 		</div>
 		{/foreach}

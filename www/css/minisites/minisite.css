@@ -3062,12 +3062,35 @@ hr{
     width: 100%;
 }
 .image_vert_bottomin img{
-	max-height: 400px;
-	width:auto;
+	max-height: 300px;
+	width:auto !important;
 }
 .gallery-list-nogap{
 	column-gap: 2px !important;
 }
 .gallery-list-nogap .gallery-list-item figure {
     margin-bottom: 2px !important;
+}
+.center_menulayout{
+	
+}
+.center_menulayout .minisite-logo{
+	width: 100%;
+    text-align: center;
+    display: block;
+    margin: 20px 0px;
+}
+.center_menulayout .navbar{
+	float:left;
+    width: 100%;
+}
+.center_menulayout .navbar .nav-item .nav-link{
+	border-bottom: 1px solid #ffffff;
+}
+.center_menulayout .navbar .nav-item .nav-link:hover, .center_menulayout .navbar .nav-item .nav-link.active{
+	border-bottom: 1px solid #616161;
+}
+.center_menulayout  .navbar-nav{
+	align-items: center;
+    justify-content: center;
 }

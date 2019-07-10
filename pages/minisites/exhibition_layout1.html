@@ -6,7 +6,7 @@
 			</section>
 			<aside class="col-sm-5">
 				
-				<h2>{$collection.title}</h2>
+				<h1>{$collection.title}</h1>
 				{if ($collection.start_date && $collection.end_date)}
 				  {{"include": "_gallery-collection-date.html"}}
 				{/if}
@@ -37,7 +37,7 @@
 			{if ($count)}
 				<div class="gallery-related" id="collection_artworks">
 					<div class="profileinfo italic mb10">
-						<h2>Other Art in {$collection.title}</h2>
+						<h1>Other Art in {$collection.title}</h1>
 					</div>
 				</div>
 				{$index = 0}

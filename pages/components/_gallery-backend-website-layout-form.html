@@ -4,6 +4,14 @@
         <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">  
         <input hidden="1" name="next_tab" type="hidden" value="styling"> 
 
+          <div class="form-group col-sm-2">
+            <label for="website-type">Type of Site</label>
+            <select name="type" id="website-type"  class="form-control auto-select" data-value="{$minisite.type}">
+              <option value="artist" >Single Artist</option>
+              <option value="gallery">Gallery</option>
+            <select>
+          </div>
+
           <div class="col-sm-12">
             <label for="HEADER">HEADER</label>
             <table cellspacing="2"> 

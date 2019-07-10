@@ -11,7 +11,7 @@
   <div class="row"> 
     {foreach from=$years item=year}
       <div class="photo-grid-row col-md-12">
-        <h1>{$year['year']}</h1> <br>
+        <h1>{$year['year']}</h1> </br>
         <ul class="photo-grid gallery-list natural row">
           {foreach from=$exhibitions item=exhibition}  
             {$parts = explode('-', $exhibition.start_date)}
@@ -42,11 +42,7 @@
                       </div> 
                     </div> 
                   </div> 
-                  <div class="exhibition-title text-center mt10">
-                    <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h4 class="description">{$exhibition.title}</h4></a>
-                    <h2 class="description">{$exhibition|artists}</h2>
-                    <h3 class="description"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h3>
-                  </div>          
+                  {{"include": "minisites/exh_details.html"}}         
                 </figure>
               </a>
               </li>
@@ -67,11 +63,7 @@
                 <img src="{$exhibition|collection_photo:'medium'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
               </a>
             </div>
-            <div class="artist-name text-center mt10">
-              <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h4 class="description">{$exhibition.title}</h4></a>
-              <h2 class="description">{$exhibition|artists}</h2>
-              <h3 class="description"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h3>
-            </div>
+            {{"include": "minisites/exh_details.html"}} 
           </div>   
           {$count = 1}
         {/foreach}
