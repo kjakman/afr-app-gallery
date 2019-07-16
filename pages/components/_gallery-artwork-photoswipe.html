@@ -1,10 +1,13 @@
 {$all_exhi = []}
-
+{$index = 0}
+{$count = 0}
 {$other_exhi = $scope.other_exhibitions}
   {foreach from=$other_exhi item=exhibition}
     {if ($artwork.title_image == $exhibition.media_id)}
         {$exhibitions = $exhibition}
+	{$index = $count}
     {/if}
+    {$count = $count + 1}
   {/foreach}
 {$all_exhi = array($exhibitions)+$other_exhi}
 
@@ -12,7 +15,7 @@
 <link rel="stylesheet" type="text/css" media="all" href="/afr/js/vp/photoswipe.css?v=4.1.1-1.0.5" / >
 <link rel="stylesheet" type="text/css" media="all" href="/afr/js/vp/default-skin/default-skin.css{$cachebust}" / >
 <link rel="stylesheet" type="text/css" media="all" href="/afr/js/vp/vp.min.css{$cachebust}" / >
-{$index = 0}
+
 {$container_id = "artwork_`$all_exhi[0].id`"}
 {$data = ["obj_type" => "media_collection","obj_id" => $all_exhi[0].media_collection_id, "plugin_id" => "1355","container_id" => $container_id]}
 {$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}

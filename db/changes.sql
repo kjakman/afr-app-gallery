@@ -2,11 +2,12 @@
 
 # Jan -18
 
-#ALTER TABLE `user_profile`
-#DROP `facebook`,
-#DROP `instagram`,
-#DROP `twitter`,
-#DROP `show_awards`;
+/*
+ALTER TABLE `user_profile`
+DROP `facebook`,
+DROP `instagram`,
+DROP `twitter`,
+DROP `show_awards`;
 
 ALTER TABLE `user_profile`
 ADD `solo_shows_` text COLLATE 'utf8_general_ci' NOT NULL,
@@ -82,9 +83,10 @@ ALTER TABLE `minisite_page_type` CHANGE `id` `id` smallint(4) unsigned NOT NULL 
 ALTER TABLE `opening_hours` ADD PRIMARY KEY `id` (`id`);
 ALTER TABLE `page_map` ADD PRIMARY KEY `id` (`id`);
 ALTER TABLE `profile_media_map` ADD PRIMARY KEY `id` (`id`);
+*/
 
-#6 June 2019
-#statically updated
+# 6 June 2019
+# statically updated
 DROP TABLE IF EXISTS `minisite_font`;
 CREATE TABLE `minisite_font` (
   `id` int(8) NOT NULL,
@@ -135,7 +137,11 @@ WHERE `id` = '40';
 INSERT INTO `exhibition_type` (`id`, `name`, `description`)
 VALUES ('50', 'Showroom/Private Link', NULL);
 
+ALTER table `minisite_page_type` ADD COLUMN `row_order` int(10) NOT NULL;
+
+
 #statically updated
+
 DROP TABLE IF EXISTS `minisite_layout`;
 CREATE TABLE `minisite_layout` (
   `id` int(11) NOT NULL DEFAULT '0',
@@ -151,6 +157,7 @@ CREATE TABLE `minisite_layout` (
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 INSERT INTO `minisite_layout` (`id`, `parent_id`, `type`, `subtype`, `separator`, `name`, `row_order`, `image`, `active`, `created`, `timestamp`) VALUES
 (101, 40, 30, 1,  'off',  'Timeline', 13, '', 1,  '2019-06-06 11:34:26',  '2019-07-01 09:15:15'),
@@ -225,6 +232,7 @@ ALTER TABLE `minisite`
 ADD `font_type` int(25) NOT NULL,
 ADD `menu_type` int(25) NOT NULL;
 
+/*
 CREATE TABLE `exhibition_map` (
   `id` int(8) NOT NULL,
   `media_collection_id` int(8) NOT NULL,
@@ -237,6 +245,7 @@ CREATE TABLE `exhibition_map` (
   `curator_id` int(11) NOT NULL,
   `page_id` int(8) NOT NULL
 );
+*/
 
 INSERT INTO `db_sequence` (`seq_name`, `nextid`)
 VALUES ('exhibition_map', '10');
