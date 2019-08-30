@@ -7,6 +7,8 @@ $__CLASSES= array_merge($__CLASSES, array(
 
 // gallery    
     'plugin' =>               array(USER_LEVEL_STAFF,  'gallery', '', '', 0, 'name', '', ''),
+    'media_folder' =>         array(USER_LEVEL_USER,   'gallery', '', '', 0, 'title', 'rank ', ''),
+    'media_tags' =>           array(USER_LEVEL_USER,   'gallery', '', '', 0, 'tags', '', ''),
     'gallery' =>              array(USER_LEVEL_USER,   'gallery', '', '', 0, 'title', 'rank ', ''),
     'media_collection' =>     array(USER_LEVEL_USER,   'gallery', '', '', 0, 'title', 'media_collection.rank ', ''),
     'media_collection_type' =>array(USER_LEVEL_USER,   'gallery', '', '', NF_CACHE_ASSOC, 'name', 'name ', ''),
@@ -17,7 +19,8 @@ $__CLASSES= array_merge($__CLASSES, array(
     'artwork' =>                array(USER_LEVEL_OWNER,  'artwork', '', '', NF_LOG, 'title', 'artwork.id desc', ''),
     'artwork_type' =>           array(USER_LEVEL_SYSTEM, 'artwork', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
     'artwork_status' =>         array(USER_LEVEL_SYSTEM, 'artwork', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
-    
+    'artwork_related_type' =>  array(USER_LEVEL_SYSTEM, 'artwork', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
+    'artwork_media' =>  array(USER_LEVEL_SYSTEM, 'artwork', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
     'exhibition_type' =>           array(USER_LEVEL_SYSTEM, 'artwork', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
 
 // minisite    
@@ -26,7 +29,9 @@ $__CLASSES= array_merge($__CLASSES, array(
     'minisite_page' =>       array(USER_LEVEL_ADMIN, 'site', '', '', NF_CACHE|NF_COMPACT_LIST, 'page_name', '', ''),
     'minisite_layout' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
     'minisite_font' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
+    'minisite_menu' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
     'minisite_parent_layout' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
+    'minisite_tpl' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
 
 ));
 
@@ -101,6 +106,26 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
      'id'=>            array('ID',                'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 2),
      'name'=>          array('Name',              'str',   '', 1, 20 ),
      'description'=>   array('Description',       'str',   '', 1, 200 ),
+  ),
+
+  "artwork_related_type" =>
+  array(
+     'id'=>            array('ID',                'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 2),
+     'name'=>          array('Name',              'str',  '', 1, 20 ),
+     'rank'=>          array('Rank',              'int',  0, AF_HIDE_ADD, 3 ),
+  ),
+
+  "artwork_media" =>
+  array(
+     'id'=>            array('ID',                'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 2),
+     'user_id'=>       array('User',              'link',  ATT_DEFAULT_USER_ID, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
+     'artwork_id'=>    array('Artwork Id',        'int', 0, AF_HIDE_ADD, 10),
+     'type'=>          array('Type',              'int',  0, AF_OBLIGATORY|AF_HIDE_ADD, 3),
+     'description'=>   array('description',       'text',  AF_OBLIGATORY,   '', 0),
+     'media' =>        array('Media',             'media',      '', 0, $gallery_media_options),
+     'row_order'=>     array('Order',              'int',  0, AF_HIDE_ADD, 11),
+     'created'=>       array('Created',           'datetime', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_ADD),
+     'modified'=>      array('Modified',         'timestamp', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_ADD, 14 ),
   ),
 
   "exhibition_type" => 
@@ -213,7 +238,7 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
      'site_id'=>           array('Site',              'link',   ATT_DEFAULT_SITE_ID, AF_READONLY|AF_HIDE_ADD, 'site'),
      'user_id'=>           array('User',              'link',  ATT_DEFAULT_USER_ID, AF_SEARCHABLE|AF_HIDE_ADD|AF_READONLY, 'user'),
      'parent_id'=>         array('Parent',            'link',   0, AF_READONLY|AF_HIDE_ADD, 'gallery'),
-     'title'=>             array('Title',             'str',   '', AF_OBLIGATORY, 255),
+     'name'=>             array('Name',             'str',   '', AF_OBLIGATORY, 255),
      //'title_index'=>       array('Title Image Index', 'int',   0, 0, 3),
      'title_image'=>       array('Title Image',       'link',  ATT_DEFAULT_NULL, 0, 'media'),
      'title_image_json'  => array('Image (json)',      'json',     '', 0),
@@ -221,7 +246,32 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
      'image'            => array('Title image',       'media',     '', 0, $std_image_options),
      'media'            => array('Media',             'media',     '', 0, $gallery_media_options),
      'path'             => array('Path',              'str', 0, AF_HIDE_LIST, 255),
+     'type'             => array('Type',              'str', 0, AF_HIDE_LIST, 10),
      
+  ),
+
+  "media_folder" => 
+  array(
+     'id'=>                array('ID',                'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 8),
+     'created'=>           array('Created',           'datetime',   ATT_DEFAULT_NOW, AF_HIDE_LIST, 6 ),
+     'timestamp'=>         array('Timestamp',         'timestamp',   ATT_DEFAULT_NOW, AF_HIDE|AF_READONLY, 14 ),
+     'active'=>            array('Active',            'bool',   1, 0),
+     'site_id'=>           array('Site',              'link',   ATT_DEFAULT_SITE_ID, AF_READONLY|AF_HIDE_ADD, 'site'),
+     'user_id'=>           array('User',              'link',  ATT_DEFAULT_USER_ID, AF_SEARCHABLE|AF_HIDE_ADD|AF_READONLY, 'user'),
+     'filename'=>             array('Name',             'str',   '', AF_OBLIGATORY, 255),
+     'tags'=>              array('tags',       'html',  '', AF_HIDE_LIST),
+     'path'=>              array('Path',              'str', 0, AF_HIDE_LIST, 255),
+     'type'=>              array('Type',              'str', 0, AF_HIDE_LIST, 25),
+     'rank'=>              array('Rank',              'int', 0, AF_HIDE_ADD, 4),
+  ),
+
+  "media_tags" => 
+  array(
+     'id'=>                array('ID',                'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 8),
+     'created'=>           array('Created',           'datetime',   ATT_DEFAULT_NOW, AF_HIDE_LIST, 6 ),
+     'timestamp'=>         array('Timestamp',         'timestamp',   ATT_DEFAULT_NOW, AF_HIDE|AF_READONLY, 14 ),
+     'active'=>            array('Active',            'bool',   1, 0),
+     'name'=>              array('Name',              'str',  '', AF_HIDE_LIST),
   ),
 
   "minisite" => 
@@ -236,7 +286,7 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
      'admin_users' =>       array('Admin Users',        'json', '', 0),
      'type'=>               array('Type',               'str',  '', AF_OBLIGATORY|AF_SEARCHABLE, 32 ),
      'name'=>               array('Name',               'str',  '', AF_OBLIGATORY|AF_SEARCHABLE, 128 ),
-     'sub_title'=>          array('Sub Title',          'str',  '', AF_SEARCHABLE, 128 ),
+     'sub_title'=>          array('Sub Title',          'str',  '', AF_SEARCHABLE, 60 ),
      'description'=>        array('Description',          'str',  '', AF_SEARCHABLE, 128 ),
      'url'=>                array('Url',                'str',  '', AF_OBLIGATORY|AF_SEARCHABLE, 64 ),
      'domain'=>             array('Domain',             'str',  '', AF_SEARCHABLE, 128 ),
@@ -263,7 +313,9 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
      'show_social'  =>      array('Show social',        'bool',     1,  AF_HIDE_ADD, 0),
      'font_type' =>         array('Fonts',              'link',  0, AF_SEARCHABLE|AF_HIDE, 'minisite_font'),
      'menu_type' =>         array('Menu Style',         'bool',     1,  AF_HIDE_ADD, 0),
-     'icon_size' =>         array('Icon Size',         'bool',     1,  AF_HIDE_ADD, 0),
+     'icon_size' =>         array('Icon Size',          'int',     0,  AF_HIDE_ADD, 3),
+     'title_size' =>        array('Site Title Size',    'int',     0,  AF_HIDE_ADD, 3),
+     'footer_data' =>       array('Footer data',        'json', '', 0),
    ),
 
    "minisite_page_type" => 
@@ -285,9 +337,11 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'user_id' =>           array('User ID',          'link', ATT_DEFAULT_USER_ID, 0, 'user'),
       'type' =>              array('Type',             'many2one', 0, AF_LOG|AF_SEARCHABLE , 'minisite_page_type'),
       'menu_title'=>         array('Menu Title',  'str',  '', AF_OBLIGATORY|AF_SEARCHABLE, 128 ),
-      'page_title'=>         array('Page Title',  'str',  '', AF_SEARCHABLE, 128 ),
+      'page_title'=>         array('Page Title',  'str',  '', AF_SEARCHABLE, 60 ),
+      'secondary_title'=>    array('Secondary Title',  'str',  '', AF_SEARCHABLE, 60 ),
       'slug'=>               array('Slug',             'str',   '', 0, 128 ),
       'search'=>             array('Search',           'json',   ''),
+      'search1'=>            array('Search1',           'json',   ''),
       'row_order'=>          array('Row Order',        'int',   '', 0, 11 ),
       'data'=>               array('data',              'json',     '', AF_HIDE_ADD),
       'colour'=>             array('Page Colour',       'str',   '', 0, 600 ),
@@ -340,5 +394,36 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'sub_title'=>    array('Sub Title',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
       'menu_title'=>   array('Menu Title',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
       'font_family'=>  array('Font Family',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+   ),  
+
+    "minisite_menu" => 
+   array(
+      'id'=>                 array('ID',               'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 8),
+      'created'=>            array('Created',          'datetime', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT),
+      'timestamp'=>          array('Timestamp',        'timestamp', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT, 14 ),
+      'active'  =>           array('Active?',          'bool',     1,  AF_HIDE_ADD, 0),
+      'name'=>               array('Name',             'str',   '', 0, 50 ),
+      'logo'=>               array('Logo',             'txt',   '',  ),
+      'sub_title'=>          array('Subtitle',         'txt',   '', ),
+      'menu_title'=>         array('Menutitle',        'txt',   '', ),
+      'icon_default'=>       array('Icon detault',     'int',   0, AF_READONLY|AF_HIDE_ADD, 5),
+      'icon1'=>              array('Icon1',        'int',   0, AF_READONLY|AF_HIDE_ADD, 5),
+      'icon2'=>              array('Icon2',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+      'icon3'=>              array('Icon3',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+      'icon4'=>              array('Icon4',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+      'icon5'=>              array('Icon5',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
+      'image'=>              array('Image',        'str',   '', 0, 50 ),
+   ), 
+
+    "minisite_tpl" => 
+   array(
+      'id'=>                 array('ID',               'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 8),
+      'created'=>            array('Created',          'datetime', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT),
+      'active'  =>           array('Active?',          'bool',     1,  AF_HIDE_ADD, 0),
+      'template'=>           array('Template',         'str',   '', 0, 50 ),
+      'page'=>               array('Page',             'str',   '',  ),
+      'parts'=>              array('Parts',            'int',   0, ),
+      'type'=>               array('Type',            'int',   0, ),
    ),   
+
 ));

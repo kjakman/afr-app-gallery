@@ -7,51 +7,51 @@
 
 {block name=content} 
 <style>
-.item-container{
-	margin:0px auto;
-}
-.item-grid {
-	display: block;
-	padding:0px 15px;
-    float: left;
-	overflow: hidden;
-	z-index: 1;
-}
-.item-grid-contnt{
-	
-}
-.item-grid h3 {
-	color: #000;
-}
-.item-grid p {
-	color: #5b5b5b;
-}
-.item-grid img {
-	width: 100%;
-	height: auto;
-	display: block;
-}
-.item-grid-sizer, .item-grid {
-	width: 24%;
-}
-@media screen and (max-width: 993px) {
-	.item-grid-sizer, .item-grid {
-		width: 32%;
+	.item-container{
+		margin:0px auto;
 	}
-}
-@media screen and (max-width: 750px) {
-	.item-grid-sizer, .item-grid {
-		width: 46%;
+	.item-grid {
+		display: block;
+		padding:0px 15px;
+	    float: left;
+		overflow: hidden;
+		z-index: 1;
 	}
-}
-@media screen and (max-width: 500px) {
-	.item-grid-sizer, .item-grid {
+	.item-grid-contnt{
+		
+	}
+	.item-grid h3 {
+		color: #000;
+	}
+	.item-grid p {
+		color: #5b5b5b;
+	}
+	.item-grid img {
 		width: 100%;
+		height: auto;
+		display: block;
 	}
-}
+	.item-grid-sizer, .item-grid {
+		width: 24%;
+	}
+	@media screen and (max-width: 993px) {
+		.item-grid-sizer, .item-grid {
+			width: 32%;
+		}
+	}
+	@media screen and (max-width: 750px) {
+		.item-grid-sizer, .item-grid {
+			width: 46%;
+		}
+	}
+	@media screen and (max-width: 500px) {
+		.item-grid-sizer, .item-grid {
+			width: 100%;
+		}
+	}
 </style>
 {$data = json_decode($minisite_pageObj.data, TRUE)}
-{$count = 0}
+{$count = 0} {$index = 0}
 {$arr = []}
 {if ($data.show_recent == 1)}
   {$arr = ['future' => $data.show_future, 'current' => $data.show_current, 'past' => $data.show_past]}
@@ -79,7 +79,6 @@
 						  <div class="__vp-flip-back-card"> 
 							<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">                
 							  <h2>{$exhibition.title}</h2>   
-							  <!-- <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="__vp-info __vp-view-button" id="__vp-view-button-1355">View</a>  -->
 							  <div class="mt10">{$exhibition|artists}</div> 
 							  <div>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</div>    
 							</a>               
@@ -115,7 +114,6 @@
 						  <div class="__vp-flip-back-card"> 
 							<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">                
 							  <h2>{$exhibition.title}</h2>   
-							  <!-- <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="__vp-info __vp-view-button" id="__vp-view-button-1355">View</a>  -->
 							  <div class="mt10">{$exhibition|artists}</div> 
 							  <div>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</div>    
 							</a>               

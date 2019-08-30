@@ -1,0 +1,35 @@
+{{"extend": "minisites/index.html"}}
+{$minisitepage = $scope.minisite_pageObj}
+{$data = json_decode($minisitepage.data)}
+{block name=content} 
+<style>
+	.modal-lg{
+	    max-width: 94%;
+	}
+</style>
+
+	<iframe src="{$data[0]}" height="700px" width="100%" style="max-height:100%;"></iframe>
+
+	<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#shopify_modal">Open Store</button>
+
+	<div id="shopify_modal" class="modal fade" role="dialog">
+	  <div class="modal-dialog modal-lg">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">{$minisite_pageObj.page_title}</h4>
+				<div class="modal_button">
+					<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+				</div>
+			</div>
+			<div class="modal-body">
+				<iframe src="{$data[0]}" height="450px" width="100%" style="max-height:100%;"></iframe>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#shopify_modal').modal('show');
+    });
+</script> -->
+{/block}

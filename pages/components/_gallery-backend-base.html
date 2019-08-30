@@ -3,6 +3,8 @@
 {$obj_type = $scope.obj_type} 
 {$parent_type = $scope.parent_type}
 {$parent_id = $scope.parent_id}
+{$sitetitle = $scope.site_title}
+{$url = $scope.url|default:$this_full_url}
 
 {if (isset($smarty.get.add) || $page.action == "add") && !$object}{$add=1}{$action="Create"}{/if} 
 {if (isset($smarty.get.edit) || $page.action == "edit") && $object}{$edit=1}{$action="Edit"}{/if}
@@ -10,13 +12,26 @@
 {$list = ($page.subview == $page.listview) ? 1 : 0}
 {$add_to = $scope.add_to}
 {$add_to_profile = $scope.add_to_profile}
+{$add_to_profile1 = $scope.add_to_profile1}
 {$add_to_website = $scope.add_to_website}
+{$add_to_folder = $scope.add_to_folder}
+{$add_to_logo1 = $scope.add_to_logo1}
+{$add_to_logo = $scope.add_to_logo}
+{$add_to_artworkimg = $scope.add_to_artworkimg}
+{$add_to_relatedart = $scope.add_to_relatedart}
+{$add_to_websiteimg = $scope.add_to_websiteimg}
+{$add_to_exbart = $scope.add_to_exbart}
+{$add_to_exbtitle = $scope.add_to_exbtitle}
+{$get_str = $scope.get_str}
 {$getpv = $scope.getpv}
 {$site_id = $scope.site_id}
 {$page_id = $scope.page_id}
 {$user_id = $scope.user_id}
+{$folder_id = $scope.folder}
+{$subview = $page.subview}
 
 {$edit_link = 'backend:subview:id:action'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit']}
+
 {$list_link = 'backend:subview'|rroute:['subview' => $page.listview]}
 {$add_link  = 'backend:subview:action'|rroute:['subview' => $page.itemview, 'action' => 'add']}
 {$view_link = 'backend:subview:id'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id]}
@@ -58,7 +73,6 @@
 <!-- spacer -->
 <div class="hidden-sm hidden-md hidden-lg" style="height:48px">
 </div>
-
 {block name="buttons"}
 {$buttons = 0}
 {if ($list_view || $item_view)}
@@ -67,21 +81,65 @@
   {if ($add_to)}
     {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'exhibition', 'id' => $add_to, 'action' => 'edit']}  
     {$buttons = 1}
-    <li><a href="{$ex_link}/media?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to exhibition</a></li> 
+    <li><a href="{$ex_link}/media?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to Exhibition</a></li> 
 
   {elseif ($add_to_profile)} 
     {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'profile', 'id' => $add_to_profile, 'action' => 'edit']}  
     {$buttons = 1}
     {if ($getpv)}
+      <li><a href="{$ex_link}/art?_pv=viewartistpage" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to Profile</a></li> 
+    {else}
+      {$back_profile = 1}
+      <li><a href="{$ex_link}/art?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to Profile</a></li> 
+    {/if}
+
+  {elseif ($add_to_profile1)} 
+    {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'ACsettings', 'id' => $add_to_profile1, 'action' => 'edit']}  
+    {$buttons = 1}
+    {if ($getpv)}
       <li><a href="{$ex_link}/art?_pv=viewartistpage" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to profile</a></li> 
     {else}
-      <li><a href="{$ex_link}/art?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to profile</a></li> 
+      {$back_profile = 1}
+      <li><a href="{$ex_link}/art?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to Profile</a></li> 
     {/if}
 
   {elseif ($add_to_website)} 
     {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'website', 'id' =>$site_id , 'action' => 'edit']} 
     {$buttons = 1}
-    <li><a href="{$ex_link}/singleExhibition?_pv=1&page_id={$page_id}&user_id={$user_id}" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to website</a></li> 
+    <li><a href="{$ex_link}/singleExhibition?_pv=1&page_id={$page_id}&user_id={$user_id}" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to website</a></li>
+
+  {elseif ($add_to_logo)} 
+    {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'profile', 'id' => $add_to_logo, 'action' => 'edit']}  
+    {$buttons = 1}
+    <li><a href="{$ex_link}/about?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to Profile</a></li>
+  {elseif ($add_to_logo1)} 
+  {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'ACsettings', 'id' => $add_to_logo1, 'action' => 'edit']}
+    {$buttons = 1}
+    <li><a href="{$ex_link}/bio?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to Profile</a></li> 
+
+  {elseif ($add_to_artworkimg)} 
+  {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'artwork', 'id' => $add_to_artworkimg, 'action' => 'edit']}
+    {$buttons = 1}
+    <li><a href="{$ex_link}/image?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to Artwork</a></li>
+
+  {elseif ($add_to_relatedart && $get_str)}
+  {$artwork = explode('|', $add_to_relatedart)} 
+  {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'artwork', 'id' => $artwork[0], 'action' => 'edit']}
+    {$buttons = 1}
+    <li><a href="{$ex_link}/media?artwork_media={$artwork[1]}&_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to Artwork</a></li>
+
+  {elseif ($add_to_websiteimg)} 
+  {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'website', 'id' => $add_to_websiteimg, 'action' => 'edit']}
+    {$buttons = 1}
+    <li><a href="{$ex_link}/basic?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to Website</a></li>
+  {elseif ($add_to_exbart)} 
+  {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'exhibition', 'id' => $add_to_exbart, 'action' => 'edit']}
+    {$buttons = 1}
+    <li><a href="{$ex_link}/media?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to Exhibition</a></li>
+  {elseif ($add_to_exbtitle)} 
+  {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'exhibition', 'id' => $add_to_exbtitle, 'action' => 'edit']}
+    {$buttons = 1}
+    <li><a href="{$ex_link}/title?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to Exhibition</a></li>
 
   {elseif ($getpv == 'viewartistpage')}
     {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'website', 'id' =>$site_id , 'action' => 'edit']} 
@@ -101,11 +159,22 @@
   
     {if ($edit)}
       {$buttons = 1}
-      <li><a href="{$view_link}{if ($obj_type != 'plugin')}?_pv=1{/if}" class="btn btn-primary ajax-loader" {if ($obj_type == 'plugin')}data-breakout=1{/if} data-target="#subview-container"><i class="fa fa-eye"></i> Preview</a></li>
+      {if ($obj_type == 'media_folder')}
+        <li><a href="{$list_link}?_pv=1{$tail}" class="btn btn-primary ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i> List</a></li>
+      {elseif ($obj_type == 'media')}
+        <li><a href="{$list_link}/{$scope.folder}?_pv=1{$tail}" class="btn btn-primary ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i> List</a></li> 
+      {else}
+        <li><a href="{$view_link}{if ($obj_type != 'plugin')}?_pv=1{/if}" class="btn btn-primary ajax-loader" {if ($obj_type == 'plugin')}data-breakout=1{/if} data-target="#subview-container"><i class="fa fa-eye"></i> Preview</a></li>
+      {/if}
     {/if}
-    {if ($list && $obj_type|in_array:['artwork', 'media_collection', 'minisite', 'artist'])} <!--pradeepa-->
+    {if ($list && $obj_type|in_array:['artwork', 'media_collection', 'minisite', 'artist', 'media_folder'])} 
       {$buttons = 1}
-      <li><a href="{$add_link}?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i> Create {$what}</a></li>
+      {if (($obj_type == 'media_folder') && (!$vault))}
+        <li><a href="{$add_link}?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i> Create Folder</a></li>
+        <li><a href="{$base_link}?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i> Upload Image</a></li>
+      {elseif ($obj_type != 'media_folder')}
+        <li><a href="{$add_link}?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i> Create {$what}</a></li>
+      {/if}
     {/if}
 
     {if ($list && $obj_type == 'plugin' && $parent_type && $parent_id)}
@@ -134,6 +203,11 @@
     <li>
       <h3 class="inline" style="position:relative;top:10px;left:10px">{$title}</h3>
     </li>
+    {if ($object && $form && $auth_edit_backend && $obj_type == 'minisite')}
+      <li>
+        <h3 class="inline" style="position:relative;top:10px;left:10px"><a href="{$url}"> - {$sitetitle}</a></h3>
+      </li>
+    {/if}
     
     
   {/if}

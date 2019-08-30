@@ -1,0 +1,55 @@
+<div class="row header norml_menu no_margin center_menulayout" id="header">
+  <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 norml_menu_list text-center">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark navbar-desktop hidden-lg-down">
+      {{"include": "minisites/_menu.html"}}
+      {*
+      {if ($type == "artist")}
+        {{"include": "minisites/_menu-artist.html"}}
+      {else}
+        {{"include": "minisites/_menu.html"}}
+      {/if}
+      *}
+    </nav>
+  <!-- Mobile View -->
+    <nav class="hidden-xl-up navbar navbar-fixed-top-off navbar-site navbar-mobile navbar-mobile-site norml_menu_list" role="navigation">
+      <div class="navbar-header">
+        <button class="navbar-toggler pull-left" id="mobileSiteNavBtn" type="button" data-toggle="collapse" data-target="#mobileSiteCollapsingNav">
+        &#9776;
+        </button>
+        <!--a class="navbar-brand nav-logo site-logo hidden-sm-up" href="{$basepath}">{$title}1</a-->
+      </div>
+      <div class="collapse navbar-toggleable-sm nav-links text-left" id="mobileSiteCollapsingNav">
+        {{"include": "minisites/_menu.html"}}
+        {*
+        {if ($type == "artist")}
+        {{"include": "minisites/_menu-artist.html"}}
+        {else}
+        {{"include": "minisites/_menu.html"}}
+        {/if}
+        *}
+      </div>
+    </nav>
+  </div>  
+    <div class="col-xl-12 col-lg-12 col-sm-12 text-center pt10 norml_menu_brand">
+      <a class="minisite-logo" href="{$basepath|default:'/'}">
+        {if ($ms.logo)}<img src="{$ms.logo|photo:'small'}" class="minisiteLogo">{else}<h1>{$minisite_name}</h1>{/if}
+      </a>
+    </div>
+    <div class="col-xl-12 col-lg-12 col-sm-12 text-center" >
+    {if ($mObj.show_subtitle == '1')}
+      <h2 class="subtitle">{$mObj.sub_title}</h2>
+    {/if}
+  </div>
+</div>
+<hr>
+<div class="container">
+  <div class="row" id="title">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+      {block name=title}{/block}
+      {if ($scope.header_text)}
+      <div>{$scope.header_text}</div>
+      {/if}
+    </div>
+  </div>
+</div>
+ 

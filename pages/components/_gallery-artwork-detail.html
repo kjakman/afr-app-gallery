@@ -9,8 +9,7 @@
 {/block}
 
 
-{block name=aside}
-    
+{block name=aside}  
   {$profile = $artist}
   {$profile_link = $smarty.const.PAGE_PROFILE|link}
   {{"include": "_gallery-artist-information.html"}}
@@ -20,11 +19,15 @@
   <br>
   
   {$collection = $scope.collection}
-  {if (($collection.type == $smarty.const.MEDIA_COLLECTION_TYPE_EXHIBITION))}
-    {$collection_link = $smarty.const.PAGE_GALLERY|link:"media_collection":$collection.type}
-  
-    <h5><div class='italic'>Featured in exhibtion:</div></h5>
+  {$collection_link = $smarty.const.PAGE_GALLERY|link:"media_collection":$collection.type}
+  <h5><div class='italic'>Featured in exhibtion:</div></h5>
+  {if ($getpage == 1)}
+    <h2><a href="{$profile_link}{$profile.user_id}">Selected Artworks, {$profile.display_name}</a></h2>
+  {else}
     <h2><a href="{$collection_link}{$collection.title|slugify}-{$collection.id}">{$collection.title}</a></h2>
+  {/if}
+  {if (($collection.type == $smarty.const.MEDIA_COLLECTION_TYPE_EXHIBITION))}
+    
     {if ($collection.start_date && $collection.end_date)}
       {{"include": "_gallery-collection-date"}}
     {/if}

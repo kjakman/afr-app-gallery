@@ -76,143 +76,155 @@
 /** AGaramondPro-Regular **/
 @font-face {    
     font-family: 'AGaramondPro-Regular';
-    src: url('/css/fonts/AGaramondPro-Regular.eot');
-    src: url('/css/fonts/AGaramondPro-Regular.eot?#iefix') format('embedded-opentype'),
-         url('/css/fonts/AGaramondPro-Regular.woff') format('woff'),
-         url('/css/fonts/AGaramondPro-Regular.ttf') format('truetype'),
-         url('/css/fonts/AGaramondPro-Regular.svg#AGaramondPro-Regular') format('svg');
+    src: url('/css/fonts/AGaramondPro-Regular/AGaramondPro-Regular.eot');
+    src: url('/css/fonts/AGaramondPro-Regular/AGaramondPro-Regular.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/AGaramondPro-Regular/AGaramondPro-Regular.woff') format('woff'),
+         url('/css/fonts/AGaramondPro-Regular/AGaramondPro-Regular.ttf') format('truetype'),
+         url('/css/fonts/AGaramondPro-Regular/AGaramondPro-Regular.svg#AGaramondPro-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 /** BrandonGrotesque-Regular **/
 @font-face {    
     font-family: 'BrandonGrotesque-Regular';
-    src: url('/css/fonts/BrandonGrotesque-Regular.eot');
-    src: url('/css/fonts/BrandonGrotesque-Regular.eot?#iefix') format('embedded-opentype'),
-         url('/css/fonts/BrandonGrotesque-Regular.woff') format('woff'),
-         url('/css/fonts/BrandonGrotesque-Regular.ttf') format('truetype'),
-         url('/css/fonts/BrandonGrotesque-Regular.svg#BrandonGrotesque-Regular') format('svg');
+    src: url('/css/fonts/BrandonGrotesque-Regular/BrandonGrotesque-Regular.eot');
+    src: url('/css/fonts/BrandonGrotesque-Regular/BrandonGrotesque-Regular.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/BrandonGrotesque-Regular/BrandonGrotesque-Regular.woff') format('woff'),
+         url('/css/fonts/BrandonGrotesque-Regular/BrandonGrotesque-Regular.ttf') format('truetype'),
+         url('/css/fonts/BrandonGrotesque-Regular/BrandonGrotesque-Regular.svg#BrandonGrotesque-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 /** Calluna-Regular **/
 @font-face {    
     font-family: 'Calluna-Regular';
-    src: url('/css/fonts/Calluna-Regular.eot');
-    src: url('/css/fonts/Calluna-Regular.eot?#iefix') format('embedded-opentype'),
-         url('/css/fonts/Calluna-Regular.woff') format('woff'),
-         url('/css/fonts/Calluna-Regular.ttf') format('truetype'),
-         url('/css/fonts/Calluna-Regular.svg#Calluna-Regular') format('svg');
+    src: url('/css/fonts/Calluna-Regular/Calluna-Regular.eot');
+    src: url('/css/fonts/Calluna-Regular/Calluna-Regular.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/Calluna-Regular/Calluna-Regular.woff') format('woff'),
+         url('/css/fonts/Calluna-Regular/Calluna-Regular.ttf') format('truetype'),
+         url('/css/fonts/Calluna-Regular/Calluna-Regular.svg#Calluna-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 /** FF-DIN **/
 @font-face {    
     font-family: 'FF-DIN';
-    src: url('/css/fonts/FF-DIN.eot');
-    src: url('/css/fonts/FF-DIN.eot?#iefix') format('embedded-opentype'),
-         url('/css/fonts/FF-DIN.woff') format('woff'),
-         url('/css/fonts/FF-DIN.ttf') format('truetype'),
-         url('/css/fonts/FF-DIN.svg#FF-DIN') format('svg');
+    src: url('/css/fonts/FF-DIN/FF-DIN.eot');
+    src: url('/css/fonts/FF-DIN/FF-DIN.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/FF-DIN/FF-DIN.woff') format('woff'),
+         url('/css/fonts/FF-DIN/FF-DIN.ttf') format('truetype'),
+         url('/css/fonts/FF-DIN/FF-DIN.svg#FF-DIN') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 /** GillSansMT **/
 @font-face {    
     font-family: 'GillSansMT';
-    src: url('/css/fonts/GillSansMT.eot');
-    src: url('/css/fonts/GillSansMT.eot?#iefix') format('embedded-opentype'),
-         url('/css/fonts/GillSansMT.woff') format('woff'),
-         url('/css/fonts/GillSansMT.ttf') format('truetype'),
-         url('/css/fonts/GillSansMT.svg#GillSansMT') format('svg');
+    src: url('/css/fonts/GillSansMT/GillSansMT.eot');
+    src: url('/css/fonts/GillSansMT/GillSansMT.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/GillSansMT/GillSansMT.woff') format('woff'),
+         url('/css/fonts/GillSansMT/GillSansMT.ttf') format('truetype'),
+         url('/css/fonts/GillSansMT/GillSansMT.svg#GillSansMT') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 /** GraphikLCWeb-Regular **/
 @font-face {    
     font-family: 'GraphikLCWeb-Regular';
-    src: url('/css/fonts/GraphikLCWeb-Regular.eot');
-    src: url('/css/fonts/GraphikLCWeb-Regular.eot?#iefix') format('embedded-opentype'),
-         url('/css/fonts/GraphikLCWeb-Regular.woff') format('woff'),
-         url('/css/fonts/GraphikLCWeb-Regular.ttf') format('truetype'),
-         url('/css/fonts/GraphikLCWeb-Regular.svg#GraphikLCWeb-Regular') format('svg');
+    src: url('/css/fonts/GraphikLCWeb-Regular/GraphikLCWeb-Regular.eot');
+    src: url('/css/fonts/GraphikLCWeb-Regular/GraphikLCWeb-Regular.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/GraphikLCWeb-Regular/GraphikLCWeb-Regular.woff') format('woff'),
+         url('/css/fonts/GraphikLCWeb-Regular/GraphikLCWeb-Regular.ttf') format('truetype'),
+         url('/css/fonts/GraphikLCWeb-Regular/GraphikLCWeb-Regular.svg#GraphikLCWeb-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 /** Portrait_Web_Regular **/
 @font-face {    
     font-family: 'Portrait_Web_Regular';
-    src: url('/css/fonts/Portrait_Web_Regular.eot');
-    src: url('/css/fonts/Portrait_Web_Regular.eot?#iefix') format('embedded-opentype'),
-         url('/css/fonts/Portrait_Web_Regular.woff') format('woff'),
-         url('/css/fonts/Portrait_Web_Regular.ttf') format('truetype'),
-         url('/css/fonts/Portrait_Web_Regular.svg#Portrait_Web_Regular') format('svg');
+    src: url('/css/fonts/Portrait_Web_Regular/Portrait_Web_Regular.eot');
+    src: url('/css/fonts/Portrait_Web_Regular/Portrait_Web_Regular.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/Portrait_Web_Regular/Portrait_Web_Regular.woff') format('woff'),
+         url('/css/fonts/Portrait_Web_Regular/Portrait_Web_Regular.ttf') format('truetype'),
+         url('/css/fonts/Portrait_Web_Regular/Portrait_Web_Regular.svg#Portrait_Web_Regular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 /** TimesNR **/
 @font-face {    
     font-family: 'TimesNR';
-    src: url('/css/fonts/TimesNR.eot');
-    src: url('/css/fonts/TimesNR.eot?#iefix') format('embedded-opentype'),
-         url('/css/fonts/TimesNR.woff') format('woff'),
-         url('/css/fonts/TimesNR.ttf') format('truetype'),
-         url('/css/fonts/TimesNR.svg#TimesNR') format('svg');
+    src: url('/css/fonts/TimesNR/TimesNR.eot');
+    src: url('/css/fonts/TimesNR/TimesNR.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/TimesNR/TimesNR.woff') format('woff'),
+         url('/css/fonts/TimesNR/TimesNR.ttf') format('truetype'),
+         url('/css/fonts/TimesNR/TimesNR.svg#TimesNR') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 /** TransportMedium **/
 @font-face {    
     font-family: 'TransportMedium';
-    src: url('/css/fonts/TransportMedium.eot');
-    src: url('/css/fonts/TransportMedium.eot?#iefix') format('embedded-opentype'),
-         url('/css/fonts/TransportMedium.woff') format('woff'),
-         url('/css/fonts/TransportMedium.ttf') format('truetype'),
-         url('/css/fonts/TransportMedium.svg#TransportMedium') format('svg');
+    src: url('/css/fonts/TransportMedium/TransportMedium.eot');
+    src: url('/css/fonts/TransportMedium/TransportMedium.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/TransportMedium/TransportMedium.woff') format('woff'),
+         url('/css/fonts/TransportMedium/TransportMedium.ttf') format('truetype'),
+         url('/css/fonts/TransportMedium/TransportMedium.svg#TransportMedium') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 /** UniversLTStd-Light **/
 @font-face {    
     font-family: 'UniversLTStd-Light';
-    src: url('/css/fonts/UniversLTStd-Light.eot');
-    src: url('/css/fonts/UniversLTStd-Light.eot?#iefix') format('embedded-opentype'),
-         url('/css/fonts/UniversLTStd-Light.woff') format('woff'),
-         url('/css/fonts/UniversLTStd-Light.ttf') format('truetype'),
-         url('/css/fonts/UniversLTStd-Light.svg#UniversLTStd-Light') format('svg');
+    src: url('/css/fonts/UniversLTStd-Light/UniversLTStd-Light.eot');
+    src: url('/css/fonts/UniversLTStd-Light/UniversLTStd-Light.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/UniversLTStd-Light/UniversLTStd-Light.woff') format('woff'),
+         url('/css/fonts/UniversLTStd-Light/UniversLTStd-Light.ttf') format('truetype'),
+         url('/css/fonts/UniversLTStd-Light/UniversLTStd-Light.svg#UniversLTStd-Light') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 /** UniversRoman **/
 @font-face {    
     font-family: 'UniversRoman';
-    src: url('/css/fonts/UniversRoman.eot');
-    src: url('/css/fonts/UniversRoman.eot?#iefix') format('embedded-opentype'),
-         url('/css/fonts/UniversRoman.woff') format('woff'),
-         url('/css/fonts/UniversRoman.ttf') format('truetype'),
-         url('/css/fonts/UniversRoman.svg#UniversRoman') format('svg');
+    src: url('/css/fonts/UniversRoman/UniversRoman.eot');
+    src: url('/css/fonts/UniversRoman/UniversRoman.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/UniversRoman/UniversRoman.woff') format('woff'),
+         url('/css/fonts/UniversRoman/UniversRoman.ttf') format('truetype'),
+         url('/css/fonts/UniversRoman/UniversRoman.svg#UniversRoman') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 /** Verdana-Bold **/
 @font-face {    
     font-family: 'Verdana-Bold';
-    src: url('/css/fonts/Verdana-Bold.eot');
-    src: url('/css/fonts/Verdana-Bold.eot?#iefix') format('embedded-opentype'),
-         url('/css/fonts/Verdana-Bold.woff') format('woff'),
-         url('/css/fonts/Verdana-Bold.ttf') format('truetype'),
-         url('/css/fonts/Verdana-Bold.svg#Verdana-Bold') format('svg');
+    src: url('/css/fonts/Verdana-Bold/Verdana-Bold.eot');
+    src: url('/css/fonts/Verdana-Bold/Verdana-Bold.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/Verdana-Bold/Verdana-Bold.woff') format('woff'),
+         url('/css/fonts/Verdana-Bold/Verdana-Bold.ttf') format('truetype'),
+         url('/css/fonts/Verdana-Bold/Verdana-Bold.svg#Verdana-Bold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 /** Whitney-Book **/
 @font-face {    
     font-family: 'Whitney-Book';
-    src: url('/css/fonts/Whitney-Book.eot');
-    src: url('/css/fonts/Whitney-Book.eot?#iefix') format('embedded-opentype'),
-         url('/css/fonts/Whitney-Book.woff') format('woff'),
-         url('/css/fonts/Whitney-Book.ttf') format('truetype'),
-         url('/css/fonts/Whitney-Book.svg#Whitney-Book') format('svg');
+    src: url('/css/fonts/Whitney-Book/Whitney-Book.eot');
+    src: url('/css/fonts/Whitney-Book/Whitney-Book.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/Whitney-Book/Whitney-Book.woff') format('woff'),
+         url('/css/fonts/Whitney-Book/Whitney-Book.ttf') format('truetype'),
+         url('/css/fonts/Whitney-Book/Whitney-Book.svg#Whitney-Book') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/** 16-8-2019 Fonts **/
+/** Radikal W03 Regular **/
+@font-face {    
+    font-family: 'Radikal W03 Regular';
+    src: url('/css/fonts/Radikal W03 Regular/Radikal W03 Regular.eot');
+    src: url('/css/fonts/Radikal W03 Regular/Radikal W03 Regular.eot?#iefix') format('embedded-opentype'),
+         url('/css/fonts/Radikal W03 Regular/Radikal W03 Regular.woff') format('woff'),
+         url('/css/fonts/Radikal W03 Regular/Radikal W03 Regular.ttf') format('truetype'),
+         url('/css/fonts/Radikal W03 Regular/Radikal W03 Regular.svg#Radikal W03 Regular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -295,7 +307,7 @@ small {
 
 .minisite-logo H1 {
   font-size: 2em;
-  text-transform: capitalize;
+  text-transform: none;
 }
 
 ::placeholder {
@@ -2999,7 +3011,7 @@ article p{
     margin: 15px 0 15px 0;
 }
 #curator_artworks .profileinfo h1, #curator_exhibitions .profileinfo h1, #artist_artworks .profileinfo h1, #artist_exhibitions .profileinfo h1, .gallery-artwork-detail .profileinfo h1, .profileinfo.italic.mb10 h1 {
-    font-size: 36px !Important;
+    font-size: 28px !Important;
     text-transform: capitalize;
 }
 #curator_artworks .photo-grid-title h2, #curator_exhibitions .photo-grid-title h2, #artist_artworks .photo-grid-title h2, #artist_exhibitions .photo-grid-title h2, .gallery-artwork-detail .photo-grid-title h2 {
@@ -3093,4 +3105,91 @@ hr{
 .center_menulayout  .navbar-nav{
 	align-items: center;
     justify-content: center;
+}
+.left_menulayout{
+	padding: 1rem 1.875rem 0.75rem;
+}
+.left_menulayout .minisite-logo{
+	display:inline-block;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+.left_menulayout .subtitle{
+	display:inline-block;
+	line-height: 45px;
+    margin-top: 5px;
+}
+.left_menulayout .navbar {
+    width: 100%;
+    float: left;
+}
+.left_menulayout .navbar-nav{
+	align-items: left;
+    justify-content: left;
+}
+.alexandria_menulayout{
+    padding: 1rem 1.875rem 0.75rem;
+}
+.alexandria_menulayout .minisite-logo{
+	text-align:left;
+}
+/** 2019-8-22 VVPR **/
+.banner_exhibition{
+	display: block;
+    width: 100%;
+    float: left;
+    margin-bottom: 30px;
+    position: relative;
+}
+.banner_exhibition_img{
+	display: block;
+    width: 100%;
+    float: left;
+}
+.banner_exhibition_imgin{
+	margin: auto;
+    display: block;
+	min-height: 200px;
+	padding-top: 48%;
+    overflow: hidden;
+    position: relative;
+}
+.banner_exhibition_imgin img{
+	width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    object-fit: cover;
+}
+.banner_exhibition_content{
+	position: absolute;
+    bottom: 0;
+    right: 10%;
+    width: 25rem;
+    padding: 1.5625rem 2.8125rem 0.9375rem;
+    background-color: #ffffff;
+}
+.banner_exhibition_contentin{
+	
+}
+.banner_exhibition_auther{
+    font-size: 1rem;
+	font-weight: 400;
+    color: #a0a0a0;
+    padding-bottom: 8px;
+}
+.banner_exhibition_name{
+	font-size: 1.7rem;
+    font-weight: 500;
+    color: #000000;
+    padding-top: 8px;
+    text-transform: capitalize;
+}
+.banner_exhibition_date{
+	font-size: 0.875rem;
+    font-weight: 500;
+	color:#636363;
 }

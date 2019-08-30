@@ -1,65 +1,26 @@
+{$menu_styles = $scope.menus}
 <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$minisite.id|default:$id}">
 
 <div class="mt20">
-  <label>Menu Layout</label>
-	<div class="col-sm-12 col-lg-12 col-md-12 mt20">
-		<div class="fontsty_boxblk">
-			<div class="fontsty_box classic no-padding">				
-                <img src="/img/OlsoMenu.png" />
-			</div>
-			<div class="form-group">
-				<div class="selrad_box">
-					<input type="radio" class="menu_type" name="menu_type" id="radio1" value="1" {if ($minisite.menu_type == '1')}CHECKED{/if}> Oslo
+	<label>Menu Layout</label>
+	{foreach from = $menu_styles item=menu_style}
+		<div class="col-sm-12 col-lg-12 col-md-12 mt20">
+			<div class="fontsty_boxblk">
+				<div class="fontsty_box classic no-padding">				
+	                <img src="/img/{$menu_style.image}" />
+				</div>
+				<div class="form-group">
+					<div class="selrad_box">
+						<input type="radio" class="menu_type" name="menu_type" id="radio1" value="{$menu_style.id}" {if ($minisite.menu_type == $menu_style.id)}CHECKED{/if}> {$menu_style.name}
+					</div> 
 				</div> 
 			</div> 
-		</div> 
-	</div>
-	<div class="col-sm-12 col-lg-12 col-md-12">
-		<div class="fontsty_boxblk">
-			<div class="fontsty_box no-padding">
-                <img src="/img/MadridMenu.png" />
-			</div>
-			<div class="form-group">
-				<div class="selrad_box">
-					<input type="radio" class="menu_type" name="menu_type" id="radio1" value="2" {if ($minisite.menu_type == '2')}CHECKED{/if}> Madrid
-				</div> 
-			</div> 
-		</div> 
-	</div>
-	<div class="col-sm-12 col-lg-12 col-md-12">
-		<div class="fontsty_boxblk">
-			<div class="fontsty_box no-padding">
-                <img src="/img/Milan.png" />
-			</div>
-			<div class="form-group">
-				<div class="selrad_box">
-					<input type="radio" class="menu_type" name="menu_type" id="radio1" value="3" {if ($minisite.menu_type == '3')}CHECKED{/if}> Milan
-				</div> 
-			</div> 
-		</div> 
-	</div>
-	<div class="col-sm-12 col-lg-12 col-md-12">
-		<div class="fontsty_boxblk">
-			<div class="fontsty_box no-padding">
-                <img src="/img/Milan.png" />
-			</div>
-			<div class="form-group">
-				<div class="selrad_box">
-					<input type="radio" class="menu_type" name="menu_type" id="radio1" value="4" {if ($minisite.menu_type == '4')}CHECKED{/if}> Nicosia
-				</div> 
-			</div> 
-		</div> 
-	</div>
-</div>	
+		</div>
+	{/foreach}
+</div>
+
 <script type="text/javascript">
-  $("#gbe_artist_link").hide();
-  $("#gbe_exhibition_link").hide();
-  $("#gbe_contact_link").hide();
-  $("#gbe_bio_link").hide();
-  $("#gbe_singleExhibition_link").hide(); 
-
-  $('#focus-demo').colorpicker({
-  	showOn:'focus'
+  $(document).ready( function() {
+    hidetabs();
   });
-
 </script>

@@ -2,24 +2,20 @@
 
 # Jan -18
 
-#ALTER TABLE `user_profile`
-#DROP `facebook`,
-#DROP `instagram`,
-#DROP `twitter`,
-#DROP `show_awards`;
-
 ALTER TABLE `user_profile`
 ADD `solo_shows_` text COLLATE 'utf8_general_ci' NOT NULL,
 ADD `group_shows_` text COLLATE 'utf8_general_ci' NOT NULL ,
 ADD `press_data` text COLLATE 'utf8_general_ci' NOT NULL ,
 ADD `show_data` text COLLATE 'utf8_general_ci' NOT NULL;
 
-INSERT INTO `minisite_page_type` (`id`, `name`)
-SELECT '40', 'contact' from dual
-WHERE NOT EXISTS (SELECT * FROM `minisite_page_type` WHERE `id` = '40');
-
 ALTER TABLE `media_collection`
 ADD `about_title` varchar(100) NOT NULL;
+
+ALTER TABLE "media_collection"
+DROP "about_title";
+
+ALTER TABLE `media_collection`
+ADD `filter` tinyint(1) NOT NULL DEFAULT '1';
 
 CREATE TABLE `profile_media_map` (
   `id` int(8) NOT NULL,
@@ -38,9 +34,6 @@ CREATE TABLE `profile_media_map` (
   `active` tinyint(1) NOT NULL DEFAULT '1'
 );
 
-ALTER TABLE `media_collection`
-ADD `filter` tinyint(1) NOT NULL DEFAULT '1';
-
 INSERT INTO `db_sequence` (`seq_name`, `nextid`)
 SELECT 'profile_media_map', '100' from dual
 WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'profile_media_map');
@@ -51,6 +44,7 @@ DROP TABLE `minisite_exhibition_layout`;
 
 DROP TABLE `minisite_contact_layout`;
 
+DROP TABLE `page_map`;
 
 DROP TABLE IF EXISTS `minisite_page_type`;
 CREATE TABLE `minisite_page_type` (
@@ -77,10 +71,7 @@ ALTER TABLE `user_profile` ADD `free_text` text NOT NULL default '';
 ALTER TABLE `minisite_layout` ADD PRIMARY KEY `id` (`id`);
 ALTER TABLE `minisite_layout` CHANGE `id` `id` smallint(3) unsigned NOT NULL DEFAULT '0' FIRST;
 ALTER TABLE `minisite_page` ADD PRIMARY KEY `id` (`id`);
-ALTER TABLE `minisite_page_type` ADD PRIMARY KEY `id` (`id`);
-ALTER TABLE `minisite_page_type` CHANGE `id` `id` smallint(4) unsigned NOT NULL DEFAULT '0' FIRST;
 ALTER TABLE `opening_hours` ADD PRIMARY KEY `id` (`id`);
-ALTER TABLE `page_map` ADD PRIMARY KEY `id` (`id`);
 ALTER TABLE `profile_media_map` ADD PRIMARY KEY `id` (`id`);
 
 #6 June 2019
@@ -107,11 +98,45 @@ CREATE TABLE `minisite_font` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS `minisite_font`;
+CREATE TABLE `minisite_font` (
+  `id` int(8) NOT NULL,
+  `created` date DEFAULT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `active` tinyint(1) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `h1` text NOT NULL,
+  `h2` text NOT NULL,
+  `h3` text NOT NULL,
+  `h4` text NOT NULL,
+  `h5` text NOT NULL,
+  `h6` text NOT NULL,
+  `p` text NOT NULL,
+  `title` text NOT NULL,
+  `sub_title` text NOT NULL,
+  `menu_title` text NOT NULL,
+  `font_family` text NOT NULL,
+  `title_image` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 INSERT INTO `minisite_font` (`id`, `created`, `timestamp`, `active`, `name`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `p`, `title`, `sub_title`, `menu_title`, `font_family`, `title_image`) VALUES
 (1, '2019-04-29', '2019-06-25 06:30:54',  1,  'Gotham Light', 'font-size: 2em; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 12px; color: #000; font-family: gotham_lightregular,Arial,sans-serif;', 'font-size: 1.188em; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 1.2em; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 1.25rem; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 14px; color: #000; font-family: gotham_lightregular,Arial,sans-serif;', 'font-size: 13px; line-height: 21px; font-family: gotham_lightregular,Arial,sans-serif;', 'font-size: 2em; color: #000; font-family: gotham_lightregular,Arial,sans-serif;',  'font-size: 12px; color: #000; font-family: gotham_lightregular,Arial,sans-serif;', 'font-size: .825em; font-weight: 400; color: #5d5d5d; font-family: gotham_lightregular,Arial,sans-serif;',  'font-family: \'gotham_lightregular\', Arial, sans-serif;', 'height: 2em;'),
-(2, '2019-04-29', '2019-06-25 06:31:37',  1,  'Helvetica Neue', 'font-size: 28px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 24px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 21px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 18px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 14px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 12px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 14px; line-height: 21px; color: #000;  font-family: Helvetica Neue; ',  'font-size: 28px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 24px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 18px;  font-weight: bold; letter-spacing: normal; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'height: 28px;'),
-(6, '2019-05-08', '2019-06-25 06:31:45',  1,  'Avenir', 'font-size: 28px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 24px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 21px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 18px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 12px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 14px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 13px; line-height: 21px; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 28px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 24px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 18px; font-weight: 400; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-family: \'Avenir\', \'Sans Serif\';', 'height: 28px;'),
-(7, '2019-06-19', '2019-06-25 06:31:58',  1,  'Open Sans Regular',  'font-size: 28px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 24px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 21px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 18px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 14px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 12px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 14px; line-height: 21px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';', 'font-size: 28px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 24px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 18px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-family: \'Open Sans\', \'Sans Serif\';',  'height: 28px;');
+(2, '2019-04-29', '2019-08-19 11:16:29',  1,  'Helvetica Neue', 'font-size: 28px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 24px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 21px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 18px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 14px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 12px; color: #000;  font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;',  'font-size: 14px; line-height: 21px; color: #000; color: #000;  font-family: Helvetica Neue; ', 'font-size: 28px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 24px; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-size: 18px;  font-weight: bold; letter-spacing: normal; color: #000; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif;', 'height: 28px;'),
+(6, '2019-05-08', '2019-08-19 11:16:44',  1,  'Avenir', 'font-size: 28px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 24px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 21px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 18px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 12px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 14px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 13px; line-height: 21px; color: #000; font-family: \'Avenir\', \'Sans Serif\';',  'font-size: 28px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 24px; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-size: 18px; font-weight: 400; color: #000; font-family: \'Avenir\', \'Sans Serif\';', 'font-family: \'Avenir\', \'Sans Serif\';', 'height: 28px;'),
+(7, '2019-06-19', '2019-08-19 11:16:59',  1,  'Open Sans Regular',  'font-size: 28px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 24px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 21px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 18px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 14px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 12px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 14px; line-height: 21px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';', 'font-size: 28px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 24px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-size: 18px; color: #000; font-family: \'Open Sans\', \'Sans Serif\';',  'font-family: \'Open Sans\', \'Sans Serif\';',  'height: 28px;'),
+(8, '2019-08-16', '2019-08-19 11:17:08',  1,  'RadikalW03-Regular', 'font-size: 28px; color: #000; font-family: \'Radikal W03 Regular\';',  'font-size: 24px; color: #000; font-family: \'Radikal W03 Regular\';',  'font-size: 21px; color: #000; font-family: \'Radikal W03 Regular\';',  'font-size: 18px; color: #000; font-family: \'Radikal W03 Regular\';',  'font-size: 14px; color: #000; font-family: \'Radikal W03 Regular\';',  'font-size: 12px; color: #000; font-family: \'Radikal W03 Regular\';',  'font-size: 14px; line-height: 21px; color: #000; font-family: \'Radikal W03 Regular\';', 'font-size: 28px; color: #000; font-family: \'Radikal W03 Regular\';',  'font-size: 24px; color: #000; font-family: \'Radikal W03 Regular\';',  'font-size: 18px; color: #000; font-family: \'Radikal W03 Regular\';',  ' font-family: \'Radikal W03 Regular\';', 'height: 28px;'),
+(9, '2019-08-19', '2019-08-19 11:35:08',  1,  'Calluna',  'font-size: 28px; color: #000; font-family: \'Calluna-Regular\';',  'font-size: 24px; color: #000; font-family: \'Calluna-Regular\';',  'font-size: 21px; color: #000; font-family: \'Calluna-Regular\';',  'font-size: 18px; color: #000; font-family: \'Calluna-Regular\';',  'font-size: 14px; color: #000; font-family: \'Calluna-Regular\';',  'font-size: 12px; color: #000; font-family: \'Calluna-Regular\';',  'font-size: 14px; line-height: 21px; color: #000; font-family: \'Calluna-Regular\';', 'font-size: 28px; color: #000; font-family: \'Calluna-Regular\';',  'font-size: 24px; color: #000; font-family: \'Calluna-Regular\';',  'font-size: 18px; color: #000; font-family: \'Calluna-Regular\';',  'font-family: \'Calluna-Regular\';',  'height: 28px;'),
+(10,  '2019-08-19', '2019-08-19 11:34:45',  1,  'Brandon Groutesque', 'font-size: 28px; color: #000; font-family: \'BrandonGrotesque-Regular\';', 'font-size: 24px; color: #000; font-family: \'BrandonGrotesque-Regular\';', 'font-size: 21px; color: #000; font-family: \'BrandonGrotesque-Regular\';', 'font-size: 18px; color: #000; font-family: \'BrandonGrotesque-Regular\';', 'font-size: 14px; color: #000; font-family: \'BrandonGrotesque-Regular\';', 'font-size: 12px; color: #000; font-family: \'BrandonGrotesque-Regular\';', 'font-size: 14px; line-height: 21px; color: #000; font-family: \'BrandonGrotesque-Regular\';',  'font-size: 28px; color: #000; font-family: \'BrandonGrotesque-Regular\';', 'font-size: 24px; color: #000; font-family: \'BrandonGrotesque-Regular\';', 'font-size: 18px; color: #000; font-family: \'BrandonGrotesque-Regular\';', 'font-family: \'BrandonGrotesque-Regular\';', 'height: 28px;'),
+(11,  '2019-08-19', '2019-08-19 11:17:38',  1,  'Roboto', 'font-size: 28px; color: #000; font-family: \'Roboto\';', 'font-size: 24px; color: #000; font-family: \'Roboto\';', 'font-size: 21px; color: #000; font-family: \'Roboto\';', 'font-size: 18px; color: #000; font-family: \'Roboto\';', 'font-size: 12px; color: #000; font-family: \'Roboto\';', 'font-size: 14px; color: #000; font-family: \'Roboto\';', 'font-size: 13px; line-height: 21px; color: #000; font-family: \'Roboto\';',  'font-size: 28px; color: #000; font-family: \'Roboto\';', 'font-size: 24px; color: #000; font-family: \'Roboto\';', 'font-size: 18px; font-weight: 400; color: #000; font-family: \'Roboto\';', 'font-family: \'Roboto\';', 'height: 28px;'),
+(12,  '2019-08-19', '2019-08-19 12:49:38',  1,  'InhouseGothic',  'font-size: 28px; color: #000; font-family: \'InhouseGothic\';',  'font-size: 24px; color: #000; font-family: \'InhouseGothic\';',  'font-size: 21px; color: #000; font-family: \'InhouseGothic\';',  'font-size: 18px; color: #000; font-family: \'InhouseGothic\';',  'font-size: 14px; color: #000; font-family: \'InhouseGothic\';',  'font-size: 12px; color: #000; font-family: \'InhouseGothic\';',  'font-size: 14px; line-height: 21px; font-family: \'InhouseGothic\';',  'font-size: 28px; color: #000; font-family: \'InhouseGothic\';',  'font-size: 24px; color: #000; font-family: \'InhouseGothic\';',  'font-size: 18px; font-weight: 400; color: #000; font-family: \'InhouseGothic\';',  'font-family: \'InhouseGothic\';',  'height: 2em;'),
+(13,  '2019-08-19', '2019-08-19 12:51:07',  1,  'ff-din web', 'font-size: 28px; color: #000; font-family: \'FF-DIN\';', 'font-size: 24px; color: #000; font-family: \'FF-DIN\';', 'font-size: 21px; color: #000; font-family: \'FF-DIN\';', 'font-size: 18px; color: #000; font-family: \'FF-DIN\';', 'font-size: 14px; color: #000; font-family: \'FF-DIN\';', 'font-size: 12px; color: #000; font-family: \'FF-DIN\';', 'font-size: 14px; line-height: 21px; font-family: \'FF-DIN\';', 'font-size: 28px; color: #000; font-family: \'FF-DIN\';', 'font-size: 24px; color: #000; font-family: \'FF-DIN\';', 'font-size: 18px; font-weight: 400; color: #000; font-family: \'FF-DIN\';', 'font-family: \'FF-DIN\';', 'height: 28px;'),
+(14,  '2019-08-19', '2019-08-19 12:17:27',  1,  'Gill Sans W01 Book', 'font-size: 28px; color: #000; font-family: \'GillSansMT\';', 'font-size: 24px; color: #000; font-family: \'GillSansMT\';', 'font-size: 21px; color: #000; font-family: \'GillSansMT\';', 'font-size: 18px; color: #000; font-family: \'GillSansMT\';', 'font-size: 14px; color: #000; font-family: \'GillSansMT\';', 'font-size: 12px; color: #000; font-family: \'GillSansMT\';', 'font-size: 14px; line-height: 21px; color: #000; font-family: \'GillSansMT\';',  'font-size: 28px; color: #000; font-family: \'GillSansMT\';', 'font-size: 24px; color: #000; font-family: \'GillSansMT\';', 'font-size: 18px; color: #000; font-family: \'GillSansMT\';', 'font-family: \'GillSansMT\';', 'height: 28px;'),
+(15,  '2019-08-19', '2019-08-19 12:20:25',  1,  'Graphik LC Web', 'font-size: 28px; color: #000; font-family: \'GraphikLCWeb-Regular\';', 'font-size: 24px; color: #000; font-family: \'GraphikLCWeb-Regular\';', 'font-size: 21px; color: #000; font-family: \'GraphikLCWeb-Regular\';', 'font-size: 18px; color: #000; font-family: \'GraphikLCWeb-Regular\';', 'font-size: 14px; color: #000; font-family: \'GraphikLCWeb-Regular\';', 'font-size: 12px; color: #000; font-family: \'GraphikLCWeb-Regular\';', 'font-size: 14px; line-height: 21px; color: #000; font-family: \'GraphikLCWeb-Regular\';',  'font-size: 28px; color: #000; font-family: \'GraphikLCWeb-Regular\';', 'font-size: 24px; color: #000; font-family: \'GraphikLCWeb-Regular\';', 'font-size: 18px; color: #000; font-family: \'GraphikLCWeb-Regular\';', 'font-family: \'GraphikLCWeb-Regular\';', 'height: 28px;'),
+(16,  '2019-08-19', '2019-08-19 12:26:28',  1,  'Portrait Regular', 'font-size: 28px; color: #000; font-family: \'Portrait_Web_Regular\';', 'font-size: 24px; color: #000; font-family: \'Portrait_Web_Regular\';', 'font-size: 21px; color: #000; font-family: \'Portrait_Web_Regular\';', 'font-size: 18px; color: #000; font-family: \'Portrait_Web_Regular\';', 'font-size: 14px; color: #000; font-family: \'Portrait_Web_Regular\';', 'font-size: 12px; color: #000; font-family: \'Portrait_Web_Regular\';', 'font-size: 14px; line-height: 21px; color: #000; font-family: \'Portrait_Web_Regular\';',  'font-size: 28px; color: #000; font-family: \'Portrait_Web_Regular\';', 'font-size: 24px; color: #000; font-family: \'Portrait_Web_Regular\';', 'font-size: 18px; color: #000; font-family: \'Portrait_Web_Regular\';', 'font-family: \'Portrait_Web_Regular\';', 'height: 28px;'),
+(17,  '2019-08-19', '2019-08-19 12:31:52',  1,  'New Transport',  'font-size: 28px; color: #000; font-family: \'TransportMedium\';',  'font-size: 24px; color: #000; font-family: \'TransportMedium\';',  'font-size: 21px; color: #000; font-family: \'TransportMedium\';',  'font-size: 18px; color: #000; font-family: \'TransportMedium\';',  'font-size: 14px; color: #000; font-family: \'TransportMedium\';',  'font-size: 12px; color: #000; font-family: \'TransportMedium\';',  'font-size: 14px; line-height: 21px; color: #000; font-family: \'TransportMedium\';', 'font-size: 28px; color: #000; font-family: \'TransportMedium\';',  'font-size: 24px; color: #000; font-family: \'TransportMedium\';',  'font-size: 18px; color: #000; font-family: \'TransportMedium\';',  'font-family: \'TransportMedium\';',  'height: 28px;'),
+(18,  '2019-08-19', '2019-08-19 12:38:20',  1,  'UniversRoman', 'font-size: 28px; color: #000; font-family: \'UniversRoman\';', 'font-size: 24px; color: #000; font-family: \'UniversRoman\';', 'font-size: 21px; color: #000; font-family: \'UniversRoman\';', 'font-size: 18px; color: #000; font-family: \'UniversRoman\';', 'font-size: 14px; color: #000; font-family: \'UniversRoman\';', 'font-size: 12px; color: #000; font-family: \'UniversRoman\';', 'font-size: 14px; line-height: 21px; color: #000; font-family: \'UniversRoman\';',  'font-size: 28px; color: #000; font-family: \'UniversRoman\';', 'font-size: 24px; color: #000; font-family: \'UniversRoman\';', 'font-size: 18px; color: #000; font-family: \'UniversRoman\';', 'font-family: \'UniversRoman\';', 'height: 28px;'),
+(19,  '2019-08-19', '2019-08-19 12:42:14',  1,  'Whitney A',  'font-size: 28px; color: #000; font-family: \'Whitney-Book\';', 'font-size: 24px; color: #000; font-family: \'Whitney-Book\';', 'font-size: 21px; color: #000; font-family: \'Whitney-Book\';', 'font-size: 18px; color: #000; font-family: \'Whitney-Book\';', 'font-size: 14px; color: #000; font-family: \'Whitney-Book\';', 'font-size: 12px; color: #000; font-family: \'Whitney-Book\';', 'font-size: 14px; line-height: 21px; color: #000; font-family: \'Whitney-Book\';',  'font-size: 28px; color: #000; font-family: \'Whitney-Book\';', 'font-size: 24px; color: #000; font-family: \'Whitney-Book\';', 'font-size: 18px; color: #000; font-family: \'Whitney-Book\';', 'font-family: \'Whitney-Book\';', 'height: 28px;');
 
 ALTER TABLE `minisite_page`
 ADD `colour` varchar(600) COLLATE 'utf8mb4_general_ci' NOT NULL;
@@ -133,9 +158,25 @@ UPDATE `exhibition_type` SET
 WHERE `id` = '40';
 
 INSERT INTO `exhibition_type` (`id`, `name`, `description`)
-VALUES ('50', 'Showroom/Private Link', NULL);
+VALUES ('50', 'Showroom/Private Link', '');
 
 #statically updated
+DROP TABLE IF EXISTS `minisite_layout`;
+CREATE TABLE `minisite_layout` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `parent_id` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
+  `subtype` int(11) NOT NULL DEFAULT '1',
+  `separator` varchar(50) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `row_order` int(10) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS `minisite_layout`;
 CREATE TABLE `minisite_layout` (
   `id` int(11) NOT NULL DEFAULT '0',
@@ -171,9 +212,9 @@ INSERT INTO `minisite_layout` (`id`, `parent_id`, `type`, `subtype`, `separator`
 (116, 0,  30, 1,  '', 'Cover Page & Landscape', 16, '', 1,  '2019-06-10 08:04:29',  '2019-06-10 08:04:29'),
 (117, 0,  40, 1,  '', 'Tosca',  1,  'contact_layout1.png',  1,  '2019-06-10 08:04:37',  '2019-07-01 11:19:17'),
 (118, 0,  40, 1,  '', 'Carmen', 2,  'contact_layout2.png',  1,  '2019-06-10 08:04:55',  '2019-07-01 11:19:29'),
-(119, 50, 20, 1,  '4C', 'Default',  2,  '', 1,  '2019-06-10 07:37:41',  '2019-07-01 09:07:41'),
+(119, 50, 20, 1,  '3C', 'Default',  2,  '', 1,  '2019-06-10 07:37:41',  '2019-08-28 10:13:04'),
 (124, 60, 20, 1,  '4C', 'Layout 1', 4,  '', 1,  '2019-06-07 06:48:42',  '2019-07-01 09:08:19'),
-(125, 50, 20, 1,  '3C', 'Layout 2', 1,  '', 1,  '2019-06-07 06:56:25',  '2019-07-01 09:07:03'),
+(125, 50, 20, 1,  '4C', 'Layout 2', 1,  '', 1,  '2019-06-07 06:56:25',  '2019-08-28 10:13:09'),
 (126, 60, 20, 1,  '3C', 'Layout 3', 3,  '', 1,  '2019-06-07 06:57:09',  '2019-07-01 09:08:00'),
 (127, 70, 20, 1,  'off',  'Layout 4', 6,  '', 1,  '2019-06-11 12:21:43',  '2019-07-01 09:09:13'),
 (128, 0,  20, 2,  '', 'Berlin 3 Tabs',  1,  'BerlinFullx.png',  1,  '2019-06-11 12:54:19',  '2019-07-03 11:29:34'),
@@ -219,11 +260,20 @@ INSERT INTO `minisite_layout` (`id`, `parent_id`, `type`, `subtype`, `separator`
 (168, 0,  30, 2,  '', 'Art - Masonry',  3,  'profileMasonry.png', 1,  '2019-07-09 10:35:29',  '2019-07-10 05:46:49'),
 (169, 0,  30, 2,  '', 'Art - Hanging',  4,  'SArtHanging.png',  1,  '2019-07-09 10:36:06',  '2019-07-10 05:46:58'),
 (170, 0,  30, 2,  '', 'Art - Standing', 5,  'SArtStanding.png', 1,  '2019-07-09 10:36:52',  '2019-07-10 05:47:08'),
-(171, 0,  30, 2,  '', 'Art - Masonry Extreme',  6,  'SAmasonryExt.png ',  1,  '2019-07-09 10:37:30',  '2019-07-10 05:47:17');
+(171, 0,  30, 2,  '', 'Art - Masonry Extreme',  6,  'SAmasonryExt.png ',  1,  '2019-07-09 10:37:30',  '2019-07-10 05:47:17'),
+(172, 80, 60, 1,  '', 'Art - Masonry',  3,  'profileMasonry.png', 1,  '2019-07-11 06:06:39',  '2019-07-11 07:07:22'),
+(173, 80, 60, 1,  '', 'Art - Hanging',  4,  'SArtHanging.png',  1,  '2019-07-11 06:07:27',  '2019-07-11 07:07:33'),
+(174, 80, 60, 1,  '', 'Art - Masonry Extreme',  5,  'SAmasonryExt.png', 1,  '2019-07-11 06:08:02',  '2019-07-11 07:07:45'),
+(175, 80, 60, 1,  '', 'Art - Standing', 6,  'SArtStanding.png', 1,  '2019-07-11 06:09:09',  '2019-07-11 07:07:55'),
+(176, 102,  30, 1,  'time', 'Banner- Time filter',  2,  '', 1,  '2019-08-20 07:49:41',  '2019-08-22 05:19:40'),
+(177, 102,  30, 1,  'year', 'Banner- Year filter',  3,  '', 1,  '2019-08-20 07:55:33',  '2019-08-22 05:19:46'),
+(178, 102,  30, 1,  'none', 'Banner', 1,  '', 1,  '2019-08-22 05:19:31',  '2019-08-22 05:19:31'),
+(179, 0,  20, 2,  '', 'Manhattan 2 Tabs with Exhibitions',  12, 'ManhattanSlimx.png', 1,  '2019-06-11 12:57:33',  '2019-08-30 11:04:48');
 
 ALTER TABLE `minisite`
 ADD `font_type` int(25) NOT NULL,
 ADD `menu_type` int(25) NOT NULL;
+ADD `icon_size` int(8) NOT NULL;
 
 CREATE TABLE `exhibition_map` (
   `id` int(8) NOT NULL,
@@ -241,8 +291,6 @@ CREATE TABLE `exhibition_map` (
 INSERT INTO `db_sequence` (`seq_name`, `nextid`)
 VALUES ('exhibition_map', '10');
 
-ALTER TABLE `minisite`
-ADD `icon_size` int(8) NOT NULL;
 
 DROP TABLE IF EXISTS `minisite_parent_layout`;
 CREATE TABLE `minisite_parent_layout` (
@@ -267,4 +315,100 @@ INSERT INTO `minisite_parent_layout` (`id`, `name`, `image`, `type`, `row_order`
 (80,  'Single page Exhibition', '', 60, 1,  1,  '2019-06-24 12:15:10',  '2019-06-24 12:35:03'),
 (90,  'Baltimore (16:9)', 'BaltimoreScreenshot.png',  30, 5,  1,  '2019-07-02 12:55:02',  '2019-07-05 10:04:56'),
 (100, 'Casablanca (4:3)', 'CasablancaScreenshot.png', 30, 6,  1,  '2019-07-04 05:45:32',  '2019-07-05 10:04:33'),
-(101, 'Standing ',  'StandingScreenshot.png', 30, 4,  1,  '2019-07-05 07:16:12',  '2019-07-05 10:03:03');
+(101, 'Standing ',  'StandingScreenshot.png', 30, 4,  1,  '2019-07-05 07:16:12',  '2019-07-05 10:03:03'),
+(102, 'Billboard',  'Billboard.png',  30, 8,  1,  '2019-08-19 13:35:36',  '2019-08-30 10:59:10');
+
+#30 Aug 2019
+
+ALTER TABLE `minisite`
+ADD `sitetitle_size` int(8) NOT NULL;
+
+ALTER TABLE `gallery`
+ADD `type` varchar(10) COLLATE 'utf8_general_ci' NOT NULL DEFAULT 'folder';
+
+ALTER TABLE `gallery`
+CHANGE `title` `name` varchar(100) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `user_id`;
+
+CREATE TABLE `media_folder` (
+  `id` int(8) NOT NULL,
+  `site_id` int(8) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_id` int(11) NOT NULL,
+  `filename` varchar(100) NOT NULL DEFAULT '',
+  `tags` text NOT NULL,
+  `type` varchar(25) NOT NULL,
+  `path` varchar(255) NOT NULL DEFAULT ''
+);
+ALTER TABLE `media_folder`
+ADD PRIMARY KEY `id` (`id`),
+ADD INDEX `user_id` (`user_id`);
+
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+VALUES ('media_folder', '5000');
+
+ALTER TABLE `media`
+ADD `folder_id` int(11) NOT NULL DEFAULT '0' AFTER `parent_id`;
+
+ALTER TABLE `media_collection_map`
+DROP INDEX `media_collection_id`;
+
+ALTER TABLE `media`
+ADD `tags` text NOT NULL;
+
+CREATE TABLE `artwork_related_types` (
+  `id` smallint(3) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(50) NOT NULL,
+  `rank` int(10) NOT NULL
+);
+
+CREATE TABLE `artwork_related_media` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NULL,
+  `artwork_id` bigint NULL,
+  `type` varchar(25) NULL,
+  `description` text NULL,
+  `media` text NULL
+);
+
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+VALUES ('artwork_related_media', '10');
+
+ALTER TABLE `artwork_media`
+ADD PRIMARY KEY `id` (`id`),
+ADD INDEX `type` (`type`);
+
+ALTER TABLE `minisite_page`
+ADD `secondary_title` varchar(60) COLLATE 'utf8mb4_general_ci' NOT NULL AFTER `page_title`;
+
+ALTER TABLE `minisite_page`
+CHANGE `page_title` `page_title` varchar(60) COLLATE 'utf8mb4_general_ci' NOT NULL DEFAULT '' AFTER `menu_title`;
+
+ALTER TABLE `minisite`
+ADD `footer_data` text NOT NULL;
+
+DROP TABLE IF EXISTS `minisite_tpl`;
+CREATE TABLE `minisite_tpl` (
+  `id` int(8) NOT NULL,
+  `created` date NOT NULL,
+  `active` tinyint(1) DEFAULT '1',
+  `type` int(10) DEFAULT NULL,
+  `parts` int(11) NOT NULL DEFAULT '0',
+  `template` varchar(20) NOT NULL,
+  `page` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `minisite_tpl` (`id`, `created`, `active`, `type`, `parts`, `template`, `page`) VALUES
+(1, '2019-08-30', 1,  20, 1,  'artists',  'artists'),
+(2, '2019-08-30', 1,  30, 1,  'exhibitions',  'exhibitions'),
+(3, '2019-08-30', 1,  40, 1,  'contact',  'contact'),
+(4, '2019-08-30', 1,  50, 1,  'bio',  'bio'),
+(5, '2019-08-30', 1,  60, 1,  'singleExhibitions',  'singleExhibitions'),
+(6, '2019-08-30', 1,  70, 1,  'shopifyTest',  'shopifyTest'),
+(8, '2019-08-30', 1,  80, 1,  'mailchimpTest',  'mailchimpTest'),
+(9, '2019-08-30', 1,  20, 2,  'artist', 'artist'),
+(10,  '2019-08-30', 1,  30, 2,  'exhibition', 'exhibition'),
+(11,  '2019-08-30', 1,  40, 2,  'contact',  'contact'),
+(12,  '2019-08-30', 1,  50, 2,  'bio',  'bio'),
+(13,  '2019-08-30', 1,  60, 2,  'singleExhibitions',  'singleExhibitions');

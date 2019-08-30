@@ -1,0 +1,33 @@
+{$profile = $scope.profile}
+{$getpv = $scope.getpv}
+<style type="text/css">
+  .fileinput-button{
+    display: none;
+  }
+</style>
+<input type="hidden" name="obj_type" value="user_profile" />
+<input type="hidden" name="id"  value="{$scope.profile.profile_id}" />
+<input type="hidden" name="user_id" value="{$scope.profile.user_id}" />
+<input type="hidden" name="site_id" value="{$site.id}" />
+
+
+  <div class="row form-group">
+    <label for="media-name">Attach existing art or images</label>
+    <div class="col-xs-12">
+      <a {if ($getpv)} href="/backend/artworks?add_to_profile1={$scope.profile.user_id}&amp;_pv=viewartistpage" {else} href="/backend/artworks?add_to_profile1={$scope.profile.user_id}&amp;_pv=1" {/if} class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Attach Artworks</a>
+      <!-- <a {if ($getpv)} href="/backend/media?add_to_profile={$scope.profile.user_id}&amp;_pv=viewartistpage" {else} href="/backend/media?add_to_profile={$scope.profile.user_id}&amp;_pv=1" {/if} class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Attach Images</a> -->
+      <!-- <a {if ($getpv)} href="/backend/vaults?add_to_profile1={$scope.profile.user_id}&amp;_pv=viewartistpage" {else} href="/backend/vaults?add_to_profile1={$scope.profile.user_id}&amp;_pv=1" {/if} class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Media drive</a> -->
+    </div>
+  </div>
+
+  <div class="gap gap-small"></div>
+  
+  
+  <div class="row form-group selected_art">
+   <!--  <label for="media-name">Upload related images</label> -->
+    {"user"|object_uploader:$scope.profile.user_id:"map_profile":["resize" => 1, "cloud" => 1, "view" => 'grid']}
+    
+  </div>
+  
+  <div class="gap gap-small"></div>
+

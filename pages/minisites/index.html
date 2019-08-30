@@ -22,8 +22,11 @@
 {$profileobj = $scope.profileobj}
 {$future_past = $scope.future_past}
 {$font_style = $scope.fonts}
+{$menu_styles = $scope.menus}
 
 {$minisite_pageObj = $scope.minisite_pageObj}
+{$artists = $scope.artists}
+{$secArtists = $scope.secArtists}
 {$page_slug = $scope.page_slug}
 {$sub_slug = $scope.sub_slug}
 
@@ -80,6 +83,7 @@
     <link rel="StyleSheet" href="/afr/bower/summernote/dist/summernote.css" type="text/css" media="screen"/>    
     {/if}
     <link rel="StyleSheet" href="/afr/bower/intl-tel-input/build/css/intlTelInput.css?v=11.0.14" type="text/css" media="screen"/>
+
     
     {$styles = $app.header.styles|array_unique}
     {foreach from = $styles item=style}
@@ -126,8 +130,8 @@
       {block name=content}{/block}    
     </div>
       <br/>
-      <hr>
-    <div class="container">
+    <div class="container footer_main_container" style="margin-top: 30px;border-top: 1px solid rgba(0,0,0,.1);
+    padding-top: 30px;">
       <div class="row footer" id="footer">
         <div class="col-md-3 col-sm-6 col-xs-6">
           
@@ -152,12 +156,23 @@
           {/if}
           <p></p>
         </div>
-        <div class="col-md-3 col-sm-6 col-xs-6">
+        <div class="col-md-5 col-sm-6 col-xs-6">
+          {$footer_data = json_decode($ms.footer_data, True)}
+          {if ($footer_data.mailtype == 10)}
+            {{"include": "minisites/classicMail.html"}}
+          {elseif ($footer_data.mailtype == 20)}
+            {{"include": "minisites/condensedMail.html"}}
+          {elseif ($footer_data.mailtype == 30)}
+            {{"include": "minisites/horizontalMail.html"}}
+          {elseif ($footer_data.mailtype == 40)}
+            {{"include": "minisites/unstyledMail.html"}}
+          {/if}
           <!--a href="{$basepath}/submissions">Submissions</a><br />
           <a href="{$basepath}/legal">Terms &amp; Conditions</a><br /-->
+          
           <p></p>
         </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 footer-follow-col" style="padding-right:0px;">
+        <div class="col-md-2 col-sm-6 col-xs-12 footer-follow-col" style="padding-right:0px;">
           {$social = json_decode($profileobj.social,True)}
           {if ($mObj.show_social == '1')}
             <strong>FOLLOW US</strong><br />
@@ -178,7 +193,7 @@
           <p></p>
         </div>
       
-        <div class="col-md-3 col-sm-6 col-xs-12 footer-share-col">
+        <div class="col-md-2 col-sm-6 col-xs-12 footer-share-col">
           <span class="footer-header-share"><strong>SHARE</strong></span>
           <div class="addthis_inline_share_toolbox"></div>
         </div>

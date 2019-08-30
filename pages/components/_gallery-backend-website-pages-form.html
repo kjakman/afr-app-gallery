@@ -26,19 +26,31 @@
                   <td>{$pagelists.page_title}</td> 
                   {if ({$pagelists.type} == 20)}
                     {$tab = 'artist'}
+                    {$page_type = 'Showcase Managed Profiles'}
                   {else if ({$pagelists.type} == 30)}
                     {$tab = 'exhibition'}
+                    {$page_type = 'Multiple Exhibitions - Smart Filter'}
                   {else if ({$pagelists.type} == 40)}
                     {$tab = 'contact'}
+                    {$page_type = 'Contact Page'}
                   {else if ({$pagelists.type} == 50)}
                     {$tab = 'bio'}
+                    {$page_type = 'Showcase User Profile'}
                   {else if ({$pagelists.type} == 60)}
                     {$tab = 'singleExhibition'}
+                    {$page_type = 'Single Exhibition - Smart Filter'}
+                  {else if ({$pagelists.type} == 70)}
+                    {$tab = 'extSite'}
+                    {$page_type = 'External Site (iframe)'}
+                  {else if ({$pagelists.type} == 80)}
+                    {$tab = 'extMail'}
+                    {$page_type = 'Mail form'}
+                  {else}
                   {/if}
-                  <td>{$tab}</td>
+                  <td>{$page_type}</td>
                   <td>{$pagelists.created}</td>
                   <td>                    
-                    <a href="/backend/website/{$minisite.id|default:$id}/edit/{$tab}?_pv=1&amp;page_id={$pagelists.id}&amp;user_id={$minisite.user_id|default:$user_id}" class="btn btn-success ajax-loader" data-target="#subview-container"><button id= 'getpagelist' class='btn btn-xs btn-success' data-value='{$minisite.user_id}|{$pagelists.id}' onclick="show_tabs('{$tab}');"> <i class='glyphicon glyphicon-pencil'></i></button></a>
+                    <a href="/backend/website/{$minisite.id|default:$id}/edit/{$tab}?_pv=1&amp;page_id={$pagelists.id}&amp;user_id={$minisite.user_id|default:$user_id}" class="btn btn-xs btn-success ajax-loader" data-target="#subview-container"><button id= 'getpagelist' class='btn btn-xs btn-success' data-value='{$minisite.user_id}|{$pagelists.id}' onclick="show_tabs('{$tab}');"> <i class='glyphicon glyphicon-pencil'></i></button></a>
                     {if ($count != 1 )}
                       <button class='btn btn-xs btn-danger delete' id= 'page_delete' value="{$count}" data-value='{$pagelists.id}'> <i class='glyphicon glyphicon-trash'></i></button>
                     {/if}
@@ -56,13 +68,7 @@
         
 <script type="text/javascript">
   $(document).ready( function() {
-    $("#gbe_artist_link").hide();
-    $("#gbe_exhibition_link").hide();
-    $("#gbe_styling_link").hide();
-    $("#gbe_home_link").hide();
-    $("#gbe_contact_link").hide();
-    $("#gbe_bio_link").hide();
-    $("#gbe_singleExhibition_link").hide();
+    hidetabs();
   });
   $(function() {
       $( 'tbody' ).sortable();
@@ -79,7 +85,8 @@
         type: "POST",
         data: {
           oper: "submit-order",
-          val: order_id
+          val: order_id,
+          obj_type: "minisite_page"
         },
       });
     }

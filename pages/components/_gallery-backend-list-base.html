@@ -3,22 +3,22 @@
 {{"extend": "_gallery-backend-base.html"}}
 {$page_id = $scope.page_id}
 {$user_id = $scope.user_id}
-{block name="table"}
-  
+{$folders = $scope.folderlist}
 
+{block name="table"}
   <div id="toolbar" class="">
-    {if (0 && !$scope.add_to)}
-    <a class="btn btn-primary" href="/backend/artworks/add">
-      <i class="fa fa-plus"></i> Add
-    </a>
-    {/if}
-    {if (0 && !$scope.add_to_profile)}
+    {if ((0 && !$scope.add_to) || (0 && !$scope.add_to_profile))}
     <a class="btn btn-primary" href="/backend/artworks/add">
       <i class="fa fa-plus"></i> Add
     </a>
     {/if}
     {if (0 && !$scope.add_to_website)}
     <a class="btn btn-primary" href="/backend/exhibitions/add">
+      <i class="fa fa-plus"></i> Add
+    </a>
+    {/if}
+    {if ((0 && !$scope.add_to_folder) || (0 && !$scope.add_to_logo))}
+    <a class="btn btn-primary" href="/backend/vaults/add">
       <i class="fa fa-plus"></i> Add
     </a>
     {/if}
@@ -34,8 +34,28 @@
           <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to exhibition</a></li>
         {elseif ($add_to_profile)}
           <li><a href="#" id="sel_add_profile" data-target_id="{$add_to_profile}">Add to profile</a></li>
+        {elseif ($add_to_profile1)}
+          <li><a href="#" id="sel_add_profile1" data-target_id="{$add_to_profile1}">Add to profile</a></li>
         {elseif ($add_to_website)}
           <li><a href="#" id="sel_add_website" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$add_to_website}">Add to exhibition</a></li>
+        {elseif ($add_to_logo)}
+          <li><a href="#" id="sel_add_logo" data-target_id="{$add_to_logo}">Add to Logo</a></li>
+        {elseif ($add_to_logo1)}
+          <li><a href="#" id="sel_add_logo1" data-target_id="{$add_to_logo1}">Add to Logo</a></li>
+        {elseif ($add_to_artworkimg)}
+          <li><a href="#" id="sel_add_artwork" data-target_id="{$add_to_artworkimg}">Add to Artwork</a></li>
+        {elseif ($add_to_relatedart)}
+          <li><a href="#" id="sel_add_relatedart" data-target_id="{$add_to_relatedart}">Add to Artwork</a></li>
+        {elseif ($add_to_websiteimg)}
+          <li><a href="#" id="sel_add_websiteimg" data-target_id="{$add_to_websiteimg}">Add to website</a></li>
+        {elseif ($add_to_exbart)}
+          <li><a href="#" id="sel_add_exbart" data-target_id="{$add_to_exbart}">Add to exhibition</a></li>
+        {elseif ($add_to_exbtitle)}
+          <li><a href="#" id="sel_add_exbtitle" data-target_id="{$add_to_exbtitle}">Add to exhibition</a></li>
+        {elseif (($add_to_folder) && ($folders))}
+          {foreach from=$folders item=folder}
+            <li><a href="#" id="sel_add_folder" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$folder.id}">Add to {$folder.filename}</a></li>
+          {/foreach}
         {else}
           <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to ...</a></li>
         {/if}
@@ -89,7 +109,6 @@
     return '<a href="{$base_link}/'+ value + '?_pv='+ pv +'" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
   }
 
-
   function bstUrlFormatter(value, row, index) {
     if(!value) return '';
     var print_val = value;
@@ -140,6 +159,33 @@
     //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
     return '<span><span type="hidden" class="edit_exhibition" name="edit_exhibition" data-col="title" data-value='+row.id+' >'+value+'</span></span>';
   
+  }
+
+  function bstVaultTitleFormatter(value, row, index) {
+    if((row.type == 'folder') && ('{$get_str}')){
+      var print_val = value ? '<a href="/backend/vaults/'+ row.id + '?_pv=1&{$get_str} " class="ajax-loader" data-target="#subview-container">' +value+ '</a>' : "[Untitled]";
+    }
+    else if(row.type == 'folder')
+      var print_val = value ? '<a href="/backend/vaults/'+ row.id + '?_pv=1" class="ajax-loader" data-target="#subview-container">' +value+ '</a>' : "[Untitled]";
+    else
+      var print_val = value ? value : "[Untitled]";
+    var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    console.log("base_link = " + base_link + " pv=" + pv);
+    return  print_val;
+    //return '<span><span type="hidden" class="edit_exhibition" name="edit_exhibition" data-col="title" data-value='+row.id+' >'+value+'</span></span>';
+  }
+
+  function bstVaultTagsFormatter(value, row, index) {
+    var print_val = value ? JSON.parse(value) : "";
+    var base_link = row.obj_type == 'media' ? '/backend/vaults' : '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    console.log("base_link = " + base_link + " pv=" + pv);
+    
+    return  print_val;
+    //return '<span><span type="hidden" class="edit_exhibition" name="edit_exhibition" data-col="title" data-value='+row.id+' >'+value+'</span></span>';
   }
 
   function bstTitleNetworkFormatter(value, row, index) {
@@ -220,8 +266,6 @@ function bstArtistFormatter(value, row, index) {
   return '<span class="artist" name="artist" data-col="artist" data-value='+row.id+' style="cursor: default;" >'+g_artists[value]+'</span>';
 }
 
- //pradeepa moved from afr_gallery_backend.js (added feature- to edit dynamically in table) 
-
 function bstPriceOptionFormatter(value, row, index) { 
   var print_val = value ? value : "[Untitled]";
   var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
@@ -239,7 +283,7 @@ function bstPriceOptionFormatter(value, row, index) {
      
 }  
 
-  //pradeepa moved from afr_gallery_backend.js (added feature- change cursor pointer)
+  //moved from afr_gallery_backend.js (added feature- change cursor pointer)
 
 function bstArtworkTypeFormatter(value, row, index) {
   switch(parseInt(row.type)) {
@@ -279,7 +323,7 @@ function bstArtworkStatusFormatter(value, row, index) {
     }else{
       return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+' style="cursor: pointer">-</span><div class="cstatus"  id="cstatus'+row.id+'"></div></span>';
     }  
-}  //pradeepa
+} 
 
   function bstActionFormatter(value, row, index) {
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
@@ -341,25 +385,39 @@ function bstArtworkStatusFormatter(value, row, index) {
 
     return buttons;  
   }
+
+  function bstVaultActionFormatter(value, row, index) {
+    console.log("test "+JSON.stringify(row));
+    //console.log("test "+row.type);
+    var base_link = row.type == 'folder' ? '/backend/vault' : '/backend/medium';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    console.log("base_link = " + base_link + " pv=" + pv);
+    var edit_button = row.type == 'folder' ? '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>' : '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '&folder='+ row.folder_id + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>';
+    return  edit_button;
+  }
   
   function bstVaultTypeFormatter(value, row, index) {
     if(row.obj_type == 'media') {
       return row.type;
     } else {
-      return 'Folder'; 
+      return row.type;
+      //return 'Folder'; 
     }
   }
   
   function bstVaultImageFormatter(value, row, index) {
-    //if(!value) return '';
-    if(row.obj_type == 'media') {
+    if(!value) return '';
+
+    if(row.type == 'image') {
       value = row.id;
       var thumb = row.path + 'tiny/' + row.src;
       var print_val = "<img class='table-thumb' src='" + thumb + "'/>";
-      return '<a href="/backend/media/'+ value + '?_pv=1" class="ajax-loader" data-target="#subview-container">' + print_val + '</a>';
+      //return '<a href="/backend/media/'+ value + '?_pv=1" class="ajax-loader" data-target="#subview-container">' + print_val + '</a>';
+      return print_val;
     } else {
-      var print_val = '<i class="fa fa-folder"></i>'; 
-      return '<a href="{$base_link}/'+ row.id + '?_pv=1" class="ajax-loader" data-target="#subview-container">' + print_val + '</a>';    
+      var print_val = '<i class="fa fa-folder"></i>';
+      return '<a href="/backend/vaults/'+ row.id + '?_pv=1" class="ajax-loader" data-target="#subview-container">' + print_val + '</a>';    
     }
   }
 
@@ -456,6 +514,7 @@ function bstArtworkStatusFormatter(value, row, index) {
   
 
   function bstMediaContextFormatter(value, row, index) {
+    //console.log("stringfy "+JSON.stringify(row, null, 4));
     if(!value) return '';
     var parent_type = row.parent_type;
     var parent_id = row.parent_id;
@@ -473,19 +532,24 @@ function bstArtworkStatusFormatter(value, row, index) {
       case 'gallery':
         return '<a href="/backend/vault/'+ row.parent_id + '?_pv=1&amp" class="ajax-loader" data-target="#subview-container">' + 'Vault' + '</a>';
       break;
+      case 'media':
+        return '<a href="/backend/vault/'+ row.parent_id + '?_pv=1&amp" class="ajax-loader" data-target="#subview-container">' + 'Media Upload' + '</a>';
+      break;
       default:
         return value;
         break;
     }
   }
-  
+
   var obj_type = '{$scope.obj_type}';
   if(obj_type == 'artwork')
     var add_what = 'add_art';
   else if(obj_type == 'media_collection')
     var add_what = 'add_exb';
+  else if(obj_type == 'media_folder')
+    var add_what = 'add_folderimg';
   else
-    var add_what = 'add_media';
+    var add_what = 'add_logo';
   //var add_what = (obj_type == 'artwork' || obj_type == 'media_collection')? 'add_art' : 'add_media';
   console.log("Add = " + add_what + " sub=" + obj_type);
   
@@ -578,7 +642,7 @@ $('load-success.bs.table').load(function() {
   function closemodal(){
       e.preventDefault();
       console.log("modal close");
-      $('#clone_modals').removeClass('show');
+      $('#clone_modals').modal('hide');
   }
 </script>
 

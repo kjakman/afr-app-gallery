@@ -1,6 +1,7 @@
 {$icon_size = 0}
 {$default_icon = 0}
 
+
 <style type="text/css">
 	body{
 		{$font_style.font_family};
@@ -16,108 +17,50 @@
 			background-color: #fff;
 		{/if}
 	}
+	{foreach from = $menu_styles item=menu_style}
+		{if ($mObj.menu_type == $menu_style.id)}
 
-	{if ($mObj.menu_type == 1)}
-		{$default_icon = 36}
-		{if ($mObj.icon_size == 10)}		{$icon_size = 40}
-		{else if ($mObj.icon_size == 20)}	{$icon_size = 50}
-		{else if ($mObj.icon_size == 30)}	{$icon_size = 60}
-		{else if ($mObj.icon_size == 40)}	{$icon_size = 70}
-		{else}								{$icon_size = 80}
+			{$default_icon = $menu_style.icon_default}
+			{if ($mObj.icon_size == 10)}		{$icon_size = $menu_style.icon1}
+			{else if ($mObj.icon_size == 20)}	{$icon_size = $menu_style.icon2}
+			{else if ($mObj.icon_size == 30)}	{$icon_size = $menu_style.icon3}
+			{else if ($mObj.icon_size == 40)}	{$icon_size = $menu_style.icon4}
+			{else}								{$icon_size = $menu_style.icon5}
+			{/if}
+
+			{if ($mObj.icon_size == 1)}	
+				.minisiteLogo{
+					height: {$default_icon}px !important;
+				}
+				.minisite-logo h1{
+					{$font_style.font_family}
+					font-size: {$icon_size}px !important;
+				}
+			{else}
+				.minisiteLogo{
+					height: {$icon_size}px !important;
+				}
+				.minisite-logo h1{
+					{$font_style.font_family}
+					font-size: {$icon_size}px !important;
+				}
+			{/if}	
+
+			/*.minisite-logo h1{	
+				{$font_style.font_family}
+				font-size: 36px !important;
+			}*/
+			
+			a.nav-link{
+				{$font_style.font_family}
+				{$menu_style.menu_title}
+			}
+			h2.subtitle {
+				{$font_style.font_family}
+				{$menu_style.sub_title}
+			}
 		{/if}
-
-		.minisite-logo h1{	
-			{$font_style.title}
-			font-size: 36px !important;
-		}
-		
-		.navbar-site .nav-item .nav-link{
-			{$font_style.menu_title}
-
-			font-size: 12px !important;
-		}
-		h2.subtitle {
-			{$font_style.sub_title}
-			font-size: 12px !important;
-		}
-
-	{elseif ($mObj.menu_type == 2)}
-		{$default_icon = 28}
-		{if ($mObj.icon_size == 10)}		{$icon_size = 28}
-		{else if ($mObj.icon_size == 20)}	{$icon_size = 35}
-		{else if ($mObj.icon_size == 30)}	{$icon_size = 40}
-		{else if ($mObj.icon_size == 40)}	{$icon_size = 45}
-		{else}								{$icon_size = 50}
-		{/if}
-
-		.minisite-logo h1{	
-			{$font_style.title}	
-			font-size: 28px !important;
-		}
-		h2.subtitle {
-			{$font_style.sub_title}
-			font-size: 12px !important;
-		}
-		.nav-item .nav-link{
-			{$font_style.menu_title}
-			font-size: 15px !important;
-		}
-		
-	{elseif ($mObj.menu_type == 3)}
-		{$default_icon = 30}
-		{if ($mObj.icon_size == 10)}		{$icon_size = 40}
-		{else if ($mObj.icon_size == 20)}	{$icon_size = 50}
-		{else if ($mObj.icon_size == 30)}	{$icon_size = 60}
-		{else if ($mObj.icon_size == 40)}	{$icon_size = 70}
-		{else}								{$icon_size = 80}
-		{/if}
-
-		.minisite-logo h1{	
-			{$font_style.title}	
-			font-size: 30px !important;
-		}
-		h2.subtitle {
-			{$font_style.sub_title}
-			font-size: 12px !important;
-		}
-		.nav-item .nav-link{
-			{$font_style.menu_title}
-			font-size: 16px !important;
-		}
-		
-	{elseif ($mObj.menu_type == 4)}
-		{$default_icon = 30}
-		{if ($mObj.icon_size == 10)}		{$icon_size = 40}
-		{else if ($mObj.icon_size == 20)}	{$icon_size = 50}
-		{else if ($mObj.icon_size == 30)}	{$icon_size = 60}
-		{else if ($mObj.icon_size == 40)}	{$icon_size = 70}
-		{else}								{$icon_size = 80}
-		{/if}
-
-		.minisite-logo h1{	
-			{$font_style.title}	
-			font-size: 30px !important;
-		}
-		h2.subtitle {
-			{$font_style.sub_title}
-			font-size: 12px !important;
-		}
-		.nav-item .nav-link{
-			{$font_style.menu_title}
-			font-size: 20px !important;
-		}
-
-	{/if}
-
-	{if ($mObj.icon_size == 1)}	
-		.minisiteLogo{
-			height: {$default_icon}px !important;
-		}
-	{else}
-		.minisiteLogo{
-			height: {$icon_size}px !important;
-		}
-	{/if}	
+	{/foreach}
 		
 	p {
 		{$font_style.p}
@@ -148,17 +91,7 @@
 		padding: 2em;
 		text-align: center;
 	}
-	/*h2.subtitle {
-		font-size: 12px;
-	    color: #000;
-	    text-align: left;
-	    line-height: 22px;
-	}*/
-	/*h2.sitesubtitle{
-		font-size: 12px !important; 
-	    text-align: center !important;
-	    line-height: 14px;
-	}*/
+
 	h2.default, h2.title{
 		font-size: 12px !important; 
 	    text-align: center !important;
