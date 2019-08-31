@@ -7,7 +7,7 @@
   <ul class="nav navbar-nav">
     {if ($menuObj)}
        {foreach from=$menuObj item=menuObjs}
-            {if (($menuObjs.type == '20') || ($menuObjs.type == '40') || ($menuObjs.type == '50') || ($menuObjs.type == '60'))}       <!-- artist page -->
+            {if (($menuObjs.type == '20') || ($menuObjs.type == '40') || ($menuObjs.type == '50') || ($menuObjs.type == '60') || ($menuObjs.type == '70') || ($menuObjs.type == '80'))}       <!-- artist page -->
                 <li class="nav-item"><a {if ($pagename == $menuObjs.slug)} class="nav-link active" {else} class="nav-link" {/if} href="{$basepath}{$menuObjs.slug}">{$menuObjs.menu_title}</a>
             {/if}
             {if ($menuObjs.type == '30')}  <!-- exhibition page -->

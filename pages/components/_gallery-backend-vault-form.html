@@ -1,0 +1,28 @@
+{$profile = $scope.user_profile}
+{$tags = json_encode($scope.tags, true)}
+
+<form class="ajax-submit" data-handler="save-folder" data-success_handler="gbe_vault_handler">
+  <input hidden="1" name="user_id" type="hidden" value="{$profile.user_id}">
+  <input hidden="1" name="obj_type" type="hidden" value="media_folder">      
+  
+  <div class="form-group col-sm-6">
+    <label for="media-title">Folder Name(*)</label>
+    <input type="text" class="form-control" name="filename" maxlength="255" required>
+  </div>
+  <div  class="form-group col-sm-6" >
+    <label for="media-technique">Tags</label>
+    <input id="magicsuggest" type="text" class="form-control" name="tags" >
+  </div>
+  <input type="submit" class="btn btn-success save-folder" value="Save">    
+</form>
+<div class="gap gap-small"></div>
+
+<script type="text/javascript">
+  $(function() {
+      $('#magicsuggest').magicSuggest({
+        allowFreeEntries: true,
+        data:{$tags}
+      });
+  });
+</script>
+

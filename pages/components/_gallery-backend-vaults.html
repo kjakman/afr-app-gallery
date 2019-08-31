@@ -1,0 +1,36 @@
+{$what = 'vault'}
+{$plural = 'vaults'}
+{$vault = $scope.vault_page}
+
+{{"extend": "_gallery-backend-list-base.html"}}
+
+{block name=main}
+  {if (!$vault)}    
+    <p style="font-size: 20px !important; font-weight: bold;">Media Folder</p>    
+  {else}
+    <p style="font-size: 20px !important; font-weight: bold;">Media Files</p>    
+  {/if}      
+{/block}
+
+{block name="fields"}
+  <th data-field="state" data-checkbox="true">Check</th>
+  <th data-field="actions" data-formatter="bstVaultActionFormatter">Actions</th>
+  {if ($vault)}
+    <th data-field="id" data-formatter="bstVaultImageFormatter">Image</th>
+    <th data-field="filename" data-sortable="true" data-formatter="bstVaultTitleFormatter">File Name</th>
+  {else}
+    <th data-field="filename" data-sortable="true" data-formatter="bstVaultTitleFormatter">Folder Name</th>
+  {/if}
+  <th data-field="tags" data-sortable="true" data-formatter="bstVaultTagsFormatter">Tags</th>
+  <!-- <th data-field="type" data-sortable="true" data-formatter="bstVaultTypeFormatter">Type</th> -->
+  <!-- <th data-field="filename" data-sortable="true">File</th> -->
+  {if ($vault)}
+    <th data-field="artist_id" data-sortable="true" data-formatter="bstArtistFormatter">Artist</th>
+    <th data-field="user_id" data-sortable="true" data-formatter="bstArtistFormatter">Owner</th>
+    <th data-field="parent_type" data-sortable="true" data-formatter="bstMediaContextFormatter">Context</th>
+  {/if}
+  <th data-field="created" data-sortable="true" data-formatter="bstDateFormatter">Created</th>
+{/block}
+
+{block name="script"}
+{/block}

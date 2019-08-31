@@ -38,9 +38,16 @@
                 <div class="gap gap-small"></div>
                 <div class="row form-group">
                   <input type="radio" name= "title_image_option" id="radio2" value="1" {if ($collection.title_image_option == '1')}CHECKED{/if} >Upload/attach image to use as Title image for exhibition<br><br>
-                  
                   <div class="upload_image">
-                    {"media_collection"|object_uploader:$collection.id:"title_image":["resize" => 1, "cloud" => 1, "view" => 'list', "handler" => "gbe_title_image_handler"]}
+                    <div class="custom_button_cover">
+                      <div class="commonin_row">
+                        {"media_collection"|object_uploader:$collection.id:"title_image":["resize" => 1, "cloud" => 1, "view" => 'list', "handler" => "gbe_title_image_handler"]}
+                      </div>
+                      <div class="custom_button_float"> 
+                        <span>OR &nbsp &nbsp</span>
+                        <a href="/backend/vaults?add_to_exbtitle={$collection.id}&amp;col=1&amp;_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Media Drive</a>
+                      </div>
+                    </div>
                   </div>                
                 </div>
             

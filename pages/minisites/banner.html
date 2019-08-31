@@ -1,0 +1,54 @@
+
+{{"extend": "minisites/index.html"}}
+{$latestexhibitions = $scope.latest}
+{block name=title}
+  <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
+{/block}
+
+{block name=content}
+  {$data = json_decode($minisite_pageObj.data, TRUE)}
+  {if ($data.show_current)} {$current = 'current'} {/if}
+  {if ($data.show_past)} {$past = 'past'} {/if}
+  {if ($data.show_future)} {$future = 'future'} {/if}
+  {if ($data.show_latest)} {$latest = 'latest'} {/if} 
+  {$count = 0}
+
+	{foreach from=$exhibitions item=exhibition}
+    {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+  		<div class="banner_exhibition">
+  			<div class="banner_exhibition_img">
+  				<div class="banner_exhibition_imgin">
+  					<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><img src="{$exhibition|collection_photo:'big'}" /></a>
+  				</div>
+  			</div>
+  			<div class="banner_exhibition_content">
+  				<div class="banner_exhibition_contentin">
+  					<span class="banner_exhibition_auther">{$exhibition|artists}</span>
+  					<h3 class="banner_exhibition_name">{$exhibition.title}</h3>
+  					<p class="banner_exhibition_date">{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</p>
+  				</div>
+  			</div>
+  		</div>
+      {$count = 1}
+    {/if}
+  {/foreach}
+	
+  {if (($data.show_latest) && (!$count))}
+    {foreach from=$latestexhibitions item=exhibition}
+      <div class="banner_exhibition">
+        <div class="banner_exhibition_img">
+          <div class="banner_exhibition_imgin">
+            <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><img src="{$exhibition|collection_photo:'big'}" /></a>
+          </div>
+        </div>
+        <div class="banner_exhibition_content">
+          <div class="banner_exhibition_contentin">
+            <span class="banner_exhibition_auther">{$exhibition|artists}</span>
+            <h3 class="banner_exhibition_name">{$exhibition.title}</h3>
+            <p class="banner_exhibition_date">{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</p>
+          </div>
+        </div>
+      </div>
+    {/foreach}
+  {/if}
+{/block}

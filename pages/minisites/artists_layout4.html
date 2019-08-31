@@ -1,25 +1,19 @@
-{$artists = $scope.artists}
+
 {{"extend": "minisites/index.html"}}
 
   {block name=title}
       <h2 class="page_title">{$minisite_pageObj.page_title}</h2>  
   {/block}
 
-  {block name=content}
-  	{if ($minisite_pageObj.page_layout == 127)}
-  		{$texts = "capitalize"}
-  	{else}
-  		{$texts = "uppercase"}
-  	{/if}
-  	
+  {block name=content} 	
+
   	<style>
 		#artists {
 			margin-top: 0px;
-			min-height: 696px;
 		}
 		#artists .list ul {
 			list-style: none;
-			margin-bottom: 63px;
+			margin-bottom: 10px;
 		}
 		#publications h4, #artists a {
 			font-size: 22px;
@@ -82,7 +76,11 @@
 				<ul>
 					{foreach from=$artists item=artist}
 						<li>
-							<a href="{$basepath}{$artist.page_slug}{$artist.slug}"><h1 class="artist-name-3C">{$artist.display_name}</h1>  
+							{if ($minisite_pageObj.page_layout == 127)}
+								<a href="{$basepath}{$artist.page_slug}{$artist.slug}"><h1 class="artist-name-3C" style="text-transform: capitalize;">{$artist.display_name}</h1>  
+							{else}
+								<a href="{$basepath}{$artist.page_slug}{$artist.slug}"><h1 class="artist-name-3C" style="text-transform: uppercase;">{$artist.display_name}</h1>  
+							{/if}
 							<img src="{$artist.title_image|photo:'big'}" alt="{$artist.display_name} Thumbnail" />
 							</a>
 						</li>
@@ -91,6 +89,29 @@
 			</div>
 		</div>
 	</div>
+	{if ($secArtists)}
+		<hr>
+    	<h2 class="page_title">{$minisite_pageObj.secondary_title}</h2> 
+		<div class="container">
+			<div id="artists" class="artists notouch">
+				<div class="list">
+					<ul>
+						{foreach from=$secArtists item=artist}
+							<li>
+								{if ($minisite_pageObj.page_layout == 127)}
+									<a href="{$basepath}{$artist.page_slug}{$artist.slug}"><h1 class="artist-name-3C" style="text-transform: capitalize;">{$artist.display_name}</h1>  
+								{else}
+									<a href="{$basepath}{$artist.page_slug}{$artist.slug}"><h1 class="artist-name-3C" style="text-transform: uppercase;">{$artist.display_name}</h1>  
+								{/if}
+								<img src="{$artist.title_image|photo:'big'}" alt="{$artist.display_name} Thumbnail" />
+								</a>
+							</li>
+						{/foreach}
+					</ul>
+				</div>
+			</div>
+		</div>
+	{/if}
   
 	<script type="text/javascript">
 	    var detecttouch=function(){

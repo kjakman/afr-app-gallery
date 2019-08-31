@@ -4,13 +4,15 @@
                               <span class="dot_outside mt6 {if ($artwork.status==10)}green{else}red{/if}">&#x25cf;</span>
                               {/if}
                               {$artwork.title}<br>
+                            </h3>
+                            <h4>
                               {if ($artwork.primary_year)} 
                                 {$artwork.primary_year} {if ($artwork.primary_year_type)} ({$artwork.primary_year_type}) {/if}
                               {/if} 
                               {if ($artwork.secondary_year)} 
                                 , {$artwork.secondary_year} {if ($artwork.secondary_year_type)} ({$artwork.secondary_year_type}) {/if}
                               {/if}<br>                 
-                            </h3> 
+                            </h4>
                             <h5>
                               {if ($artwork.type == 50)}
                                 <p class='italic'>

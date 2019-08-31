@@ -1,0 +1,62 @@
+
+
+<!-- Gallery Backend Event Dialog -->
+<div class="modal modal-admin fade" id="gbe_related_artwork_dialog" data-backdrop="static" data-keyboard="false" 
+     tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <b class="overlay-title">Add Related Image Info</b>
+      </div>
+       
+      <form name="edit-related-artwork" class="cal-form ajax-submit" id="artwork_dialog_form" 
+        data-handler="save-artwork-related" data-toggle="validator">
+        <!-- <input type="hidden" name="obj_type" value="user_profile" /> -->
+        <input type="hidden" name="obj_id"  value="" />
+        <input type="hidden" name="obj_type" id="obj_type"  value="artwork_media" />
+        <input type="hidden" name="artwork_id" id="artwork_id" type="hidden" value="{$artwork.id}">
+        <input type="hidden" name="page"  value="Edit-artwork-info" />
+        
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="artwork-available">Type</label>
+              <span class="type-err" style="display: none; color: red;">Please Select Type</span>
+                {"type"|object_select:"artwork_related_type":["class" => "form-control"]}  
+            </div>
+            
+            <div class="form-group col-sm-12">
+              <label>Caption</label>
+              <span class="desc-err" style="display: none; color: red;">Please Type Description</span>
+              <textarea id="desc" name="description" class="form-control description"></textarea>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="button" class="btn btn-danger" id="cd-cancel" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-success" id="cd-save">Save</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+<!-- /.modal -->
+
+<script type="text/javascript">
+   $('#cd-save').on("click",function() {
+      setTimeout(function() { 
+       $("#gbe_related_link").trigger('click');
+     }, 1500);
+      //return false;
+
+   });
+</script>

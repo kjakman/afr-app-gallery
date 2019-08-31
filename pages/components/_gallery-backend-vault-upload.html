@@ -1,0 +1,8 @@
+{$user = $scope.user_profile} 
+
+  <div class="row form-group">
+    <label for="media-name">Upload image</label>
+    {"user_profile"|object_uploader:$user.profile_id:"map":["resize" => 1, "cloud" => 1, "view" => 'grid']}
+  </div>
+
+  

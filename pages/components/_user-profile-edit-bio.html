@@ -1,0 +1,65 @@
+{$profile = $scope.profile}
+
+  <form id="user_overview_form" class="ajax-submit"  data-handler="save" data-toggle="validator">
+    <input type="hidden" name="obj_type" value="user_profile" />
+    <input type="hidden" name="id"  value="{$profile.profile_id}" />
+    <input type="hidden" name="user_id" value="{$profile.user_id}" />
+    <input type="hidden" name="site_id" value="{$site.id}" />
+
+    <label>Logo Image</label>
+    <div class="custom_button_cover">
+      <div class="commonin_row">
+        {"user_profile"|object_uploader:$profile.profile_id:"photo":["resize" => 1, "cloud" => 1, "view" => "list", "allow_multiple" => 0]}
+        {* $scope.uploader *}
+
+      </div>
+      <div class="custom_button_float"> 
+        <span>OR &nbsp &nbsp</span>
+        <a href="/backend/vaults?add_to_logo={$profile.id}&amp;col=1&amp;_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Media Drive</a>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>About Title</label>
+      <input name="title" id="title" class="form-control" value="{$scope.profile.title}" type="text" style= "width:500px" /> 
+    </div>
+
+    <div class="form-group">
+      <label>About</label>
+      <textarea name="bio_description" class="summernote form-control" placeholder="Please describe yourself and your interests.">{$scope.profile.bio_description}</textarea>
+    </div>
+
+    {if ($site.golf_site)}
+    <div class="form-group form-group-icon-left">
+      <i class="fa fa-search input-icon"></i>                      
+      <label>What is your home course?</label>
+      {"golf_home_course"|object_select:"golf_club":["class" => "form-control", "value" => $scope.profile.golf_home_course]}
+    </div>
+    <div class="form-group">
+      <label>What is your handicap?</label>
+      <input name="golf_handicap" class="form-control" value="{$scope.profile.golf_handicap}" type="number" />
+    </div>
+    <div class="form-group form-group-icon-left">
+      <i class="fa fa-search input-icon"></i>                      
+      <label>What is your favorite course?</label>
+      {"golf_favorite_course"|object_select:"golf_club":["class" => "form-control", "value" => $scope.profile.golf_favorite_course]}
+    </div>
+    {/if}
+    
+    <input type="submit" class="btn btn-success" value="Save">
+    <div class="gap gap-small"></div>
+    
+  </form>
+  
+<script type="text/javascript">
+  $(function() {
+    if($(document).find(".fileupload-buttonbar")){
+      $(".fileupload-buttonbar .col-lg-7").before( "<p>Test</p>" );
+    }
+    else
+      console.log("out");
+  });
+</script>
+                 
+  <!--div id="map-canvas" style="width:100%; height:400px;"></div-->
+

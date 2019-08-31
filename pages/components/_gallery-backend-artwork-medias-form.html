@@ -1,0 +1,74 @@
+{$artwork = $scope.artwork}
+{$images = $scope.related_images}
+{$types = $scope.description_type}
+{{"include": "_gallery-backend-artwork-media-dialog.html"}}
+<div class="form-group">
+  <a id="{$image.id}" type="button" class="btn btn-success related_image_add" data-toggle="modal" data-target="#gbe_related_artwork_dialog" data-typeid="{$image.descriptiontype_id}" data-description="{$image.short_description}" > Create Related Image Record</button></a>
+  <span style="padding-left: 16px;">Drag and drop related images to order how they appear</span>
+  <table class = "bootstrap-table table table-hover">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Type</th>
+        <th>Caption</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id= "sortable-row">
+      {foreach $images as $image}              
+        <tr id= "{$image.id}">
+          {$media = (array)find_object('media', ['id' => $image.media])}
+          {if ($media)}
+            {$path = "`$media.path`thumb/`$media.filename`" }
+          {/if}
+          <td class="table-thumb">
+            {if ($image.media)}
+              <img src="{$path}">
+            {else}
+            {/if}
+            </td>
+            {$type_desc = ''}
+            {foreach $types as $type} 
+              {if ($type.id == $image.type)}
+                {$type_desc = $type.name}
+              {/if}
+            {/foreach}
+          <td><span><span id="edit-media-type" class="status{$image.id}" data-id={$image.id} >{$type_desc}</span><div class="cstatus" id="cstatus{$image.id}" contenteditable="true" style="display: none;"></div></td>
+
+          <td><span contenteditable="true" class="edit-media-description" data-id={$image.id} data-col="description">{$image.description}</span></span></td>
+          <td>                    
+            <!-- <a id="{$image.id}" type="button" class="btn btn-success related_image_edit" data-toggle="modal" data-target="#gbe_related_artwork_dialog" data-typeid="{$image.type}" data-description="{$image.description}" > <i class='glyphicon glyphicon-pencil'></i></button></a> -->
+            <a href="/backend/artwork/{$artwork.id}/edit/media?artwork_media={$image.id}&_pv=1" id="{$image.id}" type="button" class="btn btn-success ajax-loader" data-target="#subview-container"> <!-- <i class='glyphicon glyphicon-upload'></i> -->Add/Edit Media</button></a>
+            <button class='btn btn-danger' id= 'delete-artwork-media' data-value= '{$image.id}'> <i class='glyphicon glyphicon-trash'></i></button>
+          </td>
+        </tr>
+        
+      {/foreach} 
+    </tbody>
+  </table><br>
+  <input type="submit" class="btn btn-success" id= 'submit_order' value="Save page order" onClick="saveOrder();">
+</div>
+<script type="text/javascript">
+  $("#tab6_link").hide();
+  $(function() {
+      $( 'tbody' ).sortable({
+        cancel: '[contenteditable]',
+      });
+    });
+    
+  function saveOrder() {
+    var order_id = new Array();
+    $('tbody#sortable-row tr').each(function() {
+    order_id.push($(this).attr("id"));
+    });
+
+    $.ajax({
+      url: "/ajax.php?oper=submit-order",
+      data: {
+        oper: "submit-order",
+        val: order_id,
+        obj_type: "artwork_media"
+      },
+    });
+  }
+</script>

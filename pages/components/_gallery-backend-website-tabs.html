@@ -36,6 +36,9 @@
   {$tab28_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'singleExhibitionLayout']}
   {$tab29_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'singleExhibitioncolor']}
 
+  {$tab30_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'extSite']}
+  {$tab31_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'extMail']}
+
   
   {$tab = $page.tab|default:'basic'}
 
@@ -45,11 +48,14 @@
     <li {if ($tab == 'font') }class="active"{/if}><a href="{$tab9_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_font_link">Font</a></li>
     <li {if ($tab == 'page')  }class="active"{/if}><a href="{$tab1_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_page_link">Pages</a></li>
     <!-- <li {if ($tab == 'home')  }class="active"{/if}><a href="{$tab2_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_home_link">Home</a></li> -->
-    <li {if (($tab == 'artist') || ($tab == 'artistcontent') || ($tab == 'artistcolour') || ($tab == 'artistpagelayout') || ($tab == 'artistsecondpage'))  }class="active"{/if}><a href="{$tab3_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_artist_link">Artist</a></li>
-    <li {if (($tab == 'exhibition') || ($tab == 'exhibitioncontent') || ($tab == 'exhibitioncolour') || ($tab == 'exhibitionpage') || ($tab == 'exhibitionlayout'))}class="active"{/if}><a href="{$tab4_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_exhibition_link">Exhibition</a></li>
-    <li {if ($tab == 'contact')  || ($tab == 'contactcontent') || ($tab == 'contactcolour') || ($tab == 'contactpagelayout') }class="active"{/if}><a href="{$tab5_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_contact_link">Contact</a></li>
-    <li {if ($tab == 'bio')  || ($tab == 'biocontent') || ($tab == 'biocolour') || ($tab == 'biolayout') } class="active"{/if}><a href="{$tab20_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_bio_link">Bio</a></li>
-    <li {if ($tab == 'singleExhibition')  || ($tab == 'singleExhibitioncontent') || ($tab == 'singleExhibitionLayout') || ($tab == 'singleExhibitioncolor') } class="active"{/if}><a href="{$tab27_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_singleExhibition_link">Single page Exhibition</a></li>
+    <li {if (($tab == 'artist') || ($tab == 'artistcontent') || ($tab == 'artistcolour') || ($tab == 'artistpagelayout') || ($tab == 'artistsecondpage'))  }class="active"{/if}><a href="{$tab3_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_artist_link">Showcase Managed Profiles</a></li>    <!-- Artist -->
+    <li {if (($tab == 'exhibition') || ($tab == 'exhibitioncontent') || ($tab == 'exhibitioncolour') || ($tab == 'exhibitionpage') || ($tab == 'exhibitionlayout'))}class="active"{/if}><a href="{$tab4_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_exhibition_link">Multiple Exhibitions - Smart Filter</a></li>  <!-- exhibition -->
+    <li {if ($tab == 'contact')  || ($tab == 'contactcontent') || ($tab == 'contactcolour') || ($tab == 'contactpagelayout') }class="active"{/if}><a href="{$tab5_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_contact_link">Contact Page</a></li>
+    <li {if ($tab == 'bio')  || ($tab == 'biocontent') || ($tab == 'biocolour') || ($tab == 'biolayout') } class="active"{/if}><a href="{$tab20_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_bio_link">Showcase User Profile</a></li>   <!-- bio -->
+    <li {if ($tab == 'singleExhibition')  || ($tab == 'singleExhibitioncontent') || ($tab == 'singleExhibitionLayout') || ($tab == 'singleExhibitioncolor') } class="active"{/if}><a href="{$tab27_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_singleExhibition_link">Single Exhibition - Smart Filter</a></li> <!-- Single page exhibition -->
+
+    <li {if ($tab == 'extSite') } class="active"{/if}><a href="{$tab30_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_extSite_link">External Site (iframe)</a></li> <!-- Single page exhibition -->
+    <li {if ($tab == 'extMail') } class="active"{/if}><a href="{$tab31_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_extMail_link">Mail Form</a></li> <!-- Single page exhibition -->
 
     <!--<li {if ($tab == 'styling') }class="active"{/if}><a href="{$tab7_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_styling_link">styling</a></li>
     
@@ -122,6 +128,11 @@
       {{"include": "_gallery-backend-website-single-exhibition-layout.html"}}
     {elseif ($tab == 'singleExhibitioncolor')}
       {{"include": "_gallery-backend-website-single-exhibition-colour.html"}}
+
+    {elseif ($tab == 'extSite')}
+      {{"include": "_gallery-backend-website-extsite.html"}}
+    {elseif ($tab == 'extMail')}
+      {{"include": "_gallery-backend-website-extmail.html"}}
 
     {else}
       {"Unknown tab `$tab`"|alert:"error"}

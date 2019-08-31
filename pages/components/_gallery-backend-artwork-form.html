@@ -79,7 +79,8 @@
       $(function() {
         console.log( "ready!" );
         awb_set_type($("#type").val());
-        if($("#artistTags").length) gbe_artists_tagit();          
+        if($("#artistTags").length) gbe_artists_tagit();    
+        $("#tab6_link").hide();        
       });
       $(document).on("change",'#type',function() {
         var val = $(this).val();

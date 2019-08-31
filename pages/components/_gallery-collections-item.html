@@ -7,9 +7,28 @@
                       
                       {$profile = $collection.user_id|get_user:true}
                       <li class="photo-grid-container gallery-list-item">
-                        <a href="{$link}{$collection.title|slugify}-{$collection.id}" class="cms-link gallery-link" data-data='{$json}'>
-                          <img src="{$collection.id|collection_photo}">
-                        </a>
+                        <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
+                          <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
+                            <div class="__vp-flipper">             
+                            <div class="__vp-flip-front"> 
+                            <span class="frame-square">              
+                              <img class="__vp-plugin-image center-cropped" src="{$collection.id|collection_photo}"  alt="{}">  
+                            </span>           
+                            </div>             
+                            <div class="__vp-flip-back __vp-plugin-hover">  
+                            <span class="frame-square">             
+                              <img class="__vp-flip-back-image" src="{$collection.id|collection_photo}" alt="">  
+                            </span>             
+                            <div class="__vp-flip-back-card"> 
+                              <a href="{$link}{$collection.title|slugify}-{$collection.id}" class="cms-link gallery-link" data-data='{$json}'>               
+                                <h2 class="subtitle">{$collection.title}</h2>
+                                <div class="subtitle">{$profile.display_name}</div> 
+                              </a>               
+                            </div>                                                                
+                            </div>           
+                            </div>         
+                          </div>        
+                        </figure>
                         <div class="photo-grid-title artinfo" style="text-align: left;">
                           <a href="{$link}{$collection.title|slugify}-{$collection.id}" class="cms-link gallery-link" data-data='{$json}'>
                             <h2 class="subtitle">{$collection.title}</h2>
@@ -20,3 +39,5 @@
                           </a>
                         </div>
                       </li>
+
+                        

@@ -4,16 +4,21 @@
     	{$buttons = 1}
 
   <a href="{$list_link}?_pv=1&{$smarty.session.searchvalue}" class="btn btn-danger ajax-loader" id="back" data-target="#subview-container">Back
-  	
-  </a>
+  </a><br>
 
-        <div class="row form-group">
-          <label for="media-name">Title Image</label>
-          <a data-toggle="tooltip" data-placement="right" title="Select the main image to represent the artwork"> <i class="fa fa-info-circle"></i></a>
-          {"artwork"|object_uploader:$artwork.id:"title_image":["resize" => 1, "cloud" => 1, "view" => "list"]}
-        </div>
+  <label for="media-name">Title Image</label><a data-toggle="tooltip" data-placement="right" title="Select the main image to represent the artwork"> <i class="fa fa-info-circle"></i></a>
+  <div class="custom_button_cover">
+	<div class="commonin_row">
+      {"artwork"|object_uploader:$artwork.id:"title_image":["resize" => 1, "cloud" => 1, "view" => "list"]}
+    </div>
+    <div class="custom_button_float"> 
+      <span>OR &nbsp &nbsp</span>
+  	  <a href="/backend/vaults?add_to_artworkimg={$artwork.id}&amp;col=1&amp;_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Media Drive</a>
+  	</div>
+  </div>
+
 <script type="text/javascript">
-
+  $("#tab6_link").hide();
 	$(document).on("click", "#back", function() { 
 		var val = $(this).attr("href"); 
 		var search = val.split("&");

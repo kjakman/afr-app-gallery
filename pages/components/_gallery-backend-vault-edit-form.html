@@ -1,0 +1,36 @@
+
+{$tags = $scope.tags}
+{$user_tags = $vault.tags}
+{if ($user_tags)}
+  {$merge_tags = json_encode(array_merge($tags,json_decode($user_tags, true)))}
+{else}
+  {$merge_tags = json_encode($tags, true)}
+{/if}
+
+<form class="ajax-submit" data-handler="save-folder" data-success_handler="gbe_vault_handler">
+  <input hidden="1" name="obj_id" type="hidden" value="{$vault.id}">
+  <input hidden="1" name="user_id" type="hidden" value="{$vault.user_id}">
+  <input hidden="1" name="obj_type" type="hidden" value="media_folder">      
+  
+  <div class="form-group col-sm-6">
+    <label for="media-title">Folder Name(*)</label>
+    <input type="text" class="form-control" name="filename" value="{$vault.filename}" maxlength="255" required>
+  </div>
+  <div  class="form-group col-sm-6" >
+    <label for="media-technique">Tags <a data-toggle="tooltip" data-placement="right" title="Type your text and click 'ENTER' to add new tags."> <i class="fa fa-info-circle"></i></a></label>
+    <input id="magicsuggest" type="text" class="form-control" name="tags">
+  </div>
+  <input type="submit" class="btn btn-success save-folder" value="Save">    
+</form>
+<div class="gap gap-small"></div>
+
+<script type="text/javascript">
+  $(function() {
+      var ms = $('#magicsuggest').magicSuggest({
+        allowFreeEntries: true,
+        data: {$merge_tags}
+      });
+      ms.setValue({$vault.tags});
+  });
+</script>
+

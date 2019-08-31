@@ -11,7 +11,7 @@
                           {/if}
 
                           <!-- to display other exhibition from exhibition id (Added by pradeepa)-->
-                          {if ($artist_name && $scope.other_exhibitions|@count)} 
+                          {if ($artist_name && $scope.other_exhibitions|@count && !$scope.selectedartpage)} 
                           <div class="gallery-related" id="collection_artworks">
                            <div class="profileinfo italic mb10">
                             <h1>Other Art in the Exhibition</h1>
@@ -25,10 +25,10 @@
                           {if ($artist_name && $scope.artist_artworks|@count)} 
                           <div class="gallery-related" id="artist_artworks">
                            <div class="profileinfo italic mb10">
-                            <h1>Selected Artwork by {$artist_name}</h1>
+                            <h1>Selected Artworks by {$artist_name}</h1>
                            </div>
                             {$items = $scope.artist_artworks}
-                            {{"include": "_gallery-artwork-items.html"}}
+                            {{"include": "_gallery-selectedart-items.html"}}
                           </div>
                           {/if}
 
@@ -47,10 +47,21 @@
                           {if ($curator_name && $scope.artist_artworks|@count)} 
                           <div class="gallery-related" id="artist_artworks">
                            <div class="profileinfo italic mb10">
-                            <h1>Selected Artwork by {$curator_name}</h1>
+                            <h1>Selected Artworks by {$curator_name}</h1>
                            </div>
                             {$items = $scope.artist_artworks}
-                            {{"include": "_gallery-artwork-items.html"}}
+                            {{"include": "_gallery-selectedart-items.html"}}
+                          </div>
+                          {/if}
+
+                          <!-- Display selected art in artwork page (controller_gallery_artworks)-->
+                          {if ($getpage && $artist_name && $scope.artist_artwork|@count)} 
+                          <div class="gallery-related" id="artist_artworks">
+                           <div class="profileinfo italic mb10">
+                            <h1>Selected Artworks by {$artist_name}</h1>
+                           </div>
+                            {$items = $scope.artist_artwork}
+                            {{"include": "_gallery-selectedart-items.html"}}
                           </div>
                           {/if}
                           

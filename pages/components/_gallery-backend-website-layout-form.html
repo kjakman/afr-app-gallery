@@ -1,6 +1,8 @@
+    {$data = json_decode($minisite.footer_data, True)}
+
      <form class="ajax-submit" data-handler="save-minisite-basic">
         <input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
-        <input hidden="1" name="obj_id" type="hidden" value="{$minisite.id|default:$id}" class="obj_id">
+        <input hidden="1" name="obj_id" class="obj_id" type="hidden" value="{$minisite.id|default:$id}" class="obj_id">
         <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">  
         <input hidden="1" name="next_tab" type="hidden" value="styling"> 
 
@@ -17,9 +19,7 @@
             <table cellspacing="2"> 
               <tr style="height: 15px;"/>
               <tr>
-                <td style= "width:200px">
-                  <label for="Title">Site Title</label>
-                </td>
+                <td style= "width:200px"><label for="Title">Site Title</label></td>
                 <td width="20%">
                   <div class="input-group">
                     <input name='show_title' value='0' type='hidden'> 
@@ -34,9 +34,7 @@
               </tr>
               <tr style="height: 15px;"/>
               <tr>
-                <td style= "width:200px">
-                  <label for="Sub title">Site Sub Title</label>
-                </td>
+                <td style= "width:200px"><label for="Sub title">Site Sub Title</label></td>
                 <td width="20%">
                   <div class="input-group">
                     <input name='show_subtitle' value='0' type='hidden'> 
@@ -45,26 +43,31 @@
                 </td>
                 <td>
                   <div class="input-group">
-                    <input name="sub_title" id="sub_title" class="form-control" value="{$minisite.sub_title}" type="text" />
+                    <input name="sub_title" maxlength="60" id="sub_title" class="form-control" value="{$minisite.sub_title}" type="text" />
                   </div>
                 </td>
               </tr>
               <tr style="height: 15px;"/>
-              <tr style="height: 15px;"/>
-            </table>
+            </table><br>
+            Your  website needs a “Site Title”  (that’s its name) but if  you want  to  use a logo  instead of  the Site  Title at  the top of  your  website – add the logo  below
           </div>
 
-          <div class="col-sm-12">
-            <label for="media-name">Icon</label>
-            <a data-toggle="tooltip" data-placement="right" title="Select the main image to represent the artwork"> <i class="fa fa-info-circle"></i></a>
-            {"minisite"|object_uploader:$minisite.id:"logo":["resize" => 1, "cloud" => 1, "view" => "list", "allow_multiple" => 0]}
+          <div class="col-sm-12 mt20">
+            <label for="media-name">Website Logo</label>
+            <div class="custom_button_cover">
+              <div class="commonin_row">
+                {"minisite"|object_uploader:$minisite.id:"logo":["resize" => 1, "cloud" => 1, "view" => "list", "allow_multiple" => 0]}
+              </div>
+              <div class="custom_button_float"> 
+                <span>OR &nbsp &nbsp</span>
+                <a href="/backend/vaults?add_to_websiteimg={$minisite.id}&amp;col=1&amp;_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Media Drive</a>
+              </div>
+            </div>
           </div>
           <div class="col-sm-12">
             <table cellspacing="2"> 
               <tr>
-                <td style= "width:200px">
-                  <label for="footer">Icon Size </label>
-                </td>
+                <td style= "width:200px"><label for="footer">Logo/ Site  Title Size </label></td>
                 <td style= "width:100px">
                   <div class="input-group">
                     <input type="radio" class="icon_type" name="icon_type" value="1" {if ($minisite.icon_size == 1)} checked {/if} required > Automatic
@@ -82,9 +85,7 @@
           <div class="col-sm-12">
             <table cellspacing="2">
                <tr class="icon_size">
-                 <td style= "width:200px">
-                   <label for="footer">Icon Size - Manual Control</label>
-                 </td>
+                 <td style= "width:200px"><label for="footer">Logo/  Site  Title – Manual  Control</label></td>
                  <td style= "width:200px">
                     <input type="range" name="icon_size" min="10" max="50" step="10" class="icon_range" value="{$minisite.icon_size}">
                  </td>
@@ -99,9 +100,7 @@
             <table cellspacing="2"> 
               <tr style="height: 15px;"/>
               <tr>
-                <td style= "width:200px">
-                  <label for="footer">Footer Text</label>
-                </td>
+                <td style= "width:200px"><label for="footer">Footer Text</label></td>
                 <td >
                   <div class="input-group">
                     <input name="footer" id="footer" class="form-control" value="{$minisite.footer}" type="text" /> 
@@ -110,9 +109,7 @@
               </tr>
               <tr style="height: 15px;"/>
               <tr>
-                <td style= "width:200px">
-                  <label for="Social Media">Follow on Social Media</label>
-                </td>
+                <td style= "width:200px"><label for="Social Media">Follow on Social Media</label></td>
                 <td width="20%">
                   <div class="input-group">
                     <input name='show_social' value='0' type='hidden'> 
@@ -127,9 +124,7 @@
               </tr>
               <tr style="height: 15px;"/>
               <tr>
-                <td >
-                  <label for="Opening">Opening Times</label>
-                </td>
+                <td ><label for="Opening">Opening Times</label></td>
                 <td width="20%">
                   <div class="input-group">
                     <input name='show_timing' value='0' type='hidden'> 
@@ -146,6 +141,44 @@
               <tr style="height: 15px;"/>
             </table>
           </div>
+
+          <div class="col-sm-12">
+            <label for="Mailchimp">Mailchimp</label>
+            <div class="row">
+              
+              <div class="form-group col-sm-8">
+                <label for="menu-title">Do you want mailchimp to generate subscription form?</label>
+                <input type="radio" class="show_mail" name="show_mail" value="1" onclick="change_radio(this);" {if ($data['show_mail'] == '1')} checked {/if} > Yes
+                <input type="radio" class="show_mail" name="show_mail" value="0" onclick="change_radio(this);" {if ($data['show_mail'] == '0')} checked {/if} > No
+              </div>
+              <div class="yesMail" style="display: none;">
+                <div class="form-group col-sm-8">
+                  <label>Select Form Type *</label>
+                  {$formtypes = [10=> 'Classic', 20=> 'Condensed', 30=> 'Horizontal', 40=> 'Unstyled']}
+                    <select class="form-control auto-select" name="mailtype" data-value="{$data['mailtype']|default:'10'}">
+                      {foreach from=$formtypes key=key item=type}
+                        <option value="{$key}">{$type}</option>
+                      {/foreach}                                            
+                    </select>
+                  
+                </div>
+                <div class="form-group col-sm-8">
+                  <label for="page-title">User Key *</label>
+                  <input type="text" class="form-control" name="u_key" value="{$data['u_key']}">
+                </div>
+                <div class="form-group col-sm-8">
+                  <label for="page-title">User Id *</label>
+                  <input type="text" class="form-control" name="u_id" value="{$data['u_id']}">
+                </div>
+                <div class="form-group col-sm-8">
+                  <label for="page-title">Button Id *</label>
+                  <input type="text" class="form-control" name="b_id" value="{$data['b_id']}">
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
           <div class="row">
             <div class="form-group col-sm-10">
               <label for="SEARCH">SEARCH ENGINE OPTIMIZATION</label><br>
@@ -167,22 +200,23 @@
       {{"include": "_gallery-backend-website-profile-dialog.html"}}
 
 <script type="text/javascript">
-  $("#gbe_artist_link").hide();
-  $("#gbe_exhibition_link").hide();
-  $("#gbe_singleExhibition_link").hide();
-  $("#gbe_contact_link").hide();
-  $("#gbe_bio_link").hide();
-
+  
   $(document).ready(function(){
+    hidetabs();
     var icon_type = $("input[name='icon_type']:checked").val();
     if(icon_type == 1){
       $(".icon_size").hide();
     }else{
       $(".icon_size").show();
     }
+    var eType = $('input:radio.show_mail:checked').val();
+    if(eType == 1)
+      $(".yesMail").show();
+    else
+      $(".yesMail").hide();
   });  
 
-  $(document).on("change", '.icon_range, .icon_type', function(){
+  $('.icon_range, .icon_type').change(function(){
     var icon_type = $("input[name='icon_type']:checked").val();
     var obj_id = $(".obj_id").val();
     if(icon_type == 1){
@@ -204,47 +238,42 @@
     });
   });
 
-  /*$(document).on("change", '.icon_range', function(){
-    var range = $(this).val();
+  $('.title_range').change(function(){
+    var range = $(".title_range").val()
     var obj_id = $(".obj_id").val();
-    if(range){
-      $.ajax({
-        url: "/ajax.php",
-        dataType: "json",
-        data: {
-          oper: "save-minisite-basic",
-          icon_size: range,
-          obj_id: obj_id,
-          obj_type: "minisite"
-        },     
-      });
-    }
+    
+    $.ajax({
+      url: "/ajax.php",
+      dataType: "json",
+      data: {
+        oper: "save-minisite-basic",
+        title_size: range,
+        obj_id: obj_id,
+        obj_type: "minisite"
+      },     
+    });
+  });
 
-  });*/
+  function change_radio(element) {
+    var eType = $('input:radio.show_mail:checked').val();
+    var obj_id = $('.obj_id').val();
+    if(eType == 1)
+      $(".yesMail").show();
+    else
+      $(".yesMail").hide();
+
+    $.ajax({
+      url: "/ajax.php",
+      dataType: "json",
+      data: {
+        oper: "save-minisite-basic",
+        show_mail: eType,
+        obj_type: 'minisite',
+        obj_id: obj_id,
+      }, 
+        
+    });
+  }
 
 </script>
 
-<!-- <script type="text/javascript">
-  $(document).ready(function() {
-    var max_fields = 20; //maximum input boxes allowed
-    var wrapper = $("#wrapper"); //Fields wrapper
-    var add = $(".add"); //Add button ID
-   
-     
-    var x = 1; //initlal text box count
-    $(add).click(function(e){ //on add input button click
-      e.preventDefault();
-      if(x < max_fields){ //max input box allowed
-        x++; //text box increment
-        $(wrapper).append('<div id="newadd"><table class= "table table-hover"><td><input type="text" class="form-control" name="title" value="{$collection.title}" maxlength="100"></td><td><input type="text" class="form-control" name="title" value="{$collection.title}" maxlength="100"></td><td><button type="button" class="remove btn btn-danger">x</button></td></table></div>'); //add input box
-      }
-    });
-
-    //Remove button ID
-   
-     $('#wrapper').on('click','.remove', function(e){ //user click on remove field
-      $('#newadd').remove(); 
-       x--; 
-    });
-  });
-</script>  -->    

@@ -47,15 +47,19 @@
 }
 </style>
 {$data = json_decode($minisite_pageObj.data, TRUE)}
-{$count = 0}
+
+{if ($data.show_current)} {$current = 'current'} {/if}
+{if ($data.show_past)} {$past = 'past'} {/if}
+{if ($data.show_future)} {$future = 'future'} {/if}
+{$index = 0} 	{$count = 0}
 <div class="item-container">
 	<div class="item-grid-sizer"></div>
 	<div class="item-gutter-sizer"></div>
 	{foreach from=$exhibitions item=exhibition}
-
+		{if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
 		<div class="item-grid">
 			<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="cms-link gallery-link" data-data='{$json}'>
-				 <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
+				<figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
 					<div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
 					  <div class="__vp-flipper">             
 						<div class="__vp-flip-front">               
@@ -79,9 +83,14 @@
 			</a>
 		</div>
 		{$count = 1}
+		{/if}
 	{/foreach}
-
-	{if (($data.show_latest) && (!$count))}
+</div>
+{if (($data.show_latest) && (!$count))}
+	<h5>Latest</h5>
+	<div class="item-container">
+		<div class="item-grid-sizer"></div>
+		<div class="item-gutter-sizer"></div>
 		{foreach from=$latestexhibitions item=exhibition}
 		<div class="item-grid">
 			 <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
@@ -95,7 +104,6 @@
 					  <div class="__vp-flip-back-card"> 
 						<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">                
 						  <h2>{$exhibition.title}</h2>   
-						  <!-- <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="__vp-info __vp-view-button" id="__vp-view-button-1355">View</a>  -->
 						  <div class="mt10">{$exhibition|artists}</div> 
 						  <div>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</div>    
 						</a>               
@@ -107,8 +115,9 @@
 			</figure>
 		</div>
 		{/foreach}
-	{/if}
-</div>
+	</div>
+{/if}
+
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js'></script>
 <script>
