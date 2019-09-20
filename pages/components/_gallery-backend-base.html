@@ -133,7 +133,8 @@
     {$buttons = 1}
     <li><a href="{$ex_link}/basic?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to Website</a></li>
   {elseif ($add_to_exbart)} 
-  {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'exhibition', 'id' => $add_to_exbart, 'action' => 'edit']}
+  {$exhibition = explode('|', $add_to_exbart)} 
+  {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'exhibition', 'id' => $exhibition[0], 'action' => 'edit']}
     {$buttons = 1}
     <li><a href="{$ex_link}/media?_pv=1" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to Exhibition</a></li>
   {elseif ($add_to_exbtitle)} 

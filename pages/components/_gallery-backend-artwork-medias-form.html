@@ -37,8 +37,7 @@
 
           <td><span contenteditable="true" class="edit-media-description" data-id={$image.id} data-col="description">{$image.description}</span></span></td>
           <td>                    
-            <!-- <a id="{$image.id}" type="button" class="btn btn-success related_image_edit" data-toggle="modal" data-target="#gbe_related_artwork_dialog" data-typeid="{$image.type}" data-description="{$image.description}" > <i class='glyphicon glyphicon-pencil'></i></button></a> -->
-            <a href="/backend/artwork/{$artwork.id}/edit/media?artwork_media={$image.id}&_pv=1" id="{$image.id}" type="button" class="btn btn-success ajax-loader" data-target="#subview-container"> <!-- <i class='glyphicon glyphicon-upload'></i> -->Add/Edit Media</button></a>
+            <a href="/backend/artwork/{$artwork.id}/edit/media?artwork_media={$image.id}&_pv=1" id="{$image.id}" type="button" class="btn btn-success ajax-loader" data-target="#subview-container">Add/Edit Media</button></a>
             <button class='btn btn-danger' id= 'delete-artwork-media' data-value= '{$image.id}'> <i class='glyphicon glyphicon-trash'></i></button>
           </td>
         </tr>

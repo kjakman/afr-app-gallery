@@ -1,14 +1,15 @@
 {$what = 'vault'}
 {$plural = 'vaults'}
 {$vault = $scope.vault_page}
-
+{$count = $scope.imagecount}
+{$limit = $scope.limitcount}
 {{"extend": "_gallery-backend-list-base.html"}}
 
 {block name=main}
   {if (!$vault)}    
-    <p style="font-size: 20px !important; font-weight: bold;">Media Folder</p>    
+    <p style="font-size: 20px !important; font-weight: bold;">Media Folder (Capacity: {$count} of {$limit} storage limit used)</p>    
   {else}
-    <p style="font-size: 20px !important; font-weight: bold;">Media Files</p>    
+    <p style="font-size: 20px !important; font-weight: bold;">Media Files (Capacity: {$count} of {$limit} storage limit used)</p>    
   {/if}      
 {/block}
 

@@ -18,11 +18,9 @@
         {if ($collection.slug)}
           <h1 class="sub-nav-header artist-sub-nav-header"> 
             {foreach from=$artist_ids item=$artist_id}
-              {$artist_name = $artist_id|displayname}
-              {* id:{$artist_id}={$artist_name}<br> *}
-              <!-- <a href="{$basepath}{$collection.page_slug}{$artist_name|slugify}">{$artist_name}</a>  -->
-              {$artist_name}
+              {$artist_name[] = $artist_id|displayname}
             {/foreach}
+            {', '|implode:$artist_name}
             <br><br>
             <a href="{$basepath}/{$page_slug}/{$collection.slug}">{$collection.title|default:"Untitled"}</a>
           </h1>

@@ -11,8 +11,9 @@
 				  {{"include": "_gallery-collection-date.html"}}
 				{/if}
 				<br>
-				<h3>Artist:</h3>
+				<!-- <h3>Artist:</h3> -->
 				<h1 class="black">
+					{$artist_ids = $collection.artist_ids|@json_decode}
 					{foreach from=$artist_ids item=$artist_id}
 					  {$artist_name = $artist_id|displayname}
 					  {$artist_name}

@@ -50,14 +50,20 @@
 				{$font_style.font_family}
 				font-size: 36px !important;
 			}*/
-			
+			.navbar-site .nav-item .nav-link{
+				{$font_style.font_family}
+				{$menu_style.menu_title}
+				text-transform: none !important;
+			}
 			a.nav-link{
 				{$font_style.font_family}
 				{$menu_style.menu_title}
+				text-transform: none !important;
 			}
 			h2.subtitle {
 				{$font_style.font_family}
 				{$menu_style.sub_title}
+				text-transform: none !important;
 			}
 		{/if}
 	{/foreach}
@@ -90,6 +96,7 @@
 		color: #000;
 		padding: 2em;
 		text-align: center;
+		text-transform: none;
 	}
 
 	h2.default, h2.title{

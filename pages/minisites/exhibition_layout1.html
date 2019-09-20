@@ -16,10 +16,11 @@
 				<h1 class="black">
 					{$artist_ids = $collection.artist_ids|@json_decode}
 					{foreach from=$artist_ids item=$artist_id}
-					  {$artist_id|display_name}
+						{$profile = $artist_id|get_user:1}
+						{{"include": "_gallery-artist-information"}}
 					{/foreach}
 				</h1> 
-				<h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4><br>
+				<br>
 				{if ($collection.location_id)}
 				  {{"include": "_gallery-collection-location"}}
 				{/if}
@@ -29,21 +30,26 @@
 		<article class="row mt40">
 			<div class="gap gap-small"></div>
 			{if ($collection.description)}
-				<h3>About {$collection.title}</h3>
-				<p>{$collection.description}</p>
+				<div class="col-sm-6"><h3>About "{$collection.title}"</h3></div>
+				<div class="col-sm-12"><p>{$collection.description}</p></div>
 			{/if}
 			<div class="gap"></div>
 			{$count = $scope.artworks|@count}
 			{if ($count)}
 				<div class="gallery-related" id="collection_artworks">
 					<div class="profileinfo italic mb10">
-						<h1>Other Art in {$collection.title}</h1>
+						<h1>Other Art in "{$collection.title}"</h1>
 					</div>
 				</div>
 				{$index = 0}
 				<ul class="photo-grid gallery-list list">
 					{foreach from=$artworks item=artwork}
-            		{$artwork_slug = "artwork~`$artwork.artwork_id`"}
+						{if ($artwork.artwork_id)}
+            				{$artwork_slug = "artwork~`$artwork.artwork_id`"}
+            			{else}
+            				{$artwork_slug = "item~`$artwork.id`"}
+            			{/if}
+
 						<li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item" data-index="0" data-media_id="{$artwork.media_id}" id="map_5050">
 							<div class="pdf-thumb-box-overlay">
 								<div class="pdf-thumb-box-links">
@@ -55,8 +61,15 @@
 							<a href="{$basepath}/{$collection.page_slug}/{$collection.slug}/{$artwork_slug}"><img src="{$artwork.media_id|photo:'medium'}" class=""></a>
 							<br>
 							<div class="photo-grid-title artinfo" style="text-align: left;">
-								<h2 class="black subtitle">{$artwork.name}</h2>
-								{if ($artwork.original_year)}<h3>{$artwork.original_year}, {$artwork.original_technique}</h3>{/if}
+								{if ($artwork.artwork_id)}
+									<h2 class="black subtitle">{$artwork.name}</h2>
+									{if ($artwork.original_year)}<h3>{$artwork.original_year}, {$artwork.original_technique}</h3>{/if}
+									<!-- {if ($artwork.curator_name)} <h3>{$artwork.curator_name}</h3>{/if} -->
+								{else}
+									{$type = related_images_type($artwork.type) }
+									<h2 class="black subtitle">{$type}</h2>
+									{if ($artwork.description)} <h3>{$artwork.description}</h3>{/if}
+								{/if}
 							</div>
 						</li>
 					{/foreach}

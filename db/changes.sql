@@ -55,11 +55,13 @@ CREATE TABLE `minisite_page_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `minisite_page_type` (`id`, `name`, `row_order`) VALUES
-(20,  'Showcase Managed Profiles',  4),
+(20,  'Artists Page', 4),
 (30,  'Multiple Exhibitions - Smart Filter',  2),
 (40,  'Contact Page', 5),
-(50,  'Showcase User Profile',  3),
-(60,  'Single Exhibition - Smart Filter', 1);
+(50,  'Bio/Profile/CV', 3),
+(60,  'Single Exhibition',  1),
+(70,  'External Site ', 6);
+
 
 # 22 Mar 2019
 
@@ -275,6 +277,7 @@ ADD `font_type` int(25) NOT NULL,
 ADD `menu_type` int(25) NOT NULL;
 ADD `icon_size` int(8) NOT NULL;
 
+DROP TABLE IF EXISTS `exhibition_map`;
 CREATE TABLE `exhibition_map` (
   `id` int(8) NOT NULL,
   `media_collection_id` int(8) NOT NULL,
@@ -329,6 +332,7 @@ ADD `type` varchar(10) COLLATE 'utf8_general_ci' NOT NULL DEFAULT 'folder';
 ALTER TABLE `gallery`
 CHANGE `title` `name` varchar(100) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `user_id`;
 
+DROP TABLE IF EXISTS `media_folder`;
 CREATE TABLE `media_folder` (
   `id` int(8) NOT NULL,
   `site_id` int(8) NOT NULL,
@@ -348,6 +352,47 @@ ADD INDEX `user_id` (`user_id`);
 INSERT INTO `db_sequence` (`seq_name`, `nextid`)
 VALUES ('media_folder', '5000');
 
+## Add static media folders to live DB
+
+INSERT INTO `media_folder` (`id`, `site_id`, `active`, `created`, `timestamp`, `user_id`, `filename`, `tags`, `type`, `path`, `rank`)
+VALUES ('5000', '247', '1', now(), now(), '20699', 'Uploads', '', 'folder', '/user/20699/vault/5000', '1');
+
+INSERT INTO `media_folder` (`id`, `site_id`, `active`, `created`, `timestamp`, `user_id`, `filename`, `tags`, `type`, `path`, `rank`)
+VALUES ('5001', '247', '1', now(), now(), '20361', 'Uploads', '', 'folder', '/user/20361/vault/5001', '1');
+
+INSERT INTO `media_folder` (`id`, `site_id`, `active`, `created`, `timestamp`, `user_id`, `filename`, `tags`, `type`, `path`, `rank`)
+VALUES ('5002', '247', '1', now(), now(), '20685', 'Uploads', '', 'folder', '/user/20685/vault/5002', '1');
+
+INSERT INTO `media_folder` (`id`, `site_id`, `active`, `created`, `timestamp`, `user_id`, `filename`, `tags`, `type`, `path`, `rank`)
+VALUES ('5003', '247', '1', now(), now(), '17800', 'Uploads', '', 'folder', '/user/17800/vault/5003', '1');
+
+INSERT INTO `media_folder` (`id`, `site_id`, `active`, `created`, `timestamp`, `user_id`, `filename`, `tags`, `type`, `path`, `rank`)
+VALUES ('5004', '247', '1', now(), now(), '17476', 'Uploads', '', 'folder', '/user/17476/vault/5004', '1');
+
+INSERT INTO `media_folder` (`id`, `site_id`, `active`, `created`, `timestamp`, `user_id`, `filename`, `tags`, `type`, `path`, `rank`)
+VALUES ('5005', '247', '1', now(), now(), '17470', 'Uploads', '', 'folder', '/user/17470/vault/5005', '1');
+
+INSERT INTO `media_folder` (`id`, `site_id`, `active`, `created`, `timestamp`, `user_id`, `filename`, `tags`, `type`, `path`, `rank`)
+VALUES ('5006', '247', '1', now(), now(), '20669', 'Uploads', '', 'folder', '/user/20669/vault/5006', '1');
+
+INSERT INTO `media_folder` (`id`, `site_id`, `active`, `created`, `timestamp`, `user_id`, `filename`, `tags`, `type`, `path`, `rank`)
+VALUES ('5007', '247', '1', now(), now(), '20049', 'Uploads', '', 'folder', '/user/20049/vault/5007', '1');
+
+INSERT INTO `media_folder` (`id`, `site_id`, `active`, `created`, `timestamp`, `user_id`, `filename`, `tags`, `type`, `path`, `rank`)
+VALUES ('5008', '247', '1', now(), now(), '17391', 'Uploads', '', 'folder', '/user/17391/vault/5008', '1');
+
+INSERT INTO `media_folder` (`id`, `site_id`, `active`, `created`, `timestamp`, `user_id`, `filename`, `tags`, `type`, `path`, `rank`)
+VALUES ('5009', '247', '1', now(), now(), '20649', 'Uploads', '', 'folder', '/user/20649/vault/5009', '1');
+
+INSERT INTO `media_folder` (`id`, `site_id`, `active`, `created`, `timestamp`, `user_id`, `filename`, `tags`, `type`, `path`, `rank`)
+VALUES ('5010', '247', '1', now(), now(), '20661', 'Uploads', '', 'folder', '/user/20661/vault/5010', '1');
+
+INSERT INTO `media_folder` (`id`, `site_id`, `active`, `created`, `timestamp`, `user_id`, `filename`, `tags`, `type`, `path`, `rank`)
+VALUES ('5011', '247', '1', now(), now(), '17243', 'Uploads', '', 'folder', '/user/17243/vault/5011', '1');
+
+INSERT INTO `media_folder` (`id`, `site_id`, `active`, `created`, `timestamp`, `user_id`, `filename`, `tags`, `type`, `path`, `rank`)
+VALUES ('5012', '247', '1', now(), now(), '20658', 'Uploads', '', 'folder', '/user/20658/vault/5012', '1');
+
 ALTER TABLE `media`
 ADD `folder_id` int(11) NOT NULL DEFAULT '0' AFTER `parent_id`;
 
@@ -357,27 +402,44 @@ DROP INDEX `media_collection_id`;
 ALTER TABLE `media`
 ADD `tags` text NOT NULL;
 
-CREATE TABLE `artwork_related_types` (
+DROP TABLE IF EXISTS `artwork_related_types`;
+
+DROP TABLE IF EXISTS `artwork_related_type`;
+CREATE TABLE `artwork_related_type` (
   `id` smallint(3) unsigned NOT NULL DEFAULT '0',
   `name` varchar(50) NOT NULL,
   `rank` int(10) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `artwork_related_media` (
+INSERT INTO `artwork_related_type` (`id`, `name`, `rank`) VALUES
+(10,  'Blank - leave blank',  1),
+(20,  'Detail', 3),
+(30,  'Installation', 2),
+(40,  'Studio', 5),
+(50,  'Inspiration',  6),
+(60,  'Influences', 7),
+(70,  'Event',  4);
+
+DROP TABLE IF EXISTS `artwork_media`;
+CREATE TABLE `artwork_media` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NULL,
-  `artwork_id` bigint NULL,
-  `type` varchar(25) NULL,
-  `description` text NULL,
-  `media` text NULL
-);
-
-INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-VALUES ('artwork_related_media', '10');
+  `user_id` int(11) DEFAULT NULL,
+  `artwork_id` bigint(20) DEFAULT NULL,
+  `type` varchar(25) DEFAULT NULL,
+  `description` text,
+  `media` text,
+  `row_order` int(11) DEFAULT NULL,
+  `created` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 ALTER TABLE `artwork_media`
 ADD PRIMARY KEY `id` (`id`),
 ADD INDEX `type` (`type`);
+
+INSERT INTO `db_sequence` (`seq_name`, `nextid`)
+VALUES ('artwork_media', '10');
 
 ALTER TABLE `minisite_page`
 ADD `secondary_title` varchar(60) COLLATE 'utf8mb4_general_ci' NOT NULL AFTER `page_title`;
@@ -412,3 +474,45 @@ INSERT INTO `minisite_tpl` (`id`, `created`, `active`, `type`, `parts`, `templat
 (11,  '2019-08-30', 1,  40, 2,  'contact',  'contact'),
 (12,  '2019-08-30', 1,  50, 2,  'bio',  'bio'),
 (13,  '2019-08-30', 1,  60, 2,  'singleExhibitions',  'singleExhibitions');
+
+ALTER TABLE `minisite_page`
+ADD `search1` text NOT NULL;
+
+DROP TABLE IF EXISTS `minisite_menu`;
+CREATE TABLE `minisite_menu` (
+  `id` int(8) NOT NULL,
+  `created` date DEFAULT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` tinyint(1) NOT NULL,
+  `name` varchar(25) NOT NULL DEFAULT '',
+  `logo` text NOT NULL,
+  `sub_title` text NOT NULL,
+  `menu_title` text NOT NULL,
+  `icon_default` int(5) NOT NULL,
+  `icon1` int(5) NOT NULL,
+  `icon2` int(5) NOT NULL,
+  `icon3` int(5) NOT NULL,
+  `icon4` int(5) NOT NULL,
+  `icon5` int(5) NOT NULL,
+  `image` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `minisite_menu` (`id`, `created`, `timestamp`, `active`, `name`, `logo`, `sub_title`, `menu_title`, `icon_default`, `icon1`, `icon2`, `icon3`, `icon4`, `icon5`, `image`) VALUES
+(1, '2019-08-16', '2019-08-16 12:20:37',  1,  'Oslo', 'font-size: 36px !important;',  'font-size: 12px !important;text-transform: uppercase !important;', 'font-size: 12px !important;text-transform: uppercase !important;', 36, 40, 50, 60, 70, 80, 'OlsoMenu.png'),
+(2, '2019-08-16', '2019-08-16 12:22:02',  1,  'Madrid', 'font-size: 28px !important;',  'font-size: 12px !important;text-transform: uppercase !important;', 'font-size: 15px !important;text-transform: none !important;',  28, 28, 35, 40, 45, 50, 'MadridMenu.png'),
+(3, '2019-08-16', '2019-08-16 12:23:16',  1,  'Milan',  'font-size: 30px !important;',  'font-size: 12px !important;text-transform: uppercase !important;', 'font-size: 16px !important;text-transform: capitalize !important;',  30, 40, 50, 60, 70, 80, 'Milan.png'),
+(4, '2019-08-16', '2019-08-16 12:25:16',  1,  'Nicosia',  'font-size: 30px !important;',  'font-size: 12px !important;text-transform: uppercase !important;', 'font-size: 20px !important;text-transform: uppercase !important;', 30, 40, 50, 60, 70, 80, 'Nicosia.png'),
+(5, '2019-08-16', '2019-08-16 12:26:22',  1,  'Athens', 'font-size: 28px !important;',  'font-size: 14px !important;text-transform: capitalize !important;',  'font-size: 16px !important;text-transform: capitalize !important;',  28, 35, 40, 45, 50, 55, 'Athens.png'),
+(6, '2019-08-16', '2019-08-16 12:27:44',  1,  'Lisbon', 'font-size: 28px !important;',  'font-size: 14px !important;text-transform: capitalize !important;',  'font-size: 20px !important;text-transform: capitalize !important;',  28, 35, 40, 45, 50, 55, 'Lisbon.png'),
+(7, '2019-08-16', '2019-08-16 12:28:53',  1,  'Marseille',  'font-size: 28px !important;',  'font-size: 14px !important;text-transform: capitalize !important;',  'font-size: 20px !important;text-transform: capitalize !important;',  28, 35, 40, 45, 50, 55, 'Marseilles.png'),
+(8, '2019-08-16', '2019-08-16 12:29:51',  1,  'Alexandria', 'font-size: 28px !important;',  'font-size: 14px !important;text-transform: capitalize !important;',  'font-size: 20px !important;text-transform: capitalize !important;',  28, 35, 40, 45, 50, 55, 'Alexandria.png');
+
+ALTER TABLE `media_collection_map`
+ADD `description` varchar(128) COLLATE 'utf8_general_ci' NOT NULL AFTER `name`,
+ADD `type` int(11) NOT NULL DEFAULT '30' AFTER `collection_type`;
+
+ALTER TABLE `media_collection_map`
+CHANGE `media_id` `media_id` int(8) NULL AFTER `media_collection_id`;
+
+

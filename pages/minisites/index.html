@@ -32,7 +32,6 @@
 
 {$vp = '//test.vpatina.com'}
 {$cachebust = "?ts`$smarty.now`"}
-{$title = "STIGTER<br>VAN DOESBURG"}
 
 {$user_id = $scope.user_id}
 
@@ -140,19 +139,26 @@
             <a href="{$basepath}/contact#opening-hours">Opening hours</a> <br />
               {$timings = json_decode($profileobj.working_hours,True)}
               {$days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']}
-              {foreach from=$days item=day}              
-              <table>
-                <tr>
-                  <td style= "width:100px"> {$day} </td>
-                  <td> : </td>
-                  {if ($timings[$day] == "0:00-0:00")}
-                    <td> CLOSED </td>
-                  {else}                    
-                    <td> {$timings[$day]}  </td>
-                  {/if}                  
-                </tr>
+              {$summary = []}
+              {foreach from=$timings key=day item=hours}   
+                {if (!array_key_exists($hours, $summary) )}
+                  {$summary[$hours] = array($day)}
+                {else}
+                  {$summary[$hours][] = $day}
+                {/if}
+              {/foreach}
+
+              <table style="width: 70%;">
+              {foreach from=$summary key=$hours item=$days}
+                  <tr>
+                    {if ($hours != "0:00-0:00")}
+                      <td> {array_shift($days)} - {array_pop($days)}</td>  <td>{$hours}</td>
+                    {else}
+                      <td> {array_shift($days)} - {array_pop($days)}</td>  <td> Closed </td>
+                    {/if}
+                  </tr>
+              {/foreach}
               </table>
-            {/foreach}
           {/if}
           <p></p>
         </div>

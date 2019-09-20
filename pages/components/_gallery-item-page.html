@@ -1,0 +1,68 @@
+{{"extend": "_gallery-detail-base.html"}}
+
+{block name=image}
+  {{"include": "_gallery-item-photoswipe.html"}}
+  <!-- <img src="{$media_collection.media_id|photo:'medium'}"> -->
+{/block}
+
+
+{block name=aside}  
+  {$type = related_images_type($media_collection.type) }
+  <h1>{$type}</h1>
+  <div style="font-size: 21px">{$media_collection.description}</div>
+  {$collection = $scope.collection}
+  {$collection_link = $smarty.const.PAGE_GALLERY|link:"media_collection":$collection.type}
+  <br>
+  <h5><div class='italic'>Featured in exhibtion:</div></h5>
+  <h2><a href="{$collection_link}{$collection.title|slugify}-{$collection.id}">{$collection.title}</a></h2>
+
+  {if (($collection.type == $smarty.const.MEDIA_COLLECTION_TYPE_EXHIBITION))}
+    {if ($collection.start_date && $collection.end_date)}
+      {{"include": "_gallery-collection-date"}}
+    {/if}
+    
+    {if ($collection.event)}
+      {$event = $collection.event}
+      {$start_date = explode(' ', $event.end_time)}
+      {$today = today()}
+      {if ($start_date[0] < $today)}
+      {else}
+        {{"include": "_gallery-collection-event.html"}}
+      {/if}
+    {/if}
+    
+    {$profile_link = $smarty.const.PAGE_PROFILE|link}
+    
+    {$artist_ids = $collection.artist_ids|@json_decode}
+    {if (!$artist_ids)} 
+      {$artist_ids = [$collection.artist_id]}
+    {/if}
+    {if ($artist_ids|@count > 0)}
+      {if ($artist_ids|@count == 1)}
+        {$artist = 1}
+      {/if}
+    {/if}
+
+      <hr class="full">
+      <br>
+      <div class='italic'>For more information:</div>
+
+      {$profile = $curator}    
+      {{"include": "_gallery-curator-information"}}
+
+
+    {if ($collection.location_id)}
+      {{"include": "_gallery-collection-location"}}
+    {else}
+      <h3>{if ($curator.city)}{$curator.city}, {/if}{$curator.country|get:countries:name}</h3>
+    {/if}
+    <br>
+    
+    {{"include": "_gallery-contact-information"}}
+  {/if}
+{/block}
+
+{block name=below}                      
+  {if ($artwork.comment)}<p>{$artwork.comment}</p><br>{/if}
+  {if ($artwork.description)}<p>{$artwork.description}</p>{/if}
+{/block}

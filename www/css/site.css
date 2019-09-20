@@ -1,4 +1,4 @@
-@font-face {    
+ @font-face {    
     font-family: 'gotham_lightregular';
     src: url('/css/fonts/gotham-light-webfont.eot');
     src: url('/css/fonts/gotham-light-webfont.eot?#iefix') format('embedded-opentype'),
@@ -270,6 +270,8 @@ body.exhibition .btn-sub-nav-dropdown,body.exhibitions .btn-sub-nav-dropdown {
 
 .table.table-hover  tr td:nth-last-child(2):hover    { border:1px solid #ddd; background: #ECF9FD; } 
 .table.table-hover  tr td:nth-last-child(1):hover    { border:1px solid #ddd; background: #ECF9FD; } 
+.table.table-hover.exhibition_art tr td:hover { border:1px solid #ddd; background: transparent; } 
+.table.table-hover.exhibition_art tr td.editable span:hover { border:1px solid #ddd; background: #ECF9FD; } 
 
 .table.table-hover  tr td:nth-last-child(2):focus    { border:1px solid #ddd; background: #ECF9FD; } 
 .table.table-hover  tr td:nth-last-child(1):focus    { border:1px solid #ddd; background: #ECF9FD; } 
@@ -389,7 +391,7 @@ h3.subtitle{ font-size: 14px !important; }
 /*---Apr 16th shiva---*/
 .fontsty_box
 {
-    background: #b2cda1;
+    background: #9e9ea81a;
     padding: 20px;
     color: #222;
     border:2px solid #222;

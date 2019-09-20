@@ -37,7 +37,7 @@
         {elseif ($add_to_profile1)}
           <li><a href="#" id="sel_add_profile1" data-target_id="{$add_to_profile1}">Add to profile</a></li>
         {elseif ($add_to_website)}
-          <li><a href="#" id="sel_add_website" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$add_to_website}">Add to exhibition</a></li>
+          <li><a href="#" id="sel_add_website" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$add_to_website}">Add to Page</a></li>
         {elseif ($add_to_logo)}
           <li><a href="#" id="sel_add_logo" data-target_id="{$add_to_logo}">Add to Logo</a></li>
         {elseif ($add_to_logo1)}
@@ -387,14 +387,14 @@ function bstArtworkStatusFormatter(value, row, index) {
   }
 
   function bstVaultActionFormatter(value, row, index) {
-    console.log("test "+JSON.stringify(row));
     //console.log("test "+row.type);
     var base_link = row.type == 'folder' ? '/backend/vault' : '/backend/medium';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     console.log("base_link = " + base_link + " pv=" + pv);
     var edit_button = row.type == 'folder' ? '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>' : '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '&folder='+ row.folder_id + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>';
-    return  edit_button;
+    var view_button = '<a href="/backend/vaults/'+ row.id + '?_pv=1" class="ajax-loader" data-target="#subview-container"><i class="fa fa-eye"></i></a>';
+    return  view_button+' '+edit_button;
   }
   
   function bstVaultTypeFormatter(value, row, index) {
@@ -470,12 +470,12 @@ function bstArtworkStatusFormatter(value, row, index) {
     
     if(!json) return bstIDFormatter1(value, row, index);
     var obj = jQuery.parseJSON(json);
-    //console.log("obj = ", obj);
+    console.log("obj = ", obj);
     //console.log("obj.length = ", obj.filename);
 
     if(!obj || !obj.length) return bstIDFormatter1(value, row, index);
     var first = obj[0];
-    //console.log("first = ", first);
+    console.log("first = ", first);
     
     var filename = first.filename;
     //console.log("filename = " + filename);
@@ -487,10 +487,11 @@ function bstArtworkStatusFormatter(value, row, index) {
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     console.log("base_link = " + base_link + " pv=" + pv);
+    console.log("pradeepa link "+filename);
 
     var thumb = filename.replace('/square', '/tiny');
     var print_val = "<img class='table-thumb' src='" + thumb + "'/>";
-    
+    console.log("pradeepa "+print_val);
     return '<a href="{$base_link}/'+ row.id + '/edit/title?_pv=' + pv +
     '" class="' +link_class + '" data-target="#subview-container">'+print_val+'</a>';
   }
@@ -507,9 +508,43 @@ function bstArtworkStatusFormatter(value, row, index) {
   }
 
   function bstUserPhotoFormatter(value, row, index) {
-    return bstMediaJsonFormatter(value, row, index, 'photo');
+    return bstMediaJsonFormatter2(value, row, index, 'photo');
   }
   
+  function bstMediaJsonFormatter2(value, row, index, field) {
+    if(!value) return '';
+    var json_field = field + '_json';
+    var json = row[json_field];
+    //console.log("row option is" + row.title_image_option);
+    //console.log("field=" + field + " json=" + json_field + " json=" + json);
+    //console.log("row json is" + json);
+    
+    if(!json) return bstIDFormatter1(value, row, index);
+    var obj = jQuery.parseJSON(json);
+    console.log("obj = ", obj);
+    //console.log("obj.length = ", obj.filename);
+
+    if(!obj || !obj.length) return bstIDFormatter1(value, row, index);
+    var first = obj[0];
+    console.log("first = ", first);
+    
+    var filename = first.filename;
+    //console.log("filename = " + filename);
+    if(!filename) return bstIDFormatter1(value, row, index);
+
+    var base_link = '{$base_link}';
+    //var filter_link= urlencode($filter_json);
+    //console.log("filter_link = " + filter_link);
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    console.log("base_link = " + base_link + " pv=" + pv);
+
+    var thumb = filename.replace('/square', '/tiny');
+    var print_val = "<img class='table-thumb' src='" + thumb + "'/>";
+
+    return '<a href="{$base_link}/'+ row.id + '/edit/about?_pv=' + pv +
+    '" class="' +link_class + '" data-target="#subview-container">'+print_val+'</a>';
+  }
     
   
 

@@ -32,23 +32,19 @@
           <div class="col-sm-6">
             <div class="fontsty_boxblk">
               <div class="fontsty_box fontsty_box_{$font.id}">
-                <div class="card-title card-title_{$font.id}">Exceptional Exhibition</div>
+                <div class="card-title card-title_{$font.id}">Luna De Jong</div>
                 <ul class="tabs tabs_{$font.id}">
-                  <li class="card-title">Exhibition</li>
-                  <li class="card-title">Project</li>
-                  <li class="card-title">News</li>
-                  <li class="card-title">Team</li>
-                  <li class="card-title">Contact</li>
+                  <li class="card-title">EXHIBITIONS</li>
+                  <li class="card-title">CV</li>
+                  <li class="card-title">CONTACT</li>
+                  <li class="card-title">ABOUT</li>
                 </ul>
                 <hr style="margin-top: -12px; margin-bottom: 0px;">
-                <ul class="tabs tabs_{$font.id}">
-                  <li class="card-title">Latest News</li>
-                </ul>
-                <p class="classic_{$font.id}">We have some great events coming up in the next month that we would love to invite you.</p>
+                <p class="classic_{$font.id}">Photographer, Artist, Explorer</p>
               </div>
               <div class="form-group">
                 <div class="selrad_box">
-                  <input type="radio" class="font_type" name="font_type" id="radio1" value="{$font.id}" {if ($minisite.font_type == $minisite.font_type)}CHECKED{/if}> {$font.name}
+                  <input type="radio" class="font_type" name="font_type" id="radio1" value="{$font.id}" {if ($minisite.font_type == $font.id)}CHECKED{/if}> {$font.name}
                 </div> 
               </div> 
             </div>

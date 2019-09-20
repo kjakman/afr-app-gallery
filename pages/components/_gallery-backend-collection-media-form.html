@@ -1,4 +1,20 @@
-      <input hidden="1" name="id" type="hidden" value="{$collection.id}">
+    {$media_id = $scope.add_media}  
+
+      <label for="media-name">Upload/ Attach ONE related media to the related image record</label>
+      <div class="custom_button_cover">
+      <div class="commonin_row">
+          {"media_collection_map"|object_uploader:$media_id:"map":["resize" => 1, "cloud" => 1, "view" => 'grid', "allow_multiple" => false]}
+        </div>
+        <div class="custom_button_float">
+          <span>OR &nbsp &nbsp</span>
+          <a href="/backend/vaults?add_to_exbart={$collection.id}|{$media_id}&amp;col=1&amp;_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Media Drive</a>
+        </div>
+      </div>
+
+      <a href="/backend/exhibition/{$collection.id}/edit/media?_pv=1" class="ajax-loader" data-target="#subview-container"><button class='btn btn-success'>Save</button></a>
+
+
+      <!-- <input hidden="1" name="id" type="hidden" value="{$collection.id}">
       <input hidden="1" name="obj_id" type="hidden" value="{$collection.id}">
       <input hidden="1" name="obj_type" type="hidden" value="media_collection"> 
       <input hidden="1" name="next_tab" type="hidden" value="title">
@@ -6,7 +22,6 @@
           <label for="media-name">Attach existing art or images</label>
           <div class="col-xs-12">
             <a href="/backend/artworks?add_to={$collection.id}&amp;_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Attach Artworks</a>
-            <!-- <a href="/backend/media?add_to={$collection.id}&amp;_pv=1"    class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Attach Images</a> -->
           </div>
         </div>
 
@@ -22,6 +37,6 @@
             </div>
           </div>
 
-        <div class="gap gap-small"></div>
+        <div class="gap gap-small"></div> -->
         
         

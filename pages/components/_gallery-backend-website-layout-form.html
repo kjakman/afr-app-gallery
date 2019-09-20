@@ -16,7 +16,7 @@
 
           <div class="col-sm-12">
             <label for="HEADER">HEADER</label>
-            <table cellspacing="2"> 
+            <table cellspacing="2" style="width: 100%;"> 
               <tr style="height: 15px;"/>
               <tr>
                 <td style= "width:200px"><label for="Title">Site Title</label></td>
@@ -27,7 +27,7 @@
                   </div>
                 </td>
                 <td >
-                  <div class="input-group">
+                  <div class="input-group" style="display: block;">
                     <input name="name" id="name" class="form-control" value="{$minisite.name}" type="text" /> 
                   </div>
                 </td>
@@ -42,7 +42,7 @@
                   </div>
                 </td>
                 <td>
-                  <div class="input-group">
+                  <div class="input-group" style="display: block;">
                     <input name="sub_title" maxlength="60" id="sub_title" class="form-control" value="{$minisite.sub_title}" type="text" />
                   </div>
                 </td>
@@ -97,12 +97,12 @@
 
           <div class="col-sm-12">
             <label for="FOOTER">FOOTER</label>
-            <table cellspacing="2"> 
+            <table cellspacing="2" style="width: 100%;"> 
               <tr style="height: 15px;"/>
               <tr>
                 <td style= "width:200px"><label for="footer">Footer Text</label></td>
-                <td >
-                  <div class="input-group">
+                <td  colspan="2">
+                  <div class="input-group" style="display: block;">
                     <input name="footer" id="footer" class="form-control" value="{$minisite.footer}" type="text" /> 
                   </div>
                 </td>

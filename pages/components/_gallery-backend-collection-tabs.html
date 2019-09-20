@@ -7,14 +7,16 @@
   
   {$tab6_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'settings']}
   {$tab7_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'publish']}
+  {$tab8_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'medias']}
   
   {$tab = $page.tab|default:'basic'}
   <ul class="nav nav-tabs">
       <li {if ($tab == 'basic')  }class="active"{/if}><a href="{$tab1_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_basic_link">Basic</a></li>
     {if (($collection.subtype != 40) && ($collection.subtype != 50))}
-      <li {if ($tab == 'location')  }class="active"{/if}><a href="{$tab2_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_locations_link">Location</a></li>
+      <li {if ($tab == 'location')  }class="active"{/if}><a href="{$tab2_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_locations_link">Dates/Location</a></li>
     {/if}
-      <li {if ($tab == 'media')}class="active"{/if}><a href="{$tab3_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_media_link">Art</a></li> 
+      <li {if ($tab == 'media')}class="active"{/if}><a href="{$tab3_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_medias_link">Art/Images</a></li> 
+      <li {if ($tab == 'medias') }class="active"{/if}><a href="{$tab8_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_media_link">Media</a></li>
       <li {if ($tab == 'title')}class="active"{/if}><a href="{$tab4_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_title_link">Title Image</a></li> 
     {if (($collection.subtype != 40) && ($collection.subtype != 50))}
       <li {if ($tab == 'events')  }class="active"{/if}><a href="{$tab5_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_events_link">Events</a></li>
@@ -33,13 +35,15 @@
     {elseif ($tab == 'events')}
       {{"include": "_gallery-backend-collection-events-form.html"}}    
     {elseif ($tab == 'media')}
-      {{"include": "_gallery-backend-collection-media-form.html"}}
+      {{"include": "_gallery-backend-collection-medias-form.html"}}
     {elseif ($tab == 'title')}
       {{"include": "_gallery-backend-collection-title-form.html"}}      
     {elseif ($tab == 'settings')}
       {{"include": "_gallery-backend-collection-settings-form.html"}}    
     {elseif ($tab == 'publish')}
-      {{"include": "_gallery-backend-collection-publish-form.html"}}    
+      {{"include": "_gallery-backend-collection-publish-form.html"}}
+    {elseif ($tab == 'medias')}
+      {{"include": "_gallery-backend-collection-media-form.html"}}     
     {else}
       {"Unknown tab `$tab`"|alert:"error"}
     {/if}    

@@ -1,6 +1,7 @@
   {$collection = $scope.collection}
   {$artwork = $scope.artwork}
   {$plugin = $scope.plugin}
+  {$media_collection = $scope.media_collection}
   {$picture = ""}
   {$getpage = $scope.selectedartpage}
   
@@ -13,6 +14,9 @@
   {elseif ($plugin)}
     {$object = $plugin}
     {$what = 'plugin'}
+  {elseif ($media_collection)}
+    {$object = $media_collection}
+    {$what = 'media_collection'}
   {/if}
   
   {* $object|dump *}
@@ -77,6 +81,9 @@
                     {/block}
 
                     {$url = $scope.url|default:$this_full_url}
+                    <div class="container">
+                      
+                    
                     <div class="profileinfo"> 
                       <div class="gallery-artwork-detail">
                         <article class="row mt20">
@@ -181,7 +188,7 @@
                         </article>
                       </div>
                     </div>
-
+                    </div>
                     {block name=script}
                     {/block}
                     

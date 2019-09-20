@@ -11,6 +11,7 @@
 		  {$media_id = $artwork.media_collection_id}
 		{else}
 		  {$artwork_id = $artwork.id}
+		  {$collection_id = $artwork.media_collection_id}
 		  {$link = '/item/'}                          
 		{/if}
 	  {else} 
@@ -23,7 +24,7 @@
 	  {if ($media_id)}
 		{$artwork_link = ($link && $artwork) ? "`$link``$media_id`/`$title|slugify`-`$artwork_id`" : "#"}
 	  {else}
-		{$artwork_link = ($link && $artwork) ? "`$link``$title|slugify`-`$artwork_id`" : "#"}
+		{$artwork_link = ($link && $artwork) ? "`$link``$artwork_id`" : "#"}
 	  {/if}
 	  
 	  {$profile_link = $smarty.const.PAGE_PROFILE|link}
@@ -39,6 +40,7 @@
 	
 	  {$item_data = ["user_id" => $user.id, "site_id" => $site.id, "parent_type" => "media", "parent_id" => $artwork.media_id]}
 	  {$item_json = $item_data|@json_encode}
+	  {$type = related_images_type($artwork.type) }
 
 <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item" data-index="{$index}" data-media_id="{$artwork.media_id}" id="map_{$artwork.id}">
 	<figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
@@ -55,8 +57,13 @@
 		</span>             
 		<div class="__vp-flip-back-card"> 
 			<a href="{$artwork_link}" class="cms-link gallery-link" data-data='{$json}'>                
-			  <h2 class="subtitle">{$artwork.name}</h2>   
-			  <div class="mt10">{$artwork.artist_name}</div>   
+			  {if ($artwork.artwork_id)}             
+			    <h2 class="subtitle">{$artwork.name}</h2>   
+			  	<div class="mt10">{$artwork.artist_name}</div>       
+			  {else}
+			    <h2 class="subtitle">{$type}</h2>           
+			    {if ($artwork.description)} <div class="mt10">{$artwork.description}</div> <br>{/if}
+			  {/if}  
 			</a>               
 		</div>                                                                
 	  </div>           
@@ -64,13 +71,20 @@
 	</div>        
   </figure>
   <div class="photo-grid-title artinfo" style="text-align: left;">  
-    {if ($artwork.artist_name)}
+    {if ($artwork.artist_name && $artwork.artwork_id)}
       <a href="{$profile_link}{$artwork.artist_name|slugify}/{$artwork.artist_id}" class="cms-link gallery-link" data-data='{$json}'><h2 class="black subtitle">{$artwork.artist_name}</h2></a>
     {/if}
-    {if ($artwork.name)}
+    {if (!$artwork.artwork_id)}
+      <a href="{$profile_link}{$artwork.artist_name|slugify}/{$artwork.artist_id}" class="cms-link gallery-link" data-data='{$json}'><h2 class="black subtitle">{$type}</h2></a>
+    {/if}
+    {if ($artwork.name && $artwork.artwork_id)}
       <a href="{$artwork_link}" class="cms-link gallery-link name" data-data='{$json}'><h3 style="font-style: italic;" class="subtitle">{$artwork.name} {if ($artwork.original_year)}<span>, {$artwork.original_year}</span> {/if} {if ($artwork.original_technique)}<span>- {$artwork.original_technique}</span>{/if} </h3></a>
     {/if}
-    <a href="{$profile_link}{$artwork.curator_name|slugify}-{$artwork.curator_id}" class="cms-link gallery-link curator" data-data='{$json}'><h4>{$artwork.curator_name}</h4></a>
+    {if ($artwork.artwork_id)}
+      <a href="{$profile_link}{$artwork.curator_name|slugify}-{$artwork.curator_id}" class="cms-link gallery-link curator" data-data='{$json}'><h4>{$artwork.curator_name}</h4></a>
+    {else}
+      <a href="{$profile_link}{$artwork.curator_name|slugify}-{$artwork.curator_id}" class="cms-link gallery-link curator" data-data='{$json}'><h3 style="font-style: italic;" class="subtitle">{$artwork.description}</h3></a>
+    {/if}
   </div>
 </li>
 

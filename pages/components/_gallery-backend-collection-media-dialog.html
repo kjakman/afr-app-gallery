@@ -8,24 +8,24 @@
      
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <b class="overlay-title">Add Related Image Info</b>
+        <b class="overlay-title">Add art to exhibition</b>
       </div>
        
-      <form name="edit-related-artwork" class="cal-form ajax-submit" id="artwork_dialog_form" 
-        data-handler="save-artwork-related" data-toggle="validator">
+      <form name="edit-related-artwork" class="cal-form ajax-submit" id="collection_dialog_form" 
+        data-handler="save-media-related" data-toggle="validator">
         <!-- <input type="hidden" name="obj_type" value="user_profile" /> -->
         <input type="hidden" name="obj_id"  value="" />
-        <input type="hidden" name="obj_type" id="obj_type"  value="artwork_media" />
-        <input type="hidden" name="artwork_id" id="artwork_id" type="hidden" value="{$artwork.id}">
-        <input type="hidden" name="page"  value="Edit-artwork-info" />
+        <input type="hidden" name="obj_type" id="obj_type"  value="media_collection_map" />
+        <input type="hidden" name="media_collection_id" id="media_collection_id" type="hidden" value="{$collection.id}">
+        <input type="hidden" name="collection_type" id="collection_type" type="hidden" value="{$collection.type}">
+        <input type="hidden" name="page"  value="Edit-colection-info" />
         
         <div class="modal-body">
           <div class="row">
-            {$collection}
             <div class="form-group col-sm-12">
               <label for="artwork-available">Type</label>
               <span class="type-err" style="display: none; color: red;">Please Select Type</span>
-                {"type"|object_select:"artwork_related_type":["class" => "form-control"]}  
+                {"type"|object_select:"artwork_related_type":["class" => "form-control", 'sort' => 'rank asc']}  
             </div>
             
             <div class="form-group col-sm-12">
@@ -55,7 +55,7 @@
 <script type="text/javascript">
    $('#cd-save').on("click",function() {
       setTimeout(function() { 
-       $("#gbe_related_link").trigger('click');
+       $("#gbe_medias_link").trigger('click');
      }, 1500);
       //return false;
 
