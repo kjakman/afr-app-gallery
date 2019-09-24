@@ -356,6 +356,7 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'id'=>                 array('ID',               'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 11),
       'parent_id'=>          array('Parent Id',        'int',   '', 0, 11 ),
       'type'=>               array('Page Type',        'int',   '', 0, 11 ),
+      'level'=>              array('Level',        'int',   '', 0, 5 ),
       'subtype'=>            array('Second Page Type', 'int',   '', 0, 11 ),
       'name'=>               array('Name',             'str',   '', 1, 255 ),
       'separator'=>          array('Separator',             'str',   '', 1, 255 ),

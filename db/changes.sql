@@ -340,14 +340,14 @@ CREATE TABLE `media_folder` (
   `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` int(11) NOT NULL,
-  `filename` varchar(100) NOT NULL DEFAULT '',
-  `tags` text NOT NULL,
-  `type` varchar(25) NOT NULL,
-  `path` varchar(255) NOT NULL DEFAULT ''
-);
-ALTER TABLE `media_folder`
-ADD PRIMARY KEY `id` (`id`),
-ADD INDEX `user_id` (`user_id`);
+  `filename` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
+  `tags` text CHARACTER SET utf8mb4 NOT NULL,
+  `type` varchar(25) CHARACTER SET utf8mb4 NOT NULL,
+  `path` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
+  `rank` int(4) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `db_sequence` (`seq_name`, `nextid`)
 VALUES ('media_folder', '5000');
@@ -514,5 +514,36 @@ ADD `type` int(11) NOT NULL DEFAULT '30' AFTER `collection_type`;
 
 ALTER TABLE `media_collection_map`
 CHANGE `media_id` `media_id` int(8) NULL AFTER `media_collection_id`;
+
+DROP TABLE IF EXISTS `media_tags`;
+CREATE TABLE `media_tags` (
+  `id` int(4) NOT NULL,
+  `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `name` varchar(25) NOT NULL DEFAULT '',
+  `active` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `media_tags` (`id`, `created`, `timestamp`, `name`, `active`) VALUES
+(10,  '2019-08-13 06:16:48',  '2019-08-13 06:16:48',  'Painting', 1),
+(11,  '2019-08-13 06:16:59',  '2019-08-13 06:16:59',  'Sculpture',  1),
+(12,  '2019-08-13 06:17:08',  '2019-08-13 06:17:08',  'Photograph', 1),
+(13,  '2019-08-13 06:17:19',  '2019-08-13 06:17:19',  'Print',  1),
+(14,  '2019-08-13 06:17:50',  '2019-08-13 06:17:50',  'Drawing',  1),
+(15,  '2019-08-13 06:18:02',  '2019-08-13 06:18:02',  'Film', 1),
+(16,  '2019-08-13 06:18:10',  '2019-08-13 06:18:10',  'Video',  1),
+(17,  '2019-08-13 06:18:21',  '2019-08-13 06:18:21',  'Cast', 1),
+(18,  '2019-08-13 06:18:43',  '2019-08-13 06:18:43',  'Installation', 1),
+(19,  '2019-08-13 06:19:41',  '2019-08-13 06:19:41',  'Performance',  1),
+(20,  '2019-08-13 06:20:30',  '2019-08-13 06:20:30',  'Profile',  1),
+(21,  '2019-08-13 06:20:44',  '2019-08-13 06:20:44',  'Portrait', 1),
+(22,  '2019-08-13 06:21:32',  '2019-08-13 06:21:32',  'Detail', 1),
+(23,  '2019-08-13 06:22:47',  '2019-08-13 06:22:47',  'Studio', 1),
+(23,  '2019-08-13 06:22:57',  '2019-08-13 06:22:57',  'Inspiration',  1),
+(24,  '2019-08-13 06:24:16',  '2019-08-13 06:24:16',  'Influence',  1),
+(25,  '2019-08-13 06:24:29',  '2019-08-13 06:24:29',  'Event',  1),
+(26,  '2019-08-13 06:24:42',  '2019-08-13 06:24:42',  'Award',  1),
+(27,  '2019-08-13 06:24:56',  '2019-08-13 06:24:56',  'Press',  1),
+(28,  '2019-08-13 06:25:08',  '2019-08-13 06:25:08',  'Prize',  1);
 
 

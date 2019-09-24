@@ -154,7 +154,7 @@
                     {if ($hours != "0:00-0:00")}
                       <td> {array_shift($days)} - {array_pop($days)}</td>  <td>{$hours}</td>
                     {else}
-                      <td> {array_shift($days)} - {array_pop($days)}</td>  <td> Closed </td>
+                      <!-- <td> {array_shift($days)} - {array_pop($days)}</td>  <td> Closed </td> -->
                     {/if}
                   </tr>
               {/foreach}
@@ -164,14 +164,16 @@
         </div>
         <div class="col-md-5 col-sm-6 col-xs-6">
           {$footer_data = json_decode($ms.footer_data, True)}
-          {if ($footer_data.mailtype == 10)}
-            {{"include": "minisites/classicMail.html"}}
-          {elseif ($footer_data.mailtype == 20)}
-            {{"include": "minisites/condensedMail.html"}}
-          {elseif ($footer_data.mailtype == 30)}
-            {{"include": "minisites/horizontalMail.html"}}
-          {elseif ($footer_data.mailtype == 40)}
-            {{"include": "minisites/unstyledMail.html"}}
+          {if ($footer_data.show_mail)}
+            {if ($footer_data.mailtype == 10)}
+              {{"include": "minisites/classicMail.html"}}
+            {elseif ($footer_data.mailtype == 20)}
+              {{"include": "minisites/condensedMail.html"}}
+            {elseif ($footer_data.mailtype == 30)}
+              {{"include": "minisites/horizontalMail.html"}}
+            {elseif ($footer_data.mailtype == 40)}
+              {{"include": "minisites/unstyledMail.html"}}
+            {/if}
           {/if}
           <!--a href="{$basepath}/submissions">Submissions</a><br />
           <a href="{$basepath}/legal">Terms &amp; Conditions</a><br /-->
