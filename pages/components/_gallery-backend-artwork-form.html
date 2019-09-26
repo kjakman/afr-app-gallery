@@ -32,7 +32,7 @@
             {/foreach}  
             </ul>
             {if ($user.level >= USER_LEVEL_STAFF || $user|has_role:$smarty.const.USER_ROLE_CURATOR)}
-            <button type="button" class="btn btn-primary btn-sm" id="newArtist" data-toggle="modal" data-target="#artist-form-modal">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#artist-form-modal">
               <i class="fa fa-plus-circle"></i> Create Artist
             </button>  
             <a data-toggle="tooltip" data-placement="right" title="Only create new artist if the artist doesn’t exist on the system. To find en existing artist type their name into the bar above."> <i class="fa fa-info-circle"></i></a>

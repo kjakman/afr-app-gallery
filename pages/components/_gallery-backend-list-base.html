@@ -393,8 +393,14 @@ function bstArtworkStatusFormatter(value, row, index) {
     var link_class = pv ? 'ajax-loader' : '';
     console.log("base_link = " + base_link + " pv=" + pv);
     var edit_button = row.type == 'folder' ? '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>' : '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '&folder='+ row.folder_id + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>';
-    var view_button = '<a href="/backend/vaults/'+ row.id + '?_pv=1" class="ajax-loader" data-target="#subview-container"><i class="fa fa-eye"></i></a>';
-    return  view_button+' '+edit_button;
+    if('{$get_str}')
+      var view_button = '<a href="/backend/vaults/'+ row.id + '?_pv=1&{$get_str}" class="ajax-loader" data-target="#subview-container" ><i class="fa fa-eye"></i></a>';
+    else
+      var view_button = '<a href="/backend/vaults/'+ row.id + '?_pv=1" class="ajax-loader" data-target="#subview-container" ><i class="fa fa-eye"></i></a>';
+    if(row.type == 'folder')
+      return  view_button+' '+edit_button;
+    else
+      return  edit_button;
   }
   
   function bstVaultTypeFormatter(value, row, index) {

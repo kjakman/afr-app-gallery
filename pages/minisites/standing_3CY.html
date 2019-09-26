@@ -74,14 +74,14 @@
   {/if}
 
   <script type="text/javascript">
-    $(document).ready(function(){
+
       var yearExist = "{$yearExist|json_encode}";
       console.log("Existing Year "+JSON.stringify(yearExist) );
       var data = jQuery.parseJSON(yearExist);
       $.each(data, function(index, value) {
         $('.year_'+value).show();
       });
-    });
+
   </script>
  
 {/block}
