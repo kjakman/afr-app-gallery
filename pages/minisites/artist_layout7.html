@@ -81,7 +81,7 @@
 		    {$show_data = json_decode($profile.show_data, True)}
 		    
 		   <ul class="profile_infotab nav nav-tabs">
-		      <li class="active nav-item"><a href="javascript:void(0)"  class="nav-link sublink"  data-toggle="tab" data-target="#empty">Selected Artworks </a></li>
+		      <li class="active nav-item"><a href="javascript:void(0)"  class="nav-link sublink"  data-toggle="tab" data-target="#empty">Artworks/Exhibitions</a></li>
 		      <li class="nav-item"><a href="javascript:void(0)"  class="nav-link sublink"  data-toggle="tab" data-target="#cv">CV</a></li>
 		     
 		    </ul>
@@ -91,6 +91,9 @@
 		        <article class="row">
 		        	{{"include": "minisites/_artworks.html"}}
 		        </article>
+		        <div>
+		        	<span style="font-size: 28px;">Exhibitions</span>
+		        </div><br>
 		        {{"include": "minisites/profile_masonry.html"}}
 		      </div>
 
