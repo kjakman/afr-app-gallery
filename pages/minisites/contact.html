@@ -90,7 +90,7 @@
   
           <input name="main_message" type="hidden" value="{$scope.main_message}" />
             
-          <input name="recipient" class="form-control" value="{$scope.receiver_email|default:$site.email_address}" type="hidden" />
+          <input name="recipient" class="form-control" value="{$scope.receiver_email|default:$profileobj.email_address|default:$site.email_address}" type="hidden" />
           <input name="receiver_name" class="form-control" value="{$scope.receiver_name|default:$site.name}" type="hidden" />
           {$debug = 0}
   
