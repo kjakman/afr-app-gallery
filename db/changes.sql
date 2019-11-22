@@ -307,6 +307,9 @@ INSERT INTO `minisite_parent_layout` (`id`, `name`, `image`, `type`, `row_order`
 ALTER TABLE `minisite`
 ADD `sitetitle_size` int(8) NOT NULL;
 
+ALTER TABLE `minisite`
+ADD `title_size` int(8) NOT NULL;
+
 ALTER TABLE `gallery`
 ADD `type` varchar(10) COLLATE 'utf8_general_ci' NOT NULL DEFAULT 'folder';
 
