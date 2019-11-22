@@ -6,82 +6,29 @@
 {/block}  
 
 {block name=content} 
-<style>
-	.item-container{
-		margin:0px auto;
-	}
-	.item-grid {
-		display: block;
-		padding:0px 15px;
-	    float: left;
-		overflow: hidden;
-		z-index: 1;
-	}
-	.item-grid-contnt{
-		
-	}
-	.item-grid h3 {
-		color: #000;
-	}
-	.item-grid p {
-		color: #5b5b5b;
-	}
-	.item-grid img {
-		width: 100%;
-		height: auto;
-		display: block;
-	}
-	.item-grid-sizer, .item-grid {
-		width: 24%;
-	}
-	@media screen and (max-width: 993px) {
-		.item-grid-sizer, .item-grid {
-			width: 32%;
-		}
-	}
-	@media screen and (max-width: 750px) {
-		.item-grid-sizer, .item-grid {
-			width: 46%;
-		}
-	}
-	@media screen and (max-width: 500px) {
-		.item-grid-sizer, .item-grid {
-			width: 100%;
-		}
-	}
-</style>
+
 {$data = json_decode($minisite_pageObj.data, TRUE)}
 {if ($data.show_current)} {$current = 'current'} {/if}
 {if ($data.show_past)} {$past = 'past'} {/if}
 {if ($data.show_future)} {$future = 'future'} {/if}
 {if ($data.show_latest)} {$latest = 'latest'} {/if}
 {$index = 0} 	{$count = 0}
-<div class="item-container">
+<div class="item-container item-four-col">
 	<div class="item-grid-sizer"></div>
 	<div class="item-gutter-sizer"></div>
 	{foreach from=$exhibitions item=exhibition}
 		{if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
-		  <div class="item-grid">
-			 <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
-				<div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
-				  <div class="__vp-flipper">             
-					<div class="__vp-flip-front">               
-					  <img class="__vp-plugin-image center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">             
-					</div>             
-					<div class="__vp-flip-back __vp-plugin-hover">               
-					  <img class="__vp-flip-back-image" src="{$exhibition|collection_photo:'small'}" alt="{$exhibition.name}">               
-					  <div class="__vp-flip-back-card"> 
-						<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">                
-						  <h2>{$exhibition.title}</h2>   
-						  <div class="mt10">{$exhibition|artists}</div> 
-						  <div>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</div>    
-						</a>               
-					  </div>                                                                
-					</div>           
-				  </div>         
-				</div> 
-				{{"include": "minisites/exh_details.html"}}     
-			</figure>
+		  <div class="item-grid effect-{$ms.hover_type}">
+	 		<div class="hover_style">				
+	 		  <figure class="effect-{$ms.hover_type}">
+	 		  	<div class="hover_cover {if ($ms.hover_type == 1004)} text {/if}">
+		 			<img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+		 			{{"include": "minisites/caption/figcaption.html"}}
+		 			<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+		 		</div>		
+	 		  </figure>
+	 		</div>
+	 		{{"include": "minisites/caption/exh_details.html"}}       
 		  </div>
 		  {$count = 1}
 		{/if}
@@ -89,28 +36,17 @@
 
 	{if (($data.show_latest) && (!$count))}
 		{foreach from=$latestexhibitions item=exhibition}
-		<div class="item-grid">
-			 <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
-				<div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
-				  <div class="__vp-flipper">             
-					<div class="__vp-flip-front">               
-					  <img class="__vp-plugin-image center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">             
-					</div>             
-					<div class="__vp-flip-back __vp-plugin-hover">               
-					  <img class="__vp-flip-back-image" src="{$exhibition|collection_photo:'small'}" alt="{$exhibition.name}">               
-					  <div class="__vp-flip-back-card"> 
-						<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">                
-						  <h2>{$exhibition.title}</h2>   
-						  <!-- <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="__vp-info __vp-view-button" id="__vp-view-button-1355">View</a>  -->
-						  <div class="mt10">{$exhibition|artists}</div> 
-						  <div>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</div>    
-						</a>               
-					  </div>                                                                
-					</div>           
-				  </div>         
-				</div> 
-				{{"include": "minisites/exh_details.html"}}        
-			</figure>
+		<div class="item-grid effect-{$ms.hover_type}">
+		  	<div class="hover_style">				
+		  	  <figure class="effect-{$ms.hover_type}">
+		  	  	<div class="hover_cover {if ($ms.hover_type == 1004)} text {/if}">
+			  		<img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+			  		{{"include": "minisites/caption/figcaption.html"}}
+			  		<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+			  	</div>			
+		  	  </figure>
+		  	</div>
+		  	{{"include": "minisites/caption/exh_details.html"}}       
 		</div>
 		{/foreach}
 	{/if}

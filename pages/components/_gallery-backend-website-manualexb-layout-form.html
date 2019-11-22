@@ -1,0 +1,104 @@
+{$obj_id = $scope.page_id}
+{$minisitepage = $scope.minisitepage}
+{$full = $scope.exhibition_sublayout_full}
+{$art = $scope.exhibition_sublayout_art}
+{$page_layout = find_object('minisite_layout', ['id' => $minisitepage.second_layout, 'active' => 1])}
+
+{{"include": "_gallery-backend-website-subtab.html"}}
+
+<input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$obj_id}">
+  {if ($full)}
+  	<div class="row mt20">
+      <div class="row"><label>Full Exhibition Templates</label></div>
+      {foreach from=$full item=$layout}
+      	<div class="col-sm-6">
+      	  <div class="fontsty_boxblk">
+      	    <div class="fontsty_box no-padding"><img src="/img/{$layout.image}" /></div>
+      	    <div class="form-group">
+      	      <div class="selrad_box"> 
+      	        <input type="radio" class="parent_layout" name="second_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
+      	        <div class="radio_group" id="level1_list">
+      	          <label>Show/Hide location of exhibition</label>
+      	          <select id="selectList1_{$layout.id}" class="common3" onchange="save_layout()">
+      	            {if ($page_layout->parent_id == $layout.id)}
+      	              {$level2 = find_objects('minisite_layout', ['parent_id' => $page_layout->parent_id])}
+      	              {foreach from=$level2 item=$level}
+      	                <option value="{$level->id}" {if ($level->id == $page_layout->id)} selected {/if}>{$level->name}</option>
+      	              {/foreach}
+      	            {else}
+      	              <option value="">Select</option>
+      	            {/if}
+      	          </select>
+      	        </div>
+      	      </div>
+      	    </div>
+      	  </div>
+      	</div>
+      {/foreach}
+    </div>
+  {/if}
+
+  {if ($art)}
+  	<div class="row mt20"><label>Template that showcase only the art in the exhibition</label></div>
+  	<div class="row">
+  	 {foreach from=$art item=$layout}
+  	    {$page_layouts = find_object('minisite_layout', ['parent_id' => $layout.id, 'active' => 1], ['fields' => 'distinct id'])}
+  	    <div class="col-sm-6">
+  	      <div class="fontsty_boxblk">
+  	        <div class="fontsty_box no-padding"><img src="/img/{$layout.image}" /></div>
+  	        <div class="form-group">
+  	          <div class="selrad_box">
+  	            <input type="radio" class="second_layout" name="second_layout" id="radio1" value="{$page_layouts->id}" {if ($minisitepage.second_layout == $page_layouts->id)} checked {/if} > {$layout.name}
+  	          </div> 
+  	        </div> 
+  	      </div> 
+  	    </div>  
+  	 {/foreach} 
+  	</div> 
+  {/if}
+
+<script type="text/javascript">
+  $(".parent_layout").change(function() {
+    var page_layout = $('.parent_layout:checked').val();
+    var level = 1;
+    var obj_type = "minisite_layout";
+
+    $(".common3").attr('disabled', 'disabled');
+    $('#selectList1_'+page_layout).removeAttr('disabled');
+
+    $.ajax({ 
+      url: "/ajax.php",
+      data: {
+        oper: "get_layout_id",
+        obj_type : obj_type,
+        parent_id : page_layout,
+        level: level,
+      },
+      success:function(response_data_json) {
+        var datas = JSON.parse(response_data_json);
+        var level1_list = JSON.parse(datas.data);
+        $('#selectList1_'+page_layout).html("");
+        $(level1_list).each(function (i) {
+          $('#selectList1_'+page_layout).append("<option value=\""+level1_list[i].id+"\">"+level1_list[i].name+"</option>");
+        });
+        save_layout();
+      }
+    });
+  });
+
+  function save_layout(){
+    var page_layout = $('.parent_layout:checked').val();
+    var level1_val = $('#selectList1_'+page_layout).val();
+    var obj_id = $('.obj_id').val();
+    $.ajax({ 
+      url: "/ajax.php",
+      dataType: "json",
+      data: {
+        oper: "save-minisite-layout",
+        obj_id: obj_id,
+        obj_type : "minisite_page",
+        second_layout : level1_val,
+      }
+    });
+  }
+</script>

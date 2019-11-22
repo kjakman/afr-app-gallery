@@ -55,15 +55,16 @@
 </style>
 <div class="profileinfo"> 
 	<div class="gallery-artwork-detail">
+	  <div class="outer_container">
 		<div class="row">
-			<div class="col-lg-5 col-md-4 col-sm-3">	
+			<div class="col-lg-4 col-md-3 col-sm-3">	
 				<div class="artistProfile">
 					<div class="image-container-max-height">
 				      <img style="width:100%; max-height:100%;" src="{$profile|userphoto:'big'}" alt="{$profile.display_name}" class="img-responsive"/><br />
 				    </div>
 	      		</div>
 			</div>
-			<div class="col-lg-7 col-md-8 col-sm-9">
+			<div class="col-lg-8 col-md-9 col-sm-9">
 				<h1> {$profile.display_name}</h1> <br>
 				<h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
 				<div id="description" style="text-align: justify;" class="mt20">
@@ -73,6 +74,7 @@
 				</div>
 			</div>
 		</div>
+	  </div>
 		{block name=description}
 			
 		  <div style="text-align: left;" class="mt20">
@@ -87,7 +89,13 @@
 		    <div class="tab-content profileDetails">
 		      <div id="empty" class="tab-pane fade mt20 in active mb20 show">
 		        <article class="row">
-		        	{{"include": "minisites/_artworks.html"}}
+		        	{if ($minisite_pageObj.template == 10)}
+		        	  {{"include": "minisites/selectedartLayout/sa_masonry.html"}}
+		        	{elseif ($minisite_pageObj.template == 20)}
+		        	  {{"include": "minisites/selectedartLayout/sa_hanging.html"}}
+		        	{elseif ($minisite_pageObj.template == 30)}
+		        	  {{"include": "minisites/selectedartLayout/sa_standing.html"}}
+		        	{/if}
 		        </article>
 		      </div>
 
@@ -152,8 +160,6 @@
 			        {/foreach}
 			      </table>       
 			    {/if}
-
-			    
 		      </div> 
 		  	</div>
 		  </div>

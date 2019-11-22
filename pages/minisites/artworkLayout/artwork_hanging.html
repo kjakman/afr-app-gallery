@@ -1,0 +1,40 @@
+
+{$count = $scope.artworks|@count}
+
+{if ($count)}
+  <div class="gallery-related" id="collection_artworks">
+    <div class="profileinfo italic mb10">
+      <h2>Other Art in "{$collection.title}"</h2>
+    </div>
+  </div>
+  {$index = 0}
+  <div class="photo-grid-row col-md-12">
+    <ul class="photo-grid gallery-list natural row">
+      {foreach from=$artworks item=artwork}
+        {if ($artwork.artwork_id)}
+          {$artwork_slug = "artwork~`$artwork.artwork_id`"}
+        {else}
+          {$artwork_slug = "item~`$artwork.id`"}
+        {/if}
+        {$get_artwork = find_object('artwork', ['id'=>$artwork.artwork_id])}
+        <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-4 effect-{$ms.art_animation}" data-index="{$index}" data-media_id="{$artwork.media_id}">
+          <div class="hover_style">       
+            <figure id="{$container_id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index="{$index}" class="vp-loader-photoswipe effect-{$ms.art_animation}">
+              <div class="hover_cover">
+                <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">
+                <figcaption>
+                  {{"include": "minisites/caption/hover_caption.html"}}
+                </figcaption>
+                <a href="{$basepath}/{$collection.page_slug}/{$collection.slug}/{$artwork_slug}">View more</a>
+              </div> 
+            </figure>
+          </div> 
+          {if ($minisite_pageObj.show_details)}
+            {{"include": "minisites/caption/artwork_captions.html"}}
+          {/if}
+        </li>
+        {$index = $index + 1}
+      {/foreach}
+    </ul>
+  </div>
+{/if}

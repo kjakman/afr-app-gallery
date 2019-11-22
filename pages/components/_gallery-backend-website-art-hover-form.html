@@ -1,0 +1,43 @@
+{$hover = $scope.hover}
+<input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$minisite.id|default:$id}">
+<label>Hover Effects (not all animations work with all layouts - find a mix that works for you)</label>
+<div class="col-sm-12 mt20 mb20">
+  <label>What information do you want to show on the text mouseovers/hover effects</label>
+  <div class="input-group">
+    <input type="radio" class="hover_text" name="hover_text" value="1" {if ($minisite.hover_text == 1)} checked {/if} required > Basic Information: Title, Year, Technique..
+  </div>
+  <div class="input-group">
+    <input type="radio" class="hover_text" name="hover_text" value="2" {if ($minisite.hover_text != 1)} checked {/if} required > Details: Number in Series, Edition Number, Presentation...
+  </div>
+</div>
+
+<div class="mt20 hovereffect_options">
+	{foreach from = $hover item=item}
+		<div class="col-sm-6">
+			<div class="fontsty_boxblk effect-{$item.id}">
+				<div class="hover_style fontsty_box classic no-padding">				
+					<figure class="effect-{$item.id}" style="max-height: 290px;">
+						<div class="hover_cover">
+							<img src="/img/art_hover.jpg" alt="img01"/ style="max-height: 290px;">
+							<figcaption>
+								<h2>Dipping in Lake, 2017</h2>
+								<p>Photographic Print on Metal<br>Luna De Jong</p>
+								<a href="#">View more</a>
+							</figcaption>
+						</div>
+					</figure>
+				</div>
+				<div class="form-group">
+					<div class="selrad_box">
+						<input type="radio" class="art_hover" name="art_hover" id="radio1" value="{$item.id}" {if ($minisite.art_animation == $item.id)}CHECKED{/if}> {$item.name} {if (($item.name == 'Flip') || ($item.name == 'Slide Left') )}(recommended for all layouts) {/if}
+					</div> 
+				</div> 
+			</div> 
+		</div>
+	{/foreach}
+</div>
+<script type="text/javascript">
+  $(document).ready( function() {
+    hidetabs();
+  });
+</script>

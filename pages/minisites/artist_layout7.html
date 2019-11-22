@@ -89,7 +89,13 @@
 		    <div class="tab-content profileDetails">
 		      <div id="empty" class="tab-pane fade mt20 in active mb20 show">
 		        <article class="row">
-		        	{{"include": "minisites/_artworks.html"}}
+		        	{if ($minisite_pageObj.template == 10)}
+		        	  {{"include": "minisites/selectedartLayout/sa_masonry.html"}}
+		        	{elseif ($minisite_pageObj.template == 20)}
+		        	  {{"include": "minisites/selectedartLayout/sa_hanging.html"}}
+		        	{elseif ($minisite_pageObj.template == 30)}
+		        	  {{"include": "minisites/selectedartLayout/sa_standing.html"}}
+		        	{/if}
 		        </article>
 		        <div>
 		        	<span style="font-size: 28px;">Exhibitions</span>

@@ -1,0 +1,13 @@
+{if ($type == 'gallery')}
+	<div class="exhibition-title text-center mt10">
+	  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h4 class="description">{$exhibition.title}</h4></a>
+	  <h2 class="description">{$exhibition|artists}</h2>
+	  <h3 class="description"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h3>
+	</div> 
+{else}
+	<div class="exhibition-title text-center mt10">
+	  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h4 class="description">{$exhibition.title}</h4></a>
+	  <h2 class="description">{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name}</h2>
+	  <h3 class="description"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h3>
+	</div> 
+{/if}

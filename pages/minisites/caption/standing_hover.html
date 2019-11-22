@@ -1,0 +1,25 @@
+{$loc = $exhibition.location_id|get:"location"}
+
+{if ($type == 'gallery')}             
+  <h2>{$exhibition.title}</h2>                                         
+  <div class="mt10">{$exhibition|artists}</div> 
+  {if ($exhibition.selection_range)}
+    <div>{$exhibition.selection_range}</div>
+  {else}
+  	<div>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</div> 
+  {/if}
+  
+{else}
+  <h2>{$exhibition.title}</h2>   
+  {if ($exhibition.selection_type)}
+	<div class="mt10"> {$exhibition.selection_type}</div>
+  {else}                                      
+	<div class="mt10">{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name}</div>
+  {/if} 
+
+  {if ($exhibition.selection_range)}
+    <div>{$exhibition.selection_range}</div>
+  {else}
+  	<div>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</div> 
+  {/if}
+{/if}

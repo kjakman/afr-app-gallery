@@ -1,0 +1,100 @@
+{{"extend": "minisites/index.html"}}
+
+{$collection = $scope.collection}
+{block name=title}
+  {if ($title)} <h2 class="page_title">{$title}</h2>{/if}      
+{/block}
+
+{block name=content}
+{$artist_id = $collection.artist_id}
+{$artist_ids = $collection.artist_ids|@json_decode}
+
+  <div class="row detail-page-row">
+    <div class="col-md-3 col-sm-12 text-left artist-subnav-container">
+      <div class="artist-sub-nav">
+        <h1 class="sub-nav-header artist-sub-nav-header"> 
+          {foreach from=$artist_ids item=$artist_id}
+            {$artist_name[] = $artist_id|displayname}
+          {/foreach}
+          {', '|implode:$artist_name}
+          <br><br>
+          {if ($collection.page_slug)}
+          <a href="{$basepath}/{$collection.page_slug}/{$slug}">{$collection.title|default:"Untitled"}</a>
+        </h1>
+          <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
+            <li><a href="{$basepath}/{$collection.page_slug}/{$slug}/images" class="">Images</a></li>
+          </ul>
+          {else}
+            <a href="{$basepath}/{$collection.page_slug}/{$slug}">{$collection.title|default:"Untitled"}</a>
+            <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
+              <li><a href="{$basepath}/{$page}/{$slug}/images" class="">Imagess</a></li>
+            </ul>
+        </h1>
+          {/if}
+        <!-- mobile layout -->
+        <div class="hidden-md-up btn-group sub-nav-ul artist-sub-nav-ul mobile-sub-nav-ul">
+          <button type="button" class="btn dropdown-toggle btn-sub-nav-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            About Exhibition
+          </button>
+          <div class="dropdown-menu">
+            {if ($collection.page_slug)}
+              <li class="sub-nav-li"><a href="{$basepath}/{$collection.page_slug}/{$slug}/images" class="dropdown-item">Images</a></li>
+            {else}
+              <li class="sub-nav-li"><a href="{$basepath}/{$page}/{$slug}/images" class="dropdown-item">Images</a></li>
+            {/if}
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="small-text">
+        {if ($collection.start_date && $collection.end_date)}
+          {{"include": "_gallery-collection-date.html"}}
+        {/if}
+        
+        {if ($collection.event)}
+          {$event = $collection.event}
+          {{"include": "_gallery-collection-event.html"}}
+        {/if}
+      </div>
+    </div>
+    
+    <div class="col-md-8 col-sm-12 detail-text artwork-row">
+      {if ($subview == 'images')}
+        {if ($minisite_pageObj.template == 10)}
+          {{"include": "minisites/selectedartLayout/sa_masonry.html"}}
+        {elseif ($minisite_pageObj.template == 20)}
+          {{"include": "minisites/selectedartLayout/sa_hanging.html"}}
+        {elseif ($minisite_pageObj.template == 30)}
+          {{"include": "minisites/selectedartLayout/sa_standing.html"}}
+        {/if}
+        
+      {elseif ($subview == 'location')}    
+        <div class="row text-left">
+          <div class="col-md-12">        
+          {$loc = $collection.location_id|get:"location"}
+          {{"include":"_gallery-collection-map.html"}}
+          </div>
+        </div>
+      
+      {elseif ($subview == 'publications')}
+        <div class="row text-left">
+          <div class="col-md-12">
+            <h4>Publications</h4>
+            <p>{$collection.publications}</p>
+          </div>
+        </div>
+      
+      {else}
+        <div class="image-container-max-height">
+          <img src="{$collection.id|collection_photo:'medium'}" alt="{$collection.title}" class="img-responsive" /><br />
+        </div>
+        <br />
+        <div style="text-align: justify;">
+         {$collection.description}
+        </div>
+        <p>&nbsp;</p>
+      {/if}
+    </div>
+  </div>
+
+{/block}  

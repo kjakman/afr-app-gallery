@@ -1,41 +1,43 @@
 
 {$index = 0}
-{$container_id = "artwork_`$artwork.id`"}
-{$data = ["obj_type" => "media_collection","obj_id" => $scope.collection_id, "plugin_id" => "1355","container_id" => $container_id]}
-{$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}
-
-<div class="row photo-grid-row">
-  <ul class="photo-grid gallery-list">
+<div class="item-container">
+  <div class="item-grid-sizer"></div>
+  <div class="item-gutter-sizer"></div>
     {foreach from=$artworks item=artwork}
-      <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item" data-index="{$index}" data-media_id="{$artwork.media_id}">
-        <figure id="{$container_id}" data-data='{$data|@json_encode}' 
-          data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' 
-          data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
-          <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
-            <div class="__vp-flipper">             
-              <div class="__vp-flip-front">               
-                <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">             
-              </div>             
-              <div class="__vp-flip-back __vp-plugin-hover">               
-                <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">
-                <div class="__vp-flip-back-card">                 
-                  {if ($artwork.artwork_id)}             
-                    <h2>{$artwork.name}{if ($artwork.original_year)}, {$artwork.original_year}{/if}</h2>           
-                    <div>{$artwork.original_technique}</div>    <br>        
-                  {else}
-                    {$type = related_images_type($artwork.type) }
-                    <h2>{$type}</h2>           
-                    {if ($artwork.description)} <div>{$artwork.description}</div> <br>{/if}
-                  {/if}                      
-                  <a href="#" class="__vp-info __vp-view-button" id="__vp-view-button-1355">View</a>               
-                </div>                                                                
-              </div>           
-            </div>         
-          </div>         
-        </figure>
-      </li>
-      {$index = $index + 1}
+      {$container_id = "artwork_`$artwork.id`"}
+      {$data = ["obj_type" => "media_collection","obj_id" => $scope.collection_id, "plugin_id" => "1355","container_id" => $container_id]}
+      {$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}
+      {$get_artwork = find_object('artwork', ['id'=>$artwork.artwork_id])}
+      <div class="item-grid effect-{$ms.art_animation}">
+        <div class="hover_style">       
+          <figure id="{$container_id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index="{$index}" class="vp-loader-photoswipe effect-{$ms.art_animation}">
+            <div class="hover_cover">
+              <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">
+              <figcaption>
+                {{"include": "minisites/caption/hover_caption.html"}}
+              </figcaption> 
+              <a href="#" id="__vp-view-button-1355">View</a>               
+            </div> 
+          </figure>
+        </div>
+        {if ($minisite_pageObj.show_details)}
+          {{"include": "minisites/caption/artwork_captions.html"}}
+        {/if}
+      </div>  
+    {$index = $index + 1}
     {/foreach}
-  </ul>
 </div>
-
+<script src='https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js'></script>
+<script>
+  jQuery(window).on('load', function() {
+  
+    $('.item-container').masonry({
+    columnWidth : '.item-grid-sizer',
+    gutter : 15,
+    itemSelector : '.item-grid',
+    percentPosition : 'true',
+    fitWidth: true,
+    });
+    
+  });
+</script>

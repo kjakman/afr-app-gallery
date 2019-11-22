@@ -1,204 +1,579 @@
-{$minisitepage = $scope.minisitepage}
-{$layouts = $scope.exhibition_layout}
-{$sub_layouts = $scope.exhibition_sub_layout}
 {$obj_id = $scope.page_id}
+{$minisitepage = $scope.minisitepage}
+{$organic = $scope.exhibition_layout_organic}
+{$landscape = $scope.exhibition_layout_landscape}
+{$timeline = $scope.exhibition_layout_timeline}
+{$magazine = $scope.exhibition_layout_magazine}
+
 {$page_layout = find_object('minisite_layout', ['id' => $minisitepage.page_layout, 'active' => 1])}
 
 {{"include": "_gallery-backend-website-subtab.html"}}
+  <div class="mt20">
+    <a href="https://vimeo.com/339580567" class="btn btn-success" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Exhibition Layout Tutorial</a>
+  </div>
+  
 
-    <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$obj_id}">  
-     
-     <div class="row mt20"> 
-        {foreach from=$layouts item=$layout}  
-          {if ($layout.id == 40)}  
-            <div class="col-sm-6">
-                <div class="fontsty_boxblk">
-                    <div class="fontsty_box no-padding">
-                        <img src="/img/{$layout.image}" />
-                    </div>
-                    <div class="form-group">
-                      <div class="selrad_box"> 
-                        <input type="radio" class="new_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
-                        <div class="radio_group">
-                          {foreach from=$sub_layouts item=$sub_layout}
-                            {if ($layout.id == $sub_layout.parent_id)}
-                              {if ($sub_layout.separator == off)}
-                                <input hidden="1" type="hidden" class="3C_{$layout.id}" value="{$sub_layout.id}">
-                              {elseif ($sub_layout.separator == on)}
-                                <input hidden="1" type="hidden" class="4C_{$layout.id}" value="{$sub_layout.id}">
-                              {/if}
-                            {/if}
-                          {/foreach}
-                           <span style="margin-right:10px">Filter</span>  
-                           <span style="margin-right:10px"><input type="radio" class="col_{$layout.id}" name="col_{$layout.id}" id="newradio1" value="1" onclick="btn_click(this);" {if (($page_layout->separator == off) && ($page_layout->parent_id == $layout.id))} checked {/if} > Off </span>
-                           <span style="margin-right:10px"><input type="radio" class="col1_{$layout.id}" name="col_{$layout.id}" id="newradio1" value="2" onclick="btn_click(this);" {if (($page_layout->separator == on) && ($page_layout->parent_id == $layout.id))} checked {/if}> On </span>
-                        </div>
-                      </div>  
-                    </div>
-                </div> 
-            </div> 
-          {elseif ($layout.id == 102)}
-            <div class="col-sm-6">
-                <div class="fontsty_boxblk">
-                    <div class="fontsty_box no-padding">
-                        <img src="/img/{$layout.image}" />
-                    </div>
-                    <div class="form-group">
-                      <div class="selrad_box"> 
-                        <input type="radio" class="new_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
-                        <div class="radio_group" style="display: none;">
-                          {foreach from=$sub_layouts item=$sub_layout}
-                            {if ($layout.id == $sub_layout.parent_id)}
-                              {if ($sub_layout.separator == 'none')}
-                                <input hidden="1" type="hidden" class="3C_{$layout.id}" value="{$sub_layout.id}">
-                              {/if}
-                            {/if}
-                          {/foreach}
-                           <span style="margin-right:10px">Separators</span> 
-                           <span style="margin-right:10px"><input type="radio" class="col_{$layout.id}" name="col_{$layout.id}" id="newradio1" value="1"  {if (($page_layout->separator == 'none') && ($page_layout->parent_id == $layout.id))} checked {/if} > None </span>
-                        </div><br>
-                           <br>
-                      </div>  
-                    </div>
-                </div> 
-            </div> 
-            
-          {else}
-            <div class="col-sm-6">
-                <div class="fontsty_boxblk">
-                    <div class="fontsty_box no-padding">
-                        <img src="/img/{$layout.image}" />
-                    </div>
-                    <div class="form-group">
-                      <div class="selrad_box"> 
-                        <input type="radio" class="new_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
-                        <div class="radio_group">
-                            {foreach from=$sub_layouts item=$sub_layout}
-                              {if ($layout.id == $sub_layout.parent_id)}
-                                {if ($sub_layout.separator == 3C)}
-                                  <input hidden="1" type="hidden" class="3C_{$layout.id}" value="{$sub_layout.id}">
-                                {elseif ($sub_layout.separator == 4C)}
-                                  <input hidden="1" type="hidden" class="4C_{$layout.id}" value="{$sub_layout.id}">
-                                {elseif ($sub_layout.separator == 3CT)}
-                                  <input hidden="1" type="hidden" class="3CT_{$layout.id}" value="{$sub_layout.id}">
-                                {elseif ($sub_layout.separator == 4CT)}
-                                  <input hidden="1" type="hidden" class="4CT_{$layout.id}" value="{$sub_layout.id}">
-                                {elseif ($sub_layout.separator == 3CY)}
-                                  <input hidden="1" type="hidden" class="3CY_{$layout.id}" value="{$sub_layout.id}">
-                                {elseif ($sub_layout.separator == 4CY)}
-                                  <input hidden="1" type="hidden" class="4CY_{$layout.id}" value="{$sub_layout.id}">
-                                {/if}
-                              {/if}
-                            {/foreach}
-                             <span style="margin-right:10px">Number Columns</span>  
-                             <span style="margin-right:10px"><input type="radio" class="col_{$layout.id}" name="col_{$layout.id}" id="newradio1" value="1" onclick="btn_click(this);" {if ((($page_layout->separator == 3C) || ($page_layout->separator == 3CT) || ($page_layout->separator == 3CY)) && ($page_layout->parent_id == $layout.id))} checked {/if} > 3C </span>
-                             <span style="margin-right:10px"><input type="radio" class="col1_{$layout.id}" name="col_{$layout.id}" id="newradio1" value="2" onclick="btn_click(this);" {if ( (($page_layout->separator == 4C) || ($page_layout->separator == 4CT) || ($page_layout->separator == 4CY)) && ($page_layout->parent_id == $layout.id))} checked {/if}> 4C </span>
-                             <br>
-                             <span style="margin-right:10px">Separators</span>  
-                             <span style="margin-right:10px"><input type="radio" class="sep_{$layout.id}" name="sep_{$layout.id}" id="newradio1" value="1" onclick="btn_click(this);" {if (($page_layout->separator == 3C || $page_layout->separator == 4C) && ($page_layout->parent_id == $layout.id))} checked {/if}> None </span>
-                             <span style="margin-right:10px"><input type="radio" class="sep1_{$layout.id}" name="sep_{$layout.id}" id="newradio1" value="2" onclick="btn_click(this);" {if (($page_layout->separator == 3CT || $page_layout->separator == 4CT) && ($page_layout->parent_id == $layout.id))} checked {/if} > Past Current Future</span>
-                             <span style="margin-right:10px"><input type="radio" class="sep1_{$layout.id}" name="sep_{$layout.id}" id="newradio1" value="3" onclick="btn_click(this);" {if (($page_layout->separator == 3CY || $page_layout->separator == 4CY) && ($page_layout->parent_id == $layout.id))} checked {/if} > Year </span>
-                        </div>
-                      </div>  
-                    </div>
-                </div> 
+  <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$obj_id}">  
+
+  {if ($organic)} 
+   <div class="row mt20">
+    <div class="row"><label>Organic Grid/ Calendar Layouts</label></div>
+    {foreach from=$organic item=$layout}
+      <div class="col-sm-6">
+        <div class="fontsty_boxblk">
+          <div class="fontsty_box no-padding"><img src="/img/{$layout.image}" /></div>
+          <div class="form-group">
+            <div class="selrad_box"> 
+              <input type="radio" class="parent_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
+              <div class="radio_group" id="level1_list">
+                <label>Number of columns</label>
+                  <select id="selectList1_{$layout.id}" class="common1" onchange="get_level2()">
+                  {if (($page_layout->parent_id == $layout.id) && ($page_layout->level1_id) )}
+                    {$level1 = find_objects('minisite_level1', ['parent_id' => $page_layout->parent_id])}
+                    {foreach from=$level1 item=$level}
+                      <option value="{$level->id}" {if ($level->id == $page_layout->level1_id)} selected {/if}>{$level->name}</option>
+                    {/foreach}
+                  {else}
+                    <option value="">Select Number of columns</option>
+                  {/if}
+                </select>
+              </div>
+              <div class="radio_group_{$layout.id}" id="level2_list">
+                <label>Separators</label>
+                  <select id="selectList2_{$layout.id}" class="common2" onchange="save_layout()">
+                  {if (($page_layout->parent_id == $layout.id) && ($page_layout->level1_id) )}
+                    {$level2 = find_objects('minisite_layout', ['parent_id' => $page_layout->parent_id, 'level1_id' =>$page_layout->level1_id ])}
+                    {foreach from=$level2 item=$level}
+                      <option value="{$level->id}" {if ($level->id == $page_layout->id)} selected {/if}>{$level->name}</option>
+                    {/foreach}
+                  {else}
+                    <option value="">Select Separators</option>
+                  {/if}
+                </select>
+              </div>
+              <div class="radio_group_{$layout.id}" id="level3_list">
+                <label>Show/hide information under Exhibitions</label>
+                  <select id="selectList4_{$layout.id}" class="common1" onchange="save_info()">
+                  {if (($page_layout->parent_id == $layout.id))}
+                    {$level4 = [1 =>'Show' , 0=>'Hide']}
+                    {foreach from=$level4 key=key item=$level}
+                      <option value="{$key}" {if ($minisitepage.show_details == $key)} Selected {/if}>{$level}</option>
+                    {/foreach}
+                  {else}
+                    <option value="">Select</option>
+                  {/if}
+                </select>
+              </div>
+            </div>  
+          </div>
+        </div> 
+      </div>
+    {/foreach}
+   </div>
+  {/if}
+  
+  {if ($landscape)} 
+   <div class="row mt20">
+    <div class="row"><label>Landscape Grid/ Calendar Layouts </label></div>
+    {foreach from=$landscape item=$layout}
+      <div class="col-sm-6">
+        <div class="fontsty_boxblk">
+          <div class="fontsty_box no-padding"><img src="/img/{$layout.image}" /></div>
+          <div class="form-group">
+            <div class="selrad_box"> 
+              <input type="radio" class="parent_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
+              <div class="radio_group" id="level1_list">
+                <label>Number of columns</label>
+                  <select id="selectList1_{$layout.id}" class="common1" onchange="get_level2()">
+                  {if (($page_layout->parent_id == $layout.id) && ($page_layout->level1_id) )}
+                    {$level1 = find_objects('minisite_level1', ['parent_id' => $page_layout->parent_id])}
+                    {foreach from=$level1 item=$level}
+                      <option value="{$level->id}" {if ($level->id == $page_layout->level1_id)} selected {/if}>{$level->name}</option>
+                    {/foreach}
+                  {else}
+                    <option value="">Select Number of columns</option>
+                  {/if}
+                </select>
+              </div>
+              <div class="radio_group_{$layout.id}" id="level2_list">
+                <label>Separators</label>
+                  <select id="selectList2_{$layout.id}" class="common2" onchange="save_layout()">
+                  {if (($page_layout->parent_id == $layout.id) && ($page_layout->level1_id) )}
+                    {$level2 = find_objects('minisite_layout', ['parent_id' => $page_layout->parent_id, 'level1_id' =>$page_layout->level1_id ])}
+                    {foreach from=$level2 item=$level}
+                      <option value="{$level->id}" {if ($level->id == $page_layout->id)} selected {/if}>{$level->name}</option>
+                    {/foreach}
+                  {else}
+                    <option value="">Select Separators</option>
+                  {/if}
+                </select>
+              </div>
+              <div class="radio_group_{$layout.id}" id="level3_list">
+                <label>Show/hide information under Exhibitions</label>
+                  <select id="selectList4_{$layout.id}" class="common1" onchange="save_info()">
+                  {if (($page_layout->parent_id == $layout.id))}
+                    {$level4 = [1 =>'Show' , 0=>'Hide']}
+                    {foreach from=$level4 key=key item=$level}
+                      <option value="{$key}" {if ($minisitepage.show_details == $key)} Selected {/if}>{$level}</option>
+                    {/foreach}
+                  {else}
+                    <option value="">Select</option>
+                  {/if}
+                </select>
+              </div>
+            </div>  
+          </div>
+        </div> 
+      </div>
+    {/foreach}
+   </div>
+  {/if}
+
+  {if ($magazine)}
+   <div class="row mt20">
+    <div class="row"><label>Magazine Layouts - Image Focused </label></div>
+    {foreach from=$magazine item=$layout}
+     {if ($layout.id == 122 || $layout.id == 123 || $layout.id == 102)} <!-- Granada and Niagara -->
+      {$get_level = find_object('minisite_level1', ['id' => $page_layout->level1_id ])}
+      <div class="col-sm-6">
+        <div class="fontsty_boxblk">
+          <div class="fontsty_box no-padding"><img src="/img/{$layout.image}" /></div>
+          <div class="form-group">
+            <div class="selrad_box"> 
+              <input type="radio" class="parent_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
+                <div class="radio_group" id="level1_list">
+                {if ($layout.id == 123)}    <!-- Change label for niagara -->
+                  <label>Select Style</label>
+                {else}
+                  <label>Layout Below Banner</label>
+                {/if}
+                    <select id="selectList1_{$layout.id}" class="common4" onchange="get_billboard_level2()">
+                    {if (($page_layout->parent_id == $layout.id) && ($page_layout->level1_id) )}
+                      {$level1 = find_objects('minisite_level1', ['parent_id' => $page_layout->parent_id, 'level_2'=> 0], ['sort' => 'row_order asc'])}
+                      {foreach from=$level1 item=$level}
+                        <option value="{$level->id}" {if ($level->id == $get_level->level_2)} selected {/if}>{$level->name}</option>
+                      {/foreach}
+                    {else}
+                      <option value="">Select Layout Below Banner</option>
+                    {/if}
+                  </select>
+                </div>
+                <div class="outer_{$layout.id}">
+                <div class="radio_group_{$layout.id}" id="level1_mid">
+                  <label>Select Style</label>
+                    <select id="selectList1mid_{$layout.id}" class="common3" onchange="get_billboard_level3()">
+                    {if (($page_layout->parent_id == $layout.id) && ($page_layout->level1_id) )}
+                      {$level2 = find_objects('minisite_level1', ['parent_id' => $page_layout->parent_id, 'level_2' =>$get_level->level_2], ['sort' => 'row_order asc'])}
+                      {foreach from=$level2 item=$level}
+                        <option value="{$level->id}" {if ($level->id == $page_layout->level1_id)} selected {/if}>{$level->name}</option>
+                      {/foreach}
+                    {else}
+                      <option value="">Select Layout Below Banner</option>
+                    {/if}
+                  </select>
+                </div>
+                <div class="radio_group_{$layout.id}" id="level2_list">
+                  <label> Number of columns</label>
+                    <select id="selectList2_{$layout.id}" class="common2" onchange="save_layout()" >
+                    {if (($page_layout->parent_id == $layout.id) && ($page_layout->level1_id) )}
+                      {$level3 = find_objects('minisite_layout', ['parent_id' => $page_layout->parent_id, 'level1_id' =>$page_layout->level1_id ])}
+                      {foreach from=$level3 item=$level}
+                        <option value="{$level->id}" {if ($level->id == $page_layout->id)} selected {/if}>{$level->name}</option>
+                      {/foreach}
+                    {else}
+                      <option value="">Select Number of columns</option>
+                    {/if}
+                  </select>
+                </div>
+                <div class="radio_group_{$layout.id}" id="level3_list">
+                  <label>Show/hide information under Exhibitions</label>
+                    <select id="selectList4_{$layout.id}" class="common1" onchange="save_info()">
+                    {if (($page_layout->parent_id == $layout.id))}
+                      {$level4 = [1 =>'Show' , 0=>'Hide']}
+                      {foreach from=$level4 key=key item=$level}
+                        <option value="{$key}" {if ($minisitepage.show_details == $key)} Selected {/if}>{$level}</option>
+                      {/foreach}
+                    {else}
+                      <option value="">Select</option>
+                    {/if}
+                  </select>
+                </div>
+              </div>
             </div>
-          {/if}  
-        {/foreach}    
-     </div>
+          </div>
+        </div>
+      </div>
+     {/if}
+    {/foreach}
+   </div>
+
+   <div class="row mt20">
+    <div class="row"><label>Magazine Layouts - Details & Description  </label></div>
+    {foreach from=$magazine item=$layout}
+     {if ($layout.id == 121 || $layout.id == 120 || $layout.id == 119)} <!-- Life, Guillotine, Parallax -->
+      {$get_level = find_object('minisite_level1', ['id' => $page_layout->level1_id ])}
+      <div class="col-sm-6">
+        <div class="fontsty_boxblk">
+          <div class="fontsty_box no-padding"><img src="/img/{$layout.image}" /></div>
+          <div class="form-group">
+            <div class="selrad_box"> 
+              <input type="radio" class="parent_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
+                <div class="radio_group" id="level1_list">
+                  <label>Layout Below Banner</label>
+                    <select id="selectList1_{$layout.id}" class="common4" onchange="get_billboard_level2()">
+                    {if (($page_layout->parent_id == $layout.id) && ($page_layout->level1_id) )}
+                      {$level1 = find_objects('minisite_level1', ['parent_id' => $page_layout->parent_id, 'level_2'=> 0], ['sort' => 'row_order asc'])}
+                      {foreach from=$level1 item=$level}
+                        <option value="{$level->id}" {if ($level->id == $get_level->level_2)} selected {/if}>{$level->name}</option>
+                      {/foreach}
+                    {else}
+                      <option value="">Select Layout Below Banner</option>
+                    {/if}
+                  </select>
+                </div>
+                <div class="outer_{$layout.id}">
+                <div class="radio_group_{$layout.id}" id="level1_mid">
+                  <label>Select Style</label>
+                    <select id="selectList1mid_{$layout.id}" class="common3" onchange="get_billboard_level3()">
+                    {if (($page_layout->parent_id == $layout.id) && ($page_layout->level1_id) )}
+                      {$level2 = find_objects('minisite_level1', ['parent_id' => $page_layout->parent_id, 'level_2' =>$get_level->level_2], ['sort' => 'row_order asc'])}
+                      {foreach from=$level2 item=$level}
+                        <option value="{$level->id}" {if ($level->id == $page_layout->level1_id)} selected {/if}>{$level->name}</option>
+                      {/foreach}
+                    {else}
+                      <option value="">Select Layout Below Banner</option>
+                    {/if}
+                  </select>
+                </div>
+                <div class="radio_group_{$layout.id}" id="level2_list">
+                  <label> Number of columns</label>
+                    <select id="selectList2_{$layout.id}" class="common2" onchange="save_layout()" >
+                    {if (($page_layout->parent_id == $layout.id) && ($page_layout->level1_id) )}
+                      {$level3 = find_objects('minisite_layout', ['parent_id' => $page_layout->parent_id, 'level1_id' =>$page_layout->level1_id ])}
+                      {foreach from=$level3 item=$level}
+                        <option value="{$level->id}" {if ($level->id == $page_layout->id)} selected {/if}>{$level->name}</option>
+                      {/foreach}
+                    {else}
+                      <option value="">Select Number of columns</option>
+                    {/if}
+                  </select>
+                </div>
+                <div class="radio_group_{$layout.id}" id="level3_list">
+                  <label>Show/hide information under Exhibitions</label>
+                    <select id="selectList4_{$layout.id}" class="common1" onchange="save_info()">
+                    {if (($page_layout->parent_id == $layout.id))}
+                      {$level4 = [1 =>'Show' , 0=>'Hide']}
+                      {foreach from=$level4 key=key item=$level}
+                        <option value="{$key}" {if ($minisitepage.show_details == $key)} Selected {/if}>{$level}</option>
+                      {/foreach}
+                    {else}
+                      <option value="">Select</option>
+                    {/if}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     {/if}
+    {/foreach}
+   </div>
+  {/if}
+
+  {if ($timeline)}
+   <div class="row mt20">
+    <div class="row"><label>Timeline Layouts</label></div>
+    {foreach from=$timeline item=$layout}
+      <div class="col-sm-6">
+        <div class="fontsty_boxblk">
+          <div class="fontsty_box no-padding"><img src="/img/{$layout.image}" /></div>
+          <div class="form-group">
+            <div class="selrad_box"> 
+              <input type="radio" class="parent_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
+              <div class="radio_group" id="level1_list">
+                <label>Filter</label>
+                <select id="selectList2_{$layout.id}" class="common3" onchange="save_layout()">
+                  {if (($page_layout->parent_id == $layout.id) && ($page_layout->level1_id) )}
+                    {$level2 = find_objects('minisite_layout', ['parent_id' => $page_layout->parent_id])}
+                    {foreach from=$level2 item=$level}
+                      <option value="{$level->id}" {if ($level->id == $page_layout->id)} selected {/if}>{$level->name}</option>
+                    {/foreach}
+                  {else}
+                    <option value="">Select Filters</option>
+                  {/if}
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {/foreach}
+   </div>
+  {/if}
 
 <script type="text/javascript">
-	$("#gbe_artist_link").hide();
-	$("#gbe_home_link").hide();   
-	$("#gbe_contact_link").hide(); 
-	$("#gbe_bio_link").hide(); 
-
-  $(document).ready(function() {
-    $(".radio_group").find("input:radio").attr('disabled',true);
-    var page_layout = $('.new_layout:checked').val();
-    $('input[name=col_'+page_layout+']').attr('disabled',false);
-    $('input[name=sep_'+page_layout+']').attr('disabled',false);
-  });
-
-  $(".new_layout").change(function() {
-    $(".radio_group").find("input:radio").removeAttr('checked');
-    $(".radio_group").find("input:radio").attr('disabled',true);
-    var page_layout = $('.new_layout:checked').val();
-    var obj_id = $('.obj_id').val();
-    var value = 0;
-    if(page_layout){
-      $(".col_"+page_layout).prop('checked', true);
-      $(".sep_"+page_layout).prop('checked', true);
+  $(document).ready(function(){
+    var page_layout = $('.parent_layout:checked').val();
+    var level1_val = $('#selectList1_'+page_layout).val();
+    
+    if(level1_val == 56 || level1_val == 55 || level1_val == 57 || level1_val == 61 || level1_val == 77 || level1_val == 89 || level1_val >= 112){
+      $('.outer_'+page_layout+' #level1_list').hide();
+      $('.outer_'+page_layout+' #level1_mid').hide();
+      $('.outer_'+page_layout+' #level2_list').hide();
+      $('.outer_'+page_layout+' #level3_list').hide();
+      if (level1_val >= 112) $('.outer_'+page_layout+' #level3_list').show();
+    }else if(level1_val == 53 || level1_val == 58 || level1_val == 75 || level1_val == 91 || level1_val == 101){ //Niagara
+      $('.outer_'+page_layout+' #level2_list').hide();
+    }else if(level1_val == 54 || level1_val == 60 || level1_val == 76 || level1_val == 99){   // For Granada
+      $('.outer_'+page_layout+' #level2_list').hide();
+      $('.outer_'+page_layout+' #level3_list').hide();
     }
-    var col = $('input[name=col_'+page_layout+']:checked').val();
-    var sep = $('input[name=sep_'+page_layout+']:checked').val();
-
-    $('input[name=col_'+page_layout+']').attr('disabled',false);
-    $('input[name=sep_'+page_layout+']').attr('disabled',false);
-    
-    var col_val = $('.3C_'+page_layout).val();
-    var sep_val = $('.3CT_'+page_layout).val();
-
-    if((col == 1 && sep == 1) || (col == 1))
-      value = col_val;
-    else if((col == 2 && sep == 1) || (col == 2))
-      value = col_val;
-
-    $.ajax({
-      url: "/ajax.php",
-      dataType: "json",
-      data: {
-        oper: "save-minisite-layout",
-        obj_id: obj_id,
-        obj_type:'minisite_page',
-        page_layout: value
-      }
-    });
   });
 
-  function btn_click(element) {
-    var obj_id = $('.obj_id').val();
-    var page_layout = $('.new_layout:checked').val();
-    var value = 0;
-    var col = $('input[name=col_'+page_layout+']:checked').val();
-    var sep = $('input[name=sep_'+page_layout+']:checked').val();
+  $(".parent_layout").change(function() {
+    var page_layout = $('.parent_layout:checked').val();
+    var level = 1;
+    var obj_type = "minisite_level1";
+
+    if(page_layout == 40){
+      level = 3;
+      obj_type = "minisite_layout";
+    } 
     
-    var col_val1 = $('.3C_'+page_layout).val();
-    var col_val2 = $('.4C_'+page_layout).val();
-    var sep_val1 = $('.3CT_'+page_layout).val();
-    var sep_val2 = $('.4CT_'+page_layout).val();
-    var sep_val3 = $('.3CY_'+page_layout).val();
-    var sep_val4 = $('.4CY_'+page_layout).val();
+    $(".common1").attr('disabled', 'disabled');
+    $(".common2").attr('disabled', 'disabled');
+    $(".common3").attr('disabled', 'disabled');
+    $(".common4").attr('disabled', 'disabled');
 
-    if(col == 1 && sep == 1)
-      value = col_val1;
-    else if(col == 1 && sep == 2)
-      value = sep_val1;
-    else if(col == 1 && sep == 3)
-      value = sep_val3;
-    else if(col == 2 && sep == 1)
-      value = col_val2;
-    else if(col == 2 && sep == 2)
-      value = sep_val2;
-    else if(col == 2 && sep == 3)
-      value = sep_val4;
-    else if(col == 1)
-      value = col_val1;
-    else if(col == 2)
-      value = col_val2;
+    $('#selectList1_'+page_layout).removeAttr('disabled');
+    $('#selectList2_'+page_layout).removeAttr('disabled');
+    $('#selectList4_'+page_layout).removeAttr('disabled');
 
-    $.ajax({
+    if((page_layout == 102) || (page_layout >= 119) ){   // Do Separate function for Billboard
+      $.ajax({ 
+        url: "/ajax.php",
+        data: {
+          oper: "get_billboard_level",
+          obj_type : obj_type,
+          parent_id : page_layout,
+          level: 1,
+        },
+        success:function(response_data_json) {
+          var datas = JSON.parse(response_data_json);
+          var level1_list = JSON.parse(datas.data);
+          if(level1_list){
+            $('#selectList1_'+page_layout).html("");
+            $(level1_list).each(function (i) {
+              $('#selectList1_'+page_layout).append("<option value=\""+level1_list[i].id+"\">"+level1_list[i].name+"</option>");
+            });
+            $('#selectList2_'+page_layout).val(level1_list[0].id);
+            get_billboard_level2();
+          }
+        }
+      });
+    }else{
+      $.ajax({ 
+        url: "/ajax.php",
+        data: {
+          oper: "get_layout_id",
+          obj_type : obj_type,
+          parent_id : page_layout,
+          level: level,
+        },
+        success:function(response_data_json) {
+          var datas = JSON.parse(response_data_json);
+          var level1_list = JSON.parse(datas.data);
+          if((level1_list) && (page_layout == 40) ){
+            $('#selectList2_'+page_layout).html("");
+            $(level1_list).each(function (i) {
+              $('#selectList2_'+page_layout).append("<option value=\""+level1_list[i].id+"\">"+level1_list[i].name+"</option>");
+            });
+            $('#selectList2_'+page_layout).val(level1_list[0].id);
+            save_layout();
+          }else{
+            $('#selectList1_'+page_layout).html("");
+            $(level1_list).each(function (i) {
+              $('#selectList1_'+page_layout).append("<option value=\""+level1_list[i].id+"\">"+level1_list[i].name+"</option>");
+            });
+            $('#selectList2_'+page_layout).val(level1_list[0].id);
+            get_level2();
+          }
+        }
+      });
+    }
+  });
+
+  function get_billboard_level2(){
+    var page_layout = $('.parent_layout:checked').val();
+    var level1_val = $('#selectList1_'+page_layout).val();
+    
+    var level = 2;
+    if(level1_val == 55 || level1_val == 56 || level1_val == 57 || level1_val == 61 || level1_val == 77 || level1_val == 89 || level1_val >= 112)  level = 3; // For Billboard and Life
+    
+    $.ajax({ 
+      url: "/ajax.php",
+      data: {
+        oper: "get_billboard_level",
+        obj_type : "minisite_level1",
+        parent_id : page_layout,
+        level1_id : level1_val,
+        level: level,
+      },
+      success:function(response_data_json) {
+        var datas = JSON.parse(response_data_json);
+        var level2_list = JSON.parse(datas.data);
+        console.log("levels  "+level1_val);
+
+        if(level1_val == 55 || level1_val == 56 || level1_val == 57 || level1_val == 61 || level1_val == 77 || level1_val == 89 || level1_val >= 112)
+        {     // For Billboard and Life
+          var test = level2_list[0].id;
+          $('.radio_group_'+page_layout).hide();
+          if (level1_val >= 112){
+            $('#selectList4_'+page_layout).html("");
+            $('#selectList4_'+page_layout).append("<option value=1>Show</option><option value=0>Hide</option>");
+            $('.outer_'+page_layout+' #level3_list').show();
+            $('#selectList4_'+page_layout).val(1);
+          } 
+          save_layout_banner(test);
+        }else{
+          $('#selectList1mid_'+page_layout).html("");
+          $('.outer_'+page_layout+' #level1_mid').show();
+          $('.outer_'+page_layout+' .common3').removeAttr('disabled');
+          $(level2_list).each(function (i) {
+           $('#selectList1mid_'+page_layout).append("<option value=\""+level2_list[i].id+"\">"+level2_list[i].name+"</option>");
+          });
+          if(level1_val == 99){
+            $('.outer_'+page_layout+' #level2_list').hide();
+            $('.outer_'+page_layout+' #level3_list').hide();
+          }
+          get_billboard_level3();
+        }
+      }
+    });
+  }  
+  function get_billboard_level3(){
+    var page_layout = $('.parent_layout:checked').val();
+    var level1_val = $('#selectList1_'+page_layout).val();
+    var level3_val = $('#selectList1mid_'+page_layout).val();
+    
+    $.ajax({ 
+      url: "/ajax.php",
+      data: {
+        oper: "get_layout_id",
+        obj_type : "minisite_layout",
+        parent_id : page_layout,
+        level1_id : level3_val,
+        level: 2,
+      },
+      success:function(response_data_json) {
+        var datas = JSON.parse(response_data_json);
+        var level3_list = JSON.parse(datas.data);
+        console.log("test "+level3_list);
+        if(level3_list){
+          $('#selectList2_'+page_layout).html("");
+          $('#selectList4_'+page_layout).html("");
+          $(level3_list).each(function (i) { 
+            $('#selectList2_'+page_layout).append("<option value=\""+level3_list[i].id+"\">"+level3_list[i].name+"</option>");
+          });
+          console.log('level 3 inn '+level1_val);
+          if(level1_val == 52 || level1_val == 58 || level1_val == 74 || level1_val == 90 || level1_val == 100)    // For Grid
+            $('.outer_'+page_layout+' #level2_list').show();
+          else
+            $('.outer_'+page_layout+' #level2_list').hide();
+
+          $('#selectList4_'+page_layout).append("<option value=1>Show</option><option value=0>Hide</option>");
+          if(level1_val == 54 || level1_val == 60 || level1_val == 76 || level1_val == 99)       // For Granada
+            $('.outer_'+page_layout+' #level3_list').hide();
+          else
+            $('.outer_'+page_layout+' #level3_list').show();
+
+          $('#selectList4_'+page_layout).val(1);
+          save_layout();
+        }
+      }
+    });
+  }
+
+  function get_level2(){
+    var page_layout = $('.parent_layout:checked').val();
+    var level1_val = $('#selectList1_'+page_layout).val();
+    $.ajax({ 
+      url: "/ajax.php",
+      data: {
+        oper: "get_layout_id",
+        obj_type : "minisite_layout",
+        parent_id : page_layout,
+        level1_id : level1_val,
+        level: 2,
+      },
+      success:function(response_data_json) {
+        var datas = JSON.parse(response_data_json);
+        var level2_list = JSON.parse(datas.data);
+
+        if(level2_list){
+          $('#selectList2_'+page_layout).html("");
+          $('#selectList4_'+page_layout).html("");
+          $(level2_list).each(function (i) {
+            $('#selectList2_'+page_layout).append("<option value=\""+level2_list[i].id+"\">"+level2_list[i].name+"</option>");
+          });
+          $('#selectList4_'+page_layout).append("<option value=1>Show</option><option value=0>Hide</option>");
+          $('.radio_group_'+page_layout).show();
+          $('#selectList2_'+page_layout).val(level2_list[0].id);
+          $('#selectList4_'+page_layout).val(1);
+          save_layout();
+        }
+      }
+    });
+  }
+
+  function save_layout(){
+    var page_layout = $('.parent_layout:checked').val();
+    var level2_val = $('#selectList2_'+page_layout).val();
+    var show_details = $('#selectList4_'+page_layout).val();
+    var obj_id = $('.obj_id').val();
+    $.ajax({ 
       url: "/ajax.php",
       dataType: "json",
       data: {
         oper: "save-minisite-layout",
         obj_id: obj_id,
-        obj_type:'minisite_page',
-        page_layout: value
+        obj_type : "minisite_page",
+        page_layout : level2_val,
+        show_details: show_details,
       }
     });
-    
-   }
+  }
+  function save_layout_banner(level2_val){
+    var page_layout = $('.parent_layout:checked').val();
+    var obj_id = $('.obj_id').val();
+    var show_details = $('#selectList4_'+page_layout).val();
+    $.ajax({ 
+      url: "/ajax.php",
+      dataType: "json",
+      data: {
+        oper: "save-minisite-layout",
+        obj_id: obj_id,
+        obj_type : "minisite_page",
+        page_layout : level2_val,
+        show_details: show_details,
+      }
+    });
+  }
 
-
+  function save_info(){
+    var page_layout = $('.parent_layout:checked').val();
+    var show_details = $('#selectList4_'+page_layout).val();
+    var obj_id = $('.obj_id').val();
+    $.ajax({ 
+      url: "/ajax.php",
+      dataType: "json",
+      data: {
+        oper: "save-minisite-layout",
+        obj_id: obj_id,
+        obj_type : "minisite_page",
+        show_details: show_details,
+      }
+    });
+  }
 </script>

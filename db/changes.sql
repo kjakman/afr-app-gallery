@@ -1,50 +1,21 @@
 # changes.sql
 
-# Jan -18
+#static tables with static values
 
-ALTER TABLE `user_profile`
-ADD `solo_shows_` text COLLATE 'utf8_general_ci' NOT NULL,
-ADD `group_shows_` text COLLATE 'utf8_general_ci' NOT NULL ,
-ADD `press_data` text COLLATE 'utf8_general_ci' NOT NULL ,
-ADD `show_data` text COLLATE 'utf8_general_ci' NOT NULL;
+DROP TABLE IF EXISTS `exhibition_type`;
+CREATE TABLE `exhibition_type` (
+  `id` smallint(3) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(32) NOT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-ALTER TABLE `media_collection`
-ADD `about_title` varchar(100) NOT NULL;
-
-ALTER TABLE "media_collection"
-DROP "about_title";
-
-ALTER TABLE `media_collection`
-ADD `filter` tinyint(1) NOT NULL DEFAULT '1';
-
-CREATE TABLE `profile_media_map` (
-  `id` int(8) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `media_id` int(8) NOT NULL,
-  `site_id` int(11) NULL,
-  `artist_id` int(11) NULL,
-  `name` varchar(128) NOT NULL DEFAULT '',
-  `curator_id` int(11) NULL,
-  `original_year` varchar(4) NOT NULL DEFAULT '',
-  `original_technique` varchar(255) NOT NULL DEFAULT '',
-  `artist_name` varchar(50) NOT NULL DEFAULT '',
-  `curator_name` varchar(50) NOT NULL DEFAULT '',
-  `created` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `artwork_id` int(11) NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '1'
-);
-
-INSERT INTO `db_sequence` (`seq_name`, `nextid`)
-SELECT 'profile_media_map', '100' from dual
-WHERE NOT EXISTS (SELECT * FROM `db_sequence` WHERE `seq_name` = 'profile_media_map');
-
-#jan 28
-
-DROP TABLE `minisite_exhibition_layout`;
-
-DROP TABLE `minisite_contact_layout`;
-
-DROP TABLE `page_map`;
+INSERT INTO `exhibition_type` (`id`, `name`, `description`) VALUES
+(10,  'Gallery Show', ''),
+(20,  'Art Fair', ''),
+(30,  'Other Event',  ''),
+(40,  'Series/Selection', ''),
+(50,  'Private Link', '');
 
 DROP TABLE IF EXISTS `minisite_page_type`;
 CREATE TABLE `minisite_page_type` (
@@ -62,6 +33,38 @@ INSERT INTO `minisite_page_type` (`id`, `name`, `row_order`) VALUES
 (60,  'Single Exhibition',  1),
 (70,  'External Site ', 6);
 
+#Drop unwanted table and db_seq
+
+DROP TABLE `minisite_exhibition_layout`;
+
+DROP TABLE `minisite_contact_layout`;
+
+DROP TABLE `page_map`;
+DELETE FROM `db_sequence`
+WHERE `seq_name` = 'page_map' AND ((`seq_name` = 'page_map' AND `seq_name` = 'page_map' COLLATE utf8mb4_bin));
+
+DROP TABLE `profile_media_map`;
+DELETE FROM `db_sequence`
+WHERE `seq_name` = 'profile_media_map' AND ((`seq_name` = 'profile_media_map' AND `seq_name` = 'profile_media_map' COLLATE utf8mb4_bin));
+
+# Jan -18
+
+ALTER TABLE `user_profile`
+ADD `solo_shows_` text COLLATE 'utf8_general_ci' NOT NULL,
+ADD `group_shows_` text COLLATE 'utf8_general_ci' NOT NULL ,
+ADD `press_data` text COLLATE 'utf8_general_ci' NOT NULL ,
+ADD `show_data` text COLLATE 'utf8_general_ci' NOT NULL;
+
+ALTER TABLE `media_collection`
+ADD `about_title` varchar(100) NOT NULL;
+
+ALTER TABLE "media_collection"
+DROP "about_title";
+
+ALTER TABLE `media_collection`
+ADD `filter` tinyint(1) NOT NULL DEFAULT '1';
+
+#jan 28
 
 # 22 Mar 2019
 
@@ -78,28 +81,6 @@ ALTER TABLE `profile_media_map` ADD PRIMARY KEY `id` (`id`);
 
 #6 June 2019
 #statically updated
-DROP TABLE IF EXISTS `minisite_font`;
-CREATE TABLE `minisite_font` (
-  `id` int(8) NOT NULL,
-  `created` date DEFAULT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `active` tinyint(1) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `h1` text NOT NULL,
-  `h2` text NOT NULL,
-  `h3` text NOT NULL,
-  `h4` text NOT NULL,
-  `h5` text NOT NULL,
-  `h6` text NOT NULL,
-  `p` text NOT NULL,
-  `title` text NOT NULL,
-  `sub_title` text NOT NULL,
-  `menu_title` text NOT NULL,
-  `font_family` text NOT NULL,
-  `title_image` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 DROP TABLE IF EXISTS `minisite_font`;
 CREATE TABLE `minisite_font` (
   `id` int(8) NOT NULL,

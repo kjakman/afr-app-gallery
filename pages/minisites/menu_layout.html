@@ -16,3 +16,21 @@
 {elseif ($mObj.menu_type == 8)}    
 {{"include": "minisites/menuLayout/alexandriaMenu.html"}}
 {/if}
+
+<script type="text/javascript">
+	var fixed_header = {$mObj.fixed_header}
+	 if(fixed_header){
+		function scrollfixedmenu(){
+			if ($(window).scrollTop() > 50) {
+				$('#header').addClass('fixed_header');
+			}
+			else {
+				$('#header').removeClass('fixed_header');
+			}
+		};
+		$(window).bind('scroll', function () {
+			scrollfixedmenu();
+		});
+	}
+	
+</script>

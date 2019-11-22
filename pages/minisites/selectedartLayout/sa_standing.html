@@ -1,44 +1,71 @@
 
 {$index = 0}
-{$container_id = "artwork_`$artwork.id`"}
-{$data = ["obj_type" => "media_collection","obj_id" => $scope.collection_id, "plugin_id" => "1355","container_id" => $container_id]}
-{$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}
-
 <div class="photo-grid-row col-md-12">
   <ul class="photo-grid gallery-list natural row">    
     {foreach from=$artworks item=artwork}
-      <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-4" data-index="{$index}" data-media_id="{$artwork.media_id}">
-        <figure id="{$container_id}" data-data='{$data|@json_encode}' 
-          data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' 
-          data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">   
-          <div class="image_vert_bottom">
-            <div class="image_vert_bottomin">      
-              <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
-                <div class="__vp-flipper">             
+      {$container_id = "artwork_`$artwork.id`"}
+      {$data = ["obj_type" => "media_collection","obj_id" => $scope.collection_id, "plugin_id" => "1355","container_id" => $container_id]}
+      {$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}
+      {$get_artwork = find_object('artwork', ['id'=>$artwork.artwork_id])}
+      <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-4 effect-{$ms.art_animation}" data-index="{$index}" data-media_id="{$artwork.media_id}">
+          <figure id="{$container_id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index="{$index}" {if (($ms.art_animation >=1011) || ($ms.art_animation ==1003))} class="__vp-plugin-container vp-loader-photoswipe no_flip effect-{$ms.art_animation}" {else} class="__vp-plugin-container vp-loader-photoswipe" {/if}>
+            <div class="image_vert_bottom">
+              <div class="image_vert_bottomin"> 
+                <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
+                  <div class="__vp-flipper">             
                   <div class="__vp-flip-front">               
-                    <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">             
+                    <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">    
                   </div>             
                   <div class="__vp-flip-back __vp-plugin-hover">               
-                    <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">
-                    <div class="__vp-flip-back-card">                 
-                      {if ($artwork.artwork_id)}             
-                        <h2>{$artwork.name}{if ($artwork.original_year)}, {$artwork.original_year}{/if}</h2>         
-                        <div>{$artwork.original_technique}</div>    <br>        
+                    <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">                
+                    <div class="__vp-flip-back-card">  
+                      {if ($ms.hover_text == 2)}
+                        {$type = get_artwork_type($get_artwork->type)}
+                        <h2>{strtoupper($type)}</h2>      
+                        <div>
+                          {if ($get_artwork->editions > 1)}  
+                            Series of {$get_artwork->editions} {if ($get_artwork->edition)} ({$get_artwork->edition}) {/if} <br>
+                          {elseif ($get_artwork->editions == 1)}
+                            Unique {if ($get_artwork->edition)} ({$get_artwork->edition}) {/if} <br>
+                          {/if}
+                          
+                          {if ($get_artwork->frame == -1)}
+                            Unframed
+                          {elseif ($get_artwork->frame == 1)}
+                            Framed
+                          {/if}
+                          {if ($get_artwork->passepartout == -1)}
+                            , No Passe-partout 
+                          {elseif ($get_artwork->frame == 1)}
+                            , Passe-partout 
+                          {/if}
+                        </div> 
+                      {elseif ($type == 'gallery')} 
+                        <h2>{strtoupper($artwork.name)}{if ($artwork.original_year)}, {$artwork.original_year}{/if}</h2>      
+                        <div>{$artwork.original_technique} <br> {$artwork.artist_name}</div>  
                       {else}
-                        {$type = related_images_type($artwork.type) }
-                        <h2>{$type}</h2>           
-                        {if ($artwork.description)} <div>{$artwork.description}</div> <br>{/if}
-                      {/if}                           
-                      <a href="#" class="__vp-info __vp-view-button" id="__vp-view-button-1355">View</a>           
+                        <h2>{strtoupper($artwork.name)}</h2>      
+                        <div>{$artwork.original_technique} <br>
+                           {if ($get_artwork->height)} {$get_artwork->height} {/if}
+                           {if ($get_artwork->width)}  X {$get_artwork->height} {/if}
+                           {if (($get_artwork->depth) && ($get_artwork->depth !=0.0 ))}  X {$get_artwork->depth} {/if}
+                           {if ($get_artwork->unit)}   {$get_artwork->unit} {/if}
+                        </div> 
+                      {/if}   
+                      <a href="#" id="__vp-view-button-1355">View</a>           
                     </div>                                                                
                   </div>           
-                </div>         
+                  </div>         
+                </div> 
               </div> 
             </div>
-          </div>        
-        </figure>
+          </figure>
+          {if ($minisite_pageObj.show_details)}
+            {{"include": "minisites/caption/artwork_captions.html"}}
+          {/if}
       </li>
       {$index = $index + 1}
     {/foreach}
   </ul>
 </div>
+ 

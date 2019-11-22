@@ -1,0 +1,48 @@
+{if ($type == 'gallery')}
+  <div class="exhibition-title text-center">
+    {if ($artwork.artwork_id)}
+      <h2 class="description">{strtoupper($artwork.name)}{if ($artwork.original_year)}, {$artwork.original_year}{/if}</h2>      
+      <h3 class="description">{$artwork.original_technique}</h3> 
+      <h3 class="description">{$artwork.artist_name}</h3>
+    {else}
+      <h2 class="description">{strtoupper(get_artwork_type($artwork.type))}</h2> 
+      <h3 class="description">{$artwork.description}</h3>
+    {/if}
+  </div>   
+{else}
+  <div class="exhibition-title text-center">
+    {if ($artwork.artwork_id)}
+      <h2 class="description">{strtoupper($artwork.name)}</h2> 
+    	<h3 class="description">{$artwork.original_technique}</h3>
+    	<h3 class="description">
+        {if (($get_artwork->type == 10) || ($get_artwork->type == 20) || ($get_artwork->type == 21) || ($get_artwork->type == 11) || ($get_artwork->type == 22) )}
+          {if (($get_artwork->height !=0.0) && ($get_artwork->width !=0.0))}
+            {floatval($get_artwork->height)}
+            X {floatval($get_artwork->width)}
+            <span class="unit">{$get_artwork->unit}</span>
+          {/if}
+        {elseif (($get_artwork->type == 30) || ($get_artwork->type == 40) )}
+          {floatval($get_artwork->height)}
+          {if ($get_artwork->width != 0.0)} X {floatval($get_artwork->width)} {/if}
+          {if ($get_artwork->depth != 0.0)} X {floatval($get_artwork->depth)} {/if}
+          <span class="unit">{$get_artwork->unit}</span>
+
+        {elseif ($get_artwork->type == 50)}
+          {if ($get_artwork->video_time != '00:00:00')}
+            {$hours = substr($get_artwork->video_time, 0, 5)}
+            {$times = explode(':', $hours)}
+            {$minutes = $times[0] * 60 + $times[1]}
+            {if ($times[0] != '00')} {ltrim($times[0], '0')} <span class="unit"> hr </span> {/if}
+            {$times[1]} <span class="unit">min</span>
+            {if ($minutes > 59)}
+              ( {$minutes}  <span class="unit">min </span> )
+            {/if}
+          {/if}
+        {/if}
+      </h3>
+    {else}
+      <h2 class="description">{strtoupper(related_images_type($artwork.type))}</h2> 
+      <h3 class="description">{$artwork.description}</h3>
+    {/if}
+  </div>
+{/if} 

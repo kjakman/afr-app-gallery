@@ -1,0 +1,158 @@
+{{"extend": "minisites/index.html"}}
+
+{$artist = $scope.artist}
+{$artworks = $scope.artworks}
+
+  {block name=title}
+    <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
+  {/block} 
+
+  {block name=content} 
+  {$link = ''}
+  {if ($artist.page_slug)} 
+    {$link="{$basepath}{$artist.page_slug}{$slug}"}
+  {else} 
+    {$link="{$basepath}/{$slug}"}
+  {/if}
+
+  <div class="row detail-page-row artwork-row">
+    <div class="col-md-3 col-sm-12 text-left artist-subnav-container">
+      <div class="artist-sub-nav">
+        <h1 class="sub-nav-header artist-sub-nav-header"><a href="{$link}">{$artist.display_name}</a></h1>
+        {if ($artist.city)} <h3 class="bioaddress"> {$artist.city}, {$artist.country|get:countries:name}</h3> {/if}
+          <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
+            <li><a href="{$link}/images" class="">Selected Art</a></li>
+            <li><a href="{$link}/exhibitions" class="">Exhibitions</a></li>
+            <li><a href="{$link}/biography"    class="">Biography</a></li>
+            {if ($scope.show_pub)}<li><a href="{$basepath}{$artist.page_slug}{$slug}/publications" class="">Publications</a></li>{/if}
+          </ul>
+        </p>
+        <!-- mobile layout -->
+        <div class="hidden-md-up btn-group sub-nav-ul artist-sub-nav-ul mobile-sub-nav-ul">
+          <button type="button" class="btn dropdown-toggle btn-sub-nav-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            About Artist
+          </button>
+          <div class="dropdown-menu">
+              <li class="sub-nav-li"><a href="{$link}/images" class="dropdown-item">Selected Art</a></li>
+            <li class="sub-nav-li"><a href="{$link}/biography" class="dropdown-item">Biography</a></li>
+            {if ($scope.show_pub)}<li class="sub-nav-li"><a href="{$basepath}{$artist.page_slug}{$slug}/publications" class="dropdown-item">Publications</a></li>{/if}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-8 col-sm-12 detail-text">
+    {if ($subview == 'images')}
+      {if ($minisite_pageObj.template == 10)}
+        {{"include": "minisites/selectedartLayout/sa_masonry.html"}}
+      {elseif ($minisite_pageObj.template == 20)}
+        {{"include": "minisites/selectedartLayout/sa_hanging.html"}}
+      {elseif ($minisite_pageObj.template == 30)}
+        {{"include": "minisites/selectedartLayout/sa_standing.html"}}
+      {/if}
+
+    {elseif ($subview == 'exhibitions')}
+      {{"include": "minisites/profile_masonry.html"}}
+      
+    {elseif ($subview == 'biography')}
+      {if ({$artist.free_text})}
+        <h4>CV</h4>
+        {$artist.free_text}<br>
+      {/if}
+
+      {$show_data = json_decode($artist.show_data, True)}
+
+      {if ($show_data['solo_shows'] == 1)}
+        {$solo_shows_ = json_decode($artist.solo_shows_, True)}
+        <div class="row text-left">
+          <div class="col-md-12">
+            <h4>solo</h4>
+            <table>
+              {foreach from =$solo_shows_ item=$solo_shows}
+                {$split = explode('-', $solo_shows['year'])}
+                  <tr style="line-height: 26px;">
+                    <td style= "width: 40px">{$split[0]}</td>
+                    <td>{$solo_shows['description']}</td>
+                  </tr>
+              {/foreach}
+            </table>            
+          </div>
+        </div>
+      {/if}<br>
+      {if ($show_data['group_shows'] == 1)}
+        {$group_shows_ = json_decode($artist.group_shows_, True)}
+        <div class="row text-left">
+          <div class="col-md-12">
+            <h4>Group</h4>
+            <table>
+              {foreach from =$group_shows_ item=$group_shows}
+                {$split = explode('-', $group_shows['year'])}
+                  <tr style="line-height: 26px;">
+                    <td style= "width: 40px">{$split[0]}</td>
+                    <td>{$group_shows['description']}</td>
+                  </tr>
+              {/foreach}
+            </table>            
+          </div>
+        </div>
+      {/if}<br>
+      {if ($show_data['press'] == 1)}
+        {$press_data = json_decode($artist.press_data, True)}
+        <div class="row text-left">
+          <div class="col-md-12">
+            <h4>Press</h4>
+            <table>
+              {foreach from =$press_data item=$press}
+                {$split = explode('-', $press['year'])}
+                  <tr style="line-height: 26px;">
+                    <td style= "width: 40px">{$split[0]}</td>
+                    <td>{$press['description']}</td>
+                  </tr>
+              {/foreach}
+            </table>            
+          </div>
+        </div>
+      {/if}<br>
+      {if ($show_data['awards'] == 1)}
+        {$awards = json_decode($artist.awards, True)}
+        <div class="row text-left">
+          <div class="col-md-12">
+            <h4>Awards</h4>
+            <table>
+              {foreach from =$awards item=$award}
+                {$split = explode('-', $award['year'])}
+                  <tr style="line-height: 26px;">
+                    <td style= "width: 40px">{$split[0]}</td>
+                    <td>{$award['description']}</td>
+                  </tr>
+              {/foreach}
+            </table>            
+          </div>
+        </div>
+      {/if}
+    
+    {elseif ($subview == 'publications')}
+      <div class="row text-left">
+        <div class="col-md-12">
+          <h4>Publications</h4>
+          <p>{$artist.publications}</p>
+        </div>
+      </div>
+    
+    {else}
+      {$first =  $artworks[0]}
+      {$title_artwork = $first.media_id}
+      <div class="image-container-max-height">
+        <img src="{$artist|userphoto:'medium'}" alt="{$artist.display_name}" class="img-responsive center-block"/><br />
+      </div>
+      <br />
+      <div style="text-align: justify;">
+       {$artist.bio_description}
+      </div>
+      <p>&nbsp;</p>
+    {/if}
+    </div>
+    
+  </div>  
+
+  {/block}

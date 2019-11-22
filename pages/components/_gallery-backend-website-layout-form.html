@@ -5,7 +5,6 @@
         <input hidden="1" name="obj_id" class="obj_id" type="hidden" value="{$minisite.id|default:$id}" class="obj_id">
         <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">  
         <input hidden="1" name="next_tab" type="hidden" value="styling"> 
-
           <div class="form-group col-sm-2">
             <label for="website-type">Type of Site</label>
             <select name="type" id="website-type"  class="form-control auto-select" data-value="{$minisite.type}">
@@ -14,6 +13,7 @@
             <select>
           </div>
 
+		<div class="back_card">
           <div class="col-sm-12">
             <label for="HEADER">HEADER</label>
             <table cellspacing="2" style="width: 100%;"> 
@@ -49,7 +49,7 @@
               </tr>
               <tr style="height: 15px;"/>
             </table><br>
-            Your  website needs a “Site Title”  (that’s its name) but if  you want  to  use a logo  instead of  the Site  Title at  the top of  your  website – add the logo  below
+            Your  website needs a “Site Title”  (that’s its name) but if  you want  to  use a logo  instead of  the Site  Title at  the top of  your  website – add the logo  below <br>
           </div>
 
           <div class="col-sm-12 mt20">
@@ -94,7 +94,30 @@
                <tr style="height: 15px;"/>
             </table>
           </div>
-
+          <div class="col-sm-12 mt20">
+            <label for="media-name">Website Menu Options</label>
+            <div>
+              <span>Do you want the site menu/header to "Scroll" with the page, or permanently "Pinned" to the top of the page</span>
+              <div class="input-group">
+                <input type="radio" class="fixed_header" name="fixed_header" value="0" onclick="save_fixed_header(this);" {if ($minisite.fixed_header != 1)} checked {/if} required > Scrolling Menu/Header 
+                &nbsp&nbsp&nbsp&nbsp
+                <input type="radio" class="fixed_header" name="fixed_header" value="1" onclick="save_fixed_header(this);" {if ($minisite.fixed_header == 1)} checked {/if} required > Pinned Menu/Header
+              </div>
+            </div>
+            <div class="mt20">
+              <span>Do you want to "Show" the home page in the menu, or "Hide" it, making it accessible via the site logo/title</span><br>
+              <span>(Hiding the home page makes sense if it is a landing page and you have large site logo/title for user to click on)</span>
+              <div class="input-group">
+                <input type="radio" class="show_homemenu" name="show_homemenu" value="0" onclick="save_show_homemenu(this);" {if ($minisite.show_homemenu != 1)} checked {/if} required > Show Homepage on Menu
+                &nbsp&nbsp&nbsp&nbsp
+                <input type="radio" class="show_homemenu" name="show_homemenu" value="1" onclick="save_show_homemenu(this);" {if ($minisite.show_homemenu == 1)} checked {/if} required > Hide Homepage on Menu
+              </div>
+            </div>
+          </div>
+        </div>  
+		  
+		  
+		<div class="back_card">
           <div class="col-sm-12">
             <label for="FOOTER">FOOTER</label>
             <table cellspacing="2" style="width: 100%;"> 
@@ -178,6 +201,7 @@
             </div>
             
           </div>
+        </div>  
 
           <div class="row">
             <div class="form-group col-sm-10">
@@ -268,6 +292,37 @@
       data: {
         oper: "save-minisite-basic",
         show_mail: eType,
+        obj_type: 'minisite',
+        obj_id: obj_id,
+      }, 
+        
+    });
+  }
+
+  function save_fixed_header(element) {
+    var fixed_header = $('input:radio.fixed_header:checked').val();
+    var obj_id = $('.obj_id').val();
+    $.ajax({
+      url: "/ajax.php",
+      dataType: "json",
+      data: {
+        oper: "save-minisite-basic",
+        fixed_header: fixed_header,
+        obj_type: 'minisite',
+        obj_id: obj_id,
+      }, 
+        
+    });
+  }
+  function save_show_homemenu(element) {
+    var show_homemenu = $('input:radio.show_homemenu:checked').val();
+    var obj_id = $('.obj_id').val();
+    $.ajax({
+      url: "/ajax.php",
+      dataType: "json",
+      data: {
+        oper: "save-minisite-basic",
+        show_homemenu: show_homemenu,
         obj_type: 'minisite',
         obj_id: obj_id,
       }, 

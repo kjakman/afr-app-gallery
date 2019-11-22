@@ -14,6 +14,7 @@
 {$add_to_profile = $scope.add_to_profile}
 {$add_to_profile1 = $scope.add_to_profile1}
 {$add_to_website = $scope.add_to_website}
+{$add_to_manualexb = $scope.add_to_manualexb}
 {$add_to_folder = $scope.add_to_folder}
 {$add_to_logo1 = $scope.add_to_logo1}
 {$add_to_logo = $scope.add_to_logo}
@@ -107,6 +108,11 @@
     {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'website', 'id' =>$site_id , 'action' => 'edit']} 
     {$buttons = 1}
     <li><a href="{$ex_link}/singleExhibition?_pv=1&page_id={$page_id}&user_id={$user_id}" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to website</a></li>
+
+  {elseif ($add_to_manualexb)} 
+    {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'website', 'id' =>$site_id , 'action' => 'edit']} 
+    {$buttons = 1}
+    <li><a href="{$ex_link}/manualexb?_pv=1&page_id={$page_id}&user_id={$user_id}" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Cancel - Back to website</a></li>
 
   {elseif ($add_to_logo)} 
     {$ex_link = 'backend:subview:id:action'|rroute:['subview' => 'profile', 'id' => $add_to_logo, 'action' => 'edit']}  

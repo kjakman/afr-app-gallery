@@ -1,0 +1,51 @@
+
+{$count = $scope.artworks|@count}
+{if ($count)}
+  <div class="gallery-related" id="collection_artworks">
+    <div class="profileinfo italic mb10">
+      <h2>Other Art in "{$collection.title}"</h2>
+    </div>
+  </div>
+  {$index = 0}
+  <div class="photo-grid-row col-md-12">
+    <ul class="photo-grid gallery-list natural col-md-12">
+      {foreach from=$artworks item=artwork}
+        {$get_artwork = find_object('artwork', ['id'=>$artwork.artwork_id])}
+        {if ($artwork.artwork_id)}
+          {$artwork_slug = "artwork~`$artwork.artwork_id`"}
+        {else}
+          {$artwork_slug = "item~`$artwork.id`"}
+        {/if}
+        <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item" data-index="{$index}">
+          <a href="{$basepath}/{$collection.page_slug}/{$collection.slug}/{$artwork_slug}">     
+            <figure id="{$container_id}" data-data='{$data|@json_encode}' data-index="{$index}" {if (($ms.art_animation >=1011) || ($ms.art_animation ==1003))} class="__vp-plugin-container vp-loader-photoswipe no_flip effect-{$ms.art_animation}" {else} class="__vp-plugin-container vp-loader-photoswipe" {/if}>
+              <div class="image_vert_bottom">
+                <div class="image_vert_bottomin"> 
+                  <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
+                    <div class="__vp-flipper">             
+                    <div class="__vp-flip-front">               
+                      <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">    
+                    </div>             
+                    <div class="__vp-flip-back __vp-plugin-hover">               
+                      <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">                
+                      <div class="__vp-flip-back-card">  
+                      <a href="{$basepath}/{$collection.page_slug}/{$collection.slug}/{$artwork_slug}">
+                        {{"include": "minisites/caption/hover_caption.html"}}
+                      </a>            
+                      </div>                                                                
+                    </div>           
+                    </div>         
+                  </div> 
+                </div> 
+              </div> 
+            </figure>
+          </a>
+          {if ($minisite_pageObj.show_details)}
+            {{"include": "minisites/caption/artwork_captions.html"}}
+          {/if}
+        </li>
+        {$index = $index + 1}
+      {/foreach}
+    </ul>
+  </div>
+{/if}

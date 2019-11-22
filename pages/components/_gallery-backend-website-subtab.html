@@ -14,6 +14,11 @@
 	  <li {if ($tab == 'exhibitionlayout') }class="active"{/if}><a href="{$tab22_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_exhibition_layout_link">Exhibition Template</a></li>
 	  <li {if ($tab == 'exhibitioncolour')  }class="active"{/if}><a href="{$tab15_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_exhibition_colour_link">Background Colour</a></li>
 
+	{elseif (($tab == 'manualexb') || ($tab == 'manualexbcontent') || ($tab == 'manualexbpage') || ($tab == 'manualexblayout') )}
+	  <li {if (($tab == 'manualexb') || ($tab == 'manualexbcontent') )}class="active"{/if}><a href="{$tab32_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_manualexbcontent_link">Content</a></li>
+	  <li {if ($tab == 'manualexbpage') }class="active"{/if}><a href="{$tab33_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_manualexbpage_link">Page Layout</a></li>
+	  <li {if ($tab == 'manualexblayout') }class="active"{/if}><a href="{$tab34_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_manualexblayout_link">Exhibition Template</a></li>
+
 	{elseif (($tab == 'contact') || ($tab == 'contactcontent') || ($tab == 'contactcolour') || ($tab == 'contactpagelayout') )}
 	  <li {if (($tab == 'contactcontent') || ($tab == 'contact')) }class="active"{/if}><a href="{$tab16_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_contact_content_link">Content</a></li>
 	  <li {if ($tab == 'contactpagelayout') }class="active"{/if}><a href="{$tab18_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_contact_layout_link">Contact Template</a></li>
@@ -35,6 +40,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		hidetabs();
-		show_tabs('{$tab}')
+		show_tabs('{$tab}');
 	});
 </script>

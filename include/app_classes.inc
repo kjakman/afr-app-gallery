@@ -32,6 +32,8 @@ $__CLASSES= array_merge($__CLASSES, array(
     'minisite_menu' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
     'minisite_parent_layout' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
     'minisite_tpl' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
+    'minisite_level1' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
+    'minisite_hover' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
 
 ));
 
@@ -228,6 +230,8 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
        'media_id'=>            array('Media',           'link',   '', AF_OBLIGATORY, 'media'),
        'page_id'=>             array('Minisite_page',         'link',   ATT_DEFAULT_NULL, 0, 'artwork'),
        'name'=>                array('Name',            'str',   '', AF_SEARCHABLE, 128),
+       'type'=>                array('Type',            'str',   '', AF_SEARCHABLE, 128),
+       'rank'=>              array('Rank',              'int', 0, AF_HIDE_ADD, 3),
     ),
 
   "gallery" => 
@@ -314,9 +318,14 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
      'show_timing'  =>      array('Show timing',        'bool',     1,  AF_HIDE_ADD, 0),
      'show_social'  =>      array('Show social',        'bool',     1,  AF_HIDE_ADD, 0),
      'font_type' =>         array('Fonts',              'link',  0, AF_SEARCHABLE|AF_HIDE, 'minisite_font'),
-     'menu_type' =>         array('Menu Style',         'bool',     1,  AF_HIDE_ADD, 0),
+     'menu_type' =>         array('Menu Style',         'link',  0, AF_SEARCHABLE|AF_HIDE, 'minisite_menu'),
+     'hover_type' =>        array('Hover Style',        'link',  0, AF_SEARCHABLE|AF_HIDE, 'minisite_animation'),
+     'hover_text' =>        array('Hover Text',        'link',  0, AF_SEARCHABLE|AF_HIDE, ''),
+     'art_animation' =>     array('Art Animation',      'link',  0, AF_SEARCHABLE|AF_HIDE, 'Art_animation'),
      'icon_size' =>         array('Icon Size',          'int',     0,  AF_HIDE_ADD, 3),
      'title_size' =>        array('Site Title Size',    'int',     0,  AF_HIDE_ADD, 3),
+     'fixed_header'  =>     array('Fixed Header',       'bool',     1,  AF_HIDE_ADD, 0),
+     'show_homemenu'  =>    array('Show Homepage menu', 'bool',     1,  AF_HIDE_ADD, 0),
      'footer_data' =>       array('Footer data',        'json', '', 0),
    ),
 
@@ -324,6 +333,7 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
    array(
       'id'=>            array('ID',                'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 4),
       'name'=>          array('Name',              'str',   '', 1, 32 ),
+      'tab'=>           array('tab',              'str',   '', 1, 32 ),
       'row_order'=>     array('Row Order',            'int',   '', 0, 10 ),
    ),
 
@@ -349,6 +359,8 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'colour'=>             array('Page Colour',       'str',   '', 0, 600 ),
       'page_layout'=>        array('Page Layout',       'int',   '', 0, 25 ),
       'second_layout'=>      array('Second Layout',       'int',   '', 0, 25 ),
+      'template'=>           array('Template',       'int',   '', 0, 10 ),
+      'show_details'=>       array('Show Details',       'int',   '', 0, 5 ),
    ),
 
    "minisite_layout" => 
@@ -356,10 +368,10 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'id'=>                 array('ID',               'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 11),
       'parent_id'=>          array('Parent Id',        'int',   '', 0, 11 ),
       'type'=>               array('Page Type',        'int',   '', 0, 11 ),
-      
       'subtype'=>            array('Second Page Type', 'int',   '', 0, 11 ),
       'name'=>               array('Name',             'str',   '', 1, 255 ),
       'separator'=>          array('Separator',             'str',   '', 1, 255 ),
+      'level1_id'=>         array('level1_id',             'int',   '', 0, 25 ),
       'image'=>              array('Image',            'str',   '', 1, 100 ),
       'row_order'=>          array('Row Order',        'int',   '', 0, 11 ),
       'active'  =>           array('Active?',          'bool',     1,  AF_HIDE_ADD, 0),
@@ -372,11 +384,22 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'id'=>                 array('ID',               'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 11),
       'name'=>               array('Name',             'str',   '', 1, 255 ),
       'image'=>              array('Image',            'str',   '', 1, 255 ),
-      'type'=>               array('Page Type',        'int',   '', 0, 11 ),
+      'page_type'=>          array('Page Type',        'int',   '', 0, 11 ),
+      'page_subtype'=>       array('Page Subtype', 'int',   '', 0, 11 ),
+      'layout_type'=>        array('Layout Type',        'int',   '', 0, 11 ),
       'row_order'=>          array('Row Order',            'int',   '', 0, 11 ),
       'active'  =>           array('Active?',          'bool',     1,  AF_HIDE_ADD, 0),
       'created'=>            array('Created',          'datetime', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT),
       'timestamp'=>          array('Timestamp',        'timestamp', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT, 14 ),
+   ),
+
+   "minisite_level1" => 
+   array(
+      'id'=>                 array('ID',               'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 11),
+      'parent_id'=>          array('Parent Id',        'int',   '', 0, 11 ),
+      'name'=>               array('Name',             'str',   '', 1, 255 ),
+      'level_2'=>            array('Level 2',          'int',   '', 0, 1 ),
+      'row_order'=>          array('Row Order',        'int',   '', 0, 11 ),
    ),
 
     "minisite_font" => 
@@ -417,6 +440,17 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'icon5'=>              array('Icon5',        'int',   0, AF_READONLY|AF_HIDE_ADD, 8),
       'image'=>              array('Image',        'str',   '', 0, 50 ),
    ), 
+
+    "minisite_hover" => 
+   array(
+      'id'=>            array('ID',        'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 8),
+      'created'=>       array('Created',   'datetime', ATT_DEFAULT_NOW, AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT),
+      'timestamp'=>     array('Timestamp', 'timestamp', ATT_DEFAULT_NOW,AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT, 14 ),
+      'active'  =>      array('Active?',   'bool',     1,  AF_HIDE_ADD, 0),
+      'name'=>          array('Name',      'str',   '', 0, 255 ),
+      'image'=>         array('Image',     'str',   '', 0, 50 ),
+      'rank'=>          array('Rank',      'int',   '', 0, 11 ),
+   ),
 
     "minisite_tpl" => 
    array(

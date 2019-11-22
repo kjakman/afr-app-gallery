@@ -89,7 +89,8 @@
         dataType: "json",
         data: {
           oper: "single_image",
-          page_id: page_id
+          page_id: page_id,
+          type: "single",
         }, 
         success:function(response_data_json) {
           $("#gbe_single_content_link").trigger('click').one();

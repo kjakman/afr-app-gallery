@@ -1,0 +1,56 @@
+{$exhibition = array_shift($exhibitions)}
+<div class="zigzag_banner">
+	<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"> 
+		<div class="zigzag_banner_image" style="background-image: url({$exhibition|collection_photo:'big'});">
+		</div>
+	</a>
+</div>
+{$loc = $exhibition.location_id|get:"location"}
+	{if ($type == 'gallery')}
+		<div class="guillotine_top">
+			<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h2 class="guillotine_title">{$exhibition.title}</h2></a>
+			<p class="guillotine_subtitle">{$exhibition|artists}</p>
+			{if ($exhibition.selection_range)}
+			  <p class="guillotine_date">{$exhibition.selection_range}</p>
+			{else}
+			  <p class="guillotine_date">{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</p>
+			{/if}
+			<p class="guillotine_desc">{$exhibition.description}</p> 
+			<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="guillotine_link">Learn More</a>
+		</div>
+	{else}
+		<div class="guillotine_top">
+			<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h2 class="guillotine_title">{$exhibition.title}</h2></a>
+			{if ($exhibition.selection_type)}
+			  <p class="guillotine_subtitle">{$exhibition.selection_type}</p>
+			{else}
+			  <p class="guillotine_subtitle">{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name}</p>
+			{/if}
+
+			{if ($exhibition.selection_range)}
+			  <p class="guillotine_date">{$exhibition.selection_range}</p>
+			{else}
+			  <p class="guillotine_date">{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</p>
+			{/if}
+			<p class="guillotine_desc">{$exhibition.description}</p> 
+			<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="guillotine_link">Learn More</a>
+		</div>
+
+	{/if}
+
+<script>
+	var header = $('.zigzag_banner_image');
+	var range = 1000;
+	$(window).on('scroll', function () {
+		var scrollTop = $(this).scrollTop(),
+		height = header.outerHeight(),
+		offset = height*2,
+		calc = 1 - (scrollTop - offset + range) / range;
+		header.css({ 'opacity': calc });
+		if (calc > '1') {
+			header.css({ 'opacity': 1 });
+		} else if ( calc < '0' ) {
+			header.css({ 'opacity': 0 });
+		}
+	});
+</script>

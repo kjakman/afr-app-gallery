@@ -38,6 +38,8 @@
           <li><a href="#" id="sel_add_profile1" data-target_id="{$add_to_profile1}">Add to profile</a></li>
         {elseif ($add_to_website)}
           <li><a href="#" id="sel_add_website" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$add_to_website}">Add to Page</a></li>
+        {elseif ($add_to_manualexb)}
+          <li><a href="#" id="sel_add_manualexb" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$add_to_manualexb}">Add to Page</a></li>
         {elseif ($add_to_logo)}
           <li><a href="#" id="sel_add_logo" data-target_id="{$add_to_logo}">Add to Logo</a></li>
         {elseif ($add_to_logo1)}
@@ -589,6 +591,10 @@ function bstArtworkStatusFormatter(value, row, index) {
     var add_what = 'add_exb';
   else if(obj_type == 'media_folder')
     var add_what = 'add_folderimg';
+  else if(obj_type == 'media_folder')
+    var add_what = 'add_folderimg';
+  else if(obj_type == 'minisite')
+    var add_what = 'add_manualexb';
   else
     var add_what = 'add_logo';
   //var add_what = (obj_type == 'artwork' || obj_type == 'media_collection')? 'add_art' : 'add_media';

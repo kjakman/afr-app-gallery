@@ -1,0 +1,34 @@
+{$loc = $exhibition.location_id|get:"location"}
+{if ($type == 'gallery')}
+	<figcaption>
+	  <h2>{$exhibition.title}</h2>
+	  <p>
+	    {$exhibition|artists}<br>
+	    {if ($exhibition.selection_range)}
+	    	<span>{$exhibition.selection_range}</span>
+	    {else}
+	    	<span>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</span>
+	    {/if}
+	    
+	  </p>
+	</figcaption> 
+{else}
+	<figcaption>
+	  <h2>{$exhibition.title}</h2>
+	  <p>
+	  	{if ($exhibition.selection_type)}
+	  		{$exhibition.selection_type}<br>
+	  	{else}
+	  		{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name}<br>
+	  	{/if}
+	    
+	    {if ($exhibition.selection_range)}
+	    	<span>{$exhibition.selection_range}</span>
+	    {else}
+	    	<span>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</span>
+	    {/if}
+	  </p>
+	</figcaption> 
+{/if}
+
+<!-- change for banner, billboard top, Guillotine, parallax -->

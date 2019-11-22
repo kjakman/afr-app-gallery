@@ -1,0 +1,69 @@
+{{"extend": "minisites/index.html"}}
+
+{block name=title}
+  <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
+{/block}
+
+{block name=content}
+	{$i = 0}
+	{foreach from=$exhibitions item=exhibition}
+	  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
+		<div class="parallax-window parallax-window{$i}" data-parallax="scroll" data-speed="0.5" data-image-src="{$exhibition|collection_photo:'big'}">
+			<div class="parallax-caption">
+				<div class="parallax-captionin">
+					{$loc = $exhibition.location_id|get:"location"}	
+					<div class="row">
+					{if ($type == 'gallery')}
+					  <div class="col-sm-12 col-md-6">
+					  	<h1>{$exhibition.title}</h1>
+					  	<span>{$exhibition|artists}</span>
+					  </div>	
+					  <div class="col-sm-12 col-md-6">
+					  	{if ($exhibition.selection_range)}
+					  	  <p>{$exhibition.selection_range}</p>
+					  	{else}
+					  	  <p> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</p>
+					  	{/if}
+					  </div>
+					{else}
+					  <div class="col-sm-12 col-md-6">
+					  	<h1>{$exhibition.title}</h1>
+					  	{if ($exhibition.selection_type)}
+					  	  <span class="banner_exhibition_auther">{$exhibition.selection_type}</span>
+					  	{else}
+					  	  <span class="banner_exhibition_auther">{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name}</span>
+					  	{/if}
+					  </div>	
+					  <div class="col-sm-12 col-md-6">
+					  	{if ($exhibition.selection_range)}
+					  	  <p>{$exhibition.selection_range}</p>
+					  	{else}
+					  	  <p> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</p>
+					  	{/if}
+					  </div>
+					{/if}
+					</div>
+				</div>
+			</div>
+		</div>
+	  </a>
+	  <div class="parallax_content">
+		<p>{$exhibition.description}</p>
+	  </div>	
+
+		{$i = $i + 1}
+		{$imglink[] = $exhibition|collection_photo:'medium'}
+	{/foreach}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.4.2/parallax.min.js'></script>
+<script >
+	$(document).ready(function() {
+		var get_val = {$imglink|json_encode}
+		$.each(get_val,function(i, value){
+		  var val = 'https:'+value;
+			$('.parallax-window'+i).parallax({
+				imageSrc: val
+			});
+		});
+	});
+</script>
+{/block}

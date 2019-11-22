@@ -1,0 +1,64 @@
+{{"extend": "minisites/index.html"}}
+
+{block name=title}
+  <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
+{/block}
+
+{block name=content}
+{$exhibition = array_shift($exhibitions)}
+
+<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
+	<div id="parallax" data-type="background" data-speed="2" style="background-image: url('{$exhibition|collection_photo:'big'}');">
+	<div class="parallax-caption">
+		<div class="parallax-captionin">	
+			<div class="row">
+				<div class="col-sm-12 col-md-6">
+					<h1>{$exhibition.title}</h1>
+					<span>{$exhibition|artists}</span>
+				</div>	
+				<div class="col-sm-12 col-md-6">
+					<p>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</a>
+<div class="row">
+  <div class="photo-grid-row col-md-12">
+    <ul class="photo-grid gallery-list row row-margin">
+      {foreach from=$exhibitions item=exhibition}
+          <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-6 effect-{$ms.hover_type}" data-index="{$index}">
+           <div class="hover_style">       
+             <figure class="effect-{$ms.hover_type} ratio_based">
+             <div class="hover_cover">
+               <span class="frame-square ratio169">
+                <img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+               </span>
+               {{"include": "minisites/caption/figcaption.html"}} 
+               <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+             </div>        
+             </figure>
+           </div>
+           {{"include": "minisites/caption/exh_details.html"}}       
+          </li>
+          {$count = 1} {$index = $index + 1}
+      {/foreach}
+    </ul>
+  </div>
+</div>
+
+<script>
+function parallax() {
+	var $parallax = document.getElementById("parallax");
+	var yPos = window.pageYOffset / $parallax.dataset.speed;
+	yPos = -yPos;
+	var coords = '0% '+ yPos + 'px';	
+	$parallax.style.backgroundPosition = coords;
+}
+window.addEventListener("scroll", function(){
+	parallax();	
+});
+</script>
+
+{/block}

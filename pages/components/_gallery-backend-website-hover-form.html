@@ -1,0 +1,33 @@
+{$hover = $scope.hover}
+<input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$minisite.id|default:$id}">
+<label>Hover Effects (not all animations work with all layouts - find a mix that works for you)</label>
+<div class="mt20">
+	{foreach from = $hover item=item}
+		<div class="col-sm-6">
+			<div class="fontsty_boxblk effect-{$item.id}">
+				<div class="hover_style fontsty_box classic no-padding">				
+					<figure class="effect-{$item.id}" style="max-height: 350px;">
+						<div class="hover_cover">
+							<img src="/img/font_img.jpg" alt="img01"/>
+							<figcaption>
+								<h2>Cuban Underground</h2>
+								<p>3 - 25 February 2017<br>Luna De Jong</p>
+								<a href="#">View more</a>
+							</figcaption>
+						</div>
+					</figure>
+				</div>
+				<div class="form-group">
+					<div class="selrad_box">
+						<input type="radio" class="hover_type" name="hover_type" id="radio1" value="{$item.id}" {if ($minisite.hover_type == $item.id)}CHECKED{/if}> {$item.name} {if (($item.name == 'Flip') || ($item.name == 'Slide Left') )}(recommended for all layouts) {/if}
+					</div> 
+				</div> 
+			</div> 
+		</div>
+	{/foreach}
+</div>
+<script type="text/javascript">
+  $(document).ready( function() {
+    hidetabs();
+  });
+</script>

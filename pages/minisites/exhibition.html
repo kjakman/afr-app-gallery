@@ -63,9 +63,15 @@
         </div>
       </div>
       
-      <div class="col-md-8 col-sm-12 detail-text">
+      <div class="col-md-8 col-sm-12 detail-text artwork-row">
         {if ($subview == 'images')}
-          {{"include": "minisites/_artworks.html"}}
+          {if ($minisite_pageObj.template == 10)}
+            {{"include": "minisites/selectedartLayout/sa_masonry.html"}}
+          {elseif ($minisite_pageObj.template == 20)}
+            {{"include": "minisites/selectedartLayout/sa_hanging.html"}}
+          {elseif ($minisite_pageObj.template == 30)}
+            {{"include": "minisites/selectedartLayout/sa_standing.html"}}
+          {/if}
           
         {elseif ($subview == 'location')}    
           <div class="row text-left">

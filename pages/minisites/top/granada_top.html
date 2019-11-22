@@ -1,0 +1,50 @@
+{if ($layout.level1_id == 105 || $layout.level1_id == 108 )}
+	{$class = 'ratio169'}
+{elseif ($layout.level1_id == 106 || $layout.level1_id == 109 )}
+	{$class = 'ratio43'}
+{else}
+	{$class = 'ratio32'}
+{/if}
+
+{for $i=0 to 2}
+	{$exhibition = array_shift($exhibitions)}
+	 {if ($i==0)}
+	   <div class="niagra_row niagra_cassablanca niagra_row_zigzag">
+	 	<div class="niagra_bigcol niagra_col">
+	 		<div class="niagra_incol effect-{$ms.hover_type}">
+	 		  <div class="hover_style no-padding">       
+	             <figure class="effect-{$ms.hover_type} ratio_based">
+	               <div class="hover_cover no-margin">
+	 				<div class="frame-square {$class}">
+	 					<img src= "{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}" />
+	 				</div>
+	 				{{"include": "minisites/caption/figcaption.html"}}
+	 				<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+	 			  </div>
+	 			</figure>
+	 		  </div>
+	 		</div>
+	 	</div>
+	 {else}
+	 	{if ($i==1)}
+	 	  <div class="niagra_smallcol niagra_col">
+	 	{/if}
+	 		<div class="niagra_incol effect-{$ms.hover_type}">
+	   		  <div class="hover_style no-padding">       
+	             <figure class="effect-{$ms.hover_type} ratio_based">
+	               <div class="hover_cover no-margin">
+	   				<div class="frame-square {$class}">
+	   					<img src= "{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}" />
+	   				</div>
+	   				{{"include": "minisites/caption/figcaption.html"}}
+	   				<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+	   			  </div>
+	   			</figure>
+	   		  </div>
+	 		</div>
+	 {/if}
+	 {if ($i == 2)}
+	 	</div>
+	   </div>
+	 {/if}
+{/for}

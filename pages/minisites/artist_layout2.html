@@ -162,10 +162,13 @@
 				<article class="row">
 					{$count = $scope.artworks|@count}
 					{if ($count)}
-						<div class="profileinfo italic mb10">
-							<h1>Selected Artworks</h1>
-						</div>
-						{{"include": "minisites/_artworks.html"}}
+						{if ($minisite_pageObj.template == 10)}
+						  {{"include": "minisites/selectedartLayout/sa_masonry.html"}}
+						{elseif ($minisite_pageObj.template == 20)}
+						  {{"include": "minisites/selectedartLayout/sa_hanging.html"}}
+						{elseif ($minisite_pageObj.template == 30)}
+						  {{"include": "minisites/selectedartLayout/sa_standing.html"}}
+						{/if}
 					{/if}
 				</article>
 		  </div>

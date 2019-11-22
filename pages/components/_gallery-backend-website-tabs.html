@@ -5,6 +5,7 @@
   <!-- {$tab2_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'home']} -->
   {$tab3_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artist']}
   {$tab4_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'exhibition']}
+  {$tab36_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'manualexb']}
   {$tab5_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'contact']}
   {$tab6_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'basic']}
   {$tab7_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'styling']}
@@ -12,6 +13,8 @@
   {$tab8_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'settings']}
   {$tab9_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'font']}
   {$tab10_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'menu']}
+  {$tab36_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'hover']}
+  {$tab37_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artHover']}
 
   {$tab11_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artistcontent']}
   {$tab12_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artistcolour']}
@@ -39,6 +42,10 @@
   {$tab30_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'extSite']}
   {$tab31_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'extMail']}
 
+  {$tab32_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'manualexbcontent']}
+  {$tab33_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'manualexbpage']}
+  {$tab34_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'manualexblayout']}
+  {$tab35_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'manualexbcolour']}
   
   {$tab = $page.tab|default:'basic'}
 
@@ -46,13 +53,20 @@
     <li {if ($tab == 'basic') }class="active"{/if}><a href="{$tab6_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_basic_link">Basic</a></li>
     <li {if ($tab == 'menu') }class="active"{/if}><a href="{$tab10_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_font_link">Menu Template</a></li>
     <li {if ($tab == 'font') }class="active"{/if}><a href="{$tab9_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_font_link">Font</a></li>
+    <li {if ($tab == 'hover') }class="active"{/if}><a href="{$tab36_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_hover_link">Exhibition Animation</a></li>
+    <li {if ($tab == 'artHover') }class="active"{/if}><a href="{$tab37_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_art_hover_link">Art Animation</a></li>
     <li {if ($tab == 'page')  }class="active"{/if}><a href="{$tab1_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_page_link">Pages</a></li>
     <!-- <li {if ($tab == 'home')  }class="active"{/if}><a href="{$tab2_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_home_link">Home</a></li> -->
     <li {if (($tab == 'artist') || ($tab == 'artistcontent') || ($tab == 'artistcolour') || ($tab == 'artistpagelayout') || ($tab == 'artistsecondpage'))  }class="active"{/if}><a href="{$tab3_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_artist_link">Showcase Managed Profiles</a></li>    <!-- Artist -->
+
     <li {if (($tab == 'exhibition') || ($tab == 'exhibitioncontent') || ($tab == 'exhibitioncolour') || ($tab == 'exhibitionpage') || ($tab == 'exhibitionlayout'))}class="active"{/if}><a href="{$tab4_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_exhibition_link">Multiple Exhibitions - Smart Filter</a></li>  <!-- exhibition -->
+
     <li {if ($tab == 'contact')  || ($tab == 'contactcontent') || ($tab == 'contactcolour') || ($tab == 'contactpagelayout') }class="active"{/if}><a href="{$tab5_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_contact_link">Contact Page</a></li>
+
     <li {if ($tab == 'bio')  || ($tab == 'biocontent') || ($tab == 'biocolour') || ($tab == 'biolayout') } class="active"{/if}><a href="{$tab20_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_bio_link">Showcase User Profile</a></li>   <!-- bio -->
     <li {if ($tab == 'singleExhibition')  || ($tab == 'singleExhibitioncontent') || ($tab == 'singleExhibitionLayout') || ($tab == 'singleExhibitioncolor') } class="active"{/if}><a href="{$tab27_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_singleExhibition_link">Single Exhibition - Smart Filter</a></li> <!-- Single page exhibition -->
+
+    <li {if (($tab == 'manualexb') || ($tab == 'manualexbcontent') || ($tab == 'manualexbpage') || ($tab == 'manualexblayout'))}class="active"{/if}><a href="{$tab36_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_manualexb_link">Exhibitions - Manually selected</a></li>  <!-- exhibition - Manually selected-->
 
     <li {if ($tab == 'extSite') } class="active"{/if}><a href="{$tab30_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_extSite_link">External Site (iframe)</a></li> <!-- Single page exhibition -->
     <li {if ($tab == 'extMail') } class="active"{/if}><a href="{$tab31_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_extMail_link">Mail Form</a></li> <!-- Single page exhibition -->
@@ -72,6 +86,8 @@
       {{"include": "_gallery-backend-website-artist-form.html"}} 
     {elseif ($tab == 'exhibition')}
       {{"include": "_gallery-backend-website-exhibition-form.html"}} 
+    {elseif ($tab == 'manualexb')}
+      {{"include": "_gallery-backend-website-manualexb-form.html"}}
     {elseif ($tab == 'contact')}
       {{"include": "_gallery-backend-website-contact-form.html"}}
     {elseif ($tab == 'bio')}
@@ -87,6 +103,10 @@
       {{"include": "_gallery-backend-website-font-form.html"}} 
     {elseif ($tab == 'menu')}
       {{"include": "_gallery-backend-website-menu-form.html"}}
+    {elseif ($tab == 'hover')}
+      {{"include": "_gallery-backend-website-hover-form.html"}}
+    {elseif ($tab == 'artHover')}
+      {{"include": "_gallery-backend-website-art-hover-form.html"}}
 
     {elseif ($tab == 'artistcontent')}
       {{"include": "_gallery-backend-website-artist-form.html"}}
@@ -96,6 +116,13 @@
       {{"include": "_gallery-backend-website-artist-layout-form.html"}}
     {elseif ($tab == 'artistcolour')}
       {{"include": "_gallery-backend-website-artist-colour-form.html"}}
+
+    {elseif ($tab == 'manualexbcontent')}
+      {{"include": "_gallery-backend-website-manualexb-form.html"}}
+    {elseif ($tab == 'manualexbpage')}
+      {{"include": "_gallery-backend-website-manualexb-page-form.html"}}
+    {elseif ($tab == 'manualexblayout')}
+      {{"include": "_gallery-backend-website-manualexb-layout-form.html"}}
 
     {elseif ($tab == 'exhibitioncontent')}
       {{"include": "_gallery-backend-website-exhibition-form.html"}}

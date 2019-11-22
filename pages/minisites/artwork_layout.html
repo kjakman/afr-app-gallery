@@ -69,49 +69,13 @@
 				<div class="col-sm-12">{$getartwork.description}</div>
 			{/if}
 			<div class="gap"></div>
-			{$count = $scope.artworks|@count}
-
-			{if ($count)}
-				<div class="gallery-related" id="collection_artworks">
-					<div class="profileinfo italic mb10">
-						<h2>Other Art in "{$collection.title}"</h2>
-					</div>
-				</div>
-				{$index = 0}
-				<ul class="photo-grid gallery-list list">
-					{foreach from=$artworks item=artwork}
-						{if ($artwork.artwork_id)}
-            				{$artwork_slug = "artwork~`$artwork.artwork_id`"}
-            			{else}
-            				{$artwork_slug = "item~`$artwork.id`"}
-            			{/if}
-
-						<li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item" data-index="{$index}" data-media_id="1123843" id="map_5050">
-							<div class="pdf-thumb-box-overlay">
-								<div class="pdf-thumb-box-links">
-									<a href="/artwork/2843/pub-life~1945" class="cms-link gallery-link pull-right" title="Artwork Details">
-										<i class="fa fa-info-circle fa-2x"></i>
-									</a>
-								</div> 
-							</div> 
-							<a href="{$basepath}/{$collection.page_slug}/{$collection.slug}/{$artwork_slug}"><img src="{$artwork.media_id|photo:'medium'}" class=""></a>
-							<br>
-							<div class="photo-grid-title artinfo" style="text-align: left;">
-								{if ($artwork.artwork_id)}
-									<h2 class="black subtitle">{$artwork.name}</h2>
-									{if ($artwork.original_year)}<h3>{$artwork.original_year}, {$artwork.original_technique}</h3>{/if}
-									<!-- {if ($artwork.curator_name)} <h3>{$artwork.curator_name}</h3>{/if} -->
-								{else}
-									{$type = related_images_type($artwork.type) }
-									<h2 class="black subtitle">{$type}</h2>
-									{if ($artwork.description)} <h3>{$artwork.description}</h3>{/if}
-								{/if}
-							</div>
-						</li>
-						{$index = $index+1}
-					{/foreach}
-				</ul>
-			{/if}
 		</article>
+		{if ($minisite_pageObj.template == 10)}
+		  {{"include": "minisites/artworkLayout/artwork_masonry.html"}}
+		{elseif ($minisite_pageObj.template == 20)}
+		  {{"include": "minisites/artworkLayout/artwork_hanging.html"}}
+		{elseif ($minisite_pageObj.template == 30)}
+		  {{"include": "minisites/artworkLayout/artwork_standing.html"}}
+		{/if}
 	 </div>
 </div>

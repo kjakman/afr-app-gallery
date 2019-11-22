@@ -50,15 +50,15 @@
         <div class="row type-10 type-11 type-20 type-21 type-22 type-30 type-40">        
           <div class="form-group col-sm-2 col-xs-6">
             <label for="artwork-height">Height</label>
-            <input type="text" class="form-control" name="height" value="{$artwork.height}" maxlength="4">
+            <input type="text" class="form-control" name="height" value="{$artwork.height}" maxlength="5">
           </div>
           <div class="form-group col-sm-2 col-xs-6">
             <label for="artwork-width">Width</label>
-            <input type="text" class="form-control" name="width" value="{$artwork.width}" maxlength="4">
+            <input type="text" class="form-control" name="width" value="{$artwork.width}" maxlength="5">
           </div>
           <div class="form-group col-sm-2 col-xs-6 type-30 type-40">
             <label for="artwork-depth">Depth</label>
-            <input type="text" class="form-control" name="depth" value="{$artwork.depth}" maxlength="4">
+            <input type="text" class="form-control" name="depth" value="{$artwork.depth}" maxlength="5">
           </div>
           <div class="form-group col-sm-2 col-xs-6">
             <label for="artwork-unit">Unit</label>
@@ -90,7 +90,7 @@
         <div class="row type-50">
           <div class="form-group col-sm-4 col-xs-6">
             <label for="artwork-video_time">Runtime</label>
-            <input type="text" class="form-control" name="video_time" value="{$artwork.video_time}" maxlength="128">
+            <input type="text" class="form-control" name="video_time" value="{substr($artwork.video_time, 0, 5)}" maxlength="128">
           </div>  
           <div class="form-group col-sm-4 col-xs-6">
             <label for="artwork-video_producer">Producer</label>

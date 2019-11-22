@@ -23,9 +23,28 @@
   			</div>
   			<div class="banner_exhibition_content">
   				<div class="banner_exhibition_contentin">
-  					<span class="banner_exhibition_auther">{$exhibition|artists}</span>
-  					<h3 class="banner_exhibition_name">{$exhibition.title}</h3>
-  					<p class="banner_exhibition_date">{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</p>
+            {$loc = $exhibition.location_id|get:"location"}
+            {if ($type == 'gallery')}
+    					<span class="banner_exhibition_auther">{$exhibition|artists}</span>
+    					<h3 class="banner_exhibition_name">{$exhibition.title}</h3>
+              {if ($exhibition.selection_range)}
+                <p class="banner_exhibition_date">{$exhibition.selection_range}</p>
+              {else}
+    					  <p class="banner_exhibition_date">{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</p>
+              {/if}
+            {else}
+              {if ($exhibition.selection_type)}
+                <span class="banner_exhibition_auther">{$exhibition.selection_type}</span>
+              {else}
+                <span class="banner_exhibition_auther">{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name}</span>
+              {/if}
+              <h3 class="banner_exhibition_name">{$exhibition.title}</h3>
+              {if ($exhibition.selection_range)}
+                <p class="banner_exhibition_date">{$exhibition.selection_range}</p>
+              {else}
+                <p class="banner_exhibition_date">{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</p>
+              {/if}
+            {/if}
   				</div>
   			</div>
   		</div>
@@ -42,11 +61,15 @@
           </div>
         </div>
         <div class="banner_exhibition_content">
-          <div class="banner_exhibition_contentin">
-            <span class="banner_exhibition_auther">{$exhibition|artists}</span>
-            <h3 class="banner_exhibition_name">{$exhibition.title}</h3>
-            <p class="banner_exhibition_date">{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</p>
-          </div>
+        {if ($type == 'gallery')}
+          <span class="banner_exhibition_auther">{$exhibition|artists}</span>
+          <h3 class="banner_exhibition_name">{$exhibition.title}</h3>
+          <p class="banner_exhibition_date">{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</p>
+        {else}
+          <span class="banner_exhibition_auther">{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name}</span>
+          <h3 class="banner_exhibition_name">{$exhibition.title}</h3>
+          <p class="banner_exhibition_date">{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</p>
+        {/if}
         </div>
       </div>
     {/foreach}

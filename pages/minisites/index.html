@@ -29,6 +29,7 @@
 {$secArtists = $scope.secArtists}
 {$page_slug = $scope.page_slug}
 {$sub_slug = $scope.sub_slug}
+{$layout = $scope.layout}
 
 {$vp = '//test.vpatina.com'}
 {$cachebust = "?ts`$smarty.now`"}
@@ -82,6 +83,8 @@
     <link rel="StyleSheet" href="/afr/bower/summernote/dist/summernote.css" type="text/css" media="screen"/>    
     {/if}
     <link rel="StyleSheet" href="/afr/bower/intl-tel-input/build/css/intlTelInput.css?v=11.0.14" type="text/css" media="screen"/>
+    <link rel="StyleSheet" href="/css/minisites/minisite_layout.css?ver={$version}" type="text/css" media="screen"/>
+    <link rel="StyleSheet" href="/css/hover.css?ver={$version}" type="text/css" media="screen"/>
 
     
     {$styles = $app.header.styles|array_unique}
@@ -118,7 +121,9 @@
     {$edit_menu}
     {if (0)}{{"include": "minisites/_debug.html"}}{/if}
 
-  
+    {if ($ms.fixed_header == 1)}
+      <div class="fixed_menu_height"></div>
+    {/if}
     {{"include": "minisites/menu_layout.html"}}
 
     <div class="container">

@@ -14,35 +14,23 @@
   <div class="row"> 
     <div class="photo-grid-row col-md-12">
       {foreach from=$years item=year}
-        <h1 class="year_{$year['year']}" style="display: none;">{$year['year']}</h1> <br>
+        <h1 class="year_{$year['year']} yseparator" style="display: none;">{$year['year']}</h1> <br>
         <ul class="photo-grid gallery-list natural row">
           {foreach from=$exhibitions item=exhibition} 
             {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))} 
               {if ($year['year'] ==  array_shift(explode('-', $exhibition.start_date)) )} 
                 {$yearExist[] = $year['year']}
-                <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-4" data-index="{$index}">
-                  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
-                    <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">          
-                      <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
-                        <div class="__vp-flipper">             
-                        <div class="__vp-flip-front">               
-                          <img class="__vp-plugin-image center-cropped" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">    
-                        </div>             
-                        <div class="__vp-flip-back __vp-plugin-hover">               
-                          <img class="__vp-flip-back-image" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">                
-                          <div class="__vp-flip-back-card">  
-                          <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">               
-                            <h2>{$exhibition.title}</h2>                                         
-                            <div class="mt10">{$exhibition|artists}</div> 
-                            <div>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</div> 
-                          </a>            
-                          </div>                                                                
-                        </div>           
-                        </div>         
-                      </div>  
-                      {{"include": "minisites/exh_details.html"}}          
-                    </figure>
-                  </a>
+                <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-4 effect-{$ms.hover_type}" data-index="{$index}">
+                    <div class="hover_style">       
+                      <figure class="effect-{$ms.hover_type}">
+                        <div class="hover_cover">
+                        <img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+                        {{"include": "minisites/caption/figcaption.html"}} 
+                        <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+                      </div>      
+                      </figure>
+                    </div>
+                    {{"include": "minisites/caption/exh_details.html"}}       
                 </li>
               {/if}
               {$count = 1}  {$index = $index + 1}
@@ -52,20 +40,25 @@
       {/foreach}
       
       {if (($data.show_latest) && (!$count))}
-        <h4 style="text-align: left;">Latest</h4>
-        <div class="row artists-row mobile-row artists-list-row artists-grid">
-          {foreach from=$latestexhibitions item=exhibition}    
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 text-left artist-grid-col">
-              <div class="image-container">  
-                <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
-                  <img src="{$exhibition|collection_photo:'medium'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
-                </a>
+          <h5 class="yseparator" style="text-align: left;">Latest</h5>
+        <div class="item-container">
+          {foreach from=$latestexhibitions item=exhibition}
+            <div class="item-grid-sizer"></div>
+            <div class="item-gutter-sizer"></div>
+            <div class="item-grid effect-{$ms.hover_type}">
+              <div class="hover_style">       
+                <figure class="effect-{$ms.hover_type}">
+                  <div class="hover_cover">
+                  <img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+                  {{"include": "minisites/caption/figcaption.html"}} 
+                </div>    
+                </figure>
               </div>
-              {{"include": "minisites/exh_details.html"}} 
-            </div>   
+              {{"include": "minisites/caption/exh_details.html"}}       
+            </div>
             {$count = 1}
           {/foreach}
-        </div> 
+        </div>
       {/if}
     </div>
   </div> 

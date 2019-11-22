@@ -298,7 +298,6 @@ small {
 .image-container-max-height IMG {
   max-width: 100%;
   max-height:400px;
-  
 }
 
 .image-container {
@@ -352,7 +351,7 @@ small {
 }
 
 .gallery-list-item figure {
-  margin-bottom: 30px !important;
+  margin-bottom: 0px !important;
   margin-left: 0px !important;
   margin-right: 0px !important;
 }
@@ -2777,11 +2776,13 @@ column-count: 4;
     margin: 0 auto;
     height: 159px;
 }
-
-.landscape_time .__vp-plugin-container IMG {
-    width: 200px;
+.landscape_time .hover_cover {
+	background:#cccccc;
+}
+.landscape_time IMG {
+	width: auto !important;
     margin: 0 auto;
-    height: 159px;
+    height: 310px;
 }
 
 .hybrid  .exhibition-title.text-center.mt10 { min-height:40px;  }
@@ -2795,6 +2796,7 @@ column-count: 4;
 .photo-grid.landscape_time .photo-grid-container, .photo-grid.tiles .photo-grid-container {      width: 25% !important; padding:15px;  }
 /**/ 
  .photo-grid.natural .photo-grid-container , .photo-grid.landscape_timethree .photo-grid-container{      width: 33% !important; padding:15px;  }
+ .photo-grid.landscape_timetwo .photo-grid-container{ width: 50% !important; padding:15px; }
 /**28.jan**/
 .artist-grid-col { font-family: gotham_lightregular,Arial,sans-serif !important; }
  
@@ -2833,7 +2835,7 @@ column-count: 4;
 /**/
 .photo-grid.landscape_time .photo-grid-container, .photo-grid.landscape_timethree .photo-grid-container, .photo-grid.natural .photo-grid-container .photo-grid.tiles .photo-grid-container {      width: 50% !important; }
 /**/
-
+ .photo-grid.landscape_timetwo .photo-grid-container{ width: 100% !important; padding:15px; }
 }
 
 @media (max-width: 480px) {
@@ -3077,17 +3079,26 @@ hr{
     width: 100%;
     padding-bottom: 100%;
     position: relative;
+	min-height: 370px;
+}
+.image_vert_bottom.image_vert_bottom_4c, .artwork-row .image_vert_bottom{
+    min-height: 230px;
 }
 .image_vert_bottomin{
-	max-width: 100%;
     position: absolute;
     bottom: 0;
     left: 0;
+    right: 0;
+	max-width: 100%;
     width: 100%;
+    margin: auto;
 }
 .image_vert_bottomin img{
-	max-height: 300px;
+	max-height: 370px;
 	width:auto !important;
+}
+.artwork-row .image_vert_bottomin img, .image_vert_bottom_4c .image_vert_bottomin img{
+    max-height: 230px;
 }
 .gallery-list-nogap{
 	column-gap: 2px !important;
@@ -3199,9 +3210,331 @@ hr{
     color: #000000;
     padding-top: 8px;
     text-transform: capitalize;
+    overflow-wrap: break-word;
 }
 .banner_exhibition_date{
 	font-size: 0.875rem;
     font-weight: 500;
 	color:#636363;
+}
+.row-margin{
+	margin-right: -15px !important;
+    margin-left: -15px !important;
+}
+#header{
+	position:relative;
+}
+#header.fixed_header{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 9999;
+    -webkit-box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.10);
+    -moz-box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.10);
+    box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.10);
+	-webkit-animation: menumove 1s;
+	animation: menumove 1s;
+}
+@-webkit-keyframes menumove{from {top: -100px;} to {top: 0px;}}
+@keyframes menumove{from {top: -100px;} to {top: 0px;}}
+#header.fixed_header .vertical_menulayout{
+	padding: 0px 40px;
+}
+.pswp{
+    z-index: 9999 !important;
+}
+.gallery-list-item .hover_style  figure{
+    margin-bottom: 0px !important;
+}
+/** VVPR 31/10/219 **/
+.gallery-artwork-detail .photo-grid .photo-grid-container img{
+	padding-bottom: 0px !important;
+}
+.artwork_caption_title{
+	margin-bottom: .5rem;
+}
+.artwork_caption_desc{
+	font-size: 13px !important;
+    line-height: 15px;
+	color: #666;
+	margin-bottom: .5rem;
+}
+.exhibition-title{
+	margin-top: 12px;
+    overflow: hidden;
+    float: left;
+    width: 100%;
+    display: block;
+}
+.margin-bot-2{
+    margin-bottom: 2px !important;
+}
+
+/** Niagara Layout **/
+.niagra_row{
+	width:auto;
+	margin-left:-10px;
+	margin-right:-10px;
+	clear:both;
+	display: flex;
+}
+.niagra_col{
+	display: block;
+    float: left;
+	padding-left:10px;
+	padding-right:10px;
+}
+.niagra_row:nth-child(odd) .niagra_col{
+    float: left;
+}
+.niagra_row:nth-child(even) .niagra_col{
+    float: right;
+}
+.niagra_row.niagra_row_zigzag:nth-child(even) {
+	flex-direction: row-reverse;
+}
+.niagra_bigcol{
+	width:70%;
+}
+.niagra_smallcol{
+	width:30%;
+}
+.niagra_incol{
+	width:100%;
+	float:left;
+	display:block;
+	margin-bottom:20px;
+}
+.niagra_incol img{
+	width:100%;
+}
+/** Cassablanca **/
+.niagra_cassablanca .niagra_bigcol{
+	width: 66.86%;
+}
+.niagra_cassablanca .niagra_smallcol{
+	width: 33.14%;
+}
+/** Baltimore **/
+.niagra_baltimore .niagra_bigcol{
+	width: 67.15%;
+}
+.niagra_baltimore .niagra_smallcol{
+	width: 32.85%;
+}
+/** Normandy  **/
+.niagra_normandy .niagra_bigcol{
+	width: 67.15%;
+}
+.niagra_normandy .niagra_smallcol{
+	width: 32.85%;
+}
+/** Cassablanca and Baltimore  **/
+.niagra_cassabaltim:nth-child(even){
+    flex-direction: row-reverse;
+}
+.niagra_cassabaltim .niagra_bigcol{
+	width: 60.5%;
+}
+.niagra_cassabaltim .niagra_smallcol{
+	width: 39.5%;
+}
+.ratio_banner169{
+    padding-top: 27.39%;
+}
+.ratio_banner32{
+    padding-top: 21.23%;
+}
+.ratio_banner43{
+    padding-top: 23.64%;
+}
+.outer_container{
+	max-width:1000px;
+	margin-right:auto;
+	margin-left:auto;
+	display:block;
+}
+/** parallax **/
+#parallax {
+	background-repeat: no-repeat;
+	width: 100%;
+	overflow:hidden;
+	position: relative;
+}
+.parallax-caption{
+	position: absolute;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+	background-color: rgba(0,0,0,0.3);
+}
+.parallax-captionin{
+    background-color: rgba(0,0,0,0.4);
+    padding: 20px 25px;
+}
+.parallax-caption h1{
+	text-align: left;
+	font-size: 32px;
+	color: #ffffff;
+	font-weight: 700;
+	max-width: 1000px;
+	width:100%;
+    text-transform: none;
+}
+.parallax-caption span, .parallax-caption p{
+	font-size: 20px;
+	color: #ffffff;
+	text-align: left;
+	width: 100%;
+	margin: 15px 0px;
+	display: block;
+}
+.parallax-caption p{
+    text-align: right;
+    padding-top: 34px;
+}
+.parallax-window {
+    min-height: 600px;
+    background: transparent;
+	margin-bottom:3em;
+	position: relative;
+}
+.parallax_content{
+	margin: 0em auto 3em;
+    display: block;
+    max-width: 900px;
+    width: 100%;
+}
+.parallax_content p{
+    font-size: 16px;
+    line-height: 24px;
+}
+
+/** Zig Zag Banner **/
+.zigzag_banner{
+	padding-bottom: 50%;
+	position: relative;
+    background-color: #000000;
+	margin-bottom:20px;
+}
+.zigzag_banner_image{
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+	background-attachment:fixed;
+}
+.zigzag_col{
+	margin-bottom:20px;
+}
+.niagra_row .zigzag_col{
+	margin-bottom:0px;
+	position:relative;
+}
+.zigzag_row:nth-child(odd){
+	flex-direction: row;
+}
+.zigzag_row:nth-child(even){
+	flex-direction: row-reverse;
+}
+.zigzag_row.zigzag_row_reverse:nth-child(odd){
+	flex-direction: row-reverse;
+}
+.zigzag_row.zigzag_row_reverse:nth-child(even){
+	flex-direction: row;
+}
+.zigzag_col .zigzag_cntn_cover{
+    border-top: 1px solid #dfdfdf;
+    margin: 0px;
+    min-height: 330px;
+}
+.zigzag_col .zigzag_cntn_bottom{
+	display: block;
+    float: left;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    padding: 0px 15px;
+}
+.zigzag_col_contn h2{
+    font-size: 32px;
+    font-weight: 600;
+    text-transform: none;
+    margin: 15px 0px 15px;
+    word-wrap:break-word;
+}
+.zigzag_col_contn h3{
+	text-transform: capitalize;
+    margin: 15px 0px 10px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    letter-spacing: normal;
+}
+.zigzag_col_contn a.readmore{
+	font-weight: 700;
+    color: #000;
+    padding-bottom: 10px;
+    display: block;
+    border-bottom: 1px solid #dfdfdf;
+	font-size:16px;
+}
+.zigzag_col_contn h4{
+	margin: 15px 0px 10px;
+	display:block;
+	font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.5);
+	float: left;
+    width: 100%;
+    letter-spacing: normal;
+    text-transform: none;
+}
+.zigzag_col_contn .zigzag_col_contn_desc{
+	max-height: 220px;
+    overflow: hidden;
+}
+.zigzag_col_contn p{
+	color:#6e6e6e;
+	font-size:16px;
+	line-height: 1.5;
+}
+@media only screen and (max-width: 767px) {
+	.niagra_col {
+		width: 100% !important;
+	}
+	.zigzag_col .zigzag_cntn_bottom{
+		position:relative;
+	}
+}
+.guillotine_top{
+	margin: 2em auto;
+    display: block;
+    max-width: 940px;
+    width: 100%;
+}
+.guillotine_title{
+	font-size: 48px;
+    text-transform: none;
+    font-weight: 600;
+}
+.guillotine_top p{
+    font-size: 16px;
+    line-height: 24px;
+}
+.guillotine_top .guillotine_subtitle{
+	font-size: 28px;
+}
+.guillotine_top .guillotine_date{
+	font-size: 18px;
+}
+.guillotine_link{
+	font-size: 16px;	
+	text-decoration: underline;
 }

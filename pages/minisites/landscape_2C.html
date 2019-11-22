@@ -1,0 +1,59 @@
+
+{{"extend": "minisites/index.html"}}
+{block name=title}
+  <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
+{/block}
+{block name=content}
+{$data = json_decode($minisite_pageObj.data, TRUE)}
+{if ($data.show_current)} {$current = 'current'} {/if}
+{if ($data.show_past)} {$past = 'past'} {/if}
+{if ($data.show_future)} {$future = 'future'} {/if}
+
+{$index = 0} {$count = 0}
+
+  <div class="row">
+    <div class="row photo-grid-row col-md-12">
+      <ul class="photo-grid gallery-list landscape_time landscape_timetwo col-md-12">
+        {foreach from=$exhibitions item=exhibition}
+          {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+            <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item effect-{$ms.hover_type}" data-index="{$index}">   
+              <div class="hover_style">       
+                <figure class="effect-{$ms.hover_type}">
+                <div class="hover_cover {if ($ms.hover_type == 1004)} text {/if}">
+                  <img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+                  {{"include": "minisites/caption/figcaption.html"}} 
+                  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+                </div>        
+                </figure>
+              </div>
+              {{"include": "minisites/caption/exh_details.html"}}       
+            </li>
+            {$index = $index + 1}   {$count = 1}
+          {/if}
+        {/foreach}
+      </ul>
+    </div> 
+    
+    {if (($data.show_latest) && (!$count))}
+    <h5>Latest</h5>
+      <div class="row photo-grid-row col-md-12">
+        <ul class="photo-grid gallery-list landscape_time col-md-12">
+          {foreach from=$latest_exhibitions item=exhibition}
+            <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item effect-{$ms.hover_type}" data-index="{$index}">   
+              <div class="hover_style">       
+                <figure class="effect-{$ms.hover_type}">
+                <div class="hover_cover {if ($ms.hover_type == 1004)} text {/if}">
+                  <img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+                  {{"include": "minisites/caption/figcaption.html"}}
+                  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+                </div>        
+                </figure>
+              </div>
+              {{"include": "minisites/caption/exh_details.html"}}       
+            </li>
+          {/foreach}
+        </ul>
+      </div>
+    {/if}
+  </div>
+{/block}

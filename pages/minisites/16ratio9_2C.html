@@ -1,0 +1,70 @@
+
+{{"extend": "minisites/index.html"}}
+
+{block name=title}
+  <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
+{/block}
+
+{block name=content}
+
+{$data = json_decode($minisite_pageObj.data, TRUE)}
+{if ($data.show_current)} {$current = 'current'} {/if}
+{if ($data.show_past)} {$past = 'past'} {/if}
+{if ($data.show_future)} {$future = 'future'} {/if}
+{$index = 0} {$count = 0}
+<div class="row">
+  <div class="photo-grid-row col-md-12">
+    <ul class="photo-grid gallery-list row">
+      {foreach from=$exhibitions item=exhibition}
+        {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+          <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-6 effect-{$ms.hover_type}" data-index="{$index}">   
+             <div class="hover_style">       
+               <figure class="effect-{$ms.hover_type} ratio_based">
+               <div class="hover_cover">
+                 <span class="frame-square ratio169">
+        					<img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+        				 </span>
+                 <figcaption>
+                   <h2>{$exhibition.title}</h2>
+                   <p>
+                     {$exhibition|artists}<br>
+                     <span>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</span>
+                   </p>
+                 </figcaption> 
+                 <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+               </div>        
+               </figure>
+             </div>
+             {{"include": "minisites/caption/exh_details.html"}}       
+          </li>
+          {$count = 1} {$index = $index + 1}
+        {/if}
+      {/foreach}
+    </ul>
+
+    {if (($data.show_latest) && (!$count))}
+      <h4 style="text-align: left;">Latest</h4>
+      <ul class="photo-grid gallery-list row">
+        {foreach from=$latest_exhibitions item=exhibition}    
+          <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-6 effect-{$ms.hover_type}" data-index="{$index}">   
+             <div class="hover_style">       
+               <figure class="effect-{$ms.hover_type} ratio_based">
+               <div class="hover_cover">
+                 <span class="frame-square ratio169">
+                  <img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+                 </span>
+                 {{"include": "minisites/caption/figcaption.html"}}
+                 <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+               </div>        
+               </figure>
+             </div>
+             {{"include": "minisites/caption/exh_details.html"}}       
+          </li>
+          {$count = 1}
+        {/foreach}
+      </ul> 
+    {/if}
+  </div>
+</div>
+
+{/block}

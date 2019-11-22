@@ -21,16 +21,40 @@
               {elseif ($exhibition.current == "future")}
                 {$badge_class = "info"} 
               {/if}
+              {$loc = $exhibition.location_id|get:"location"}
               
               <li {if ($i%2)}class="timeline-inverted"{/if}>
                 <div class="timeline-badge timeline-badge-small {$badge_class}"><i class="glyphicon glyphicon-check"></i></div>
                 <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-                      <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
-                    </h6>
-                    <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
-                  </div>
+                  {if ($type == 'gallery')}
+                    <div class="timeline-heading">
+                      <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
+                        <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
+                      </h6>
+                      {if ($exhibition.selection_range)}
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.selection_range} </small></p>
+                      {else}
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
+                      {/if}
+                    </div>
+                  {else}
+                    <div class="timeline-heading">
+                      {if ($exhibition.selection_type)}
+                        <h6 class="timeline-title"><div class="bold mb10">{$exhibition.selection_type}</div> 
+                          <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
+                        </h6>
+                      {else}
+                        <h6 class="timeline-title"><div class="bold mb10">{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name} </div> 
+                          <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
+                        </h6>
+                      {/if}
+                      {if ($exhibition.selection_range)}
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.selection_range} </small></p>
+                      {else}
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
+                      {/if}
+                    </div>
+                  {/if}
                   <div class="timeline-body">
                     <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="img-container">
                       <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">

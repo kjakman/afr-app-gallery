@@ -24,29 +24,11 @@
                 <tr id= "{$pagelists.id}">
                   <td>{$pagelists.menu_title}</td>
                   <td>{$pagelists.page_title}</td> 
-                  {if ({$pagelists.type} == 20)}
-                    {$tab = 'artist'}
-                    {$page_type = 'Showcase Managed Profiles'}
-                  {else if ({$pagelists.type} == 30)}
-                    {$tab = 'exhibition'}
-                    {$page_type = 'Multiple Exhibitions - Smart Filter'}
-                  {else if ({$pagelists.type} == 40)}
-                    {$tab = 'contact'}
-                    {$page_type = 'Contact Page'}
-                  {else if ({$pagelists.type} == 50)}
-                    {$tab = 'bio'}
-                    {$page_type = 'Showcase User Profile'}
-                  {else if ({$pagelists.type} == 60)}
-                    {$tab = 'singleExhibition'}
-                    {$page_type = 'Single Exhibition - Smart Filter'}
-                  {else if ({$pagelists.type} == 70)}
-                    {$tab = 'extSite'}
-                    {$page_type = 'External Site (iframe)'}
-                  {else if ({$pagelists.type} == 80)}
-                    {$tab = 'extMail'}
-                    {$page_type = 'Mail form'}
-                  {else}
-                  {/if}
+                    {$details = get_page_type($pagelists.type)}
+                    {if ($details)}
+                      {$tab = $details.tab}
+                      {$page_type = $details.page_type}
+                    {/if}
                   <td>{$page_type}</td>
                   <td>{$pagelists.created}</td>
                   <td>                    

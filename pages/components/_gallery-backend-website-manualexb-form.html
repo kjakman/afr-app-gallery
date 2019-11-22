@@ -1,0 +1,124 @@
+{$minisitepage = $scope.minisitepage}
+{$manual_exbs = $scope.manual_exhibition}
+{$obj_id = $scope.page_id}
+{$data = json_decode($minisitepage.data, TRUE)}
+
+{{"include": "_gallery-backend-website-subtab.html"}}
+
+<style type="text/css">
+  .fileupload-buttonbar{
+    display: none;
+  }
+  .edit-object.btn.btn-xs.btn-primary.edit{
+    display: none;
+  }
+  .edit-object .btn .btn-primary .edit{
+    display: none;
+  }
+  
+</style>
+
+  <form class="ajax-submit" data-handler="save-minisite-page" id="exhibition_form">
+      <input hidden="1" name="minisite_id" type="hidden" value="{$minisite.id|default:$id}">
+      <input hidden="1" name="obj_id" type="hidden" value="{$obj_id}">
+      <input hidden="1" name="user_id" type="hidden" value="{$minisite.user_id}">
+      <input hidden="1" name="obj_type" type="hidden" value="minisite_page">  
+              
+      <div>
+        <div class="form-group">
+          <div class="row">
+          <div class="form-group col-sm-8">
+            <label for="menu-title">Menu Title</label>
+            <input type="text" class="form-control" maxlength="15" name="menu_title" value="{$minisitepage.menu_title}">
+          </div>
+          <div class="form-group col-sm-8">
+            <label for="page-title">Page Title</label>
+            <input type="text" class="form-control" maxlength="60" name="page_title" value="{$minisitepage.page_title}">
+          </div>
+        </div>  
+      </div>
+    </div>
+    <input type="submit" class="btn btn-success" value="Save">
+  </form> <br> 
+
+    <div class="row form-group">
+      
+        <a href="/backend/exhibitions?add_to_manualexb={$minisitepage.minisite_id}&amp;_pv=1&page_id={$obj_id}&user_id={$minisitepage.user_id}"  class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Attach Exhibition</a>
+      
+    </div>
+    
+    <table class = "bootstrap-table table table-hover exhibition_art">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Type</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id= "sortable-row">
+        {foreach $manual_exbs as $manual_exb}
+          <tr id= "{$manual_exb.id}">
+            {$media = get_object('media', $manual_exb.media_id)}
+            {$collection = get_object('media_collection', $manual_exb.media_collection_id)}
+            {$path = "`$media->path`thumb/`$media->filename`" }
+            <td class="table-thumb"><img src="{$path}"></td>
+            <td>{$collection->title}</td>
+            {if ($collection->subtype == 10)} {$type = "Gallery Show"}
+            {elseif ($collection->subtype == 20)} {$type = "Art Fair"}
+            {elseif ($collection->subtype == 30)} {$type = "Other Event"}
+            {elseif ($collection->subtype == 40)} {$type = "Series/Selection"}
+            {elseif ($collection->subtype == 50)} {$type = "Private Link"}
+            {/if}
+            <td>{$type}</td>
+            <td>{$collection->start_date}</td>
+            <td>{$collection->end_date}</td>
+            <td><button class='btn btn-danger' onClick="delManualexb({$manual_exb.id});"> <i class='glyphicon glyphicon-trash'></i></button></td>
+          </tr>
+        {/foreach}
+      </tbody>
+    </table>
+    <br><br>
+    <input type="submit" class="btn btn-success" value="Save Page Order" onClick="saveOrder();">
+  
+  <script type="text/javascript">
+    $(".selected_art .fileupload-buttonbar").hide();
+    $(function() {
+        $( 'tbody' ).sortable({
+          cancel: '[contenteditable]',
+        });
+      });
+      
+    function saveOrder() {
+      var order_id = new Array();
+      $('tbody#sortable-row tr').each(function() {
+      order_id.push($(this).attr("id"));
+      });
+
+      $.ajax({
+        url: "/ajax.php",
+        data: {
+          oper: "submit-order",
+          val: order_id,
+          obj_type: "exhibition_map"
+        },
+      });
+    }
+    function delManualexb(exb_id){
+      $.ajax({
+        url: "/ajax.php",
+        dataType: "json",
+        data: {
+          oper: "single_image",
+          page_id: exb_id,
+          type: "manual",
+          obj_type: "exhibition_map",
+        }, 
+        success:function(response_data_json) {
+          $("#gbe_manualexbcontent_link").trigger('click').one();
+        }     
+      });
+    }
+  </script>

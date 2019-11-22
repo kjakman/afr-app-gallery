@@ -1,4 +1,7 @@
-<div class="row header norml_menu no_margin center_menulayout" id="header">
+{if ($ms.fixed_header == 1)}
+  <div id="header_out" class="header-height" style="overflow: hidden; display: block;width: 100%;float: left;">
+{/if}
+<div id="header" class="row header norml_menu no_margin center_menulayout">
   <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 norml_menu_list text-center">
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark navbar-desktop hidden-lg-down">
       {{"include": "minisites/_menu.html"}}
@@ -41,6 +44,9 @@
     {/if}
   </div>
 </div>
+{if ($ms.fixed_header == 1)}   
+  </div>
+{/if}
 <hr>
 <div class="container">
   <div class="row" id="title">

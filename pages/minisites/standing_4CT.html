@@ -24,8 +24,8 @@
               {if ($exhibition.current == $key)}        
                 <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-3" data-index="{$index}">
                 <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
-                  <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
-                    <div class="image_vert_bottom">
+                  <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" {if (($ms.hover_type >=1010) || ($ms.hover_type ==1003))} class="__vp-plugin-container vp-loader-photoswipe no_flip effect-{$ms.hover_type}" {else} class="__vp-plugin-container vp-loader-photoswipe" {/if}>         
+                    <div class="image_vert_bottom image_vert_bottom_4c">
                       <div class="image_vert_bottomin"> 
                         <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
                           <div class="__vp-flipper">             
@@ -35,18 +35,16 @@
                           <div class="__vp-flip-back __vp-plugin-hover">               
                             <img class="__vp-flip-back-image" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">                
                             <div class="__vp-flip-back-card">  
-                            <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">               
-                              <h2>{$exhibition.title}</h2>                                         
-                              <div class="mt10">{$exhibition|artists}</div> 
-                              <div>{$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</div> 
-                            </a>            
+                              <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">               
+                                {{"include": "minisites/caption/standing_hover.html"}}
+                              </a>            
                             </div>                                                                
                           </div>           
                           </div>         
                         </div> 
                       </div> 
                     </div> 
-                    {{"include": "minisites/exh_details.html"}}          
+                    {{"include": "minisites/caption/exh_details.html"}}          
                   </figure>
                 </a>
                 </li>
@@ -68,7 +66,7 @@
               <img src="{$exhibition|collection_photo:'medium'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
             </a>
           </div>
-          {{"include": "minisites/exh_details.html"}} 
+          {{"include": "minisites/caption/exh_details.html"}} 
         </div>   
         {$count = 1}
       {/foreach}
