@@ -1,14 +1,24 @@
+
 <div class="profileinfo"> 
 	<div class="gallery-artwork-detail">
 		<article class="row mt20">
 			<section class="col-sm-6 mr20" style="text-align: center;">
-				<img src="{$collection.id|collection_photo:'medium'}" alt="{$collection.title}" class="img-responsive" /><br>
+			  <div class="hover_style no-padding">
+			  	<figure class="effect-{$ms.art_animation}">
+				    <img src="{$collection.id|collection_photo:'medium'}" alt="{$collection.title}" class="img-responsive pull-left" /><br>
+				    {{"include": "minisites/caption/titleimg_caption.html"}}
+			    </figure>
+			  </div>
 			</section>
 			<aside class="col-sm-5">
 				
 				<h1>{$collection.title}</h1>
-				{if ($collection.start_date && $collection.end_date)}
-				  {{"include": "_gallery-collection-date.html"}}
+				{if ($collection.selection_range)}
+					<h4>{$collection.selection_range}</h4>
+				{else}
+					{if ($collection.start_date && $collection.end_date)}
+					  {{"include": "_gallery-collection-date.html"}}
+					{/if}
 				{/if}
 				<br>
 
@@ -22,8 +32,12 @@
 				</h1> 
 				<br>
 				{if (!$seoul)}
-					{if ($collection.location_id)}
-					  {{"include": "_gallery-collection-location"}}
+					{if ($collection.selection_type)}
+						<h4>{$collection.selection_type}</h4>
+					{else}
+						{if ($collection.location_id)}
+						  {{"include": "_gallery-collection-location"}}
+						{/if}
 					{/if}
 				{/if}
 				<br>
@@ -32,8 +46,10 @@
 		<article class="row mt40">
 			<div class="gap gap-small"></div>
 			{if ($collection.description)}
-				<div class="col-sm-6"><h3>About "{$collection.title}"</h3></div>
-				<div class="col-sm-12"><p>{$collection.description}</p></div>
+				<div class="exbdtl_desc">
+					<div class="col-sm-6"><h3>About "{$collection.title}"</h3></div>
+					<div class="col-sm-12"><p>{$collection.description}</p></div>
+				</div>
 			{/if}
 			<div class="gap"></div>
 		</article>

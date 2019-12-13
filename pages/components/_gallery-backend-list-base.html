@@ -128,6 +128,16 @@
     return '<a href="{$base_link}/'+ row.id + '?_pv=1&domain=1" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
   }
 
+  function bstwebDomainFormatter(value, row, index) {
+    if(!value) return '';
+    
+    var base_link = '{$base_link}';
+    var link_class = 'ajax-loader';
+    if(value == 1) print_val = "ON";
+    else print_val = "OFF";
+    return print_val;
+  }
+
   function bstMediaFormatter(value, row, index) {
     if(!value) return '';
     var thumb = row.path + 'tiny/' + row.src;
@@ -672,7 +682,7 @@ $(document).ready(function() {
        
       <form name="clone-form" class="cal-form ajax-submit" id="clone_dialog_form"  data-handler="clone-artwork" data-reload_link="#gbe_artworks_link">
         <div class="modal-body">
-          <p>This action cannot be undone</p>
+          <!-- <p>This action cannot be undone</p> -->
           
           <div class="form-group">
             <label for="clone-title">Title of New Art Record</label>
@@ -688,21 +698,8 @@ $(document).ready(function() {
       </form>
       <div class="modal-footer">
       </div>
-      
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  function closemodal(){
-     // should never be called
-     // deleted from submit button in clone_dialog_form: onsubmit="closemodal()
-
-      alert("closemodal(); (in afr-app-gallery/pages/components/_gallery-backend-list-base.html");
-      console.log("modal close (in afr-app-gallery/pages/components/_gallery-backend-list-base.html");
-      e.preventDefault();
-      $('#clone_modals').modal('hide');
-  }
-</script>
 
 {/block}

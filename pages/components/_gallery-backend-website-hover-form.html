@@ -1,29 +1,136 @@
 {$hover = $scope.hover}
+{{"include": "_gallery-backend-website-subtab.html"}}
+
 <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$minisite.id|default:$id}">
-<label>Hover Effects (not all animations work with all layouts - find a mix that works for you)</label>
-<div class="mt20">
+<label class="mt20">Hover Effects (not all animations work with all layouts - find a mix that works for you)</label>
+
+<div class="row  mt20 mb20">
+	<div class="col-sm-12">
+		<label>Text-Free Animations</label> 
+		<p class="mb20">Look great with all layouts - great if you want to keep information about each exhibition under it
+		- but want to add some zest to your page </p> 
+	</div>
+</div>
+<div class="row  mt20 mb20">
 	{foreach from = $hover item=item}
-		<div class="col-sm-6">
-			<div class="fontsty_boxblk effect-{$item.id}">
-				<div class="hover_style fontsty_box classic no-padding">				
-					<figure class="effect-{$item.id}" style="max-height: 350px;">
-						<div class="hover_cover">
-							<img src="/img/font_img.jpg" alt="img01"/>
-							<figcaption>
-								<h2>Cuban Underground</h2>
-								<p>3 - 25 February 2017<br>Luna De Jong</p>
-								<a href="#">View more</a>
-							</figcaption>
-						</div>
-					</figure>
-				</div>
-				<div class="form-group">
-					<div class="selrad_box">
-						<input type="radio" class="hover_type" name="hover_type" id="radio1" value="{$item.id}" {if ($minisite.hover_type == $item.id)}CHECKED{/if}> {$item.name} {if (($item.name == 'Flip') || ($item.name == 'Slide Left') )}(recommended for all layouts) {/if}
+		{if ($item.type==1)}		<!-- None, Zoomin, Zoomout, Flash, Shine, Circle, Tilt -->
+			<div class="col-sm-6">
+				<div class="fontsty_boxblk effect-{$item.id}">
+					<div class="hover_style fontsty_box classic no-padding">				
+						<figure class="effect-{$item.id}">
+							<div class="hover_cover" style="max-height: 290px;">
+								<img src="/img/font_img.jpg" alt="img01"/>
+								<figcaption>
+									<h2>Cuban Underground</h2>
+									<p>3 - 25 February 2017<br>Luna De Jong</p>
+									<a href="#">View more</a>
+								</figcaption>
+							</div>
+						</figure>
+					</div>
+					<div class="form-group">
+						<div class="selrad_box">
+							<input type="radio" class="hover_type" name="hover_type" id="radio1" value="{$item.id}" {if ($minisite.hover_type == $item.id)}CHECKED{/if} > {$item.name}
+						</div> 
 					</div> 
 				</div> 
-			</div> 
-		</div>
+			</div>
+		{/if}
+	{/foreach}
+</div>
+<div class="row mt20 mb20">
+	<div class="col-sm-12">
+		<label>Text Animations</label> 
+		<p>Text	animations allow you to create elegant,	de-cluttered page, and are vital for layouts like Granada.Use animation	to	provide	information, instead of putting	information	under the exhibition. Not all animations work with all layouts.	</p> 
+		<p>Only one text animation works with “STANDING” layouts - (it will be automatically selected regardless of which you choose)</p>
+		<p>Text Labels + Animations - Look great on Granada & Niagara</p>
+	</div>
+</div>
+<div class="row  mt20 mb20">
+	{foreach from = $hover item=item}
+		{if ($item.type == 2)}		<!-- Lilly, Marley, Milo -->
+			<div class="col-sm-6">
+				<div class="fontsty_boxblk effect-{$item.id}">
+					<div class="hover_style fontsty_box classic no-padding">				
+						<figure class="effect-{$item.id}">
+							<div class="hover_cover" style="max-height: 290px;">
+								<img src="/img/font_img.jpg" alt="img01"/>
+								<figcaption>
+									<h2>Cuban Underground</h2>
+									<p>3 - 25 February 2017<br>Luna De Jong</p>
+									<a href="#">View more</a>
+								</figcaption>
+							</div>
+						</figure>
+					</div>
+					<div class="form-group">
+						<div class="selrad_box">
+							<input type="radio" class="hover_type" name="hover_type" id="radio1" value="{$item.id}" {if ($minisite.hover_type == $item.id)}CHECKED{/if} > {$item.name}
+						</div> 
+					</div> 
+				</div> 
+			</div>
+		{/if}
+	{/foreach}
+</div>
+<div class="row">
+	<div class="col-sm-12  mt20 mb20"><label>Large Font Animation - Look great on Casablanca, Masonry, Hanging, Seoul</label> </div>
+</div>
+<div class="row mt20 mb20">
+	{foreach from = $hover item=item}
+		{if ($item.type == 3)}		<!-- Slide Left, Slide Up -->
+			<div class="col-sm-6">
+				<div class="fontsty_boxblk effect-{$item.id}">
+					<div class="hover_style fontsty_box classic no-padding">				
+						<figure class="effect-{$item.id}">
+							<div class="hover_cover" style="max-height: 290px;">
+								<img src="/img/font_img.jpg" alt="img01"/>
+								<figcaption>
+									<h2>Cuban Underground</h2>
+									<p>3 - 25 February 2017<br>Luna De Jong</p>
+									<a href="#">View more</a>
+								</figcaption>
+							</div>
+						</figure>
+					</div>
+					<div class="form-group">
+						<div class="selrad_box">
+							<input type="radio" class="hover_type" name="hover_type" id="radio1" value="{$item.id}" {if ($minisite.hover_type == $item.id)}CHECKED{/if} > {$item.name}
+						</div> 
+					</div> 
+				</div> 
+			</div>
+		{/if}
+	{/foreach}
+</div>
+<div class="row">
+	<div class="col-sm-12 mt20 mb20"><label>Delicate Font Animations - Look great on Kyoto, Baltimore</label> </div>
+</div>
+<div class="row mt20 mb20">
+	{foreach from = $hover item=item}
+		{if ($item.type == 4)}	<!--Flipcard, Slip, Drop, Fade -->
+			<div class="col-sm-6">
+				<div class="fontsty_boxblk effect-{$item.id}">
+					<div class="hover_style fontsty_box classic no-padding">				
+						<figure class="effect-{$item.id}">
+							<div class="hover_cover" style="max-height: 290px;">
+								<img src="/img/font_img.jpg" alt="img01"/>
+								<figcaption>
+									<h2>Cuban Underground</h2>
+									<p>3 - 25 February 2017<br>Luna De Jong</p>
+									<a href="#">View more</a>
+								</figcaption>
+							</div>
+						</figure>
+					</div>
+					<div class="form-group">
+						<div class="selrad_box">
+							<input type="radio" class="hover_type" name="hover_type" id="radio1" value="{$item.id}" {if ($minisite.hover_type == $item.id)}CHECKED{/if} > {$item.name}
+						</div> 
+					</div> 
+				</div> 
+			</div>
+		{/if}
 	{/foreach}
 </div>
 <script type="text/javascript">

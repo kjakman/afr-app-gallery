@@ -23,17 +23,20 @@
 	<div class="gallery-artwork-detail">
 		<article class="row mt20">
 			<section class="col-sm-6 mr20" style="text-align: center;">
+			  <div class="hover_style no-padding">
 				<figure id="{$container_id}" data-data='{$data|@json_encode}' 
-				  data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index={$seq} class="__vp-plugin-container vp-loader-photoswipe">
-				  <a href="#" data-caption="{$getartwork.title}">
+				  data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index={$seq} class="vp-loader-photoswipe effect-{$ms.art_animation}">
+				  <div class="hover_cover">
 				  	{if ($getartwork.title_image)}
-				      <img src="{$getartwork.title_image|photo:'medium'}" class="" id="__vp-view-button-1355"><br>
+				      <img src="{$getartwork.title_image|photo:'medium'}" class="pull-left" id="__vp-view-button-1355"><br>
 				    {else}
-				      <img src="{$getartwork.media_id|photo:'medium'}" class="" id="__vp-view-button-1355"><br>
+				      <img src="{$getartwork.media_id|photo:'medium'}" class="pull-left" id="__vp-view-button-1355"><br>
 				    {/if}
-				  </a>
+					{{"include": "minisites/caption/titleimg_caption.html"}}
+				  </div>
 				</figure>
 				<!-- <img src="{$getartwork.title_image|photo:'medium'}" alt="{$collection.title}" class="img-responsive" /><br> -->
+			  </div>
 			</section>
 			{if ($getartwork.title)}
 				{$profile = $getartwork.artist_id|get_user:1}
@@ -65,8 +68,10 @@
 		<article class="row mt40">
 			<div class="gap gap-small"></div>
 			{if ($getartwork.title && $getartwork.description)}
-				<div class="col-sm-6"><h3>About "{$getartwork.title}"</h3></div>
-				<div class="col-sm-12">{$getartwork.description}</div>
+				<div class="exbdtl_desc">
+					<div class="col-sm-6"><h3>About "{$getartwork.title}"</h3></div>
+					<div class="col-sm-12">{$getartwork.description}</div>
+				</div>
 			{/if}
 			<div class="gap"></div>
 		</article>

@@ -13,14 +13,14 @@
 
   {if ($organic)} 
    <div class="row mt20">
-    <div class="row"><label>Organic Grid/ Calendar Layouts</label></div>
+    <div class="row"><label>Organic Grid/ Calendar Layouts : </label> (Hide information under exhibitions if you want to use text  animation instead, to create a more elegant look)</div>
     {foreach from=$organic item=$layout}
       <div class="col-sm-6">
         <div class="fontsty_boxblk">
           <div class="fontsty_box no-padding"><img src="/img/{$layout.image}" /></div>
           <div class="form-group">
             <div class="selrad_box"> 
-              <input type="radio" class="parent_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
+              <input type="radio" class="parent_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name} <span style="color: #ffffff;">{if ($layout.id == 10)} Immersive/INatural {elseif ($layout.id == 30)} Structured/ Linear {else} Delicate/ Text  Focused  {/if}</span>
               <div class="radio_group" id="level1_list">
                 <label>Number of columns</label>
                   <select id="selectList1_{$layout.id}" class="common1" onchange="get_level2()">
@@ -70,14 +70,14 @@
   
   {if ($landscape)} 
    <div class="row mt20">
-    <div class="row"><label>Landscape Grid/ Calendar Layouts </label></div>
+    <div class="row"><label>Landscape Grid/ Calendar Layouts : </label> (Hide information under exhibitions if you want to use text animation instead, to create a more elegant look)</div>
     {foreach from=$landscape item=$layout}
       <div class="col-sm-6">
         <div class="fontsty_boxblk">
           <div class="fontsty_box no-padding"><img src="/img/{$layout.image}" /></div>
           <div class="form-group">
             <div class="selrad_box"> 
-              <input type="radio" class="parent_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
+              <input type="radio" class="parent_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name} <span style="color: #ffffff;">{if ($layout.id == 90)} Recommended  for Spaces {elseif ($layout.id == 100)} Recommended for Installed Art {else} Recommended  for Photography {/if}</span>
               <div class="radio_group" id="level1_list">
                 <label>Number of columns</label>
                   <select id="selectList1_{$layout.id}" class="common1" onchange="get_level2()">
@@ -127,7 +127,7 @@
 
   {if ($magazine)}
    <div class="row mt20">
-    <div class="row"><label>Magazine Layouts - Image Focused </label></div>
+    <div class="row"><label>Magazine Layouts - Image Focused </label> (Pair “banner” tops with grids and cascading layouts to create inviting, hide exhibition info if you want to use text animations instead, for a more  elegant look)</div>
     {foreach from=$magazine item=$layout}
      {if ($layout.id == 122 || $layout.id == 123 || $layout.id == 102)} <!-- Granada and Niagara -->
       {$get_level = find_object('minisite_level1', ['id' => $page_layout->level1_id ])}
@@ -138,7 +138,11 @@
             <div class="selrad_box"> 
               <input type="radio" class="parent_layout" name="new_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
                 <div class="radio_group" id="level1_list">
-                  <label>Layout Below Banner</label>
+                  {if ($layout.id == 123)}    <!-- Change label for niagara -->
+                    <label>Select Style</label>
+                  {else}
+                    <label>Layout Below Banner</label>
+                  {/if}
                     <select id="selectList1_{$layout.id}" class="common4" onchange="get_billboard_level2()">
                     {if (($page_layout->parent_id == $layout.id) && ($page_layout->level1_id) )}
                       {$level1 = find_objects('minisite_level1', ['parent_id' => $page_layout->parent_id, 'level_2'=> 0], ['sort' => 'row_order asc'])}
@@ -200,7 +204,7 @@
    </div>
 
    <div class="row mt20">
-    <div class="row"><label>Magazine Layouts - Details & Description  </label></div>
+    <div class="row"><label>Magazine Layouts - Details & Description  </label> (Pair “banner” tops with grids and cascading layouts to create inviting, hide exhibition info if you want to use text animations instead, for a more  elegant look) </div>
     {foreach from=$magazine item=$layout}
      {if ($layout.id == 121 || $layout.id == 120 || $layout.id == 119)} <!-- Life, Guillotine, Parallax -->
       {$get_level = find_object('minisite_level1', ['id' => $page_layout->level1_id ])}

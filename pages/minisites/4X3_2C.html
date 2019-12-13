@@ -6,13 +6,24 @@
   {if ($data.show_current)} {$current = 'current'} {/if}
   {if ($data.show_past)} {$past = 'past'} {/if}
   {if ($data.show_future)} {$future = 'future'} {/if}
-  {$index = 0} {$count = 0}
+  {$index = 0} {$count = 0} {$exhibition_filter = []}
+
+  {foreach from=$exhibitions item=exhibition}
+    {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+      {$exhibition_filter[] = $exhibition}
+      {$count = 1}
+    {/if}
+  {/foreach}
+  {$exhibitions = 0}
+  {if ($count)}
+    {$exhibitions = $exhibition_filter}
+  {elseif (($data.show_latest) && (!$count))}
+    {$exhibitions = $latest_exhibitions}
+  {/if}
 
   {{"include": "minisites/top/top.html"}}
-
   </div>
   <div class="container">
-    
     <div class="row">
     <div class="photo-grid-row col-md-12">
       <ul class="photo-grid photo-grid-2col gallery-list row row-margin">
@@ -32,7 +43,6 @@
              </div>
              {{"include": "minisites/caption/exh_details.html"}}       
             </li>
-          {$count = 1}
           {/if}
         {/foreach}
       </ul>

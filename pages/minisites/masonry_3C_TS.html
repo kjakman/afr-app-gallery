@@ -46,7 +46,7 @@
 {if (($data.show_latest) && (!$count))}
     <h5 style="text-align: left;">Latest</h5>
 	<div class="item-container">
-		{foreach from=$latestexhibitions item=exhibition}
+		{foreach from=$latest_exhibitions item=exhibition}
 			<div class="item-grid-sizer"></div>
 			<div class="item-gutter-sizer"></div>
 			<div class="item-grid effect-{$ms.hover_type}">

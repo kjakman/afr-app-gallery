@@ -427,10 +427,20 @@ figure.effect-1006 img{
 	-moz-transition: -moz-transform 0.4s;
 	transition: transform 0.4s;
 }
+figure.effect-1006 .hover_cover{
+	background-color:#000000;
+}
 figure.effect-1006:hover img, figure.effect-1006:hover img{
-	transform: translateY(-90px);
-	-webkit-transform: translateY(-90px);
-	-moz-transform: translateY(-90px);
+	transform: translateY(-40%);
+	-webkit-transform: translateY(-40%);
+	-moz-transform: translateY(-40%);
+}
+@media only screen and (min-width: 1400px) {
+	figure.effect-1006:hover img, figure.effect-1006:hover img{
+		transform: translateY(-55%);
+		-webkit-transform: translateY(-55%);
+		-moz-transform: translateY(-55%);
+	}
 }
 figure.effect-1006 figcaption{
     height: 90px;

@@ -1,0 +1,32 @@
+{$loc = $collection.location_id|get:"location"}
+{if ($type == 'gallery')}
+	<figcaption>
+	  <h2>{$collection.title}</h2>
+	  <p>
+	    {$collection|artists}<br>
+	    {if ($collection.selection_range)}
+	    	<span>{$collection.selection_range}</span>
+	    {else}
+	    	<span>{$collection.start_date|date_format:"%e %b %Y"} - {$collection.end_date|date_format:"%e %b %Y"}</span>
+	    {/if}
+	    
+	  </p>
+	</figcaption> 
+{else}
+	<figcaption>
+	  <h2>{$collection.title}</h2>
+	  <p>
+	  	{if ($collection.selection_type)}
+	  		{$collection.selection_type}<br>
+	  	{else}
+	  		{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name}<br>
+	  	{/if}
+	    
+	    {if ($collection.selection_range)}
+	    	<span>{$collection.selection_range}</span>
+	    {else}
+	    	<span>{$collection.start_date|date_format:"%e %b %Y"} - {$collection.end_date|date_format:"%e %b %Y"}</span>
+	    {/if}
+	  </p>
+	</figcaption> 
+{/if}

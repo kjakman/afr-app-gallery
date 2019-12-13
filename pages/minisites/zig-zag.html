@@ -5,6 +5,26 @@
 {/block}
 
 {block name=content}
+	{$data = json_decode($minisite_pageObj.data, TRUE)}
+	{if ($data.show_current)} {$current = 'current'} {/if}
+	{if ($data.show_past)} {$past = 'past'} {/if}
+	{if ($data.show_future)} {$future = 'future'} {/if}
+	{$exhibition_filter = []} {$count = 0}
+
+	{foreach from=$exhibitions item=exhibition}
+	  {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+		{$exhibition_filter[] = $exhibition}
+		{$count = 1}
+	  {/if}
+	{/foreach}
+
+	{$exhibitions = 0}
+	{if ($count)}
+	  {$exhibitions = $exhibition_filter}
+	{elseif (($data.show_latest) && (!$count))}
+	  {$exhibitions = $latest_exhibitions}
+	{/if}
+	
 	{{"include": "minisites/top/top.html"}}
 	<div class="zigzag_container">
 	  {foreach from=$exhibitions item=exhibition}
@@ -54,6 +74,7 @@
 			   	   	{/if}     
 			</div>
 		</div>
+
 	  {/foreach}
 	</div>
 {/block}

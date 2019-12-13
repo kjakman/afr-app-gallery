@@ -9,7 +9,7 @@
 
 <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$obj_id}">
 {if ($full)}
-  <div class="row mt20 mb10"><label>Full Profile Templates</label></div>
+  <div class="row mt20 mb10"><label>Full Profile Templates</label> (Showcase you entire profile, include all your exhibitions, selected artworks and CV) </div>
   <div class="row">
    {foreach from=$full item=$layout}
       <div class="col-sm-6">
@@ -17,7 +17,7 @@
           <div class="fontsty_box no-padding"><img src="/img/{$layout.image}" /></div>
           <div class="form-group">
             <div class="selrad_box">
-              <input type="radio" class="parent_layout" name="second_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked="checked" {/if} > {$layout.name}
+              <input type="radio" class="parent_layout" name="second_layout" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked="checked" {/if} > {$layout.name} <span style="color: #FFFFFF;"> {if ($layout.id == 104)} (Delicate Layout) {else} (Widescreen layout) {/if} </span>
               <div class="radio_group" id="level1_list">
                 <label>Number of tabs on profile</label>
                   <select id="selectList1_{$layout.id}" class="common1" onchange="get_level2()">
@@ -79,7 +79,7 @@
 {/if}
 
 {if ($cv)}
-  <div class="row mt20 mb10"><label>CV/ Bio Templates</label></div>
+  <div class="row mt20 mb10"><label>CV/ Bio Templates</label> (Showcase  part  of  your  profile,  CV, Bio etc., laid  out beautifully) </div>
   <div class="row">
    {foreach from=$cv item=$layout}
       {$page_layouts = find_object('minisite_layout', ['parent_id' => $layout.id, 'active' => 1], ['fields' => 'distinct id'])}
@@ -98,7 +98,7 @@
 {/if}
 
 {if ($sa)}
-  <div class="row mt20 mb10"><label>Templates that Showcase only the Selected Art in  the Profile</label></div>
+  <div class="row mt20 mb10"><label>Art Templates</label> (Showcase just the art in your profile, If you are using text animations for art, you can hide art info on the page, for a more elegant look) </div>
   <div class="row">
    {foreach from=$sa item=$layout}
       {$page_layouts = find_object('minisite_layout', ['parent_id' => $layout.id, 'active' => 1], ['fields' => 'distinct id'])}

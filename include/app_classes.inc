@@ -326,7 +326,8 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
      'title_size' =>        array('Site Title Size',    'int',     0,  AF_HIDE_ADD, 3),
      'fixed_header'  =>     array('Fixed Header',       'bool',     1,  AF_HIDE_ADD, 0),
      'show_homemenu'  =>    array('Show Homepage menu', 'bool',     1,  AF_HIDE_ADD, 0),
-     'footer_data' =>       array('Footer data',        'json', '', 0),
+     'footer_data' =>       array('Footer data',        'bool',     1,  AF_HIDE_ADD, 0),
+     'connect_domain' =>    array('Connect Domain',     'bool',     0,  AF_HIDE_ADD, 0),
    ),
 
    "minisite_page_type" => 
@@ -335,6 +336,7 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'name'=>          array('Name',              'str',   '', 1, 32 ),
       'tab'=>           array('tab',              'str',   '', 1, 32 ),
       'row_order'=>     array('Row Order',            'int',   '', 0, 10 ),
+      'active'  =>           array('Active?',            'bool',     1,  AF_HIDE_ADD, 0),
    ),
 
     "minisite_page" => 
@@ -448,7 +450,7 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'timestamp'=>     array('Timestamp', 'timestamp', ATT_DEFAULT_NOW,AF_HIDE_LIST|AF_READONLY|AF_HIDE_EDIT, 14 ),
       'active'  =>      array('Active?',   'bool',     1,  AF_HIDE_ADD, 0),
       'name'=>          array('Name',      'str',   '', 0, 255 ),
-      'image'=>         array('Image',     'str',   '', 0, 50 ),
+      'type'=>          array('Typr',      'int',   '', 0, 10 ),
       'rank'=>          array('Rank',      'int',   '', 0, 11 ),
    ),
 

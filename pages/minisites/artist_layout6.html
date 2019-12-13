@@ -31,13 +31,14 @@
   </div>
   
   <div class="col-md-8 col-sm-12 detail-text">
-    <h1 class="sub-nav-header artist-sub-nav-header"><a href="{$link}">{$artist.display_name}</a></h1>
+    <div class="cvtab_inner">
+    <h2 class="sub-nav-header artist-sub-nav-header"><a href="{$link}">{$artist.display_name}</a></h2>
     {if ($artist.city)} <h3 class="bioaddress">{$artist.city}, {$artist.country|get:countries:name}</h3> {/if}
     <br><br>
  
     {if ({$artist.free_text})}
       <h4>CV</h4>
-      {$artist.free_text}<br>
+      {$artist.free_text}
     {/if}
 
     {$show_data = json_decode($artist.show_data, True)}
@@ -46,7 +47,7 @@
       {$solo_shows_ = json_decode($artist.solo_shows_, True)}
       <div class="row text-left">
         <div class="col-md-12">
-          <h4>solo</h4>
+          <h4>Solo Shows</h4>
           <table>
             {foreach from =$solo_shows_ item=$solo_shows}
               {$split = explode('-', $solo_shows['year'])}
@@ -64,7 +65,7 @@
       {$group_shows_ = json_decode($artist.group_shows_, True)}
       <div class="row text-left">
         <div class="col-md-12">
-          <h4>Group</h4>
+          <h4>Group Shows</h4>
           <table>
             {foreach from =$group_shows_ item=$group_shows}
               {$split = explode('-', $group_shows['year'])}
@@ -114,7 +115,7 @@
         </div>
       </div>
     {/if}
-
+  </div>
   </div>
   
 </div>  

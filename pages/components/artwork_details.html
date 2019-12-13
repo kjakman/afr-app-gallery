@@ -56,21 +56,13 @@
 
 	      {if ($getartwork.height > 0 && $getartwork.width > 0)}
 	        {$getartwork.height} x {$getartwork.width} 
-	        {if (($getartwork.depth) && (($getartwork.type == 30) || ($getartwork.type == 40)))} 
+	        {if (($getartwork.depth) && ($getartwork.type == 30))} 
 	          x {$getartwork.depth} 
 	        {/if}
 	        {$getartwork.unit} <br>
 	      {/if}
 
-	      {if ($getartwork.type == 30 || $getartwork.type == 40)}
-	      	{if ($getartwork.presentation == 10)} Leave Blank <br>
-	      	{elseif ($getartwork.presentation == 20)} Free Standing <br>
-	      	{elseif ($getartwork.presentation == 30)} Pedestal Mounted <br>
-	      	{elseif ($getartwork.presentation == 40)} Wall Mounted <br>
-	      	{elseif ($getartwork.presentation == 50)} Hanging <br>
-	      	{elseif ($getartwork.presentation == 60)} Installation <br>
-	      	{/if}
-	      {else}
+	      {if ($getartwork.type != 30 && $getartwork.type != 40)}
 		      {if ($getartwork.frame == -1)}
 		        Unframed
 		      {elseif ($getartwork.frame == 1)}
@@ -82,6 +74,8 @@
 		      {elseif ($getartwork.frame == 1)}
 		        , Passe-partout <br>
 		      {/if} 
+		  {else}
+		     {$getartwork.presentation}
 		  {/if}
 
 	      {if ($getartwork.editions > 1)}  

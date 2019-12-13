@@ -9,7 +9,7 @@
 <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$obj_id}">
   {if ($full)}
   	<div class="row mt20">
-      <div class="row"><label>Full Exhibition Templates</label></div>
+      <div class="row mb20"><label>Full Exhibition Templates :</label> (If its obvious where the exhibitions are, everything is at your Studio/ Gallery, you can hide the location; Hide the info about art on the layout, so you can choose a text animation instead, for a more elegant look) </div>
       {foreach from=$full item=$layout}
       	<div class="col-sm-6">
       	  <div class="fontsty_boxblk">
@@ -65,7 +65,7 @@
   {/if}
 
   {if ($art)}
-  	<div class="row mt20"><label>Template that showcase only the art in the exhibition</label></div>
+  	<div class="row mt20 mb20"><label>Art Templates :</label> (Showcase just  the art in  your  exhibition. Hide  the info  about art on  the layout  if  you want  to  choose  a text  animation instead,  for a more  elegant look) </div>
   	<div class="row">
   	 {foreach from=$art item=$layout}
   	    {$page_layouts = find_object('minisite_layout', ['parent_id' => $layout.id, 'active' => 1], ['fields' => 'distinct id'])}

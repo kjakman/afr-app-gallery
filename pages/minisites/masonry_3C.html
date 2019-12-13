@@ -11,9 +11,7 @@
 {if ($data.show_current)} {$current = 'current'} {/if}
 {if ($data.show_past)} {$past = 'past'} {/if}
 {if ($data.show_future)} {$future = 'future'} {/if}
-{if ($data.show_latest)} {$latest = 'latest'} {/if}
-{$index = 0} 	{$count = 0}
-{$scope.manual_exhibition}
+{$count = 0}
 
 <div class="item-container">
 	<div class="item-grid-sizer"></div>
@@ -37,7 +35,8 @@
 	{/foreach}
 
 	{if (($data.show_latest) && (!$count))}
-		{foreach from=$latestexhibitions item=exhibition}
+	  {foreach from=$latest_exhibitions item=exhibition}
+	  	<h5 class="yseparator" style="text-align: left;">Latest</h5>
 		<div class="item-grid effect-{$ms.hover_type}">
 		  	<div class="hover_style">				
 		  	  <figure class="effect-{$ms.hover_type}">
@@ -50,7 +49,7 @@
 		  	</div>
 		  	{{"include": "minisites/caption/exh_details.html"}}      
 		</div>
-		{/foreach}
+	  {/foreach}
 	{/if}
 </div>
 

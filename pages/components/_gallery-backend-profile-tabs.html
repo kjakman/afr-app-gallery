@@ -15,9 +15,10 @@
   {$tab11_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'press']}
   {$tab12_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'awards']}
   {$tab13_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'freetext']}
+  {$tab14_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'delete']}
   
   {$tab = $page.tab|default:'basic'}
-  
+
   <ul class="nav nav-tabs">
     <li {if ($tab == 'basic')  }class="active"{/if}><a {if ($getpv)} href= "{$tab1_link}?_pv=viewartistpage&site_id={$site_id}&page_id={$page_id}&user_id={$scope.obj_id}" {else} href= "{$tab1_link}?_pv=1" {/if}  class="ajax-loader" data-target="#subview-container" id="gbe_basic_link">Basic</a></li>
     <li {if ($tab == 'about') }class="active"{/if}><a {if ($getpv)} href= "{$tab2_link}?_pv=viewartistpage&site_id={$site_id}&page_id={$page_id}&user_id={$scope.obj_id}" {else} href= "{$tab2_link}?_pv=1" {/if} class="ajax-loader" data-target="#subview-container" id="gbe_about_link">Bio/Photo</a></li>
@@ -37,6 +38,9 @@
 
     {if ($scope.user|has_role:$smarty.const.smarty.const.smarty.const.USER_ROLE_COLLECTOR)}
       <li {if ($tab == 'collector') }class="active"{/if}><a {if ($getpv)} href= "{$tab7_link}?_pv=viewartistpage&site_id={$site_id}&page_id={$page_id}&user_id={$scope.obj_id}" {else} href= "{$tab7_link}?_pv=1" {/if} class="ajax-loader" data-target="#subview-container" id="gbe_collector_link">Collector</a></li>
+    {/if}
+    {if ($scope.u_id != $scope.user.id)}
+      <li {if ($tab == 'delete') }class="active"{/if}><a href= "{$tab14_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_delete_link">Delete</a></li>
     {/if}
   </ul>
   
@@ -65,7 +69,9 @@
     {elseif ($tab == 'awards')}
       {{"include": "_gallery-backend-profile-awards.html"}}  
     {elseif ($tab == 'freetext')}
-      {{"include": "_gallery-backend-profile-freetext.html"}}   
+      {{"include": "_gallery-backend-profile-freetext.html"}}
+    {elseif ($tab == 'delete')}
+      {{"include": "_gallery-backend-profile-delete-artist.html"}}   
      
     {else}
       {"Unknown tab `$tab`"|alert:"error"}

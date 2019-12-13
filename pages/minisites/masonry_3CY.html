@@ -12,7 +12,7 @@
 {if ($data.show_current)} {$current = 'current'} {/if}
 {if ($data.show_past)} {$past = 'past'} {/if}
 {if ($data.show_future)} {$future = 'future'} {/if}
-{$index = 0} {$count = 0}
+{$count = 0}
 
 {if ($future || $current || $past)}
   {foreach from=$years item=year}
@@ -37,7 +37,7 @@
 					  	{{"include": "minisites/caption/exh_details.html"}}       
 					</div>
 				{/if}
-				{$count = 1} {$index = $index + 1}
+				{$count = 1}
 			{/if}
 		{/foreach}
 	</div><br>
@@ -49,7 +49,7 @@
 	<div class="item-container">
 		<div class="item-grid-sizer"></div>
 		<div class="item-gutter-sizer"></div>
-		{foreach from=$latestexhibitions item=exhibition}
+		{foreach from=$latest_exhibitions item=exhibition}
 		<div class="item-grid effect-{$ms.hover_type}">        
 		  	<div class="hover_style">				
 		  	  <figure class="effect-{$ms.hover_type}">
@@ -70,7 +70,7 @@
 <script>
 	$(document).ready(function(){
 	  var yearExist = "{$yearExist|json_encode}";
-	  console.log("Existing Year "+JSON.stringify(yearExist) );
+	  //console.log("Existing Year "+JSON.stringify(yearExist) );
 	  var data = jQuery.parseJSON(yearExist);
 	  $.each(data, function(index, value) {
 	    $('.year_'+value).show();

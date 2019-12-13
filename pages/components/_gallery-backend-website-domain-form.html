@@ -1,0 +1,45 @@
+<form class="ajax-submit" data-handler="save-minisite-basic">
+	<input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
+	<input hidden="1" name="obj_id" class="obj_id" type="hidden" value="{$minisite.id|default:$id}" class="obj_id">
+	<input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">  
+
+	<label class="mb20">If you want to connect your vPatina site to you own domain - we are here to help</label> <br>
+
+	<div>
+	  <span>
+		1. If you haven't yet - buy a domain - you can do this at register.com, godaddy.com and many other providers <br>
+		2. Enter a domain name you have, where indicated below <br>
+		3. Confirm on the form that you are ready to connect your domain <br>
+		4. Get in touch for support, e-mail: info@vpatina.com and call: 0630126934 
+	  </span>
+	</div><br>
+
+	<div class="row mb20">
+	  <div class="col-sm-8 no-padding">
+		<label>Enter the URL of the domain you want to connect to When entering URL remember to start with https://....</label>
+	  </div>
+	  <div class="col-sm-6 no-padding">
+		<input type="text" class="form-control" name="domain" value="{$minisite.domain}" maxlength="128">
+	  </div>
+	</div>
+
+	<div class="mb20">
+		<label class="mb10">Are you ready to connect you website to your domain</label>
+		<div class="input-group">
+		  <input name='connect_domain' value='0' type='hidden'> 
+		  <span style="padding-right: 10px"> Not ready yet   </span> <input type="checkbox" {if ($minisite.connect_domain)}checked{/if} class="bootstrap-toggle" value="1" name="connect_domain" id="name">   <span style="padding-left: 10px"> Yes I am ready </span> 
+		</div>
+
+		<input type="submit" class="btn btn-success" value="Save" id="submit">
+	</div>
+
+	<div>
+		<span>Now, please get in touch so we can connect your site to your domain</span><br>
+		<span>e-mail: info@vpatina.com and call: 0630126934 to connect</span>
+	</div>
+</form>
+<script type="text/javascript">
+  $(document).ready( function() {
+    hidetabs();
+  });
+</script>

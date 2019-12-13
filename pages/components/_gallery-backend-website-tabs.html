@@ -13,8 +13,6 @@
   {$tab8_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'settings']}
   {$tab9_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'font']}
   {$tab10_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'menu']}
-  {$tab36_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'hover']}
-  {$tab37_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artHover']}
 
   {$tab11_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artistcontent']}
   {$tab12_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artistcolour']}
@@ -46,15 +44,24 @@
   {$tab33_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'manualexbpage']}
   {$tab34_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'manualexblayout']}
   {$tab35_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'manualexbcolour']}
-  
+
+  {$tab37_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'hover']}
+  {$tab38_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'exbHover']}
+  {$tab39_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artHover']}
+
+  {$tab40_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'domain']}
+  {$tab41_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'extlink']}
+
   {$tab = $page.tab|default:'basic'}
 
   <ul class="nav nav-tabs">
     <li {if ($tab == 'basic') }class="active"{/if}><a href="{$tab6_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_basic_link">Basic</a></li>
     <li {if ($tab == 'menu') }class="active"{/if}><a href="{$tab10_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_font_link">Menu Template</a></li>
     <li {if ($tab == 'font') }class="active"{/if}><a href="{$tab9_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_font_link">Font</a></li>
-    <li {if ($tab == 'hover') }class="active"{/if}><a href="{$tab36_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_hover_link">Exhibition Animation</a></li>
-    <li {if ($tab == 'artHover') }class="active"{/if}><a href="{$tab37_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_art_hover_link">Art Animation</a></li>
+
+    <li {if (($tab == 'hover') || ($tab == 'exbHover') || ($tab == 'artHover') ) }class="active"{/if}><a href="{$tab37_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_hover_link"> Animations/Effect </a></li>
+
+
     <li {if ($tab == 'page')  }class="active"{/if}><a href="{$tab1_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_page_link">Pages</a></li>
     <!-- <li {if ($tab == 'home')  }class="active"{/if}><a href="{$tab2_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_home_link">Home</a></li> -->
     <li {if (($tab == 'artist') || ($tab == 'artistcontent') || ($tab == 'artistcolour') || ($tab == 'artistpagelayout') || ($tab == 'artistsecondpage'))  }class="active"{/if}><a href="{$tab3_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_artist_link">Showcase Managed Profiles</a></li>    <!-- Artist -->
@@ -70,6 +77,10 @@
 
     <li {if ($tab == 'extSite') } class="active"{/if}><a href="{$tab30_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_extSite_link">External Site (iframe)</a></li> <!-- Single page exhibition -->
     <li {if ($tab == 'extMail') } class="active"{/if}><a href="{$tab31_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_extMail_link">Mail Form</a></li> <!-- Single page exhibition -->
+
+    <li {if ($tab == 'extlink') } class="active"{/if}><a href="{$tab41_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_extlink">External Link</a></li> <!-- Single page exhibition -->
+
+    <li {if ($tab == 'domain') } class="active"{/if}><a href="{$tab40_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_domain_link">Domain Connection</a></li> <!-- Domain connection -->
 
     <!--<li {if ($tab == 'styling') }class="active"{/if}><a href="{$tab7_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_styling_link">styling</a></li>
     
@@ -105,8 +116,12 @@
       {{"include": "_gallery-backend-website-menu-form.html"}}
     {elseif ($tab == 'hover')}
       {{"include": "_gallery-backend-website-hover-form.html"}}
+    {elseif ($tab == 'exbHover')}
+      {{"include": "_gallery-backend-website-hover-form.html"}}
     {elseif ($tab == 'artHover')}
       {{"include": "_gallery-backend-website-art-hover-form.html"}}
+    {elseif ($tab == 'domain')}
+      {{"include": "_gallery-backend-website-domain-form.html"}}
 
     {elseif ($tab == 'artistcontent')}
       {{"include": "_gallery-backend-website-artist-form.html"}}
@@ -160,6 +175,8 @@
       {{"include": "_gallery-backend-website-extsite.html"}}
     {elseif ($tab == 'extMail')}
       {{"include": "_gallery-backend-website-extmail.html"}}
+    {elseif ($tab == 'extlink')}
+      {{"include": "_gallery-backend-website-extlink.html"}}
 
     {else}
       {"Unknown tab `$tab`"|alert:"error"}

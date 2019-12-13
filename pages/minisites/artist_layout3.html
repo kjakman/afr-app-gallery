@@ -99,67 +99,69 @@
 		        </article>
 		      </div>
 
-		      <div id="cv" class="tab-pane fade mt20 mb20">
-		      	{if ({$profile.free_text})}
-		      	  <h4>CV :</h4>
-		      	  {$profile.free_text}<br>
-		      	{/if}
+		      <div id="cv" class="tab-pane fade mt20 mb20 cvtab_inner">
 
-		      	{if ($show_data['solo_shows'] == 1)} 
-		      		{$solo_shows_ = json_decode($profile.solo_shows_, True)}
-		        	<h4>Solo Shows: </h4>
-			        <table>
-			          {foreach from =$solo_shows_ item=$solo_shows}
-			            {$split = explode('-', $solo_shows['year'])}
-			              <tr style="line-height: 26px;">
-			                <td style= "width: 40px">{$split[0]}</td>
-			                <td>{$solo_shows['description']}</td>
-			              </tr>
-			          {/foreach}
-			        </table>  
-			    {/if}
+					{if ({$profile.free_text})}
+					  <h4>CV :</h4>
+					  {$profile.free_text}
+					{/if}
 
-			    {if ($show_data['group_shows'] == 1)}
-			    	{$group_shows_ = json_decode($profile.group_shows_, True)}
-			    	<h4>Group Shows: </h4>
-			    	<table>
-			    	  {foreach from =$group_shows_ item=$group_shows}
-			    	    {$split = explode('-', $group_shows['year'])}
-			    	      <tr style="line-height: 26px;">
-			    	        <td style= "width: 40px">{$split[0]}</td>
-			    	        <td>{$group_shows['description']}</td>
-			    	      </tr>
-			    	  {/foreach}
-			    	</table>
-			    {/if}
+					{if ($show_data['solo_shows'] == 1)} 
+						{$solo_shows_ = json_decode($profile.solo_shows_, True)}
+						<h4>Solo Shows: </h4>
+						<table>
+						  {foreach from =$solo_shows_ item=$solo_shows}
+							{$split = explode('-', $solo_shows['year'])}
+							  <tr style="line-height: 26px;">
+								<td style= "width: 40px">{$split[0]}</td>
+								<td>{$solo_shows['description']}</td>
+							  </tr>
+						  {/foreach}
+						</table>  
+					{/if}
 
-			    {if ($show_data['press'] == 1)}
-			      {$press_data = json_decode($profile.press_data, True)}
-			      <h4>Press : </h4>
-			      <table>
-			        {foreach from =$press_data item=$press}
-			          {$split = explode('-', $press['year'])}
-			            <tr style="line-height: 26px;">
-			              <td style= "width: 40px">{$split[0]}</td>
-			              <td>{$press['description']}</td>
-			            </tr>
-			        {/foreach}
-			      </table>    
-			    {/if}
+					{if ($show_data['group_shows'] == 1)}
+						{$group_shows_ = json_decode($profile.group_shows_, True)}
+						<h4>Group Shows: </h4>
+						<table>
+						  {foreach from =$group_shows_ item=$group_shows}
+							{$split = explode('-', $group_shows['year'])}
+							  <tr style="line-height: 26px;">
+								<td style= "width: 40px">{$split[0]}</td>
+								<td>{$group_shows['description']}</td>
+							  </tr>
+						  {/foreach}
+						</table>
+					{/if}
 
-			    {if ($show_data['awards'] == 1)}
-			      {$awards = json_decode($profile.awards, True)}
-			      <h4>Awards : </h4>
-			      <table>
-			        {foreach from =$awards item=$award}
-			          {$split = explode('-', $award['year'])}
-			            <tr style="line-height: 26px;">
-			              <td style= "width: 40px">{$split[0]}</td>
-			              <td>{$award['description']}</td>
-			            </tr>
-			        {/foreach}
-			      </table>       
-			    {/if}
+					{if ($show_data['press'] == 1)}
+					  {$press_data = json_decode($profile.press_data, True)}
+					  <h4>Press : </h4>
+					  <table>
+						{foreach from =$press_data item=$press}
+						  {$split = explode('-', $press['year'])}
+							<tr style="line-height: 26px;">
+							  <td style= "width: 40px">{$split[0]}</td>
+							  <td>{$press['description']}</td>
+							</tr>
+						{/foreach}
+					  </table>    
+					{/if}
+
+					{if ($show_data['awards'] == 1)}
+					  {$awards = json_decode($profile.awards, True)}
+					  <h4>Awards : </h4>
+					  <table>
+						{foreach from =$awards item=$award}
+						  {$split = explode('-', $award['year'])}
+							<tr style="line-height: 26px;">
+							  <td style= "width: 40px">{$split[0]}</td>
+							  <td>{$award['description']}</td>
+							</tr>
+						{/foreach}
+					  </table>       
+					{/if}
+				  </div> 
 		      </div> 
 		  	</div>
 		  </div>

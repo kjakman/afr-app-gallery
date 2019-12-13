@@ -21,6 +21,9 @@
                                   {if ($artwork.video_time)}  
                                     Time : {$artwork.video_time} 
                                   {/if}<br>
+                                  {if ($artwork.video_director)}  
+                                    Director : {$artwork.video_director} 
+                                  {/if}<br>
                                   {if ($artwork.video_producer)}  
                                     Producer : {$artwork.video_producer} 
                                   {/if}<br>
@@ -59,17 +62,27 @@
                                     {$artwork.unit} <br>
                                   {/if}
 
-                                  {if ($artwork.frame == -1)}
-                                    Unframed
-                                  {elseif ($artwork.frame == 1)}
-                                    Framed
-                                  {/if}
+                                  {if ($artwork.type == 30 || $artwork.type == 40)}
+                                    {if ($artwork.presentation == 10)} Leave Blank <br>
+                                    {elseif ($artwork.presentation == 20)} Free Standing <br>
+                                    {elseif ($artwork.presentation == 30)} Pedestal Mounted <br>
+                                    {elseif ($artwork.presentation == 40)} Wall Mounted <br>
+                                    {elseif ($artwork.presentation == 50)} Hanging <br>
+                                    {elseif ($artwork.presentation == 60)} Installation <br>
+                                    {/if}
+                                  {else}
+                                    {if ($artwork.frame == -1)}
+                                      Unframed
+                                    {elseif ($artwork.frame == 1)}
+                                      Framed
+                                    {/if}
 
-                                  {if ($artwork.passepartout == -1)}
-                                    , No Passe-partout <br>
-                                  {elseif ($artwork.frame == 1)}
-                                    , Passe-partout <br>
-                                  {/if} 
+                                    {if ($artwork.passepartout == -1)}
+                                      , No Passe-partout <br>
+                                    {elseif ($artwork.frame == 1)}
+                                      , Passe-partout <br>
+                                    {/if} 
+                                {/if}
 
                                   {if ($artwork.editions > 1)}  
                                     Series of {$artwork.editions} <br>

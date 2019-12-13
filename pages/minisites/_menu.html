@@ -35,6 +35,37 @@
         {if ($menuObjs.type == '80')}  <!-- exhibition page -->
           <li class="nav-item"><a {if ($pagename == $menuObjs.slug)} class="nav-link active" {else} class="nav-link" {/if} href="{$basepath}{$menuObjs.slug}manualexbs">{$menuObjs.menu_title}</a>
         {/if}
+
+        {if ($menuObjs.type == '90')}  <!-- exhibition page -->
+          {$data = json_decode($menuObjs.data)}
+          {$menuObjs.menu_title}
+          {if ($menuObjs.template == 10)}
+            <li class="nav-item"><a {if ($pagename == $menuObjs.slug)} class="nav-link active" {else} class="nav-link" {/if} href="{$data[0]}">{$menuObjs.menu_title}</a>
+          {elseif ($menuObjs.template == 20)}
+            <li class="nav-item"><a {if ($pagename == $menuObjs.slug)} class="nav-link active" {else} class="nav-link" {/if} href="{$data[0]}" target="_blank">{$menuObjs.menu_title}</a>
+          {elseif ($menuObjs.template == 30)}
+            <li class="nav-item"><a href="" class="nav-link" onclick="window.open('{$data[0]}','mywindow','height:400;width:400;')">{$menuObjs.menu_title}</a></li>
+          {elseif ($menuObjs.template == 40)}
+            <li class="nav-item"><a href="{$data[0]}" class="nav-link" data-toggle="modal" data-target="#myModal">{$menuObjs.menu_title}</a></li>
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="modal-title" id="myModalLabel">{$menuObjs.menu_title}</h4>
+                            <iframe src="{$data[0]}" width="100%" height="380" frameborder="0" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation" allowtransparency="true"></iframe>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+          {/if}
+        {/if}
       {/if}
     {else}
       {if (($menuObjs.type == '20') || ($menuObjs.type == '40') || ($menuObjs.type == '50') || ($menuObjs.type == '60') || ($menuObjs.type == '70') )}       <!-- artist page -->
@@ -62,6 +93,36 @@
       {if ($menuObjs.type == '80')}  <!-- exhibition page -->
         <li class="nav-item"><a {if ($pagename == $menuObjs.slug)} class="nav-link active" {else} class="nav-link" {/if} href="{$basepath}{$menuObjs.slug}manualexbs">{$menuObjs.menu_title}</a>
       {/if}
+      {if ($menuObjs.type == 90)}  <!-- exhibition page -->
+        {$data = json_decode($menuObjs.data)}
+        {if ($menuObjs.template == 10)}
+          <li class="nav-item"><a {if ($pagename == $menuObjs.slug)} class="nav-link active" {else} class="nav-link" {/if} href="{$data[0]}">{$menuObjs.menu_title}</a>
+        {elseif ($menuObjs.template == 20)}
+          <li class="nav-item"><a {if ($pagename == $menuObjs.slug)} class="nav-link active" {else} class="nav-link" {/if} href="{$data[0]}" target="_blank">{$menuObjs.menu_title}</a>
+        {elseif ($menuObjs.template == 30)}
+          <li class="nav-item"><a href="" class="nav-link" onclick="window.open('{$data[0]}','mywindow','height:400;width:400;')">{$menuObjs.menu_title}</a></li>
+        {elseif ($menuObjs.template == 40)}
+          <li class="nav-item"><a href="{$data[0]}" class="nav-link" data-toggle="modal" data-target="#myModal">{$menuObjs.menu_title}</a></li>
+
+
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                          <h4 class="modal-title" id="myModalLabel">{$menuObjs.menu_title}</h4>
+                          <iframe src="{$data[0]}" width="100%" height="380" frameborder="0" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation" allowtransparency="true"></iframe>
+                      </div>
+                  </div>
+                  <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+          </div>
+          <!-- /.modal -->
+        {/if}
+      {/if}
     {/if}
    {/foreach} 
     <!-- <li class="nav-item"><a class="nav-link" href="{$basepath}/contact">Contact</a></li> -->
@@ -79,3 +140,39 @@
         *}
         
       </ul>
+      
+<script type="text/javascript">
+  $('[data-target="#myModal"]').on('click', function (e) {
+      e.preventDefault();
+
+      var _linky = $(this).attr('href');
+      var _target = $(this).data('target'); 
+      var $target = $(_target);
+
+      if ($target.length > 0) {
+        
+          $target.find('iframe').attr('src', 'about:blank');
+
+          var _isRemote = false;
+          if (_linky.indexOf('http') > -1) {
+              _isRemote = true;
+          }
+
+          if (!_isRemote) {
+              if (_linky.indexOf('?') > -1) {
+                  _linky += '&tmpl=component';
+              } else {
+                  _linky += '?tmpl=component';
+              }
+          }
+        
+          $target.find('iframe').attr('src', _linky).load(function() {
+              $target.modal('show');
+          });
+      }
+  });
+
+  $('body').on('hidden.bs.modal', '.modal', function () {
+      $(this).removeData('bs.modal');
+  });
+</script>

@@ -71,20 +71,18 @@
           </div>
         </div>
         
-        {$yes_no = [0 => "", -1 => "No", 1 => "Yes"]}
         <div class="row type-10 type-11 type-20 type-21 type-22">
           <div class="form-group col-sm-4 col-xs-6">
             <label for="media-frame">Frame</label>
-            {$yes_no = [0 => "", -1 => "Unframed", 1 => "Framed"]}
+            {$yes_no = [0 => "Leave Blank", -1 => "Unframed", 1 => "Framed"]}
             {html_options name="frame" class="form-control" options=$yes_no selected=$artwork.frame}                                            
           </div>
           <div class="form-group col-sm-4 col-xs-6">
             <label for="media-passepartout">Passe-Partout</label>
-            {$yes_no = [0 => "", -1 => "No Passe-partout", 1 => "Passe-partout"]}
+            {$yes_no = [0 => "Leave Blank", -1 => "No Passe-partout", 1 => "Passe-partout"]}
             {html_options name="passepartout" class="form-control" options=$yes_no selected=$artwork.passepartout}                                            
           </div>          
-        </div>          
-        
+        </div>   
         
         {* film/video *}
         <div class="row type-50">
@@ -92,6 +90,10 @@
             <label for="artwork-video_time">Runtime</label>
             <input type="text" class="form-control" name="video_time" value="{substr($artwork.video_time, 0, 5)}" maxlength="128">
           </div>  
+          <div class="form-group col-sm-4 col-xs-6">
+            <label for="artwork-video_director">Director</label>
+            <input type="text" class="form-control" name="video_director" value="{$artwork.video_director}" maxlength="128">
+          </div> 
           <div class="form-group col-sm-4 col-xs-6">
             <label for="artwork-video_producer">Producer</label>
             <input type="text" class="form-control" name="video_producer" value="{$artwork.video_producer}" maxlength="128">
@@ -115,13 +117,21 @@
         </div>
         
         <div class="row type-10 type-11 type-30 type-40 type-50">
-          <div class="form-group col-sm-4 col-xs-6">
+          
+          <div class="form-group type-40 type-30 col-sm-3 col-xs-4">
+            <label for="media-frame">Presentation</label>
+            {$presentation = [10 =>"Leave Blank", 20 =>"Free Standing", 30 =>"Pedestal Mounted", 40 =>"Wall Mounted", 50 =>"Hanging", 60 =>"Installation"]}
+            {html_options name="presentation" class="form-control" options=$presentation selected=$artwork.presentation}                                            
+          </div>     
+          
+
+          <div class="form-group col-sm-3 col-xs-4">
             <label for="artwork-editions">Number in series</label>
              <a data-toggle="tooltip" title="Set the number in series to 1 if there in only one original, and to 0 if there is no limit on prints/ copies"> <i class="fa fa-info-circle"></i></a>
             <input type="text" class="form-control" name="editions" value="{$artwork.editions|default:'1'}" maxlength="4">
           </div>
   
-          <div class="form-group col-sm-4 col-xs-6">
+          <div class="form-group col-sm-3 col-xs-4">
             <label for="artwork-count">Edition No.</label>
             <input type="text" class="form-control" name="edition" value="{$artwork.edition}" maxlength="4">
           </div>

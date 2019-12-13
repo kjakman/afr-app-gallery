@@ -4,7 +4,24 @@
 {$form = "_gallery-backend-artwork-form.html"}
 {{"extend": "_gallery-backend-list-base.html"}}
 
-{block name=main}              
+{block name=main}  
+  <div class="row">
+    <div class="col-sm-5">
+      <span>
+        1. Green  “Create Artworks” button  adds  new artwork <br>
+        2.  Search  bar helps quickly find  artworks  <br>
+        3.  Check box next  to  artworks  to  delete/attach  to  exhibitions  <br>
+        4.  Orange  “Eye” icon  previews  artworks  <br> 
+      </span>
+    </div>
+    <div class="col-sm-6">
+      <span>
+        5.  Green Pencil icon allows  you to  edit  art  <br> 
+        6.  Orange “Clone” icon duplicates  an  art record <br> 
+        7.  “Download Records”  button  exports your  records to  xls, cvs etc. 
+      </span>  
+    </div>
+  </div>
 {/block}
 
 {block name="fields"}
@@ -44,7 +61,6 @@
     "22": "Mixed Media on paper/canvas",
     "70": " Performance"
   };
-
   var state = {
     "10": "Available",
     "20": "Reserved",

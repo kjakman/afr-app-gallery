@@ -5,9 +5,27 @@
 {/block}
 
 {block name=content}
+  {$data = json_decode($minisite_pageObj.data, TRUE)}
+  {if ($data.show_current)} {$current = 'current'} {/if}
+  {if ($data.show_past)} {$past = 'past'} {/if}
+  {if ($data.show_future)} {$future = 'future'} {/if}
+  {$exhibition_filter = []} {$i=0} {$count = 0}
+
+  {foreach from=$exhibitions item=exhibition}
+    {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+      {$exhibition_filter[] = $exhibition}
+      {$count = 1}
+    {/if}
+  {/foreach}
+
+  {$exhibitions = 0} 
+  {if ($count)}
+    {$exhibitions = $exhibition_filter}
+  {elseif (($data.show_latest) && (!$count))}
+    {$exhibitions = $latest_exhibitions}
+  {/if}
+
 	{{"include": "minisites/top/top.html"}}
-  
-	{$i=0}
 	{foreach from=$exhibitions item=exhibition}
   	  	{if ($i<=2)}
   	  		{if ($i == 0)}

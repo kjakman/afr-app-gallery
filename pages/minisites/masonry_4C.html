@@ -33,23 +33,32 @@
 		  {$count = 1}
 		{/if}
 	{/foreach}
-
-	{if (($data.show_latest) && (!$count))}
-		{foreach from=$latestexhibitions item=exhibition}
-		<div class="item-grid effect-{$ms.hover_type}">
-		  	<div class="hover_style">				
-		  	  <figure class="effect-{$ms.hover_type}">
-		  	  	<div class="hover_cover {if ($ms.hover_type == 1004)} text {/if}">
-			  		<img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
-			  		{{"include": "minisites/caption/figcaption.html"}}
-			  		<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
-			  	</div>			
-		  	  </figure>
-		  	</div>
-		  	{{"include": "minisites/caption/exh_details.html"}}       
-		</div>
-		{/foreach}
-	{/if}
+</div>
+<div class="item-container">
+	<div class="item-grid-sizer"></div>
+	<div class="item-gutter-sizer"></div>
+{if (($data.show_latest) && (!$count))}
+    <h5 class="yseparator" style="text-align: left;">Latest</h5>
+  	<div class="item-container">
+  		<div class="item-grid-sizer"></div>
+  		<div class="item-gutter-sizer"></div>
+  		{foreach from=$latest_exhibitions item=exhibition}
+  			<div class="item-grid">
+  			  	<div class="hover_style">				
+  			  	  <figure class="effect-{$ms.hover_type}">
+  			  	  	<div class="hover_cover {if ($ms.hover_type == 1004)} text {/if}">
+  				  		<img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+  				  		{{"include": "minisites/caption/figcaption.html"}}
+  				  		<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+  				  	</div>		
+  			  	  </figure>
+  			  	</div>
+  			  	{{"include": "minisites/caption/exh_details.html"}}       
+  			</div>
+  		  {$count = 1}
+  		{/foreach}
+  	</div>
+{/if}
 </div>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js'></script>

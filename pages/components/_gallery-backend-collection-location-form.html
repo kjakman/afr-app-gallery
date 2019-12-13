@@ -61,7 +61,7 @@
           </div>
         </div>
 
-        <div class="col-xs-12 {if ($collection.location_id || $locations|@count > 1)}collapse{/if}" id="gbe_location">
+        <div class="col-xs-12 {if ($collection.location_id && $locations|@count > 1)}collapse{/if}" id="gbe_location" >
           <label for="exhibition-address">{'location'|translate:'c'}</label>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>

@@ -22,14 +22,14 @@
             <a href="{$basepath}/{$collection.page_slug}/{$slug}">{$collection.title|default:"Untitled"}</a>
           </h1>
             <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
-              <li><a href="{$basepath}/{$collection.page_slug}/{$slug}/images"       class="">Images</a></li>
-              <li><a href="{$basepath}/{$collection.page_slug}/{$slug}/location"    class="">Location</a></li>
+              <li><a href="{$basepath}/{$collection.page_slug}/{$slug}/images">Images</a></li>
+              {if (!$collection.selection_type)} <li><a href="{$basepath}/{$collection.page_slug}/{$slug}/location">Location</a></li>{/if}
             </ul>
             {else}
               <a href="{$basepath}/{$collection.page_slug}/{$slug}">{$collection.title|default:"Untitled"}</a>
               <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
-                <li><a href="{$basepath}/{$page}/{$slug}/images"       class="">Imagess</a></li>
-                <li><a href="{$basepath}/{$page}/{$slug}/location"    class="">Location</a></li>
+                <li><a href="{$basepath}/{$page}/{$slug}/images">Imagess</a></li>
+                {if (!$collection.selection_type)} <li><a href="{$basepath}/{$page}/{$slug}/location" >Location</a></li>{/if}
               </ul>
           </h1>
             {/if}
@@ -41,10 +41,14 @@
             <div class="dropdown-menu">
               {if ($collection.page_slug)}
                 <li class="sub-nav-li"><a href="{$basepath}/{$collection.page_slug}/{$slug}/images" class="dropdown-item">Images</a></li>
-                <li class="sub-nav-li"><a href="{$basepath}/{$collection.page_slug}/{$slug}/location" class="dropdown-item">Location</a></li>
+                {if (!$collection.selection_type)}
+                  <li class="sub-nav-li"><a href="{$basepath}/{$collection.page_slug}/{$slug}/location" class="dropdown-item">Location</a></li>
+                {/if}
               {else}
                 <li class="sub-nav-li"><a href="{$basepath}/{$page}/{$slug}/images" class="dropdown-item">Images</a></li>
+                {if (!$collection.selection_type)}
                 <li class="sub-nav-li"><a href="{$basepath}/{$page}/{$slug}/location" class="dropdown-item">Location</a></li>
+                {/if}
               <!--li class="sub-nav-li"><a href="{$basepath}/{$page}/{$slug}/publications" class="dropdown-item">Publications</a></li-->
               {/if}
             </div>
@@ -52,8 +56,12 @@
         </div>
         <br>
         <div class="small-text">
-          {if ($collection.start_date && $collection.end_date)}
-            {{"include": "_gallery-collection-date.html"}}
+          {if ($collection.selection_range)}
+            <h4>{$collection.selection_range}</h4>
+          {else}
+            {if ($collection.start_date && $collection.end_date)}
+              {{"include": "_gallery-collection-date.html"}}
+            {/if}
           {/if}
           
           {if ($collection.event)}

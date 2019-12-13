@@ -57,15 +57,16 @@
 
 <div class="profileinfo"> 
 	<div class="gallery-artwork-detail">
+	  <div class="outer_container">
 		<div class="row">
-			<div class="col-lg-5 col-md-4 col-sm-3">	
+			<div class="col-lg-4 col-md-3 col-sm-3">	
 				<div class="artistProfile">
 					<div class="image-container-max-height">
 				      <img style="width:100%; max-height:100%;" src="{$profile|userphoto:'big'}" alt="{$profile.display_name}" class="img-responsive"/><br />
 				    </div>
 	      		</div>
 			</div>
-			<div class="col-lg-7 col-md-8 col-sm-9">
+			<div class="col-lg-8 col-md-9 col-sm-9">
 				<h1> {$profile.display_name}</h1> <br>
 				<h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
 				<div id="description" style="text-align: justify;" class="mt20">
@@ -75,6 +76,7 @@
 				</div>
 			</div>
 		</div>
+	  </div>
 		{block name=description}
 			
 		  <div style="text-align: left;" class="mt20">
@@ -103,7 +105,7 @@
 		        {{"include": "minisites/profile_masonry.html"}}
 		      </div>
 
-		      <div id="cv" class="tab-pane fade mt20 mb20">
+		      <div id="cv" class="tab-pane fade mt20 mb20 cvtab_inner">
 		      	{if ({$profile.free_text})}
 		      	  <h4>CV :</h4>
 		      	  {$profile.free_text}<br>

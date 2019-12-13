@@ -2,9 +2,19 @@
       {$pagelist = $scope.pagelist}
       {$count = $pagelist|@COUNT}
 
-      <div class="input-group" >
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#gbe_create_page_dialog"> Create Page</button>
-      </div><br>
+      <div class="row" >
+        <div class="col-sm-2 input_group">
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#gbe_create_page_dialog"> Create Page</button>
+        </div>
+        <div class="col-sm-8">
+          <span>
+            1)Use “Create Page” button  to  add pages <br>
+            2)  Drag  & drop  pages in  the table to  re-order  them  in  your  website menu <br>
+            3)  Use Green edit  button  to  edit  each  page <br>
+            4)  Red delete  button  allows  you to  remove  a page
+          </span>
+        </div>
+      </div>
         
       <div class="row">
         <div class="form-group col-xs-12">
@@ -19,7 +29,6 @@
               </tr>
             </thead>
             <tbody id= "sortable-row">
-          
               {foreach $pagelist as $pagelists}              
                 <tr id= "{$pagelists.id}">
                   <td>{$pagelists.menu_title}</td>
@@ -38,7 +47,6 @@
                     {/if}
                   </td>
                 </tr>
-                
               {/foreach} 
             </tbody>
           </table>

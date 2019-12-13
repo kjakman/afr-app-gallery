@@ -1,38 +1,29 @@
 {$index = 0}
-<div class="item-container">
-	<div class="item-grid-sizer"></div>
-	<div class="item-gutter-sizer"></div>
+<div class="row">
+  <div class="row photo-grid-row col-md-12">
+    <ul class="photo-grid gallery-list col-md-12">
 	{foreach from=$exhibitions item=exhibition}
 		{$container_id = "media_collection_`$exhibition.id`"}
 		{$data = ["obj_type" => "media_collection","obj_id" => $exhibition.id, "plugin_id" => "1355","container_id" => $container_id]}
 		{$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}
 
-		<div class="item-grid effect-{$ms.hover_type}">
+		<li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item effect-{$ms.hover_type}" data-index="{$index}">
 			<div class="hover_style"> 
 				<figure id="{$exhibition.id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-index="{$index}" data-popup_options='{$popup_options|@json_encode}' class="vp-loader-photoswipe effect-{$ms.hover_type}">  
 					<div class="hover_cover">
+					  <span class="frame-square ratio43">
 						<img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
-						{{"include": "minisites/figcaption.html"}}
 						<a href="#" id="__vp-view-button-1355">View</a>
+					  </span>
 					</div>
 				</figure>
 			</div>
-		</div>
+			{if ($minisite_pageObj.show_details)}
+			  {{"include": "minisites/caption/exh_details.html"}}
+			{/if}
+		</li>
 		{$index = $index + 1}
 	{/foreach}
+    </ul>
+  </div>
 </div>
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js'></script>
-<script>
-	jQuery(window).on('load', function() {
-  
-	  $('.item-container').masonry({
-		columnWidth : '.item-grid-sizer',
-		gutter : 15,
-		itemSelector : '.item-grid',
-		percentPosition : 'true',
-		fitWidth: true,
-	  });
-	  
-	});
-</script>

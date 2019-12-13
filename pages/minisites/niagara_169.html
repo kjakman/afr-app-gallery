@@ -5,8 +5,14 @@
 {/block}
 
 {block name=content}
-	{$i=0}
+	{$data = json_decode($minisite_pageObj.data, TRUE)}
+	{if ($data.show_current)} {$current = 'current'} {/if}
+	{if ($data.show_past)} {$past = 'past'} {/if}
+	{if ($data.show_future)} {$future = 'future'} {/if}
+	{$i=0}  {$count = 0}
 	{foreach from=$exhibitions item=exhibition}
+	  {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+	  	{$count = 1}
 		{if ($i == 0)}
 			<div class="niagra_row niagra_cassablanca row">
 			  <div class="niagra_bigcol niagra_col col-sm-12 col-md-12">
@@ -24,8 +30,7 @@
 				  </div>
 				  {{"include": "minisites/caption/exh_details.html"}}
 				</div>
-			  </div>
-			
+			  </div>			
 		{else}
 	  		{if ($i == 1)}
 			  <div class="niagra_smallcol niagra_col col-sm-12 col-md-12">
@@ -51,7 +56,30 @@
 			</div>
 			{/if}
 		{/if} 
-
 	    {if ($i==2)} {$i = 0} {else} {$i = $i+1} {/if}
+	  {/if}
 	{/foreach}
+
+  {if (($data.show_latest) && (!$count))}
+	{foreach from=$latest_exhibitions item=exhibition}
+		<div class="niagra_row niagra_cassablanca row">
+		  <div class="niagra_bigcol niagra_col col-sm-12 col-md-12">
+			<div class="niagra_incol effect-{$ms.hover_type}">
+			  <div class="hover_style no-padding">       
+	            <figure class="effect-{$ms.hover_type} ratio_based">
+	              <div class="hover_cover no-margin">
+					<div class="frame-square ratio_banner169">
+						<img src= "{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}" />
+					</div>
+					{{"include": "minisites/caption/figcaption.html"}}
+					<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+				  </div>
+				</figure>
+			  </div>
+			  {{"include": "minisites/caption/exh_details.html"}}
+			</div>
+		  </div>			
+		</div>
+	{/foreach}
+  {/if}
 {/block}

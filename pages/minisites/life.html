@@ -5,8 +5,70 @@
 {/block}
 
 {block name=content}
+	{$data = json_decode($minisite_pageObj.data, TRUE)}
+	{if ($data.show_current)} {$current = 'current'} {/if}
+	{if ($data.show_past)} {$past = 'past'} {/if}
+	{if ($data.show_future)} {$future = 'future'} {/if}
+	{$count = 0}
 	<div class="zigzag_container">
 	  {foreach from=$exhibitions item=exhibition}
+	  	{if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+	  	{$count = 1}
+	  	{$loc = $exhibition.location_id|get:"location"}
+	  	{$desc = str_replace(['<a>', '</a>'], '', $exhibition.description)}	
+		<div class="zigzag_row row">
+			<div class="zigzag_col col-sm-12 col-md-8 zigzag_col_img">
+				<div class="ratio_based">
+					<div class="frame-square ratio1910">
+						<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"> 
+							<img src="{$exhibition|collection_photo:'medium'}" />
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="zigzag_col col-sm-12 col-md-4 zigzag_col_contn">			
+			   	{if ($type == 'gallery')}
+			   		<div class="exhibition-title zigzag_cntn_cover">
+					  <h3>{$exhibition|artists}</h3>
+			   		  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h2>{$exhibition.title}</h2></a>
+			   		  <p class="halfdesc">{if ($desc)} {substr_replace($desc,' ...',400)} {/if}</p>
+					</div> 
+			   		<div class="zigzag_cntn_bottom">
+						<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="readmore">Learn More</a>
+						{if ($exhibition.selection_range)}
+						  <h4><i class="glyphicon glyphicon-time"></i>{$exhibition.selection_range}</h4>
+						{else}
+						  <h4><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h4>
+						{/if}
+					</div> 
+			   	{else}
+			   		<div class="exhibition-title zigzag_cntn_cover">
+			   		  {if ($exhibition.selection_type)}
+			   		    <h3>{$exhibition.selection_type}</h3>
+			   		  {else}
+					    <h3>{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name}</h3>
+					  {/if}
+			   		  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h2>{$exhibition.title}</h2></a>
+			   		  <p class="halfdesc">{if ($desc)} {substr_replace($desc,' ...',400)} {/if}</p>
+			   		</div> 
+			   		<div class="zigzag_cntn_bottom">
+					  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="readmore">Learn More</a>
+					  {if ($exhibition.selection_range)}
+					    <h4><i class="glyphicon glyphicon-time"></i>{$exhibition.selection_range}</h4>
+					  {else}
+					    <h4><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %b %Y"} - {$exhibition.end_date|date_format:"%e %b %Y"}</h4>
+					  {/if}
+					</div>  
+			   	{/if} 
+			</div>    
+		</div>
+		{/if}
+	  {/foreach}
+	</div>
+
+	{if (($data.show_latest) && (!$count))}
+	<div class="zigzag_container">
+	  {foreach from=$latest_exhibitions item=exhibition}
 	  	{$loc = $exhibition.location_id|get:"location"}
 	  	{$desc = str_replace(['<a>', '</a>'], '', $exhibition.description)}	
 		<div class="zigzag_row row">
@@ -57,4 +119,5 @@
 		</div>
 	  {/foreach}
 	</div>
+    {/if}
 {/block}

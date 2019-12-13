@@ -52,7 +52,7 @@
   {if (($data.show_latest) && (!$count))}
     <h4 style="text-align: left;">Latest</h4>
     <div class="row artists-row mobile-row artists-list-row artists-grid">
-      {foreach from=$latestexhibitions item=exhibition}    
+      {foreach from=$latest_exhibitions item=exhibition}    
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 text-left artist-grid-col">
           <div class="image-container">  
             <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">

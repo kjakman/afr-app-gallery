@@ -34,6 +34,9 @@
 	  <li {if ($tab == 'singleExhibitionLayout') }class="active"{/if}><a href="{$tab28_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_single_layout_link">Exhibition Template</a></li>
 	  <li {if ($tab == 'singleExhibitioncolor') }class="active"{/if}><a href="{$tab29_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_single_colour_link">Background Colour</a></li>
 
+	{elseif (($tab == 'hover') || ($tab == 'exbHover') || ($tab == 'artHover') )}
+	  <li {if (($tab == 'hover') || ($tab == 'exbHover') )}class="active"{/if}><a href="{$tab38_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_exb_hover_link">Exhibitions</a></li>
+	  <li {if ($tab == 'artHover') }class="active"{/if}><a href="{$tab39_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_art_hover_link">Art</a></li>
 	{/if}
 </ul>
 

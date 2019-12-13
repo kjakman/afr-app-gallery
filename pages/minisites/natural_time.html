@@ -50,7 +50,7 @@
     <h4 class="tseparator" style="text-align: left;">Latest</h4>
     <div class="photo-grid-row col-md-12">
       <ul class="photo-grid gallery-list natural row">
-        {foreach from=$latestexhibitions item=exhibition}        
+        {foreach from=$latest_exhibitions item=exhibition}        
           <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-3" data-index="{$index}">
            <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="">   
             <div class="hover_style">       
