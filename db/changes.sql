@@ -660,6 +660,8 @@ ALTER TABLE `minisite`
 ADD `hover_type` int(8) NOT NULL DEFAULT '1003' AFTER `menu_type`;
 ALTER TABLE `minisite`
 ADD `art_animation` int(8) NOT NULL DEFAULT '1003' AFTER `hover_type`;
+ALTER TABLE `minisite`
+ADD `hover_text` int(8) NOT NULL DEFAULT '1003' AFTER `art_animation`;
 
 ALTER TABLE `minisite_page`
 ADD `template` int(10) NOT NULL,
