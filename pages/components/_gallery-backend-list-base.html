@@ -41,9 +41,9 @@
         {elseif ($add_to_manualexb)}
           <li><a href="#" id="sel_add_manualexb" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$add_to_manualexb}">Add to Page</a></li>
         {elseif ($add_to_logo)}
-          <li><a href="#" id="sel_add_logo" data-target_id="{$add_to_logo}">Add to Logo</a></li>
+          <li><a href="#" id="sel_add_logo" data-target_id="{$add_to_logo}">Add to Profile</a></li>
         {elseif ($add_to_logo1)}
-          <li><a href="#" id="sel_add_logo1" data-target_id="{$add_to_logo1}">Add to Logo</a></li>
+          <li><a href="#" id="sel_add_logo1" data-target_id="{$add_to_logo1}">Add to Profile</a></li>
         {elseif ($add_to_artworkimg)}
           <li><a href="#" id="sel_add_artwork" data-target_id="{$add_to_artworkimg}">Add to Artwork</a></li>
         {elseif ($add_to_relatedart)}
@@ -482,9 +482,6 @@ function bstArtworkStatusFormatter(value, row, index) {
     if(!value) return '';
     var json_field = field + '_json';
     var json = row[json_field];
-    //console.log("row option is" + row.title_image_option);
-    //console.log("field=" + field + " json=" + json_field + " json=" + json);
-    //console.log("row json is" + json);
     
     if(!json) return bstIDFormatter1(value, row, index);
     var obj = jQuery.parseJSON(json);
@@ -496,7 +493,6 @@ function bstArtworkStatusFormatter(value, row, index) {
     console.log("first = ", first);
     
     var filename = first.filename;
-    //console.log("filename = " + filename);
     if(!filename) return bstIDFormatter1(value, row, index);
 
     var base_link = '{$base_link}';
@@ -504,12 +500,10 @@ function bstArtworkStatusFormatter(value, row, index) {
     //console.log("filter_link = " + filter_link);
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    // console.log("base_link = " + base_link + " pv=" + pv);
-    // console.log("pradeepa link "+filename);
 
     var thumb = filename.replace('/square', '/tiny');
     var print_val = "<img class='table-thumb' src='" + thumb + "'/>";
-    // console.log("pradeepa "+print_val);
+
     return '<a href="{$base_link}/'+ row.id + '/edit/title?_pv=' + pv +
     '" class="' +link_class + '" data-target="#subview-container">'+print_val+'</a>';
   }
@@ -520,8 +514,7 @@ function bstArtworkStatusFormatter(value, row, index) {
     var base_link = '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    // console.log("row.id of id formatter" + row.id);
-    //// console.log("base_link of id formatter" + base_link);
+    
     return '<a href="{$base_link}/'+ row.id + '/edit/title?_pv='+ pv +'" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
   }
 
@@ -533,22 +526,17 @@ function bstArtworkStatusFormatter(value, row, index) {
     if(!value) return '';
     var json_field = field + '_json';
     var json = row[json_field];
-    //console.log("row option is" + row.title_image_option);
-    //console.log("field=" + field + " json=" + json_field + " json=" + json);
-    //console.log("row json is" + json);
     
-    if(!json) return bstIDFormatter1(value, row, index);
+    if(!json) return bstIDFormatter2(value, row, index);
     var obj = jQuery.parseJSON(json);
-    // console.log("obj = ", obj);
-    //console.log("obj.length = ", obj.filename);
-
-    if(!obj || !obj.length) return bstIDFormatter1(value, row, index);
+    
+    if(!obj || !obj.length) return bstIDFormatter2(value, row, index);
     var first = obj[0];
     // console.log("first = ", first);
     
     var filename = first.filename;
     //console.log("filename = " + filename);
-    if(!filename) return bstIDFormatter1(value, row, index);
+    if(!filename) return bstIDFormatter2(value, row, index);
 
     var base_link = '{$base_link}';
     //var filter_link= urlencode($filter_json);
@@ -564,7 +552,15 @@ function bstArtworkStatusFormatter(value, row, index) {
     '" class="' +link_class + '" data-target="#subview-container">'+print_val+'</a>';
   }
     
-  
+  function bstIDFormatter2(value, row, index) {
+    if(!value) return '';
+    var print_val = value;
+    var base_link = '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    
+    return '<a href="{$base_link}/'+ row.id + '/edit/about?_pv='+ pv +'" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+  }
 
   function bstMediaContextFormatter(value, row, index) {
     //console.log("stringfy "+JSON.stringify(row, null, 4));

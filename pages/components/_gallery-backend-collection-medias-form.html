@@ -5,15 +5,18 @@
 {{"include": "_gallery-backend-collection-media-dialog.html"}}
 <div class="form-group">
   <div class="row form-group">
-    <label for="media-name">Attach existing art or images</label>
-    <div class="col-xs-12 mt10">
+    <li>Green “Attach Artworks” button selects artworks for the exhibition </li>
+    <li>Green “Add Image” button adds details about installation shots, studio shots etc. to the exhibition </li>
+    <li>Green “Add/Edit Media” in the table attaches images to image details created by the “Add Image” button  </li>
+    <li>Drag and drop images and artworks in the table to order how they appear </li>
+    <li>Don’t forget to use the save button - so changes stick</li>
+    <div class="col-xs-12 mt20">
       <a href="/backend/artworks?add_to={$collection.id}&amp;_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Attach Artworks</a>
       <span>OR</span>
-      <a id="{$image.id}" type="button" class="btn btn-success collection_image_add" data-toggle="modal" data-target="#gbe_related_media_dialog" data-typeid="{$image.descriptiontype_id}" data-description="{$image.short_description}" > Add Image Details</button></a>
+      <a id="{$image.id}" type="button" class="btn btn-success collection_image_add" data-toggle="modal" data-target="#gbe_related_media_dialog" data-typeid="{$image.descriptiontype_id}" data-description="{$image.short_description}" > Add Image</button></a>
     </div>
   </div><br>
   
-  <span style="padding-left: 16px;">Drag and drop related images to order how they appear</span>
   <table class = "bootstrap-table table table-hover exhibition_art">
     <thead>
       <tr>
