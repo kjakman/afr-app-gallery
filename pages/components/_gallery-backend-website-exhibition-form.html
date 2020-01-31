@@ -3,7 +3,9 @@
   {$data = json_decode($minisitepage.data, TRUE)}
 
   {{"include": "_gallery-backend-website-subtab.html"}}
-
+  <div class="mt20">
+      <a href="https://vimeo.com/387343757" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Smart Filter Tutorial</a>
+  </div><br>
     <form class="ajax-submit" data-handler="save-minisite-page" id="exhibition_form">
         <input hidden="1" name="minisite_id" type="hidden" value="{$minisite.id|default:$id}">
         <input hidden="1" name="obj_id" type="hidden" value="{$obj_id}">

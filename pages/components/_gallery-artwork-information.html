@@ -54,38 +54,43 @@
                                 <p class='italic'>
                                   {$artwork.technique}<br>
 
-                                  {if ($artwork.height > 0 && $artwork.width > 0)}
-                                    {$artwork.height} x {$artwork.width} 
-                                    {if (($artwork.depth) && ($artwork.type == 30))} 
-                                      x {$artwork.depth} 
+                                  {if (($artwork.type == 10) || ($artwork.type == 20) || ($artwork.type == 21) || ($artwork.type == 11) || ($artwork.type == 22) )}
+                                    {if (($artwork.height !=0.0) && ($artwork.width !=0.0))}
+                                    {floatval($artwork.height)}
+                                    X {floatval($artwork.width)}
+                                    {$artwork.unit}
                                     {/if}
-                                    {$artwork.unit} <br>
-                                  {/if}
+                                  {elseif (($artwork.type == 30) || ($artwork.type == 40) )}
+                                    {floatval($artwork.height)}
+                                    {if ($artwork.width != 0.0)} X {floatval($artwork.width)} {/if}
+                                    {if ($artwork.depth != 0.0)} X {floatval($artwork.depth)} {/if}
+                                    {$artwork.unit}
+                                    {/if}<br>
 
                                   {if ($artwork.type == 30 || $artwork.type == 40)}
-                                    {if ($artwork.presentation == 10)} Leave Blank <br>
-                                    {elseif ($artwork.presentation == 20)} Free Standing <br>
+                                    {*if ($artwork.presentation == 10)*}
+                                    {if ($artwork.presentation == 20)} Free Standing <br>
                                     {elseif ($artwork.presentation == 30)} Pedestal Mounted <br>
                                     {elseif ($artwork.presentation == 40)} Wall Mounted <br>
                                     {elseif ($artwork.presentation == 50)} Hanging <br>
                                     {elseif ($artwork.presentation == 60)} Installation <br>
                                     {/if}
                                   {else}
-                                    {if ($artwork.frame == -1)}
+                                    {if ($artwork.frame == -1 && ($artwork.type == 10 || $artwork.type == 11 || $artwork.type == 20 || $artwork.type == 21 || $artwork.type == 22 ))}
                                       Unframed
-                                    {elseif ($artwork.frame == 1)}
+                                    {elseif ($artwork.frame == 1 && ($artwork.type == 10 || $artwork.type == 11 || $artwork.type == 20 || $artwork.type == 21 || $artwork.type == 22 ))}
                                       Framed
                                     {/if}
 
-                                    {if ($artwork.passepartout == -1)}
+                                    {if ($artwork.passepartout == -1 && ($artwork.type == 10 || $artwork.type == 11 || $artwork.type == 20 || $artwork.type == 21 || $artwork.type == 22 ))}
                                       , No Passe-partout <br>
-                                    {elseif ($artwork.frame == 1)}
-                                      , Passe-partout <br>
+                                    {elseif ($artwork.passepartout == 1 && ($artwork.type == 10 || $artwork.type == 11 || $artwork.type == 20 || $artwork.type == 21 || $artwork.type == 22 ))}
+                                      , Passe-partout 
                                     {/if} 
                                 {/if}
-
+                      
                                   {if ($artwork.editions > 1)}  
-                                    Series of {$artwork.editions} <br>
+                                    <br>Series of {$artwork.editions} <br>
                                   {elseif ($artwork.editions == 1)}
                                     Unique <br>
                                   {/if}

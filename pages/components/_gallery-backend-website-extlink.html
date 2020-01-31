@@ -1,6 +1,9 @@
 {$minisitepage = $scope.minisitepage}
 {$obj_id = $scope.page_id}
 {$data = json_decode($minisitepage.data)}
+<div class="mt20">
+  <a href="https://vimeo.com/386369373" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>External Link Tutorial</a>
+</div><br>
 <form class="ajax-submit" data-handler="save-minisite-page">
   <input hidden="1" name="minisite_id" type="hidden" value="{$minisite.id|default:$id}">
   <input hidden="1" name="obj_id" class="obj_id" type="hidden" value="{$obj_id}">

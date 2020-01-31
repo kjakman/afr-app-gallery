@@ -3,17 +3,17 @@
   <div class="row photo-grid-row col-md-12">
     <ul class="photo-grid gallery-list col-md-12">
 	{foreach from=$exhibitions item=exhibition}
-		{$container_id = "media_collection_`$exhibition.id`"}
+		{$container_id = "artwork_`$exhibition.id`"}
 		{$data = ["obj_type" => "media_collection","obj_id" => $exhibition.id, "plugin_id" => "1355","container_id" => $container_id]}
 		{$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}
-
 		<li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item effect-{$ms.hover_type}" data-index="{$index}">
 			<div class="hover_style"> 
-				<figure id="{$exhibition.id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-index="{$index}" data-popup_options='{$popup_options|@json_encode}' class="vp-loader-photoswipe effect-{$ms.hover_type}">  
+				<figure id="artwork_{$exhibition.id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-index="{$index}" data-popup_options='{$popup_options|@json_encode}' class="vp-loader-photoswipe effect-{$ms.hover_type}">  
 					<div class="hover_cover">
 					  <span class="frame-square ratio43">
-						<img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
-						<a href="#" id="__vp-view-button-1355">View</a>
+						<img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}" id="__vp-view-button-1355">
+						{{"include": "minisites/caption/figcaption.html"}} 
+							<a href="#" id="__vp-view-button-1355">View</a>
 					  </span>
 					</div>
 				</figure>

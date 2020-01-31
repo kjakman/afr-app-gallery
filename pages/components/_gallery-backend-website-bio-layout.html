@@ -6,7 +6,9 @@
 {$page_layout = find_object('minisite_layout', ['id' => $minisitepage.page_layout, 'active' => 1])}
 
 {{"include": "_gallery-backend-website-subtab.html"}}
-
+<div class="mt20">
+    <a href="https://vimeo.com/387832423" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Profile Template Tutorial</a>
+</div>
 <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$obj_id}">
 {if ($full)}
   <div class="row mt20 mb10"><label>Full Profile Templates</label> (Showcase you entire profile, include all your exhibitions, selected artworks and CV)</div>
@@ -37,7 +39,7 @@
                   {if (($page_layout->parent_id == $layout.id) && ($page_layout->level1_id) )}
                     {$level2 = find_objects('minisite_layout', ['parent_id' => $page_layout->parent_id, 'level1_id' =>$page_layout->level1_id ])}
                     {foreach from=$level2 item=$level}
-                      <option value="{$level->id}" {if ($level->id == $page_layout->separators)} selected {/if}>{$level->name}</option>
+                      <option value="{$level->id}" {if ($level->id == $page_layout->id)} selected {/if}>{$level->name}</option>
                     {/foreach}
                   {else}
                     <option value="">Select</option>

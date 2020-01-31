@@ -2,6 +2,8 @@
 {if ($ms.hover_text == 2)}
   {if ($artwork.artwork_id)}
     {$type = get_artwork_type($get_artwork->type)}
+    {$presentation = get_artwork_presentation($get_artwork->presentation)}
+    {*$get_artwork->frame|dump*}
     <h2>{strtoupper($type)}</h2>      
     <p>
       {if ($get_artwork->editions > 1)}  
@@ -9,16 +11,17 @@
       {elseif ($get_artwork->editions == 1)}
         Unique {if ($get_artwork->edition)} ({$get_artwork->edition}) {/if} <br>
       {/if}
-      
-      {if ($get_artwork->frame == -1)}
+      {if (($get_artwork->frame == -1 ) && ($type == 'Photography' || $type == 'Print' || $type == 'Painting' || $type == 'Drawing' || $type == 'Mixed Media on paper/canvas'))}
         Unframed
-      {elseif ($get_artwork->frame == 1)}
+      {elseif (($get_artwork->frame == 1 ) && ($type == 'Photography' || $type == 'Print' || $type == 'Painting' || $type == 'Drawing' || $type == 'Mixed Media on paper/canvas'))}
         Framed
       {/if}
-      {if ($get_artwork->passepartout == -1)}
+      {if (($get_artwork->passepartout == -1 )  && ($type == 'Photography' || $type == 'Print' || $type == 'Painting' || $type == 'Drawing' || $type == 'Mixed Media on paper/canvas'))}
         , No Passe-partout 
-      {elseif ($get_artwork->frame == 1)}
+      {elseif (($get_artwork->passepartout == 1 ) && ($type == 'Photography' || $type == 'Print' || $type == 'Painting' || $type == 'Drawing' || $type == 'Mixed Media on paper/canvas'))}
         , Passe-partout 
+      {elseif ($type == 'Sculpture' || $type == 'Cast (Bronze, etc)')}
+        <p>{$presentation}</p>
       {/if}
     </p> 
   {else}

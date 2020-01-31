@@ -10,10 +10,14 @@
   {if ($data.show_past)} {$past = 'past'} {/if}
   {if ($data.show_future)} {$future = 'future'} {/if}
   {$i=0} {$count = 0}
-  {foreach from=$exhibitions item=exhibition}
+  <div>
+  {foreach from=$exhibitions item=exhibition} 
   	{if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
   	{$count = 1}
 	{if ($i==0)}
+	<!--<pre>
+	{$exhibition|collection_photo:'medium'|dump}
+	</pre>--->
 	  <div class="niagra_row niagra_cassablanca niagra_row_zigzag">
 		<div class="niagra_bigcol niagra_col">
 			<div class="niagra_incol effect-{$ms.hover_type}">
@@ -75,6 +79,7 @@
   			</div>
   		</div>
   	  </div>	
-    {/foreach}
+	{/foreach}
+ </div>	
   {/if}
 {/block}

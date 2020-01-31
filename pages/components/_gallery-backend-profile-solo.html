@@ -5,7 +5,9 @@
 {$show_data = json_decode($scope.profile.show_data,True)}
 
 {{"include": "_user-profile-edit-artist.html"}}
-
+<div class="mt20">
+    <a href="https://vimeo.com/388442142" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>CV Tutorial</a>
+</div><br>
 <form id="user_overview_form" class="ajax-submit"  data-handler="save-cv" data-toggle="validator">
   <input type="hidden" name="obj_type" value="user_profile" />
   <input type="hidden" name="id"  value="{$scope.profile.profile_id}" />

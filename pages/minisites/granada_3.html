@@ -26,10 +26,19 @@
   {/if}
 
   {{"include": "minisites/top/top.html"}} 
-  {$exbcount = count($exhibitions)}
-  <div></div>
+
+  {$exbcount_val = count($exhibitions)}
+  {if ($exbcount_val%2 == 1) } 
+    {$exbcount = count($exhibitions)+1}
+  {else} 
+    {$exbcount = count($exhibitions)}
+  {/if}
+  <div>
   {foreach from=$exhibitions item=exhibition}
 	{if ($i==0)}
+	<!--<pre>
+	{$exhibition|collection_photo:'medium'|dump}
+	</pre>--->
 	  <div class="niagra_row niagra_cassablanca niagra_row_zigzag">
 		<div class="niagra_bigcol niagra_col">
 			<div class="niagra_incol effect-{$ms.hover_type}">
@@ -70,4 +79,5 @@
 	{/if}
 	{if (($i == 2) || ($i && ($exbcount%2 == 1)))} {$i = 0} {else} {$i = $i+1} {/if}		
   {/foreach}
+ </div> 
 {/block}
