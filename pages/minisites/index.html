@@ -2,9 +2,11 @@
 {$minisite = $ms.url}
 {$basepath = $scope.basepath}
 {$minisite_name = $ms.name}
+{$minisite_title = $ms.meta_title}
 {$version = $app.version}
 {$page = $scope.page}
 {$ms_page = $scope.minisite_page}
+{$minisite_page_type = $scope.minisite_page_type}
 {$type = $scope.minisite_type}
 
 {$slug = $scope.slug}
@@ -14,8 +16,10 @@
 
 {$artworks = $scope.artworks}
 {$exhibitions = $scope.exhibitions}
+
 {$latest_exhibitions = $scope.latest_exhibitions}
 {$manualExhibition = $scope.manualExhibition}
+{$collection = $scope.collection}
 {$data_exist = $scope.data_exist}
 
 {$mObj = $scope.mObj}
@@ -37,10 +41,51 @@
 
 {$user_id = $scope.user_id}
 
+{$url = explode("/",$smarty.server.REQUEST_URI)}
+
+{$loc = $exhibition.location_id|get:"location"}
+
+{$artist_id = $collection.artist_id|displayname}
+{$artist_ids = $collection.artist_ids|@json_decode}
+
+{foreach from=$artists item=artist}
+{$art_names[] = $artist}
+{/foreach}
+{$art_names  = $artist.display_name}
+{$art_id  = $artist.artist_id}
+{$artpage = $artist.page_slug|replace:'/':''}
+{$artslug = $artist.slug}
+
+{foreach from=$exhibitions item=manualexhibition} 
+  {$manualexb_name[] = $manualexhibition|artists}
+{/foreach}
+{$manualartname = $manualexb_name}
+{$manuexbpag  = $manualexhibition.page_slug}
+
+{foreach from=$artworks item=artwork} 
+  {$artwork_name[] = $artwork}
+{/foreach}
+{$artwork_name = $artwork.title}
+{$artwork_technique = $artwork.original_technique}
+{$artwork_artist_name = $artwork.artist_name}
+
+{$getartwork = 0}
+{$seq=0}
+{$count=0}
+{$art = explode("~",$subview)}
+{if ($art[0] == 'artwork')}
+  {$getartwork = (array)find_object('artwork', ['id' => $art[1], 'active' =>1])}
+{else}
+  {$getartwork = (array)find_object('media_collection_map', ['id' => $art[1], 'active' =>1])}
+{/if}
+{foreach from=$artist_ids item=$artist_id} {$artist_name[] = $artist_id|displayname}{/foreach}
+{foreach from=$secArtists item=artist}{/foreach}
+
+{foreach from=$artists item=description_artist} {$desart[] = $description_artist.display_name} {/foreach}
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{$app.page.se_title} - {$minisite_name}</title>
+    <title>{if (($ms.connect_domain == 0) || ($ms.connect_domain == 1 && $url[2] == $ms.url))}{if ($url[3] == '' && !empty($minisite_title))}{$minisite_title|ucfirst|trim}{elseif ($url[3] == $collection.page_slug && ($url[5] == ''))}{$collection.title|ucfirst|strip|trim} by {', '|implode:$artist_name|ucfirst|strip|trim}, {$collection.address_formatted|ucfirst|trim}{elseif ($url[3] == {$latest_exhibitions[0].page_slug}) && ($url[5] == 'all')}{$latest_exhibitions[0].page_slug|ucfirst|trim} Featuring {foreach from=$exhibitions item=exhibition}{$multiexb_name[] = $exhibition|artists|ucfirst|trim}{/foreach}{', '|implode:$multiexb_name|ucfirst|trim}{elseif ($url[3] == {$manuexbpag}) && ($url[5] == '')} {$manuexbpag|ucfirst|trim} Featuring {', '|implode:$manualartname|ucfirst|trim}{elseif ($url[3] == 'contact')} How to contact {$profileobj.first_name|ucfirst|trim} {$profileobj.last_name|ucfirst|trim}{elseif ({$minisite_pageObj.type == 50})} {$slug|ucfirst|trim}, {$profileobj.first_name|ucfirst|trim} {$profileobj.last_name|ucfirst|trim}{elseif ($url[3] == {$artist.page_slug|replace:'/':''} && {$ms.type == 'artist'} && {$minisite_pageObj.type == 20}) && ($url[4] == '')} Artists Presented by {$profileobj.display_name|ucfirst|trim}{elseif ($url[3] == {$artist.page_slug|replace:'/':''}) && ($url[4] == $artslug)} {$profileobj.display_name|ucfirst|trim} Presents {$artist.display_name|ucfirst|trim}{elseif ({$url[5]|substr:0:7} == 'artwork') && ($minisite_pageObj.second_layout == 133)}{$getartwork.title|ucfirst|trim}, {$getartwork.technique|ucfirst|trim} by {$artworks[0].artist_name|ucfirst|trim}{else} {$app.page.se_title} - {$minisite_name} {/if}{elseif ($ms.connect_domain == 1)}{if ($url[1] == '' && !empty($minisite_title))}{$minisite_title|ucfirst|trim}{elseif ($url[1] == $collection.page_slug && $url[3] == '')}{$collection.title|ucfirst|strip|trim} by {', '|implode:$artist_name|ucfirst|strip|trim}, {$collection.address_formatted|ucfirst|trim}{elseif ($url[1] == {$latest_exhibitions[0].page_slug}) && ($url[3] == 'all')}{$latest_exhibitions[0].page_slug|ucfirst|trim} Featuring {foreach from=$exhibitions item=exhibition}{$multiexb_name[] = $exhibition|artists|ucfirst|trim}{/foreach}{', '|implode:$multiexb_name|ucfirst|trim}{elseif ($url[1] == {$manuexbpag}) && ($url[3] == '')} {$manuexbpag|ucfirst|trim} Featuring {', '|implode:$manualartname|ucfirst|trim}{elseif ($url[1] == 'contact')} How to contact {$profileobj.first_name|ucfirst|trim} {$profileobj.last_name|ucfirst|trim}{elseif ({$minisite_pageObj.type == 50})} {$slug|ucfirst|trim}, {$profileobj.first_name|ucfirst|trim} {$profileobj.last_name|ucfirst|trim}{elseif ($url[1] == {$artist.page_slug|replace:'/':''} && $url[2] == '')} Artists Presented by {$profileobj.display_name|ucfirst|trim}{elseif ($url[1] == {$artist.page_slug|replace:'/':''}) && ($url[2] == $artslug)} {$profileobj.display_name|ucfirst|trim} Presents {$artist.display_name|ucfirst|trim}{elseif ({$url[3]|substr:0:7} == 'artwork') && ($minisite_pageObj.second_layout == 133)}{$getartwork.title|ucfirst|trim}, {$getartwork.technique|ucfirst|trim} by {$artworks[0].artist_name}{else} {$app.page.se_title} - {$minisite_name} {/if}{/if}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -49,8 +94,7 @@
     <meta name="msapplication-TileColor" content="#fafafa" />
     <meta name="msapplication-TileImage" content="/styles/img/windows8_tile.png" />
     <meta name="keywords" content="{$app.page.se_keywords}" />
-    <meta name="description" content="{$app.page.se_description}" />
-  
+    <meta name="description" content="{if (($ms.connect_domain == 0) || ($ms.connect_domain == 1 && $url[2] == $ms.url))}{if ($url[3] == '' && !empty($minisite_title))}{$ms.description|ucfirst|strip_tags|trim}{elseif ($url[3] == $collection.page_slug && ($url[5] == ''))}{$collection.description|ucfirst|strip_tags|trim}{elseif ($url[3] == {$latest_exhibitions[0].page_slug}) && ($url[5] == 'all')}{$latest_exhibitions[0].page_slug|ucfirst|trim}, {foreach from=$exhibitions item=exhibition}{$exhibition.title}, {$exhibition|artists|ucfirst|trim}, {/foreach}{elseif ($url[3] == {$manuexbpag}) && ($url[5] == '')}{$url[3]|ucfirst|trim}, {foreach from=$exhibitions item=exhibition}{$exhibition.title|ucfirst|trim}, {$exhibition|artists|ucfirst|trim}, {/foreach}{elseif ($url[3] == 'contact')}{$profileobj.first_name|ucfirst|trim} {$profileobj.last_name|ucfirst|trim}, {$profileobj.address_formatted|ucfirst|trim}, {$profileobj.mobile|ucfirst|trim}/{$profileobj.email_address|ucfirst|trim}, {$profileobj.working_hours|ucfirst|trim|replace:'"':''|replace:'{':''|replace:'}':''|replace:',':', '}{elseif ({$minisite_pageObj.type == 50})}{$profileobj.bio_description|strip_tags|trim}{elseif ($url[3] == {$artist.page_slug|replace:'/':''} && {$ms.type == 'artist'} && {$minisite_pageObj.type == 20} || {$ms.type == 'gallery'}) && ($url[4] == '')}{$profileobj.display_name|ucfirst|trim} Presents {', '|implode:$desart|ucfirst|trim}{elseif ($url[3] == {$artist.page_slug|replace:'/':''}) && ($url[4] == $artslug)}{$artist.bio_description|ucfirst|trim|strip_tags}{elseif ({$url[5]|substr:0:7} == 'artwork') && ($minisite_pageObj.second_layout == 133)}{$getartwork.description|ucfirst|strip_tags|trim}{else} {$app.page.se_description} {/if}{elseif ($ms.connect_domain == 1)}{if ($url[1] == '' && !empty($minisite_title))}{$ms.description|ucfirst|strip_tags|trim}{elseif ($url[1] == $collection.page_slug && $url[3] == '')}{$collection.description|ucfirst|strip_tags|trim}{elseif ($url[1] == {$latest_exhibitions[0].page_slug} && ($url[3] == 'all'))}{$latest_exhibitions[0].page_slug|ucfirst|trim}, {foreach from=$exhibitions item=exhibition}{$exhibition.title|ucfirst|trim}, {$exhibition|artists|ucfirst|trim}, {/foreach}{elseif ($url[1] == {$manuexbpag}) && ($url[3] == '')}{$url[2]|ucfirst|trim}, {foreach from=$exhibitions item=exhibition}{$exhibition.title|ucfirst}, {$exhibition|artists|trim}, {/foreach}{elseif ($url[1] == 'contact')}{$profileobj.first_name|ucfirst|trim} {$profileobj.last_name|ucfirst|trim}, {$profileobj.address_formatted|ucfirst|trim}, {$profileobj.mobile|ucfirst|trim}/{$profileobj.email_address|ucfirst|trim}, {$profileobj.working_hours|ucfirst|trim|replace:'"':''|replace:'{':''|replace:'}':''|replace:',':', '}{elseif ({$minisite_pageObj.type == 50})}{$profileobj.bio_description|strip_tags|trim}{elseif ($url[1] == {$artist.page_slug|replace:'/':''} && $url[2] == '')}{$profileobj.display_name|ucfirst|trim} Presents {', '|implode:$desart|ucfirst|trim}{elseif ($url[1] == {$artist.page_slug|replace:'/':''}) && ($url[2] == $artslug)}{$artist.bio_description|ucfirst|strip_tags|trim}{elseif ({$url[3]|substr:0:7} == 'artwork' && $minisite_pageObj.second_layout == 133)}{$getartwork.description|ucfirst|strip_tags|trim}{else} {$app.page.se_description} {/if}{/if}" />
     <!-- vpatina/pages/minisite -->
     
 

@@ -693,6 +693,7 @@ FROM `minisite_tpl`
 WHERE `id` = '14' AND `created` = '2019-08-30' AND `active` = '1' AND `type` = '80' AND `parts` = '2' AND `template` = 'manualexb' AND `template` = 'manualexb' COLLATE utf8mb4_bin AND `page` = 'manualexb' AND `page` = 'manualexb' COLLATE utf8mb4_bin
 LIMIT 1;
 
-
+ALTER TABLE `minisite`
+ADD `meta_title` varchar(128) COLLATE 'utf8_general_ci' NOT NULL DEFAULT '' AFTER `sub_title`;
 
 

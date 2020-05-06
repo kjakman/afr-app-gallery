@@ -29,11 +29,29 @@
 		  <input name='connect_domain' value='0' type='hidden'> 
 		  <span style="padding-right: 10px"> Not ready yet   </span> <input type="checkbox" {if ($minisite.connect_domain)}checked{/if} class="bootstrap-toggle" value="1" name="connect_domain" id="name">   <span style="padding-left: 10px"> Yes I am ready </span> 
 		</div>
-
-		<input type="submit" class="btn btn-success" value="Save" id="submit">
 	</div>
-
+	<div class="row mb20">
+	  <div class="col-sm-8 no-padding">
+	  	<label for="SEARCH">SEARCH ENGINE OPTIMIZATION</label><br>
+		<label>Site Title</label>
+	  </div>
+	  <div class="col-sm-6 no-padding">
+		<input type="text" class="form-control" name="meta_title" value="{$minisite.meta_title}" maxlength="60">
+	  </div><br><br><br><br><br>
+	  <div class="col-sm-8 no-padding">
+         <label for="description">Site description</label>
+      </div>
+      <div class="col-sm-6 no-padding">   
+            <textarea class="form-control" data-height="50" name="description">{$minisite.description}</textarea>
+            Will be visible in search results on Google etc. It will not be displayed on your site. We recommend a text with 140-160 characters.
+       </div>
+	</div>
 	<div>
+	<div class="row mb20">
+	  <div class="col-sm-8 no-padding">
+		<input type="submit" class="btn btn-success" value="Save" id="submit">	
+	  </div>
+    </div>
 		<span>Now, please get in touch so we can connect your site to your domain</span><br>
 		<span>e-mail: info@vpatina.com and call: 0630126934 to connect</span>
 	</div>
