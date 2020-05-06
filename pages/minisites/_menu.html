@@ -10,10 +10,10 @@
     {if ($ms.show_homemenu)}
       {$count = 0}
       {if ($menuObjs.row_order != 1)}
-        {if (($menuObjs.type == '20') || ($menuObjs.type == '40') || ($menuObjs.type == '50') || ($menuObjs.type == '60') || ($menuObjs.type == '70') )}       <!-- artist page -->
+        {if (($menuObjs.type == '20') || ($menuObjs.type == '40') || ($menuObjs.type == '50') || ($menuObjs.type == '60') || ($menuObjs.type == '70') )}       <!-- artist page 1 -->
             <li class="nav-item"><a {if ($pagename == $menuObjs.slug)} class="nav-link active" {else} class="nav-link" {/if} href="{$basepath}{$menuObjs.slug}">{$menuObjs.menu_title}</a>
         {/if}
-        {if ($menuObjs.type == '30')}  <!-- exhibition page -->
+        {if ($menuObjs.type == '30')}  <!-- exhibition page 1-->
           {$data = json_decode($menuObjs.data, True)}
 
           {if ($data['show_current'] == 1) } {$view = 'current'} 
@@ -32,13 +32,13 @@
           {/if}
         {/if}
 
-        {if ($menuObjs.type == '80')}  <!-- exhibition page -->
+        {if ($menuObjs.type == '80')}  <!-- exhibition page 2 -->
           <li class="nav-item"><a {if ($pagename == $menuObjs.slug)} class="nav-link active" {else} class="nav-link" {/if} href="{$basepath}{$menuObjs.slug}manualexbs">{$menuObjs.menu_title}</a>
         {/if}
 
-        {if ($menuObjs.type == '90')}  <!-- exhibition page -->
+        {if ($menuObjs.type == '90')}  <!-- exhibition page 3-->
           {$data = json_decode($menuObjs.data)}
-          {$menuObjs.menu_title}
+
           {if ($menuObjs.template == 10)}
             <li class="nav-item"><a {if ($pagename == $menuObjs.slug)} class="nav-link active" {else} class="nav-link" {/if} href="{$data[0]}">{$menuObjs.menu_title}</a>
           {elseif ($menuObjs.template == 20)}
