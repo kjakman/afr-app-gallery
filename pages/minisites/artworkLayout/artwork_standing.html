@@ -18,16 +18,16 @@
         {/if}
         <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item" data-index="{$index}">
           <a href="{$basepath}/{$collection.page_slug}/{$collection.slug}/{$artwork_slug}">     
-            <figure id="{$container_id}" data-data='{$data|@json_encode}' data-index="{$index}" {if (($ms.art_animation >=1011) || ($ms.art_animation ==1003))} class="__vp-plugin-container vp-loader-photoswipe no_flip effect-{$ms.art_animation}" {else} class="__vp-plugin-container vp-loader-photoswipe" {/if}>
+            <figure class="__vp-plugin-container">
               <div class="image_vert_bottom">
                 <div class="image_vert_bottomin"> 
                   <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
                     <div class="__vp-flipper">             
                     <div class="__vp-flip-front">               
-                      <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">    
+                      <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">    
                     </div>             
                     <div class="__vp-flip-back __vp-plugin-hover">               
-                      <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">                
+                      <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">                
                       <div class="__vp-flip-back-card">  
                       <a href="{$basepath}/{$collection.page_slug}/{$collection.slug}/{$artwork_slug}">
                         {{"include": "minisites/caption/hover_caption.html"}}

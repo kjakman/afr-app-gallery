@@ -6,7 +6,6 @@
 {else}
   {$merge_tags = json_encode($tags, true)}
 {/if}
-
 <form class="ajax-submit" data-handler="save-folder" data-success_handler="gbe_vault_handler">
   <input hidden="1" name="obj_id" type="hidden" value="{$vault.id}">
   <input hidden="1" name="user_id" type="hidden" value="{$vault.user_id}">

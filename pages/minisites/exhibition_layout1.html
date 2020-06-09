@@ -1,11 +1,30 @@
+{$getartwork = 0}
+{$seq=0}
+{$count=0}
+{$art = explode("~",$subview)}
+{if ($art[0] == 'artwork')}
+	{$getartwork = (array)find_object('artwork', ['id' => $art[1], 'active' =>1])}
+{else}
+	{$getartwork = (array)find_object('media_collection_map', ['id' => $art[1], 'active' =>1])}
+{/if}
 
+{$container_id = "artwork_`$getartwork.id`"}
+{$data = ["obj_type" => "media_collection","obj_id" => $collection.id, "plugin_id" => "1355","container_id" => $container_id]}
+{$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}
+
+{foreach from=$artworks item=artwork}
+  {if (($artwork.id == $getartwork.id) || ($artwork.artwork_id == $getartwork.id))}
+  	{$seq = $count}
+  {/if}
+  {$count = $count + 1}
+{/foreach}
 <div class="profileinfo"> 
 	<div class="gallery-artwork-detail">
 		<article class="row mt20">
 			<section class="col-sm-6 mr20" style="text-align: center;">
 			  <div class="hover_style no-padding">
 			  	<figure class="effect-{$ms.art_animation}">
-				    <img src="{$collection.id|collection_photo:'medium'}" alt="{$collection.title}" class="img-responsive pull-left" /><br>
+				    <img src="{$collection.id|collection_photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}" class="img-responsive pull-left" /><br>
 				    {{"include": "minisites/caption/titleimg_caption.html"}}
 			    </figure>
 			  </div>

@@ -17,7 +17,7 @@
                     <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">    
                   </div>             
                   <div class="__vp-flip-back __vp-plugin-hover">               
-                    <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">                
+                    <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">                
                     <div class="__vp-flip-back-card">  
                       {if ($ms.hover_text == 2)}
                         {$type = get_artwork_type($get_artwork->type)}

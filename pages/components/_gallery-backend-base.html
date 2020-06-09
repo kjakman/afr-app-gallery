@@ -154,9 +154,17 @@
     <li><a href="{$ex_link}/artist?_pv=1&page_id={$page_id}&user_id={$user_id}" class="btn btn-danger ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i>Back</a></li>
   
   {else}
-    {if (!$list && !$form)}
+    {if (!$list && !$form && ($obj_type == 'media_folder'))}
       {$buttons = 1}
-      <li><a href="{$list_link}?_pv=1{$tail}" class="btn btn-primary ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i> List</a></li>
+      <!--<li><a href="{$list_link}?_pv=1{$tail}" class="btn btn-primary ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i> List</a>--->
+      <nav id="breadcrumb" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a style="font-size:21px;" href="/backend/vaults">Media Drive</a></li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:21px;">Bulk Upload</li>
+          </ol>
+        </nav>
+      </li>
+
     {/if}
     
     {if ($add)}
@@ -171,16 +179,33 @@
       {elseif ($obj_type == 'media')}
         <li><a href="{$list_link}/{$scope.folder}?_pv=1{$tail}" class="btn btn-primary ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i> List</a></li> 
       {else}
-        <li><a href="{$view_link}{if ($obj_type != 'plugin')}?_pv=1{/if}" class="btn btn-primary ajax-loader" {if ($obj_type == 'plugin')}data-breakout=1{/if} data-target="#subview-container"><i class="fa fa-eye"></i> Preview</a></li>
+        <li><a href="/backend/websites?_pv=1" class="btn btn-primary ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i> List</a></li>&nbsp;&nbsp;
+        <li style="font-size:20px;">{$scope.site_title|ucfirst}</li>
+        <!--<li><a href="/backend/website/1111/edit?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-pencil-square"></i>Edit</a></li>
+        <li><a href="{$view_link}{if ($obj_type != 'plugin')}?_pv=1{/if}" class="btn btn-primary ajax-loader" {if ($obj_type == 'plugin')}data-breakout=1{/if} data-target="#subview-container"><i class="fa fa-eye"></i> Previews</a></li>-->
       {/if}
     {/if}
     {if ($list && $obj_type|in_array:['artwork', 'media_collection', 'minisite', 'artist', 'media_folder'])} 
       {$buttons = 1}
       {if (($obj_type == 'media_folder') && (!$vault))}
+        <nav id="breadcrumb" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a style="font-size:21px;color:grey;">Media Drive</a></li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:21px;"></li>
+          </ol>
+        </nav><br>
         <li><a href="{$add_link}?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i> Create Folder</a></li>
-        <li><a href="{$base_link}?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i> Upload Image</a></li>
+        <li><a href="{$base_link}?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i>Bulk Upload</a></li>
       {elseif ($obj_type != 'media_folder')}
         <li><a href="{$add_link}?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i> Create {$what}</a></li>
+      {elseif ($obj_type == 'media_folder')} 
+      <!--<li><a href="{$list_link}?_pv=1{$tail}" class="btn btn-primary ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i> List</a>--->
+        <nav id="breadcrumb" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a style="font-size:21px;" href="/backend/vaults">Media Drive</a></li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:21px;">{$folder_id.filename}</li>
+          </ol>
+        </nav>
       {/if}
     {/if}
 
@@ -207,12 +232,14 @@
     {else}
       {$title = $plural|capitalize}
     {/if}
+    {if ($object && $form && $auth_edit_backend && $obj_type == 'minisite')}
     <li>
-      <h3 class="inline" style="position:relative;top:10px;left:10px">{$title}</h3>
+      <h3 class="inline" style="position:relative;top:0px;left:10px">URL:</h3>
     </li>
+    {/if}
     {if ($object && $form && $auth_edit_backend && $obj_type == 'minisite')}
       <li>
-        <h3 class="inline" style="position:relative;top:10px;left:10px"><a href="{$url}"> - {$sitetitle}</a></h3>
+        <h3 class="inline" style="position:relative;top:0px;left:10px"><a href="{$url}" target="_blank">{$url}</a></h3>
       </li>
     {/if}
     

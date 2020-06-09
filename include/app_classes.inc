@@ -297,6 +297,7 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
      'description'=>        array('Description',        'str',  '', AF_SEARCHABLE, 128 ),
      'url'=>                array('Url',                'str',  '', AF_OBLIGATORY|AF_SEARCHABLE, 64 ),
      'domain'=>             array('Domain',             'str',  '', AF_SEARCHABLE, 128 ),
+     'url_slug'=>           array('Url Slug',           'str',  '', AF_SEARCHABLE, 128 ),
      'email_address'=>      array('Email',              'email',  '', AF_SEARCHABLE|AF_HIDE_LIST, 128),
      'languages'=>          array('Languages',    	    'json', 'en', AF_OBLIGATORY, 'language', array('active' => 1)),
      'default_language'=>   array('Language',    		    'valSelect', 'en', AF_OBLIGATORY|AF_SEARCHABLE, $langArray),

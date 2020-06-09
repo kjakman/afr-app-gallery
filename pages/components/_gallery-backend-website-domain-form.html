@@ -1,3 +1,8 @@
+<!------------------Vignesh 02-06-2020 --------------------------->
+      <div class="mt20">
+        <a href="https://vimeo.com/424987864" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Website SEO Tutorial</a>
+      </div><br>
+<!------------------End 02-06-2020 --------------------------->
 <form class="ajax-submit" data-handler="save-minisite-basic">
 	<input hidden="1" name="id" type="hidden" value="{$minisite.id|default:$id}">
 	<input hidden="1" name="obj_id" class="obj_id" type="hidden" value="{$minisite.id|default:$id}" class="obj_id">
@@ -19,7 +24,7 @@
 		<label>Enter the URL of the domain you want to connect to When entering URL remember to start with https://....</label>
 	  </div>
 	  <div class="col-sm-6 no-padding">
-		<input type="text" class="form-control" name="domain" value="{$minisite.domain}" maxlength="128">
+		<input type="text" class="form-control" name="domain" value="{$minisite.url_slug}{$minisite.domain}" maxlength="128">
 	  </div>
 	</div>
 
@@ -32,18 +37,25 @@
 	</div>
 	<div class="row mb20">
 	  <div class="col-sm-8 no-padding">
-	  	<label for="SEARCH">SEARCH ENGINE OPTIMIZATION</label><br>
-		<label>Site Title</label>
+	  	<div class="col-sm-5 no-padding">
+		  	<label for="SEARCH">SEARCH ENGINE OPTIMIZATION</label><br>
+			<label>Site Title (recommended 50-60 characters)</label>
+		</div>
+		<!------------------Vignesh 01-06-2020 --------------------------->
+		<div class="col-sm-5 no-padding">
+			<a href="/img/vPatina_Tutorial_SearchEngine.pdf" class="btn" style="background-color:#337ab7; color:#fff; border-color:#337ab7;" target="_blank">Search Engine Tutorial PDF</a>
+		</div>	
+		<!------------------End 01-06-2020 --------------------------->
 	  </div>
 	  <div class="col-sm-6 no-padding">
 		<input type="text" class="form-control" name="meta_title" value="{$minisite.meta_title}" maxlength="60">
-	  </div><br><br><br><br><br>
-	  <div class="col-sm-8 no-padding">
-         <label for="description">Site description</label>
+	  </div>
+	  <div style="margin-top:5px;" class="col-sm-8 no-padding">
+         <label for="description">Site description (recommended 140-160 characters)</label>
       </div>
       <div class="col-sm-6 no-padding">   
-            <textarea class="form-control" data-height="50" name="description">{$minisite.description}</textarea>
-            Will be visible in search results on Google etc. It will not be displayed on your site. We recommend a text with 140-160 characters.
+            <textarea class="form-control" data-height="50" name="description">{$minisite.description}</textarea><br>
+            <span>Our Search Engine Optimization technology is optimized for art. It automatically writes unique descriptions and titles for every one of your pages. Every images is automatically tagged with the name of the artist and information about the artwork, so you are ranked high in images searches and you get the credit you deserve.</span>
        </div>
 	</div>
 	<div>

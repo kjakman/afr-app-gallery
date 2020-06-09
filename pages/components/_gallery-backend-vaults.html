@@ -6,6 +6,41 @@
 {{"extend": "_gallery-backend-list-base.html"}}
 
 {block name=main}
+{if (!$vault)}
+<!------------------Vignesh 02-06-2020 --------------------------->
+      <div class="mt20">
+        <a href="https://vimeo.com/425005106" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Media Drive</a>
+      </div><br>
+<!------------------End 02-06-2020 --------------------------->
+  <div class="row">
+    <div class="col-sm-12">
+      <span> 
+        1. Green “Bulk Upload” button takes you to a page where you can upload multiple images at the same time. <br>
+        2. Green “Create Folder” button creates a folder you can organize media in.<br>
+        3. “Uploads” folder is where you will find newly added media (e.g. bulk uploaded media and media uploaded to artworks and exhibitions, go here to begin organizing your media).<br>
+        4. Check box next to folders to delete folders (except the “Uploads” folder, which is your default folder)<br>
+        5. Click on a folder to enter and access the media in it.<br>
+        6. Click on the edit icon next to a folder, to rename or tag a folder.<br>
+      </span>
+    </div>
+  </div><br>
+  {else}
+  <!------------------Vignesh 02-06-2020 --------------------------->
+      <div class="mt20">
+        <a href="https://vimeo.com/425005917" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Media Folder Tutorial</a>
+      </div><br>
+<!------------------End 02-06-2020 --------------------------->
+  <div class="row">
+    <div class="col-sm-12">
+      <span> 
+        1. Search Bar helps you quickly locate media <br>
+        2. Arrows at the top of each column help you order media<br>
+        3. Green Edit icon next to the media allows you to add tags to media, making it easier to find.<br>
+        4. Check box next to media to attach media to art/exhibitions, delete media,  move media to another folder<br>
+      </span>
+    </div>
+  </div><br>
+  {/if}
   {if (!$vault)}    
     <p style="font-size: 20px !important; font-weight: bold;">Media Folder (Capacity: {$count} of {$limit} storage limit used)</p><span>Maximum file size 10mb - supported file types jpg, jpeg, png</span>
   {else}

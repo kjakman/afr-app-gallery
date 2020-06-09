@@ -2,15 +2,18 @@
                         {$p = '/backend'}
                         <ul class="nav navbar-nav"> 
                           <li id="nav_section_tips" class="class-filter{if ($scope.section =='tutorial')} active{/if}"><a class="subview-nav-link" href="{$p}/tutorial"></i>Tips & Tutorials <i class="pull-right hidden-xs showopacity fa fa-cog"></i></a></li>
-
-                          <li id="nav_section_acsetting" class="class-filter{if ($scope.section =='ACsettings')} active{/if}"><a class="subview-nav-link" href="{$p}/ACsettings"></i>Account/Settings <i class="pull-right hidden-xs showopacity fa fa-cog"></i></a></li>
+                          <!------------------Vignesh 02-06-2020 --------------------------->
+                          <li id="nav_section_acsetting" class="class-filter{if ($scope.section =='ACsettings')} active{/if}"><a class="subview-nav-link" href="{$p}/ACsettings"></i>Profile / Settings <i class="pull-right hidden-xs showopacity fa fa-cog"></i></a></li>
+                          <!------------------End 02-06-2020 --------------------------->
                           {if ($scope.user.roles >= 256)}
-                            <li id="nav_section_network" class="class-filter{if ($scope.section =='')} active{/if}"><a class="subview-nav-link" href="{$p}/network"></i>Artists/ Contacts<i class="pull-right hidden-xs showopacity fa fa-users"></i></a></li>     
+                            <li id="nav_section_network" class="class-filter{if ($scope.section =='')} active{/if}"><a class="subview-nav-link" href="{$p}/network"></i>Artists / Contacts<i class="pull-right hidden-xs showopacity fa fa-users"></i></a></li>     
                           {/if} 
 
                           <li id="nav_section_artwork" class="class-filter{if ($scope.section =='artwork')} active{/if}"><a class="subview-nav-link" href="{$p}/artworks" id="gbe_artworks_link"></i>Artworks <i class="pull-right hidden-xs showopacity fa fa-paint-brush"></i></a></li>
                           <li id="nav_section_exhibition" class="class-filter{if ($scope.section =='exhibition')} active{/if}"><a class="subview-nav-link" href="{$p}/exhibitions"></i>Exhibitions <i class="pull-right hidden-xs showopacity fa fa-asterisk"></i></a></li>
-                          <li id="nav_section_vault" class="class-filter{if ($scope.section =='vault')} active{/if}"><a class="subview-nav-link" href="{$p}/vaults"></i>Media Drive<i class="pull-right hidden-xs showopacity fa fa-folder-o"></i></a></li>
+                          <!------------------Vignesh 01-06-2020 --------------------------->
+                          <li id="nav_section_vault" class="class-filter{if ($scope.section =='vault')} active{/if}"><a class="subview-nav-link" href="{$p}/vaults"></i>Media / Bulk Uploads<i class="pull-right hidden-xs showopacity fa fa-folder-o"></i></a></li>
+                          <!------------------End 01-06-2020 --------------------------->
                           <li id="nav_section_website" class="class-filter{if ($scope.section =='website')} active{/if}"><a class="subview-nav-link" href="{$p}/websites"></i>Website Builder<i class="pull-right hidden-xs showopacity fa fa-globe"></i></a></li>
                           {*
                             <li id="nav_section_plugin" class="class-filter{if ($scope.section =='plugin')} active{/if}"><a class="subview-nav-link" href="{$p}/plugins"></i>Plugins <i class="pull-right hidden-xs showopacity fa fa-link"></i></a></li>

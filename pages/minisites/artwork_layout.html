@@ -27,9 +27,9 @@
 				  data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index={$seq} class="vp-loader-photoswipe effect-{$ms.art_animation}">
 				  <div class="hover_cover">
 				  	{if ($getartwork.title_image)}
-				      <img src="{$getartwork.title_image|photo:'medium'}" class="pull-left" id="__vp-view-button-1355" alt="{$getartwork.artist_name|ucfirst}, {related_images_type($getartwork.type)|ucfirst}, {$getartwork.technique|ucfirst}, {$getartwork.title}, {$getartwork.primary_year}"><br>
+				      <img src="{$getartwork.title_image|photo:'medium'}" class="pull-left" id="__vp-view-button-1355" alt="{$getartwork.artist_name|ucfirst}, {$getartwork.technique|ucfirst}, {$getartwork.title}, {$getartwork.primary_year}"><br>
 				    {else}
-				      <img src="{$getartwork.media_id|photo:'medium'}" class="pull-left" id="__vp-view-button-1355" alt="{$getartwork.artist_name|ucfirst}, {related_images_type($getartwork.type)|ucfirst}, {$getartwork.technique|ucfirst}, {$getartwork.title}, {$getartwork.primary_year}"><br>
+				      <img src="{$getartwork.media_id|photo:'medium'}" class="pull-left" id="__vp-view-button-1355" alt="{$getartwork.artist_name|ucfirst}, {$getartwork.technique|ucfirst}, {$getartwork.title}, {$getartwork.primary_year}"><br>
 				    {/if}
 					{{"include": "minisites/caption/titleimg_caption.html"}}
 				  </div>
