@@ -1,11 +1,13 @@
 {if ($type == 'gallery')}
   <div class="exhibition-title text-center">
     {if ($artwork.artwork_id)}
-      <h2 class="description">{strtoupper($artwork.name)}{if ($artwork.original_year)}, {$artwork.original_year}{/if}</h2>      
+      <h2 class="description">{strtoupper($artwork.name)}{if ($artwork.original_year)}, {$artwork.original_year}{/if}</h2>
+      <h2 class="description">{strtoupper($artwork.name)}</h2>      
       <h3 class="description">{$artwork.original_technique}</h3> 
       <h3 class="description">{$artwork.artist_name}</h3>
     {else}
-      <h2 class="description">{strtoupper(get_artwork_type($artwork.type))}</h2> 
+      <h3 class="description">{strtoupper(related_images_type($artwork.type))}</h3> 
+      <!--<h2 class="description vig2">{strtoupper(get_artwork_type($artwork.type))}</h2>-->
       <h3 class="description">{$artwork.description}</h3>
     {/if}
   </div>   

@@ -1,4 +1,5 @@
 {$user = $scope.user_profile} 
+{$data = $scope.list_media[0].id}
 <style>
 /**.row.fileupload-buttonbar {
     position: absolute;
@@ -46,7 +47,7 @@ i.glyphicon.glyphicon-question-sign.uploader-tip {
 }**/
 </style>
     <div class="mt20"> 
-		<a href="/backend/vaults/5042?_pv=1" class="btn btn-success ajax-loader top-button-upload" style="background-color:#ed8323;border-color: #e27513;" data-target="#subview-container"><i class="ace-icon fa fa-arrow-left"></i>Upload Folder</a>
+		<a href="/backend/vaults/{$data}?_pv=1" class="btn btn-success ajax-loader top-button-upload" style="background-color:#ed8323;border-color: #e27513;" data-target="#subview-container"><i class="ace-icon fa fa-arrow-left"></i>Upload Folder</a>
   </div>
   <div class="gap gap-small border-bottom-light d-block"></div>
 <!------------------Vignesh 02-06-2020 --------------------------->

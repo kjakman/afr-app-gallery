@@ -21,7 +21,7 @@
                 <div class="fontsty_box no-padding"><img src="/img/{$layout.image}" /></div>
                 <div class="form-group">
                   <div class="selrad_box"> 
-                    <input type="radio" class="parent_layout" name="page_layout" id="radio1" value="{$layout.id}" {if ($minisitepage.page_layout == $page_layouts->id)} checked {/if} > {$layout.name}
+                    <input type="radio" class="parent_layout" name="page_layout" id="radio1" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
                     <div class="radio_group" id="level1_list">
                       <label>Show/Hide location of exhibition</label>
                       <select id="selectList1_{$layout.id}" class="common3" onchange="save_layout()">

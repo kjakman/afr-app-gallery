@@ -179,10 +179,16 @@
       {elseif ($obj_type == 'media')}
         <li><a href="{$list_link}/{$scope.folder}?_pv=1{$tail}" class="btn btn-primary ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i> List</a></li> 
       {else}
-        <li><a href="/backend/websites?_pv=1" class="btn btn-primary ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i> List</a></li>&nbsp;&nbsp;
+      {if (isset($scope.site_title))}
+        <li><a href="{$list_link}?_pv=1{$tail}" class="btn btn-primary ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i> List</a></li>&nbsp;&nbsp;
         <li style="font-size:20px;">{$scope.site_title|ucfirst}</li>
-        <!--<li><a href="/backend/website/1111/edit?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-pencil-square"></i>Edit</a></li>
-        <li><a href="{$view_link}{if ($obj_type != 'plugin')}?_pv=1{/if}" class="btn btn-primary ajax-loader" {if ($obj_type == 'plugin')}data-breakout=1{/if} data-target="#subview-container"><i class="fa fa-eye"></i> Previews</a></li>-->
+      {else}  
+        <!--<li><a href="/backend/website/1111/edit?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-pencil-square"></i>Edit</a></li>-->
+        <li><a href="{$view_link}{if ($obj_type != 'plugin')}?_pv=1{/if}" class="btn btn-primary ajax-loader" {if ($obj_type == 'plugin')}data-breakout=1{/if} data-target="#subview-container"><i class="fa fa-eye"></i> Preview</a></li>
+        <li>
+          <h3 class="inline" style="position:relative;top:10px;left:10px">Edit {$page.subview}</h3>
+        </li>
+      {/if}
       {/if}
     {/if}
     {if ($list && $obj_type|in_array:['artwork', 'media_collection', 'minisite', 'artist', 'media_folder'])} 
@@ -221,6 +227,7 @@
     
     {if ($object && !$form && $auth_edit_backend)}
       {$buttons = 1}
+      <li><a href="{$list_link}?_pv=1{$tail}" class="btn btn-primary ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i> List</a></li>
       <li><a href="{$edit_link}?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-pencil-square"></i>{'edit'|translate:'c'}</a></li>
     {/if}
     {if ($page.action)}
