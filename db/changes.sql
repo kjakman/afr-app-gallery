@@ -264,16 +264,7 @@ INSERT INTO `minisite_page_type` (`id`, `name`, `tab`, `row_order`, `active`) VA
 
 #Manual Add Data Minisite Template Layout
 
-DROP TABLE IF EXISTS `minisite_tpl`;
-CREATE TABLE `minisite_tpl` (
-  `id` int(8) NOT NULL,
-  `created` date NOT NULL,
-  `active` tinyint(1) DEFAULT '1',
-  `type` int(10) DEFAULT NULL,
-  `parts` int(11) NOT NULL DEFAULT '0',
-  `template` varchar(20) NOT NULL,
-  `page` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+TRUNCATE TABLE `minisite_tpl`;
 
 INSERT INTO `minisite_tpl` (`id`, `created`, `active`, `type`, `parts`, `template`, `page`) VALUES
 (1,	'2019-08-30',	1,	20,	1,	'artists',	'artists'),
