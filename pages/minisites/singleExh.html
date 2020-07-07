@@ -1,5 +1,5 @@
 {{"extend": "minisites/index.html"}}
-
+{$artworks = $scope.artworks}
 {$collection = $scope.collection}
 {$page_slug = $scope.page_slug}
 
@@ -10,7 +10,6 @@
 {block name=content}
 {$artist_id = $collection.artist_id}
 {$artist_ids = $collection.artist_ids|@json_decode}
-
   {* $collection.event|dump *}
   <div class="row detail-page-row">
     <div class="col-md-3 col-sm-12 text-left artist-subnav-container">
@@ -20,7 +19,7 @@
             {foreach from=$artist_ids item=$artist_id}
               {$artist_name[] = $artist_id|displayname}
             {/foreach}
-            {', '|implode:$artist_name}
+            {$artist_name[0]}
             <br><br>
             <a href="{$basepath}/{$page_slug}/{$collection.slug}">{$collection.title|default:"Untitled"}</a>
           </h1>
@@ -88,7 +87,7 @@
       {else}
         <div class="image-container-max-height">
           {if ($collection.slug)} 
-            <img src="{$collection.id|collection_photo:'medium'}" alt="{$collection.title}" class="img-responsive" /><br />
+            <img src="{$collection.id|collection_photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}" class="img-responsive" /><br />
           {else}
             <img src="{$collection.id|photo:'medium'}">
           {/if}

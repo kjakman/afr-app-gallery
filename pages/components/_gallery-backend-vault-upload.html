@@ -1,8 +1,80 @@
 {$user = $scope.user_profile} 
-
+{$data = $scope.list_media[0].id}
+<style>
+/**.row.fileupload-buttonbar {
+    position: absolute;
+    top: -125px;
+}
+div.jquery-fileupload {
+    margin-top: 130px;
+}**/
+.fileinput-button span {
+    visibility:hidden;
+}
+.fileinput-button span:after {
+    visibility: visible;
+    content: 'Bulk Upload Media';
+    position: relative;
+    bottom: 0px;
+    right: 45px;
+  }
+i.glyphicon.glyphicon-question-sign.uploader-tip {
+    display: none;
+}
+.gap{
+	display:none;
+}
+.gap.d-block{
+	display:block;
+}
+.col-lg-7::after {
+    content: 'Select All (Bulk Uploaded Media)';
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+/**.top-button-upload{
+	position: relative;
+    left: 16em;
+    top: -2px;
+}
+.fileupload-buttonbar{
+	overflow:visible;
+}
+.fileinput-button{
+	position: absolute;
+    top: -24em;
+}**/
+</style>
+    <div class="mt20"> 
+		<a href="/backend/vaults/{$data}?_pv=1" class="btn btn-success ajax-loader top-button-upload" style="background-color:#ed8323;border-color: #e27513;" data-target="#subview-container"><i class="ace-icon fa fa-arrow-left"></i>Upload Folder</a>
+  </div>
+  <div class="gap gap-small border-bottom-light d-block"></div>
+<!------------------Vignesh 02-06-2020 --------------------------->
+      <div class="mt20">
+        <a href="https://vimeo.com/425005435" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Media Bulk Upload Tutorial</a>
+      </div><br>
+<!------------------End 02-06-2020 --------------------------->
+  <!--<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/backend/vaults">Media/Bulkupload</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Bulk Upload</li>
+  </ol>
+</nav><br>--->
+<div class="row">
+    <div class="col-sm-12">
+      <span> 
+        1. Green “Bulk Upload Media” button allows you to upload multiple images. <br>
+        2. Orange “Uploads Folder” button takes you to the folder where you can find newly added media (go there after you have uploaded media - so you can organize your media)<br>
+        3. The media shown below is simply all the media that has been bulk uploaded and is still in your drive (you will be able to find it either in you uploads folder, or whichever folder you moved it to).<br>
+        4. You can delete files, by using the check box and delete function, however, we recommend managing files in your folders.<br>
+      </span>
+    </div>
+  </div><br>
   <div class="row form-group">
     <label for="media-name">Upload image</label>
-    {"user_profile"|object_uploader:$user.profile_id:"map":["resize" => 1, "cloud" => 1, "view" => 'grid']}
+    <div class="commonin_row">
+        {"user_profile"|object_uploader:$user.profile_id:"map":["resize" => 1, "cloud" => 1, "view" => 'grid']}
+    </div>
   </div>
-
   

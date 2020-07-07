@@ -9,7 +9,7 @@
         </div>
         <div class="col-xl-3 col-lg-12 col-sm-12 text-center pt10 norml_menu_brand hidden-lg-down">
           <a class="minisite-logo" href="{$basepath|default:'/'}">
-            {if ($ms.logo)}<img src="{$ms.logo|photo:'small'}" class="minisiteLogo">{else}<h1>{$minisite_name}</h1>{/if}
+            {if ($ms.logo)}<img src="{$ms.logo|photo:'small'}" class="minisiteLogo" alt="{$profileobj.first_name|ucfirst} Site Logo">{else}<h1>{$minisite_name}</h1>{/if}
           </a>
         </div> 
         <div class=" col-xl-9 col-lg-12 col-md-12 col-sm-12 norml_menu_list text-right">

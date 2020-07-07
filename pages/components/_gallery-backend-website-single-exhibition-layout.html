@@ -6,6 +6,7 @@
     {$page_layout = find_object('minisite_layout', ['id' => $minisitepage.page_layout, 'active' => 1])}
 
     {{"include": "_gallery-backend-website-subtab.html"}}
+
     <div class="mt20">
         <a href="https://vimeo.com/386719867" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Exhibition Template Tutorial</a>
     </div>  
@@ -14,12 +15,13 @@
         <div class="row mt20">
           <div class="row mb20"><label>Full Exhibition Templates :</label> (If its obvious where the exhibitions are, everything is at your Studio/ Gallery, you can hide the location; Hide the info about art on the layout, so you can choose a text animation instead, for a more elegant look)</div>
           {foreach from=$full item=$layout}
+          {$page_layouts = find_object('minisite_layout', ['parent_id' => $layout.id, 'active' => 1], ['fields' => 'distinct id'])}
             <div class="col-sm-6">
               <div class="fontsty_boxblk">
                 <div class="fontsty_box no-padding"><img src="/img/{$layout.image}" /></div>
                 <div class="form-group">
                   <div class="selrad_box"> 
-                    <input type="radio" class="parent_layout" name="page_layout" id="radio1" value="{$layout.id}" {if ($minisitepage.page_layout == $layout.id)} checked {/if} > {$layout.name}
+                    <input type="radio" class="parent_layout" name="page_layout" id="radio1" value="{$layout.id}" {if ($page_layout->parent_id == $layout.id)} checked {/if} > {$layout.name}
                     <div class="radio_group" id="level1_list">
                       <label>Show/Hide location of exhibition</label>
                       <select id="selectList1_{$layout.id}" class="common3" onchange="save_layout()">

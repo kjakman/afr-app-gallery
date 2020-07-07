@@ -1,3 +1,4 @@
+
       {$count = $scope.artworks|@count}
 
       {if ($count)}
@@ -17,9 +18,9 @@
             {$get_artwork = find_object('artwork', ['id'=>$artwork.artwork_id])}
             <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item effect-{$ms.art_animation}" data-index="{$index}" data-media_id="1123843" id="map_5050">
               <div class="hover_style">       
-                <figure id="{$container_id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index="{$index}" class="vp-loader-photoswipe effect-{$ms.art_animation}">
+                <figure class="effect-{$ms.art_animation}">
                   <div class="hover_cover">
-                    <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">
+                    <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">
                     <figcaption>
                       {{"include": "minisites/caption/hover_caption.html"}}
                     </figcaption>

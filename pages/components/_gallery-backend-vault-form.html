@@ -1,6 +1,5 @@
 {$profile = $scope.user_profile}
 {$tags = json_encode($scope.tags, true)}
-
 <form class="ajax-submit" data-handler="save-folder" data-success_handler="gbe_vault_handler">
   <input hidden="1" name="user_id" type="hidden" value="{$profile.user_id}">
   <input hidden="1" name="obj_type" type="hidden" value="media_folder">      

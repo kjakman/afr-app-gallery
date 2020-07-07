@@ -1,6 +1,5 @@
 {$page_id = $scope.page_id}
 {$userid = $scope.userid}
-
   {$tab1_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'page']}
   <!-- {$tab2_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'home']} -->
   {$tab3_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'artist']}
@@ -51,6 +50,7 @@
 
   {$tab40_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'domain']}
   {$tab41_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'extlink']}
+  {$tab42_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'prewebsite']}
 
   {$tab = $page.tab|default:'basic'}
 
@@ -80,7 +80,9 @@
 
     <li {if ($tab == 'extlink') } class="active"{/if}><a href="{$tab41_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_extlink">External Link</a></li> <!-- Single page exhibition -->
 
-    <li {if ($tab == 'domain') } class="active"{/if}><a href="{$tab40_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_domain_link">Domain Connection</a></li> <!-- Domain connection -->
+    <li {if ($tab == 'prewebsite') } class="active"{/if}><a href="{$tab42_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_prewebsite_link">Preview Website</a></li> <!-- Preview Webiste -->
+
+    <li {if ($tab == 'domain') } class="active"{/if}><a href="{$tab40_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_domain_link">Domain Connection/SEO</a></li> <!-- Domain connection -->
 
     <!--<li {if ($tab == 'styling') }class="active"{/if}><a href="{$tab7_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_styling_link">styling</a></li>
     
@@ -120,6 +122,60 @@
       {{"include": "_gallery-backend-website-hover-form.html"}}
     {elseif ($tab == 'artHover')}
       {{"include": "_gallery-backend-website-art-hover-form.html"}}
+    {elseif ($tab == 'prewebsite')}
+    <!------------------Vignesh 01-06-2020 --------------------------->
+      <style>
+        #gbe_artist_link{
+          display:none;
+        }
+        #gbe_exhibition_link{
+          display:none;
+        }
+        #gbe_contact_link{
+          display:none;
+        }
+        #gbe_bio_link{
+          display:none;
+        }
+        #gbe_singleExhibition_link{
+          display:none;
+        }
+        #gbe_manualexb_link{
+          display:none;
+        }
+        #gbe_extSite_link{
+          display:none;
+        }
+        #gbe_extMail_link{
+          display:none;
+        }
+        #gbe_extlink{
+          display:none;
+        }
+      </style> 
+      <!--<ul class="list inline-list">
+        <li><a href="/backend/website/1111?_pv=1" class="btn btn-primary ajax-loader" data-target="#subview-container"><i class="fa fa-eye"></i> Preview</a></li>
+        <li>
+      <h3 class="inline" style="position:relative;top:10px;left:10px">Edit website</h3>
+    </li>
+    <li>
+        <h3 class="inline" style="position:relative;top:10px;left:10px"><a href="{$scope.url}"> - {$scope.site_title}</a></h3>
+      </li>
+    </ul><br><br>-->
+    <!------------------Vignesh 02-06-2020 --------------------------->
+    <div class="row">
+    <div class="col-sm-12">
+      <h4>Trouble shooting tips if a page is not displaying any exhibitions/art</h4>
+      <span> 
+        1. Make sure your exhibitions are published/ turned on <br>
+        2. Check you have selected exhibitions for the page<br>
+        3. Check you have selected a layout/ template for that page<br>
+      </span>
+        </div>
+      </div><br>
+      <!---------------------------------End 02-06-2020--------------------------->
+      <iframe id="minisite_preview" class="" width="100%" height="1200px" style="overflow:auto;background-color:#fff" scrolling="yes" src="{$scope.url}"></iframe>
+      <!---------------------------------End 01-06-2020--------------------------->
     {elseif ($tab == 'domain')}
       {{"include": "_gallery-backend-website-domain-form.html"}}
 

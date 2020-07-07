@@ -15,7 +15,7 @@
             {foreach from=$artist_ids item=$artist_id}
               {$artist_name[] = $artist_id|displayname}
             {/foreach}
-            {', '|implode:$artist_name}
+            {$artist_name[0]}
             <br><br>
             {if ($collection.page_slug)}
             <a href="{$basepath}/{$collection.page_slug}/{$slug}">{$collection.title|default:"Untitled"}</a>
