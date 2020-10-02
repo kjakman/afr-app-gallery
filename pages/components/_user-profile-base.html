@@ -1,6 +1,8 @@
 
 {$url = $scope.url|default:$this_url}
-
+{$seg_url = explode("/",$url)}
+{$url_segment = explode("/",$smarty.server.REQUEST_URI)}
+{$seg2 = explode("-",$url_segment[2])}
 {if ($user.user_level >= $smarty.const.USER_LEVEL_ADMIN)}
     {if ($user.id != $scope.profile.user_id && $scope.auth_login)}
     <div class="mb20">
@@ -18,19 +20,30 @@
     {/if}   
 {/if}
 
-{if ($scope.backend)}
+{if ($scope.profile)}
+{*dump($app)*}
+ {if ($app.page.subview == 'ACsettings')} 
   {$new_url = str_replace("/backend", "", $url)}
   {$new_url = str_replace("?_pv=1", "", $new_url)}
   <div class="mb20">
-    <h3>URL: <a href="{$new_url}">{$new_url}</a> </h3>
+    <h3>URL: <a target="_blank" href="{$seg_url[3]}/{$scope.u_id}">{$seg_url[0]}/{$seg_url[2]}/{$seg_url[3]}/{$scope.u_id}</a> </h3>
   </div>
+  {elseif ($app.page.subview == 'profile')}
+  <div class="mb20">
+    <h3>URL: <a target="_blank" href="{$seg_url[3]}/{$app.page.object_id}">{$seg_url[0]}/{$seg_url[2]}/{$seg_url[3]}/{$app.page.object_id}</a> </h3>
+  </div>
+ {/if}
 {/if}
 
 {$picture = $scope.profile.photo|photo:'big'}
 {$title = "`$scope.profile.display_name`"}
 
-<div class="container mt40">
-  <div class="row">
+<div class="container-fluid mt40">
+  <!--<div class="row">-->
+    {*dump($seg2[0])*}
+    {if ($seg2[0] != 0)}
+      {{"include": "_gallery-profile-header.html"}}
+    {/if}
     <div class="col-lg-5 col-md-4 col-sm-3">
       <div id="user" class="mb20">
         <div>
@@ -120,5 +133,5 @@
       {{"include": "_gallery-related-images.html"}}
     
    </div> 
-  </div>
+<!--div>-->
 </div>

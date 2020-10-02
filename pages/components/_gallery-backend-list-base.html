@@ -1,4 +1,3 @@
-
 {$list_view = 1}
 {{"extend": "_gallery-backend-base.html"}}
 {$page_id = $scope.page_id}
@@ -93,7 +92,7 @@
   >
      
     <thead>     
-      <tr>
+      <tr class="input-daterange">
       {block name="fields"}{/block}       
       </tr>
     </thead>
@@ -289,16 +288,47 @@ function bstPriceOptionFormatter(value, row, index) {
   var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
   var link_class = pv ? 'ajax-loader' : '';
   // console.log("base_link = " + base_link + " pv=" + pv);
-    
     if(value==0){
-      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="phide" class="phide'+row.id+'" data-col="price_option" data-value='+row.id+' style="cursor: pointer">Hide Price</span><div class="shows" id="shows'+row.id+'"></div></span>';
+      return '<select id= "select'+row.id+'" class="select'+row.id+' form-control" onchange="check_price('+row.id+');"><option>Select</option><option id= "option" value="1">Show price</option><option  id= "option" value="0" selected>Hide price</option><option  id= "option" value="-1">Price on enquiry</option></select>';
     }else if(value==1){
-      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="phide" class="phide'+row.id+'" data-col="price_option" data-value='+row.id+' style="cursor: pointer">Show Price</span><div class="shows"  id="shows'+row.id+'"></div></span>';
+      return '<select id= "select'+row.id+'" class="select'+row.id+' form-control" onchange="check_price('+row.id+');"><option>Select</option><option id= "option" value="1" selected>Show price</option><option  id= "option" value="0">Hide price</option><option  id= "option" value="-1">Price on enquiry</option></select>';
     }else{
-      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="phide" class="phide'+row.id+'" data-col="price_option" data-value='+row.id+' style="cursor: pointer">Price on enquiry</span><div class="shows"  id="shows'+row.id+'"></div></span>';
+      return '<select id= "select'+row.id+'" class="select'+row.id+' form-control" onchange="check_price('+row.id+');"><option>Select</option><option id= "option" value="1">Show price</option><option  id= "option" value="0">Hide price</option><option  id= "option" value="-1" >Price on enquiry</option></select>';
     } 
      
 }  
+
+
+    function check_price(id){
+      //var value1 = $(this).val();
+      //value1 = value1.replace('shows','');
+     // var value1 = $(this).parent().prop('id');
+      var value = $('#select'+id).val();
+      //alert(value1);
+      var obj_type= "artwork";
+      var col = $('#phide').data('col');
+      $('.select'+id).show(value);
+      $.ajax({ url: "/ajax.php?obj_type=" + obj_type,
+        type: "POST",
+        data: {
+          type : "artwork",
+          col: 'price_option',
+          data : value,
+          id : id,
+          oper : "edit",
+        },
+        success:function(response_data_json) {
+          //alert(data);
+          /*var value2='Hide Price';
+          $('#shows'+value1).hide();
+          if(value==0)       value2="Hide Price";
+          if(value==1)       value2="Show Price";
+          if(value==-1)       value2="Price on enquiry";
+          $('.phide'+value1).text(value2);
+          $('.phide'+value1).show();*/
+        }
+      });    
+    }
 
   //moved from afr_gallery_backend.js (added feature- change cursor pointer)
 
@@ -328,12 +358,35 @@ function bstPublishedFormatter(value, row, index) {
     //console.log("base_link = " + base_link + " pv=" + pv);
     //alert("base_link = " + base_link + " pv=" + pv);
     if(value==0){
-      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="active" data-value='+row.id+' style="cursor: pointer"><span id="active" class="active'+row.id+'" data-col="active" data-value='+row.id+'>OFF</span><div class="active" id="active'+row.id+'"></div></span>';
+      return '<select id= "select1'+row.id+'" class="select1'+row.id+' form-control" onchange="check_published('+row.id+')"><option>Select</option><option id= "option" value="0" selected>OFF</option><option  id= "option" value="1">ON</option></select>';
     }else if(value==1){
-      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="active" data-value='+row.id+' ><span id="active" class="active'+row.id+'" data-col="active" data-value='+row.id+' style="cursor: pointer">ON</span><div class="active"  id="active'+row.id+'"></div></span>';
+      return '<select id= "select1'+row.id+'" class="select1'+row.id+' form-control" onchange="check_published('+row.id+')"><option>Select</option><option id= "option" value="0">OFF</option><option  id= "option" value="1" selected>ON</option></select>';
     }else{
-      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="active" data-value='+row.id+' ><span id="active" class="active'+row.id+'" data-col="active" data-value='+row.id+' style="cursor: pointer">-</span><div class="active"  id="active'+row.id+'"></div></span>';
+      return '<select id= "select1'+row.id+'" class="select1'+row.id+' form-control" onchange="check_published('+row.id+')"><option>Select</option><option id= "option" value="0">OFF</option><option  id= "option" value="1">ON</option></select>';
     }  
+}
+
+
+function check_published(id) { 
+
+      var obj_data = $(this).text();
+      var value1 = id;
+      var value = $('#select1'+id).val();
+      var obj_type= "media_collection";
+      $('.select1'+value1).show(value);
+      $.ajax({ url: "/ajax.php?obj_type=" + obj_type,
+        type: "POST",
+        data: {
+          type : "media_collection",
+          col: "active",
+          data : value,
+          id : value1,
+          oper : "edit",
+        },
+        success:function(response_data_json) {
+
+       }
+   });                
 }
 
 function bstArtworkStatusFormatter(value, row, index) { 
@@ -345,27 +398,64 @@ function bstArtworkStatusFormatter(value, row, index) {
     // console.log("base_link = " + base_link + " pv=" + pv);
 
     if(value==10){
-      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' style="cursor: pointer"><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+'>Available</span><div class="cstatus" id="cstatus'+row.id+'"></div></span>';
+      return '<select id= "select1'+row.id+'" class="select1'+row.id+' form-control" onchange="check_status('+row.id+');"><option>Select</option><option id= "option" value="10" selected>Available</option><option  id= "option" value="20">Reserved</option><option  id= "option" value="30">Sold</option><option  id= "option" value="40">Inactive</option><option  id= "option" value="50">On loan, etc.</option></select>';
     }else if(value==20){
-      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+' style="cursor: pointer">Reserved</span><div class="cstatus"  id="cstatus'+row.id+'"></div></span>';
+      return '<select id= "select1'+row.id+'" class="select1'+row.id+' form-control" onchange="check_status('+row.id+');"><option>Select</option><option id= "option" value="10">Available</option><option  id= "option" value="20" selected>Reserved</option><option  id= "option" value="30">Sold</option><option  id= "option" value="40">Inactive</option><option  id= "option" value="50">On loan, etc.</option></select>';
     }else if(value==30){
-      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+' style="cursor: pointer">Sold</span><div class="cstatus"  id="cstatus'+row.id+'"></div></span>';
+      return '<select id= "select1'+row.id+'" class="select1'+row.id+' form-control" onchange="check_status('+row.id+');"><option>Select</option><option id= "option" value="10">Available</option><option  id= "option" value="20">Reserved</option><option  id= "option" value="30" selected>Sold</option><option  id= "option" value="40">Inactive</option><option  id= "option" value="50">On loan, etc.</option></select>';
     }else if(value==40){
-      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+' style="cursor: pointer">Inactive</span><div class="cstatus"  id="cstatus'+row.id+'"></div></span>';
+      return '<select id= "select1'+row.id+'" class="select1'+row.id+' form-control" onchange="check_status('+row.id+');"><option>Select</option><option id= "option" value="10">Available</option><option  id= "option" value="20">Reserved</option><option  id= "option" value="30">Sold</option><option  id= "option" value="40" selected>Inactive</option><option  id= "option" value="50">On loan, etc.</option></select>';
     }else if(value==50){
-      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+' style="cursor: pointer">On loan, etc.</span><div class="cstatus"  id="cstatus'+row.id+'"></div></span>';
+      return '<select id= "select1'+row.id+'" class="select1'+row.id+' form-control" onchange="check_status('+row.id+');"><option>Select</option><option id= "option" value="10">Available</option><option  id= "option" value="20">Reserved</option><option  id= "option" value="30">Sold</option><option  id= "option" value="40">Inactive</option><option  id= "option" value="50" selected>On loan, etc.</option></select>';
     }else{
-      return '<span type="hidden" class="editdd" name="editdd" id="editdd" data-col="price_option" data-value='+row.id+' ><span id="status" class="status'+row.id+'" data-col="status" data-value='+row.id+' style="cursor: pointer">-</span><div class="cstatus"  id="cstatus'+row.id+'"></div></span>';
+      return '<select id= "select1'+row.id+'" class="select1'+row.id+' form-control" onchange="check_status('+row.id+');"><option>Select</option><option id= "option" value="10">Available</option><option  id= "option" value="20">Reserved</option><option  id= "option" value="30">Sold</option><option  id= "option" value="40">Inactive</option><option  id= "option" value="50">On loan, etc.</option></select>';
     }  
 } 
+
+//====================Status================Vignesh 10-08-2020 =====================================================//
+function check_status(id) { 
+  var id = id;
+  var obj_type= "artwork";
+  var obj_data = $(this).text();
+  var col = 'status';
+
+      var value1 = id;
+      //value1 = value1.replace('cstatus','');
+      var value = $('#select1'+id).val();
+      var obj_type= "artwork";
+      var col = $('#status').data('col');
+      $('.select1'+value1).show(value);
+      $.ajax({ url: "/ajax.php?obj_type=" + obj_type,
+        type: "POST",
+        data: {
+          type : "artwork",
+          col: "status",
+          data : value,
+          id : value1,
+          oper : "edit",
+        },
+        success:function(response_data_json) {
+          /*var value2='Available';
+           $('#cstatus'+value1).hide();
+           if(value==10)       value2="Available";
+           if(value==20)       value2="Reserved";
+           if(value==30)       value2="Sold";
+           if(value==40)       value2="Inactive";
+           if(value==50)       value2="On loan, etc.";
+          $('.status'+value1).text(value2);
+          $('.status'+value1).show();*/
+        }   
+    });           
+}
+//==================================================End Status =============10-08-2020===========================//
 
   function bstActionFormatter(value, row, index) {
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     // console.log("base_link = " + base_link + " pv=" + pv);
-    var view_button = '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-eye"></i></a>';
-    var edit_button = '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>';
+    var view_button = '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class=" ' + link_class + ' btn btn-sm btn-warning text-white" data-target="#subview-container">View</i></a>';
+    var edit_button = '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="btn btn-sm btn-success text-white ' + link_class + '" data-target="#subview-container">Edit</a>';
     return view_button + ' ' + edit_button;
   }
 // For network page
@@ -374,8 +464,8 @@ function bstArtworkStatusFormatter(value, row, index) {
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     // console.log("base_link = " + base_link + " pv=" + pv);
-    var view_button = '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-share-alt" style="color:#2B60DE"></i></a>';
-    var edit_button = '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>';
+    var view_button = '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="btn btn-sm btn-info text-white ' + link_class + '" data-target="#subview-container">Share</a>';
+    var edit_button = '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="btn btn-sm btn-success text-white ' + link_class + '" data-target="#subview-container">Edit</a>';
     return view_button + ' ' + edit_button;
   }
   // For Website Builder Edit Option
@@ -385,7 +475,7 @@ function bstArtworkStatusFormatter(value, row, index) {
     var link_class = pv ? 'ajax-loader' : '';
     // console.log("base_link = " + base_link + " pv=" + pv);
    // var view_button = '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-share-alt" style="color:#2B60DE"></i></a>';
-    var edit_button = '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>';
+    var edit_button = '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="btn btn-sm btn-success text-white ' + link_class + '" data-target="#subview-container">Edit</a>';
     return edit_button;
   }
 //For artwork page with clone icon
@@ -396,10 +486,10 @@ function bstArtworkStatusFormatter(value, row, index) {
     var buttons = bstActionFormatter(value, row, index);
     /*var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>'; */
 
-    var pop_btn = '<a id="'+row.id + '" class="clone_modal_icon" data-toggle="modal" data-target="#clone_modals"><i class="fa fa-clone"></i></a>';
+    var pop_btn = '<a id="'+row.id + '" class="btn btn-sm btn-info text-white clone_modal_icon" data-toggle="modal" data-target="#clone_modals">Clone</a>';
     //var share_btn = '<a href="https://www.facebook.com/sharer/sharer.php?u=http://new.vpatina.dci.in/item/lets-sail-for-over-there-and-see-what-we-come-across?_aid=20361" id="'+row.id + '" class="share" ><i class="glyphicon glyphicon-share"></i></a>';
 
-    return buttons + ' ' + pop_btn; 
+    return '<span>'+ buttons + ' ' + pop_btn + '</span>'; 
   }
 
   //For Websitebuilder page with clone icon
@@ -422,9 +512,9 @@ function bstArtworkStatusFormatter(value, row, index) {
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     var buttons = bstActionFormatter(value, row, index);
-    var share_btn = '<a href="' + base_link + '/' + row.id + '/edit/publish?_pv=' + pv + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-share-alt" style="color:#2B60DE"></i></a>';
+    var share_btn = '<a href="' + base_link + '/' + row.id + '/edit/publish?_pv=' + pv + '" class="btn btn-sm btn-info text-white ' + link_class + '" data-target="#subview-container">Share</a>';
 
-    return buttons + ' ' + share_btn; 
+    return '<span>'+ buttons + ' ' + share_btn + '</span>'; 
 
     /*
       Temporarily hidden
@@ -450,11 +540,11 @@ function bstArtworkStatusFormatter(value, row, index) {
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     // console.log("base_link = " + base_link + " pv=" + pv);
-    var edit_button = row.type == 'folder' ? '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>' : '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '&folder='+ row.folder_id + '" class="text-success ' + link_class + '" data-target="#subview-container"><i class="fa fa-pencil-square"></i></a>';
+    var edit_button = row.type == 'folder' ? '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="btn btn-sm btn-success text-white ' + link_class + '" data-target="#subview-container">Edit</a>' : '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '&folder='+ row.folder_id + '" class="btn btn-sm btn-success text-white ' + link_class + '" data-target="#subview-container">Edit</a>';
     if('{$get_str}')
-      var view_button = '<a href="/backend/vaults/'+ row.id + '?_pv=1&{$get_str}" class="ajax-loader" data-target="#subview-container" ><i class="fa fa-eye"></i></a>';
+      var view_button = '<a href="/backend/vaults/'+ row.id + '?_pv=1&{$get_str}" class="btn btn-sm btn-warning text-white ajax-loader" data-target="#subview-container" >View</a>';
     else
-      var view_button = '<a href="/backend/vaults/'+ row.id + '?_pv=1" class="ajax-loader" data-target="#subview-container" ><i class="fa fa-eye"></i></a>';
+      var view_button = '<a href="/backend/vaults/'+ row.id + '?_pv=1" class="btn btn-sm btn-warning text-white ajax-loader" data-target="#subview-container" >View</a>';
     if(row.type == 'folder')
       return  view_button+' '+edit_button;
     else
@@ -490,7 +580,14 @@ function bstArtworkStatusFormatter(value, row, index) {
   }
 
   function bstMediaJsonFormatter(value, row, index, field) {
-    if(!value) return '';
+    //=======================================vignesh 06-08-2020================================//
+    var base_link = '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    var dimag = "<img class='table-thumb' src='/user/object/user_profile/default/s5.jpg'/>";
+    if(!value) return '<a href="{$base_link}/'+ row.id + '/edit/image?_pv=' + pv +'&ref=/ajax.php?oper=get-rows&obj_type=artwork'+
+    '" class="' +link_class + '" data-target="#subview-container">'+dimag+'</a>';
+    //=======================================End vignesh 06-08-2020================================//
     var json_field = field + '_json';
     var json = row[json_field];
     //console.log("field=" + field + " json=" + json_field + " json=" + json);
@@ -525,10 +622,16 @@ function bstArtworkStatusFormatter(value, row, index) {
   }
 
   function bstMediaJsonFormatter1(value, row, index, field) {
-    if(!value) return '';
+    //=======================================vignesh 06-08-2020================================//
+    var base_link = '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    var dimag = "<img class='table-thumb' src='/user/object/artwork/default/s10.jpg'/>";
+    if(!value) return '<a href="{$base_link}/'+ row.id + '/edit/title?_pv=' + pv +
+    '" class="' +link_class + '" data-target="#subview-container">'+dimag+'</a>';
+    //=======================================End vignesh 06-08-2020================================//
     var json_field = field + '_json';
     var json = row[json_field];
-    
     if(!json) return bstIDFormatter1(value, row, index);
     var obj = jQuery.parseJSON(json);
     console.log("obj = ", obj);
@@ -536,10 +639,11 @@ function bstArtworkStatusFormatter(value, row, index) {
 
     if(!obj || !obj.length) return bstIDFormatter1(value, row, index);
     var first = obj[0];
-    console.log("first = ", first);
-    
     var filename = first.filename;
+    //alert(filename);
+    //console.log(filename);
     if(!filename) return bstIDFormatter1(value, row, index);
+
 
     var base_link = '{$base_link}';
     //var filter_link= urlencode($filter_json);
@@ -548,6 +652,7 @@ function bstArtworkStatusFormatter(value, row, index) {
     var link_class = pv ? 'ajax-loader' : '';
 
     var thumb = filename.replace('/square', '/tiny');
+    //alert(thumb);
     var print_val = "<img class='table-thumb' src='" + thumb + "'/>";
 
     return '<a href="{$base_link}/'+ row.id + '/edit/title?_pv=' + pv +
@@ -555,7 +660,7 @@ function bstArtworkStatusFormatter(value, row, index) {
   }
 
   function bstIDFormatter1(value, row, index) {
-    if(!value) return '';
+    //if(!value) return '';
     var print_val = value;
     var base_link = '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
@@ -569,7 +674,14 @@ function bstArtworkStatusFormatter(value, row, index) {
   }
   
   function bstMediaJsonFormatter2(value, row, index, field) {
-    if(!value) return '';
+    //=======================================vignesh 06-08-2020================================//
+    var base_link = '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    var dimag = "<img class='table-thumb' src='/user/object/user_profile/default/s3.jpg'/>";
+    if(!value) return '<a href="{$base_link}/'+ row.id + '/edit/about?_pv=' + pv +
+    '" class="' +link_class + '" data-target="#subview-container">'+dimag+'</a>';
+    //=======================================End vignesh 06-08-2020================================//
     var json_field = field + '_json';
     var json = row[json_field];
     
@@ -662,12 +774,12 @@ function bstArtworkStatusFormatter(value, row, index) {
 
 // Search bar id value
 
-$(window).load(function() {
+/*$(window).load(function() {
   $('.form-control').attr('id', 'searchbar');
   console.log("window.load() in _gallery-backend-list-base.html");
-});
+});*/
 
-$(document).ready(function() {
+/*$(document).ready(function() {
   $('.form-control').attr('id', 'searchbar');
   console.log("document.ready() in _gallery-backend-list-base.html");  
 
@@ -683,7 +795,7 @@ $(document).ready(function() {
     console.log("load-success.bs.table.load('') in _gallery-backend-list-base.html");  
   });
 
-});
+});*/
 
     
 </script>

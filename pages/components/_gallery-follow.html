@@ -1,0 +1,79 @@
+{$social = json_decode($scope.curator_social, true)}
+<div class="container">
+  <div>
+     <h3 style="font-size:28px !important; font-weight:bold;"><b>Follow On Social Media</b></h3>
+  </div>
+  
+  <div class="row">
+    {if !empty($social.fbook)}
+	<div class="col-sm-4">
+		<div class="well socialmedia_follow" style="background:#4267b2;">
+			<a href="{$social.fbook}" target="_blank" style="font-size:25px; color:#FFFF;">
+				<!--Facebook-->
+				<i class="fa fa-facebook" style="background-color:#224fa9;"></i><span>Follow on Facebook</span>
+			</a>
+		</div>
+	</div>
+    {/if}
+    {if !empty($social.twit)}
+	<div class="col-sm-4">
+		<div class="well socialmedia_follow" style="background:#1da1f2;">
+			<a href="{$social.twit}" target="_blank" style="font-size:25px; color:#FFFF;">
+				<!--Twitter-->
+				<i class="fa fa-twitter" style="background-color:#0581ce;"></i><span>Follow on Twitter</span>
+			</a>
+		</div>
+	</div>
+    {/if}
+    {if !empty($social.insta)}
+	<div class="col-sm-4">
+		<div class="well socialmedia_follow" style="background:#d52b80;">
+			<a href="{$social.insta}" target="_blank" style="font-size:25px; color:#FFFF;">
+				<!--Instagram-->
+				<i class="fa fa-instagram" style="background-color:#b3065d;"></i><span>Follow on Instagram</span>
+			</a>
+		</div>
+	</div>
+    {/if}
+    {if !empty($social.link)}
+	<div class="col-sm-4">
+		<div class="well socialmedia_follow" style="background:#0073b0;">
+			<a href="{$social.link}" target="_blank" style="font-size:25px; color:#FFFF;">
+				<!--Facebook-->
+				<i class="fa fa-linkedin" style="background-color:#025886;"></i><span>Follow on Linked In</span>
+			</a>
+		</div>
+	</div>
+    {/if}
+    {if !empty($social.print)}
+	<div class="col-sm-4">
+		<div class="well socialmedia_follow" style="background:#e60023;">
+			<a href="{$social.print}" target="_blank" style="font-size:25px; color:#FFFF;">
+				<!--Facebook-->
+				<i class="fa fa-pinterest" style="background-color:#b70520;"></i><span>Follow on Pinterest</span>
+			</a>
+		</div>
+	</div>
+    {/if}
+    {if !empty($social.youtu)}
+	<div class="col-sm-4">
+		<div class="well socialmedia_follow" style="background:#ff0000;">
+			<a href="{$social.youtu}" target="_blank" style="font-size:25px; color:#FFFF;">
+				<!--Facebook-->
+				<i class="fa fa-youtube" style="background-color:#cc0202;"></i><span>Follow on Youtube</span>
+			</a>
+		</div>
+	</div>
+    {/if}
+    {if !empty($social.vimeo)}
+	<div class="col-sm-4">
+		<div class="well socialmedia_follow" style="background:rgb(26, 46, 59);">
+			<a href="{$social.vimeo}" target="_blank" style="font-size:25px; color:#FFFF;">
+				<!--Facebook-->
+				<i class="fa fa-vimeo" style="background-color:#0b1319;"></i><span>Follow on Vimeo</span>
+			</a>
+		</div>
+	</div>
+    {/if}
+  </div>
+</div>

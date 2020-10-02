@@ -1,10 +1,10 @@
+<link rel="StyleSheet" href="https://forkaweso.me/Fork-Awesome/assets/fork-awesome/css/fork-awesome.css" type="text/css" media="screen"/>
   {$collection = $scope.collection}
   {$artwork = $scope.artwork}
   {$plugin = $scope.plugin}
   {$media_collection = $scope.media_collection}
   {$picture = ""}
   {$getpage = $scope.selectedartpage}
-  
   {if ($collection)}
     {$object = $collection}
     {$what = 'exhibition'}
@@ -60,31 +60,36 @@
 
   {$item_data = ["obj_type" => $scope.obj_type, "obj_id" => $scope.obj_id]}  
   {$item_json = $item_data|@json_encode}
-                          
+                         
   {$fav_class = ($scope.collected) ? "fa-star" : "fa-star-o"}
 
   {$url = $scope.url|default:$this_full_url}
-  
+  {$url_segment = explode("/",$smarty.server.REQUEST_URI)}
+
+
                     {block name=top}
                     {if (!$object.active)}
                       {"This `$what` has not been published and is not visible to the public."|alert:"warning"}
                     {else}
                       {$url = $scope.url|default:$this_full_url}
                       {if ($scope.backend)}
-                        {if (!$artwork)}
+                        {if ($url_segment[2] == 'exhibition')}
                           <div class="mt20">
-                            <h3>URL: <a href="{$url}">{$url}</a> </h3>
+                            <h3>URL: <a target="_blank" href="{$url}">{$url}</a> </h3>
                           </div>
                         {/if}
                       {/if}
                     {/if}
                     {/block}
-
+                    {$seg2 = explode("-",$url_segment[2])}
+                    {$seg3 = explode("-",$url_segment[3])}
                     {$url = $scope.url|default:$this_full_url}
-                    <div class="container">
-                      
-                    
+
+                    <div class="">
                     <div class="profileinfo"> 
+                      {if (end($seg2) == $scope.collection_id || end($seg3) == $scope.obj_id)}
+                        {{"include": "_gallery-profile-header.html"}}
+                      {/if}
                       <div class="gallery-artwork-detail">
                         <article class="row mt20">
                           <section class="col-sm-6 mr20">
@@ -167,6 +172,25 @@
                                     <i class="fa fa-envelope fa-stack-1x"></i>
                                   </span>
                                 </a>
+                                <a class="webshare" target="_blank" href="https://web.whatsapp.com/send?text={$url_encoded}" data-action="share/whatsapp/share">
+                                  <span class="fa fa-stack fa-2x">
+                                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                    <i class="fa fa-whatsapp fa-stack-1x"></i>
+                                  </span>
+                                </a>
+
+                                <a class="mobileshare" target="_blank" href="whatsapp://send?text={$url_encoded}" data-action="share/whatsapp/share">
+                                  <span class="fa fa-stack fa-2x">
+                                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                    <i class="fa fa-whatsapp fa-stack-1x"></i>
+                                  </span>
+                                </a>
+                                <a class="mobileshare" href="fb-messenger://share/?link={$url_encoded}">
+                                  <span class="fa fa-stack fa-2x">
+                                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                    <i class="fa fa-facebook-messenger fa-stack-1x"></i>
+                                  </span>
+                                </a>
                               {/if}
                             {/if}  
                             </nav>
@@ -177,8 +201,14 @@
                           </aside>
                         </article>
                         <article class="row mt40">
-                          {block name=below}{/block}
-                          
+						<div class="col-sm-12">
+                          {*block name=below*}{*/block*}
+                          {if $url_segment[1] == 'artwork'}
+                            <p>{$artwork.description}</p>
+                          {/if}
+                          {if $url_segment[1] == 'exhibition'}
+                            <p>{$collection.description}</p>
+                          {/if}
                           {* $scope|dump *}
                           <div class="gap"></div>
                           {if (!$scope.hide_related)}
@@ -186,6 +216,7 @@
                           {else}
                             {* <h4><a href="#">Show Related Images</a></h4> *}
                           {/if}
+						  </div>
                         </article>
                       </div>
                     </div>
@@ -193,3 +224,25 @@
                     {block name=script}
                     {/block}
                     
+                    <script>
+                      if(jQuery(window).width() > 768) {
+                          $(".webshare").show();
+                          $(".mobileshare").hide();
+                        }
+                        else
+                        {
+                          $(".webshare").hide();
+                          $(".mobileshare").show();
+                        }
+                    </script>
+					<style>
+						.dot_outside {
+							top: 0px !important;
+							left: -20px !important;
+						}
+						@media (max-width: 480px){
+							.gallery-artwork-detail article.row p {
+								padding: 0px 0px;
+							}
+						}
+					</style>

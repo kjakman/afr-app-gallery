@@ -1,10 +1,11 @@
                       {*dump($items)*}
                       {$count = $items|@count}
-                      <div class="grid grid-masonry" id="grid-masonry-collection">
+                      <div class="grid grid-masonry" id="grid-masonry-featuring">
                       {foreach from=$items item=collection}
                       {{"include": "_gallery-collections-item.html"}}
                       {/foreach}
                       </div>
+			
 					  <script type="text/javascript" src="/afr/js/jquery.min.js"></script>
 					  <!--<script src='https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js'></script>
 					  <script>

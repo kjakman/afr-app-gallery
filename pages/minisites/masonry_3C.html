@@ -12,44 +12,48 @@
 {if ($data.show_past)} {$past = 'past'} {/if}
 {if ($data.show_future)} {$future = 'future'} {/if}
 {$count = 0}
-<div class="item-container">
-	<div class="item-grid-sizer"></div>
-	<div class="item-gutter-sizer"></div>
-	{foreach from=$exhibitions item=exhibition}
-	  {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
-		<div class="item-grid effect-{$ms.hover_type}">        
-			<div class="hover_style">				
-			  <figure class="effect-{$ms.hover_type}">
-				<div class="hover_cover">
-					<img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
-					{{"include": "minisites/caption/figcaption.html"}}	
-					<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
-				</div>				
-			  </figure>
-			</div>
-			{{"include": "minisites/caption/exh_details.html"}}       
-		</div>
-		{$count = 1}
-	  {/if}
-	{/foreach}
+<div class="row">
+	<div class="col-sm-12">
+		<div class="item-container">
+			<div class="item-grid-sizer"></div>
+			<div class="item-gutter-sizer"></div>
+			{foreach from=$exhibitions item=exhibition}
+			  {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+				<div class="item-grid effect-{$ms.hover_type}">        
+					<div class="hover_style">				
+					  <figure class="effect-{$ms.hover_type}">
+						<div class="hover_cover">
+							<img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+							{{"include": "minisites/caption/figcaption.html"}}	
+							<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+						</div>				
+					  </figure>
+					</div>
+					{{"include": "minisites/caption/exh_details.html"}}       
+				</div>
+				{$count = 1}
+			  {/if}
+			{/foreach}
 
-	{if (($data.show_latest) && (!$count))}
-	  {foreach from=$latest_exhibitions item=exhibition}
-	  	<h5 class="yseparator" style="text-align: left;">Latest</h5>
-		<div class="item-grid effect-{$ms.hover_type}">
-		  	<div class="hover_style">				
-		  	  <figure class="effect-{$ms.hover_type}">
-		  	  	<div class="hover_cover">
-			  		<img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
-			  		{{"include": "minisites/caption/figcaption.html"}}	
-			  		<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
-			  	</div>		
-		  	  </figure>
-		  	</div>
-		  	{{"include": "minisites/caption/exh_details.html"}}      
+			{if (($data.show_latest) && (!$count))}
+			  {foreach from=$latest_exhibitions item=exhibition}
+				<h5 class="yseparator" style="text-align: left;">Latest</h5>
+				<div class="item-grid effect-{$ms.hover_type}">
+					<div class="hover_style">				
+					  <figure class="effect-{$ms.hover_type}">
+						<div class="hover_cover">
+							<img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+							{{"include": "minisites/caption/figcaption.html"}}	
+							<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+						</div>		
+					  </figure>
+					</div>
+					{{"include": "minisites/caption/exh_details.html"}}      
+				</div>
+			  {/foreach}
+			{/if}
 		</div>
-	  {/foreach}
-	{/if}
+	</div>
 </div>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js'></script>

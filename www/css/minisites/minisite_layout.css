@@ -60,13 +60,19 @@
   display: block;
 }
 .item-grid-sizer, .item-grid {
-  width: 32%;
+  width: 32.5%;
+}
+.masonry_3C .item-grid{
+ 
 }
 .item-four-col .item-grid-sizer, .item-four-col .item-grid {
   width: 24%;
 }
-@media screen and (max-width: 993px) {
+@media screen and (max-width: 1200px) {
 	.item-four-col .item-grid-sizer, .item-four-col .item-grid {
+	  width: 32%;
+	}
+	.item-grid-sizer, .item-grid{
 	  width: 32%;
 	}
 }
@@ -76,6 +82,9 @@
 	}
 	.item-four-col .item-grid-sizer, .item-four-col .item-grid {
 		width: 46%;
+	}
+	.item-grid-sizer, .item-grid{
+	  width: 48%;
 	}
 }
 @media screen and (max-width: 500px) {

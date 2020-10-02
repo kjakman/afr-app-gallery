@@ -1,110 +1,146 @@
 {{"extend": "_user-profile-base.html"}}
 
 {block name=profile}
-<div class="artistProfile">
   {$profile = $scope.profile}
-  {{"include": "_gallery-curator-information.html"}}
-  <div class="profileinfo">
-    {if ($profile.address_formatted)}
-      <h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
-      {{"include": "_gallery-profile-location"}}
+  {$curator_ids = $scope.curator_ids}
+  <div class="artistProfile">
+    {if ($profile.id == $curator_ids[0])}
+      {{"include": "_gallery-artist-information.html"}}
+      {if ($profile.address_formatted)}
+        {{"include": "_gallery-profile-location"}}
+      {else}
+        <h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+      {/if}
+      {{"include": "_gallery-contact-information.html"}}
+
     {else}
-      <h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+      {{"include": "_gallery-artist-information.html"}}
+      {{"include": "_gallery-contact-information.html"}}
+    
+      {if ($curator_ids|@count)}
+        {$profile_link = $smarty.const.PAGE_PROFILE|link}
+          <h3>{if ($curator_ids|@count == 1)}Presented by:{else}Presented by:{/if}</h3>
+          <div class="profileinfo">
+          {foreach from=$curator_ids item=curator_id}
+            {$profile = $curator_id|get_user|obj2array}
+            {$data = ["site_id" => $site.id, "obj_type" => "user", "obj_id" => $profile.user_id, "obj_subtype" => $smarty.const.USER_ROLE_CURATOR]}
+            {$json = $data|@json_encode}
+            <h1><a href="{$profile_link}{$profile.user_id}" class="cms-link gallery-link" data-data='{$json}'>{$profile.display_name}</a></h1>
+
+            {if ($profile.address_formatted)}
+              <h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+              {{"include": "_gallery-profile-location"}}
+            {else}
+              <h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
+            {/if}
+            
+            {{"include": "_gallery-contact-information.html"}}
+          {/foreach}
+          </div>
+        
+        {$profile = $scope.profile} {* reset variable if needed later *}    
+      {/if}
     {/if}
   </div>
-  {{"include": "_gallery-contact-information.html"}}
-</div>  
+   
 {/block}
 
 {block name=description}
-<div class="artistProfile">
-   <p>{$scope.profile.description}</p>
+  <div style="text-align: left;">
+    {$show_data = json_decode($profile.show_data, True)}
+    
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#empty">Art/Exhibitions </a></li>
+      {if ($profile.bio_description != '')}<li><a data-toggle="tab" href="#description">Overview </a></li>{/if}
+      {if (($show_data['solo_shows'] == 1) && ($profile.solo_shows_ != '[]'))}<li><a data-toggle="tab" href="#solo_text">Solo Shows</a></li>{/if}
+      {if (($show_data['group_shows'] == 1) && ($profile.group_shows_ != '[]'))}<li><a data-toggle="tab" href="#group_text">Group Shows</a></li>{/if}  
+      {if (($show_data['press'] == 1) && ($profile.press_data != '[]'))}<li><a data-toggle="tab" href="#press_text">Press </a></li>{/if}
+      {if (($show_data['awards'] == 1) && ($profile.awards != '[]'))}<li><a data-toggle="tab" href="#award_text">Awards </a></li>{/if}
+      {if ($profile.free_text != '')}<li><a data-toggle="tab" href="#free_text">CV </a></li>{/if}
+    </ul>
+    <div class="tab-content profileDetails">
+      <div id="empty" class="tab-pane fade mt20 in active mb20">
+        
+      </div>
+      <div id="description" class="tab-pane fade mt20 mb20">
+        {if ($profile.bio_description)}
+          <div>{$profile.bio_description}</div>
+        {/if}
+      </div>
 
-     <div style="text-align: left;">
-       {$show_data = json_decode($profile.show_data, True)}
-       
-       <ul class="nav nav-tabs">
-         <li class="active"><a data-toggle="tab" href="#empty">Art/Exhibitions </a></li>
-         {if ($profile.description)}<li><a data-toggle="tab" href="#description">Overview </a></li>{/if}
-         {if (($show_data['solo_shows'] == 1) && ($profile.solo_shows_ != '[]'))}<li><a data-toggle="tab" href="#solo_text">Solo Shows</a></li>{/if}
-         {if (($show_data['group_shows'] == 1) && ($profile.group_shows_ != '[]'))}<li><a data-toggle="tab" href="#group_text">Group Shows</a></li>{/if}  
-         {if (($show_data['press'] == 1) && ($profile.press_data != '[]'))}<li><a data-toggle="tab" href="#press_text">Press </a></li>{/if}
-         {if (($show_data['awards'] == 1) && ($profile.awards != '[]'))}<li><a data-toggle="tab" href="#award_text">Awards </a></li>{/if}
-       </ul>
-       <div class="tab-content">
-         <div id="empty" class="tab-pane fade mt20 in active mb20">
-           
-         </div>
-         <div id="description" class="tab-pane fade mt20 mb20">
-           {if ($profile.description)}
-             <div>{$profile.description}</div>
-           {/if}
-         </div>
+      {if ($show_data['solo_shows'] == 1)} 
+      {$solo_shows_ = json_decode($profile.solo_shows_, True)}
+      <div id="solo_text" class="tab-pane fade mt20 mb20">
+        <h4>Solo Shows: </h4>
+        <table>
+          {foreach from =$solo_shows_ item=$solo_shows}
+            {$split = explode('-', $solo_shows['year'])}
+              <tr style="line-height: 26px;">
+                <td style= "width: 40px">{$split[0]}</td>
+                <td>{$solo_shows['description']}</td>
+              </tr>
+          {/foreach}
+        </table>  
+      </div> 
+      {/if}
+      
+      {if ($show_data['group_shows'] == 1)}
+      {$group_shows_ = json_decode($profile.group_shows_, True)}
+      <div id="group_text" class="tab-pane fade mt20 mb20">
+          <h4>Group Shows: </h4>
+          <table>
+            {foreach from =$group_shows_ item=$group_shows}
+              {$split = explode('-', $group_shows['year'])}
+                <tr style="line-height: 26px;">
+                  <td style= "width: 40px">{$split[0]}</td>
+                  <td>{$group_shows['description']}</td>
+                </tr>
+            {/foreach}
+          </table>
+      </div>
+      {/if}
 
-         {if ($show_data['solo_shows'] == 1)} 
-         {$solo_shows_ = json_decode($profile.solo_shows_, True)}
-         <div id="solo_text" class="tab-pane fade mt20 mb20">
-           <h4>Solo Shows: </h4>
-           <table>
-             {foreach from =$solo_shows_ item=$solo_shows}
-               {$split = explode('-', $solo_shows['year'])}
-                 <tr style="line-height: 26px;">
-                   <td style= "width: 40px">{$split[0]}</td>
-                   <td>{$solo_shows['description']}</td>
-                 </tr>
-             {/foreach}
-           </table>  
-         </div> 
-         {/if}
-         
-         {if ($show_data['group_shows'] == 1)}
-         {$group_shows_ = json_decode($profile.group_shows_, True)}
-         <div id="group_text" class="tab-pane fade mt20 mb20">
-             <h4>Group Shows: </h4>
-             <table>
-               {foreach from =$group_shows_ item=$group_shows}
-                 {$split = explode('-', $group_shows['year'])}
-                   <tr style="line-height: 26px;">
-                     <td style= "width: 40px">{$split[0]}</td>
-                     <td>{$group_shows['description']}</td>
-                   </tr>
-               {/foreach}
-             </table>
-         </div>
-         {/if}
+      {if ($show_data['press'] == 1)}
+      {$press_data = json_decode($profile.press_data, True)}
+      <div id="press_text" class="tab-pane fade mt20 mb20">
+        <h4>Press : </h4>
+        <table>
+          {foreach from =$press_data item=$press}
+            {$split = explode('-', $press['year'])}
+              <tr style="line-height: 26px;">
+                <td style= "width: 40px">{$split[0]}</td>
+                <td>{$press['description']}</td>
+              </tr>
+          {/foreach}
+        </table>    
+      </div>
+      {/if}
 
-         {if ($show_data['press'] == 1)}
-         {$press_data = json_decode($profile.press_data, True)}
-         <div id="press_text" class="tab-pane fade mt20 mb20">
-           <h4>Press : </h4>
-           <table>
-             {foreach from =$press_data item=$press}
-               {$split = explode('-', $press['year'])}
-                 <tr style="line-height: 26px;">
-                   <td style= "width: 40px">{$split[0]}</td>
-                   <td>{$press['description']}</td>
-                 </tr>
-             {/foreach}
-           </table>    
-         </div>
-         {/if}
-
-         {if ($show_data['awards'] == 1)}
-         {$awards = json_decode($profile.awards, True)}
-         <div id="award_text" class="tab-pane fade mt20 mb20">
-           <h4>Awards : </h4>
-           <table>
-             {foreach from =$awards item=$award}
-               {$split = explode('-', $award['year'])}
-                 <tr style="line-height: 26px;">
-                   <td style= "width: 40px">{$split[0]}</td>
-                   <td>{$award['description']}</td>
-                 </tr>
-             {/foreach}
-           </table>       
-         </div>
-         {/if}
-     </div>
-   </div>
+      {if ($show_data['awards'] == 1)}
+      {$awards = json_decode($profile.awards, True)}
+      <div id="award_text" class="tab-pane fade mt20 mb20">
+        <h4>Awards : </h4>
+        <table>
+          {foreach from =$awards item=$award}
+            {$split = explode('-', $award['year'])}
+              <tr style="line-height: 26px;">
+                <td style= "width: 40px">{$split[0]}</td>
+                <td>{$award['description']}</td>
+              </tr>
+          {/foreach}
+        </table>       
+      </div>
+      {/if}
+      <div id="free_text" class="tab-pane fade mt20 mb20">
+        <h4>CV : </h4>
+          {$profile.free_text}
+      </div>
+  </div>
 </div>
+
+    
+<script type="text/javascript">
+  
+  
+</script>
 {/block}

@@ -1,12 +1,62 @@
                     {*$scope|dump*}
+                    {$url_segment = explode("/",$smarty.server.REQUEST_URI)}
+                    {$seg2 = explode("?",$url_segment[2])}
+                    {*dump($seg2)*}
                     {$id = $scope.obj_id}
                     {if ($id)}
-                      <div class="container">
+                      <div class="container-fluid">
                       {{"include": "_gallery-collection-detail.html"}}                      
                       </div>
-                    {else}
-                      {$items = $scope.items}
-                      {{"include": "_gallery-collection-items.html"}}
+                    {/if}  
+                    {if ($seg2[0] == 'selection')}
+                      <div class="container-fluid gallery-related mt40" id="collection_artworks">
+                        <div class="profileinfo">
+                        {{"include": "_gallery-profile-header.html"}}
+                       </div>
+                        {$items = $scope.selection}
+                        {{"include": "_gallery-showroom-items.html"}}
+                      </div> 
+                    {/if} 
+                    {if ($seg2[0] == 'event')}
+                      <div class="container-fluid gallery-related mt40" id="collection_artworks">
+                        <div class="profileinfo">
+                          {{"include": "_gallery-profile-header.html"}}
+                        </div>
+                        {$items = $scope.event}
+                        {{"include": "_gallery-showroom-items.html"}}
+                      </div> 
+                    {/if} 
+                    {if ($seg2[0] == 'gallery')}
+                      <div class="container-fluid gallery-related mt40" id="collection_artworks">
+                        <div class="profileinfo">
+                          {{"include": "_gallery-profile-header.html"}}
+                       </div>
+                        {$items = $scope.gallery}
+                        {{"include": "_gallery-showroom-items.html"}}
+                      </div> 
+                    {/if}
+                    {if ($seg2[0] == 'artfair')}
+                      <div class="container-fluid gallery-related mt40" id="collection_artworks">
+                        <div class="profileinfo">
+                          {{"include": "_gallery-profile-header.html"}}
+                        </div>
+                        {$items = $scope.artfair}
+                        {{"include": "_gallery-showroom-items.html"}}
+                      </div> 
+                    {/if} 
+                    {if ($seg2[0] == 'follow')}
+                     <div class="container-fluid gallery-related mt40" id="collection_artworks">
+                        <div class="profileinfo">
+                        {{"include": "_gallery-profile-header.html"}}
+                        </div>
+                        {{"include": "_gallery-follow.html"}}
+                    {/if}
+                      </div>
+                    {if ($url_segment[1] == 'exhibition' && $seg2[0] != 'follow')}
+                      <div class="container-fluid gallery-related mt40" id="collection_artworks">
+                        {$items = $scope.items}
+                        {{"include": "_gallery-collection-items.html"}}
+                      </div>  
                     {/if}
 
                     <script>

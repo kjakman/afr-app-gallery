@@ -39,7 +39,8 @@
 	  {$item_data = ["user_id" => $user.id, "site_id" => $site.id, "parent_type" => "media", "parent_id" => $artwork.media_id]}
 	  {$item_json = $item_data|@json_encode}
 
-<li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item" data-index="{$index}" data-media_id="{$artwork.media_id}" id="map_{$artwork.id}">
+<div class="grid-item" data-index="{$index}" data-media_id="{$artwork.media_id}" id="map_{$artwork.id}">
+ <div>	
 	<figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
 	<div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
 	  <div class="__vp-flipper">             
@@ -53,25 +54,50 @@
 		  <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="">  
 		</span>             
 		<div class="__vp-flip-back-card"> 
-			<a href="{$artwork_link}" class="cms-link gallery-link" data-data='{$json}'>                
-			  <h2 class="subtitle">{$artwork.name}</h2>   
-			  <div class="mt10">{$artwork.artist_name}</div>   
+			<a href="{$artwork_link}" class="cms-link gallery-link" data-data='{$json}'> 
+			  {$type = get_artwork_type($artwork.type)}
+    		  {$presentation = get_artwork_presentation($artwork.presentation)}             
+			  <h2 style="font-size:15px !important;" class="subtitle">{$artwork.artist_name} ({$artwork.primary_year})</h2>   
+			  <h4 style="font-size:13px !important;" class="subtitle">
+			    	{if ($artwork.editions > 1)}  
+				        Series of {$artwork.editions} {if ($artwork.edition)} (No. {$artwork.edition}) {/if} <br>
+				      {elseif ($artwork.editions == 1)}
+				        Unique {if ($artwork.edition)} ({$artwork.edition}) {/if} <br>
+				      {/if}
+				      {if (($artwork.frame == -1 ) && ($type == 'Photography' || $type == 'Print' || $type == 'Painting' || $type == 'Drawing' || $type == 'Mixed Media on paper/canvas'))}
+				        Unframed
+				      {elseif (($artwork.frame == 1 ) && ($type == 'Photography' || $type == 'Print' || $type == 'Painting' || $type == 'Drawing' || $type == 'Mixed Media on paper/canvas'))}
+				        Framed
+				      {/if}
+				      {if (($artwork.passepartout == -1 )  && ($type == 'Photography' || $type == 'Print' || $type == 'Painting' || $type == 'Drawing' || $type == 'Mixed Media on paper/canvas'))}
+				        , No Passe-partout 
+				      {elseif (($artwork.passepartout == 1 ) && ($type == 'Photography' || $type == 'Print' || $type == 'Painting' || $type == 'Drawing' || $type == 'Mixed Media on paper/canvas'))}
+				        , Passe-partout 
+				      {elseif ($type == 'Sculpture' || $type == 'Cast (Bronze, etc)')}   
+			    <p style="font-size:13px !important;">{$presentation}</p>
+			  {/if}
+			</h4>   
 			</a>               
 		</div>                                                                
 	  </div>           
 	  </div>         
 	</div>        
   </figure>
-  <div class="photo-grid-title artinfo" style="text-align: left;">  
+  <div class="photo-grid-title artinfo" style="text-align: center;">  
     {if ($artwork.artist_name)}
-      <a href="{$profile_link}{$artwork.artist_name|slugify}/{$artwork.artist_id}" class="cms-link gallery-link" data-data='{$json}'><h2 class="black subtitle">{$artwork.artist_name}</h2></a>
+      {$type = get_artwork_type($artwork.type)}
+      {$presentation = get_artwork_presentation($artwork.presentation)} 
+      <a href="{$profile_link}{$artwork.artist_name|slugify}/{$artwork.artist_id}" class="cms-link gallery-link" data-data='{$json}'>
+      	<h2 style="font-size:15px !important;font-style: italic;" class="black subtitle">{$artwork.title|upper}</h2>
+      </a>
     {/if}
     {if ($artwork.name)}
-      <a href="{$artwork_link}" class="cms-link gallery-link name" data-data='{$json}'><h3 style="font-style: italic;" class="subtitle">{$artwork.name} {if ($artwork.original_year)}<span>, {$artwork.original_year}</span> {/if} {if ($artwork.original_technique)}<span>- {$artwork.original_technique}</span>{/if} </h3></a>
+      <a href="{$artwork_link}" class="cms-link gallery-link name" data-data='{$json}'><h3 style="font-style: italic;" class="subtitle"><h3 style="font-size:13px !important;" class="subtitle"><span>{$artwork.original_technique}</span></h3></a>
     {/if}
-    <a href="{$profile_link}{$artwork.curator_name|slugify}-{$artwork.curator_id}" class="cms-link gallery-link curator" data-data='{$json}'><h4>{$artwork.curator_name}</h4></a>
+    <a href="{$profile_link}{$artwork.curator_name|slugify}-{$artwork.curator_id}" class="cms-link gallery-link curator" data-data='{$json}'><h4 style="font-size:13px !important;">{$artwork.height} X {$artwork.width} {$artwork.unit}</h4></a>
+   </div>
   </div>
-</li>
+</div>
 
 						
 						
