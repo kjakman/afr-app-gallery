@@ -2,7 +2,11 @@
 
 
 {block name=image}
-  <img id="collection_title_image" src="{$collection_id|collection_photo:'big'}" class=""><br>
+  {if ($collection.title_image)}
+    <img id="collection_title_image" src="{$collection_id|collection_photo:'big'}" class=""><br>
+  {else}
+    <img src="/img/exhibition/default.jpg">
+  {/if}  
 {/block}
 
 {block name=aside} 

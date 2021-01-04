@@ -23,7 +23,11 @@
 							<div class="row">
 								<div class="col-sm-6">
 									 <div class="profileinfo_logo">
+                                                                             {if ($image)}
 										<img class="origin round" src="{$image|photo:'ig'}" alt="Logo"/>
+                                                                             {else}
+                                                                                <img class="origin round" src="/img/profile/default.jpg" alt="Logo"/>
+                                                                             {/if}   
 									 </div>
 								</div>
 								<div class="col-sm-6">

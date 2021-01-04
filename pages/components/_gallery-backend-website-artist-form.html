@@ -17,11 +17,11 @@
         <div class="form-group">
           <div class="row mt20">
             <div class="form-group col-sm-8">
-              <label for="menu-title">Menu Title</label>
+              <label for="menu-title" class="control-label">Menu Title</label>
               <input type="text" class="form-control" maxlength="15" name="menu_title" value="{$minisitepage.menu_title}">
             </div>
             <div class="form-group col-sm-8">
-              <label for="page-title">Page Title</label>
+              <label for="page-title">Page Title<span class="optional">(Optional)</span></label>
               <input type="text" class="form-control" maxlength="60" name="page_title" value="{$minisitepage.page_title}">
             </div>
             <div class="form-group col-sm-8">
@@ -44,7 +44,7 @@
         <input hidden="1" name="obj_type" type="hidden" value="minisite_page">
         <input hidden="1" name="next_tab" type="hidden" value="page"> 
         <div class="row">
-          <label style="padding-left: 20px;">Primary Artist</label>
+          <label style="padding-left: 20px;">Primary Artist<span class="optional">(Optional)</span></label>
           <input type="hidden" readonly class="form-control" name="artist_ids" id="artist_ids" value="{$artist_ids_json}"><br>
           <div class="form-group col-xs-6">
             <ul id="artistTags" >
@@ -106,7 +106,7 @@
         <input hidden="1" name="obj_type" type="hidden" value="minisite_page">
         <input hidden="1" name="next_tab" type="hidden" value="page"> 
         <div class="row mt20">
-          <label style="padding-left: 20px;">Secondary Artist</label>
+          <label style="padding-left: 20px;">Secondary Artist<span class="optional">(Optional)</span></label>
           <input type="hidden" readonly class="form-control" name="artist_ids1" id="artist_ids1" value="{$artist_ids_json1}"><br>
           <div class="form-group col-xs-6">
             <ul id="artistTags1" >

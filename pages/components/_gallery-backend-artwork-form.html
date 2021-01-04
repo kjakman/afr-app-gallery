@@ -23,7 +23,7 @@
         {/if}
         <div class="row">
           <div class="form-group col-xs-12">
-            <label for="media-name">Artist(s)</label>
+            <label for="media-name" class="control-label">Artist(s)</label>&nbsp;&nbsp;
             <a data-toggle="tooltip" data-placement="right" title="Type name and select from list using mouse of arrow keys. Or type a new name and press enter to add."> <i class="fa fa-info-circle"></i></a>
             <input type="hidden" readonly class="form-control" name="artist_ids" id="artist_ids" value="{$artist_ids_json}"><br>
             <ul id="artistTags">
@@ -44,18 +44,18 @@
 
 
         <div class="form-group col-sm-6">
-          <label for="artwork-title">Title *</label>
+          <label for="artwork-title" class="control-label">Title</label>
           <input type="text" class="form-control" name="title" value="{$artwork.title}" maxlength="255" required>
         </div>
         <div class="form-group col-sm-6">
-          <label for="artwork-technique">Technique *</label>
+          <label for="artwork-technique" class="control-label">Technique</label>
           <input type="text" class="form-control" name="technique" value="{$artwork.technique}" maxlength="255" required>
         </div>
         
         
         <div class="row">
           <div class="form-group col-sm-4">
-            <label for="artwork-available">Status</label>
+            <label for="artwork-available" class="control-label">Status</label>
             {"status"|object_select:"artwork_status":["class" => "form-control", "value" => $artwork.status]}
           </div>
             

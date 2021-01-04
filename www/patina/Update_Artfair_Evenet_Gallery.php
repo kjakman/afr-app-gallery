@@ -1,0 +1,1 @@
+UPDATE  media_collection SET exhibition_sequence =start_date WHERE subtype IN (10,20,30)

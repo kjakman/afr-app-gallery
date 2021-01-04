@@ -8,10 +8,16 @@
 	{$data = json_decode($minisite_pageObj.data, TRUE)}
 	{if ($data.show_current)} {$current = 'current'} {/if}
 	{if ($data.show_past)} {$past = 'past'} {/if}
+        {if ($data.show_selection)} 
+     {if ($data.show_past)}
+       {$selection = 'selection'} 
+     {/if}  
+    {/if}
 	{if ($data.show_future)} {$future = 'future'} {/if}
-	{$i = 0} {$count = 0}
+	{$i = 0} {$count = 0} {$empty_chk = 0}
+{if ($exhibitions)}        
 	{foreach from=$exhibitions item=exhibition}
-	  {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+	  {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
 	  {$count = 1}
 	  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
 		<div class="parallax-window parallax-window{$i}" data-parallax="scroll" data-speed="0.5" data-image-src="{$exhibition|collection_photo:'big'}">
@@ -59,6 +65,13 @@
 
 		{$i = $i + 1}
 		{$imglink[] = $exhibition|collection_photo:'medium'}
+                {else}
+                                            {if ($empty_chk == 0)}
+                                            {$empty_chk = 1}
+                                              <div class="smart_filter_exhibirion_page"> 
+                                                      {{"include": "minisites/exhibition_empty_message.html"}}  
+                                              </div> 
+                                            {/if}
 	  {/if}
 	{/foreach}
 
@@ -110,7 +123,10 @@
 	  {$i = $i + 1}
 	  {$imglink[] = $exhibition|collection_photo:'medium'}
 	{/foreach}
-  {/if}
+{/if}
+{else}
+{{"include": "minisites/exhibition_empty_message.html"}}
+{/if}  
 <script src='https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.4.2/parallax.min.js'></script>
 <script >
 	$(document).ready(function() {

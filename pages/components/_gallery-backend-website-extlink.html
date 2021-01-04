@@ -13,18 +13,18 @@
   <div class="form-group">
     <div class="row">
       <div class="form-group col-sm-8">
-        <label for="menu-title">Menu Title</label>
+        <label for="menu-title" class="control-label">Menu Title</label>
         <input type="text" class="form-control" maxlength="15" name="menu_title" value="{$minisitepage.menu_title}">
       </div>
       
       <div class="form-group col-sm-8">
-        <label for="page-title">URL of the website you want to link to (a simpler alternative to connecting a web-shop, compared to embedding it on your page with an i-frame) <br><br>
+        <label for="page-title" class="control-label">URL of the website you want to link to (a simpler alternative to connecting a web-shop, compared to embedding it on your page with an i-frame) <br><br>
         When entering URL remember to start with https://....</label>
         <input type="text" class="form-control" name="data" value="{$data[0]}" required="Please Enter Link">
       </div>
 
       <div class="form-group col-sm-8">
-        <label for="website-type">How do you want the link to launch? Choose an option below (Note : Pop Ups are blocked by some sites)</label>
+        <label for="website-type" class="control-label">How do you want the link to launch? Choose an option below (Note : Pop Ups are blocked by some sites)</label>
         <select name="template" id="website-type"  class="form-control auto-select" data-value="{$minisitepage.template}">
           <option value="10">In the Same Tab</option>
           <option value="20">In a New Tab</option>

@@ -6,7 +6,7 @@
   <a href="{$list_link}?_pv=1&{$smarty.session.searchvalue}" class="btn btn-danger ajax-loader" id="back" data-target="#subview-container">Back
   </a><br>
 
-  <label for="media-name">Title Image</label><a data-toggle="tooltip" data-placement="right" title="Select the main image to represent the artwork"> <i class="fa fa-info-circle"></i></a>
+  <label for="media-name">Title Image<span class="control-label-before optional">&nbsp;&nbsp;&nbsp;&nbsp;(Maximum of one image)</span></label><a data-toggle="tooltip" data-placement="right" title="Select the main image to represent the artwork"> <i class="fa fa-info-circle"></i></a>
   <div class="custom_button_cover">
 	<div class="commonin_row">
       {"artwork"|object_uploader:$artwork.id:"title_image":["resize" => 1, "cloud" => 1, "view" => "list"]}

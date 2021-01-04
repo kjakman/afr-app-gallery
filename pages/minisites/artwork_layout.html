@@ -12,12 +12,17 @@
 {$data = ["obj_type" => "media_collection","obj_id" => $collection.id, "plugin_id" => "1355","container_id" => $container_id]}
 {$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}
 
+{$container_id = "artwork_`$getartwork.id`"}
+{$data = ["obj_type" => "media_collection","obj_id" => $collection.id, "plugin_id" => "1355","container_id" => $container_id]}
+{$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}
+
 {foreach from=$artworks item=artwork}
   {if (($artwork.id == $getartwork.id) || ($artwork.artwork_id == $getartwork.id))}
   	{$seq = $count}
   {/if}
   {$count = $count + 1}
 {/foreach}
+{if ($collection.id)}
 <div class="profileinfo"> 
 	<div class="gallery-artwork-detail">
 		<article class="row mt20">
@@ -26,10 +31,10 @@
 				<figure id="{$container_id}" data-data='{$data|@json_encode}' 
 				  data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index={$seq} class="vp-loader-photoswipe effect-{$ms.art_animation}">
 				  <div class="hover_cover">
-				  	{if ($getartwork.title_image)}
-				      <img src="{$getartwork.title_image|photo:'medium'}" class="pull-left" id="__vp-view-button-1355" alt="{$getartwork.artist_name|ucfirst}, {$getartwork.technique|ucfirst}, {$getartwork.title}, {$getartwork.primary_year}"><br>
+				  	{if ($collection.title_image)}
+				      <img src="{$collection.title_image|photo:'medium'}" class="pull-left" id="__vp-view-button-1355" alt="{$collection.artist_name|ucfirst}, {$collection.technique|ucfirst}, {$collection.title}, {$collection.primary_year}"><br>
 				    {else}
-				      <img src="{$getartwork.media_id|photo:'medium'}" class="pull-left" id="__vp-view-button-1355" alt="{$getartwork.artist_name|ucfirst}, {$getartwork.technique|ucfirst}, {$getartwork.title}, {$getartwork.primary_year}"><br>
+				      <img src="/img/artwork/default.jpg" class="pull-left" id="__vp-view-button-1355" alt=""><br>
 				    {/if}
 					{{"include": "minisites/caption/titleimg_caption.html"}}
 				  </div>
@@ -37,14 +42,14 @@
 				<!-- <img src="{$getartwork.title_image|photo:'medium'}" alt="{$collection.title}" class="img-responsive" /><br> -->
 			  </div>
 			</section>
-			{if ($getartwork.title)}
-				{$profile = $getartwork.artist_id|get_user:1}
+			{if ($collection.title)}
+				{$profile = $collection.artist_id|get_user:1}
 				{{"include":"minisites/artwork_details.html"}}
 			{else}
 				<aside class="col-sm-5">
-					{$type = related_images_type($getartwork.type) }
+					{$type = related_images_type($collection.type) }
 					<h1>{$type}</h1>
-					<div style="font-size: 21px">{$getartwork.description}</div>
+					<div style="font-size: 21px">{$collection.description}</div>
 					<br><br>
 					<h4><div class='italic'>Featured in exhibtion:</div></h4>
 					<h1><a href="{$basepath}/{$collection.page_slug}/{$collection.slug}">{$collection.title}</a></h1>
@@ -66,20 +71,26 @@
 		</article>
 		<article class="row mt40">
 			<div class="gap gap-small"></div>
-			{if ($getartwork.title && $getartwork.description)}
+			{if ($collection.title && $collection.description)}
 				<div class="exbdtl_desc">
-					<div class="col-sm-6"><h3>About "{$getartwork.title}"</h3></div>
-					<div class="col-sm-12">{$getartwork.description}</div>
+					<div class="col-sm-6"><h3>About "{$collection.title}"</h3></div>
+					<div class="col-sm-12">{$collection.description}</div>
 				</div>
 			{/if}
 			<div class="gap"></div>
 		</article>
 		{if ($minisite_pageObj.template == 10)}
 		  {{"include": "minisites/artworkLayout/artwork_masonry.html"}}
+		  }
 		{elseif ($minisite_pageObj.template == 20)}
 		  {{"include": "minisites/artworkLayout/artwork_hanging.html"}}
+		  }
 		{elseif ($minisite_pageObj.template == 30)}
 		  {{"include": "minisites/artworkLayout/artwork_standing.html"}}
+		  }
 		{/if}
 	 </div>
 </div>
+{else}
+{{"include": "minisites/single_exhibition_empty_message.html"}}
+{/if}

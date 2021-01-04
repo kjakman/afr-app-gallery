@@ -8,11 +8,17 @@
 	{$data = json_decode($minisite_pageObj.data, TRUE)}
 	{if ($data.show_current)} {$current = 'current'} {/if}
 	{if ($data.show_past)} {$past = 'past'} {/if}
+        {if ($data.show_selection)} 
+     {if ($data.show_past)}
+       {$selection = 'selection'} 
+     {/if}  
+    {/if}
 	{if ($data.show_future)} {$future = 'future'} {/if}
-	{$count = 0}
+	{$count = 0} {$empty_chk = 0}
+{if ($exhibitions)}        
 	<div class="zigzag_container">
 	  {foreach from=$exhibitions item=exhibition}
-	  	{if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+	  	{if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
 	  	{$count = 1}
 	  	{$loc = $exhibition.location_id|get:"location"}
 	  	{$desc = str_replace(['<a>', '</a>'], '', $exhibition.description)}	
@@ -21,7 +27,11 @@
 				<div class="ratio_based">
 					<div class="frame-square ratio1910">
 						<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"> 
+                                                    {if ($exhibition.title_image)}
 							<img src="{$exhibition|collection_photo:'medium'}" />
+                                                    {else}
+                                                        <img class="center-cropped" src="/img/exhibition/default.jpg"  alt="">
+                                                    {/if}     
 						</a>
 					</div>
 				</div>
@@ -62,6 +72,13 @@
 			   	{/if} 
 			</div>    
 		</div>
+                {else}
+                  {if ($empty_chk == 0)}
+                  {$empty_chk = 1}
+                    <div class="smart_filter_exhibirion_page"> 
+                            {{"include": "minisites/exhibition_empty_message.html"}}  
+                    </div> 
+                  {/if}
 		{/if}
 	  {/foreach}
 	</div>
@@ -76,7 +93,11 @@
 				<div class="ratio_based">
 					<div class="frame-square ratio1910">
 						<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"> 
+                                                    {if ($exhibition.selection_range)}
 							<img src="{$exhibition|collection_photo:'medium'}" />
+                                                    {else}
+                                                        <img class="center-cropped" src="/img/exhibition/default.jpg"  alt="">
+                                                    {/if}
 						</a>
 					</div>
 				</div>
@@ -118,6 +139,9 @@
 			</div>    
 		</div>
 	  {/foreach}
-	</div>
-    {/if}
+    </div> 
+{/if}
+{else}
+{{"include": "minisites/exhibition_empty_message.html"}}
+{/if}    
 {/block}

@@ -45,13 +45,21 @@
 	<div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
 	  <div class="__vp-flipper">             
 	  <div class="__vp-flip-front"> 
-		<span class="frame-square">              
-		  <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" >  
+		<span class="frame-square">  
+                  {if ($artwork.media_id) != 0}  
+                    <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" >  
+                  {else}
+                    <img class="__vp-plugin-image center-cropped" src="/img/artwork/default.jpg" >
+                  {/if}
 		</span>           
 	  </div>             
 	  <div class="__vp-flip-back __vp-plugin-hover">  
-		<span class="frame-square">             
-		  <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="">  
+		<span class="frame-square">       
+                  {if ($artwork.media_id) != 0}  
+                    <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="">  
+                  {else}
+                    <img class="__vp-plugin-image center-cropped" src="/img/artwork/default.jpg" >
+                  {/if}
 		</span>             
 		<div class="__vp-flip-back-card"> 
 			<a href="{$artwork_link}" class="cms-link gallery-link" data-data='{$json}'> 

@@ -9,17 +9,28 @@
   {$data = json_decode($minisite_pageObj.data, TRUE)}
   {if ($data.show_current)} {$current = 'current'} {/if}
   {if ($data.show_past)} {$past = 'past'} {/if}
+  {if ($data.show_selection)} 
+     {if ($data.show_past)}
+       {$selection = 'selection'} 
+     {/if}  
+    {/if}
   {if ($data.show_future)} {$future = 'future'} {/if}
   {if ($data.show_latest)} {$latest = 'latest'} {/if}
 
-  {$count = 0}
-
+  {$count = 0} {$empty_chk = 0}
+{if ($exhibitions)}
 	{foreach from=$exhibitions item=exhibition}
-    {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+    {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
   		<div class="banner_exhibition">
   			<div class="banner_exhibition_img">
   				<div class="banner_exhibition_imgin">
-  					<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><img src="{$exhibition|collection_photo:'big'}" /></a>
+  					<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
+                                            {if ($exhibition.title_image)}
+                                                <img src="{$exhibition|collection_photo:'big'}" />
+                                            {else}
+                                                <img src="/img/exhibition/default.jpg"  alt="">
+                                            {/if}
+                                        </a>
   				</div>
   			</div>
   			<div class="banner_exhibition_content">
@@ -50,6 +61,13 @@
   			</div>
   		</div>
       {$count = 1}
+      {else}
+                            {if ($empty_chk == 0)}
+                            {$empty_chk = 1}
+                              <div class="smart_filter_exhibirion_page"> 
+                                      {{"include": "minisites/exhibition_empty_message.html"}}  
+                              </div> 
+                            {/if}
     {/if}
   {/foreach}
 	
@@ -58,7 +76,13 @@
       <div class="banner_exhibition">
         <div class="banner_exhibition_img">
           <div class="banner_exhibition_imgin">
-            <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><img src="{$exhibition|collection_photo:'big'}" /></a>
+            <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
+                {if ($exhibition.title_image)}
+                    <img src="{$exhibition|collection_photo:'big'}" />
+                {else}
+                    <img src="/img/exhibition/default.jpg"  alt="">
+                {/if}    
+            </a>
           </div>
         </div>
         <div class="banner_exhibition_content">
@@ -74,5 +98,8 @@
         </div>
       </div>
     {/foreach}
-  {/if}
+{/if}
+{else}
+{{"include": "minisites/exhibition_empty_message.html"}}
+{/if}  
 {/block}

@@ -23,8 +23,12 @@
                 <div class="image_vert_bottomin"> 
                   <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
                     <div class="__vp-flipper">             
-                    <div class="__vp-flip-front">               
-                      <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">    
+                    <div class="__vp-flip-front">       
+                      {if ($artwork.media_id != 0)}  
+                        <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}"> 
+                      {else}
+                        <img class="center-cropped" src="/img/artwork/default.jpg"  alt="">
+                      {/if}
                     </div>             
                     <div class="__vp-flip-back __vp-plugin-hover">               
                       <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">                

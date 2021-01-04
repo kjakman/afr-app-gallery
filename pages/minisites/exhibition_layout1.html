@@ -18,13 +18,18 @@
   {/if}
   {$count = $count + 1}
 {/foreach}
+{if ($collection.id)}
 <div class="profileinfo"> 
 	<div class="gallery-artwork-detail">
 		<article class="row mt20">
 			<section class="col-sm-6 mr20" style="text-align: center;">
 			  <div class="hover_style no-padding">
 			  	<figure class="effect-{$ms.art_animation}">
-				    <img src="{$collection.id|collection_photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}" class="img-responsive pull-left" /><br>
+                                    {if ($collection.title_image)}
+                                        <img src="{$collection.id|collection_photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}" class="img-responsive pull-left" /><br>
+                                    {else}  
+                                        <img src="/img/exhibition/default.jpg" alt="" class="img-responsive pull-left" /><br>
+                                    {/if}
 				    {{"include": "minisites/caption/titleimg_caption.html"}}
 			    </figure>
 			  </div>
@@ -46,7 +51,7 @@
 					{$artist_ids = $collection.artist_ids|@json_decode}
 					{foreach from=$artist_ids item=$artist_id}
 						{$profile = $artist_id|get_user:1}
-						{{"include": "_gallery-artist-information"}}
+						{{"include": "_gallery-artist-information.html"}}
 					{/foreach}
 				</h1> 
 				<br>
@@ -81,3 +86,6 @@
 		{/if}
 	 </div>
 </div>
+{else}
+{{"include": "minisites/single_exhibition_empty_message.html"}}
+{/if}

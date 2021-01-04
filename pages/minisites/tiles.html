@@ -9,19 +9,28 @@
   {$data = json_decode($minisite_pageObj.data, TRUE)}
   {if ($data.show_current)} {$current = 'current'} {/if}
   {if ($data.show_past)} {$past = 'past'} {/if}
+  {if ($data.show_selection)} 
+     {if ($data.show_past)}
+       {$selection = 'selection'} 
+     {/if}  
+    {/if}
   {if ($data.show_future)} {$future = 'future'} {/if}
-  {$index = 0} {$count = 0}
-
+  {$index = 0} {$count = 0} {$empty_chk = 0}
+{if ($exhibitions)}
  <div class="row">    
     <div class="row photo-grid-row col-md-12">
       <ul class="photo-grid gallery-list tiles col-md-12">
         {foreach from=$exhibitions item=exhibition}
-          {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+          {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
             <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item effect-{$ms.hover_type}" data-index="{$index}">  
                <div class="hover_style">       
                  <figure class="effect-{$ms.hover_type}">
                  <div class="hover_cover {if ($ms.hover_type == 1004)} text {/if}">
-                   <img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+                   {if ($exhibition.title_image)}  
+                    <img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+                   {else}
+                    <img class="center-cropped" src="/img/exhibition/default.jpg"  alt="">
+                   {/if}
                    {{"include": "minisites/caption/figcaption.html"}}  
                    <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
                  </div>        
@@ -30,6 +39,13 @@
                {{"include": "minisites/caption/exh_details.html"}}       
             </li>
             {$index = $index + 1} {$count = 1}
+            {else}
+                            {if ($empty_chk == 0)}
+                            {$empty_chk = 1}
+                              <div class="smart_filter_exhibirion_page"> 
+                                      {{"include": "minisites/exhibition_empty_message.html"}}  
+                              </div> 
+                            {/if}
           {/if}
         {/foreach}
       </ul>
@@ -45,7 +61,11 @@
               <div class="hover_style">       
                 <figure class="effect-{$ms.hover_type}">
                 <div class="hover_cover {if ($ms.hover_type == 1004)} text {/if}">
-                  <img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+                  {if ($exhibition.title_image)}  
+                    <img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+                  {else}
+                    <img class="center-cropped" src="/img/exhibition/default.jpg"  alt="">
+                  {/if}
                   {{"include": "minisites/caption/figcaption.html"}} 
                   <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
                 </div>        
@@ -57,5 +77,8 @@
        </ul>
      </div>
    </div>
+{/if}
+{else}
+{{"include": "minisites/exhibition_empty_message.html"}}
 {/if}
 {/block}

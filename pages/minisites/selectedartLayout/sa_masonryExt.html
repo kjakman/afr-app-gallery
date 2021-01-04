@@ -1,5 +1,6 @@
 
 {$index = 0}
+{if ($artworks)}
 <div class="row photo-grid-row">
   <ul class="photo-grid gallery-list gallery-list-nogap">
     {foreach from=$artworks item=artwork}
@@ -7,11 +8,15 @@
       {$data = ["obj_type" => "media_collection","obj_id" => $scope.collection_id, "plugin_id" => "1355","container_id" => $container_id]}
       {$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}
       {$get_artwork = find_object('artwork', ['id'=>$artwork.artwork_id])}
-      <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item effect-{$ms.art_animation}" data-index="{$index}" data-media_id="{$artwork.media_id}">
+      <li class="gallery-list-item pdf-thumb-box gallery-artwork-item effect-{$ms.art_animation}" data-index="{$index}" data-media_id="{$artwork.media_id}">
         <div class="hover_style no-padding">       
           <figure id="{$container_id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index="{$index}" class="vp-loader-photoswipe effect-{$ms.art_animation}">
             <div class="hover_cover margin-bot-2">
-              <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">
+              {if ($artwork.media_id != 0)}  
+                <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">
+              {else}
+                <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
+              {/if}  
               <figcaption>
                 {{"include": "minisites/caption/hover_caption.html"}}
               </figcaption>
@@ -27,3 +32,6 @@
     {/foreach}
   </ul>
 </div>
+{else}
+{{"include": "minisites/single_exhibition_empty_message.html"}}
+{/if}

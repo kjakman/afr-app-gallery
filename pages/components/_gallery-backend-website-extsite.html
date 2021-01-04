@@ -13,15 +13,15 @@
   <div class="form-group">
     <div class="row">
       <div class="form-group col-sm-8">
-        <label for="menu-title">Menu Title</label>
+        <label for="menu-title" class="control-label">Menu Title</label>
         <input type="text" class="form-control" maxlength="15" name="menu_title" value="{$minisitepage.menu_title}">
       </div>
       <div class="form-group col-sm-8">
-        <label for="page-title">Page Title</label>
+        <label for="page-title">Page Title<span class="optional">(Optional)</span></label>
         <input type="text" class="form-control" maxlength="60" name="page_title" value="{$minisitepage.page_title}">
       </div>
       <div class="form-group col-sm-8">
-        <label for="page-title">URL of the website you want to display on this page (ideal way to connect a web-shop to your site) <br>
+        <label for="page-title" class="control-label">URL of the website you want to display on this page (ideal way to connect a web-shop to your site) <br>
         When entering URL remember to start with https://....</label>
         <input type="text" class="form-control" name="data" value="{$data[0]}">
       </div>

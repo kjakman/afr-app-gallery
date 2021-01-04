@@ -1,7 +1,7 @@
 {$index = 0}
 <div class="row">
   <div class="row photo-grid-row col-md-12">
-    <ul class="photo-grid gallery-list col-md-12">
+    <ul class="photo-grid gallery-list col-md-12" style="column-gap: 30px;">
 	{foreach from=$exhibitions item=exhibition}
 		{$container_id = "artwork_`$exhibition.id`"}
 		{$data = ["obj_type" => "media_collection","obj_id" => $exhibition.id, "plugin_id" => "1355","container_id" => $container_id]}

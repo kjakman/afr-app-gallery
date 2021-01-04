@@ -18,13 +18,21 @@
                           <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
                             <div class="__vp-flipper">             
                             <div class="__vp-flip-front"> 
-                            <span class="frame-square">              
-                              <img class="__vp-plugin-image center-cropped" src="{$collection.id|collection_photo}"  alt="{}">  
+                            <span class="frame-square">
+                              {if ($collection.title_image)}  
+                                <img class="__vp-plugin-image center-cropped" src="{$collection.id|collection_photo}"  alt="{}">  
+                              {else}
+                                <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg"  alt="{}">
+                              {/if}
                             </span>           
                             </div>             
                             <div class="__vp-flip-back __vp-plugin-hover">  
-                            <span class="frame-square">             
-                              <img class="__vp-flip-back-image" src="{$collection.id|collection_photo}" alt="">  
+                            <span class="frame-square">      
+                              {if ($collection.title_image)}  
+                                <img class="__vp-flip-back-image" src="{$collection.id|collection_photo}" alt="">  
+                              {else}
+                                <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg"  alt="{}">
+                              {/if}  
                             </span>             
                             <div class="__vp-flip-back-card"> 
                               <a href="{$link}{$collection.title|slugify}-{$collection.id}" class="cms-link gallery-link" data-data='{$json}'>               

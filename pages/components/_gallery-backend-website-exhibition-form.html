@@ -16,11 +16,11 @@
           <div class="form-group">
             <div class="row">
             <div class="form-group col-sm-8">
-              <label for="menu-title">Menu Title</label>
+              <label for="menu-title" class="control-label">Menu Title</label>
               <input type="text" class="form-control" maxlength="15" name="menu_title" value="{$minisitepage.menu_title}">
             </div>
             <div class="form-group col-sm-8">
-              <label for="page-title">Page Title</label>
+              <label for="page-title">Page Title<span class="optional">(Optional)</span></label>
               <input type="text" class="form-control" maxlength="60" name="page_title" value="{$minisitepage.page_title}">
             </div>
           </div> 
@@ -52,7 +52,7 @@
               <tr>
                 <td>
                   <input name='data[show_past]' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($data.show_past == '1')}checked{/if} class="form-control datefilter" name="data[show_past]" value="1" style= "width:20px">
+                  <input type="checkbox" {if ($data.show_past == '1')}checked{/if} class="form-control datefilter show_past" name="data[show_past]" value="1" style= "width:20px">
                 </td>
                 <td style= "width:200px">Previous Exhibitions</td>
                 <td>
@@ -67,7 +67,7 @@
                 <td style= "width:200px">Future Exhibitions</td>
                 <td>
                   <input name='data[show_latest]' value='0' type='hidden'>  
-                  <input type="checkbox" {if ($data.show_latest == '1')}checked{/if} class="form-control datefilter" name="data[show_latest]" value="1" style= "width:20px">
+                  <input type="checkbox" {if ($data.show_latest == '1')}checked{/if} class="form-control datefilter show_latest" name="data[show_latest]" value="1" style= "width:20px">
                 </td>
                 <td style= "width:500px">Display Latest Exhibition in cases where page would otherwise be empty</td>
               </tr>
@@ -95,6 +95,11 @@
                   <input type="checkbox" {if ($data.show_others == '1')}checked{/if} class="form-control typefilter" name="data[show_others]" value="1" style= "width:20px" >
                 </td>
                 <td style= "width:200px">Other Events</td>
+                <td >
+                  <input name='data[show_selection]' value='0' type='hidden'> 
+                  <input type="checkbox" {if ($data.show_selection == '1')}checked{/if} class="form-control typefilter selection" name="data[show_selection]" value="1" style= "width:20px" >
+                </td>
+                <td style= "width:200px">Selection</td>
               </tr>
           </table>
 
@@ -120,4 +125,15 @@
                 return false;
             }
         });
+
+        /*$('.show_past, .show_latest').click(function() {
+          //alert();
+          if ($('.show_past, .show_latest').is(':checked')) {
+              $(".selection").prop('checked', true);
+              $(".selection").prop('disabled', false);
+          } else {
+              $(".selection").prop('checked', false);
+              $(".selection").prop('disabled', true);
+          }
+        });*/
     </script>

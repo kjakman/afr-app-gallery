@@ -20,8 +20,8 @@
   {$tab = $page.tab|default:'basic'}
 
   <ul class="nav nav-tabs">
-    <li {if ($tab == 'basic')  }class="active"{/if}><a {if ($getpv)} href= "{$tab1_link}?_pv=viewartistpage&site_id={$site_id}&page_id={$page_id}&user_id={$scope.obj_id}" {else} href= "{$tab1_link}?_pv=1" {/if}  class="ajax-loader" data-target="#subview-container" id="gbe_basic_link">Basic</a></li>
-    <li {if ($tab == 'about') }class="active"{/if}><a {if ($getpv)} href= "{$tab2_link}?_pv=viewartistpage&site_id={$site_id}&page_id={$page_id}&user_id={$scope.obj_id}" {else} href= "{$tab2_link}?_pv=1" {/if} class="ajax-loader" data-target="#subview-container" id="gbe_about_link">Bio/Photo</a></li>
+    <li {if ($tab == 'basic')  }class="active"{/if}><a {if ($getpv)} href= "{$tab1_link}?_pv=viewartistpage&site_id={$site_id}&page_id={$page_id}&user_id={$scope.obj_id}" {else} href= "{$tab1_link}?_pv=1" {/if}  class="ajax-loader" data-target="#subview-container" id="gbe_basic_link">Basic<span class="glyphicon icon-asterisk"></span></a></li>
+    <li {if ($tab == 'about') }class="active"{/if}><a {if ($getpv)} href= "{$tab2_link}?_pv=viewartistpage&site_id={$site_id}&page_id={$page_id}&user_id={$scope.obj_id}" {else} href= "{$tab2_link}?_pv=1" {/if} class="ajax-loader" data-target="#subview-container" id="gbe_about_link">Bio/Photo<span class="glyphicon icon-asterisk"></span></a></li>
     <li {if ($tab == 'artist') }class="active"{/if}><a {if ($getpv)} href= "{$tab3_link}?_pv=viewartistpage&site_id={$site_id}&page_id={$page_id}&user_id={$scope.obj_id}" {else} href= "{$tab3_link}?_pv=1" {/if} class="ajax-loader" data-target="#subview-container" id="gbe_cv_link">CV</a></li>
     
     {if (($scope.user.roles != 128) && ($scope.user.roles != 256))}

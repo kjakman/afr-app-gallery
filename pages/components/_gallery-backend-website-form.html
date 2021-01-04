@@ -1,3 +1,11 @@
+  
+    <h5>WEBSITE BUILDER – CREATING A NEW WEBSITE – ADD THE TEXT WHERE INDICATED </h5>
+    <p>Title : Appears at the top of your website (if you are not using a logo) You can use the same title for multiple websites. Change the title as often as you want later, on the ”Basic” Tab.</p>
+
+    <p>Type: Single Artist sites focus on presenting details about art. Gallery sites host multiple artists,  so instead make sure information about each artist is prominently displayed. Change your choice as often as you want later, on the “Basic” Tab.</p>
+
+    <p>Extension on vPatina: This is for your administration only (so don’t worry about it too much). Each of your sites needs a unique extension, so you can’t use the same extension twice. You can not change the extension later.</p>
+
       <form class="ajax-submit" data-handler="save-minisite" data-success_handler="gbe_website_handler">
         <input hidden="1" name="id" type="hidden" value="{$scope.obj_id}">
         <input hidden="1" name="obj_id" type="hidden" value="{$scope.obj_id}">
@@ -19,11 +27,11 @@
         {/if}
         <div class="row">
           <div class="form-group col-sm-4">
-            <label for="website-name">Title *</label>
+            <label for="website-name" class="control-label">Title</label>
             <input type="text" class="form-control" id="website-name" name="name" value="{$minisite.name}" maxlength="128">
           </div>
           <div class="form-group col-sm-4">
-            <label for="website-type">Type *</label>
+            <label for="website-type" class="control-label">Type</label>
             <select name="type" id="website-type"  class="form-control auto-select" data-default="{$default_type}" data-value="{$minisite.type}">
               <option value="artist">Single Artist</option>
               <option value="gallery">Gallery</option>
@@ -32,7 +40,7 @@
         </div>
         <div class="row">
           <div class="form-group col-sm-4">
-            <label for="website-url">Extension on vPatina*</label>
+            <label for="website-url" class="control-label">Extension on vPatina</label>
             <input type="text" class="form-control" id="website-url" name="url" value="{$minisite.url}" maxlength="64">
           </div>
           <!-- <div class="form-group col-sm-4">

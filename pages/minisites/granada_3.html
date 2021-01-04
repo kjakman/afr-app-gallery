@@ -8,11 +8,16 @@
   {$data = json_decode($minisite_pageObj.data, TRUE)}
   {if ($data.show_current)} {$current = 'current'} {/if}
   {if ($data.show_past)} {$past = 'past'} {/if}
+  {if ($data.show_selection)} 
+     {if ($data.show_past)}
+       {$selection = 'selection'} 
+     {/if}  
+    {/if}
   {if ($data.show_future)} {$future = 'future'} {/if}
   {$exhibition_filter = []} {$count = 0} {$i=0}
 
   {foreach from=$exhibitions item=exhibition}
-    {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+    {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
     	{$exhibition_filter[] = $exhibition}
     	{$count = 1}
     {/if}
@@ -33,7 +38,8 @@
   {else} 
     {$exbcount = count($exhibitions)}
   {/if}
-  <div>
+  <div>     
+  {if ($exhibitions)}    
   {foreach from=$exhibitions item=exhibition}
 	{if ($i==0)}
 	<!--<pre>
@@ -46,7 +52,11 @@
 	            <figure class="effect-{$ms.hover_type} ratio_based">
 	              <div class="hover_cover no-margin">
 					<div class="frame-square ratio169">
+                                            {if ($exhibition.title_image)}
 						<img src= "{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}" />
+                                            {else}
+                                                <img src="/img/exhibition/default.jpg"  alt="">
+                                            {/if}    
 					</div>
 					{{"include": "minisites/caption/figcaption.html"}}
 					<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
@@ -64,7 +74,11 @@
 	            <figure class="effect-{$ms.hover_type} ratio_based">
 	              <div class="hover_cover no-margin">
 	  				<div class="frame-square ratio169">
+                                            {if ($exhibition.title_image)}
 	  					<img src= "{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}" />
+                                            {else}
+                                                <img src="/img/exhibition/default.jpg"  alt="">
+                                            {/if}    
 	  				</div>
 	  				{{"include": "minisites/caption/figcaption.html"}}
 	  				<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
@@ -80,4 +94,7 @@
 	{if (($i == 2) || ($i && ($exbcount%2 == 1)))} {$i = 0} {else} {$i = $i+1} {/if}		
   {/foreach}
  </div> 
+{else}
+{{"include": "minisites/exhibition_empty_message.html"}}
+{/if}  
 {/block}

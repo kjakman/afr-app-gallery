@@ -91,3 +91,11 @@
 .icon-hair-dryer:before {
   content: "\71";
 }
+.icon-asterisk:before {
+    content: "\002a";
+    color: #ed8323;
+}
+.nav-tabs>li.active>a span:before {
+    content: "\002a";
+    color: #737373;
+}

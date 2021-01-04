@@ -181,6 +181,7 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
 //     'images'=>            array('Images',            'many2many', '', AF_HIDE_LIST, 'media_collection_map'),
      'start_date'=>         array('From',              'date',   '', AF_LOG),
      'end_date'=>           array('To',                'date',   '', AF_LOG),
+     'exhibition_sequence'=>           array('To',                'date',   '', AF_LOG),
 
      'location_id'=>        array('Location',          'link',   0, AF_READONLY|AF_HIDE_ADD, 'location'),
      'address_formatted'=>  array('Formatted Address', 'text',   '', AF_HIDE_LIST),

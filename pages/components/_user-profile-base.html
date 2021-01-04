@@ -25,6 +25,9 @@
  {if ($app.page.subview == 'ACsettings')} 
   {$new_url = str_replace("/backend", "", $url)}
   {$new_url = str_replace("?_pv=1", "", $new_url)}
+  <div class="mt20">
+    <a href="https://vimeo.com/486226218" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Get App Tutorial</a>
+  </div><br>
   <div class="mb20">
     <h3>URL: <a target="_blank" href="{$seg_url[3]}/{$scope.u_id}">{$seg_url[0]}/{$seg_url[2]}/{$seg_url[3]}/{$scope.u_id}</a> </h3>
   </div>
@@ -51,8 +54,12 @@
             <div id="slideshow" class="slideshow">
               <div class="slideshow-preload"></div>
               <ul class="slideshow-images list">
-                <li class="media-photo media-photo-block active profilephoto">               
-                  <img class="img-responsive" src="{$scope.profile|userphoto:'big'}" alt="" width="" height="">
+                <li class="media-photo media-photo-block active profilephoto"> 
+                  {if ($scope.profile.photo)}  
+                    <img class="img-responsive" src="{$scope.profile|userphoto:'big'}" alt="">
+                  {else}
+                    <img class="img-responsive" src="/img/artist/default.jpg" alt="">
+                  {/if}
                 </li>
               </ul>
             </div>

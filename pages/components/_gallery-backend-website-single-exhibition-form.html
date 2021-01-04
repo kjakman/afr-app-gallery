@@ -6,10 +6,9 @@
 <div class="mt20">
     <a href="https://vimeo.com/361288122" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Single Exhibition Page Tutorial</a>
 </div><br>
-<!------------------Vignesh 02-06-2020 --------------------------->
+<!====================================Vignesh 02-06-2020 ==================================>
 <div class="row">
     <div class="col-sm-12">
-      <h4>This page shows only one exhibition. Select this either by filtering the most recent exhibition, or manually adding an exhibition to the page:</h4>
       <span> 
         1. Check "Show Most Recent Exhibition" and then choose which type of exhibitions to select for the page OR <br>
         2. Check "Attach a Single Exhibition Manually" and then use the green "Attach Single Exhibition" button to select the exhibition you want for this page.<br>
@@ -17,7 +16,7 @@
       </span>
     </div>
 </div><br>
-<!---------------------------------End--------------------------->
+<!===================================End====================================================>
 <form class="ajax-submit" data-handler="save-minisite-page" id="single_exhibition">
   <input hidden="1" name="minisite_id" type="hidden" value="{$minisite.id|default:$id}">
   <input hidden="1" name="obj_id" class="obj_id" type="hidden" value="{$obj_id}">
@@ -27,11 +26,11 @@
   <div class="form-group">
     <div class="row">
       <div class="form-group col-sm-8">
-        <label for="menu-title">Menu Title</label>
+        <label for="menu-title" class="control-label">Menu Title</label>
         <input type="text" class="form-control" maxlength="15" name="menu_title" value="{$minisitepage.menu_title}">
       </div>
       <div class="form-group col-sm-8">
-        <label for="page-title">Page Title</label>
+        <label for="page-title">Page Title<span class="optional">(Optional)</span></label>
         <input type="text" class="form-control" maxlength="60" name="page_title" value="{$minisitepage.page_title}">
       </div>
     </div>
@@ -63,6 +62,9 @@
 				 <div class="form-group">
 				  <input type="checkbox" class="datefilter" name="data[others]" value="30" {if (($data['eType'] == '1') && ($data['others'] == '30') )} checked {/if} > Other Events
 				</div>
+        <div class="form-group">
+          <input type="checkbox" class="datefilter" name="data[selection]" value="40" {if (($data['eType'] == '1') && ($data['selection'] == '40') )} checked {/if} > Selection
+        </div>
 			</div>
 		</div>
 		<div class="col-sm-6" style="padding: 15px;">

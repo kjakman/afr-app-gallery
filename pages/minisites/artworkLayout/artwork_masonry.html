@@ -8,7 +8,8 @@
           </div>
         </div>
         {$index = 0}
-        <ul class="photo-grid gallery-list list">
+        <div class="photo-grid-row col-md-12">
+        <ul class="photo-grid gallery-list list" style="column-gap: 30px;">
           {foreach from=$artworks item=artwork}
             {if ($artwork.artwork_id)}
               {$artwork_slug = "artwork~`$artwork.artwork_id`"}
@@ -20,7 +21,11 @@
               <div class="hover_style">       
                 <figure class="effect-{$ms.art_animation}">
                   <div class="hover_cover">
-                    <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">
+                    {if ($artwork.media_id != 0)}  
+                        <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">
+                    {else}
+                        <img class="center-cropped" src="/img/artwork/default.jpg"  alt="">
+                    {/if}
                     <figcaption>
                       {{"include": "minisites/caption/hover_caption.html"}}
                     </figcaption>
@@ -35,4 +40,5 @@
             {$index = $index+1}
           {/foreach}
         </ul>
+      </div>
       {/if}

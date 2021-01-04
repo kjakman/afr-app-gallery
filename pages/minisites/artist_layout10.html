@@ -132,7 +132,11 @@
   
   {else}
     <div class="image-container-max-height">
+    {if ($artist.photo)} 
       <img src="{$artist|userphoto:'big'}" alt="{$artist.display_name} Artist Profile Photo" class="img-responsive center-block" /><br />
+    {else}
+      <img src="/img/artist/default.jpg" alt="">
+    {/if}  
     </div>
     <br />
     <div style="text-align: justify;">

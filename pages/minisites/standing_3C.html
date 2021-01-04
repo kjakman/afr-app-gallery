@@ -7,14 +7,19 @@
   {$data = json_decode($minisite_pageObj.data, TRUE)}
   {if ($data.show_current)} {$current = 'current'} {/if}
   {if ($data.show_past)} {$past = 'past'} {/if}
+   {if ($data.show_selection)} 
+     {if ($data.show_past)}
+       {$selection = 'selection'} 
+     {/if}  
+    {/if}
   {if ($data.show_future)} {$future = 'future'} {/if}
-  {$index = 0}  {$count = 0}
-
+  {$index = 0}  {$count = 0} {$empty_chk = 0}
+{if ($exhibitions)}
  <div class="row">
     <div class="row photo-grid-row col-md-12">
       <ul class="photo-grid gallery-list natural col-md-12">
         {foreach from=$exhibitions item=exhibition}
-          {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+          {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
             <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item" data-index="{$index}">
               <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
                 <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" {if (($ms.hover_type >=1011) || ($ms.hover_type ==1003))} class="__vp-plugin-container vp-loader-photoswipe no_flip effect-{$ms.hover_type}" {else} class="__vp-plugin-container vp-loader-photoswipe" {/if}>         
@@ -22,11 +27,19 @@
                     <div class="image_vert_bottomin"> 
                       <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
                         <div class="__vp-flipper">             
-                        <div class="__vp-flip-front">               
-                          <img class="__vp-plugin-image center-cropped" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">    
+                        <div class="__vp-flip-front">
+                          {if ($exhibition.title_image)}  
+                            <img class="__vp-plugin-image center-cropped" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">  
+                          {else}
+                            <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
+                          {/if}
                         </div>             
-                        <div class="__vp-flip-back __vp-plugin-hover">               
-                          <img class="__vp-flip-back-image" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">                
+                        <div class="__vp-flip-back __vp-plugin-hover">  
+                          {if ($exhibition.title_image)}  
+                             <img class="__vp-flip-back-image" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">   
+                          {else}
+                            <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
+                          {/if}   
                           <div class="__vp-flip-back-card">  
                           <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">  
                             {{"include": "minisites/caption/standing_hover.html"}}
@@ -42,6 +55,13 @@
               </a>
             </li>
             {$index = $index + 1} {$count = 1}
+            {else}
+                            {if ($empty_chk == 0)}
+                            {$empty_chk = 1}
+                              <div class="smart_filter_exhibirion_page"> 
+                                      {{"include": "minisites/exhibition_empty_message.html"}}  
+                              </div> 
+                            {/if}
           {/if}
         {/foreach}
       </ul>
@@ -60,11 +80,19 @@
                   <div class="image_vert_bottomin"> 
                     <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
                       <div class="__vp-flipper">             
-                      <div class="__vp-flip-front">               
-                        <img class="__vp-plugin-image center-cropped" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">    
+                      <div class="__vp-flip-front">     
+                        {if ($exhibition.title_image)}  
+                            <img class="__vp-plugin-image center-cropped" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">    
+                        {else}
+                            <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
+                        {/if}    
                       </div>             
-                      <div class="__vp-flip-back __vp-plugin-hover">               
-                        <img class="__vp-flip-back-image" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">                
+                      <div class="__vp-flip-back __vp-plugin-hover">          
+                        {if ($exhibition.title_image)}  
+                            <img class="__vp-flip-back-image" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">      
+                        {else}
+                            <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
+                        {/if}     
                         <div class="__vp-flip-back-card">  
                         <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">               
                           <h2>{$exhibition.title}</h2>                                         
@@ -84,5 +112,8 @@
           {/foreach}
         </ul>
       </div>
-  {/if}
+{/if}
+{else}
+{{"include": "minisites/exhibition_empty_message.html"}}
+{/if}  
 {/block}

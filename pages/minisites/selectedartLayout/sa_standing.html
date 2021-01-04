@@ -1,5 +1,6 @@
 
 {$index = 0}
+{if ($artworks)}
 <div class="photo-grid-row col-md-12">
   <ul class="photo-grid gallery-list natural row">    
     {foreach from=$artworks item=artwork}
@@ -13,11 +14,19 @@
               <div class="image_vert_bottomin"> 
                 <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
                   <div class="__vp-flipper">             
-                  <div class="__vp-flip-front">               
-                    <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">    
+                  <div class="__vp-flip-front">     
+                    {if ($artwork.media_id != 0)}  
+                        <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">    
+                    {else}
+                        <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
+                    {/if}
                   </div>             
-                  <div class="__vp-flip-back __vp-plugin-hover">               
-                    <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">                
+                  <div class="__vp-flip-back __vp-plugin-hover">  
+                      {if ($artwork.media_id != 0)}
+                         <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">    
+                      {else}
+                         <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
+                      {/if}   
                     <div class="__vp-flip-back-card">  
                       {if ($ms.hover_text == 2)}
                         {$type = get_artwork_type($get_artwork->type)}
@@ -68,4 +77,6 @@
     {/foreach}
   </ul>
 </div>
- 
+ {else}
+{{"include": "minisites/single_exhibition_empty_message.html"}}
+{/if}

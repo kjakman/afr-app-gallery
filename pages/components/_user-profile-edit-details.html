@@ -7,6 +7,11 @@
   <input type="hidden" name="page"  value="profile" />
   <input type="hidden" name="artist" value="1" />
 
+  <div class="row mt20">
+   <div class="col-sm-6"> 
+    <a href="https://vimeo.com/482440909" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Profile Detail Tutorial</a>
+   </div>  
+  </div><br>
 
   <div class="row mb20">
     <div class="col-sm-6">
@@ -91,7 +96,7 @@
   {$count = count($contact)}
   <div class="row mb20">
     <div class="form-group col-sm-6">
-      <label for="contacts">Additional Contacts</label>
+      <label for="contacts">Additional Contacts<span class="optional">(Optional)</span></label>
       {if ($contact)}
         {for $i = 0 to 4}
           <div class="row mt20" style="margin-bottom: 10px;">
@@ -299,7 +304,7 @@
 
   <div class="row mb20">
     <div class="col-sm-12">
-      <label for="title">Social Media Profiles</label>
+      <label for="title">Social Media Profiles<span class="optional">(Optional)</span></label>
       <table cellspacing="20"> 
         <tr style="height: 15px;"/>
         <tr>

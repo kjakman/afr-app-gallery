@@ -275,7 +275,12 @@
   function bstDateFormatter(value, row, index) {
   if(!row.created) return '';
   return '<span class="create" name="create" data-col="create" data-value='+row.id+' style="cursor: default;" >'+sql2human_short(row.created)+'</span>';
-}
+  }
+
+  /*function exhibitionSequence(value, row, index) {
+  if(!row.created) return '';
+  return '<span class="create" name="create" data-col="create" data-value='+row.id+' style="cursor: default;" >'+sql2human_short(row.exhibition_sequence)+'</span>';
+  }*/
 
 function bstArtistFormatter(value, row, index) {
   if(!value) return '';
@@ -378,9 +383,9 @@ function check_published(id) {
         type: "POST",
         data: {
           type : "media_collection",
+          id : value1,
           col: "active",
           data : value,
-          id : value1,
           oper : "edit",
         },
         success:function(response_data_json) {
@@ -584,7 +589,7 @@ function check_status(id) {
     var base_link = '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    var dimag = "<img class='table-thumb' src='/user/object/user_profile/default/s5.jpg'/>";
+    var dimag = "<img class='table-thumb' src='/img/artwork/default.jpg'/>";
     if(!value) return '<a href="{$base_link}/'+ row.id + '/edit/image?_pv=' + pv +'&ref=/ajax.php?oper=get-rows&obj_type=artwork'+
     '" class="' +link_class + '" data-target="#subview-container">'+dimag+'</a>';
     //=======================================End vignesh 06-08-2020================================//
@@ -626,7 +631,7 @@ function check_status(id) {
     var base_link = '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    var dimag = "<img class='table-thumb' src='/user/object/artwork/default/s10.jpg'/>";
+    var dimag = "<img class='table-thumb' src='/img/exhibition/default.jpg'/>";
     if(!value) return '<a href="{$base_link}/'+ row.id + '/edit/title?_pv=' + pv +
     '" class="' +link_class + '" data-target="#subview-container">'+dimag+'</a>';
     //=======================================End vignesh 06-08-2020================================//
@@ -678,7 +683,7 @@ function check_status(id) {
     var base_link = '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
-    var dimag = "<img class='table-thumb' src='/user/object/user_profile/default/s3.jpg'/>";
+    var dimag = "<img class='table-thumb' src='/img/artist/default.jpg'/>";
     if(!value) return '<a href="{$base_link}/'+ row.id + '/edit/about?_pv=' + pv +
     '" class="' +link_class + '" data-target="#subview-container">'+dimag+'</a>';
     //=======================================End vignesh 06-08-2020================================//

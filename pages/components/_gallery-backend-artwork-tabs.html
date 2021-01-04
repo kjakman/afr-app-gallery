@@ -7,8 +7,8 @@
   {$tab = $page.tab|default:'basic'}
 
   <ul class="nav nav-tabs">
-    <li {if ($tab == 'basic')} class="active"{/if}><a href="{$tab1_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="#tab1_link">Basic</a></li>
-    <li {if ($tab == 'image')} class="active"{/if}><a href="{$tab2_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="#tab2_link">Image</a></li>
+    <li {if ($tab == 'basic')} class="active"{/if}><a href="{$tab1_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="#tab1_link">Basic<span class="glyphicon icon-asterisk"></span></a></li>
+    <li {if ($tab == 'image')} class="active"{/if}><a href="{$tab2_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="#tab2_link">Image<span class="glyphicon icon-asterisk"></span></a></li>
     <li {if ($tab == 'details')} class="active"{/if}><a href="{$tab3_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="#tab3_link">Details</a></li>
     <!-- <li {if ($tab == 'medias') }class="active"{/if}><a href="{$tab6_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_related_link">Related Images</a></li> -->
     <li {if ($tab == 'media') }class="active"{/if}><a href="{$tab4_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="tab6_link">Related Media</a></li>

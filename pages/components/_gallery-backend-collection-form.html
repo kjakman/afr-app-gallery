@@ -20,7 +20,7 @@
         
         <div class="row">
           <div class="form-group col-sm-6 col-xs-12">
-            <label for="media-name">Title *</label>
+            <label for="media-name" class="control-label">Title</label>&nbsp;&nbsp;
             <a data-toggle="tooltip" data-placement="right" title="This is title that will appear when the exhibition is explored, shared or followed"> <i class="fa fa-info-circle"></i></a>
             <input type="text" class="form-control" name="title" value="{$collection.title}" maxlength="100">
           </div>
@@ -38,7 +38,7 @@
         
         <div class="row">
           <div class="form-group col-xs-12">
-            <label for="media-name">Artist(s)</label>
+            <label for="media-name" class="control-label">Artist(s)</label>&nbsp;&nbsp;
             <a data-toggle="tooltip" data-placement="right" title="Type name and select from list using mouse of arrow keys. Or type a new name and press enter to add."> <i class="fa fa-info-circle"></i></a>
             <input type="hidden" readonly class="form-control" name="artist_ids" id="artist_ids" value="{$artist_ids_json}"><br>
             <ul id="artistTags">
@@ -58,7 +58,8 @@
           
           <div class="form-group col-xs-12">
             <label for="comment">Description of collection</label>
-            <a data-toggle="tooltip" data-placement="right" title="This is the description of your exhibition that will appear when it is embedded, shared or followed"> <i class="fa fa-info-circle"></i></a>
+            <a data-toggle="tooltip" data-placement="right" title="This is the description of your exhibition that will appear when it is embedded, shared or followed"> <i class="fa fa-info-circle"></i></a><span class="optional">(Recommended)
+</span>
             <textarea class="summernote form-control special" data-height="200" name="description">{$collection.description}</textarea>
           </div>
         </div>

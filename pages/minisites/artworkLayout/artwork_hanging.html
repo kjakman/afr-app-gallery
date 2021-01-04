@@ -21,7 +21,11 @@
           <div class="hover_style">       
             <figure class="effect-{$ms.art_animation}">
               <div class="hover_cover">
-                <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">
+                {if ($artwork.media_id != 0)}  
+                    <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">
+                {else}
+                    <img class="center-cropped" src="/img/artwork/default.jpg"  alt="">
+                {/if}
                 <figcaption>
                   {{"include": "minisites/caption/hover_caption.html"}}
                 </figcaption>

@@ -9,9 +9,9 @@
         <input hidden="1" name="obj_id" class="obj_id" type="hidden" value="{$minisite.id|default:$id}" class="obj_id">
         <input hidden="1" name="obj_type" type="hidden" value="{$scope.obj_type}">  
         <input hidden="1" name="next_tab" type="hidden" value="styling"> 
-          <div class="form-group col-sm-2">
-            <label for="website-type">Type of Site</label>
-            <select name="type" id="website-type"  class="form-control auto-select" data-value="{$minisite.type}">
+          <div class="form-group col-sm-12">
+            <label for="website-type">Type of Site<span style="font-size:16px;font-weight: lighter;">: Single Artist setting focuses on details about art. Gallery setting makes the artist name more prominent.</span></label>
+            <select style="width:150px;" name="type" id="website-type"  class="form-control auto-select" data-value="{$minisite.type}">
               <option value="artist" >Single Artist</option>
               <option value="gallery">Gallery</option>
             <select>
@@ -23,7 +23,7 @@
             <table cellspacing="2" style="width: 100%;"> 
               <tr style="height: 15px;"/>
               <tr>
-                <td style= "width:200px"><label for="Title">Site Title</label></td>
+                <td style= "width:200px"><label for="Title" class="control-label">Site Title</label></td>
                 <td width="20%">
                   <div class="input-group">
                     <input name='show_title' value='0' type='hidden'> 
@@ -38,7 +38,7 @@
               </tr>
               <tr style="height: 15px;"/>
               <tr>
-                <td style= "width:200px"><label for="Sub title">Site Sub Title</label></td>
+                <td style= "width:200px"><label for="Sub title">Site Sub Title<span class="optional">(Optional)</span></label></td>
                 <td width="20%">
                   <div class="input-group">
                     <input name='show_subtitle' value='0' type='hidden'> 
@@ -57,10 +57,10 @@
           </div>
 
           <div class="col-sm-12 mt20">
-            <label for="media-name">Website Logo</label>
+            <label for="media-name">Website Logo<span class="optional">(Optional)</span></label>
             <div class="custom_button_cover">
               <div class="commonin_row">
-                {"minisite"|object_uploader:$minisite.id:"logo":["resize" => 1, "cloud" => 1, "view" => "list", "allow_multiple" => 0]}
+                {"minisite"|object_uploader:$minisite.id:"logo":["resize" => 1, "cloud" => 1, "view" => "list", "allow_multiple" => 0]} 
               </div>
               <div class="custom_button_float"> 
                 <span>OR &nbsp &nbsp</span>
@@ -127,7 +127,7 @@
             <table cellspacing="2" style="width: 100%;"> 
               <tr style="height: 15px;"/>
               <tr>
-                <td style= "width:200px"><label for="footer">Footer Text</label></td>
+                <td style= "width:200px"><label for="footer">Footer Text<span class="optional">(Optional)</span></label></td>
                 <td  colspan="2">
                   <div class="input-group" style="display: block;">
                     <input name="footer" id="footer" class="form-control" value="{$minisite.footer}" type="text" /> 
@@ -170,7 +170,7 @@
           </div>
 
           <div class="col-sm-12">
-            <label for="Mailchimp">Mailchimp</label>
+            <label for="Mailchimp">Mailchimp<span class="optional">(Optional)</span></label>
             <div class="row">
               
               <div class="form-group">

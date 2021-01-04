@@ -43,6 +43,7 @@
             {if ($image.media_id)}
               <img src="{$path}">
             {else}
+              <img src="/img/artwork/default.jpg">  
             {/if}
           </td>
           {if ($image.artwork_id)}  
@@ -68,7 +69,7 @@
             <td><span style="cursor: default;">N/A</span></td>
           {/if}
           <td>
-            <button class='btn btn-danger' id= 'delete-collection-media' data-value='{$image.id}'> <i class='glyphicon glyphicon-trash'></i></button>
+            <button class='btn btn-danger' id= 'delete-collection-media' data-id='{$image.media_collection_id}' data-value='{$image.id}'> <i class='glyphicon glyphicon-trash'></i></button>
             {if (!$image.artwork_id)}    
               <a href="/backend/exhibition/{$collection.id}/edit/medias?add_media={$image.id}&_pv=1" id="{$image.id}" type="button" class="btn btn-success ajax-loader" data-target="#subview-container">Add/Edit Media</button></a>
             {/if}

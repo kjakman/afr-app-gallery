@@ -3578,3 +3578,39 @@ hr{
     max-width: 1200px;
     width: 100%;
 }
+
+
+@media only screen and (max-width: 1200px) {
+	/* .parallax-window{
+		min-height: 500px;
+	} */
+}
+@media only screen and (max-width: 993px) {
+	/* .parallax-window{
+		min-height: 400px;
+	} */
+}
+@media only screen and (max-width: 767px) {
+	/* .parallax-window{
+		min-height: 300px;
+	} */
+	.parallax-caption h1{
+	    font-size: 24px;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	.parallax-caption span, .parallax-caption p{
+		font-size: 16px;
+		margin: 10px 0px 0px;
+		padding:0px;
+		text-align:center;
+	}
+	.parallax-captionin{
+		padding:15px;
+	}
+}
+@media only screen and (max-width: 480px) {
+	/* .parallax-window{
+		min-height: 200px;
+	} */
+}

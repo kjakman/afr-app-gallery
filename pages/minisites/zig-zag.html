@@ -8,11 +8,16 @@
 	{$data = json_decode($minisite_pageObj.data, TRUE)}
 	{if ($data.show_current)} {$current = 'current'} {/if}
 	{if ($data.show_past)} {$past = 'past'} {/if}
+        {if ($data.show_selection)} 
+     {if ($data.show_past)}
+       {$selection = 'selection'} 
+     {/if}  
+    {/if}
 	{if ($data.show_future)} {$future = 'future'} {/if}
 	{$exhibition_filter = []} {$count = 0}
 
 	{foreach from=$exhibitions item=exhibition}
-	  {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+	  {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
 		{$exhibition_filter[] = $exhibition}
 		{$count = 1}
 	  {/if}
@@ -26,13 +31,20 @@
 	{/if}
 	
 	{{"include": "minisites/top/top.html"}}
+{if ($exhibitions)}        
 	<div class="zigzag_container">
 	  {foreach from=$exhibitions item=exhibition}
 		<div class="zigzag_row row">
 			<div class="zigzag_col col-sm-12 col-md-8 zigzag_col_img">
 				<div class="ratio_based">
 					<div class="frame-square ratio1910">
-						<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><img src="{$exhibition|collection_photo:'medium'}" /></a>
+						<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
+                                                    {if ($exhibition.title_image)} 
+                                                       <img src="{$exhibition|collection_photo:'medium'}" />
+                                                    {else}
+                                                        <img src="/img/exhibition/default.jpg"  alt="">
+                                                    {/if}   
+                                                </a>
 					</div>
 				</div>
 			</div>
@@ -77,4 +89,7 @@
 
 	  {/foreach}
 	</div>
+{else}
+{{"include": "minisites/exhibition_empty_message.html"}}
+{/if}
 {/block}

@@ -69,7 +69,7 @@
 			}
 		}
 	</style>
-    
+{if ($artists)}    
 	<div class="container">
 		<div id="artists" class="artists notouch">
 			<div class="list">
@@ -81,8 +81,13 @@
 							{else}
 								<a href="{$basepath}{$artist.page_slug}{$artist.slug}"><h1 class="artist-name-3C" style="text-transform: uppercase;">{$artist.display_name}</h1>  
 							{/if}
-							<img src="{$artist.title_image|photo:'big'}" alt="{$artist.display_name} Artist Profile Photo" />
-							</a>
+                                                        
+                                                        {if ($artist.title_image)}
+                                                            <img src="{$artist.title_image|photo:'big'}" alt="{$artist.display_name} Artist Profile Photo" />
+							{else}    
+                                                            <img src="/img/artist/default.jpg" alt="">
+                                                        {/if}
+                                                        </a>
 						</li>
 					{/foreach}
 				</ul>
@@ -103,8 +108,13 @@
 								{else}
 									<a href="{$basepath}{$artist.page_slug}{$artist.slug}"><h1 class="artist-name-3C" style="text-transform: uppercase;">{$artist.display_name}</h1>  
 								{/if}
-								<img src="{$artist.title_image|photo:'big'}" alt="{$artist.display_name} Artist Profile Photo" />
-								</a>
+                                                                
+                                                                {if ($artist.title_image)}
+                                                                    <img src="{$artist.title_image|photo:'big'}" alt="{$artist.display_name} Artist Profile Photo" />
+								{else}    
+                                                                    <img src="/img/artist/default.jpg" alt="">
+                                                                {/if}
+                                                                </a>
 							</li>
 						{/foreach}
 					</ul>
@@ -112,7 +122,9 @@
 			</div>
 		</div>
 	{/if}
-  
+{else}
+{{"include": "minisites/artist_empty_message.html"}}
+{/if}  
 	<script type="text/javascript">
 	    var detecttouch=function(){
 	    	window.removeEventListener('touchstart',detecttouch);

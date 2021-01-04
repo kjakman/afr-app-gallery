@@ -1,5 +1,5 @@
-
 {$index = 0}
+{if ($artworks)}
 <div class="item-container">
   <div class="item-grid-sizer"></div>
   <div class="item-gutter-sizer"></div>
@@ -12,7 +12,11 @@
         <div class="hover_style">       
           <figure id="{$container_id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index="{$index}" class="vp-loader-photoswipe effect-{$ms.art_animation}">
             <div class="hover_cover">
-              <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">
+              {if ($artwork.media_id != 0)}  
+                <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">
+              {else}
+                <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
+              {/if}  
               <figcaption>
                 {{"include": "minisites/caption/hover_caption.html"}}
               </figcaption> 
@@ -27,17 +31,20 @@
     {$index = $index + 1}
     {/foreach}
 </div>
+{else}
+{{"include": "minisites/single_exhibition_empty_message.html"}}
+{/if}
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js'></script>
 <script>
-  jQuery(window).on('load', function() {
-  
-    $('.item-container').masonry({
+  var jQuery_3_1_1 = $.noConflict(true);
+  jQuery_3_1_1(window).on('load', function() {
+    jQuery_3_1_1('.item-container').masonry({
     columnWidth : '.item-grid-sizer',
     gutter : 15,
     itemSelector : '.item-grid',
     percentPosition : 'true',
     fitWidth: true,
-    });
-    
+    });  
   });
 </script>

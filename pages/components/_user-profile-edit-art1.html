@@ -15,7 +15,7 @@
 
 
   <div class="row form-group">
-    <label for="media-name">Attach existing art or images</label>
+    <label for="media-name" class="optional">Attach existing art (Strongly Recommended)</label>
     <div class="col-xs-12">
       <a {if ($getpv)} href="/backend/artworks?add_to_profile1={$scope.profile.user_id}&amp;_pv=viewartistpage" {else} href="/backend/artworks?add_to_profile1={$scope.profile.user_id}&amp;_pv=1" {/if} class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Attach Artworks</a>
       <!-- <a {if ($getpv)} href="/backend/media?add_to_profile={$scope.profile.user_id}&amp;_pv=viewartistpage" {else} href="/backend/media?add_to_profile={$scope.profile.user_id}&amp;_pv=1" {/if} class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Attach Images</a> -->

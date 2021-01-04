@@ -10,7 +10,8 @@
 {block name=content}
 {$artist_id = $collection.artist_id}
 {$artist_ids = $collection.artist_ids|@json_decode}
-  {* $collection.event|dump *}
+  {* $collection.event|dump *} 
+{if ($collection.id)}  
   <div class="row detail-page-row">
     <div class="col-md-3 col-sm-12 text-left artist-subnav-container">
       <div class="artist-sub-nav">
@@ -87,9 +88,17 @@
       {else}
         <div class="image-container-max-height">
           {if ($collection.slug)} 
-            <img src="{$collection.id|collection_photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}" class="img-responsive" /><br />
+            {if ($collection.title_image)}
+                <img src="{$collection.id|collection_photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}" class="img-responsive" /><br />
+            {else}
+                <img src="/img/artist/default.jpg" alt="" class="img-responsive" /><br />
+            {/if}
           {else}
-            <img src="{$collection.id|photo:'medium'}">
+           {if ($collection.title_image)}
+                <img src="{$collection.id|photo:'medium'}">
+           {else}
+                <img src="/img/artist/default.jpg" alt="" /><br />
+           {/if}
           {/if}
         </div>
         <br />
@@ -100,5 +109,8 @@
       {/if}
     </div>
   </div>
+{else}
+{{"include": "minisites/single_exhibition_empty_message.html"}}
+{/if}
 
 {/block}  

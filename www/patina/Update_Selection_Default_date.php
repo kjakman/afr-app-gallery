@@ -1,0 +1,1 @@
+update media_collection set exhibition_sequence = "1000-01-01" where subtype=40 and exhibition_sequence =''
