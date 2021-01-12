@@ -2,7 +2,6 @@ vendor/
 config/*.txt
 config/*.json
 /smarty/
-bower_components/
 *.bak
 *.old
 *~
