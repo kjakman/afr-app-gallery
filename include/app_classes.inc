@@ -35,6 +35,10 @@ $__CLASSES= array_merge($__CLASSES, array(
     'minisite_level1' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
     'minisite_hover' =>      array(USER_LEVEL_SYSTEM, 'site', '', '', NF_CACHE_ASSOC, 'name', 'id', ''),
 
+// crud
+    'cruds' =>                array(USER_LEVEL_OWNER,  'crud', '', '', 0, 'name', '', ''),  
+    'company' =>                array(USER_LEVEL_OWNER,  'company', '', '', 0, 'name', '', ''),  
+
 ));
 
 
@@ -466,6 +470,21 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'page'=>               array('Page',             'str',   '',  ),
       'parts'=>              array('Parts',            'int',   0, ),
       'type'=>               array('Type',            'int',   0, ),
-   ),   
+   ), 
+
+   "cruds" => 
+   array(
+      'id'=>                  array('ID',                'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 8),
+      'name'=>                array('Name',              'str',   '', 0, 50 ),
+      'email'=>               array('Email',             'str',   '', ),
+      'mobile'=>              array('Mobile',            'bigint',   0, ),
+   ), 
+
+    "company" => array(
+        'id'=>                  array('ID',                'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 8),
+        'name'=>                array('Name',              'str',   '', 0, 50 ),
+        'email'=>               array('Email',             'str',   '', ),
+        'mobile'=>              array('Mobile',            'bigint',   0, ),
+    ),   
 
 ));

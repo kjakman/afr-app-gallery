@@ -1,0 +1,39 @@
+      
+{$id = $scope.id}
+{$name = $scope.name}
+{$email = $scope.email}
+{$mobile = $scope.mobile}
+      
+{$company_id = $company.id|default:$scope.id}
+      
+<form class="ajax-submit" data-handler="save-company" data-success_handler="gbe_company_handler">
+    <input hidden="1" name="id" type="hidden" value="{$id}">
+    <input hidden="1" name="obj_id" type="hidden" value="{$id}">
+    <input hidden="1" name="obj_type" type="hidden" value="company">      
+
+
+    {$company_ids_json = $company.id}
+    {$company_id = $company_ids_json|@json_decode}
+
+
+    <div class="form-group col-sm-4">
+        <label for="name" class="control-label">Name</label>&nbsp;&nbsp;
+        <input type="text" class="form-control" name="name" value="{$name}" maxlength="255" required>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="email" class="control-label">Email</label>
+        <input type="email" class="form-control" name="email" value="{$email}" required>
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="mobile" class="control-label">Mobile</label>
+        <input type="number" class="form-control" name="mobile" value="{$mobile}" required>
+    </div>
+          <input type="submit" class="btn btn-success" value="Sumit">
+</form>
+<div class="gap gap-small"></div>
+
+{if ($add_artist)}
+    {{"include":"_artist-dialog.html"}}
+{/if}
+      
+      

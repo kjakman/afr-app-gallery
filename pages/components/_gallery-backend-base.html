@@ -191,7 +191,7 @@
       {/if}
       {/if}
     {/if}
-    {if ($list && $obj_type|in_array:['artwork', 'media_collection', 'minisite', 'artist', 'media_folder'])} 
+    {if ($list && $obj_type|in_array:['artwork', 'media_collection', 'minisite', 'artist', 'media_folder', 'cruds','company'])} 
       {$buttons = 1}
       {if (($obj_type == 'media_folder') && (!$vault))}
         <nav id="breadcrumb" aria-label="breadcrumb">
@@ -265,16 +265,3 @@
 
 {block name="table"}
 {/block}
-
-<script>
-  if(typeof g_section == "undefined") {
-    var g_section = '{$scope.section}';
-    console.log("Weird, no g_section in base... val=" + g_section);
-  } else {
-    g_section = '{$scope.section}';
-    console.log("\n\n\n backend-base: ok, g_ready_scripts is defined... val=" + g_section);
-    $(".navbar-nav li").removeClass('active');    
-    $("#nav_section_" + g_section).addClass('active');    
-  }
-    
-</script>

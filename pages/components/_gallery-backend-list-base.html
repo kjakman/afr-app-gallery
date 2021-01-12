@@ -753,6 +753,88 @@ function check_status(id) {
     }
   }
 
+// --------------- For Company page for Sample Testing Vignesh Implemented---------------------//
+    function bstCompanyEditFormatter(value, row, index) {
+        var base_link = row.obj_type == 'company' ? '/backend/medium' : '{$base_link}';
+        var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+        var link_class = pv ? 'ajax-loader' : '';
+        // console.log("base_link = " + base_link + " pv=" + pv);
+        //var view_button = '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="btn btn-sm btn-info text-white ' + link_class + '" data-target="#subview-container">Share</a>';
+        var edit_button = '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="btn btn-sm btn-success text-white ' + link_class + '" data-target="#subview-container">Edit</a>';
+        return edit_button;
+    }
+
+    function bstCompanyNameFormatter(value, row, index) {
+        var print_val = value ? value : "[Untitled]";
+        var base_link = row.obj_type == 'company' ? '/backend/medium' : '{$base_link}';
+        var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+        var link_class = pv ? 'ajax-loader' : '';
+        // console.log("base_link = " + base_link + " pv=" + pv);
+        //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+        return '<span><span type="hidden" class="name" name="name" data-col="name" data-value='+row.id+' >'+row.name+'</span></span>';
+    }
+    function bstCompanyEmailFormatter(value, row, index) {
+        var print_val = value ? value : "[Untitled]";
+        var base_link = row.obj_type == 'company' ? '/backend/medium' : '{$base_link}';
+        var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+        var link_class = pv ? 'ajax-loader' : '';
+        // console.log("base_link = " + base_link + " pv=" + pv);
+        //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+        return '<span><span type="hidden" class="email" name="name" data-col="email" data-value='+row.id+' >'+row.email+'</span></span>';
+    }
+    function bstCompanyMobileFormatter(value, row, index) {
+        var print_val = value ? value : "[Untitled]";
+        var base_link = row.obj_type == 'company' ? '/backend/medium' : '{$base_link}';
+        var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+        var link_class = pv ? 'ajax-loader' : '';
+        // console.log("base_link = " + base_link + " pv=" + pv);
+        //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+        return '<span><span type="hidden" class="mobile" name="mobile" data-col="name" data-value='+row.id+' >'+row.mobile+'</span></span>';
+    }
+
+  //------------------------------ End Vignesh Implemented----------------------------------------//
+
+  // --------------- For Crud page for Sample Testing Vignesh Implemented---------------------// 
+  function bstCrudEditFormatter(value, row, index) {
+    var base_link = row.obj_type == 'cruds' ? '/backend/medium' : '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    // console.log("base_link = " + base_link + " pv=" + pv);
+    //var view_button = '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="btn btn-sm btn-info text-white ' + link_class + '" data-target="#subview-container">Share</a>';
+    var edit_button = '<a href="' + base_link + '/' + row.id + '/edit?_pv=' + pv + '" class="btn btn-sm btn-success text-white ' + link_class + '" data-target="#subview-container">Edit</a>';
+    return edit_button;
+  }
+
+  function bstNameFormatter(value, row, index) {
+    var print_val = value ? value : "[Untitled]";
+    var base_link = row.obj_type == 'cruds' ? '/backend/medium' : '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    // console.log("base_link = " + base_link + " pv=" + pv);
+    //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+    return '<span><span type="hidden" class="name" name="name" data-col="name" data-value='+row.id+' >'+row.name+'</span></span>';
+  }
+  function bstEmailFormatter(value, row, index) {
+    var print_val = value ? value : "[Untitled]";
+    var base_link = row.obj_type == 'cruds' ? '/backend/medium' : '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    // console.log("base_link = " + base_link + " pv=" + pv);
+    //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+    return '<span><span type="hidden" class="email" name="name" data-col="email" data-value='+row.id+' >'+row.email+'</span></span>';
+  }
+  function bstMobileFormatter(value, row, index) {
+    var print_val = value ? value : "[Untitled]";
+    var base_link = row.obj_type == 'cruds' ? '/backend/medium' : '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    // console.log("base_link = " + base_link + " pv=" + pv);
+    //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+    return '<span><span type="hidden" class="mobile" name="mobile" data-col="name" data-value='+row.id+' >'+row.mobile+'</span></span>';
+  }
+
+  //------------------------------ End Vignesh Implemented----------------------------------------//
+
   var obj_type = '{$scope.obj_type}';
   if(obj_type == 'artwork')
     var add_what = 'add_art';
