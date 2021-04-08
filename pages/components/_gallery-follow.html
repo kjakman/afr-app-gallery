@@ -1,79 +1,145 @@
 {$social = json_decode($scope.curator_social, true)}
-<div class="container">
-  <div>
-     <h3 style="font-size:28px !important; font-weight:bold;"><b>Follow On Social Media</b></h3>
-  </div>
+<link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+<style type="text/css">
+	body, i,a{
+	    color: #FFFF;
+	    font-family: 'Open Sans', Tahoma, Arial, helvetica, sans-serif;
+	    font-size: 17px;
+	}
+	span {
+	  font-size: 19px;
+	}
+	.socialmedia_follow1 {
+	    padding: 0px;
+	    margin-bottom: 15px;
+	    border-radius: 4px;
+	    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+	    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+	}
+	.well1 {
+	    width: 643px;
+	    min-height: 20px;
+	    padding: 7px;
+	    /*margin-bottom: 20px;*/
+	    background-color: #f5f5f5;
+	    border: 1px solid #e3e3e3;
+	    border-radius: 4px;
+	    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+	    /* box-shadow: inset 0 1px 1px rgba(0,0,0,.05); */
+	}
+</style>
+
+<div class="container ">
+  	<!-- <div class="col-sm-6">
+      	<div class="profileinfo_logo">
+            <img class="origin round" src="//new.vpatina.dci.in/user/object/user_profile/2623/photo/ig/vpatina-logo-120.png" alt="Logo">
+      	</div>
+    </div>
+
+    <div class="col-sm-6">
+  		<div class="profileinfo_title text-center">
+            <h1>vpatina DCI</h1><p></p>
+      	</div>
+    </div> -->
   
-  <div class="row">
-    {if !empty($social.fbook)}
-	<div class="col-sm-4">
-		<div class="well socialmedia_follow" style="background:#4267b2;">
-			<a href="{$social.fbook}" target="_blank" style="font-size:25px; color:#FFFF;">
-				<!--Facebook-->
-				<i class="fa fa-facebook" style="background-color:#224fa9;"></i><span>Follow on Facebook</span>
-			</a>
-		</div>
-	</div>
-    {/if}
-    {if !empty($social.twit)}
-	<div class="col-sm-4">
-		<div class="well socialmedia_follow" style="background:#1da1f2;">
-			<a href="{$social.twit}" target="_blank" style="font-size:25px; color:#FFFF;">
-				<!--Twitter-->
-				<i class="fa fa-twitter" style="background-color:#0581ce;"></i><span>Follow on Twitter</span>
-			</a>
-		</div>
-	</div>
-    {/if}
-    {if !empty($social.insta)}
-	<div class="col-sm-4">
-		<div class="well socialmedia_follow" style="background:#d52b80;">
-			<a href="{$social.insta}" target="_blank" style="font-size:25px; color:#FFFF;">
-				<!--Instagram-->
-				<i class="fa fa-instagram" style="background-color:#b3065d;"></i><span>Follow on Instagram</span>
-			</a>
-		</div>
-	</div>
-    {/if}
-    {if !empty($social.link)}
-	<div class="col-sm-4">
-		<div class="well socialmedia_follow" style="background:#0073b0;">
-			<a href="{$social.link}" target="_blank" style="font-size:25px; color:#FFFF;">
-				<!--Facebook-->
-				<i class="fa fa-linkedin" style="background-color:#025886;"></i><span>Follow on Linked In</span>
-			</a>
-		</div>
-	</div>
-    {/if}
-    {if !empty($social.print)}
-	<div class="col-sm-4">
-		<div class="well socialmedia_follow" style="background:#e60023;">
-			<a href="{$social.print}" target="_blank" style="font-size:25px; color:#FFFF;">
-				<!--Facebook-->
-				<i class="fa fa-pinterest" style="background-color:#b70520;"></i><span>Follow on Pinterest</span>
-			</a>
-		</div>
-	</div>
-    {/if}
-    {if !empty($social.youtu)}
-	<div class="col-sm-4">
-		<div class="well socialmedia_follow" style="background:#ff0000;">
-			<a href="{$social.youtu}" target="_blank" style="font-size:25px; color:#FFFF;">
-				<!--Facebook-->
-				<i class="fa fa-youtube" style="background-color:#cc0202;"></i><span>Follow on Youtube</span>
-			</a>
-		</div>
-	</div>
-    {/if}
-    {if !empty($social.vimeo)}
-	<div class="col-sm-4">
-		<div class="well socialmedia_follow" style="background:rgb(26, 46, 59);">
-			<a href="{$social.vimeo}" target="_blank" style="font-size:25px; color:#FFFF;">
-				<!--Facebook-->
-				<i class="fa fa-vimeo" style="background-color:#0b1319;"></i><span>Follow on Vimeo</span>
-			</a>
-		</div>
-	</div>
-    {/if}
-  </div>
-</div>
+  	<div class="row">
+  		<div class="col-sm-12" align="center">
+        	<div class="text-center">
+        		<h2><b>Follow On Social Media</b></h2>
+    		</div>
+    	</div>
+    	{if ($scope.user_detail.url_web)!=null}
+			<div class="col-sm-12" align="center">
+				<div class="well1 socialmedia_follow1" style="background:grey;">
+					<a href="{$scope.user_detail.url_web}" target="_blank" style="font-size:25px; color:#FFFF;">
+						<!--Facebook-->
+						<i class="fas fa-globe"></i><span> Website </span>
+					</a>
+				</div>
+	        </div>
+	    {/if}
+	    {if ($scope.user_detail.location_lat)!=null && ($scope.user_detail.location_long)!=null}
+			<div class="col-sm-12" align="center">
+				<div class="well1 socialmedia_follow1" style="background:#ffc40c;">
+		            <a href="https://www.google.com/maps/search/?api=1&query={$scope.user_detail.location_lat},{$scope.user_detail.location_long}" target="_blank" style="font-size:25px; color:#FFFF;">
+								<!--Facebook-->
+						<i class="fas fa-map-marker-alt"></i><span> Get Direction</span>
+					</a>
+		        </div>
+		    </div>
+	    {/if}
+    	{if ($scope.user_detail.email_address)!=null}
+			<div class="col-sm-12" align="center">
+
+				<div class="well1 socialmedia_follow1" style="background:#82c91e;">
+		            <a href="mailto:{$scope.user_detail.email_address}" target="_blank" style="font-size:25px; color:#FFFF;">
+							<!--Facebook-->
+
+						<i class="far fa-envelope"></i><span>  Email </span>
+					</a>
+		        </div>
+		    </div>
+	    {/if}
+	    
+	    
+    
+		<div class="col-sm-12" align="center">
+	        <div class="well1 socialmedia_follow1" style="background:#4267b2;">
+	            <a href="www.facebook.com" target="_blank">
+	                <!--Facebook-->
+	                <i class="fab fa-facebook" style="background-color:#224fa9;"></i><span> Follow on Facebook</span>
+	            </a>
+	        </div>
+	    </div>
+	    <div class="col-sm-12" align="center">
+	        <div class="well1 socialmedia_follow1" style="background:#1da1f2;">
+	            <a href="www.twitter.com" target="_blank">
+	                <!--Twitter-->
+	                <i class="fab fa-twitter" style="background-color:#0581ce;"></i><span> Follow on Twitter</span>
+	            </a>
+	        </div>
+	    </div>
+	    <div class="col-sm-12" align="center">
+	        <div class="well1 socialmedia_follow1" style="background:#d52b80;">
+	            <a href="www.instagram.com" target="_blank" >
+	                <!--Instagram-->
+	                <i class="fab fa-instagram" style="background-color:#b3065d;"></i><span> Follow on Instagram</span>
+	            </a>
+	        </div>
+	    </div>
+	    <div class="col-sm-12" align="center">
+	        <div class="well1 socialmedia_follow1" style="background:#0073b0;">
+	            <a href="https://www.linkedin.com/" target="_blank">
+	                <!--Facebook-->
+	                <i class="fab fa-linkedin" style="background-color:#025886;"></i><span> Follow on Linked In</span>
+	            </a>
+	        </div>
+	    </div>
+	    <div class="col-sm-12" align="center">
+	        <div class="well1 socialmedia_follow1" style="background:#e60023;">
+	            <a href="https://in.pinterest.com/" target="_blank">
+	                <!--Facebook-->
+	               <i class="fab fa-pinterest" style="background-color:#b70520;"></i><span> Follow on Pinterest</span>
+	            </a>
+	        </div>
+	    </div>
+	    <div class="col-sm-12" align="center">
+	        <div class="well1 socialmedia_follow1" style="background:#ff0000;">
+	            <a href="https://www.youtube.com/" target="_blank">
+	                <!--Facebook-->
+	                <i class="fab fa-youtube" style="background-color:#cc0202;"></i><span> Follow on Youtube</span>
+	            </a>
+	        </div>
+	    </div>
+	    <div class="col-sm-12" align="center">
+	        <div class="well1 socialmedia_follow1" style="background:rgb(26, 46, 59);">
+	            <a href="https://vimeo.com/" target="_blank">
+	                <!--Facebook-->
+	                <i class="fab fa-vimeo" style="background-color:#0b1319;"></i><span> Follow on Vimeo</span>
+	            </a>
+	        </div>
+	    </div>
+     	
+  	</div>
+</div>  	

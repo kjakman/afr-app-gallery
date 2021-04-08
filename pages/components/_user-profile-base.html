@@ -5,37 +5,37 @@
 {$seg2 = explode("-",$url_segment[2])}
 {if ($user.user_level >= $smarty.const.USER_LEVEL_ADMIN)}
     {if ($user.id != $scope.profile.user_id && $scope.auth_login)}
-    <div class="mb20">
-      <form class="ajax-submit" data-handler="backdoor-login">
-        <input type="hidden" name="user_id" value="{$scope.profile.user_id}">
-        <button type="submit" class="btn btn-success"><i class="fa fa-key"></i> Log in as {$scope.profile.user_id|username}</button>
-      </form>
-    </div>
+        <div class="mb20">
+            <form class="ajax-submit" data-handler="backdoor-login">
+                <input type="hidden" name="user_id" value="{$scope.profile.user_id}">
+                <button type="submit" class="btn btn-success"><i class="fa fa-key"></i> Log in as {$scope.profile.user_id|username}</button>
+            </form>
+        </div>
     {/if}
     
     {if ($scope.auth_edit_user && !$scope.backend)}
-    <div class="mb20">
-      <a href="{$smarty.const.PAGE_EDIT_PROFILE|link}{$scope.profile.user_id}/" class="btn btn-success"><i class="fa fa-pencil-square"></i> Edit</a>
-    </div>
+        <div class="mb20">
+            <a href="{$smarty.const.PAGE_EDIT_PROFILE|link}{$scope.profile.user_id}/" class="btn btn-success"><i class="fa fa-pencil-square"></i> Edit</a>
+        </div>
     {/if}   
 {/if}
 
 {if ($scope.profile)}
-{*dump($app)*}
- {if ($app.page.subview == 'ACsettings')} 
-  {$new_url = str_replace("/backend", "", $url)}
-  {$new_url = str_replace("?_pv=1", "", $new_url)}
-  <div class="mt20">
-    <a href="https://vimeo.com/486226218" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Get App Tutorial</a>
-  </div><br>
-  <div class="mb20">
-    <h3>URL: <a target="_blank" href="{$seg_url[3]}/{$scope.u_id}">{$seg_url[0]}/{$seg_url[2]}/{$seg_url[3]}/{$scope.u_id}</a> </h3>
-  </div>
-  {elseif ($app.page.subview == 'profile')}
-  <div class="mb20">
-    <h3>URL: <a target="_blank" href="{$seg_url[3]}/{$app.page.object_id}">{$seg_url[0]}/{$seg_url[2]}/{$seg_url[3]}/{$app.page.object_id}</a> </h3>
-  </div>
- {/if}
+    {*dump($app)*}
+    {if ($app.page.subview == 'ACsettings')} 
+        {$new_url = str_replace("/backend", "", $url)}
+        {$new_url = str_replace("?_pv=1", "", $new_url)}
+        <div class="mt20">
+            <a href="https://vimeo.com/486226218" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Get App Tutorial</a>
+        </div><br>
+        <div class="mb20">
+            <h3>URL: <a target="_blank" href="{$seg_url[3]}/{$scope.u_id}">{$seg_url[0]}/{$seg_url[2]}/{$seg_url[3]}/{$scope.u_id}</a> </h3>
+        </div>
+        {elseif ($app.page.subview == 'profile')}
+        <div class="mb20">
+            <h3>URL: <a target="_blank" href="{$seg_url[3]}/{$app.page.object_id}">{$seg_url[0]}/{$seg_url[2]}/{$seg_url[3]}/{$app.page.object_id}</a> </h3>
+        </div>
+    {/if}
 {/if}
 
 {$picture = $scope.profile.photo|photo:'big'}
@@ -45,100 +45,99 @@
   <!--<div class="row">-->
     {*dump($seg2[0])*}
     {if ($seg2[0] != 0)}
-      {{"include": "_gallery-profile-header.html"}}
+        {{"include": "_gallery-profile-header.html"}}
     {/if}
     <div class="col-lg-5 col-md-4 col-sm-3">
-      <div id="user" class="mb20">
-        <div>
-          <div class="mb10" id="user-media-container">
-            <div id="slideshow" class="slideshow">
-              <div class="slideshow-preload"></div>
-              <ul class="slideshow-images list">
-                <li class="media-photo media-photo-block active profilephoto"> 
-                  {if ($scope.profile.photo)}  
-                    <img class="img-responsive" src="{$scope.profile|userphoto:'big'}" alt="">
-                  {else}
-                    <img class="img-responsive" src="/img/artist/default.jpg" alt="">
-                  {/if}
-                </li>
-              </ul>
+        <div id="user" class="mb20">
+            <div>
+                <div class="mb10" id="user-media-container">
+                    <div id="slideshow" class="slideshow">
+                    <div class="slideshow-preload"></div>
+                        <ul class="slideshow-images list">
+                            <li class="media-photo media-photo-block active profilephoto"> 
+                            {if ($scope.profile.photo)}  
+                                <img class="img-responsive" src="{$scope.profile|userphoto:'big'}" alt="">
+                            {else}
+                                <img class="img-responsive" src="/img/artist/default.jpg" alt="">
+                            {/if}
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </div>
-                    
-          {if ($url)}
-            {$url_encoded = $url|urlencode}
-            <a href="#" title="Share on Facebooks" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?u={$url_encoded}">
-              <span class="fa fa-stack fa-2x">
-                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                <i class="fa fa-facebook fa-stack-1x"></i>
-              </span>
-            </a>
-            <a href="#" title="Share on Twitter" class="fb-loader-popup" data-url="http://twitter.com/share?url={$url_encoded}">
-              <span class="fa fa-stack fa-2x">
-                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                <i class="fa fa-twitter fa-stack-1x"></i>
-              </span>
-            </a>
-            <!-- <a href="#" title="Share on Google Plus" class="fb-loader-popup" data-url="https://plus.google.com/share?url={$url_encoded}">
-              <span class="fa fa-stack fa-2x">
-                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                <i class="fa fa-google-plus fa-stack-1x"></i>
-              </span>
-            </a>
-            <a href="#" title="Share on Digg" class="fb-loader-popup" data-url="http://www.digg.com/submit?url={$url_encoded}">
-              <span class="fa fa-stack fa-2x">
-                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                <i class="fa fa-digg fa-stack-1x"></i>
-              </span>
-            </a> -->
-            <a href="#" title="Share on Pinterest" class="fb-loader-popup" data-url='https://pinterest.com/pin/create/button/?url={$url_encoded}&amp;media={$picture}&amp;description={$title}'>
-              <span class="fa fa-stack fa-2x">
-                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                <i class="fa fa-pinterest fa-stack-1x"></i>
-              </span>
-            </a>
-            <a href="#" title="Share on LinkedIn" class="fb-loader-popup" data-url='https://www.linkedin.com/shareArticle?mini=true&amp;url={$url_encoded}&amp;title={$title}'>
-              <span class="fa fa-stack fa-2x">
-                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                <i class="fa fa-linkedin fa-stack-1x"></i>
-              </span>
-            </a>
-            <!-- <a href="#" title="Share by email" class="fb-loader-popup" data-url="/share/?url={$url_encoded}" data-template="{$scope.mail_template}" data-controller="{$scope.mail_controller}"
-                                    data-obj_type="{$scope.obj_type}" data-obj_id="{$scope.obj_id}"> -->
-            <a href="mailto:?subject=I thought you might be interested in this&body={$url}" title="Share by email">
-              <span class="fa fa-stack fa-2x">
-                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                <i class="fa fa-envelope fa-stack-1x"></i>
-              </span>
-            </a>
-          {/if}
-            
+                        
+            {if ($url)}
+                {$url_encoded = $url|urlencode}
+                <a href="#" title="Share on Facebooks" class="fb-loader-popup" data-url="http://www.facebook.com/sharer.php?u={$url_encoded}">
+                    <span class="fa fa-stack fa-2x">
+                        <i class="fa fa-circle-thin fa-stack-2x"></i>
+                        <i class="fa fa-facebook fa-stack-1x"></i>
+                    </span>
+                </a>
+                <a href="#" title="Share on Twitter" class="fb-loader-popup" data-url="http://twitter.com/share?url={$url_encoded}">
+                    <span class="fa fa-stack fa-2x">
+                        <i class="fa fa-circle-thin fa-stack-2x"></i>
+                        <i class="fa fa-twitter fa-stack-1x"></i>
+                    </span>
+                </a>
+                <!-- <a href="#" title="Share on Google Plus" class="fb-loader-popup" data-url="https://plus.google.com/share?url={$url_encoded}">
+                    <span class="fa fa-stack fa-2x">
+                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                    <i class="fa fa-google-plus fa-stack-1x"></i>
+                    </span>
+                </a>
+                <a href="#" title="Share on Digg" class="fb-loader-popup" data-url="http://www.digg.com/submit?url={$url_encoded}">
+                    <span class="fa fa-stack fa-2x">
+                        <i class="fa fa-circle-thin fa-stack-2x"></i>
+                        <i class="fa fa-digg fa-stack-1x"></i>
+                    </span>
+                </a> -->
+                <a href="#" title="Share on Pinterest" class="fb-loader-popup" data-url='https://pinterest.com/pin/create/button/?url={$url_encoded}&amp;media={$picture}&amp;description={$title}'>
+                    <span class="fa fa-stack fa-2x">
+                        <i class="fa fa-circle-thin fa-stack-2x"></i>
+                        <i class="fa fa-pinterest fa-stack-1x"></i>
+                    </span>
+                </a>
+                <a href="#" title="Share on LinkedIn" class="fb-loader-popup" data-url='https://www.linkedin.com/shareArticle?mini=true&amp;url={$url_encoded}&amp;title={$title}'>
+                    <span class="fa fa-stack fa-2x">
+                        <i class="fa fa-circle-thin fa-stack-2x"></i>
+                        <i class="fa fa-linkedin fa-stack-1x"></i>
+                    </span>
+                </a>
+                <!-- <a href="#" title="Share by email" class="fb-loader-popup" data-url="/share/?url={$url_encoded}" data-template="{$scope.mail_template}" data-controller="{$scope.mail_controller}"
+                                        data-obj_type="{$scope.obj_type}" data-obj_id="{$scope.obj_id}"> -->
+                <a href="mailto:?subject=I thought you might be interested in this&body={$url}" title="Share by email">
+                    <span class="fa fa-stack fa-2x">
+                        <i class="fa fa-circle-thin fa-stack-2x"></i>
+                        <i class="fa fa-envelope fa-stack-1x"></i>
+                    </span>
+                </a>
+            {/if}
+                
         </div>
-      </div>   
-    </div>
+    </div>   
+</div>
 
-    <div class="col-lg-7 col-md-8 col-sm-9">
-      <div class="row mb20">
+<div class="col-lg-7 col-md-8 col-sm-9">
+    <div class="row mb20">
         {block name=profile}{/block}
-      </div>
     </div>
-    <div class="gap gap-small"></div>
-   <div>    
-    <div class="mt10 row container profileinfo">
-      {block name=description}{/block}    
-    </div>
-
-  
-    {$artist_id = $scope.artist_id}    
-    {$curator_id = $scope.curator_id}
-    {if ($curator_id)}
-      {$curator_name = $profile.display_name}
-    {else if ($artist_id)}
-      {$artist_name = $profile.display_name}
-    {/if}
-    
-      {{"include": "_gallery-related-images.html"}}
-    
-   </div> 
+</div>
+<div class="gap gap-small"></div>
+    <div>    
+        <div class="mt10 row container profileinfo">
+            {block name=description}{/block}    
+        </div>
+      
+        {$artist_id = $scope.artist_id}    
+        {$curator_id = $scope.curator_id}
+        {if ($curator_id)}
+            {$curator_name = $profile.display_name}
+        {else if ($artist_id)}
+            {$artist_name = $profile.display_name}
+        {/if}
+        {{"include": "_gallery-related-images.html"}}
+        
+    </div> 
 <!--div>-->
 </div>
+

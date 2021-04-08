@@ -4,6 +4,14 @@
 {$form = "_gallery-backend-artwork-form.html"}
 {{"extend": "_gallery-backend-list-base.html"}}
 
+<style>
+    element.style {
+        width: 500px !important;
+    }
+    th-inner sortable both{
+       width: 118px !important;
+    }
+</style>
 {block name=main}  
   <div class="row">
     <div class="col-sm-5">
@@ -41,11 +49,12 @@
   <th data-field="type" data-filter-control="select" data-formatter="bstArtworkTypeFormatter" data-filter-data="var:type">Category</th>
   <th data-field="height" data-sortable="true" data-formatter="bstHeightFormatter">Height</th>
   <th data-field="width" data-sortable="true" data-formatter="bstWidthFormatter">Width</th>
-  <th data-field="price" data-sortable="true" data-formatter= "bstPriceFormatter" >Price</th>
-  <th data-field="price_option" data-filter-control="select" data-formatter= "bstPriceOptionFormatter" data-filter-data="var:price_option"> Price Option</th> 
-  <th data-field="status" data-filter-control="select" data-formatter="bstArtworkStatusFormatter"  data-filter-data="var:state">Status</th>       
+  <th style="width:5px" data-field="price" data-sortable="true" data-formatter= "bstPriceFormatter" >Price</th>
+  <th data-field="price_option" data-filter-control="select" data-formatter= "bstPriceOptionFormatter" data-filter-data="var:price_option">&nbsp Price Option&nbsp&nbsp&nbsp&nbsp</th> 
+  <th data-field="status" data-filter-control="select" data-formatter="bstArtworkStatusFormatter"  data-filter-data="var:state">&nbsp&nbsp&nbsp&nbsp Status &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>       
 
 <script type="text/javascript">
+    
   var price_option = {
     "0": "Hide Price",
     "1": "Show Price",
@@ -71,6 +80,14 @@
     "40": "Inactive",
     "50": "On loan, etc.",
   };
+
+        //  aoColumns : [
+        //   { "sWidth": "100px"},
+        //   { "sWidth": "100px"},
+        //   { "sWidth": "100px"},
+        //   { "sWidth": "100px"},
+        //   { "sWidth": "100px"}
+        // ]
 </script>
        
 {/block}

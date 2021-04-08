@@ -54,44 +54,32 @@
 	    <p class='italic'>
 	      {$getartwork.technique}<br>
 
-		  {if (($getartwork.type == 10) || ($getartwork.type == 20) || ($getartwork.type == 21) || ($getartwork.type == 11) || ($getartwork.type == 22) )}
-		  {if (($getartwork.height !=0.0) && ($getartwork.width !=0.0))}
-			{floatval($getartwork.height)}
-			X {floatval($getartwork.width)}
-			{$getartwork.unit}
-		  {/if}
-		{elseif (($getartwork.type == 30) || ($getartwork.type == 40) )}
-		  {floatval($getartwork.height)}
-		  {if ($getartwork.width != 0.0)} X {floatval($getartwork.width)} {/if}
-		  {if ($getartwork.depth != 0.0)} X {floatval($getartwork.depth)} {/if}
-		  {$getartwork.unit}
-	    {/if}<br>    
-	    
+	      {if ($getartwork.height > 0 && $getartwork.width > 0)}
+	        {$getartwork.height} x {$getartwork.width} 
+	        {if (($getartwork.depth) && ($getartwork.type == 30))} 
+	          x {$getartwork.depth} 
+	        {/if}
+	        {$getartwork.unit} <br>
+	      {/if}
 
-	      {if ($getartwork.type == 30 || $getartwork.type == 40)}
-	      	{*if ($getartwork.presentation == 10)*}
-	      	{if ($getartwork.presentation == 20)} Free Standing <br>
-	      	{elseif ($getartwork.presentation == 30)} Pedestal Mounted <br>
-	      	{elseif ($getartwork.presentation == 40)} Wall Mounted <br>
-	      	{elseif ($getartwork.presentation == 50)} Hanging <br>
-	      	{elseif ($getartwork.presentation == 60)} Installation <br>
-	      	{/if}
-	      {else}
-		      {if ($getartwork.frame == -1 && ($getartwork.type == 10 || $getartwork.type == 11 || $getartwork.type == 20 || $getartwork.type == 21 || $getartwork.type == 22 ))}
+	      {if ($getartwork.type != 30 && $getartwork.type != 40)}
+		      {if ($getartwork.frame == -1)}
 		        Unframed
-		      {elseif ($getartwork.frame == 1 && ($getartwork.type == 10 || $getartwork.type == 11 || $getartwork.type == 20 || $getartwork.type == 21 || $getartwork.type == 22 ))}
+		      {elseif ($getartwork.frame == 1)}
 		        Framed
 		      {/if}
 
-		      {if ($getartwork.passepartout == -1 && ($getartwork.type == 10 || $getartwork.type == 11 || $getartwork.type == 20 || $getartwork.type == 21 || $getartwork.type == 22 ))}
+		      {if ($getartwork.passepartout == -1)}
 		        , No Passe-partout <br>
-		      {elseif ($getartwork.passepartout == 1 && ($getartwork.type == 10 || $getartwork.type == 11 || $getartwork.type == 20 || $getartwork.type == 21 || $getartwork.type == 22 ))}
-		        , Passe-partout
+		      {elseif ($getartwork.frame == 1)}
+		        , Passe-partout <br>
 		      {/if} 
+		  {else}
+		     {$getartwork.presentation}
 		  {/if}
-		
+
 	      {if ($getartwork.editions > 1)}  
-	        <br>Series of {$getartwork.editions} <br>
+	        Series of {$getartwork.editions} <br>
 	      {elseif ($getartwork.editions == 1)}
 	        Unique <br>
 	      {/if}

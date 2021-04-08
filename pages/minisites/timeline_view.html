@@ -1,150 +1,165 @@
 
-  {{"extend": "minisites/index.html"}}
-  {block name=title}
+{{"extend": "minisites/index.html"}}
+{block name=title}
     <h2 class = "default">{$minisite_pageObj.page_title}</h2>    
     <h2 class="title">{$scope.title} Exhibition</h2>
-  {/block}  
-  {block name=content}    
+{/block}  
+{block name=content}    
     {$data = json_decode($minisite_pageObj.data, TRUE)}
     {if ($data.show_current)} {$current = 'current'} {/if}
     {if ($data.show_past)} {$past = 'past'} {/if}
     {if ($data.show_selection)} 
-     {if ($data.show_past)}
-       {$selection = 'selection'} 
-     {/if}  
+        {if ($data.show_past)}
+            {$selection = 'selection'} 
+        {/if}  
     {/if}
     {if ($data.show_future)} {$future = 'future'} {/if}   
     {$count = 0}   
-{if ($exhibitions)}    
-    <div class="row">
-      <div class="col-md-3 text-left">
-      </div>
+    {if ($exhibitions)}    
+        <div class="row">
+            <div class="col-md-3 text-left">
+            </div>
       
-      <div class="col-md-9 exhibition_page text-left"> 
-          <a href="bk/exhibitions.html"></a>
-        <ul class="timeline">        
-          {$i = 0} {$empty_chk = 0}
-          
-          {foreach from=$exhibitions item=exhibition}
-            {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
-              {if ($exhibition.current == "past")}
-                {$badge_class = "danger"}
-              {elseif ($exhibition.current == "current")}
-                {$badge_class = "success"}      
-              {elseif ($exhibition.current == "future")}
-                {$badge_class = "info"} 
-              {elseif ($exhibition.current == "selection")}
-                {$badge_class = "warning"}
-              {/if}
-              {$loc = $exhibition.location_id|get:"location"}
-              <li {if ($i%2)}class="timeline-inverted"{/if}>
-                <div class="timeline-badge timeline-badge-small {$badge_class}"><i class="glyphicon glyphicon-check"></i></div>
-                <div class="timeline-panel">
-                  {if ($type == 'gallery')}
-                    <div class="timeline-heading">
-                      <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-                        <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
-                      </h6>
-                      {if ($exhibition.selection_range)}
-                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.selection_range} </small></p>
-                      {else}
-                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
-                      {/if}
-                    </div>
-                  {else}
-                    <div class="timeline-heading">
-                      {if ($exhibition.selection_type)}
-                        <h6 class="timeline-title"><div class="bold mb10">{$exhibition.selection_type}</div> 
-                          <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
-                        </h6>
-                      {else}
-                        <h6 class="timeline-title"><div class="bold mb10">{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name} </div> 
-                          <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
-                        </h6>
-                      {/if}
-                      {if ($exhibition.selection_range)}
-                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.selection_range} </small></p>
-                      {else}
-                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
-                      {/if}
-                    </div>
-                  {/if}
-                  <div class="timeline-body">
-                    <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="img-container">
-                      {if ($exhibition.title_image)}  
-                        <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
-                      {else}
-                        <img src="/img/exhibition/default.jpg" class="img-responsive" alt="">
-                      {/if}
-                    </a>
-                  
-                    <!--p>{* $exhibition.description *}</p-->
-                  </div>
-                </div>
-              </li>
-              {$i = $i + 1}  {$count = 1}
-              {else}
-                            {if ($empty_chk == 0)}
-                            {$empty_chk = 1}
-                              <div class="smart_filter_exhibirion_page"> 
-                                      {{"include": "minisites/exhibition_empty_message.html"}}  
-                              </div> 
+            <div class="col-md-9 exhibition_page text-left"> 
+                <a href="bk/exhibitions.html"></a>
+                <ul class="timeline">        
+                    {$i = 0} {$empty_chk = 0}
+                    {$count=0}
+                    {foreach from=$exhibitions item=exhibition}
+                        {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
+                            {if ($exhibition.current == "past")}
+                                {$count=$count+1}
+                                {$badge_class = "danger"}
+                            {elseif ($exhibition.current == "current")}
+                                {$count=$count+1}
+                                {$badge_class = "success"}      
+                            {elseif ($exhibition.current == "future")}
+                                {$count=$count+1}
+                                {$badge_class = "info"} 
+                            {elseif ($exhibition.current == "selection")}
+                                {$count=$count+1}
+                                {$badge_class = "warning"}
                             {/if}
-            {/if} 
-          {/foreach}  
-          {if (($data.show_latest) && (!$count))}
-            {foreach from=$latest_exhibitions item=exhibition}
-              {$badge_class = "success"}
-              <li {if ($i%2)}class="timeline-inverted"{/if}>
-                <div class="timeline-badge timeline-badge-small {$badge_class}"><i class="glyphicon glyphicon-check"></i></div>
-                <div class="timeline-panel">
-                  {if ($type == 'gallery')}
-                    <div class="timeline-heading">
-                      <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
-                        <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
-                      </h6>
-                      {if ($exhibition.selection_range)}
-                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.selection_range} </small></p>
-                      {else}
-                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
-                      {/if}
-                    </div>
-                  {else}
-                    <div class="timeline-heading">
-                      {if ($exhibition.selection_type)}
-                        <h6 class="timeline-title"><div class="bold mb10">{$exhibition.selection_type}</div> 
-                          <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
-                        </h6>
-                      {else}
-                        <h6 class="timeline-title"><div class="bold mb10">{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name} </div> 
-                          <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
-                        </h6>
-                      {/if}
-                      {if ($exhibition.selection_range)}
-                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.selection_range} </small></p>
-                      {else}
-                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
-                      {/if}
-                    </div>
-                  {/if}
-                  <div class="timeline-body">
-                    <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="img-container">
-                      {if ($exhibition.title_image)}  
-                        <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
-                      {else}
-                        <img src="/img/exhibition/default.jpg" class="img-responsive" alt="">
-                      {/if}  
-                    </a>
-                    <!--p>{* $exhibition.description *}</p-->
-                  </div>
-                </div>
-              </li>
-            {/foreach} 
-          {/if}
-        </ul>
-      </div>
-    </div>
-{else}
-  {{"include": "minisites/exhibition_empty_message.html"}}  
-{/if}
+                            {$loc = $exhibition.location_id|get:"location"}
+                                <li {if ($i%2)}class="timeline-inverted"{/if}>
+                                <div class="timeline-badge timeline-badge-small {$badge_class}"><i class="glyphicon glyphicon-check"></i></div>
+                                <div class="timeline-panel">
+                                    {if ($type == 'gallery')}
+                                        <div class="timeline-heading">
+                                            <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
+                                                <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
+                                            </h6>
+                                            {if ($exhibition.selection_range)}
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.selection_range} </small></p>
+                                            {else}
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
+                                            {/if}
+                                        </div>
+                                    {else}
+                                        <div class="timeline-heading">
+                                            {if ($exhibition.selection_type)}
+                                                <h6 class="timeline-title"><div class="bold mb10">{$exhibition.selection_type}</div> 
+                                                    <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
+                                                </h6>
+                                            {else}
+                                                <h6 class="timeline-title"><div class="bold mb10">{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name} </div> 
+                                                    <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
+                                                </h6>
+                                            {/if}
+                                            {if ($exhibition.selection_range)}
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.selection_range} </small></p>
+                                            {else}
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
+                                            {/if}
+                                        </div>
+                                    {/if}
+                                    <div class="timeline-body">
+                                        <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="img-container">
+                                            {if ($exhibition.title_image)}  
+                                                <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
+                                            {else}
+                                                <img src="/img/exhibition/default.jpg" class="img-responsive" alt="">
+                                            {/if}
+                                        </a>
+                      
+                                        <!--p>{* $exhibition.description *}</p-->
+                                    </div>
+                                </div>
+                            </li>
+                            {$i = $i + 1}  {$count = 1}
+                        {else}
+                            <!-- {if ($empty_chk == 0)}
+                            {$empty_chk = 1}
+                                <div class="smart_filter_exhibirion_page"> 
+                                    {{"include": "minisites/exhibition_empty_message.html"}}  
+                                </div> 
+                            {/if} -->
+                        {/if} 
+                    {/foreach}  
+                    
+                    {if (($data.show_latest) && (!$count))}
+                        {foreach from=$latest_exhibitions item=exhibition}
+                            {$badge_class = "success"}
+                            <li {if ($i%2)}class="timeline-inverted"{/if}>
+                                <div class="timeline-badge timeline-badge-small {$badge_class}"><i class="glyphicon glyphicon-check"></i></div>
+                                <div class="timeline-panel">
+                                    {if ($type == 'gallery')}
+                                        {$count=$count+1}
+                                        <div class="timeline-heading">
+                                            <h6 class="timeline-title"><div class="bold mb10">{$exhibition|artists}</div> 
+                                                <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
+                                            </h6>
+                                            {if ($exhibition.selection_range)}
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.selection_range} </small></p>
+                                            {else}
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
+                                            {/if}
+                                        </div>
+                                    {else}
+                                        <div class="timeline-heading">
+                                            {if ($exhibition.selection_type)}
+                                                {$count=$count+1}
+                                                <h6 class="timeline-title"><div class="bold mb10">{$exhibition.selection_type}</div> 
+                                                    <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
+                                                </h6>
+                                            {else}
+                                                <h6 class="timeline-title"><div class="bold mb10">{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name} </div> 
+                                                    <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">{$exhibition.title}</a>
+                                                </h6>
+                                            {/if}
+                                            {if ($exhibition.selection_range)}
+                                                {$count=$count+1}
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.selection_range} </small></p>
+                                            {else}
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {$exhibition.start_date|date_format:"%e %B %Y"} - {$exhibition.end_date|date_format:"%e %B %Y"}</small></p>
+                                            {/if}
+                                        </div>
+                                    {/if}
+                                    <div class="timeline-body">
+                                        <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}" class="img-container">
+                                            {if ($exhibition.title_image)}  
+                                                <img src="{$exhibition|collection_photo:'small'}" class="img-responsive" alt="{$exhibition.name} Exhibition">
+                                            {else}
+                                                <img src="/img/exhibition/default.jpg" class="img-responsive" alt="">
+                                            {/if}  
+                                        </a>
+                                        <!--p>{* $exhibition.description *}</p-->
+                                    </div>
+                                </div>
+                            </li>
+                        {/foreach} 
+                    {/if}
+
+                    {if ($count == 0)}
+                        {$count = 1}
+                        <div class="smart_filter_exhibirion_page"> 
+                            {{"include": "minisites/exhibition_empty_message.html"}}  
+                        </div> 
+                    {/if}
+                </ul>
+            </div>
+        </div>
+    {else}
+        {{"include": "minisites/exhibition_empty_message.html"}}  
+    {/if}
 {/block}

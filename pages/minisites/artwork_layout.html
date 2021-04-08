@@ -22,7 +22,7 @@
   {/if}
   {$count = $count + 1}
 {/foreach}
-{if ($collection.id)}
+{if ($getartwork.id)}
 <div class="profileinfo"> 
 	<div class="gallery-artwork-detail">
 		<article class="row mt20">
@@ -31,34 +31,39 @@
 				<figure id="{$container_id}" data-data='{$data|@json_encode}' 
 				  data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index={$seq} class="vp-loader-photoswipe effect-{$ms.art_animation}">
 				  <div class="hover_cover">
-				  	{if ($collection.title_image)}
-				      <img src="{$collection.title_image|photo:'medium'}" class="pull-left" id="__vp-view-button-1355" alt="{$collection.artist_name|ucfirst}, {$collection.technique|ucfirst}, {$collection.title}, {$collection.primary_year}"><br>
+			  		{if ($getartwork.title_image)}
+				      <img src="{$getartwork.title_image|photo:'medium'}" class="pull-left" id="__vp-view-button-1355" alt="{$collection.artist_name|ucfirst}, {$collection.technique|ucfirst}, {$collection.title}, {$collection.primary_year}"><br>
 				    {else}
 				      <img src="/img/artwork/default.jpg" class="pull-left" id="__vp-view-button-1355" alt=""><br>
 				    {/if}
+				  	<!-- {if ($collection.title_image)}
+				      <img src="{$collection.title_image|photo:'medium'}" class="pull-left" id="__vp-view-button-1355" alt="{$collection.artist_name|ucfirst}, {$collection.technique|ucfirst}, {$collection.title}, {$collection.primary_year}"><br>
+				    {else}
+				      <img src="/img/artwork/default.jpg" class="pull-left" id="__vp-view-button-1355" alt=""><br>
+				    {/if} -->
 					{{"include": "minisites/caption/titleimg_caption.html"}}
 				  </div>
 				</figure>
 				<!-- <img src="{$getartwork.title_image|photo:'medium'}" alt="{$collection.title}" class="img-responsive" /><br> -->
 			  </div>
 			</section>
-			{if ($collection.title)}
+			{if ($getartwork.title)}
 				{$profile = $collection.artist_id|get_user:1}
 				{{"include":"minisites/artwork_details.html"}}
 			{else}
 				<aside class="col-sm-5">
-					{$type = related_images_type($collection.type) }
+					{$type = related_images_type($getartwork.type) }
 					<h1>{$type}</h1>
-					<div style="font-size: 21px">{$collection.description}</div>
+					<div style="font-size: 21px">{$getartwork.description}</div>
 					<br><br>
 					<h4><div class='italic'>Featured in exhibtion:</div></h4>
-					<h1><a href="{$basepath}/{$collection.page_slug}/{$collection.slug}">{$collection.title}</a></h1>
-					{if ($collection.start_date && $collection.end_date)}
+					<h1><a href="{$basepath}/{$getartwork.page_slug}/{$getartwork.slug}">{$getartwork.title}</a></h1>
+					{if ($getartwork.start_date && $getartwork.end_date)}
 					  {{"include": "_gallery-collection-date"}}
 					{/if}
 					
-					{if ($collection.event)}
-					  {$event = $collection.event}
+					{if ($getartwork.event)}
+					  {$event = $getartwork.event}
 					  {$start_date = explode(' ', $event.end_time)}
 					  {$today = today()}
 					  {if ($start_date[0] < $today)}
@@ -71,10 +76,10 @@
 		</article>
 		<article class="row mt40">
 			<div class="gap gap-small"></div>
-			{if ($collection.title && $collection.description)}
+			{if ($getartwork.title && $getartwork.description)}
 				<div class="exbdtl_desc">
-					<div class="col-sm-6"><h3>About "{$collection.title}"</h3></div>
-					<div class="col-sm-12">{$collection.description}</div>
+					<div class="col-sm-6"><h3>About "{$getartwork.title}"</h3></div>
+					<div class="col-sm-12">{$getartwork.description}</div>
 				</div>
 			{/if}
 			<div class="gap"></div>

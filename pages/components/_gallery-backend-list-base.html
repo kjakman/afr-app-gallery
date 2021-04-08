@@ -3,7 +3,7 @@
 {$page_id = $scope.page_id}
 {$user_id = $scope.user_id}
 {$folders = $scope.folderlist}
-
+{$media_type=$scope.media_type}
 {block name="table"}
   <div id="toolbar" class="">
     {if ((0 && !$scope.add_to) || (0 && !$scope.add_to_profile))}
@@ -53,10 +53,14 @@
           <li><a href="#" id="sel_add_exbart" data-target_id="{$add_to_exbart}">Add to exhibition</a></li>
         {elseif ($add_to_exbtitle)}
           <li><a href="#" id="sel_add_exbtitle" data-target_id="{$add_to_exbtitle}">Add to exhibition</a></li>
-        {elseif (($add_to_folder) && ($folders))}
-          {foreach from=$folders item=folder}
-            <li><a href="#" id="sel_add_folder" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$folder.id}">Add to {$folder.filename}</a></li>
-          {/foreach}
+        {elseif ($media_type=='media')}
+            {foreach from=$folders item=folder}
+                <li><a href="#" id="sel_add_folder" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$folder.id}">Add to {$folder.filename}</a></li>
+
+            {/foreach}
+        {elseif ($media_type=='media_folder')}
+
+            <li></li>
         {else}
           <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to ...</a></li>
         {/if}
@@ -163,7 +167,7 @@
     var link_class = pv ? 'ajax-loader' : '';
     // console.log("base_link = " + base_link + " pv=" + pv);
     //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
-    return '<span><span type="hidden" class="edit" name="edit" data-col="title" data-value='+row.id+' >'+value+'</span></span>';
+    return '<span> <span  type="hidden" class="edit" name="edit" data-col="title" data-value='+row.id+' >'+value+'</span></span>';
   }
 
   function bstTitleFormatter(value, row, index) {
@@ -176,6 +180,7 @@
     return '<span><span type="hidden" class="edit_exhibition" name="edit_exhibition" data-col="title" data-value='+row.id+' >'+value+'</span></span>';
   
   }
+  
 
   function bstVaultTitleFormatter(value, row, index) {
     if((row.type == 'folder') && ('{$get_str}')){
@@ -221,7 +226,7 @@
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     // console.log("base_link = " + base_link + " pv=" + pv);
-   return '<span><span type="hidden" class="edit" name="edit" data-col="price" data-value='+row.id+' >'+value+'</span></span>';
+   return '<span style = "min-width:84px"><span  type="hidden" class="edit" name="edit" data-col="price" data-value='+row.id+' >'+value+'</span></span>';
   }
 
   function bstYearFormatter(value, row, index) {
@@ -241,9 +246,9 @@
     // console.log("base_link = " + base_link + " pv=" + pv);
     if(row.type == '50'){
       var value = 'N/A';
-      return '<span><span type="hidden" class="edit" name="edit" data-col="height" data-value='+row.id+' style="cursor: default;" >'+value+'</span></span>';
+      return '<span style = "min-width:84px"><span type="hidden" class="edit" name="edit" data-col="height" data-value='+row.id+' style="cursor: default;" >'+value+'</span></span>';
     }else{
-      return '<span><span type="hidden" class="edit" name="edit" data-col="height" data-value='+row.id+' >'+value+'</span></span>';
+      return '<span style = "min-width:84px"><span type="hidden" class="edit" name="edit" data-col="height" data-value='+row.id+' >'+value+'</span></span>';
     }
    
   }
@@ -256,9 +261,9 @@
     // console.log("base_link = " + base_link + " pv=" + pv);
     if(row.type == '50'){
       var value = 'N/A';
-      return '<span><span type="hidden" class="edit" name="edit" data-col="width" data-value='+row.id+' style="cursor: default;" >'+value+'</span></span>';
+      return '<span style = "min-width:84px"><span type="hidden" class="edit" name="edit" data-col="width" data-value='+row.id+' style="cursor: default;" >'+value+'</span></span>';
     }else{
-      return '<span><span type="hidden" class="edit" name="edit" data-col="width" data-value='+row.id+' >'+value+'</span></span>';
+      return '<span style = "min-width:84px"><span type="hidden" class="edit" name="edit" data-col="width" data-value='+row.id+' >'+value+'</span></span>';
     }
     
   }

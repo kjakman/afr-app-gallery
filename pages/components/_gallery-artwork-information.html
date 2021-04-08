@@ -1,156 +1,159 @@
                             
-                            <h3 class="relative">
-                              {if ($artwork.status == 10)}                            
-                              <span class="dot_outside mt6 {if ($artwork.status==10)}green{else}red{/if}">&#x25cf;</span>
-                              {/if}
-                              {$artwork.title}<br>
-                            </h3>
-                            <h4>
-                              {if ($artwork.primary_year)} 
-                                {$artwork.primary_year} {if ($artwork.primary_year_type)} ({$artwork.primary_year_type}) {/if}
-                              {/if} 
-                              {if ($artwork.secondary_year)} 
-                                , {$artwork.secondary_year} {if ($artwork.secondary_year_type)} ({$artwork.secondary_year_type}) {/if}
-                              {/if}<br>                 
-                            </h4>
-                            <h5>
-                              {if ($artwork.type == 50)}
-                                <p class='italic'>
-                                  {$artwork.technique}<br>
+<h3 class="relative">
+    {if ($artwork.status==10)}                  
+        <span class="dot_outside mt6 green">&#x25cf;</span>
+    {elseif ($artwork.status==20) || ($artwork.status==30)}                  
+        <span class="dot_outside mt6 red">&#x25cf;</span>
+    {/if}
 
-                                  {if ($artwork.video_time)}  
-                                    Time : {$artwork.video_time} 
-                                  {/if}<br>
-                                  {if ($artwork.video_director)}  
-                                    Director : {$artwork.video_director} 
-                                  {/if}<br>
-                                  {if ($artwork.video_producer)}  
-                                    Producer : {$artwork.video_producer} 
-                                  {/if}<br>
-                                  {if ($artwork.video_narrator)}  
-                                    Narrator : {$artwork.video_narrator} 
-                                  {/if}<br>
-                                  {if ($artwork.video_sound)}  
-                                    Sound : {$artwork.video_sound} 
-                                  {/if}<br>
-                                  {if ($artwork.video_editor)}  
-                                    Editor : {$artwork.video_editor} 
-                                  {/if}<br>
-                                  {if ($artwork.video_cast)}  
-                                    Cast : {$artwork.video_cast}<br>
-                                  {/if}
-                                  
-                                  {if ($artwork.editions > 1)}  
-                                    Series of {$artwork.editions} <br>
-                                  {elseif ($artwork.editions == 1)}
-                                    Unique <br>
-                                  {/if}
+    {$artwork.title}<br>
+</h3>
+<h4>
+    {if ($artwork.primary_year)} 
+        {$artwork.primary_year} {if ($artwork.primary_year_type)} ({$artwork.primary_year_type}) {/if}
+    {/if} 
+    {if ($artwork.secondary_year)} 
+        , {$artwork.secondary_year} {if ($artwork.secondary_year_type)} ({$artwork.secondary_year_type}) {/if}
+    {/if}<br>                 
+</h4>
+<h5>
+    {if ($artwork.type == 50)}
+        <p class='italic'>
+        {$artwork.technique}<br>
 
-                                  {if ($artwork.edition)}  
-                                    Edition : {$artwork.edition} <br>
-                                  {/if}
-                                </p>
-                              {else}
-                                <p class='italic'>
-                                  {$artwork.technique}<br>
+        {if ($artwork.video_time)}  
+            Time : {$artwork.video_time} 
+        {/if}<br>
+        {if ($artwork.video_director)}  
+            Director : {$artwork.video_director} 
+        {/if}<br>
+        {if ($artwork.video_producer)}  
+            Producer : {$artwork.video_producer} 
+        {/if}<br>
+        {if ($artwork.video_narrator)}  
+            Narrator : {$artwork.video_narrator} 
+        {/if}<br>
+        {if ($artwork.video_sound)}  
+            Sound : {$artwork.video_sound} 
+        {/if}<br>
+        {if ($artwork.video_editor)}  
+            Editor : {$artwork.video_editor} 
+        {/if}<br>
+        {if ($artwork.video_cast)}  
+            Cast : {$artwork.video_cast}<br>
+        {/if}
 
-                                  {if (($artwork.type == 10) || ($artwork.type == 20) || ($artwork.type == 21) || ($artwork.type == 11) || ($artwork.type == 22) )}
-                                    {if (($artwork.height !=0.0) && ($artwork.width !=0.0))}
-                                    {floatval($artwork.height)}
-                                    X {floatval($artwork.width)}
-                                    {$artwork.unit}
-                                    {/if}
-                                  {elseif (($artwork.type == 30) || ($artwork.type == 40) )}
-                                    {floatval($artwork.height)}
-                                    {if ($artwork.width != 0.0)} X {floatval($artwork.width)} {/if}
-                                    {if ($artwork.depth != 0.0)} X {floatval($artwork.depth)} {/if}
-                                    {$artwork.unit}
-                                    {/if}<br>
+        {if ($artwork.editions > 1)}  
+            Series of {$artwork.editions} <br>
+        {elseif ($artwork.editions == 1)}
+            Unique <br>
+        {/if}
 
-                                  {if ($artwork.type == 30 || $artwork.type == 40)}
-                                    {*if ($artwork.presentation == 10)*}
-                                    {if ($artwork.presentation == 20)} Free Standing <br>
-                                    {elseif ($artwork.presentation == 30)} Pedestal Mounted <br>
-                                    {elseif ($artwork.presentation == 40)} Wall Mounted <br>
-                                    {elseif ($artwork.presentation == 50)} Hanging <br>
-                                    {elseif ($artwork.presentation == 60)} Installation <br>
-                                    {/if}
-                                  {else}
-                                    {if ($artwork.frame == -1 && ($artwork.type == 10 || $artwork.type == 11 || $artwork.type == 20 || $artwork.type == 21 || $artwork.type == 22 ))}
-                                      Unframed
-                                    {elseif ($artwork.frame == 1 && ($artwork.type == 10 || $artwork.type == 11 || $artwork.type == 20 || $artwork.type == 21 || $artwork.type == 22 ))}
-                                      Framed
-                                    {/if}
+        {if ($artwork.edition)}  
+            Edition : {$artwork.edition} <br>
+        {/if}
+        </p>
+    {else}
+        <p class='italic'>
+        {$artwork.technique}<br>
 
-                                    {if ($artwork.passepartout == -1 && ($artwork.type == 10 || $artwork.type == 11 || $artwork.type == 20 || $artwork.type == 21 || $artwork.type == 22 ))}
-                                      , No Passe-partout <br>
-                                    {elseif ($artwork.passepartout == 1 && ($artwork.type == 10 || $artwork.type == 11 || $artwork.type == 20 || $artwork.type == 21 || $artwork.type == 22 ))}
-                                      , Passe-partout 
-                                    {/if} 
-                                {/if}
-                      
-                                  {if ($artwork.editions > 1)}  
-                                    <br>Series of {$artwork.editions} <br>
-                                  {elseif ($artwork.editions == 1)}
-                                    Unique <br>
-                                  {/if}
+        {if (($artwork.type == 10) || ($artwork.type == 20) || ($artwork.type == 21) || ($artwork.type == 11) || ($artwork.type == 22) )}
+            {if (($artwork.height !=0.0) && ($artwork.width !=0.0))}
+                {floatval($artwork.height)}
+                X {floatval($artwork.width)}
+                {$artwork.unit}
+            {/if}
+        {elseif (($artwork.type == 30) || ($artwork.type == 40) )}
+            {floatval($artwork.height)}
+            {if ($artwork.width != 0.0)} X {floatval($artwork.width)} {/if}
+            {if ($artwork.depth != 0.0)} X {floatval($artwork.depth)} {/if}
+            {$artwork.unit}
+        {/if}<br>
 
-                                  {if ($artwork.edition)}  
-                                    Edition : {$artwork.edition} <br>
-                                  {/if}
-                                </p>
-                              {/if}
-                            </h5>
-                              <h3 class="relative">
-                                  {if (($artwork.status == 10) && ($artwork.price_option == 1))}
-                                    {if ($artwork.price > 0)}
-                                      {$artwork.currency|currency} {$artwork.price|price}   
-                                    {else if ($artwork.status > 0)}
-                                      Price on inquiry
-                                    {/if}
-                                  {elseif (($artwork.status == 10) && ($artwork.price_option == -1))}
-                                    Price on inquiry
-                                  {/if}           
-                              </h3> 
-                              
-                              
-                              <!-- <p class='italic'>
-                                {$artwork.technique}<br>
-                                {if ($artwork.height > 0 && $artwork.width > 0)}
-                                {$artwork.height} x {$artwork.width} cm <br>
-                                {/if}
-                              
-                                {$count = $artwork.count}
-                                {if ($count == 1)}
-                                Unique
-                                {elseif ($count > 0)}
-                                Edition of {$count}
-                                {/if}
+        {if ($artwork.type == 30 || $artwork.type == 40)}
+            {*if ($artwork.presentation == 10)*}
+            {if ($artwork.presentation == 20)} Free Standing <br>
+            {elseif ($artwork.presentation == 30)} Pedestal Mounted <br>
+            {elseif ($artwork.presentation == 40)} Wall Mounted <br>
+            {elseif ($artwork.presentation == 50)} Hanging <br>
+            {elseif ($artwork.presentation == 60)} Installation <br>
+            {/if}
+        {else}
+            {if ($artwork.frame == -1 && ($artwork.type == 10 || $artwork.type == 11 || $artwork.type == 20 || $artwork.type == 21 || $artwork.type == 22 ))}
+              Unframed
+            {elseif ($artwork.frame == 1 && ($artwork.type == 10 || $artwork.type == 11 || $artwork.type == 20 || $artwork.type == 21 || $artwork.type == 22 ))}
+              Framed
+            {/if}
 
-                                {if ($artwork.frame == -1)}
-                                  Unframed,
-                                {elseif ($artwork.frame == 1)}
-                                  Framed,
-                                {else}
-                                {/if}
+            {if ($artwork.passepartout == -1 && ($artwork.type == 10 || $artwork.type == 11 || $artwork.type == 20 || $artwork.type == 21 || $artwork.type == 22 ))}
+              , No Passe-partout <br>
+            {elseif ($artwork.passepartout == 1 && ($artwork.type == 10 || $artwork.type == 11 || $artwork.type == 20 || $artwork.type == 21 || $artwork.type == 22 ))}
+              , Passe-partout 
+            {/if} 
+        {/if}
 
-                                {if ($artwork.passepartout == -1)}
-                                  No Passe-partout
-                                {elseif ($artwork.frame == 1)}
-                                  Passe-partout
-                                {else}
-                                {/if}
+        {if ($artwork.editions > 1)}  
+            <br>Series of {$artwork.editions} <br>
+        {elseif ($artwork.editions == 1)}
+            Unique <br>
+        {/if}
 
-                              </p>    -->
-                            
-                                                      
-                            <!-- <h4>
-                              {if ($artwork.status == 10)}
-                                {if ($artwork.price > 0)}
-                                {$artwork.currency|currency} {$artwork.price|price}   
-                                {else if ($artwork.status > 0)}
-                                Price on inquiry
-                                {/if}
-                              {/if}
-                            </h4> -->
+        {if ($artwork.edition)}  
+            Edition : {$artwork.edition} <br>
+        {/if}
+        </p>
+    {/if}
+</h5>
+<h3 class="relative">
+    {if (($artwork.status == 10) && ($artwork.price_option == 1))}
+        {if ($artwork.price > 0)}
+            {$artwork.currency|currency} {$artwork.price|price}   
+        {else if ($artwork.status > 0)}
+            Price on inquiry
+        {/if}
+    {elseif (($artwork.status == 10) && ($artwork.price_option == -1))}
+        Price on inquiry
+    {/if}           
+</h3> 
+  
+  
+  <!-- <p class='italic'>
+    {$artwork.technique}<br>
+    {if ($artwork.height > 0 && $artwork.width > 0)}
+    {$artwork.height} x {$artwork.width} cm <br>
+    {/if}
+  
+    {$count = $artwork.count}
+    {if ($count == 1)}
+    Unique
+    {elseif ($count > 0)}
+    Edition of {$count}
+    {/if}
+
+    {if ($artwork.frame == -1)}
+      Unframed,
+    {elseif ($artwork.frame == 1)}
+      Framed,
+    {else}
+    {/if}
+
+    {if ($artwork.passepartout == -1)}
+      No Passe-partout
+    {elseif ($artwork.frame == 1)}
+      Passe-partout
+    {else}
+    {/if}
+
+  </p>    -->
+
+                          
+<!-- <h4>
+  {if ($artwork.status == 10)}
+    {if ($artwork.price > 0)}
+    {$artwork.currency|currency} {$artwork.price|price}   
+    {else if ($artwork.status > 0)}
+    Price on inquiry
+    {/if}
+  {/if}
+</h4> -->
 

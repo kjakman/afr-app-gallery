@@ -43,18 +43,19 @@ $__CLASSES= array_merge($__CLASSES, array(
 
 
 // extensions to existing classes
-$__CLASS_ATTRIBUTES["user_profile"] = array_merge($__CLASS_ATTRIBUTES["user_profile"], array(                                
-     'gallery_name'     => array('Gallery name'  ,     'str',      '', 0, 50 ),
-     'gallery_solo_shows'   => array('Solo Shows'  ,      'html',     '', 0),
-     'gallery_group_shows'  => array('Group Shows'  ,      'html',     '', 0),
-     'press'                => array('Press'  ,      'html',     '', 0),
-     'awards'=>        array('Awards',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
-     'artist'  =>       array('artist',      'bool',     1,  AF_HIDE_ADD, 1),
-     'working_hours'=>        array('Working Hours',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
-     'social'=>        array('Social',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
-     'contact'=>        array('More Contacts',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
+    $__CLASS_ATTRIBUTES["user_profile"] = array_merge($__CLASS_ATTRIBUTES["user_profile"], array(                                
+        'gallery_name'     => array('Gallery name'  ,     'str',      '', 0, 50 ),
+        'gallery_solo_shows'   => array('Solo Shows'  ,      'html',     '', 0),
+        'gallery_group_shows'  => array('Group Shows'  ,      'html',     '', 0),
+        'press'                => array('Press'  ,      'html',     '', 0),
+        'awards'=>        array('Awards',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
+        'artist'  =>       array('artist',      'bool',     1,  AF_HIDE_ADD, 1),
+        'working_hours'=>        array('Working Hours',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
+        'social'=>        array('Social',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
+        'contact'=>        array('More Contacts',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
+        'language'=>          array('Language',                'many2one', ATT_DEFAULT_LANGUAGE, AF_SEARCHABLE, 'language'),
      
-));
+    ));
 
 
 $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(                                
@@ -141,85 +142,82 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
      'description'=>   array('Description',       'str',   '', 1, 200 ),
   ),
   
-  "media_collection_type" => 
-  array(
-     'id'=>            	    array('ID',                	'id',   '', AF_PRIMARY|AF_AUTOINCREMENT, 11),
-     'name'=>               array('Name',               'str',   '', AF_OBLIGATORY|AF_SEARCHABLE, 100),
-     'description'=>        array('Description',        'str',   '', 0, 100),
-  ),
+    "media_collection_type" => 
+        array(
+            'id'=>            	    array('ID',                	'id',   '', AF_PRIMARY|AF_AUTOINCREMENT, 11),
+            'name'=>               array('Name',               'str',   '', AF_OBLIGATORY|AF_SEARCHABLE, 100),
+            'description'=>        array('Description',        'str',   '', 0, 100),
+        ),
 
-  "media_collection" => 
-  array(
-     'id'=>                array('ID',                'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 8),
-     'created'=>           array('Created',           'datetime',   ATT_DEFAULT_NOW, AF_HIDE_LIST, 6 ),
-     'timestamp'=>         array('Timestamp',         'timestamp',   ATT_DEFAULT_NOW, AF_HIDE|AF_READONLY, 14 ),
-     'active'=>            array('Active',            'bool',   1, 0),
-     'public'=>            array('Public',            'bool',   1, 0),
-     'show_plugin'=>       array('Show Plugin',       'bool',   1, 0),
-     'show_website'=>      array('Show Website',      'bool',   1, 0),
-     'rank'=>              array('Rank',              'int', 0, AF_HIDE_ADD, 3),
-     //'type'=>        array('Type',                'one2one', 0,   AF_HIDE_LIST|AF_OBLIGATORY|AF_CASCADE_DELETE|AF_ONE2ONE_INTEGRATE, 'media_collection_type'),
+    "media_collection" => 
+        array(
+            'id'=>                array('ID',                'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 8),
+            'created'=>           array('Created',           'datetime',   ATT_DEFAULT_NOW, AF_HIDE_LIST, 6 ),
+            'timestamp'=>         array('Timestamp',         'timestamp',   ATT_DEFAULT_NOW, AF_HIDE|AF_READONLY, 14 ),
+            'active'=>            array('Active',            'bool',   1, 0),
+            'public'=>            array('Public',            'bool',   1, 0),
+            'show_plugin'=>       array('Show Plugin',       'bool',   1, 0),
+            'show_website'=>      array('Show Website',      'bool',   1, 0),
+            'rank'=>              array('Rank',              'int', 0, AF_HIDE_ADD, 3),
+            //'type'=>        array('Type',                'one2one', 0,   AF_HIDE_LIST|AF_OBLIGATORY|AF_CASCADE_DELETE|AF_ONE2ONE_INTEGRATE, 'media_collection_type'),
+            'type' =>             array('Collection Type',   'many2one', MEDIA_COLLECTION_TYPE_EXHIBITION, AF_SEARCHABLE, 'media_collection_type'), // collection, exhibition
+            'subtype' =>          array('Exhibition Subtype', 'many2one', 0, AF_SEARCHABLE, 'exhibition_type'), // art faire, virtual exhibition, etc
+            'site_id'=>           array('Site',              'link',   ATT_DEFAULT_SITE_ID, AF_READONLY|AF_HIDE_ADD, 'site'),
+            'user_id'=>           array('User',              'link',  ATT_DEFAULT_USER_ID, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
+            'artist_id'=>         array('Artist',            'link',  ATT_DEFAULT_NULL, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
+            //'artist_ids'=>        array('Artists',           'json',  ATT_DEFAULT_NULL, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
 
-     'type' =>             array('Collection Type',   'many2one', MEDIA_COLLECTION_TYPE_EXHIBITION, AF_SEARCHABLE, 'media_collection_type'), // collection, exhibition
-     'subtype' =>          array('Exhibition Subtype', 'many2one', 0, AF_SEARCHABLE, 'exhibition_type'), // art faire, virtual exhibition, etc
-     'site_id'=>           array('Site',              'link',   ATT_DEFAULT_SITE_ID, AF_READONLY|AF_HIDE_ADD, 'site'),
-     'user_id'=>           array('User',              'link',  ATT_DEFAULT_USER_ID, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
-     'artist_id'=>         array('Artist',            'link',  ATT_DEFAULT_NULL, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
-   //'artist_ids'=>        array('Artists',           'json',  ATT_DEFAULT_NULL, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
+            //'artist_ids'=>        array('Artist name',                'one2bala', 0,   AF_HIDE_LIST|AF_OBLIGATORY|AF_CASCADE_DELETE|AF_ONE2ONE_INTEGRATE, 'user_profile'),
+            'artist_ids'=>        array('Artists',           'json',  ATT_DEFAULT_NULL, AF_SEARCHABLE|AF_HIDE_ADD),
 
-     //'artist_ids'=>        array('Artist name',                'one2bala', 0,   AF_HIDE_LIST|AF_OBLIGATORY|AF_CASCADE_DELETE|AF_ONE2ONE_INTEGRATE, 'user_profile'),
-     'artist_ids'=>        array('Artists',           'json',  ATT_DEFAULT_NULL, AF_SEARCHABLE|AF_HIDE_ADD),
-    
-     'curator_id'           =>array('Curator Id'    , 'link', ATT_DEFAULT_NULL, AF_HIDE_LIST|AF_HIDE_ADD|AF_READONLY, 'user'),
-     'title'=>             array('Title',             'str',   '', AF_OBLIGATORY, 255),
-//     'title_image'=>       array('Title Image',       'media',  ATT_DEFAULT_NULL, 0, 'media'),
-     'title_image'=>       array('Title image',       'media',   '', 0, $std_image_options),
-     'title_image_json'  => array('Image (json)',      'json',     '', 0),
+            'curator_id'           =>array('Curator Id'    , 'link', ATT_DEFAULT_NULL, AF_HIDE_LIST|AF_HIDE_ADD|AF_READONLY, 'user'),
+            'title'=>             array('Title',             'str',   '', AF_OBLIGATORY, 255),
+            //     'title_image'=>       array('Title Image',       'media',  ATT_DEFAULT_NULL, 0, 'media'),
+            'title_image'=>       array('Title image',       'media',   '', 0, $std_image_options),
+            'title_image_json'  => array('Image (json)',      'json',     '', 0),
 
-     'related_media'            => array('Media',             'media',     '', 0, $gallery_media_options),
-     'related_media_json'       => array('Media (json)',      'json',     '', 0),
-     
-     'language'=>          array('Language',    			'many2one', ATT_DEFAULT_LANGUAGE, AF_SEARCHABLE, 'language'),
-     'description'=>       array('Description',       'html',  '', AF_HIDE_LIST),
-//     'json' =>             array('Json',              'json',  '', AF_READONLY),
-//     'images'=>            array('Images',            'many2many', '', AF_HIDE_LIST, 'media_collection_map'),
-     'start_date'=>         array('From',              'date',   '', AF_LOG),
-     'end_date'=>           array('To',                'date',   '', AF_LOG),
-     'exhibition_sequence'=>           array('To',                'date',   '', AF_LOG),
+            'related_media'            => array('Media',             'media',     '', 0, $gallery_media_options),
+            'related_media_json'       => array('Media (json)',      'json',     '', 0),
 
-     'location_id'=>        array('Location',          'link',   0, AF_READONLY|AF_HIDE_ADD, 'location'),
-     'address_formatted'=>  array('Formatted Address', 'text',   '', AF_HIDE_LIST),
-     'event_id'=>           array('Event',             'link',   0, AF_READONLY|AF_HIDE_ADD, 'event'),
+            'language'=>          array('Language',    			'many2one', ATT_DEFAULT_LANGUAGE, AF_SEARCHABLE, 'language'),
+            'description'=>       array('Description',       'html',  '', AF_HIDE_LIST),
+            //     'json' =>             array('Json',              'json',  '', AF_READONLY),
+            //     'images'=>            array('Images',            'many2many', '', AF_HIDE_LIST, 'media_collection_map'),
+            'start_date'=>         array('From',              'date',   '', AF_LOG),
+            'end_date'=>           array('To',                'date',   '', AF_LOG),
+            'exhibition_sequence'=>           array('To',                'date',   '', AF_LOG),
+            'location_id'=>        array('Location',          'link',   0, AF_READONLY|AF_HIDE_ADD, 'location'),
+            'address_formatted'=>  array('Formatted Address', 'text',   '', AF_HIDE_LIST),
+            'event_id'=>           array('Event',             'link',   0, AF_READONLY|AF_HIDE_ADD, 'event'),
 
-     'settings'=>        array('Settings',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
-     'title_image_option'  =>       array('Title Image Radio button',         'bool',     1,  AF_HIDE_ADD, 0),
-     
-  ),
+            'settings'=>        array('Settings',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
+            'title_image_option'  =>       array('Title Image Radio button',         'bool',     1,  AF_HIDE_ADD, 0),
+        ),
   
-  "media_collection_map" => 
-  array(
-     'id'=>                    array('ID',              'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 8),
-     'created'=>           array('Created',           'datetime',   ATT_DEFAULT_NOW, AF_HIDE_LIST, 6 ),
-//     'timestamp'=>         array('Timestamp',         'timestamp',   ATT_DEFAULT_NOW, AF_HIDE|AF_READONLY, 14 ),
-     'site_id'=>           array('Site',              'link',   ATT_DEFAULT_SITE_ID, AF_READONLY|AF_HIDE_ADD, 'site'),
-     'user_id'=>           array('User',              'link',  ATT_DEFAULT_USER_ID, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
-     'artist_id'=>         array('Artist',            'link',  ATT_DEFFAUL_NULL, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
-     'curator_id'=>        array('Curator',            'link',  ATT_DEFAULT_NULL, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
+    "media_collection_map" => 
+        array(
+            'id'=>                    array('ID',              'id',   0, AF_PRIMARY|AF_AUTOINCREMENT, 8),
+            'created'=>           array('Created',           'datetime',   ATT_DEFAULT_NOW, AF_HIDE_LIST, 6 ),
+            //     'timestamp'=>         array('Timestamp',         'timestamp',   ATT_DEFAULT_NOW, AF_HIDE|AF_READONLY, 14 ),
+            'site_id'=>           array('Site',              'link',   ATT_DEFAULT_SITE_ID, AF_READONLY|AF_HIDE_ADD, 'site'),
+            'user_id'=>           array('User',              'link',  ATT_DEFAULT_USER_ID, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
+            'artist_id'=>         array('Artist',            'link',  ATT_DEFFAUL_NULL, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
+            'curator_id'=>        array('Curator',            'link',  ATT_DEFAULT_NULL, AF_SEARCHABLE|AF_HIDE_ADD, 'user'),
 
-     'active'=>            array('Active',            'bool',   1, 0),
-     'rank'=>              array('Rank',              'int', 0, AF_HIDE_ADD, 3),
-     'media_collection_id'=> array('Collection',      'link',   '', AF_OBLIGATORY, 'media_collection'),
-     'collection_type'   => array('Collection Type', 'link',   0, 0, 'media_collection_type'),
-     'type'  =>              array('Type',            'link',   0, 0, 'artwork_related_type'),
-     'media_id'=>            array('Media',           'link',   '', 0, 'media'),
-     'artwork_id'=>          array('Artwork',         'link',   ATT_DEFAULT_NULL, 0, 'artwork'),
-     'name'=>                array('Name',            'str',   '', AF_SEARCHABLE, 128),
-     'description'=>         array('Description',     'str',   '', AF_SEARCHABLE, 128),
-     'original_year'=>       array('Year',            'str',   '', AF_SEARCHABLE, 4),
-     'original_technique'=>  array('Technique',       'str',   '', AF_SEARCHABLE, 255),
-     'artist_name'=>         array('Artist Name',     'str',   '', AF_SEARCHABLE, 50),
-     'curator_name'=>        array('Curator Name',    'str',   '', AF_SEARCHABLE, 50),
-  ),
+            'active'=>            array('Active',            'bool',   1, 0),
+            'rank'=>              array('Rank',              'int', 0, AF_HIDE_ADD, 3),
+            'media_collection_id'=> array('Collection',      'link',   '', AF_OBLIGATORY, 'media_collection'),
+            'collection_type'   => array('Collection Type', 'link',   0, 0, 'media_collection_type'),
+            'type'  =>              array('Type',            'link',   0, 0, 'artwork_related_type'),
+            'media_id'=>            array('Media',           'link',   '', 0, 'media'),
+            'artwork_id'=>          array('Artwork',         'link',   ATT_DEFAULT_NULL, 0, 'artwork'),
+            'name'=>                array('Name',            'str',   '', AF_SEARCHABLE, 128),
+            'description'=>         array('Description',     'str',   '', AF_SEARCHABLE, 128),
+            'original_year'=>       array('Year',            'str',   '', AF_SEARCHABLE, 4),
+            'original_technique'=>  array('Technique',       'str',   '', AF_SEARCHABLE, 255),
+            'artist_name'=>         array('Artist Name',     'str',   '', AF_SEARCHABLE, 50),
+            'curator_name'=>        array('Curator Name',    'str',   '', AF_SEARCHABLE, 50),
+        ),
   
     "exhibition_map" => 
     array(

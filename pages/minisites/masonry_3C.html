@@ -24,7 +24,7 @@
 			<div class="item-grid-sizer"></div>
 			<div class="item-gutter-sizer"></div>
 			{foreach from=$exhibitions item=exhibition}
-			  {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
+			  {if (($exhibition.current == $future) || ($exhibition.current == 'selection') || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
 				<div class="item-grid effect-{$ms.hover_type}">        
 					<div class="hover_style">				
 					  <figure class="effect-{$ms.hover_type}">
@@ -46,7 +46,7 @@
                             {if ($empty_chk == 0)}
                             {$empty_chk = 1}
                               <div class="smart_filter_exhibirion_page"> 
-                                      {{"include": "minisites/exhibition_empty_message.html"}}  
+                                      <!-- {{"include": "minisites/exhibition_empty_message.html"}}   -->
                               </div> 
                             {/if}
 			  {/if}
