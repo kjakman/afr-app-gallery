@@ -56,6 +56,8 @@
   <div class="row photo-grid-row col-md-12">
     <ul class="photo-grid gallery-list col-md-12">
     {foreach from=$latest_exhibitions item=exhibition}
+              {$empty_chk = +1}
+    
       <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item effect-{$ms.hover_type}" data-index="{$index}">  
          <div class="hover_style">       
            <figure class="effect-{$ms.hover_type} ratio_based">

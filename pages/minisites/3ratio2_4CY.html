@@ -13,6 +13,7 @@
 {if ($data.show_future)} {$future = 'future'} {/if}
 {if ($data.show_latest)} {$latest = 'latest'} {/if}
 {$count = 0} {$index = 0} 
+{$empty_chk = 0}
 
   {foreach from=$years item=year}
     <h1 class="year_{$year['year']} yseparator" style="display: none;">{$year['year']}</h1> <br>
@@ -20,8 +21,11 @@
         <ul class="photo-grid gallery-list row">
         {foreach from=$exhibitions item=exhibition}
           {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+                {$empty_chk = +1}
+
             {if ($year['year'] == array_shift(explode('-', $exhibition.start_date)) )} 
               {$yearExist[] = $year['year']}
+
               <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-3 effect-{$ms.hover_type}" data-index="{$index}">   
                  <div class="hover_style">       
                    <figure class="effect-{$ms.hover_type} ratio_based">
@@ -49,6 +53,8 @@
   <div class="row photo-grid-row col-md-12">
     <ul class="photo-grid gallery-list col-md-12">
     {foreach from=$latest_exhibitions item=exhibition}
+                {$empty_chk = +1}
+    
       <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item effect-{$ms.hover_type}" data-index="{$index}">   
          <div class="hover_style">       
            <figure class="effect-{$ms.hover_type} ratio_based">
@@ -68,7 +74,11 @@
   </ul>
   </div>
 {/if}
-
+{if ($count==0 && $empty_chk == 0)}
+<div class="smart_filter_exhibirion_page"> 
+        {{"include": "minisites/exhibition_empty_message.html"}}  
+</div> 
+{/if}
 <script src='https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js'></script>
 <script>
   $(document).ready(function(){

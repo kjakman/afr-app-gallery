@@ -79,6 +79,8 @@
 
   {if (($data.show_latest) && (!$count))}
     {foreach from=$latest_exhibitions item=exhibition}
+        {$empty_chk = +1}
+    
   	  <div class="niagra_row niagra_cassablanca niagra_row_zigzag">
   		<div class="niagra_bigcol niagra_col">
   			<div class="niagra_incol effect-{$ms.hover_type}">

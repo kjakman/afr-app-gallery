@@ -68,6 +68,8 @@
 	
   {if (($data.show_latest) && (!$count))}
     {foreach from=$latest_exhibitions item=exhibition}
+        {$empty_chk = +1}
+    
       <div class="banner_exhibition">
         <div class="banner_exhibition_img">
           <div class="banner_exhibition_imgin">

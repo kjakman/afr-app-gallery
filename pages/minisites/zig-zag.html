@@ -108,7 +108,7 @@
 		{$empty_chk=0}
   	{/if}
 
-	{if ($count ==0 &&  $empty_chk == 0)}
+	{if (count($data.show_latest)==0 && $count ==0 && $empty_chk == 0)}
 	    <div class="smart_filter_exhibirion_page"> 
 	            {{"include": "minisites/exhibition_empty_message.html"}}  
 	    </div> 

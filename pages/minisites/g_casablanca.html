@@ -18,7 +18,7 @@
 {if ($exhibitions)}  
   {foreach from=$exhibitions item=exhibition}
   	{if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
-  	{$count = 1}
+  	{$count = 1} {$empty_chk = +1}
 	{if ($i==0)}
 	  <div class="niagra_row niagra_cassablanca niagra_row_zigzag">
 		<div class="niagra_bigcol niagra_col">
@@ -67,13 +67,7 @@
 	  </div>
 	{/if}
 	{if ($i==2)} {$i = 0} {else} {$i = $i+1} {/if}	
-        {else}
-                  {if ($empty_chk == 0)}
-                  {$empty_chk = 1}
-                    <div class="smart_filter_exhibirion_page"> 
-                            {{"include": "minisites/exhibition_empty_message.html"}}  
-                    </div> 
-                  {/if}
+      
 	{/if}	
   {/foreach}
 
@@ -103,6 +97,12 @@
     {/foreach}
 {/if}
 {else}
-{{"include": "minisites/exhibition_empty_message.html"}}  
+{$empty_chk = 0}
 {/if}  
+
+                  {if ($empty_chk == 0)}
+                    <div class="smart_filter_exhibirion_page"> 
+                            {{"include": "minisites/exhibition_empty_message.html"}}  
+                    </div> 
+                  {/if}
 {/block}

@@ -1,0 +1,88 @@
+
+{{"extend": "minisites/index.html"}}
+{$years = $scope.exhibition_years}
+
+{block name=title}
+  <h2 class="page_title">{$minisite_pageObj.page_title}</h2>    
+{/block}
+
+{block name=content}
+{$data = json_decode($minisite_pageObj.data, TRUE)}
+{if ($data.show_current)} {$current = 'current'} {/if}
+{if ($data.show_past)} {$past = 'past'} {/if}
+{if ($data.show_future)} {$future = 'future'} {/if}
+{if ($data.show_latest)} {$latest = 'latest'} {/if}
+{$count = 0}  {$index = 0}  
+{$empty_chk = 0}
+  {foreach from=$years item=year}
+    <h1 class="year_{$year['year']} yseparator" style="display: none;" >{$year['year']}</h1> <br>
+      <div class=" photo-grid-row col-md-12">
+        <ul class="photo-grid gallery-list row">
+        {foreach from=$exhibitions item=exhibition}
+          {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past))}
+            {if ($year['year'] == array_shift(explode('-', $exhibition.start_date)) )} 
+{$empty_chk = +1}
+
+              {$yearExist[] = $year['year']}
+              <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-6 effect-{$ms.hover_type}" data-index="{$index}">
+               <div class="hover_style">       
+                 <figure class="effect-{$ms.hover_type} ratio_based">
+                 <div class="hover_cover">
+                   <span class="frame-square ratio43">
+                    <img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+                   </span>
+                   {{"include": "minisites/caption/figcaption.html"}}  
+                   <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+                 </div>        
+                 </figure>
+               </div>
+               {{"include": "minisites/caption/exh_details.html"}}       
+              </li>
+              {$index = $index + 1} {$count = 1}
+            {/if} 
+          {/if}
+        {/foreach}
+      </ul>
+    </div>
+{/foreach}
+
+{if (($data.show_latest) && (!$count))}
+  <h5 class="yseparator" style="text-align: left;">Latest</h5>
+  <div class="row photo-grid-row col-md-12">
+    <ul class="photo-grid gallery-list col-md-12">
+    {foreach from=$latest_exhibitions item=exhibition}
+      <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item effect-{$ms.hover_type}" data-index="{$index}">
+         <div class="hover_style">       
+           <figure class="effect-{$ms.hover_type} ratio_based">
+           <div class="hover_cover">
+             <span class="frame-square ratio43">
+              <img class="center-cropped" src="{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}">
+             </span>
+             {{"include": "minisites/caption/figcaption.html"}} 
+             <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
+           </div>        
+           </figure>
+         </div>
+         {{"include": "minisites/caption/exh_details.html"}}       
+      </li>
+      {$count = 1}
+    {/foreach}
+  </ul>
+  </div>
+{/if}
+{if ($count==0 && $empty_chk == 0)}
+<div class="smart_filter_exhibirion_page"> 
+        {{"include": "minisites/exhibition_empty_message.html"}}  
+</div> 
+{/if}
+<script>
+  $(document).ready(function(){
+    var yearExist = "{$yearExist|json_encode}";
+    console.log("Existing Year "+JSON.stringify(yearExist) );
+    var data = jQuery.parseJSON(yearExist);
+    $.each(data, function(index, value) {
+      $('.year_'+value).show();
+    });
+  });
+</script>
+{/block}

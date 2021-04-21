@@ -41,7 +41,10 @@
      
 {if ($exhibitions)}      
   {foreach from=$exhibitions item=exhibition}
+          {$empty_chk = +1}
+
 	{if ($i==0)}
+
 	  <div class="niagra_row niagra_cassabaltim">
 		<div class="niagra_bigcol niagra_col">
 			<div class="niagra_incol effect-{$ms.hover_type}">
@@ -91,7 +94,13 @@
 	{if (($i == 2) || ($i && ($exbcount%2 == 1)))} {$i = 0} {else} {$i = $i+1} {/if}
   {/foreach}
 {else}
-{{"include": "minisites/exhibition_empty_message.html"}}
+                            {$empty_chk = 0}
 {/if}  
+
+ {if ($count==0 && $empty_chk == 0)}
+                              <div class="smart_filter_exhibirion_page"> 
+                                      {{"include": "minisites/exhibition_empty_message.html"}}  
+                              </div> 
+                            {/if}
 </div>
 {/block}

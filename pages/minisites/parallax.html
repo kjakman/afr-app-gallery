@@ -74,6 +74,8 @@
 
   {if (($data.show_latest) && (!$count))}
 	{foreach from=$latest_exhibitions item=exhibition}
+			  {$empty_chk = +1}
+	
 	  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
 		<div class="parallax-window parallax-window{$i}" data-parallax="scroll" data-speed="0.5" data-image-src="{$exhibition|collection_photo:'big'}">
 			<div class="parallax-caption">

@@ -50,6 +50,8 @@
 
 			{if (($data.show_latest) && (!$count))}
 			  {foreach from=$latest_exhibitions item=exhibition}
+			  {$empty_chk = +1}
+			  
 				<h5 class="yseparator" style="text-align: left;">Latest</h5>
 				<div class="item-grid effect-{$ms.hover_type}">
 					<div class="hover_style">				
@@ -77,7 +79,7 @@
                             {$empty_chk = 0}
 
 {/if}
-                            {if ($empty_chk == 0)}
+                            {if ($count==0 && $empty_chk == 0)}
                               <div class="smart_filter_exhibirion_page"> 
                                       {{"include": "minisites/exhibition_empty_message.html"}}  
                               </div> 

@@ -59,6 +59,8 @@
       <h4 style="text-align: left;">Latest</h4>
       <ul class="photo-grid gallery-list row">
         {foreach from=$latest_exhibitions item=exhibition}    
+        {$empty_chk = +1}
+        
           <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-6 effect-{$ms.hover_type}" data-index="{$index}">   
              <div class="hover_style">       
                <figure class="effect-{$ms.hover_type} ratio_based">

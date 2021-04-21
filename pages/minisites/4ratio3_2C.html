@@ -81,7 +81,7 @@
 {else}
 {$empty_chk = 0}
 {/if}  
-{if ($empty_chk == 0)}
+{if ($count==0 && $empty_chk == 0)}
 <div class="smart_filter_exhibirion_page"> 
       {{"include": "minisites/exhibition_empty_message.html"}}  
 </div> 
