@@ -2,9 +2,11 @@
 	<h1>{$profile.display_name}</h1>
 	<h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4><br>
 	<h4>
-	  {if ($getartwork.status == 10)}                            
-	  <span class="dot_outside mt6 {if ($artwork.status==10)}green{else}red{/if}">&#x25cf;</span>
-	  {/if}
+	  {if ($getartwork.status==10)}                  
+        <span class="dot_outside mt6 green">&#x25cf;</span>
+    {elseif ($getartwork.status==20) || ($getartwork.status==30)}                  
+	        <span class="dot_outside mt6 red">&#x25cf;</span>
+    {/if}
 	  {$getartwork.title}<br>
 	  {if ($getartwork.primary_year)} 
 	    {$getartwork.primary_year} {if ($getartwork.primary_year_type)} ({$getartwork.primary_year_type}) {/if}

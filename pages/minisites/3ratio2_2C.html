@@ -22,6 +22,7 @@
     <ul class="photo-grid gallery-list row">
       {foreach from=$exhibitions item=exhibition}
         {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
+        {$empty_chk = +1}
           <li class="photo-grid-container gallery-list-item pdf-thumb-box gallery-artwork-item col-sm-6 effect-{$ms.hover_type}" data-index="{$index}">  
            <div class="hover_style">       
              <figure class="effect-{$ms.hover_type} ratio_based">
@@ -41,13 +42,7 @@
            {{"include": "minisites/caption/exh_details.html"}}       
           </li>
           {$count = 1} {$index = $index + 1}
-          {else}
-                            {if ($empty_chk == 0)}
-                            {$empty_chk = 1}
-                              <div class="smart_filter_exhibirion_page"> 
-                                      {{"include": "minisites/exhibition_empty_message.html"}}  
-                              </div> 
-                            {/if}
+                    
         {/if}
       {/foreach}
     </ul>
@@ -80,6 +75,11 @@
   </div>
 </div>
 {else}
-{{"include": "minisites/exhibition_empty_message.html"}}
+{$empty_chk = 0}
+{/if}
+{if ($empty_chk == 0)}
+  <div class="smart_filter_exhibirion_page"> 
+          {{"include": "minisites/exhibition_empty_message.html"}}  
+  </div> 
 {/if}
 {/block}

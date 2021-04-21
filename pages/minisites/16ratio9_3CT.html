@@ -15,6 +15,7 @@
 {else}
   {$arr = ['past' => $data.show_past, 'current' => $data.show_current, 'future' => $data.show_future]}
 {/if}
+
 <div class="row">
 {foreach from=$arr key=key item=val}
   {if (($val) && ($data_exist[$key]))}

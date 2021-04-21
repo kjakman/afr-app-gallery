@@ -18,6 +18,8 @@
 {if ($exhibitions)}        
 	{foreach from=$exhibitions item=exhibition}
 	  {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}
+            {$empty_chk = +1}
+	  
 	  {$count = 1}
 	  <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
 		<div class="parallax-window parallax-window{$i}" data-parallax="scroll" data-speed="0.5" data-image-src="{$exhibition|collection_photo:'big'}">
@@ -65,13 +67,8 @@
 
 		{$i = $i + 1}
 		{$imglink[] = $exhibition|collection_photo:'medium'}
-                {else}
-                                            {if ($empty_chk == 0)}
-                                            {$empty_chk = 1}
-                                              <div class="smart_filter_exhibirion_page"> 
-                                                      {{"include": "minisites/exhibition_empty_message.html"}}  
-                                              </div> 
-                                            {/if}
+              
+                                            
 	  {/if}
 	{/foreach}
 
@@ -125,8 +122,13 @@
 	{/foreach}
 {/if}
 {else}
-{{"include": "minisites/exhibition_empty_message.html"}}
+            {$empty_chk = 0}
 {/if}  
+{if ($count==0 && $empty_chk == 0)}
+              <div class="smart_filter_exhibirion_page"> 
+                      {{"include": "minisites/exhibition_empty_message.html"}}  
+              </div> 
+            {/if}
 <script src='https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.4.2/parallax.min.js'></script>
 <script >
 	$(document).ready(function() {

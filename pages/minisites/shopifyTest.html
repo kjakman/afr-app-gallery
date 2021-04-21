@@ -1,13 +1,13 @@
 {{"extend": "minisites/index.html"}}
 {$minisitepage = $scope.minisite_pageObj}
-{$data = json_decode($minisitepage.data)}
+{$data = json_decode($scope.url)}
 {block name=content} 
 <style>
 	.modal-lg{
 	    max-width: 94%;
 	}
 </style>
-	<iframe src="{$data[0]}" height="700px" width="100%" style="max-height:100%;"></iframe>
+	<iframe src="{$scope.url}" height="700px" width="100%" style="max-height:100%;">{$scope.url}</iframe>
 
 	<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#shopify_modal">Open Store</button>
 

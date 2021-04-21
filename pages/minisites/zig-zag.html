@@ -37,11 +37,15 @@
 	{elseif (($data.show_latest) && (!$count))}
 	  	{$exhibitions = $latest_exhibitions}
 	{/if}
-		
 	{{"include": "minisites/top/top.html"}}
-	{if ($exhibitions)}        
+                  {$empty_chk = 0}
+
+	{if ($exhibitions)}     
+	   
 		<div class="zigzag_container">
 		  	{foreach from=$exhibitions item=exhibition}
+                  {$empty_chk = +1}
+
 				<div class="zigzag_row row">
 					<div class="zigzag_col col-sm-12 col-md-8 zigzag_col_img">
 						<div class="ratio_based">
@@ -60,6 +64,8 @@
 				   		{$loc = $exhibition.location_id|get:"location"}
 				   		{$desc = str_replace(['<a>', '</a>'], '', $exhibition.description)}	
 				   	   	{if ($type == 'gallery')}
+                  			{$empty_chk = +1}
+
 				   	   		<div class="exhibition-title zigzag_cntn_cover">
 				   			  	<h3>{$exhibition|artists}</h3>
 				   	   		  	<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"><h2>{$exhibition.title}</h2></a>
@@ -74,6 +80,8 @@
 				   				{/if}
 				   			</div> 
 				   	   	{else}
+                  			{$empty_chk = +1}
+
 				   	   		<div class="exhibition-title zigzag_cntn_cover">
 				   	   		  	{if ($exhibition.selection_type)}
 				   	   		    	<h3>{$exhibition.selection_type}</h3>
@@ -97,6 +105,12 @@
 		  	{/foreach}
 		</div>
 	{else}
-		{{"include": "minisites/exhibition_empty_message.html"}}
-	{/if}
+		{$empty_chk=0}
+  	{/if}
+
+	{if ($count ==0 &&  $empty_chk == 0)}
+	    <div class="smart_filter_exhibirion_page"> 
+	            {{"include": "minisites/exhibition_empty_message.html"}}  
+	    </div> 
+  	{/if}
 {/block}
