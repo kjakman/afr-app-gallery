@@ -9,7 +9,7 @@
 {$image = $scope.curator_photo}
 {$name = $scope.curator_name}
 {$address = $scope.curator_address_formatted}
-{$selection = find_objects('media_collection', ['user_id' => $scope.curator_id, 'subtype' => 40, 'active' => 1])}
+{$selection = find_objects('media_collection', ['user_id' => $scope.curator_id,'subtype' => 40, 'active' => 1])}
 {$events = find_objects('media_collection', ['user_id' => $scope.curator_id, 'subtype' => 30, 'active' => 1])}
 {$gallery = find_objects('media_collection', ['user_id' => $scope.curator_id, 'subtype' => 10, 'active' => 1])}
 {$art = find_objects('media_collection', ['user_id' => $scope.curator_id, 'subtype' => 20, 'active' => 1])}
@@ -51,7 +51,7 @@
 									</div>
 									<div id="navbar" class="navbar-collapse collapse">
 										<ul class="nav navbar-nav">
-											<li {if (($url_segment[1] == 'profile' && $seg2[1] == $scope.exh_id) || ($url_segment[1] == 'artwork' && $seg2[1] == $scope.exh_id) || ($url_segment[1] == 'exhibition' && $seg2[1] == $scope.exh_id) || ($url_segment[1] == 'selectedart' && $url_segment[2] == $scope.exh_id))} class="active" {/if} ><a href="{$app.site_url}profile/{$scope.curator_id}">About</a></li>
+											<li {if (($url_segment[1] == 'profile' && $seg2[1] == $scope.exh_id) || ($url_segment[1] == 'artwork' && $seg2[1] == $scope.exh_id) || ($url_segment[1] == 'exhibition' && $seg2[1] == $scope.exh_id) || ($url_segment[1] == 'selectedart' && $url_segment[2] == $scope.exh_id))} class="active" {/if} ><a href="{$app.site_url}profile/{$scope.curator_id}">About </a></li>
 											{if (count($selection) > 0)}
 											<li {if ($seg2[0] == 'selection' || $seg3[0] == 'selection')} class="active" {/if}><a href="{$app.site_url}exhibition/selection?user_id={$scope.curator_id}">Selections</a></li>
 											{/if}
