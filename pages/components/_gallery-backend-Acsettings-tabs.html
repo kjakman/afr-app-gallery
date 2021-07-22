@@ -14,6 +14,7 @@
 {$tab12_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'awards']}
 {$tab13_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'freetext']}
 {$tab14_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'preview']}
+{$tab44_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'subscription']}
 
 
 {$tab = $page.tab|default:'preview'}
@@ -27,6 +28,7 @@
     <li {if ($tab == 'details')  }class="active"{/if}><a href="{$tab3_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_details">Details</a></li>
     <li {if ($tab == 'artist')  }class="active"{/if}><a href="{$tab4_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_cv">CV</a></li>
     <li {if ($tab == 'art')  }class="active"{/if}><a href="{$tab5_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_art">Selected Art</a></li>
+    <li {if ($tab == 'subscription')  }class="active"{/if}><a href="{$tab44_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_art">Subscription</a></li>
     <li {if ($tab == 'notification')  }class="active"{/if}><a href="{$tab6_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="account_notifications">Notification</a></li>
     <li {if ($tab == 'password')  }class="active"{/if}><a href="{$tab7_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="account_password">Password</a></li>
     <li {if ($tab == 'verification')  }class="active"{/if}><a href="{$tab8_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="verify">Verification</a></li>  
@@ -46,8 +48,10 @@
       {{"include": "_gallery-backend-profile-solo.html"}} 
     {elseif ($tab == 'art')}
       {{"include": "_user-profile-edit-art1.html"}}
+    {elseif ($tab == 'subscription')}
+      {{"include": "_user-account-subscription.html"}} 
     {elseif ($tab == 'notification')}
-      {{"include": "_user-account-notifications.html"}}
+      {{"include": "_user-account-notifications.html"}} 
     {elseif ($tab == 'password')}
       {{"include": "_user-account-password.html"}}
     {elseif ($tab == 'verification')}
@@ -62,6 +66,7 @@
       {{"include": "_gallery-backend-profile-awards.html"}}   
     {elseif ($tab == 'freetext')}
       {{"include": "_gallery-backend-profile-freetext.html"}} 
+    
     {else}
       {"Unknown tab `$tab`"|alert:"error"}
     {/if}  

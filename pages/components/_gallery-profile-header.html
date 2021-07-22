@@ -19,56 +19,57 @@
 {$seg3 = explode("?",$url_segment[3])}
 
 {*dump($scope)*}
-						<div class="profileinfo_header">
-							<div class="row">
-								<div class="col-sm-6">
-									 <div class="profileinfo_logo">
-                                                                             {if ($image)}
-										<img class="origin round" src="{$image|photo:'ig'}" alt="Logo"/>
-                                                                             {else}
-                                                                                <img class="origin round" src="/img/profile/default.jpg" alt="Logo"/>
-                                                                             {/if}   
-									 </div>
-								</div>
-								<div class="col-sm-6">
-									 <div class="profileinfo_title text-center">
-										<h1>{$name}</h1>
-										<p>{$address}</p>
-									 </div>
-								</div>
-							</div>
-						</div>
-						<div class="profileinfo_menu">
-							<nav class="navbar navbar-default">
-								<div class="container-fluid">
-									<div class="navbar-header">
-										<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-											<span class="sr-only">Toggle navigation</span>
-											<span class="icon-bar"></span>
-											<span class="icon-bar"></span>
-											<span class="icon-bar"></span>
-										</button>
-									</div>
-									<div id="navbar" class="navbar-collapse collapse">
-										<ul class="nav navbar-nav">
-											<li {if (($url_segment[1] == 'profile' && $seg2[1] == $scope.exh_id) || ($url_segment[1] == 'artwork' && $seg2[1] == $scope.exh_id) || ($url_segment[1] == 'exhibition' && $seg2[1] == $scope.exh_id) || ($url_segment[1] == 'selectedart' && $url_segment[2] == $scope.exh_id))} class="active" {/if} ><a href="{$app.site_url}profile/{$scope.curator_id}">About</a></li>
-											{if (count($selection) > 0)}
-											<li {if ($seg2[0] == 'selection' || $seg3[0] == 'selection')} class="active" {/if}><a href="{$app.site_url}exhibition/selection?user_id={$scope.curator_id}">Selections</a></li>
-											{/if}
-											{if (count($events) > 0)}
-											<li {if ($seg2[0] == 'event' || $seg3[0] == 'event')} class="active" {/if}><a href="{$app.site_url}exhibition/event?user_id={$scope.curator_id}">Events</a></li>
-											{/if}
-											{if (count($gallery) > 0)}
-											<li {if ($seg2[0] == 'gallery' || $seg3[0] == 'gallery')} class="active" {/if}><a href="{$app.site_url}exhibition/gallery?user_id={$scope.curator_id}">Gallery Shows</a></li>
-											{/if}
-											{if (count($art) > 0)}
-											<li {if ($seg2[0] == 'artfair' || $seg3[0] == 'artfair')} class="active" {/if}><a href="{$app.site_url}exhibition/artfair?user_id={$scope.curator_id}">Art Fairs</a></li>
-											{/if}
-											<li {if ($seg2[0] == 'follow' || $seg3[0] == 'follow')} class="active" {/if}><a href="{$app.site_url}exhibition/follow?user_id={$scope.curator_id}">Follow</a></li>
-										</ul>
-									</div>
-									<!--/.nav-collapse -->
-								</div>
-								<!--/.container-fluid -->
-							</nav>
-						</div>
+		<div class="profileinfo_header">
+			<div class="row">
+				<div class="col-sm-6">
+				 	<div class="profileinfo_logo">
+                  {if ($image)}
+							<img class="origin round" src="{$image|photo:'ig'}" alt="Logo"/>
+                  {else}
+                     <img class="origin round" src="/img/profile/default.jpg" alt="Logo"/>
+                  {/if}   
+					</div>
+				</div>
+				<div class="col-sm-6">
+					 <div class="profileinfo_title text-center">
+						<h1>{$name}</h1>
+						<p>{$address}</p>
+					 </div>
+				</div>
+			</div>
+		</div>
+		<div class="profileinfo_menu">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<li {if (($url_segment[1] == 'profile' && $seg2[1] == $scope.exh_id) || ($url_segment[1] == 'artwork' && $seg2[1] == $scope.exh_id) || ($url_segment[1] == 'exhibition' && $seg2[1] == $scope.exh_id) || ($url_segment[1] == 'selectedart' && $url_segment[2] == $scope.exh_id))} class="active" {/if} ><a href="{$app.site_url}profile/{$scope.curator_id}">About</a></li>
+							{if (count($selection) > 0)}
+							<li {if ($seg2[0] == 'selection' || $seg3[0] == 'selection')} class="active" {/if}><a href="{$app.site_url}exhibition/selection?user_id={$scope.curator_id}">Selections</a></li>
+							{/if}
+							{if (count($events) > 0)}
+							<li {if ($seg2[0] == 'event' || $seg3[0] == 'event')} class="active" {/if}><a href="{$app.site_url}exhibition/event?user_id={$scope.curator_id}">Events</a></li>
+							{/if}
+							{if (count($gallery) > 0)}
+							<li {if ($seg2[0] == 'gallery' || $seg3[0] == 'gallery')} class="active" {/if}><a href="{$app.site_url}exhibition/gallery?user_id={$scope.curator_id}">Gallery Shows</a></li>
+							{/if}
+							{if (count($art) > 0)}
+							<li {if ($seg2[0] == 'artfair' || $seg3[0] == 'artfair')} class="active" {/if}><a href="{$app.site_url}exhibition/artfair?user_id={$scope.curator_id}">Art Fairs</a></li>
+							{/if}
+							<li {if ($seg2[0] == 'follow' || $seg3[0] == 'follow')} class="active" {/if}><a href="{$app.site_url}exhibition/follow?user_id={$scope.curator_id}">Follow</a></li>
+							<!-- <li class="active"><a href="{$app.site_url}exhibition/payment?user_id={$scope.curator_id}">Subscription</a></li> -->
+						</ul>
+					</div>
+					<!--/.nav-collapse -->
+				</div>
+				<!--/.container-fluid -->
+			</nav>
+		</div>
