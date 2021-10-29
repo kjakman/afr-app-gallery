@@ -24,10 +24,11 @@
             <span class="unit">{$get_artwork->unit}</span>
           {/if}
         {elseif (($get_artwork->type == 30) || ($get_artwork->type == 40) )}
-          {floatval($get_artwork->height)}
+          {if (floatval($get_artwork->height)!=0) } {floatval($get_artwork->height)} {/if}
+
           {if ($get_artwork->width != 0.0)} X {floatval($get_artwork->width)} {/if}
           {if ($get_artwork->depth != 0.0)} X {floatval($get_artwork->depth)} {/if}
-          <span class="unit">{$get_artwork->unit}</span>
+          <span class="unit"> {if (floatval($get_artwork->height)!=0) || ($get_artwork->width != 0.0) || ($get_artwork->depth != 0.0)} {$get_artwork->unit} {/if}</span>
 
         {elseif ($get_artwork->type == 50)}
           {if ($get_artwork->video_time != '00:00:00')}

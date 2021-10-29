@@ -798,7 +798,78 @@ function check_status(id) {
     }
 
   //------------------------------ End Vignesh Implemented----------------------------------------//
-
+    function bstUserNameFormatter(value, row, index) {
+        var print_val = value ? value : "[Untitled]";
+        var base_link = row.obj_type == 'user' ? '/backend/medium' : '{$base_link}';
+        var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+        var link_class = pv ? 'ajax-loader' : '';
+        // console.log("base_link = " + base_link + " pv=" + pv);
+        //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+        return '<span><span type="hidden" class="name" name="name" data-col="name" data-value='+row.id+' >'+row.first_name+'</span></span>';
+    }
+    function bstAccountTypeFormatter(value, row, index) {
+        var print_val = value ? value : "[Untitled]";
+        var base_link = row.obj_type == 'user' ? '/backend/medium' : '{$base_link}';
+        var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+        var link_class = pv ? 'ajax-loader' : '';
+        // console.log("base_link = " + base_link + " pv=" + pv);
+        //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+        return '<span><span type="hidden" class="name" name="name" data-col="name" data-value='+row.id+' >'+row.subscription_plan[0].name+'</span></span>';
+    }
+    function bstLastLoginFormatter(value, row, index) {
+        var print_val = value ? value : "[Untitled]";
+        var base_link = row.obj_type == 'user' ? '/backend/medium' : '{$base_link}';
+        var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+        var link_class = pv ? 'ajax-loader' : '';
+        // console.log("base_link = " + base_link + " pv=" + pv);
+        //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+        return '<span><span type="hidden" class="name" name="name" data-col="name" data-value='+row.id+' >'+row.last_login+'</span></span>';
+    }
+    function bstArtworkFormatter(value, row, index) {
+        var print_val = value ? value : "[Untitled]";
+        var base_link = row.obj_type == 'user' ? '/backend/medium' : '{$base_link}';
+        var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+        var link_class = pv ? 'ajax-loader' : '';
+        // console.log("base_link = " + base_link + " pv=" + pv);
+        //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+        return '<span><span type="hidden" class="name" name="name" data-col="name" data-value='+row.id+' >'+row.artworks+'</span></span>';
+    }
+    function bstMediaFormatter(value, row, index) {
+        var print_val = value ? value : "[Untitled]";
+        var base_link = row.obj_type == 'user' ? '/backend/medium' : '{$base_link}';
+        var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+        var link_class = pv ? 'ajax-loader' : '';
+        // console.log("base_link = " + base_link + " pv=" + pv);
+        //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+        return '<span><span type="hidden" class="name" name="name" data-col="name" data-value='+row.id+' >'+row.media+'</span></span>';
+    }
+    function bstExhibitionFormatter(value, row, index) {
+        var print_val = value ? value : "[Untitled]";
+        var base_link = row.obj_type == 'user' ? '/backend/medium' : '{$base_link}';
+        var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+        var link_class = pv ? 'ajax-loader' : '';
+        // console.log("base_link = " + base_link + " pv=" + pv);
+        //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+        return '<span><span type="hidden" class="name" name="name" data-col="name" data-value='+row.id+' >'+row.exhibitions+'</span></span>';
+    }
+    function bstMinisiteFormatter(value, row, index) {
+        var print_val = value ? value : "[Untitled]";
+        var base_link = row.obj_type == 'user' ? '/backend/medium' : '{$base_link}';
+        var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+        var link_class = pv ? 'ajax-loader' : '';
+        // console.log("base_link = " + base_link + " pv=" + pv);
+        //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+        return '<span><span type="hidden" class="name" name="name" data-col="name" data-value='+row.id+' >'+row.minisites+'</span></span>';
+    }
+    function bstConnectedMinisiteFormatter(value, row, index) {
+        var print_val = value ? value : "[Untitled]";
+        var base_link = row.obj_type == 'user' ? '/backend/medium' : '{$base_link}';
+        var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+        var link_class = pv ? 'ajax-loader' : '';
+        // console.log("base_link = " + base_link + " pv=" + pv);
+        //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+        return '<span><span type="hidden" class="name" name="name" data-col="name" data-value='+row.id+' >'+row.connected_minisites+'</span></span>';
+    }
   // --------------- For Crud page for Sample Testing Vignesh Implemented---------------------// 
   function bstCrudEditFormatter(value, row, index) {
     var base_link = row.obj_type == 'cruds' ? '/backend/medium' : '{$base_link}';

@@ -18,6 +18,9 @@
                     {if ($artwork.media_id != 0)}  
                         <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.name}">    
                     {else}
+                      {if ($artwork.title_image_json != null)}
+                       <img class="__vp-plugin-image center-cropped" src="{$artwork.title_image_json|photo:'medium'}" alt="{$artwork.name}">   
+                      {else}
                         <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
                     {/if}
                   </div>             
@@ -25,8 +28,13 @@
                       {if ($artwork.media_id != 0)}
                          <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">    
                       {else}
-                         <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
+                        {if ($artwork.title_image_json != null)}
+                           <img class="__vp-flip-back-image" src="{$artwork.title_image_json|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">    
+                        {else}
+                           <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
+                        {/if}   
                       {/if}   
+
                     <div class="__vp-flip-back-card">  
                       {if ($ms.hover_text == 2)}
                         {$type = get_artwork_type($get_artwork->type)}

@@ -1,0 +1,32 @@
+{$what = 'user'}
+{$plural = 'users'}
+
+{$form = "_gallery-backend-user-form.html"}
+{{"extend": "_gallery-backend-list-base.html"}}
+
+{block name=main}  
+{/block}
+
+{block name="fields"}
+    <div class="form-group col-sm-12">
+    </div>
+    <div class="form-group col-sm-12">
+        <h1 align="center">User Analytics</h1>
+    </div>
+
+    <!-- <th data-field="state" data-checkbox="true">Check</th> -->
+    <!--th data-field="id" data-sortable="true" data-formatter="bstIDFormatter">ID</th-->
+    <th class="text-center" data-field="name" data-sortable="true" data-formatter="bstUserNameFormatter">Name</th>
+    <th class="text-center" data-field="account_type" data-sortable="true" data-formatter="bstAccountTypeFormatter">Account Type</th>
+    <th class="text-center" data-field="logins" data-sortable="true" data-formatter="bstLastLoginFormatter">Logins</th>
+    <th class="text-center" data-field="media" data-sortable="true" data-formatter="bstMediaFormatter">Media</th>
+
+    <th class="text-center" data-field="artwork" data-sortable="true" data-formatter="bstArtworkFormatter">Artworks</th>
+    <th class="text-center" data-field="exhibitions" data-sortable="true" data-formatter="bstExhibitionFormatter">Exhibitions</th>
+    <th class="text-center" data-field="minisites" data-sortable="true" data-formatter="bstMinisiteFormatter">Minisites</th>
+    <th class="text-center" data-field="connected_minisites" data-sortable="true" data-formatter="bstConnectedMinisiteFormatter">Connected Minisites</th>
+      
+       
+{/block}
+
+

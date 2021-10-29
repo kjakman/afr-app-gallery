@@ -1,6 +1,21 @@
 {$p = '/backend'}
+
 <ul class="nav navbar-nav"> 
-    <li id="nav_section_tips" class="class-filter{if ($scope.section =='tutorial')} active{/if}"><a class="subview-nav-link" href="{$p}/tutorial"></i>Tips & Tutorials <i class="pull-right hidden-xs showopacity fa fa-cog"></i></a></li>
+    <li id="nav_section_tips" class="class-filter{if ($scope.section =='tutorial')} active{/if}"><a class="subview-nav-link" href="{$p}/tutorial"></i>Quick Start & Tutorials<i class="pull-right hidden-xs showopacity fa fa-cog"></i></a></li>
+    {if ($scope.user.user_level==40) }
+
+        <li id="nav_section_tips" class="class-filter{if ($scope.section =='Analytics')} active{/if}"><a class="subview-nav-link" href="{$p}/Analytics"></i>Analytics <i class="pull-right hidden-xs showopacity fa fa-cog"></i></a></li>
+        <li id="nav_section_tips" class="class-filter{if ($scope.section =='User')} active{/if}"><a class="subview-nav-link" href="{$p}/users"></i>User <i class="pull-right hidden-xs showopacity fa fa-cog"></i></a></li>
+    {/if}
+    <!-- {if ($scope.user.user_level==40) }
+        <li id="nav_section_tips" class="class-filter{if ($scope.section =='Analytics')} active{/if}"><a class="subview-nav-link" href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">Analytics <i class="pull-right hidden-xs showopacity fa fa-cog"></i> </a>
+            <ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
+                <li id="nav_section_tips" class="class-filter{if ($scope.section =='Analytics')} active{/if}"><a class="subview-nav-link" href="{$p}/Analytics"></i>Overview </a></li>
+                <li id="nav_section_tips" class="class-filter{if ($scope.section =='User')} active{/if}"><a class="subview-nav-link" href="{$p}/users"></i>User </a></li>
+            </ul>
+        </li>
+        
+    {/if} -->
 <!------------------Vignesh 02-06-2020 --------------------------->
     <li id="nav_section_acsetting" class="class-filter{if ($scope.section =='ACsettings')} active{/if}"><a class="subview-nav-link" href="{$p}/ACsettings"></i>Profile / App <i class="pull-right hidden-xs showopacity fa fa-cog"></i></a></li>
 <!------------------End 02-06-2020 --------------------------->

@@ -1,4 +1,6 @@
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 {$count = $scope.artworks|@count}
 {if ($count)}
   <div class="gallery-related" id="collection_artworks">
@@ -25,13 +27,26 @@
                     <div class="__vp-flipper">             
                     <div class="__vp-flip-front">       
                       {if ($artwork.media_id != 0)}  
-                        <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}"> 
-                      {else}
-                        <img class="center-cropped" src="/img/artwork/default.jpg"  alt="">
-                      {/if}
+                        <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">
+                    {else}
+                        {if ($artwork.title_image_json != "")}
+                            <img class="center-cropped" src="{$artwork.title_image_json|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">
+                        {else}
+                            <img class="center-cropped" src="/img/artwork/default.jpg"  alt="">
+                        {/if}
+                    {/if}
                     </div>             
-                    <div class="__vp-flip-back __vp-plugin-hover">               
-                      <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">                
+                    <div class="__vp-flip-back __vp-plugin-hover">       
+                     {if ($artwork.media_id != 0)}          
+                      <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">      
+                      {else}
+                        {if ($artwork.title_image_json != "")}    
+                        <img class="__vp-flip-back-image" src="{$artwork.title_image_json|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">   
+                         {else}
+                            <img class="center-cropped" src="/img/artwork/default.jpg"  alt="">
+                        {/if}  
+                        {/if}      
+                            
                       <div class="__vp-flip-back-card">  
                       <a href="{$basepath}/{$collection.page_slug}/{$collection.slug}/{$artwork_slug}">
                         {{"include": "minisites/caption/hover_caption.html"}}

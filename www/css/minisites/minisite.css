@@ -2838,15 +2838,15 @@ column-count: 4;
  .photo-grid.landscape_timetwo .photo-grid-container{ width: 100% !important; padding:15px; }
 }
 
+@media (max-width: 767px) {
+.photo-grid.landscape_time .photo-grid-container, .photo-grid.natural .photo-grid-container, .photo-grid.tiles .photo-grid-container {      width: 50% !important; }
+}
+
 @media (max-width: 480px) {
 .photo-grid.landscape_time, .photo-grid.tiles {
     column-count: 1;
 }
-/**/
-.photo-grid.landscape_time .photo-grid-container, .photo-grid.natural .photo-grid-container, .photo-grid.tiles .photo-grid-container {      width: 100% !important; }
-/**/
-
-
+.photo-grid.landscape_time .photo-grid-container, .photo-grid.natural .photo-grid-container, .photo-grid.tiles .photo-grid-container {      width: 50% !important; }
 }
 
 /** 6/5/2019 **/
@@ -3581,19 +3581,19 @@ hr{
 
 
 @media only screen and (max-width: 1200px) {
-	/* .parallax-window{
+	.parallax-window{
 		min-height: 500px;
-	} */
+	}
 }
 @media only screen and (max-width: 993px) {
-	/* .parallax-window{
+	.parallax-window{
 		min-height: 400px;
-	} */
+	}
 }
 @media only screen and (max-width: 767px) {
-	/* .parallax-window{
-		min-height: 300px;
-	} */
+	.zigzag_banner {
+		padding-bottom: 80%;
+	}
 	.parallax-caption h1{
 	    font-size: 24px;
 		text-align: center;
@@ -3608,9 +3608,46 @@ hr{
 	.parallax-captionin{
 		padding:15px;
 	}
+	.photo-grid.tiles .photo-grid-container {
+		width: 50% !important;
+	}
+	.photo-grid.tiles .photo-grid-container .hover_style figure img{
+		height: auto;
+	}
+	.image_vert_bottom.image_vert_bottom_4c, .artwork-row .image_vert_bottom {
+		min-height: 100px;
+	}
+	.exhibition-title, .__vp-plugin-container h2.description{
+		text-align: left !important;
+	}
+	h4.description {
+		font-size: 16px !important;
+		line-height: 22px !important;
+	}
+	h3.description{
+	    line-height: 20px;
+	}
+	.banner_exhibition_imgin{
+		padding-top: 80%;
+	}
+	.banner_exhibition_content {
+		position: relative;
+		right: 0px;
+		display: block;
+		width: 100%;
+		float: left;
+		padding: 25px 0px;
+	}
+	.guillotine_title {
+		font-size: 32px;
+		margin-bottom: 20px;
+	}	
+	.image_vert_bottom{
+		min-height: 280px;
+	}
 }
 @media only screen and (max-width: 480px) {
-	/* .parallax-window{
-		min-height: 200px;
-	} */
+	.image_vert_bottom{
+		min-height: 265px;
+	}
 }

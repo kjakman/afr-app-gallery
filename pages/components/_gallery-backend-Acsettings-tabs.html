@@ -15,7 +15,7 @@
 {$tab13_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'freetext']}
 {$tab14_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'preview']}
 {$tab44_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'subscription']}
-
+{$tab45_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'integration']}
 
 {$tab = $page.tab|default:'preview'}
 
@@ -26,10 +26,13 @@
     <li {if ($tab == 'basic')  }class="active"{/if}><a href="{$tab1_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_basic">Basic<span class="glyphicon icon-asterisk"></span></a></li>
     <li {if ($tab == 'bio')  }class="active"{/if}><a href="{$tab2_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_bio">Bio/Photo<span class="glyphicon icon-asterisk"></span></a></li>
     <li {if ($tab == 'details')  }class="active"{/if}><a href="{$tab3_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_details">Details</a></li>
+    <li {if ($tab == 'integration')  }class="active"{/if}><a href="{$tab45_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_art">Integrations</a></li>
+
     <li {if ($tab == 'artist')  }class="active"{/if}><a href="{$tab4_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_cv">CV</a></li>
     <li {if ($tab == 'art')  }class="active"{/if}><a href="{$tab5_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_art">Selected Art</a></li>
     <li {if ($tab == 'subscription')  }class="active"{/if}><a href="{$tab44_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_art">Subscription</a></li>
     <li {if ($tab == 'notification')  }class="active"{/if}><a href="{$tab6_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="account_notifications">Notification</a></li>
+
     <li {if ($tab == 'password')  }class="active"{/if}><a href="{$tab7_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="account_password">Password</a></li>
     <li {if ($tab == 'verification')  }class="active"{/if}><a href="{$tab8_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="verify">Verification</a></li>  
 </ul>
@@ -56,6 +59,8 @@
       {{"include": "_user-account-password.html"}}
     {elseif ($tab == 'verification')}
       {{"include": "_user-profile-edit-verification.html"}}
+    {elseif ($tab == 'integration')}
+      {{"include": "_user-account-integration.html"}} 
     {elseif ($tab == 'solo')}
       {{"include": "_gallery-backend-profile-solo.html"}}    
     {elseif ($tab == 'group')}

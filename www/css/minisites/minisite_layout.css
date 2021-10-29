@@ -87,11 +87,16 @@
 	  width: 48%;
 	}
 }
-@media screen and (max-width: 500px) {
+/* @media screen and (max-width: 500px) {
 	.item-grid-sizer, .item-grid {
 		width: 100%;
 	}
 	.item-four-col .item-grid-sizer, .item-four-col .item-grid  {
 		width: 100%;
+	}
+} */
+@media screen and (max-width: 480px) {
+	.item-grid-sizer, .item-grid{
+	  width: 47%;
 	}
 }

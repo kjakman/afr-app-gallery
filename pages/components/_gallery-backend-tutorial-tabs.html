@@ -1,0 +1,34 @@
+
+
+
+{$tab53_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'quickstart']}
+
+{$tab54_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'tutorial']}
+
+{$tab = $page.tab|default:'quickstart'}
+
+<ul class="nav nav-tabs mt20">
+   
+    <!------------------End 02-06-2020 --------------------------->
+    <li {if ($tab == 'quickstart')  }class="active"{/if}><a href="{$tab53_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_art">Quick Start Guide</a></li>
+    <li {if ($tab == 'tutorial')  }class="active"{/if}><a href="{$tab54_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_art">Tips & Tutorials</a></li>
+
+   <!--  <li id="nav_section_tips" class="class-filter{if ($scope.section =='User')} active{/if}"><a class="subview-nav-link " href="{$p}/User"></i>User <i class="pull-right hidden-xs showopacity fa fa-cog"></i></a></li> -->
+
+</ul>
+
+<div class="tab-content">
+  <div id="tab_content" class="tab-pane fade in active pt20">
+    {if ($tab == 'quickstart')}
+        {{"include": "_gallery-backend-quick-start.html"}}
+
+    {elseif ($tab == 'tutorial')}
+        {{"include": "_gallery-backend-tips-tutorial.html"}}
+
+    {else}
+      {"Unknown tab `$tab`"|alert:"error"}
+    {/if}  
+  </div>
+</div>
+
+

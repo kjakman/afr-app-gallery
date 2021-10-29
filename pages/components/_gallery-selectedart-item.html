@@ -95,14 +95,14 @@
     {if ($artwork.artist_name)}
       {$type = get_artwork_type($artwork.type)}
       {$presentation = get_artwork_presentation($artwork.presentation)} 
-      <a href="{$profile_link}{$artwork.artist_name|slugify}/{$artwork.artist_id}" class="cms-link gallery-link" data-data='{$json}'>
+      <a href="{$artwork_link}" class="cms-link gallery-link" data-data='{$json}'>
       	<h2 style="font-size:15px !important;font-style: italic;" class="black subtitle">{$artwork.title|upper}</h2>
       </a>
     {/if}
     {if ($artwork.name)}
       <a href="{$artwork_link}" class="cms-link gallery-link name" data-data='{$json}'><h3 style="font-style: italic;" class="subtitle"><h3 style="font-size:13px !important;" class="subtitle"><span>{$artwork.original_technique}</span></h3></a>
     {/if}
-    <a href="{$profile_link}{$artwork.curator_name|slugify}-{$artwork.curator_id}" class="cms-link gallery-link curator" data-data='{$json}'><h4 style="font-size:13px !important;">{$artwork.height} X {$artwork.width} {$artwork.unit}</h4></a>
+    <a href="{$artwork_link}" class="cms-link gallery-link curator" data-data='{$json}'><h4 style="font-size:13px !important;">{$artwork.height} X {$artwork.width} {$artwork.unit}</h4></a>
    </div>
   </div>
 </div>

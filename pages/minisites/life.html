@@ -92,7 +92,7 @@
 				<div class="ratio_based">
 					<div class="frame-square ratio1910">
 						<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"> 
-                                                    {if ($exhibition.selection_range)}
+                                                     {if ($exhibition.title_image) || ($exhibition.selection_range)}
 							<img src="{$exhibition|collection_photo:'medium'}" />
                                                     {else}
                                                         <img class="center-cropped" src="/img/exhibition/default.jpg"  alt="">

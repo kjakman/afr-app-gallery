@@ -16,7 +16,7 @@
   {$index = 0}  {$count = 0} {$empty_chk = 0}
 {if ($exhibitions)}
  <div class="row">
-    <div class="row photo-grid-row col-md-12">
+    <div class="photo-grid-row col-md-12">
       <ul class="photo-grid gallery-list natural col-md-12">
         {foreach from=$exhibitions item=exhibition}
           {if (($exhibition.current == $future) || ($exhibition.current == $current) || ($exhibition.current == $past) || ($exhibition.current == $selection))}

@@ -22,13 +22,12 @@
 	{else}
 	  <div class="banner_exhibition_content">
 		<div class="banner_exhibition_contentin">
-		  	{if ($exhibition.selection_type)}
-				<span class="banner_exhibition_auther"> {$exhibition.selection_type} </span>
-		  	{else}
-				<span class="banner_exhibition_auther">{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name}</span>
-			{/if}
-
 			<h3 class="banner_exhibition_name">{$exhibition.title}</h3>
+		  	{if ($exhibition.selection_type)}
+				<span class="banner_exhibition_auther" style="display: block;"> {$exhibition.selection_type} </span>
+		  	{else}
+				<span class="banner_exhibition_auther" style="display: block;">{if ($loc.address_city)}{$loc.address_city}, {/if}{$loc.address_country|get:countries:name}</span>
+			{/if}
 			{if ($exhibition.selection_range)}
 			  <p>{$exhibition.selection_range}</p>
 			{else}

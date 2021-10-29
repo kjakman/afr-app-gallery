@@ -1,0 +1,32 @@
+
+
+
+{$tab47_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'overview']}
+
+{$tab48_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'user']}
+
+{$tab = $page.tab|default:'overview'}
+
+<ul class="nav nav-tabs mt20">
+   
+    <!------------------End 02-06-2020 --------------------------->
+    <li {if ($tab == 'overview')  }class="active"{/if}><a href="{$tab47_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_art">Overview</a></li>
+
+   <!--  <li id="nav_section_tips" class="class-filter{if ($scope.section =='User')} active{/if}"><a class="subview-nav-link " href="{$p}/User"></i>User <i class="pull-right hidden-xs showopacity fa fa-cog"></i></a></li> -->
+
+</ul>
+
+<div class="tab-content">
+  <div id="tab_content" class="tab-pane fade in active pt20">
+    {if ($tab == 'overview')}
+        {{"include": "_user-analytics-overview.html"}}
+    <!-- {elseif ($tab == 'user')}
+        {{"include": "_user-analytics-user.html"}}
+ -->
+    {else}
+      {"Unknown tab `$tab`"|alert:"error"}
+    {/if}  
+  </div>
+</div>
+
+

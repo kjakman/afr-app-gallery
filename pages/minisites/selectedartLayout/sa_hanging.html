@@ -12,10 +12,18 @@
           <figure id="{$container_id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index="{$index}" class="vp-loader-photoswipe effect-{$ms.art_animation}">
             <div class="hover_cover">
               {if ($artwork.media_id != 0)}  
+
                 <img class="center-cropped" src="{$artwork.media_id|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">
+
               {else}
+                        {if ($artwork.title_image_json != null)}
+                        <img class="center-cropped" src="{$artwork.title_image_json|photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}">
+                        else
+
                 <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
               {/if}  
+              {/if}  
+
               <figcaption>
                 {{"include": "minisites/caption/hover_caption.html"}}  
               </figcaption>

@@ -1,0 +1,127 @@
+{$p = '/backend'}
+
+<html lang="en">
+  	<body>
+	  	<div class="row row-offcanvas row-offcanvas-right">
+
+	        <div class="col-xs-12 col-sm-12">
+	          	<p class="pull-right visible-xs">
+	            	<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+	          	</p>
+			  	<div class="row">
+			  		
+
+			  		<a class="btn btn-success ml5" href="https://new.vpatina.dci.in/img/vPatinaQuickStart.pdf" download><i class="fa fa-cloud-download" aria-hidden="true"></i>Download Quick Start Guide</a>
+
+				    <div class="col-xs-12 col-sm-4">
+				    	{if ($scope.user.profile.photo)}  
+	                        <img class="img-responsive" src="{$scope.user.profile|userphoto:'big'}" alt="">
+	                    {else}
+	                        <img class="img-responsive" src="/img/artist/default.jpg" alt="">
+	                    {/if}
+				    </div>
+
+				    <div class="col-xs-12 col-sm-8 second-column">
+
+				    	<table class="table table-borderless">
+				    			<tr><td style="border:0px !important;">Display Name</td><td style="border:0px !important;">:  {$scope.user.display_name} </td></tr>
+				    			<tr><td style="border:0px !important;">Login e-mail (can't be changed)</td><td style="border:0px !important;">:  {$scope.user.username}</td></tr>
+				    			<tr><td style="border:0px !important;">Subscription Level</td><td style="border:0px !important;"> :  {if ($scope.quickstart.subscription_plan!=null)}{$scope.quickstart.subscription_plan.name}{else}No Plan{/if}</td></tr>
+				    			<tr><td style="border:0px !important;">Profile Picture Added</td><td style="border:0px !important;">:  {$scope.quickstart.profile}</td></tr>
+				    			<tr><td style="border:0px !important;">Bio added</td><td style="border:0px !important;">:  {$scope.quickstart.bio}</td></tr>
+				    			<tr><td style="border:0px !important;">No. of Artworks</td><td style="border:0px !important;">:  {$scope.quickstart.artworks}</td></tr>
+				    			<tr><td style="border:0px !important;">No. of Exhibitions</td><td style="border:0px !important;">:  {$scope.quickstart.exhibitions}</td></tr>
+				    			<tr><td style="border:0px !important;">No. of Images</td><td style="border:0px !important;">:  {$scope.quickstart.media}</td></tr>
+				    	</table>
+				    </div> 
+			  	</div>
+
+	          <div class="row">
+	            <div class="col-xs-12 col-sm-9">
+	            	<br>
+	              <h2>1.Get familiar with the help features</h2>
+	               <ul>
+				    <li>Download the Quick Start PDF Guide from the top of this page</li>
+				    <li>Review the Tutorials tab (especially Must Read Section)</li>
+				    <li>Try some of the on-page blue "Tutorial" video buttons (great if you get stuck)</li>
+				    <li>Understand how the asterisks (*) work - helps you focus on what’s important</li>
+				  </ul>
+	            </div><!--/.col-xs-6.col-lg-4-->
+	            <div class="col-xs-12 col-sm-9">
+	              <h2>2.Tell your story on your profile</h2>
+	              <ul>
+				    <li>Basic tab - enter your contact detail</li>
+				    <li>Bio tab -upload a photo and tell us about yourself</li>
+				    <li>Details tab - add your social media details, if you want</li>
+				    <li>CV - you can add CV details</li>
+				    <li>You can only add selected art after step 3 (below) so COME BACK TO THIS IN STEP 3</li>
+				  </ul>
+	            </div><!--/.col-xs-6.col-lg-4-->
+	            <div class="col-xs-12 col-sm-9">
+	              <h2>3.Create art records - the most important and time consuming step</h2>
+	              <ul>
+				    <li>Hit the green "Create Artwork" button in the artwork table</li>
+				    <li>Start by adding title, and technique</li>
+				    <li>Attach an image</li>
+				    <li>Add details, size, description, age etc</li>
+				    <li>Try using the clone button to speed up adding artwork</li>
+				    <li>Go back to your profile and SELECT ART FOR YOUR PROFILE</li>
+				  </ul>
+	            </div><!--/.col-xs-6.col-lg-4-->
+	            <div class="col-xs-12 col-sm-9">
+	              <h2>4.Create and Publish Exhibitions</h2>
+	              <ul>
+				    <li>Hit the green "Create Exhibition" button on the Exhibition Table</li>
+				    <li>Choose the type of exhibition you want (is it an event or a selection..?)</li>
+				    <li>Choose a selection of artworks to attach to the exhibition (from step 3)</li>
+				    <li>If you wish, add Exhibition Images, shots of an opening or your studio</li>
+				    <li>Publish your exhibition - turn it on</li>
+				  </ul>
+	            </div><!--/.col-xs-6.col-lg-4-->
+	            <div class="col-xs-12 col-sm-9">
+		              <h2>5.Share your profile and exhibitions</h2>
+		              	<ul>
+						    <li>On the first tab of your profile is your profile URL. Bookmark this on your phone. Now you have your personalized portfolio at your fingertips</li>
+						    <li>You can use your profile URL as a basic website that has all your details beautifully formatted</li>
+						    <li>Share specific Exhibitions via messaging or social media in three ways: </li>
+						   
+						    	<ul><li>	your mobile using the app </li>
+						    	<li>	your desktop using the profile URL </li>
+						    	<li>	the control panel using the share button on the exhibition table</li>
+						    	<ul>
+					    	
+				  		</ul>
+	          	</div><!--/.col-xs-6.col-lg-4-->
+
+	          	<div class="col-xs-12 col-sm-9">
+		              <h2>6.Create your bespoke website</h2>
+			              <ul>
+									    <li>Hit the green “Create Website” button on the website builder tab </li>
+									    <li>Choose a simple website name, extension and and type (probably Single Artist, you can change your mind later, so don’t worry) </li>
+									    <li>Design and style it, choose a menu style, font and also add animations and a logo </li>
+									    <li>Hit the green Create Page to button to add content</li>
+									    <ul><li>Single Exhibition pages allow clients/ followers to jump right into a selection of art</li>
+									    <li>Multiple Exhibitions Page allow you present a selection of exhibitions</li>
+									    <li>Bio/Profile/CV Pages adds to your story </li></ul>
+									    <li>Style pages by selecting the right mix of layouts and templates that deliver the perfect user experience</li>
+							  		</ul>
+	          	</div><!--/.col-xs-6.col-lg-4-->
+
+	          	<div class="col-xs-12 col-sm-9">
+		              <h2>7.Connect your website to your domain</h2>
+			              <ul>
+									    <li>If you don’t have a domain yet, buy one (try GoDaddy or <a href="https://www.register.com/"> register.com</a>)</li>
+									    <li>Make sure you have a paid subscription with vPatina</li>
+									    <li>Get in touch and we will get you connected….. </li>
+							  		</ul>
+	          	</div><!--/.col-xs-6.col-lg-4-->
+
+	          </div><!--/row-->
+	        </div><!--/.col-xs-12.col-sm-9-->
+
+	        
+	  	</div><!--/row-->
+
+      <hr>
+  	</body>
+</html>
