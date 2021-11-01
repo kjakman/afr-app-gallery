@@ -25,11 +25,11 @@
 			<section class="col-sm-6 mr20" style="text-align: center;">
 			  <div class="hover_style no-padding">
 			  	<figure class="effect-{$ms.art_animation}">
-                                    {if ($collection.title_image)}
-                                        <img src="{$collection.id|collection_photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}" class="img-responsive pull-left" /><br>
-                                    {else}  
-                                        <img src="/img/exhibition/default.jpg" alt="" class="img-responsive pull-left" /><br>
-                                    {/if}
+                    {if ($collection.title_image)}
+                        <img src="{$collection.id|collection_photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}" class="img-responsive pull-left" /><br>
+                    {else}  
+                        <img src="/img/exhibition/default.jpg" alt="" class="img-responsive pull-left" /><br>
+                    {/if}
 				    {{"include": "minisites/caption/titleimg_caption.html"}}
 			    </figure>
 			  </div>
