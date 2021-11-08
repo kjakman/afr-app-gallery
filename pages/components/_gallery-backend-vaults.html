@@ -40,10 +40,8 @@
     </div>
   </div><br>
   {/if}
-  {if (!$vault)}
-    {if ($scope.limit==1)}    
-      <p style="font-size: 20px !important; font-weight: bold;">Media Folder (Capacity: {$count} of {$limit} storage limit used)</p><span>Maximum file size 10mb - supported file types jpg, jpeg, png</span>
-    {/if}  
+  {if (!$vault)}    
+    <p style="font-size: 20px !important; font-weight: bold;">Media Folder (Capacity: {$count} of {$limit} storage limit used)</p><span>Maximum file size 10mb - supported file types jpg, jpeg, png</span>
   {else}
     <p style="font-size: 20px !important; font-weight: bold;">Media Files (Capacity: {$count} of {$limit} storage limit used)</p>
     <span>Maximum file size 10mb - supported file types jpg, jpeg, png</span>
