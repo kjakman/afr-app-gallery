@@ -6,14 +6,11 @@
     {if ($artwork.title_image == $exhibition.media_id)}
         {$exhibitions = $exhibition}
         {$index = $count}
-    {else}
-        {$exhibitions = $exhibition}
-        {$index = $count}
     {/if}
     {$count = $count + 1}
   {/foreach}
 {$all_exhi = array($exhibitions)+$other_exhi}
-
+{$index=$index-1}
 {$cachebust = "?ts`$smarty.now`"}
 <link rel="stylesheet" type="text/css" media="all" href="/afr/js/vp/photoswipe.css?v=4.1.1-1.0.5" / >
 <link rel="stylesheet" type="text/css" media="all" href="/afr/js/vp/default-skin/default-skin.css{$cachebust}" / >
@@ -22,29 +19,21 @@
 {$container_id = "artwork_`$all_exhi[0].id`"}
 {$data = ["obj_type" => "media_collection","obj_id" => $all_exhi[0].media_collection_id, "plugin_id" => "1355","container_id" => $container_id]}
 {$popup_options = ["buttons" => ["info","contact","map","zoom","share","fullscreen"], "tabs" => ["artwork","artist"], "title" => ["artwork","technique","artist","year"]]}
-  {if ($all_exhi[0].media_collection_id && $artwork.title_image==$exhibition.media_id)}
+  {if ($all_exhi[0].media_collection_id)}
     <figure id="{$container_id}" data-data='{$data|@json_encode}' data-sharer_id="{$scope.user_id}" data-popup_options='{$popup_options|@json_encode}' data-index={$index} class="__vp-plugin-container vp-loader-photoswipe">
       <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
         <div class="__vp-flipper">             
         <div class="__vp-flip-front"> 
-        <span class="frame-square">
-          {if ($all_exhi[0].media_id != 0)}  
-            <img class="__vp-plugin-image center-cropped" src="{$all_exhi[0].media_id|photo:'big'}">  
-          {else}
-            <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg"> 
-          {/if}
+        <span class="frame-square">              
+          <img class="__vp-plugin-image center-cropped" src="{$all_exhi[0].media_id|photo:'big'}">  
         </span>           
         </div>             
         <div class="__vp-flip-back __vp-plugin-hover">  
-        <span class="frame-square"> 
-          {if ($all_exhi[0].media_id != 0)}  
-            <img src="{$all_exhi[0].media_id|photo:'big'}" class="__vp-flip-back-image"><br>
-          {else}
-            <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg"> 
-          {/if}  
+        <span class="frame-square">             
+          <img src="{$all_exhi[0].media_id|photo:'big'}" class="__vp-flip-back-image"><br>
         </span>             
         <div class="__vp-flip-back-card"> 
-          <h2 class="subtitle">Test</h2>
+          <h2 class="subtitle">{$all_exhi[0].name}</h2>
           <a href="#" class="__vp-info __vp-view-button" id="__vp-view-button-1355">View</a>
         </div>                                                                
         </div>           
@@ -56,34 +45,16 @@
       <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
         <div class="__vp-flipper">             
         <div class="__vp-flip-front"> 
-        <span class="frame-square"> 
-          {if ($artwork.title_image != 0)}  
-            <img class="__vp-plugin-image center-cropped" src="{$artwork.title_image|photo:'big'}"> 
-          {else}
-              {if ($artwork.title_image_json != null)}  
-                <img class="__vp-plugin-image center-cropped" src="{$artwork.title_image_json|photo:'big'}"> 
-              {else}
-                <img src ="/img/artwork/default.jpg"><br>
-              {/if}  
-          {/if}  
-
+        <span class="frame-square">              
+          <img class="__vp-plugin-image center-cropped" src="{$artwork.title_image|photo:'big'}">  
         </span>           
         </div>             
         <div class="__vp-flip-back __vp-plugin-hover">  
-        <span class="frame-square">    
-          {if ($artwork.title_image != 0)}  
-            <img src="{$artwork.title_image|photo:'big'}" class="__vp-flip-back-image"><br>
-          {else}
-              {if ($artwork.title_image_json != null)}  
-                <img src="{$artwork.title_image_json|photo:'big'}" class="__vp-flip-back-image"><br>
-              {else}
-                <img src ="/img/artwork/default.jpg"><br>
-              {/if}
-          {/if}  
-
+        <span class="frame-square">             
+          <img src="{$artwork.title_image|photo:'big'}" class="__vp-flip-back-image"><br>
         </span>             
         <div class="__vp-flip-back-card"> 
-          <h2 class="subtitle">Test</h2>
+          <h2 class="subtitle">{$artwork.name}</h2>
           <a href="#" class="__vp-info __vp-view-button" id="__vp-view-button-1355">View</a>
         </div>                                                                
         </div>           
@@ -91,7 +62,7 @@
       </div>      
     </figure>
   {/if} 
-
+  <p></p>
   <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="pswp__bg"></div>                                 
     <div class="pswp__scroll-wrap">
@@ -141,3 +112,5 @@
       </div>
     </div>
   </div>
+
+<script src="/afr/js/vp/vp.js?ts1552641027"></script>

@@ -47,12 +47,15 @@
 			            <figure class="effect-{$ms.hover_type} ratio_based">
 			              <div class="hover_cover no-margin">
 							<div class="frame-square ratio43">
-                                                            {if ($exhibition.title_image)}
-								<img src= "{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}" />
-                                                            {else}
-                                                                <img class="center-cropped" src="/img/exhibition/default.jpg"  alt="">
-                                                            {/if}    
-                                                        </div>
+				
+								
+                                {if ($exhibition.title_image)}
+									<img src= "{$exhibition|collection_photo:'medium'}"  alt="{$exhibition.name}" />
+                                {else}
+                                    <img class="center-cropped" src="/img/exhibition/default.jpg"  alt="">
+                                {/if}  
+
+                            </div>
 							{{"include": "minisites/caption/figcaption.html"}}
 							<a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">View more</a>
 						  </div>

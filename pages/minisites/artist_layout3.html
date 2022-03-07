@@ -71,7 +71,7 @@
 			<div class="col-lg-8 col-md-9 col-sm-9">
 				<h1> {$profile.display_name}</h1> <br>
 				<h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
-				<div id="description" style="text-align: justify;" class="mt20">
+				<div id="description" class="summernote_editor_output" style="text-align: justify;" class="mt20">
 				  {if ($profile.bio_description)}
 				    <div>{$profile.bio_description}</div>
 				  {/if}

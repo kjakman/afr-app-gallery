@@ -38,34 +38,53 @@
 	
 	  {$item_data = ["user_id" => $user.id, "site_id" => $site.id, "parent_type" => "media", "parent_id" => $artwork.media_id]}
 	  {$item_json = $item_data|@json_encode}
+		{$height = explode('.', $artwork.height)}
+		{if ($height[1]==0)}
+			{$artwork.height = $height[0]}
+	  	{/if}
 
-<div class="grid-item" data-index="{$index}" data-media_id="{$artwork.media_id}" id="map_{$artwork.id}">
- <div>	
+		{$width = explode('.', $artwork.width)}
+		{if ($width[1]==0)}
+			{$artwork.width = $width[0]}
+	  	
+	  	{/if}
+
+	<div class="grid-item" data-index="{$index}" data-media_id="{$artwork.media_id}" id="map_{$artwork.id}">
+ 		
 	<figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
 	<div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
-	  <div class="__vp-flipper">             
-	  <div class="__vp-flip-front"> 
-		<span class="frame-square">  
-                  {if ($artwork.media_id) != 0}  
-                    <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" >  
-                  {else}
-                    <img class="__vp-plugin-image center-cropped" src="/img/artwork/default.jpg" >
-                  {/if}
-		</span>           
-	  </div>             
-	  <div class="__vp-flip-back __vp-plugin-hover">  
+	  <div class="__vp-flipper">    
+
+		  <div class="__vp-flip-front"> 
+			<span class="frame-square">
+				<a href="{$artwork_link}" class="cms-link gallery-link" data-data='{$json}'>  
+	                  {if ($artwork.media_id) != 0}  
+	                    <img class="__vp-plugin-image center-cropped" src="{$artwork.media_id|photo:'medium'}" >  
+	                  {else}
+	                    <img class="__vp-plugin-image center-cropped" src="/img/artwork/default.jpg" >
+	                  {/if}
+				</a>
+			</span>           
+		  </div>             
+
+ 		<div class="__vp-flip-back __vp-plugin-hover">  
 		<span class="frame-square">       
+			<a href="{$artwork_link}" class="cms-link gallery-link" data-data='{$json}'>
                   {if ($artwork.media_id) != 0}  
                     <img class="__vp-flip-back-image" src="{$artwork.media_id|photo:'medium'}" alt="">  
                   {else}
                     <img class="__vp-plugin-image center-cropped" src="/img/artwork/default.jpg" >
                   {/if}
+			</a>
 		</span>             
 		<div class="__vp-flip-back-card"> 
+			
+
+
 			<a href="{$artwork_link}" class="cms-link gallery-link" data-data='{$json}'> 
 			  {$type = get_artwork_type($artwork.type)}
     		  {$presentation = get_artwork_presentation($artwork.presentation)}             
-			  <h2 style="font-size:15px !important;" class="subtitle">{$artwork.artist_name} ({$artwork.primary_year})</h2>   
+			  <h2 style="font-size:15px !important;" class="subtitle">{$artwork.artist_name} </h2>   
 			  <h4 style="font-size:13px !important;" class="subtitle">
 			    	{if ($artwork.editions > 1)}  
 				        Series of {$artwork.editions} {if ($artwork.edition)} (No. {$artwork.edition}) {/if} <br>
@@ -102,7 +121,11 @@
     {if ($artwork.name)}
       <a href="{$artwork_link}" class="cms-link gallery-link name" data-data='{$json}'><h3 style="font-style: italic;" class="subtitle"><h3 style="font-size:13px !important;" class="subtitle"><span>{$artwork.original_technique}</span></h3></a>
     {/if}
-    <a href="{$artwork_link}" class="cms-link gallery-link curator" data-data='{$json}'><h4 style="font-size:13px !important;">{$artwork.height} X {$artwork.width} {$artwork.unit}</h4></a>
+    <a href="{$artwork_link}" class="cms-link gallery-link curator" data-data='{$json}'><h4 style="font-size:13px !important;">
+    	{if ($artwork.height != 0.0 && $artwork.width != 0.0)}
+	 		{$artwork.height} X {$artwork.width}  {if ($artwork.depth != 0.0)} X {floatval($artwork.depth)} {/if}{$artwork.unit}
+		{/if}
+    </h4></a>
    </div>
   </div>
 </div>
@@ -110,4 +133,3 @@
 						
 						
 						
-

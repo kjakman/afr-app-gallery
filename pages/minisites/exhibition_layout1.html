@@ -25,12 +25,26 @@
 			<section class="col-sm-6 mr20" style="text-align: center;">
 			  <div class="hover_style no-padding">
 			  	<figure class="effect-{$ms.art_animation}">
-                    {if ($collection.title_image)}
-                        <img src="{$collection.id|collection_photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}" class="img-responsive pull-left" /><br>
+			  		
+                    {if ($collection.video_status==1 && $collection.video!=null)}
+					
+						<div class="embed-responsive embed-responsive-16by9">
+	                    	{if ($collection.video_type==2)}
+	    						 <iframe width="560" height="315" src="https://www.youtube.com/embed/{$collection.video}?&autoplay={$collection.auto_play}&mute={$collection.mute}&loop={$collection.loop}&rel=0&showinfo=0&color=white&iv_load_policy=3&playlist={$collection.video}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    		{else}  
+                    			<iframe src="https://player.vimeo.com/video/{$collection.video}?muted={$collection.mute}&autoplay={$collection.auto_play}&loop={$collection.loop}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	                    	{/if}
+						</div><br>
                     {else}  
-                        <img src="/img/exhibition/default.jpg" alt="" class="img-responsive pull-left" /><br>
+	                    {if ($collection.title_image)}
+	                        <img src="{$collection.id|collection_photo:'medium'}" alt="{$artwork.artist_name|ucfirst}, {$artwork.original_technique|ucfirst}, {$artwork.name}, {$artwork.original_year}" class="img-responsive pull-left" /><br>
+	                    
+	                    {else}  
+	                        <img src="/img/exhibition/default.jpg" alt="" class="img-responsive pull-left" /><br>
+	                    {/if}
                     {/if}
-				    {{"include": "minisites/caption/titleimg_caption.html"}}
+					<!--
+				    {{"include": "minisites/caption/titleimg_caption.html"}}-->
 			    </figure>
 			  </div>
 			</section>

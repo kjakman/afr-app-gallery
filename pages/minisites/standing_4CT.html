@@ -30,7 +30,9 @@
                         <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
                           <div class="__vp-flipper">             
                           <div class="__vp-flip-front">               
-                            <img class="__vp-plugin-image center-cropped" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">    
+                              <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}">
+								<img class="__vp-plugin-image center-cropped" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">    
+                              </a>  
                           </div>             
                           <div class="__vp-flip-back __vp-plugin-hover">               
                             <img class="__vp-flip-back-image" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">                

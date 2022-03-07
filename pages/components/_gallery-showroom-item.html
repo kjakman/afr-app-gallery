@@ -12,6 +12,16 @@
                       {foreach from=$artist_ids item=$artist_id}
                         {$artist_name[] = $artist_id|displayname}
                       {/foreach}
+                      {$height = explode('.', $artwork.height)}
+                      {if ($height[1]==0)}
+                        {$artwork.height = $height[0]}
+                        {/if}
+
+                      {$width = explode('.', $artwork.width)}
+                      {if ($width[1]==0)}
+                        {$artwork.width = $width[0]}
+                        
+                        {/if}
                       <div class="grid-item">
                        <div> 
                         <figure id="{$exhibition.id}" data-sharer_id="{$scope.user_id}" data-index="{$index}" class="__vp-plugin-container vp-loader-photoswipe">         
@@ -19,11 +29,13 @@
                             <div class="__vp-flipper">             
                             <div class="__vp-flip-front"> 
                             <span class="frame-square">
+                              <a href="{$link}{$collection.title|slugify}-{$collection.id}" class="cms-link gallery-link" data-data='{$json}'>
                               {if ($collection.title_image)}  
                                 <img class="__vp-plugin-image center-cropped" src="{$collection.id|collection_photo}"  alt="{}">  
                               {else}
                                 <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg"  alt="{}">
                               {/if}
+							  </a>
                             </span>           
                             </div>             
                             <div class="__vp-flip-back __vp-plugin-hover">  

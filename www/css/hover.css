@@ -1073,3 +1073,13 @@ figure.effect-1018.no_flip img:hover {
 		line-height: 16px;
 	}
 }
+
+/**************************************** Media Quarry  For 767 ***************************************/
+@media only screen and (max-width: 767px) {
+	.profileinfo .gallery-artwork-detail .row .col-sm-6.mr20{
+		margin-right:0px !important;
+	}
+	.hover_style figure img{
+		max-width:100%;
+	}
+}

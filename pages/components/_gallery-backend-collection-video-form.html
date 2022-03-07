@@ -1,0 +1,97 @@
+{$exhibition=$scope.collection}
+<form class="ajax-submit" data-handler="save-collection" data-success_handler="gbe_collection_handler">
+    <input hidden="1" name="id" type="hidden" value="{$collection.id}">
+    <input hidden="1" name="obj_id" type="hidden" value="{$collection.id}">
+    <input hidden="1" name="obj_type" type="hidden" value="media_collection">      
+    <input hidden="1" name="type" type="hidden" value="{$collection.type}">
+    <input hidden="1" type="hidden" id="video_status" name="video_status" value="{$exhibition.video_status}">
+    <input hidden="1" type="hidden" id="mute_status" name="mute" value="{$exhibition.mute}">
+    <input hidden="1" type="hidden" id="loop_status" name="loop" value="{$exhibition.loop}">
+    <input hidden="1" type="hidden" id="auto_play_status" name="auto_play" value="{$exhibition.auto_play}">
+    <input hidden="1" name="next_tab" type="hidden" value="videos">      
+	<div class="row">
+
+	    <div class="form-group col-sm-8 ">
+			<label>Source</label>  
+			<select class="form-control" aria-label="Default select example" value="{$exhibition.video_type}" name="video_type">
+				<option selected>Select Video Type</option>
+				<option value="1" {if ($exhibition.video_type==1) } selected {/if} >Vimeo</option>
+				<option value="2" {if ($exhibition.video_type==2) } selected {/if} >Youtube</option>
+				<!-- <option value="3" {if ($exhibition.video_type==3) } selected {/if} >Self Hosted</option> -->
+			</select> 
+		</div>
+	    <div class="form-group col-sm-8">
+			<label>Link</label> 
+			<input type="text" class="form-control" id="url" value="{if ($exhibition.video_type==2) } https://www.youtube.com/embed/{$exhibition.video}{else}https://player.vimeo.com/video/{$exhibition.video}{/if}" placeholder="https://www.youtube.com/" name="video">
+		</div>
+        <div class="form-group col-sm-12">
+            <label >Video Status </label>
+            <div class="input-group">
+                <input type="checkbox" class="bootstrap-toggle" {if ($exhibition.video_status==1) } checked {/if} value="{$exhibition.video_status}" id="video_status_toggle" data-toggle="toggle" data-on="On" data-off="Off">
+                
+            </div>
+        </div>
+		<div class="form-group col-sm-12">
+			<label >Autoplay</label> <span style="font-weight: bold;">(NOTE: “Autoplay” only works if “Mute” is also turned ON)</span>
+            <div class="input-group">
+                <input type="checkbox" class="bootstrap-toggle" {if ($exhibition.auto_play==1) } checked {/if} value="{$exhibition.auto_play}" id="auto_play_toggle" data-toggle="toggle" data-on="On" data-off="Off">
+                
+            </div>
+		</div>
+		<div class="form-group col-xs-6">
+            <label >Mute </label>
+            <div class="input-group">
+                <input type="checkbox" class="bootstrap-toggle" {if ($exhibition.mute==1) } checked {/if} value="{$exhibition.mute}" id="mute_toggle" data-toggle="toggle" data-on="On" data-off="Off">
+                
+            </div>
+        </div>
+		
+	    <div class="form-group col-sm-12">
+			<label >Loop </label>
+            <div class="input-group">
+                <input type="checkbox" class="bootstrap-toggle" {if ($exhibition.loop==1) } checked {/if} value="{$exhibition.loop}" id="loop_toggle" data-toggle="toggle" data-on="On" data-off="Off">
+                
+            </div>
+		</div>
+	</div>
+
+	<div class="row" align="center">
+      	<div class="form-group col-xs-12">
+            <input type="submit" id="submit" class="btn btn-success" value="Save">
+      	</div>
+    </div>
+</form>
+
+ 
+ 
+<script>
+	$(document).ready(function(){
+		$('#auto_play_toggle').change(function() {
+            if(this.checked != true)
+                $('#auto_play_status').val(0);
+            else
+                $('#auto_play_status').val(1);
+        });  
+
+        $('#mute_toggle').change(function() {
+            if(this.checked != true)
+                $('#mute_status').val(0);
+            else
+                $('#mute_status').val(1);
+        }); 
+        $('#loop_toggle').change(function() {
+            if(this.checked != true)
+                $('#loop_status').val(0);
+            else
+                $('#loop_status').val(1);
+        });
+        $('#video_status_toggle').change(function() {
+            if(this.checked != true)
+                $('#video_status').val(0);
+            else
+                $('#video_status').val(1);
+        });  
+
+
+	});
+</script>

@@ -1,43 +1,101 @@
-      
-          
-      {$collection = $scope.collection}
-      {$artist_id = $artwork.artist_id|default:$scope.artist_id}
-      {$curator_id = $artwork.curator_id|default:$scope.curator_id}
+{$collection = $scope.collection}
+{$artist_id = $artwork.artist_id|default:$scope.artist_id}
+{$curator_id = $artwork.curator_id|default:$scope.curator_id}
+<style type="text/css">
+    #media-folder{
+        overflow: hidden;
+        margin: 2em 0px 1.5em;
+    }   
+    #media-folder .media_folder{
+        width: 25%;
+        display: block;
+        float: left;
+        text-align: center;
+        position: relative;
+    }   
+    #media-folder .media_folder .media_image {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: 99;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        opacity: 0;
+    }   
+    #media-folder .media_folder i{
+        color: #3f859b;
+        font-size: 6em;
+    }
+    #media-folder .media_folder .media_folder_title{
+        color: #000;
+        text-transform: capitalize;
+        margin: 0px;
+    }
+    .modal img{
+        height: 150px;
+        width: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .media{
+        width: 90%;
+        margin: 5;
+        padding: 0;
+      }
+    #media-content{
+        height: 500px;
+        overflow-y: scroll;
+    }
 
-      <form id="gbe_collection_form" class="ajax-submit" data-handler="save-collection" data-success_handler="gbe_collection_handler">
-        <input hidden="1" name="id" type="hidden" value="{$collection.id}">
-        <input hidden="1" name="obj_id" type="hidden" value="{$collection.id}">
-        <input hidden="1" name="obj_type" type="hidden" value="media_collection">      
-        <input hidden="1" name="type" type="hidden" value="{$collection.type|default:$smarty.const.COLLECTION_TYPE_EXHIBITION}">
-        {if (!$collection.id)}
+</style>
+
+
+<form id="gbe_collection_form" class="ajax-submit" data-handler="save-collection" data-success_handler="gbe_collection_handler">
+    <input hidden="1" name="id" type="hidden" value="{$collection.id}">
+    <input hidden="1" name="obj_id" type="hidden" value="{$collection.id}">
+    <input hidden="1" name="obj_type" type="hidden" value="media_collection">      
+    <input hidden="1" name="type" type="hidden" value="{$collection.type|default:$smarty.const.COLLECTION_TYPE_EXHIBITION}">
+    <input hidden="1" name="profile_id" type="hidden" id="profile_id" value="{$scope.user.profile_id}"/>
+    <input hidden="1" name="site_url" type="hidden" id="site_url" value="{$scope.site_url}"/>
+
+    {if (!$collection.id)}
         <input hidden="1" name="active" type="hidden" value="0">
         <input hidden="1" name="user_id" type="hidden" value="{$user.id}">
         <input hidden="1" name="artist_id" type="hidden" value="{$artist_id}">
         <input hidden="1" name="curator_id" type="hidden" value="{$curator_id}">        
-        {/if}
+    {/if}
+    <input hidden="1" name="user_id" type="hidden" id="user_id" value="{$user.id}"/>
+
+    <input hidden="1" name="site_url" type="hidden" id="site_url" value="{$scope.site_url}"/>
+
+    <input hidden="1" name="profile_id" type="hidden" id="profile_id" value="{$scope.user.profile_id}"/>
         
-        <input hidden="1" name="next_tab" type="hidden" value="location">      
+    <input hidden="1" name="next_tab" type="hidden" value="location">      
         
-        <div class="row">
-          <div class="form-group col-sm-6 col-xs-12">
-            <label for="media-name" class="control-label">Title</label>&nbsp;&nbsp;
-            <a data-toggle="tooltip" data-placement="right" title="This is title that will appear when the exhibition is explored, shared or followed"> <i class="fa fa-info-circle"></i></a>
-            <input type="text" class="form-control" name="title" value="{$collection.title}" maxlength="100">
-          </div>
-          <div class="form-group col-sm-6 col-xs-12">
-            <label for="artwork-available">Type</label>
-            {"subtype"|object_select:"exhibition_type":["class" => "form-control", "value" => $collection.subtype]}
-          </div>  
-        </div>
+    <div class="row">
+      <div class="form-group col-sm-6 col-xs-12">
+        <label for="media-name" class="control-label">Title</label>&nbsp;&nbsp;
+        <a data-toggle="tooltip" data-placement="right" title="This is title that will appear when the exhibition is explored, shared or followed"> <i class="fa fa-info-circle"></i></a>
+        <input type="text" class="form-control" name="title" value="{$collection.title}" maxlength="100">
+      </div>
+      <div class="form-group col-sm-6 col-xs-12">
+        <label for="artwork-available">Type</label>
+        {"subtype"|object_select:"exhibition_type":["class" => "form-control", "value" => $collection.subtype]}
+      </div>  
+    </div>
         
-        {$artist_ids_json = $collection.artist_ids|default:'[]'}
-        {$artist_ids = $artist_ids_json|@json_decode}
-        {if (!$artist_ids)}
-         {$artist_ids = [$artist_id]}
-        {/if}
+    {$artist_ids_json = $collection.artist_ids|default:'[]'}
+    {$artist_ids = $artist_ids_json|@json_decode}
+    {if (!$artist_ids)}
+        {$artist_ids = [$artist_id]}
+    {/if}
         
-        <div class="row">
-          <div class="form-group col-xs-12">
+    <div class="row">
+        <div class="form-group col-xs-12">
             <label for="media-name" class="control-label">Artist(s)</label>&nbsp;&nbsp;
             <a data-toggle="tooltip" data-placement="right" title="Type name and select from list using mouse of arrow keys. Or type a new name and press enter to add."> <i class="fa fa-info-circle"></i></a>
             <input type="hidden" readonly class="form-control" name="artist_ids" id="artist_ids" value="{$artist_ids_json}"><br>
@@ -53,37 +111,245 @@
             <a data-toggle="tooltip" data-placement="right" title="Only create new artist if the artist doesn’t exist on the system. To find en existing artist type their name into the bar above."> <i class="fa fa-info-circle"></i></a>
               {$add_artist = 1}
             {/if}
-          </div>
+        </div>
   
           
-          <div class="form-group col-xs-12">
+        <div class="form-group col-xs-12">
             <label for="comment">Description of collection</label>
             <a data-toggle="tooltip" data-placement="right" title="This is the description of your exhibition that will appear when it is embedded, shared or followed"> <i class="fa fa-info-circle"></i></a><span class="optional">(Recommended)
-</span>
-            <textarea class="summernote form-control special" data-height="200" name="description">{$collection.description}</textarea>
-          </div>
+            </span>
+            <textarea id="editor" class="summernote form-control special" data-height="600" name="description">{$collection.description}</textarea>
         </div>
+    </div>
           
-        <div class="row">
-          <div class="form-group col-xs-12">
+    <div class="row">
+        <div class="form-group col-xs-12">
             <input type="submit" id="submit" class="btn btn-success" value="Save">
-          </div>
         </div>
+    </div>
             
-      </form>
-      <div class="gap gap-small"></div>
-      {if ($add_artist)}
-        {{"include":"_artist-dialog.html"}}
-      {/if}
+</form>
+<div class="gap gap-small"></div>
+
+    <div class="modal fade xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog media" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Select image from your Media Drive</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body " id="media-content">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+{if ($add_artist)}
+    {{"include":"_artist-dialog.html"}}
+{/if}
       
       
-      <script type="text/javascript">        
-        $('.modal').on('hidden.bs.modal', function(){
-           $(this).find('form')[0].reset();
-           $(this).find('.alert').hide();
-        });       
-        $(document).ready(function() {
-          if($("#artistTags").length) gbe_artists_tagit();          
+<script type="text/javascript">        
+$('.modal').on('hidden.bs.modal', function(){
+   $(this).find('form')[0].reset();
+   $(this).find('.alert').hide();
+});       
+$(document).ready(function() {
+  if($("#artistTags").length) gbe_artists_tagit();          
+});
+$("#gbe_media_link").hide(); 
+</script>
+<!-- Modal -->
+<div class="modal fade xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog media" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Select image from your Media Drive</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body " id="media-content">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var HightlightButton = function(context) {  
+        var ui = $.summernote.ui;  
+        var button = ui.button({  
+            contents: ' Get Image From Media Drive',  
+            tooltip: 'Highlight text with red color',  
+            click: function() {  
+                context.invoke('editor.foreColor', 'red');  
+            //  do whatever you want here like open popup  
+            }  
+        });  
+        return button.render();  
+    }  
+
+    $(document).ready(function() { 
+
+        var profile_id=$("#profile_id").val();
+        var user_id=$("#user_id").val();
+        var site_url=$("#site_url").val();
+        
+        $('.summernote').summernote({  
+            toolbar: [  
+                ['style', [ 'bold', 'italic', 'underline', 'clear']],  
+                ['font', ['strikethrough', 'superscript', 'subscript']], 
+                ['fontsize', ['fontsize']],
+                ['color', ['color']], 
+                ['para', ['ul', 'ol', 'paragraph']],  
+                ['height', ['height']],
+                ['insert', ['link', 'picture', 'video']],
+                ['style', ['highlight']],  
+            ]
+        });  
+        
+        $(".modal-body .note-group-select-from-files ").after("<a href='javascript:void(0)' id='media_trigger' class='btn btn-success mt10 mb20'>Choose image from Media Drive</a><p><strong>Or</strong></p>");
+        
+        $(".form-group.note-group-select-from-files").hide();
+        $(".form-group.note-group-image-url .note-form-label").text("Use image URL from the internet");
+
+        $(document).on('click', '.dragme', function (e) {
+            // console.log("dragmeeeeeeeeeeeeeeeeee")
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            if (!e) {
+                var e = window.event;
+            }
+            if(e.preventDefault) e.preventDefault();
+
+            // IE uses srcElement, others use target
+            var targ = e.target ? e.target : e.srcElement;
+            console.log(targ);
+            if(targ){
+                // var copyText = document.getElementById("site_url");
+                // var as= targ.src + 'as'
+                var els=document.getElementsByClassName("note-image-url")[0];
+                els.value = targ.src;
+                $(".note-image-btn").click(); 
+                $('#exampleModal').modal('hide');
+            }
+
         });
-        $("#gbe_media_link").hide(); 
-      </script>
+
+        $(document).on('click', '.media_folder', function (e) {
+
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            if (!e) {
+                var e = window.event;
+            }
+            if(e.preventDefault) e.preventDefault();
+
+            // IE uses srcElement, others use target
+            var targ = e.target ? e.target : e.srcElement;
+            if(targ){
+                console.log("targ"+targ.folder)
+                folder_id=targ.folder
+                rank=targ.rank
+                $("#exampleModal").modal('show');
+                if(rank==1)
+                    var url=site_url+'ajax.php?oper=get-rows&obj_type=media&filters=%7B%22user_id%22%3A21109%2C%22folder_id%22%3A0%2C%22active%22%3A1%7D&search=&order=asc&offset=0&limit=100&_=1640843323249';
+                    
+                else if(rank==0)
+                    var url=site_url+'ajax.php?oper=get-rows&obj_type=media&&&filters=%7B%22folder_id%22%3A%22'+folder_id+'%22%2C%22active%22%3A1%7D&search=&order=asc&offset=0&limit=10&_=1640843323251';
+                const myNode = document.getElementById("media-content");
+                myNode.innerHTML = '';
+                $.ajax({
+                    url: url,
+                    data: {
+                        text: $("textarea[name=Status]").val(),
+                    },
+                    success:function(responsedata){
+                        // console.log(responsedata)
+                        images=responsedata.rows;
+                        images.forEach(async function(image) {
+                            var img = document.createElement('img');
+                            img.src =site_url.slice(0, -1)  + image.path + 'medium/' + image.filename;
+                            img.className="dragme"; 
+
+                            // var x = document.createElement("SPAN");
+                         //    x.innerHTML="&nbsp </br>"+image.filename;
+
+                            // var label = document.createElement('label');
+                         //    label.innerHTML="&nbsp </br>"+image.filename;
+                            
+                            document.getElementById('media-content').appendChild(img);
+                            // document.getElementById('media-content').appendChild(x);
+                            // document.getElementById('media-content').appendChild(label);
+                        })
+                       
+                        // for (var i = 0; i < data.length; i++) {
+                        //  var img = document.createElement('img');
+                           //  img.src = data[i].thumbnailUrl;
+                           //  document.getElementById('media-content').appendChild(img);
+                        // }
+                    },
+                    dataType : 'json'
+
+                });
+            }
+        });
+
+        $('#media_trigger').click(function(e) { 
+            // alert(1);
+            // $("#exampleModal").modal('show');
+            var user_id=$("#user_id").val();
+            var site_url=$("#site_url").val();
+            const myNode = document.getElementById("media-folder");
+            if(myNode!=null)
+            myNode.innerHTML = '';
+            // console.log(user_id);
+            $.ajax({
+                url: site_url+'ajax.php?oper=get-rows&obj_type=media_folder&filters=%7B%22user_id%22%3A'+user_id+'%2C%22active%22%3A1%7D&search=&order=asc&offset=0&limit=10&_=1640687353767',
+                data: {
+                    text: $("textarea[name=Status]").val(),
+                },
+                success:function(responsedata){
+                    folders=responsedata.rows;
+                    // console.log("folders")
+                    console.log(folders)
+                    $(".modal-body .note-group-select-from-files ").after("<div id='media-folder'></div>");
+
+                    folders.forEach(async function(folder) {
+                        var fold = document.createElement('img');
+                        fold.src =site_url+'img/artist/default.jpg';
+                        fold.alt=folder.id;
+                        fold.title=folder.filename;
+                        fold.className="media_image";   
+                        fold.folder=folder.id;
+                        fold.rank=folder.rank;
+                        document.getElementById('media-folder').appendChild(fold);
+                    });
+                    
+                    $(".media_image").wrap('<div class="media_folder"></div>');
+                    $(".media_folder").prepend('<i class="fa fa-folder-open"></i>');
+                    
+                    $(".media_folder img.media_image").each(function() {
+                      const $img = $(this);
+                      const imgtitle = $img.attr("title");
+                      setTimeout(function() {
+                        $img.after("<p class='media_folder_title'>" + imgtitle + "</p>");
+                      }, 100);
+                    });
+                    
+                },
+                dataType : 'json'
+            });
+        });
+    }); 
+</script>

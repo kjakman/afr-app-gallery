@@ -98,15 +98,31 @@
         
         {else}
           <div class="image-container-max-height">
-            <img src="{$collection.id|collection_photo:'medium'}" alt="{$collection.title}" class="img-responsive" /><br />
+                {if ($collection.video_status==1 && $collection.video!=null)}
+                    <div class="embed-responsive embed-responsive-16by9">
+                        {if ($collection.video_type==2)}
+                             <iframe width="560" height="315" src="https://www.youtube.com/embed/{$collection.video}?&autoplay={$collection.auto_play}&mute={$collection.mute}&loop={$collection.loop}&rel=0&showinfo=0&color=white&iv_load_policy=3&playlist={$collection.video}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        {else}  
+                            <iframe src="https://player.vimeo.com/video/{$collection.video}?muted={$collection.mute}&autoplay={$collection.auto_play}&loop={$collection.loop}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        {/if}
+                    </div><br>
+                {else}  
+                    <img src="{$collection.id|collection_photo:'medium'}" alt="{$collection.title}" class="img-responsive" /><br />
+                {/if}
+
           </div>
           <br />
-          <div style="text-align: justify;">
+            <div style="max-width: 700px; top: -80px;text-align: justify;" class="mx-auto text-secondary summernote_editor_output">
+
            {$collection.description}
           </div>
           <p>&nbsp;</p>
         {/if}
       </div>
     </div>
-
+<style type="text/css">
+        .summernote_editor_output a{
+            color: #ed8323;
+        }
+    </style>
   {/block}  

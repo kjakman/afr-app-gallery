@@ -180,7 +180,7 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
             'related_media_json'       => array('Media (json)',      'json',     '', 0),
 
             'language'=>          array('Language',    			'many2one', ATT_DEFAULT_LANGUAGE, AF_SEARCHABLE, 'language'),
-            'description'=>       array('Description',       'html',  '', AF_HIDE_LIST),
+            'description'=>      array('content','text','', AF_HIDE_LIST),
             //     'json' =>             array('Json',              'json',  '', AF_READONLY),
             //     'images'=>            array('Images',            'many2many', '', AF_HIDE_LIST, 'media_collection_map'),
             'start_date'=>         array('From',              'date',   '', AF_LOG),
@@ -192,6 +192,12 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
 
             'settings'=>        array('Settings',           'json',  '', AF_SEARCHABLE|AF_HIDE_ADD),
             'title_image_option'  =>       array('Title Image Radio button',         'bool',     1,  AF_HIDE_ADD, 0),
+            'video_status'=>array('video_status',  'int', AF_SEARCHABLE|AF_READONLY_EDIT), 
+            'video'=>             array('video',             'str',   '', AF_SEARCHABLE, 255),
+            'video_type'=>array('video_type', 'int', 0, AF_HIDE_ADD, 3), //1=>You tube, 2=>video
+            'auto_play'=>array('auto_play',  'int', AF_SEARCHABLE|AF_READONLY_EDIT), 
+            'mute'=>array('mute',  'int', AF_SEARCHABLE|AF_READONLY_EDIT), 
+            'loop'=>array('loop',  'int', AF_SEARCHABLE|AF_READONLY_EDIT), 
         ),
   
     "media_collection_map" => 

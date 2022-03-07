@@ -338,6 +338,36 @@ small {
   color: #ddd !important;
 }
 
+/** VP Popup Style **/
+.vp__my-modal-content{
+	border-radius: 10px;
+    overflow: hidden;
+}
+.vp__my-modal-content ul.vp__tabs{
+	background-color: #ececec !important;
+    border: 0px !important;
+}
+.vp__my-modal-content ul.vp__tabs li a{
+	padding: 14px 16px;
+    font-size: 16px;
+	text-decoration: none!important;
+	border-radius: 10px 10px 0px 0px;
+}
+ul.vp__tabs li a.active, ul.vp__tabs li a:focus, ul.vp__tabs li a:hover{
+	text-decoration: none!important;
+}
+.vp__my-modal-content ul.vp__tabs li a.active{
+    background-color: #fff;
+}
+.vp__tab-content{
+	padding: 20px 20px;
+}
+.vp__my-modal-content .w3-display-topright{
+	right: 3px;
+    top: 13px;
+    color: #e44848 !important;
+}
+
 .__vp-flip-back a.__vp-info {
   padding: 2px 6px !important;
   background: #F00;
@@ -3577,6 +3607,31 @@ hr{
     margin-right: auto;
     max-width: 1200px;
     width: 100%;
+}
+.w3-modal{
+	position: fixed !important;
+}
+.w3-modal .vp__tab-content{
+	padding:20px;
+}
+.w3-modal .popup_main_title{
+	font-size: 21px;
+    line-height: 27px;
+	letter-spacing: normal;
+}
+.w3-modal .popup_sub_title{
+	font-size: 18px;
+    line-height: 23px;
+}
+.w3-modal .popup_desc{
+	margin: 0px;
+    overflow: hidden;
+    width: 100%;
+    font-size: 16px;
+    line-height: 20px;
+}
+.summernote_editor_output a{
+	color: #ed8323;
 }
 
 

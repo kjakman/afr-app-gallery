@@ -37,6 +37,10 @@
 	{elseif (($tab == 'hover') || ($tab == 'exbHover') || ($tab == 'artHover') )}
 	  <li {if (($tab == 'hover') || ($tab == 'exbHover') )}class="active"{/if}><a href="{$tab38_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_exb_hover_link">Exhibitions</a></li>
 	  <li {if ($tab == 'artHover') }class="active"{/if}><a href="{$tab39_link}?_pv=1" class="ajax-loader" data-target="#subview-container" id="gbe_art_hover_link">Art</a></li>
+
+	{elseif (($tab == 'blogPage' ) || ($tab == 'blogContent' ) || ($tab == 'blogColour' ))}
+	  <li {if (($tab == 'blogContent') || ($tab == 'blogPage' ))}class="active"{/if}><a href="{$tab60_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_content_link">Content</a></li>
+	  <li {if (($tab == 'blogColour') )}class="active"{/if}><a href="{$tab61_link}?_pv=1&page_id={$page_id}&user_id={$userid}" class="ajax-loader" data-target="#subview-container" id="gbe_background_link">Background Color</a></li>
 	{/if}
 </ul>
 

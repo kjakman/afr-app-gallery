@@ -2,11 +2,22 @@
 
 
 {block name=image}
-  {if ($collection.title_image)}
-    <img id="collection_title_image" src="{$collection_id|collection_photo:'big'}" class=""><br>
-  {else}
-    <img src="/img/exhibition/default.jpg">
+  {if ($collection.video_status==1 && $collection.video!=null)}
+    <div class="embed-responsive embed-responsive-16by9">
+        {if ($collection.video_type==2)}
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{$collection.video}?&autoplay={$collection.auto_play}&mute={$collection.mute}&loop={$collection.loop}&rel=0&showinfo=0&color=white&iv_load_policy=3&playlist={$collection.video}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {else}  
+           <iframe src="https://player.vimeo.com/video/{$collection.video}?muted={$collection.mute}&autoplay={$collection.auto_play}&loop={$collection.loop}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        {/if}  
+    </div><br>
+  {else}  
+    {if ($collection.title_image)}
+      <img id="collection_title_image" src="{$collection_id|collection_photo:'big'}" class=""><br>
+    {else}
+      <img src="/img/exhibition/default.jpg">
+    {/if}  
   {/if}  
+    
 {/block}
 
 {block name=aside} 

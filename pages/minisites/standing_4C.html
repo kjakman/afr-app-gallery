@@ -31,11 +31,13 @@
                         <div class="__vp-flip-container" ontouchstart="this.classList.toggle('hover');">           
                           <div class="__vp-flipper">             
                             <div class="__vp-flip-front">      
-                             {if ($exhibition.title_image)}   
-                                <img class="__vp-plugin-image center-cropped" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">    
-                             {else}
-                                <img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
-                             {/if}
+                                <a href="{$basepath}/{$exhibition.page_slug}/{$exhibition.slug}"> 
+								 {if ($exhibition.title_image)}    
+									<img class="__vp-plugin-image center-cropped" src="{$exhibition|collection_photo:'medium'}" alt="{$exhibition.name}">    
+								 {else}
+									<img class="__vp-plugin-image center-cropped" src="/img/exhibition/default.jpg" alt="">
+								 {/if}
+                                </a>         
                             </div>             
                             <div class="__vp-flip-back __vp-plugin-hover">  
                               {if ($exhibition.title_image)}  

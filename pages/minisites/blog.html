@@ -1,0 +1,27 @@
+{{"extend": "minisites/index.html"}}
+
+    {block name=title}
+        <h1>{$minisite_pageObj.page_title}</h1>
+    {/block}  
+  
+    {block name=content}
+
+    <div class="container my-5">
+        <div style="max-width: 700px; top: -80px;" class="mx-auto text-secondary">
+           
+            <div style="max-width: 700px; top: -80px;" class="mx-auto text-secondary summernote_editor_output">
+
+                <p class="my-2" style="line-height: 2;">{$minisite_pageObj.blog.content}</p>
+                <br>
+                <br>
+    
+            </div>
+        </div>
+    </div>
+
+    <style type="text/css">
+        .summernote_editor_output a{
+            color: #ed8323;
+        }
+    </style>
+  {/block}

@@ -51,6 +51,10 @@
 		color: #000000;
 		font-weight: bold !important;
 	}
+
+        .summernote_editor_output a{
+            color: #ed8323;
+        }
 </style>
 <div class="profileinfo"> 
 	<div class="gallery-artwork-detail">
@@ -66,7 +70,7 @@
 			<div class="col-lg-8 col-md-9 col-sm-9">
 				<h1> {$profile.display_name}</h1> <br>
 				<h4>{[{$profile.city}, {$profile.country|get:countries:name}]|array_filter|join:', '}</h4>
-				<div id="description" class="mt20 mb20" style="text-align: justify;">
+				<div style="max-width: 700px; top: -80px;text-align: justify;" class="mx-auto text-secondary summernote_editor_output">
 				  {if ($profile.bio_description)}
 				    <div>{$profile.bio_description}</div>
 				  {/if}
