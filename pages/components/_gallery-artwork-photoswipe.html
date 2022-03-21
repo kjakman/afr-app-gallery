@@ -6,11 +6,12 @@
     {if ($artwork.title_image == $exhibition.media_id)}
         {$exhibitions = $exhibition}
         {$index = $count}
+        {$count = $count - 1}
+
     {/if}
     {$count = $count + 1}
   {/foreach}
 {$all_exhi = array($exhibitions)+$other_exhi}
-{$index=$index-1}
 {$cachebust = "?ts`$smarty.now`"}
 <link rel="stylesheet" type="text/css" media="all" href="/afr/js/vp/photoswipe.css?v=4.1.1-1.0.5" / >
 <link rel="stylesheet" type="text/css" media="all" href="/afr/js/vp/default-skin/default-skin.css{$cachebust}" / >
