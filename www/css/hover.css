@@ -24,7 +24,7 @@
 	position: relative;
 	display: block;
 	min-height: 100%;
-	max-width: initial;
+	max-width: 100%;
 }
 .hover_style figure figcaption {
 	padding: 2em;
@@ -1081,5 +1081,13 @@ figure.effect-1018.no_flip img:hover {
 	}
 	.hover_style figure img{
 		max-width:100%;
+	}
+}
+
+/**************************************** Media Quarry  For 1200 ***************************************/
+@media only screen and (max-width: 1200px) {
+	
+	.hover_style figure img{
+		max-width:100% !important;
 	}
 }
