@@ -82,12 +82,25 @@
         <div class="row type-10 type-11 type-20 type-21 type-22">
           <div class="form-group col-sm-4 col-xs-6">
             <label for="media-frame">Frame</label>
-            {$yes_no = [0 => "Leave Blank", -1 => "Unframed", 1 => "Still Image" ,2=>"Animated Image", 3=>"Video", 4=>"Audio", 5=> "3D Model"]}
+            {$yes_no = [0 => "Leave Blank", -1 => "Unframed", 1 => "Framed"]}
             {html_options name="frame" class="form-control" options=$yes_no selected=$artwork.frame}                                            
           </div>
           <div class="form-group col-sm-4 col-xs-6">
             <label for="media-passepartout">Passe-Partout</label>
-            {$yes_no = [0 => "Leave Blank", -1 => "No Passe-partout", 1 => "Etherum", 2=> "Polygon"]}
+            {$yes_no = [0 => "Leave Blank", -1 => "No Passe-partout"]}
+            {html_options name="passepartout" class="form-control" options=$yes_no selected=$artwork.passepartout}                                            
+          </div>          
+        </div>   
+
+        <div class="row type-45">
+          <div class="form-group col-sm-4 col-xs-6">
+            <label for="media-frame">Medium</label>
+            {$yes_no = [0 => "Leave Blank", -1 => "Unframed", 1 => "Still Image" ,2=>"Animated Image", 3=>"Video", 4=>"Audio", 5=> "3D Model"]}
+            {html_options name="frame" class="form-control" options=$yes_no selected=$artwork.frame}                                            
+          </div>
+          <div class="form-group col-sm-4 col-xs-6">
+            <label for="media-passepartout">Block Chain</label>
+            {$yes_no = [ 1 => "Etherum", 2=> "Polygon"]}
             {html_options name="passepartout" class="form-control" options=$yes_no selected=$artwork.passepartout}                                            
           </div>          
         </div>   
@@ -383,7 +396,7 @@
         awb_set_type(val);
       });
       function awb_set_type(val) {
-        $(".type-10, type-11, .type-20, .type-21, type-22, .type-30, .type-40, .type-50, .type-60").hide();
+        $(".type-10, type-11, .type-20, .type-21, type-22, .type-30, .type-40, .type-50, .type-60, .type").hide();
         console.log("showing type " + val);
         if(val) {
           $(".type-" + val).show();  
