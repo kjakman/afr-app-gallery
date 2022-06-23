@@ -1,0 +1,8 @@
+{$what = 'network'}
+{$plural = 'networks'}
+
+
+{foreach from=$scope['user_networks'] item=user_network}
+
+    {{"include": "_gallery-backend-network.html"}} 
+{/foreach}

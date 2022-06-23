@@ -7,6 +7,7 @@
         <li id="nav_section_tips" class="class-filter{if ($scope.section =='Analytics')} active{/if}"><a class="subview-nav-link" href="{$p}/Analytics"></i>Analytics <i class="pull-right hidden-xs showopacity fa fa-cog"></i></a></li>
         <li id="nav_section_tips" class="class-filter{if ($scope.section =='User')} active{/if}"><a class="subview-nav-link" href="{$p}/users"></i>User <i class="pull-right hidden-xs showopacity fa fa-cog"></i></a></li>
     {/if}
+
     <!-- {if ($scope.user.user_level==40) }
         <li id="nav_section_tips" class="class-filter{if ($scope.section =='Analytics')} active{/if}"><a class="subview-nav-link" href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">Analytics <i class="pull-right hidden-xs showopacity fa fa-cog"></i> </a>
             <ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
@@ -22,6 +23,7 @@
     {if ($scope.user.roles >= 256)}
         <li id="nav_section_network" class="class-filter{if ($scope.section =='')} active{/if}"><a class="subview-nav-link" href="{$p}/network"></i>Artists / Contacts<i class="pull-right hidden-xs showopacity fa fa-users"></i></a></li>     
     {/if} 
+     <li id="nav_section_network" class="class-filter{if ($scope.section =='networks')} active{/if}"><a class="subview-nav-link" href="{$p}/networks"></i>My Network<i class="pull-right hidden-xs showopacity fa fa-users"></i></a></li>
     <li id="nav_section_artwork" class="class-filter{if ($scope.section =='artwork')} active{/if}"><a class="subview-nav-link" href="{$p}/artworks" id="gbe_artworks_link"></i>Artworks <i class="pull-right hidden-xs showopacity fa fa-paint-brush"></i></a></li>
     <li id="nav_section_exhibition" class="class-filter{if ($scope.section =='exhibition')} active{/if}"><a class="subview-nav-link" href="{$p}/exhibitions"></i>Exhibitions <i class="pull-right hidden-xs showopacity fa fa-asterisk"></i></a></li>
 <!------------------Vignesh 01-06-2020 --------------------------->

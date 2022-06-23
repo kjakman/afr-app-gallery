@@ -170,6 +170,16 @@
     return '<span> <span  type="hidden" class="edit" name="edit" data-col="title" data-value='+row.id+' >'+value+'</span></span>';
   }
 
+  function bstSnoFormatter(value, row, index) {
+    var print_val = value ? value : "[Untitled]";
+    var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    // console.log("base_link = " + base_link + " pv=" + pv);
+    //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+    return '<span> <span  type="hidden" data-value='+row.id+' >'+value+'</span></span>';
+  }
+
   function bstTitleFormatter(value, row, index) {
     var print_val = value ? value : "[Untitled]";
     var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
@@ -501,6 +511,8 @@ function check_status(id) {
 
     return '<span>'+ buttons + ' ' + pop_btn + '</span>'; 
   }
+
+
 
   //For Websitebuilder page with clone icon
   function bstWebsitebuilderCloneActionFormatter(value, row, index) {
