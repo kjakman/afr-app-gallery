@@ -1,99 +1,26 @@
-{$what = 'network'}
-{$plural = 'networks'}
+{$what = 'artist'}
+{$plural = 'artists'}
 
-<div class="row">
-  <div class="col-lg-9 col-md-9 col-xl-9" >
-      <div class="border-right" style="border-right:1px solid #87bd41;">
-        <ul class="nav nav-tabs" >
-          <li class="active"><a data-toggle="tab" href="#tab1">Followers</a></li>
-          <li><a data-toggle="tab" href="#tab2">Followings</a></li>
-        </ul>
-  
-        <div class="tab-content" >
-          <div id="tab1" class="tab-pane fade in active">
-            
-            <div class="row userDetailListMain  scrollBar" >
-              <div class="col-md-12" style="margin-bottom:10px ;"></div>
-            {foreach $scope['user']['followers'] as $follower}              
+{$form = "_gallery-backend-profile-tabs.html"}
+{{"extend": "_gallery-backend-list-base.html"}}
 
-              <div class="col-md-4 spaceLesscard">
-                <div class="panel panel-default">
-                  <div class="row " id="followScreen">
-                    <div class="col-md-3">
-                     <img class="img-responsive" src="{$follower['profile']|userphoto:'big'}" alt="">
-                    </div>
-                    <div class="col-md-9">
-                      <p class="followUserName" style="font-weight: 400 !important;">{$follower['profile']['display_name']}</p>
-                      <button class="btn btn-block bg-light followBtn">Follow</button>
-                    </div>
-                  </div>
-                </div>
-                 
-              </div>
-          
-            {/foreach}
-          
-          
-          
-          </div>
-          </div>
-          <div id="tab2" class="tab-pane fade">
-            <div class="row userDetailListMain  scrollBar">
-              <div class="col-md-12" style="margin-bottom:10px ;"></div>
-  
-            {foreach $scope['user']['followings'] as $following}              
+{block name=main}  
+{/block}
 
-              <div class="col-md-4 spaceLesscard">
-                <div class="panel panel-default">
-                  <div class="row " id="followScreen">
-                    <div class="col-md-3">
-                     <img class="img-responsive" src="{$following['profile']|userphoto:'big'}" alt="">
-                    </div>
-                    <div class="col-md-9">
-                      <p class="followUserName" style="font-weight: 400 !important;">{$following['profile']['display_name']}</p>
-                      <button class="btn btn-block bg-light followBtn">Un Follow</button>
-                    </div>
-                  </div>
-                </div>
-                 
-              </div>
-          
-            {/foreach}
-            
-          
-          
-          
-          </div>
-          </div>
-         
-        </div>
-  
-      </div>
-     
+{block name="fields"}
+  <!--th data-field="id" data-sortable="true" data-formatter="bstIDFormatter">ID</th-->
+  <th data-formatter="bstSnoFormatter">SNO</th>
+  <th data-field="actions" data-formatter="bstArtistActionFormatter">Actions</th>
+  <th data-field="photo" data-formatter="bstUserPhotoFormatter">Image</th>
+  <th data-field="display_name" data-sortable="true" data-formatter="bstTitleNetworkFormatter">Name</th>
+  <th data-field="created" data-sortable="true" data-formatter="bstDateFormatter">Created</th>
+  <th data-field="age" data-sortable="true">Age</th>  
+  <th data-field="city" data-sortable="true">City</th>
+  <th data-field="country" data-sortable="true">Country</th>  
+  <!-- <th data-field="user_level" data-editable="true" data-editable-type="number" data-sortable="true">Level</th>
+  <th data-field="roles" data-sortable="true">Roles</td>
+  <th data-field="username" data-sortable="true">Username</th> -->
+{/block}
 
-  </div>
-  <!-- <div class="col-md-3">
-      <h4 class="font-weight-bold" style="font-weight: 500; padding:4px;">Suggestions</h4>
-        {foreach $scope['user']['followings'] as $following}              
-
-          <div class="col-md-4 spaceLesscard">
-            <div class="panel panel-default">
-              <div class="row " id="followScreen">
-                <div class="col-md-3">
-                 <img class="img-responsive" src="{$following['profile']|userphoto:'big'}" alt="">
-                </div>
-                <div class="col-md-9">
-                  <p class="followUserName" style="font-weight: 400 !important;">{$following['profile']['display_name']}</p>
-                  <button class="btn btn-block bg-light followBtn">Un Follow</button>
-                </div>
-              </div>
-            </div>
-             
-          </div>
-      
-        {/foreach}
-  </div> -->
-</div>
-
-
-
+{block name="script"}
+{/block}

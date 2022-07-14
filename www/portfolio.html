@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vpatina</title>
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+  <!-- <link rel="stylesheet" href="css/sidebarNavigation.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/vpatina-styles.css">
+  
+  
+</head>
+<body>
+<header>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-xl-4 col-4">
+				<div class="headerLeftContent">
+					<div class="image-section">
+						<img width="40px" class="LogoImg" height="40px" src="data:image/jpeg;base64,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" alt="" />
+				      </div>
+					   <div class="form-group has-feedback has-search webSideView-headerIcon">
+						   <span class="glyphicon glyphicon-search form-control-feedback"></span>
+						   <input width="50%" type="text" class="form-control" placeholder="Search">
+						 </div>
+						 <div id="header-3" class="header searchIconMobileView" style="display: none;">
+							<section class="search">
+								<div id="icon"><i class="fa fa-search" aria-hidden="true"></i>
+
+								</div>
+								<div class="search-dropdown hidden">
+									<input placeholder="search..." type="text" />
+								</div>
+								</section>
+						</div>
+                      </div>
+					 
+
+
+					
+				</div>
+			<div class="col-md-8 col-xl-8 col-lg-8 col-8">
+				<ul class="nav nav-tabs webSideView-headerIcon" id="headerTab" role="tablist">
+				  <li class="nav-item active">
+					<a class="nav-link active" id="#home-tab" data-toggle="tab" href="#home-v" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-home" aria-hidden="true"></i>Portfolio</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile-v" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-user" aria-hidden="true"></i>Art Networks</a>
+				  </li>
+				  <!-- <li class="nav-item">
+					<a class="nav-link" id="job-tab" data-toggle="tab" href="#job-v" role="tab" aria-controls="jobs" aria-selected="false"><i class="fa fa-briefcase" aria-hidden="true"></i>Jobs</a>
+				  </li> -->
+				  <!-- <li class="nav-item">
+					<a class="nav-link" id="job-tab" data-toggle="tab" href="#notification-v" role="tab" aria-controls="notification" aria-selected="false">				  <i class="fa fa-bell" aria-hidden="true"></i>
+						Notification</a>
+				  </li> -->
+
+
+
+				</ul>
+				<ul class="nav nav-tabs molileSideView-headerIcon" id="headerTab" role="tablist" style="display: none;">
+					<li class="nav-item active">
+					  <a class="nav-link active" id="#home-tab" data-toggle="tab" href="#home-v" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-home" aria-hidden="true"></i></a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile-v" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-user" aria-hidden="true"></i></a>
+					</li>
+					<!-- <li class="nav-item">
+					  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile-v" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-briefcase" aria-hidden="true"></i></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="job-tab" data-toggle="tab" href="#notification-v" role="tab" aria-controls="notification" aria-selected="false">				  <i class="fa fa-bell" aria-hidden="true"></i>
+							</a>
+					  </li> -->
+  				  </ul>
+			</div>
+		</div>
+	</div>
+</header>
+<div class="container profie_list_page">
+    <div class="row">        
+        <div class="col-md-12 ">
+          <!-- Tab panes -->
+          <div class="tab-content ">
+            <div class="tab-pane active  " id="home-v">			
+                <div class="profilecard profile_banner">
+                    <div class="row">
+                        <div class="col-md-6">
+                                <img src="images/portfolio_1.jpg" alt="" style="width:100% ;height: 400px;object-fit: fill;">
+                        </div>
+                        <div class="col-md-6">
+                            
+                            <div class="artistProfile">
+                                <h2>Luna De Jong</h2> 
+                                <h5 class="font-weight-bold">United Kingdom</h5>
+                                <div class="description">
+                                    <h2>Description</h2>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                </div>
+                                <a href="mailto:luna@vpatina.com"><i class="fa fa-envelope" aria-hidden="true" style="font-size:14px ;"></i>luna@vpatina.com
+                                </a><br>
+                                <a href="https://www.lunadejong.com" target="_blank"><i class="fa fa-globe" aria-hidden="true" style="font-size:18px;"></i>www.lunadejong.com
+                                </a>
+                                <br>
+                                <a href=""><i class="fa fa-map-marker" aria-hidden="true" style="font-size:20px;"></i>Location
+                                </a>
+    
+                            </div>
+    
+                        </div>
+                            
+                                                                                    
+                        </div>
+                </div>
+                
+                   <div id="gallerShows">
+                    <div class="profilecard profile_portfolios">
+                        <h4>Portfolio</h4>
+                        <!-- <div class="row"> -->
+                            <div class="portfolio_masonry">
+                                <div class="mat">
+                                <div class="mat-item"><a href="index2.html"><img src="images/portfolio_1.jpg" /></a></div>
+                                <div class="mat-item"><img src="images/portfolio_2.jpg" /></div>
+                                <div class="mat-item"><img src="images/portfolio_3.jpg" /></div>
+                                <div class="mat-item"><img src="images/portfolio_4.jpg" /></div>
+                                <div class="mat-item"><img src="images/portfolio_5.jpg" /></div>
+                                <div class="mat-item"><img src="images/portfolio_1.jpg" /></div>
+                                <div class="mat-item"><img src="images/portfolio_2.jpg" /></div>
+                                <div class="mat-item"><img src="images/portfolio_3.jpg" /></div>
+                                <div class="mat-item"><img src="images/portfolio_3.jpg" /></div>
+                                <div class="mat-item"><img src="images/portfolio_2.jpg" /></div>
+                                <div class="mat-item"><img src="images/portfolio_4.jpg" /></div>
+                                <div class="mat-item"><img src="images/portfolio_3.jpg" /></div>
+                                <div class="mat-item"><img src="images/portfolio_5.jpg" /></div>
+                                <div class="mat-item"><img src="images/portfolio_1.jpg" /></div>
+                                                                        
+                                <div class="mat-item"><img src="images/portfolio_1.jpg" /></div>
+                                <div class="mat-item"><img src="images/portfolio_2.jpg" /></div>
+                                </div>
+                            </div>									
+                        <!-- </div> -->
+                    </div>
+                   </div>
+                
+					
+            </div>
+            <div class="tab-pane" id="profile-v">
+				<div class="row">
+					<div class="col-md-3  "> <!-- required for floating -->
+					  <div class="panel panel-default networkSide">
+					  <!-- Nav tabs -->
+					  <h5 class="network-heading">Manage my network</h5>
+					  <ul class="nav nav-tabs tabs-left sideways">
+						 <li class="active"><a href="#home-v" data-toggle="tab"><i class="fa fa-home" aria-hidden="true"></i>Connections</a></li>
+						 <li><a href="#profile-v" data-toggle="tab"><i class="fa fa-user" aria-hidden="true"></i>Contacts</a></li>
+						  <li class="active"><a href="#home-v" data-toggle="tab"><i class="fa fa-home" aria-hidden="true"></i>Group</a></li>
+					  
+					  </ul>
+					  </div>
+					</div>
+					<div class="col-md-9 ">
+						<div class="row">
+							<div class="col-md-4 ">
+								<div class="panel panel-default userDetailList resourcesView">
+							   
+									<div class="row bothContent">
+									  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+										 <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+									  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+										<h5>Human Resources</h5>
+									  </div>
+									  
+									</div>
+									<div class="row">
+									  <div class="col-md-12" style="margin-top:20px ;">  
+										  <h4 style="margin-bottom:0px;">Meera Jas</h4>
+										  <span class="sub-text">Human Resources Recruiter</span>
+		
+										  <div class="specified">
+										   <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+										  </div>
+		
+										</div>
+									</div>
+								  </div>
+							</div>
+							<div class="col-md-4 ">
+								<div class="panel panel-default userDetailList resourcesView">
+							   
+									<div class="row bothContent">
+									  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+										 <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+									  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+										<h5>Human Resources</h5>
+									  </div>
+									  
+									</div>
+									<div class="row">
+									  <div class="col-md-12" style="margin-top:20px ;">  
+										  <h4 style="margin-bottom:0px;">Meera Jas</h4>
+										  <span class="sub-text">Human Resources Recruiter</span>
+		
+										  <div class="specified">
+										   <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+										  </div>
+		
+										</div>
+									</div>
+								  </div>
+							</div>
+							<div class="col-md-4 ">
+								<div class="panel panel-default userDetailList resourcesView">
+							   
+									<div class="row bothContent">
+									  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+										 <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+									  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+										<h5>Human Resources</h5>
+									  </div>
+									  
+									</div>
+									<div class="row">
+									  <div class="col-md-12" style="margin-top:20px ;">  
+										  <h4 style="margin-bottom:0px;">Meera Jas</h4>
+										  <span class="sub-text">Human Resources Recruiter</span>
+		
+										  <div class="specified">
+										   <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+										  </div>
+		
+										</div>
+									</div>
+								  </div>
+							</div>
+							<div class="col-md-4 ">
+								<div class="panel panel-default userDetailList resourcesView">
+							   
+									<div class="row bothContent">
+									  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+										 <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+									  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+										<h5>Human Resources</h5>
+									  </div>
+									  
+									</div>
+									<div class="row">
+									  <div class="col-md-12" style="margin-top:20px ;">  
+										  <h4 style="margin-bottom:0px;">Meera Jas</h4>
+										  <span class="sub-text">Human Resources Recruiter</span>
+		
+										  <div class="specified">
+										   <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+										  </div>
+		
+										</div>
+									</div>
+								  </div>
+							</div>
+							<div class="col-md-4 ">
+								<div class="panel panel-default userDetailList resourcesView">
+							   
+									<div class="row bothContent">
+									  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+										 <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+									  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+										<h5>Human Resources</h5>
+									  </div>
+									  
+									</div>
+									<div class="row">
+									  <div class="col-md-12" style="margin-top:20px ;">  
+										  <h4 style="margin-bottom:0px;">Meera Jas</h4>
+										  <span class="sub-text">Human Resources Recruiter</span>
+		
+										  <div class="specified">
+										   <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+										  </div>
+		
+										</div>
+									</div>
+								  </div>
+							</div>
+							<div class="col-md-4 ">
+								<div class="panel panel-default userDetailList resourcesView">
+							   
+									<div class="row bothContent">
+									  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+										 <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+									  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+										<h5>Human Resources</h5>
+									  </div>
+									  
+									</div>
+									<div class="row">
+									  <div class="col-md-12" style="margin-top:20px ;">  
+										  <h4 style="margin-bottom:0px;">Meera Jas</h4>
+										  <span class="sub-text">Human Resources Recruiter</span>
+		
+										  <div class="specified">
+										   <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+										  </div>
+		
+										</div>
+									</div>
+								  </div>
+							</div>
+							<div class="col-md-4 ">
+								<div class="panel panel-default userDetailList resourcesView">
+							   
+									<div class="row bothContent">
+									  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+										 <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+									  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+										<h5>Human Resources</h5>
+									  </div>
+									  
+									</div>
+									<div class="row">
+									  <div class="col-md-12" style="margin-top:20px ;">  
+										  <h4 style="margin-bottom:0px;">Meera Jas</h4>
+										  <span class="sub-text">Human Resources Recruiter</span>
+		
+										  <div class="specified">
+										   <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+										  </div>
+		
+										</div>
+									</div>
+								  </div>
+							</div>
+
+							
+						</div>
+					</div>
+				</div>
+				
+            </div>
+
+          </div>
+        </div>   
+      </div>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script  src="js/sidebarNavigation.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+        $('.grid_1').masonry({
+					itemSelector: '.grid-item',
+					columnWidth: '.grid-item'
+				});
+	
+		$('#icon').click(function () {
+			$(this).siblings('.search-dropdown').toggleClass('hidden');
+		});
+	});
+</script>
+</script>
+</body>
+</html>

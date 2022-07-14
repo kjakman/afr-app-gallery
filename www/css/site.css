@@ -1074,4 +1074,28 @@ overflow-y: scroll;
 .scrollBar::-webkit-scrollbar {
 display: none;
 }
+.networkSearchBar{
+  border:none;
+}
+/* .networkSearchBar:focus-visible{
+  border:none !important;
+} */
+.networkSearchBargroup{
+border:1px solid gray;
+border-radius:5px;
+}
+input:focus-visible {
+  outline-offset: none !important;
+
+}
+
+.profile_banner,.profilecard {
+  box-shadow: 0 7px 14px 0 rgb(65 69 88 / 10%), 0 3px 6px 0 rgb(0 0 0 / 7%);    border-radius: 0.375rem;  
+margin-bottom:50px;background:#fff;
+}
+.profilecard {padding: 30px;}
+
+
+
 /* networks */
+

@@ -95,12 +95,12 @@
         <div class="row type-45">
           <div class="form-group col-sm-4 col-xs-6">
             <label for="media-frame">Medium</label>
-            {$yes_no = [0 => "Leave Blank", -1 => "Unframed", 1 => "Still Image" ,2=>"Animated Image", 3=>"Video", 4=>"Audio", 5=> "3D Model"]}
+            {$yes_no = [0 => "Leave Blank", 1 => "Still Image" ,2=>"Animated Image", 3=>"Video", 4=>"Audio", 5=> "3D Model"]}
             {html_options name="frame" class="form-control" options=$yes_no selected=$artwork.frame}                                            
           </div>
           <div class="form-group col-sm-4 col-xs-6">
             <label for="media-passepartout">Block Chain</label>
-            {$yes_no = [ 1 => "Etherum", 2=> "Polygon"]}
+            {$yes_no = [ 1 => "Etherum", 2=> "Polygon",3=>"Solana",4=>"Tezos",5=>"Flow",6=>"WAX",7=>"BSC",8=>"Leave Blank"]}
             {html_options name="passepartout" class="form-control" options=$yes_no selected=$artwork.passepartout}                                            
           </div>          
         </div>   

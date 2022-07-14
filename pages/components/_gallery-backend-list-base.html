@@ -170,15 +170,19 @@
     return '<span> <span  type="hidden" class="edit" name="edit" data-col="title" data-value='+row.id+' >'+value+'</span></span>';
   }
 
-  function bstSnoFormatter(value, row, index) {
-    var print_val = value ? value : "[Untitled]";
-    var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
-    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
-    var link_class = pv ? 'ajax-loader' : '';
-    // console.log("base_link = " + base_link + " pv=" + pv);
-    //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
-    return '<span> <span  type="hidden" data-value='+row.id+' >'+value+'</span></span>';
-  }
+  // function bstSnoFormatter(value, row, index) {
+  //   var print_val = value ? value : "[Untitled]";
+  //   var base_link = row.obj_type == 'media' ? '/backend/medium' : '{$base_link}';
+  //   var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+  //   var link_class = pv ? 'ajax-loader' : '';
+  //   // console.log("base_link = " + base_link + " pv=" + pv);
+  //   //return '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="' + link_class + '" data-target="#subview-container">' + print_val + '</a>';
+  //   return '<span> <span  type="hidden" data-value='+row.id+' >'+value+'</span></span>';
+  // }
+
+  function bstSnoFormatter(value, row, index){
+  return index + 1;
+}
 
   function bstTitleFormatter(value, row, index) {
     var print_val = value ? value : "[Untitled]";
@@ -554,6 +558,28 @@ function check_status(id) {
     //var plugin_button = '<a href="/backend/plugins?_pt=media_collection&amp;_pid=' + row.id + '&amp;_pv=' + pv + '" class=" ' + link_class + '" data-target="#subview-container"><i class="fa fa-link"></i></a>'; 
 
     return buttons;  
+  }
+  function bstNetworkActionFormatter(value, row, index) {
+    
+    var base_link = row.obj_type == 'user_network' ? '/backend/medium' : '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    // console.log("base_link = " + base_link + " pv=" + pv);
+    var send_button = '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="btn btn-sm btn-info text-white ' + link_class + '" data-target="#subview-container">Connect</a>';
+    
+    return send_button ; 
+
+  }
+  function bstNetworkActionFormatter(value, row, index) {
+    
+    var base_link = row.obj_type == 'user_network' ? '/backend/medium' : '{$base_link}';
+    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
+    var link_class = pv ? 'ajax-loader' : '';
+    // console.log("base_link = " + base_link + " pv=" + pv);
+    var send_button = '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="btn btn-sm btn-info text-white ' + link_class + '" data-target="#subview-container">Connect</a>';
+    
+    return send_button ; 
+
   }
 
   function bstVaultActionFormatter(value, row, index) {
