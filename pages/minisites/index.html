@@ -35,6 +35,8 @@
 {$minisite_pageObj = $scope.minisite_pageObj}
 {$artists = $scope.artists}
 {$secArtists = $scope.secArtists}
+{$shared_pro_arts = $scope.shared_pro_art}
+{$shared_Artist = $scope.shared_Artist}
 {$page_slug = $scope.page_slug}
 {$sub_slug = $scope.sub_slug}
 {$layout = $scope.layout}
@@ -86,6 +88,7 @@
     {$artist_name[] = $artist_id|displayname}
 {/foreach}
 {foreach from=$secArtists item=artist}{/foreach}
+{foreach from=$shared_pro_arts item=artist}{/foreach}
 
 {foreach from=$artists item=description_artist} 
     {$desart[] = $description_artist.display_name} 

@@ -6563,7 +6563,6 @@
                                 $event->selection_type = $selection_type;
                             }
                         }
-                        // dump('Ashii1');
                     }
                     else if($uri_segments[2] == 'gallery'){
                         $gal = array('subtype' => 10, 'type' => $collection_type, 'active' => 1);

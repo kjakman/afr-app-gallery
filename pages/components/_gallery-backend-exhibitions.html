@@ -2,41 +2,33 @@
 {$plural = 'exhibitions'}
 {{"extend": "_gallery-backend-list-base.html"}}
 
-{block name=main} 
-  <div class="row">
-    <div class="col-sm-5">
-      <span> 
-        1. Green  “Create Exhibition” button  adds  new exhibition <br>
-        2.  Search  bar helps quickly find  exhibitions <br>
-        3.  Check box next  to  exhibition to delete/ attach  to  website <br>
-      </span>
-    </div>
-    <div class="col-sm-6">
-      <span> 
-        4. Orange  “Eye” icon  previews  exhibition <br>
-        5.  Blue  “Share” icon  gives you access  to  sharing options <br>
-      </span>
-    </div> 
-  </div>
-  <div class="mt20">
-      <a href="https://vimeo.com/388211008" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Exhibition Table Tutorial</a>
-  </div>
-{/block}
+
 {block name="fields"}
   <th data-formatter="bstSnoFormatter" >S.No</th>
   <th data-field="state" data-checkbox="true">Check</th>
+  {if ($shared_status == 0)}
   <th data-field="actions" data-formatter="bstCollectionActionFormatter">Actions</th>
+  {/if}
   <!--th data-field="id" data-sortable="true" data-formatter="bstIDFormatter">ID</th-->
   <th data-field="title_image" data-formatter="bstTitleImageFormatter1">Image</th>
+  {if ($shared_status == 0)}
   <th data-field="title" data-sortable="true" data-formatter="bstTitleFormatter">Title</th>
-  <th data-field="artist_ids" data-sortable="true" data-formatter="bstArtistsFormatter">Artist</th>
-  <!-- <th data-field="created" data-sortable="true" data-formatter="bstDateFormatter">Created</th>
+  <th data-field="artist_id" data-sortable="true" data-formatter="bstArtistFormatter">Artist</th>
+  {elseif ($shared_status == 1)}
+  <th data-field="title">Title</th>
+  <th data-field="artist_id" data-sortable="true" data-formatter="bstArtistFormatter">Shared by</th>
+  {/if}
+  {if ($shared_status == 0)}
+  <th data-field="created" data-sortable="true" data-formatter="bstDateFormatter">Created</th>
   <th data-field="subtype" data-sortable="true" data-formatter="bstCollectionSubtypeFormatter" data-filter-control="select" data-filter-data="var:subtype">Type</th>
   <th data-field="start_date" data-sortable="true"  data-formatter="bstStartDateFormatter" class="start_date">Start</th>
-  <th data-field="end_date" data-sortable="true" data-formatter="bstEndDateFormatter" class="end_date">End</th>  -->
-  <!--<th data-field="exhibition_sequence" data-sortable="true" data-formatter="exhibitionSequence">Exhibition Sequence</th>-->
-  <!-- <th data-field="location" data-sortable="true" data-formatter="bstLocationFormatter">Location</th> 
-  <th data-field="active" data-sortable="true" data-formatter="bstPublishedFormatter" data-filter-control="select" data-filter-data="var:active">Published</th> -->
+  <th data-field="end_date" data-sortable="true" data-formatter="bstEndDateFormatter" class="end_date">End</th> 
+  <!-- <th data-field="exhibition_sequence" data-sortable="true" data-formatter="exhibitionSequence">Exhibition Sequence</th> -->
+  <th data-field="location" data-sortable="true" data-formatter="bstLocationFormatter">Location</th> 
+  <th data-field="active" data-sortable="true" data-formatter="bstPublishedFormatter" data-filter-control="select" data-filter-data="var:active">Published</th>
+  {elseif ($shared_status == 1)}
+  <th data-field="active" data-sortable="true" data-formatter="bstPublishedFormatter1" data-filter-control="select" data-filter-data="var:active">Published</th>
+  {/if}
 
 <script type="text/javascript">
   var subtype = {
@@ -48,6 +40,10 @@
   };
 
   var active = {
+    "1": "ON",
+    "0": "OFF"
+  };
+  var sactive = {
     "1": "ON",
     "0": "OFF"
   };

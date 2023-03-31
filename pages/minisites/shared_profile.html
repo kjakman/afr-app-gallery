@@ -1,0 +1,95 @@
+
+{{"extend": "minisites/index.html"}}
+
+{block name=title}
+    <h2 class="page_title">Shared Profiles</h2>  
+{/block}
+<style>
+    #shared_profile {
+        margin-top: 0px;
+    }
+    #shared_profile .list ul {
+        list-style: none;
+        margin-bottom: 10px;
+    }
+    #publications h4, #shared_profile a {
+        font-size: 22px;
+        margin-bottom: 0;
+        line-height: 30px;
+        color: #000;
+        text-decoration: none;
+        text-transform: {$texts};
+    }
+    .shared_profile .list li img {
+        display: none
+    }
+
+    .shared_profile.notouch .list a:hover img {
+        opacity: 1
+    }
+    @media screen and (max-width:1325px) and (min-width:640px) {
+        .shared_profile .list a img {
+            right: 50%;
+            margin-right: -480px;
+            left: auto
+        }
+    }
+    @media screen and (min-width:640px) {
+        #shared_profile .list ul {
+            width: 596px;
+            -webkit-column-count: 2;
+            -moz-column-count: 2;
+            -webkit-column-gap: 51px;
+            column-count: 2;
+            column-gap: 51px;
+        }
+        .shared_profile .list a img {
+            position: fixed;
+            left: 50%;
+            top: 220px;
+            max-height: 370px;
+            -webkit-transform: translate(28px, 0);
+            transform: translate(28px, 0);
+            opacity: 0;
+            transition: opacity .2s
+        }
+        .popup .shared_profile .list a img {
+            position: absolute;
+            top: 265px
+        }
+        .popup .shared_profile .list.scrolled a img {
+            position: fixed;
+            top: 40px
+        }
+        .shared_profile .list li:hover img {
+            display: block
+        }
+    }
+</style>
+{block name=content}
+{if ($scope['user_displayname'])}
+<div class="container">
+    <div id="shared_profile" class="shared_profile notouch"></div>
+    <div class="list">
+        <ul>
+            {foreach from=$scope['user_displayname'] item=scopes}
+            <li>
+                {$scopes}
+            </li>
+            {/foreach}
+        </ul>
+</div>
+<!-- <img src="/img/artist/default.jpg" alt=""> -->
+</div>
+</div>
+{else}
+{{"include": "minisites/share_profile_empty_message.html"}}
+{/if}
+<script type="text/javascript">
+    var detecttouch=function(){
+        window.removeEventListener('touchstart',detecttouch);
+        document.getElementById('shared_profile').className="shared_profile";
+    }; 
+    window.addEventListener('touchstart',detecttouch);
+</script>
+{/block}

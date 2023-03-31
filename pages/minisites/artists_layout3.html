@@ -55,6 +55,32 @@
       </div>
     </div> 
   {/if}
+  {if ($shared_pro_arts)}
+    <hr>
+    <h2 class="page_title">{$minisite_pageObj.secondary_title}</h2> 
+    <div class="row">
+      <div class="col-md-12 col-sm-12 detail-text">
+        <div class="row artists-row mobile-row artists-list-row artists-grid">
+          {foreach from=$shared_pro_arts item=artist}
+          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-left artist-grid-col">
+            <div class="image-container">  
+              <a href="{$basepath}{$artist.page_slug}{$artist.slug}">
+                {if ($artist.title_image)}  
+                    <img class="img-circle" src="{$artist.title_image|photo:'ig'}" alt="{$artist.display_name} Artist Profile Photo">
+                {else}    
+                    <img class="img-circle" src="/img/artist/default.jpg" alt="">
+                {/if}    
+              </a>
+            </div>
+            <div class="artist-name text-center mt10">
+              <a href="{$basepath}{$artist.page_slug}{$artist.slug}"><h1 class="artist-name-3C">{$artist.display_name}</h1></a>
+            </div>
+          </div>
+          {/foreach}
+        </div>    
+      </div>
+    </div> 
+  {/if}
 </div>
 {else}
 {{"include": "minisites/artist_empty_message.html"}}

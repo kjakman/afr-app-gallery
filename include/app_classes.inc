@@ -367,6 +367,7 @@ $__CLASS_ATTRIBUTES = array_merge($__CLASS_ATTRIBUTES, array(
       'slug'=>               array('Slug',             'str',   '', 0, 128 ),
       'search'=>             array('Search',           'json',   ''),
       'search1'=>            array('Search1',           'json',   ''),
+      'search2'=>            array('Search2',           'json',   ''),
       'row_order'=>          array('Row Order',        'int',   '', 0, 11 ),
       'data'=>               array('data',              'json',     '', AF_HIDE_ADD),
       'colour'=>             array('Page Colour',       'str',   '', 0, 600 ),

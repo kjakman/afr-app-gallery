@@ -40,20 +40,22 @@
         </div>  
       </div>
     </div>
-    <input type="submit" class="btn btn-success" value="Save">
-  </form> <br> 
-
     <div class="row form-group">
-      <div class="col-sm-2 no-padding">
-        <a href="/backend/exhibitions?add_to_manualexb={$minisitepage.minisite_id}&amp;_pv=1&page_id={$obj_id}&user_id={$minisitepage.user_id}"  class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Attach Exhibition</a>
-      </div>
-      <div class="col-sm-6">
-        <p>1) Use the “Attach Exhibition” button  to  add exhibitions to  your  page </p> 
-        <p>2)  Drag  and drop  exhibitions on  the table to  change  the order of  exhibitions on  your  page  </p> 
-        <p>3)  Use the red button  to  remove  exhibitions from  your  page </p>
-        <p>4)  Don’t forget  to  use the green Save  buttons so  your  changes stick </p>
+      
+      <div class="col-sm-8">
+        <p>1) Use the orange “Attach My Exhibitions” button to add your exhibitions to your page </p> 
+        <p>2) Use the orange “Attach Shared Exhibitions” button to add exhibitions, shared with you by others, to your page  </p> 
+        <p>3) Drag and drop exhibitions on the table to change the order of exhibitions on your page </p>
+        <p>4) Use the red button to remove exhibitions from your page </p>
+        <p>5) Don’t forget to use the green Save buttons so your changes stick </p>
       </div>
     </div>
+    <input type="submit" class="btn btn-success" value="Save">
+  </form> <br> 
+  <div>   
+    <a href="/backend/exhibitions?add_to_manualexb={$minisitepage.minisite_id}&amp;_pv=1&page_id={$obj_id}&user_id={$minisitepage.user_id}"  class="btn btn-sm btn-warning text-white ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Attach My Exhibitions</a>
+    <a href="/backend/exhibitions?add_to_manualexb={$minisitepage.minisite_id}&amp;_pv=1&page_id={$obj_id}&user_id={$minisitepage.user_id}&shared_exp=1"  class="btn btn-sm btn-warning text-white ajax-loader" data-target="#subview-container"><i class="fa fa-plus-square"></i> Attach Shared Exhibitions</a>
+  </div>
     
     <table class = "bootstrap-table table table-hover exhibition_art">
       <thead>
@@ -90,7 +92,13 @@
     </table>
     <br><br>
     <input type="submit" class="btn btn-success" value="Save Page Order" onClick="saveOrder();">
-  
+    <div class="row1">
+      <div class="col-md-121">
+        <div class="layout_prtle">Page Preview</div>
+        <iframe id="minisite_preview" class="" width="100%" height="1200px" style="overflow:auto;background-color:#fff" scrolling="yes" src="{$scope.url}{$minisitepage.slug}manualexbs"></iframe>
+      </div>
+      </div>
+    
   <script type="text/javascript">
     $(".selected_art .fileupload-buttonbar").hide();
     $(function() {

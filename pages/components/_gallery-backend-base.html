@@ -15,6 +15,7 @@
 {$add_to_profile1 = $scope.add_to_profile1}
 {$add_to_website = $scope.add_to_website}
 {$add_to_manualexb = $scope.add_to_manualexb}
+{$shared_status = $scope.shared_exp}
 {$add_to_folder = $scope.add_to_folder}
 {$add_to_logo1 = $scope.add_to_logo1}
 {$add_to_logo = $scope.add_to_logo}
@@ -197,20 +198,75 @@
       {if (($obj_type == 'media_folder') && (!$vault))}
         <nav id="breadcrumb" aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a style="font-size:21px;color:grey;">Media Drive</a></li>
+            <li class="breadcrumb-item"><a style="font-size:21px;color:#F9B035;">Media Drive</a></li>
             <li class="breadcrumb-item active" aria-current="page" style="font-size:21px;"></li>
           </ol>
         </nav><br>
         <li><a href="{$add_link}?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i> Create Folder</a></li>
         <li><a href="{$base_link}?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i>Bulk Upload</a></li>
       {elseif ($obj_type != 'media_folder')}
+      {if ($what == 'artwork')}
+      <div class="mt20">
+        <a href="https://vimeo.com/387398124" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Artwork Table Tutorial</a>
+    </div>
+      <div class="row">
+        <div class="col-sm-5">
+          <span>
+            <ol>
+            1.  Green “Create Artworks” button adds new artwork <br>
+            2.  Search bar helps quickly find artworks  <br>
+            3.  Check box next to artworks, then use orange buttons to delete/attach to exhibitions  <br>
+            4.  View button previews artworks  <br> 
+          </ol>
+          </span>
+        </div>
+        <div class="col-sm-5">
+          <span>
+            <ol>
+            5.  Clone button duplicates an art record  <br> 
+            6.  Edit button allows detailed editing <br> 
+            7.  Quick editing possible directly on the table <br> 
+            8. “Download Records” button exports your records to xls, cvs etc.
+            </ol>
+          </span>  
+        </div>
+      </div>
+      {elseif ($what == 'exhibition')}
+      <div class="mt20">
+        <a href="https://vimeo.com/388211008" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Exhibition Table Tutorial</a>
+      </div> 
+      <div class="row">
+        <div class="col-sm-5">
+          <span> 
+            <ol>
+            1.  Green “Create Exhibition” button adds new exhibition <br>
+            2.  Search bar helps quickly find exhibitions <br>
+            3.  Check box next to exhibition, then use orange buttons to delete/attach to website <br>
+            4.  View button previews exhibition
+          </ol>
+          </span>
+        </div>
+        <div class="col-sm-6">
+          <span> 
+          <ol>
+            5.  Share button provides access to sharing options <br>
+            6.  Edit button allows detailed editing <br>
+            7.  Quick editing possible directly on the table
+          </ol>
+          </span>
+        </div> 
+      </div>
+      {/if}
+      {if ($buttons)}
+      <div class="gap gap-small border-bottom-light"></div>
+      {/if}
         <li><a href="{$add_link}?_pv=1" class="btn btn-success ajax-loader" data-target="#subview-container"><i class="fa fa-plus-circle"></i> Create {$what}</a></li>
       {elseif ($obj_type == 'media_folder')} 
       <!--<li><a href="{$list_link}?_pv=1{$tail}" class="btn btn-primary ajax-loader" data-target="#subview-container"><i class="fa fa-arrow-left"></i> List</a>--->
         <nav id="breadcrumb" aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a style="font-size:21px;" href="/backend/vaults">Media Drive</a></li>
-            <li class="breadcrumb-item active" aria-current="page" style="font-size:21px;">{$folder_id.filename}</li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-size:21px;"><span>{$folder_id.filename}</span></li>
           </ol>
         </nav>
       {/if}
@@ -257,9 +313,7 @@
 {/if}
 {/block}
 
-{if ($buttons)}
-<div class="gap gap-small border-bottom-light"></div>
-{/if}
+
 
 {block name="main"}
 {/block}

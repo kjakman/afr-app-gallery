@@ -69,6 +69,7 @@
 			}
 		}
 	</style>
+	
 {if ($artists)}    
 	<div class="container">
 		<div id="artists" class="artists notouch">
@@ -102,6 +103,33 @@
 				<div class="list">
 					<ul>
 						{foreach from=$secArtists item=artist}
+							<li>
+								{if ($minisite_pageObj.page_layout == 127)}
+									<a href="{$basepath}{$artist.page_slug}{$artist.slug}"><h1 class="artist-name-3C" style="text-transform: capitalize;">{$artist.display_name}</h1>  
+								{else}
+									<a href="{$basepath}{$artist.page_slug}{$artist.slug}"><h1 class="artist-name-3C" style="text-transform: uppercase;">{$artist.display_name}</h1>  
+								{/if}
+                                                                
+                                                                {if ($artist.title_image)}
+                                                                    <img src="{$artist.title_image|photo:'big'}" alt="{$artist.display_name} Artist Profile Photo" />
+								{else}    
+                                                                    <img src="/img/artist/default.jpg" alt="">
+                                                                {/if}
+                                                                </a>
+							</li>
+						{/foreach}
+					</ul>
+				</div>
+			</div>
+		</div>
+	{/if}
+	{if ($shared_pro_arts)}
+		<hr>
+		<div class="container">
+			<div id="artists" class="artists notouch">
+				<div class="list">
+					<ul>
+						{foreach from=$shared_pro_arts item=artist}
 							<li>
 								{if ($minisite_pageObj.page_layout == 127)}
 									<a href="{$basepath}{$artist.page_slug}{$artist.slug}"><h1 class="artist-name-3C" style="text-transform: capitalize;">{$artist.display_name}</h1>  

@@ -192,7 +192,13 @@
         </div>
       </div><br>
       <!---------------------------------End 02-06-2020--------------------------->
-      <iframe id="minisite_preview" class="" width="100%" height="1200px" style="overflow:auto;background-color:#fff" scrolling="yes" src="{$scope.url}"></iframe>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="layout_prtle">Page Preview</div>
+          <iframe id="minisite_preview" class="" width="100%" height="1200px" style="overflow:auto;background-color:#fff" scrolling="yes" src="{$scope.url}"></iframe>
+        </div>
+        </div>
+      
       <!---------------------------------End 01-06-2020--------------------------->
     {elseif ($tab == 'domain')}
       {{"include": "_gallery-backend-website-domain-form.html"}}

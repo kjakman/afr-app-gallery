@@ -6,9 +6,11 @@
 
 
   <ul class="nav navbar-nav">
+    
    {foreach from=$menuObj item=menuObjs}
     {if ($ms.show_homemenu)}
       {$count = 0}
+      {$menuObjs.row_order}
       {if ($menuObjs.row_order != 1)}
         {if (($menuObjs.type == '20') || ($menuObjs.type == '40') || ($menuObjs.type == '50') || ($menuObjs.type == '60') || ($menuObjs.type == '70') )}       <!-- artist page 1 -->
             <li class="nav-item"><a {if ($pagename == $menuObjs.slug)} class="nav-link active" {else} class="nav-link" {/if} href="{$basepath}{$menuObjs.slug}">{$menuObjs.menu_title}</a>
@@ -125,9 +127,9 @@
       {/if}
     {/if}
    {/foreach} 
-    <!-- <li class="nav-item"><a class="nav-link" href="{$basepath}/contact">Contact</a></li> -->
+   
+    <li class="nav-item"><a {if ($pagename == 'shared_profile')} class="nav-link active" {else} class="nav-link" {/if} href="{$basepath}/shared_profile">Shared profile</a></li>
   </ul>
-
         {*
         <li class="nav-item"><a class="nav-link" href="{$basepath}/exhibitions/current">Current</a></li>
         <li class="nav-item"><a class="nav-link" href="{$basepath}/exhibitions/current">Upcoming</a></li>

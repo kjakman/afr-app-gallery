@@ -28,49 +28,52 @@
       <button id="selection" class="btn btn-success dropdown-toggle collapse" type="button" data-toggle="dropdown">
         Selected (<span id="sel_count">0</span>) <i class="fa fa-caret-down"></i>
       </button>
-      <ul class="dropdown-menu">
-        {if ($add_to)}
-          <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to exhibition</a></li>
-        {elseif ($add_to_profile)}
-          <li><a href="#" id="sel_add_profile" data-target_id="{$add_to_profile}">Add to profile</a></li>
-        {elseif ($add_to_profile1)}
-          <li><a href="#" id="sel_add_profile1" data-target_id="{$add_to_profile1}">Add to profile</a></li>
-        {elseif ($add_to_website)}
-          <li><a href="#" id="sel_add_website" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$add_to_website}">Add to Page</a></li>
-        {elseif ($add_to_manualexb)}
-          <li><a href="#" id="sel_add_manualexb" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$add_to_manualexb}">Add to Page</a></li>
-        {elseif ($add_to_logo)}
-          <li><a href="#" id="sel_add_logo" data-target_id="{$add_to_logo}">Add to Profile</a></li>
-        {elseif ($add_to_logo1)}
-          <li><a href="#" id="sel_add_logo1" data-target_id="{$add_to_logo1}">Add to Profile</a></li>
-        {elseif ($add_to_artworkimg)}
-          <li><a href="#" id="sel_add_artwork" data-target_id="{$add_to_artworkimg}">Add to Artwork</a></li>
-        {elseif ($add_to_relatedart)}
-          <li><a href="#" id="sel_add_relatedart" data-target_id="{$add_to_relatedart}">Add to Artwork</a></li>
-        {elseif ($add_to_websiteimg)}
-          <li><a href="#" id="sel_add_websiteimg" data-target_id="{$add_to_websiteimg}">Add to website</a></li>
-        {elseif ($add_to_exbart)}
-          <li><a href="#" id="sel_add_exbart" data-target_id="{$add_to_exbart}">Add to exhibition</a></li>
-        {elseif ($add_to_exbtitle)}
-          <li><a href="#" id="sel_add_exbtitle" data-target_id="{$add_to_exbtitle}">Add to exhibition</a></li>
-        {elseif ($media_type=='media')}
-            {foreach from=$folders item=folder}
-                <li><a href="#" id="sel_add_folder" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$folder.id}">Add to {$folder.filename}</a></li>
-
-            {/foreach}
-        {elseif ($media_type=='media_folder')}
-
-            <li></li>
-        {else}
-          <li><a href="#" id="sel_add" data-target_id="{$add_to}">Add to ...</a></li>
-        {/if}
-        <li><a href="#" id="sel_show">Show</a></li>
-        <li><a href="#" id="sel_clear">Clear</a></li>
-        <!-- <li><a href="#" id="sel_del">Delete</a></li> -->
-        <li><a href="#" id="sel_del" data-toggle="modal" data-target="#del_modals">Delete</a></li> 
-      </ul>            
+                  
     </div>
   </div> 
+  <div style="visibility:hidden">vPatina</div>
+  <div class="show_button d-none" style="display: none">
+    {if ($add_to)}
+      <a href="#" class="btn btn-sm btn-warning text-white" id="sel_add" data-target_id="{$add_to}">Add to exhibition</a>
+    {elseif ($add_to_profile)}
+      <a href="#" id="sel_add_profile" class="btn btn-sm btn-warning text-white" data-target_id="{$add_to_profile}">Add to profile</a>
+    {elseif ($add_to_profile1)}
+      <a href="#" id="sel_add_profile1" class="btn btn-sm btn-warning text-white" data-target_id="{$add_to_profile1}">Add to profile</a>
+    {elseif ($add_to_website)}
+      <a href="#" id="sel_add_website" class="btn btn-sm btn-warning text-white" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$add_to_website}">Add to Page</a>
+    {elseif ($add_to_manualexb)}
+      <a href="#" id="sel_add_manualexb" class="btn btn-sm btn-warning text-white" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$add_to_manualexb}">Add to Page</a>
+    {elseif ($add_to_logo)}
+      <a href="#" id="sel_add_logo" class="btn btn-sm btn-warning text-white" data-target_id="{$add_to_logo}">Add to Profile</a>
+    {elseif ($add_to_logo1)}
+      <a href="#" id="sel_add_logo1"  class="btn btn-sm btn-warning text-white" data-target_id="{$add_to_logo1}">Add to Profile</a>
+    {elseif ($add_to_artworkimg)}
+      <a href="#" id="sel_add_artwork" class="btn btn-sm btn-warning text-white" data-target_id="{$add_to_artworkimg}">Add to Artwork</a>
+    {elseif ($add_to_relatedart)}
+      <a href="#" id="sel_add_relatedart" class="btn btn-sm btn-warning text-white" data-target_id="{$add_to_relatedart}">Add to Artwork</a>
+    {elseif ($add_to_websiteimg)}
+      <a href="#" id="sel_add_websiteimg" class="btn btn-sm btn-warning text-white" data-target_id="{$add_to_websiteimg}">Add to website</a>
+    {elseif ($add_to_exbart)}
+      <a href="#" id="sel_add_exbart" class="btn btn-sm btn-warning text-white" data-target_id="{$add_to_exbart}">Add to exhibition</a>
+    {elseif ($add_to_exbtitle)}
+      <a href="#" id="sel_add_exbtitle" class="btn btn-sm btn-warning text-white" data-target_id="{$add_to_exbtitle}">Add to exhibition</a>
+    {elseif ($media_type=='media')}
+        {foreach from=$folders item=folder}
+            <a href="#" id="sel_add_folder" class="btn btn-sm btn-warning text-white" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$folder.id}">Add to {$folder.filename}</a>
+
+        {/foreach}
+    {elseif ($media_type=='media_folder')}
+
+        
+    {else}
+      <!-- <a href="#" class="btn btn-sm btn-warning text-white" id="sel_add" data-target_id="{$add_to}">Add to ...</a> -->
+    {/if}
+    <a href="#" class="btn btn-sm btn-warning text-white" id="sel_show">Show</a>
+    <a href="#" class="btn btn-sm btn-warning text-white" id="sel_clear">Clear</a>
+    <!-- <a href="#" id="sel_del">Delete</a> -->
+    <a href="#" class="btn btn-sm btn-warning text-white" id="sel_del" data-toggle="modal" data-target="#del_modals">Delete</a> 
+    Selected (<span id="sel_count1">0</span>)
+  </div>
   
   <table class="table" id="table"
      data-toggle="table" 
@@ -219,7 +222,7 @@
     var link_class = pv ? 'ajax-loader' : '';
     // console.log("base_link = " + base_link + " pv=" + pv);
     
-    return  print_val;
+    return  '<div class="tag_content">'+print_val+'</div>';
     //return '<span><span type="hidden" class="edit_exhibition" name="edit_exhibition" data-col="title" data-value='+row.id+' >'+value+'</span></span>';
   }
 
@@ -302,6 +305,9 @@
   }*/
 
 function bstArtistFormatter(value, row, index) {
+  console.log(value);
+  console.log(row);
+  console.log(index);
   if(!value) return '';
   return '<span class="artist" name="artist" data-col="artist" data-value='+row.id+' style="cursor: default;" >'+g_artists[value]+'</span>';
 }
@@ -388,6 +394,14 @@ function bstPublishedFormatter(value, row, index) {
     }else{
       return '<select id= "select1'+row.id+'" class="select1'+row.id+' form-control" onchange="check_published('+row.id+')"><option>Select</option><option id= "option" value="0">OFF</option><option  id= "option" value="1">ON</option></select>';
     }  
+}
+
+function bstPublishedFormatter1(value, row, index) { 
+  if(value == 1){
+    return 'Yes';
+  }else{
+    return 'No';
+  }
 }
 
 
@@ -560,23 +574,11 @@ function check_status(id) {
     return buttons;  
   }
   function bstNetworkActionFormatter(value, row, index) {
-    
     var base_link = row.obj_type == 'user_network' ? '/backend/medium' : '{$base_link}';
     var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
     var link_class = pv ? 'ajax-loader' : '';
     // console.log("base_link = " + base_link + " pv=" + pv);
-    var send_button = '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="btn btn-sm btn-info text-white ' + link_class + '" data-target="#subview-container">Connect</a>';
-    
-    return send_button ; 
-
-  }
-  function bstNetworkActionFormatter(value, row, index) {
-    
-    var base_link = row.obj_type == 'user_network' ? '/backend/medium' : '{$base_link}';
-    var pv = base_link.indexOf('/plugin') > -1 ? 0 : 1; // no partial view for view plugin
-    var link_class = pv ? 'ajax-loader' : '';
-    // console.log("base_link = " + base_link + " pv=" + pv);
-    var send_button = '<a href="' + base_link + '/' + row.id + '?_pv=' + pv + '" class="btn btn-sm btn-info text-white ' + link_class + '" data-target="#subview-container">Connect</a>';
+    var send_button = '<a href="{$tab65_link}?_pv=1&receiverid='+row.id+'&receivername='+row.first_name+'&receivermail='+row.email_address+'" class="btn btn-sm btn-info text-white ' + link_class + '" data-target="#subview-container">Connect</a>';
     
     return send_button ; 
 

@@ -2,17 +2,18 @@
 {$plural = 'artists'}
 
 {{"extend": "_gallery-backend-list-base.html"}}
-
+{$tab65_link = 'backend:subview:id:action:tab'|rroute:['subview' => $page.itemview, 'id' => $scope.obj_id, 'action' => 'edit', 'tab' => 'emailfriend']}
 {block name=main}  
 {/block}
 
 {block name="fields"}
-  <!--th data-field="id" data-sortable="true" data-formatter="bstIDFormatter">ID</th-->
+<form class="ajax-submit signup-form" method="get" data-handler="add-friend">
+  <th data-field="id" data-sortable="true" data-formatter="bstSnoFormatter">ID</th>
   <th data-field="photo" data-formatter="bstUserPhotoFormatter">Image</th>
-  <th data-field="display_name" data-sortable="true" data-formatter="bstTitleNetworkFormatter">Name</th>
+  <th data-field="last_name" data-sortable="true" data-formatter="bstTitleNetworkFormatter">Name</th>
 
   <th data-field="actions" data-formatter="bstNetworkActionFormatter">Actions</th>
-
+</form>
 {/block}
 
 {block name="script"}

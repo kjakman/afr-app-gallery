@@ -396,7 +396,10 @@
         awb_set_type(val);
       });
       function awb_set_type(val) {
-        $(".type-10, type-11, .type-20, .type-21, type-22, .type-30, .type-40, .type-50, .type-60, .type").hide();
+        $(".type-10, type-11, .type-20, .type-21, .type-45, type-22, .type-30, .type-40, .type-50, .type-60, .type").hide();
+        if(val == 45){
+          $(".type-" + val).show();
+        }
         console.log("showing type " + val);
         if(val) {
           $(".type-" + val).show();  

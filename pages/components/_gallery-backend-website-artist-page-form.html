@@ -7,6 +7,11 @@
 {$page_layout = find_object('minisite_layout', ['id' => $minisitepage.page_layout, 'active' => 1])}
 
 <input hidden="1" name="obj_id" type="hidden" class="obj_id" value="{$obj_id}">  
+
+<div class="mt20">
+  <a href="https://vimeo.com/800709150" class="btn btn-info button-large popup-iframe" data-effect="mfp-fade"><i class="fa fa-play-circle"></i>Artists Layout Tutorial</a>
+</div>
+<div class="row mt20 mb10"><label>Artists Page Layout</label> (Choose how you present your list of artists) </div>
  <div class="row mt20">
     {foreach from=$layouts item=$layout}
       {if ($layout.id == 70)}

@@ -1,0 +1,602 @@
+<style>
+
+</style>
+<div class="row mb-5">
+    <div class="col-lg-4 col-md-4 col-xl-4 col-4">
+        <div class="headerLeftContent">
+            <div class="image-section">
+                <img width="40px" class="LogoImg" height="40px" src="data:image/jpeg;base64,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" alt="" />
+              </div>
+               <div class="form-group has-feedback has-search webSideView-headerIcon">
+                   <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                   <input width="50%" type="text" class="form-control" placeholder="Search">
+                 </div>
+                 <div id="header-3" class="header searchIconMobileView" style="display: none;">
+                    <section class="search">
+                        <div id="icon"><i class="fa fa-search" aria-hidden="true"></i>
+
+                        </div>
+                        <div class="search-dropdown hidden">
+                            <input placeholder="search..." type="text" />
+                        </div>
+                        </section>
+                </div>
+              </div>
+             
+
+
+            
+        </div>
+    <div class="col-md-8 col-xl-8 col-lg-8 col-8">
+        <ul class="nav nav-tabs webSideView-headerIcon" id="headerTab" role="tablist">
+          <li class="nav-item active">
+            <a class="nav-link active" id="#home-tab" data-toggle="tab" href="#home-v" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-home" aria-hidden="true"></i>Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile-v" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-user" aria-hidden="true"></i>Art Networks</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" id="job-tab" data-toggle="tab" href="#job-v" role="tab" aria-controls="jobs" aria-selected="false"><i class="fa fa-briefcase" aria-hidden="true"></i>Jobs</a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" id="job-tab" data-toggle="tab" href="#notification-v" role="tab" aria-controls="notification" aria-selected="false">				  <i class="fa fa-bell" aria-hidden="true"></i>
+                Notification</a>
+          </li> -->
+
+
+
+        </ul>
+        <ul class="nav nav-tabs molileSideView-headerIcon" id="headerTab" role="tablist" style="display: none;">
+            <li class="nav-item active">
+              <a class="nav-link active" id="#home-tab" data-toggle="tab" href="#home-v" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-home" aria-hidden="true"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile-v" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile-v" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-briefcase" aria-hidden="true"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="job-tab" data-toggle="tab" href="#notification-v" role="tab" aria-controls="notification" aria-selected="false">				  <i class="fa fa-bell" aria-hidden="true"></i>
+                    </a>
+              </li> -->
+            </ul>
+    </div>
+</div>
+<div class="row profie_list_page " style="margin-top: 30px;">        
+    <div class="col-md-12 ">
+      <!-- Tab panes -->
+      <div class="tab-content ">
+        <div class="tab-pane active  " id="home-v">			
+                
+                <div class="row">
+                    
+                    <div class="col-md-12">
+                        <div class="profilecard profile_banner">
+                            <div class="position-relative card-header min-vh-25">
+                                <div class="bg-holder rounded-3 rounded-bottom-0" style="background-image: url('images/profile_banenr.jpg');"></div>
+                                <div class="avatar avatar-5xl avatar-profile"><img class="rounded-circle img-thumbnail shadow-sm" src="images/profile_image.jpg" alt="" /></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <h4>Hopkins</h4>
+                                        <h5>Artist</h5>                
+                                        <button type="button" class="btn">Requests</button>
+                                        <button type="button" class="btn">Invite to vPatina</button>
+                                    </div>
+                                    <div class="col-md-4 profile_social">
+                                        <p><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> Hopkins@facebook.com</a></p>
+                                        <p><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> twitter.com/Hopkins</a></p>
+                                        <p><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i> linkedin.com/Hopkins</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                    <div class="col-md-8">
+                        <ul class="nav nav-tabs profile_tabs">
+                            <li class="active"><a data-toggle="tab" href="#about">About</a></li>
+                            <li><a data-toggle="tab" class="gallerShows" href="#gallerShows">Gallery Shows</a></li>
+                            <li><a data-toggle="tab" class="artFair" href="#artFair">Art Fair</a></li>
+                            <li><a data-toggle="tab" class="event" href="#event">Event</a></li>
+                            <li><a data-toggle="tab" class="selections" href="#selections">Selections</a></li>
+
+                            <li><a data-toggle="tab" class="CV" href="#CV">CV</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="about" class="tab-pane fade in active">
+                                <div class="profilecard">
+                                    <h4>About</h4>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                </div>
+
+                                    
+                                <div class="profilecard">
+                                    <h4>Overview</h4>
+                                    <img src="images/portfolio_1.jpg" />
+                                    <p>
+                                    <br>
+                                        This is an example profile, designed to show how vPatina can easily help artists create gorgeous websites, rich profiles and keep your work with you wherever you are.
+
+                                        If your viewing this profile on a mobile, try bookmarking it to your home screen so you can get a sense of how it works as a mobile app.
+                                        
+                                        Try clicking on artworks so they go full screen on your mobile and then pinching and zooming with your fingers to explore details. As your browse exhibitions notice that these can all be tagged with locations and times (try clicking on the map icons on different exhibitions and see where they take you).
+                                        
+                                        If you want to try our tools go to www.vpatina.com and get started. If you want to talk to use please e-mail us at info@vpatina.com or call us on 0630126934 - we would be happy to help.
+                                        
+                                        All of the images on this profile are courtesy of and with thanks to the photographers at DTS. 
+                                        
+                                        </p>
+                                </div>
+                            </div>
+                            <div id="gallerShows" class="tab-pane fade">
+                                <div class="profilecard profile_portfolios">
+                                    <h4>Portfolio</h4>
+                                    <!-- <div class="row"> -->
+                                        <div class="portfolio_masonry">
+                                            <div class="grid">
+                                            <div class="grid-item"><a href="portfolio.html"><img src="images/portfolio_1.jpg" /></a></div>
+                                            <div class="grid-item"><a href="portfolio.html"><img src="images/portfolio_2.jpg" /></a></div>
+                                            <div class="grid-item"><a href="portfolio.html"><img src="images/portfolio_3.jpg" /></a></div>
+                                            <div class="grid-item"><a href="portfolio.html"><img src="images/portfolio_4.jpg" /></a></div>
+                                            <div class="grid-item"><a href="portfolio.html"><img src="images/portfolio_5.jpg" /></a></div>
+                                            <div class="grid-item"><a href="portfolio.html"><img src="images/portfolio_1.jpg" /></a></div>
+                                            <div class="grid-item"><a href="portfolio.html"><img src="images/portfolio_2.jpg" /></a></div>
+                                            <div class="grid-item"><a href="portfolio.html"><img src="images/portfolio_3.jpg" /></a></div>
+                                            </div>
+                                        </div>									
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <div id="artFair" class="tab-pane fade">
+                                <div class="profilecard profile_portfolios">
+                                <div class="portfolio_masonry">
+                                    <div class="grid_1">
+                                    <div class="grid-item"><img src="images/portfolio_4.jpg" /></div>
+                                    <div class="grid-item"><img src="images/portfolio_5.jpg" /></div>
+                                    <div class="grid-item"><img src="images/portfolio_1.jpg" /></div>
+                                    <div class="grid-item"><img src="images/portfolio_2.jpg" /></div>
+                                    <div class="grid-item"><img src="images/portfolio_3.jpg" /></div>										
+                                    <div class="grid-item"><img src="images/portfolio_1.jpg" /></div>
+                                    <div class="grid-item"><img src="images/portfolio_2.jpg" /></div>
+                                    <div class="grid-item"><img src="images/portfolio_3.jpg" /></div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div id="event" class="tab-pane fade">
+                                <div class="profilecard profile_portfolios">
+                                <div class="portfolio_masonry">
+                                    <div class="grid_2">
+                                    <div class="grid-item"><img src="images/portfolio_3.jpg" /></div>
+                                    <div class="grid-item"><img src="images/portfolio_2.jpg" /></div>
+                                    <div class="grid-item"><img src="images/portfolio_4.jpg" /></div>
+                                    <div class="grid-item"><img src="images/portfolio_3.jpg" /></div>
+                                    <div class="grid-item"><img src="images/portfolio_5.jpg" /></div>
+                                    <div class="grid-item"><img src="images/portfolio_1.jpg" /></div>
+                                                                            
+                                    <div class="grid-item"><img src="images/portfolio_1.jpg" /></div>
+                                    <div class="grid-item"><img src="images/portfolio_2.jpg" /></div>
+                                    
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div id="selections"  class="tab-pane fade">
+                                <div class="profilecard profile_portfolios">
+                                    <div class="portfolio_masonry">
+                                        <div class="grid_2">
+                                        <div class="grid-item"><img src="images/portfolio_3.jpg" /></div>
+                                        <div class="grid-item"><img src="images/portfolio_2.jpg" /></div>
+                                        <div class="grid-item"><img src="images/portfolio_4.jpg" /></div>
+                                        <div class="grid-item"><img src="images/portfolio_3.jpg" /></div>
+                                        <div class="grid-item"><img src="images/portfolio_5.jpg" /></div>
+                                        <div class="grid-item"><img src="images/portfolio_1.jpg" /></div>
+                                                                                
+                                        <div class="grid-item"><img src="images/portfolio_1.jpg" /></div>
+                                        <div class="grid-item"><img src="images/portfolio_2.jpg" /></div>
+                                        
+                                        </div>
+                                    </div>
+                                    </div>
+                            </div>
+                            <div id="CV" class="tab-pane fade">
+                                
+                                <div class="profilecard profile_portfolios">
+                                    <div class="row">
+                                        <div class="col-md-12 card-header">
+                                            <h4>CV</h4>
+                                            <hr>
+
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="img-cv mb-3">
+                                                <img class="mb-4" src="images/default-profile-pic.png" style="width: 100px;height:100px;object-fit:fill;" alt="">
+                                            </div>
+                                            <p>2014-2015 Gerrit Rietveld Academie</p>
+                                            <span>Bachelors</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profilecard profile_portfolios">
+                                    <div class="row">
+                                        <div class="col-md-12 card-header">
+                                            <h4>SOLO SHOWS
+                                            </h4>
+                                            <hr>
+
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p>2017	Amsterdam - Quiet Frontier</p>
+                                            <p>2016	Brussels - La Movie Stories</p>
+                                            <p>2015	New York - Ride or Die</p>
+                                            <p>2014	London - Chasing Sunrises</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profilecard profile_portfolios">
+                                    <div class="row">
+                                        <div class="col-md-12 card-header">
+                                            <h4>GROUP SHOWS</h4>
+                                            <hr>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p>2019	London - Natural Beauty</p>
+                                            <p>2018	Paris - Into the Light</p>
+                                            <p>2017	Berlin - Tropical Island</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profilecard profile_portfolios">
+                                    <div class="row">
+                                        <div class="col-md-12 card-header">
+                                            <h4>AWARDS</h4>
+                                            <hr>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p>2019	Rotterdam Modern Art Award</p>
+                                            <p>2018	Amsterdam - Young Artist of the Year</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class="profilecard">
+                          <!-- Nav tabs -->
+                            
+                            <h4>Connections</h4>
+                            <div class="user-profile-section user_connection text-left">
+                                <div class="profile_image">
+                                    <img src="images/default-profile-pic.png">
+                                </div>                                
+                                <div class="user_connection_det">
+                                    <h4 class="user-name"><b>Joshitha Sree</b></h4>
+                                    <p class="member-insights"> Web Developer at DCI </p>
+                                </div>
+                            </div>
+                            <div class="user-profile-section user_connection text-left">
+                                <div class="profile_image">
+                                    <img src="images/default-profile-pic.png">
+                                </div>                                
+                                <div class="user_connection_det">
+                                    <h4 class="user-name"><b>Joshitha Sree</b></h4>
+                                    <p class="member-insights"> Web Developer at DCI </p>
+                                </div>
+                            </div>
+                            <div class="user-profile-section user_connection text-left">
+                                <div class="profile_image">
+                                    <img src="images/default-profile-pic.png">
+                                </div>                                
+                                <div class="user_connection_det">
+                                    <h4 class="user-name"><b>Joshitha Sree</b></h4>
+                                    <p class="member-insights"> Web Developer at DCI </p>
+                                </div>
+                            </div>
+                            <div class="user-profile-section user_connection text-left">
+                                <div class="profile_image">
+                                    <img src="images/default-profile-pic.png">
+                                </div>                                
+                                <div class="user_connection_det">
+                                    <h4 class="user-name"><b>Joshitha Sree</b></h4>
+                                    <p class="member-insights"> Web Developer at DCI </p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                            
+                    </div>														
+                </div>
+        </div>
+        <div class="tab-pane" id="profile-v">
+            <div class="row">
+                <div class="col-md-3  "> <!-- required for floating -->
+                  <div class="panel panel-default networkSide">
+                  <!-- Nav tabs -->
+                  <h5 class="network-heading">Manage my network</h5>
+                  <ul class="nav nav-tabs tabs-left sideways">
+                     <li class="active"><a  data-toggle="tab"><i class="fa fa-home" aria-hidden="true"></i>Connections</a></li>
+                     <li><a data-toggle="tab"><i class="fa fa-user" aria-hidden="true"></i>Contacts</a></li>
+                      <li class="active"><a  data-toggle="tab"><i class="fa fa-home" aria-hidden="true"></i>Group</a></li>
+                  
+                  </ul>
+                  </div>
+                </div>
+                <div class="col-md-9 ">
+                    <div class="row">
+                        <div class="col-md-4 ">
+                            <div class="panel panel-default userDetailList resourcesView">
+                           
+                                <div class="row bothContent">
+                                  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+                                     <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+                                  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+                                    <h5>Human Resources</h5>
+                                  </div>
+                                  
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12" style="margin-top:20px ;">  
+                                      <h4 style="margin-bottom:0px;">Meera Jas</h4>
+                                      <span class="sub-text">Human Resources Recruiter</span>
+    
+                                      <div class="specified">
+                                       <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+                                      </div>
+    
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class="panel panel-default userDetailList resourcesView">
+                           
+                                <div class="row bothContent">
+                                  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+                                     <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+                                  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+                                    <h5>Human Resources</h5>
+                                  </div>
+                                  
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12" style="margin-top:20px ;">  
+                                      <h4 style="margin-bottom:0px;">Meera Jas</h4>
+                                      <span class="sub-text">Human Resources Recruiter</span>
+    
+                                      <div class="specified">
+                                       <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+                                      </div>
+    
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class="panel panel-default userDetailList resourcesView">
+                           
+                                <div class="row bothContent">
+                                  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+                                     <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+                                  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+                                    <h5>Human Resources</h5>
+                                  </div>
+                                  
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12" style="margin-top:20px ;">  
+                                      <h4 style="margin-bottom:0px;">Meera Jas</h4>
+                                      <span class="sub-text">Human Resources Recruiter</span>
+    
+                                      <div class="specified">
+                                       <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+                                      </div>
+    
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class="panel panel-default userDetailList resourcesView">
+                           
+                                <div class="row bothContent">
+                                  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+                                     <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+                                  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+                                    <h5>Human Resources</h5>
+                                  </div>
+                                  
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12" style="margin-top:20px ;">  
+                                      <h4 style="margin-bottom:0px;">Meera Jas</h4>
+                                      <span class="sub-text">Human Resources Recruiter</span>
+    
+                                      <div class="specified">
+                                       <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+                                      </div>
+    
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class="panel panel-default userDetailList resourcesView">
+                           
+                                <div class="row bothContent">
+                                  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+                                     <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+                                  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+                                    <h5>Human Resources</h5>
+                                  </div>
+                                  
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12" style="margin-top:20px ;">  
+                                      <h4 style="margin-bottom:0px;">Meera Jas</h4>
+                                      <span class="sub-text">Human Resources Recruiter</span>
+    
+                                      <div class="specified">
+                                       <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+                                      </div>
+    
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class="panel panel-default userDetailList resourcesView">
+                           
+                                <div class="row bothContent">
+                                  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+                                     <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+                                  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+                                    <h5>Human Resources</h5>
+                                  </div>
+                                  
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12" style="margin-top:20px ;">  
+                                      <h4 style="margin-bottom:0px;">Meera Jas</h4>
+                                      <span class="sub-text">Human Resources Recruiter</span>
+    
+                                      <div class="specified">
+                                       <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+                                      </div>
+    
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class="panel panel-default userDetailList resourcesView">
+                           
+                                <div class="row bothContent">
+                                  <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 col-3">
+                                     <img class="circle-img" src="data:image/jpeg;base64,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" alt="">								</div>
+                                  <div class="col-md-9 col-lg-9 col-xl-9 col-sm-9 col-9 text-right">
+                                    <h5>Human Resources</h5>
+                                  </div>
+                                  
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12" style="margin-top:20px ;">  
+                                      <h4 style="margin-bottom:0px;">Meera Jas</h4>
+                                      <span class="sub-text">Human Resources Recruiter</span>
+    
+                                      <div class="specified">
+                                       <p class="member-insights">Talks about #hiring, #openings, #jobseekers, #recruitment, and #helpinghands</p>
+                                      </div>
+    
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="tab-pane" id="job-v">
+            <div class="row">
+                <div class="col-md-3  "> <!-- required for floating -->
+                  <div class="panel panel-default networkSide">
+                  <!-- Nav tabs -->
+                  <h5 class="network-heading">Jobs</h5>
+                  <ul class="nav nav-tabs tabs-left sideways">
+                     <li class="active"><a href="#home-v" data-toggle="tab"><i class="fa fa-home" aria-hidden="true"></i>Connections</a></li>
+                     <li><a href="#profile-v" data-toggle="tab"><i class="fa fa-user" aria-hidden="true"></i>Contacts</a></li>
+                      <li class="active"><a href="#home-v" data-toggle="tab"><i class="fa fa-home" aria-hidden="true"></i>Group</a></li>
+                  
+                  </ul>
+                  </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="tab-pane" id="notification-v">
+            <div class="row">
+                <div class="col-md-3  "> <!-- required for floating -->
+                  <div class="panel panel-default networkSide">
+                  <!-- Nav tabs -->
+                  <h3 class="text-center notifyHeading">Notifications</h3>
+                  <div class="text-center">
+                    <p class="resourcesView">You’re all caught up! Check back later for new notifications</p>
+
+                  </div>
+                 
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="panel panel-default ">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <i class="fa fa-trophy" aria-hidden="true" style="margin-top:20px ;"></i>
+
+                            </div>
+                            <div class="col-md-8 text-center resourcesView">
+                                <h4>You're all caught up!</h4>
+                                <a class="text-center" href="/feed/">
+                                    <!---->Discover new conversations in your network<!---->
+                                  </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <img style="width:100%;" src="https://media.licdn.com/media/AAYQAgTPAAgAAQAAAAAAADVuOvKzTF-3RD6j-qFPqhubBQ.png" alt="Advertise on LinkedIn" border="0">
+                </div>
+            </div>
+        </div>
+        
+      </div>
+    </div>   
+  </div>
+
+  <script>
+	$(document).ready(function() {
+		$('a.gallerShows').click(function(){
+			setTimeout(function(){
+				$('.grid').masonry({
+					itemSelector: '.grid-item',
+					columnWidth: '.grid-item'
+				});				
+			},200);			
+		});
+		$('a.artFair').click(function(){
+			setTimeout(function(){
+				$('.grid_1').masonry({
+					itemSelector: '.grid-item',
+					columnWidth: '.grid-item'
+				});
+			},200);			
+		});
+		$('a.event').click(function(){
+			setTimeout(function(){
+				$('.grid_2').masonry({
+					itemSelector: '.grid-item',
+					columnWidth: '.grid-item'
+				});
+			},200);			
+		});
+		$('a.selections').click(function(){
+			setTimeout(function(){
+				$('.grid_2').masonry({
+					itemSelector: '.grid-item',
+					columnWidth: '.grid-item'
+				});
+			},200);			
+		});
+		$('#icon').click(function () {
+			$(this).siblings('.search-dropdown').toggleClass('hidden');
+		});
+	});
+</script>

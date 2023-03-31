@@ -81,7 +81,7 @@
       	<div class="form-group">
         	<div class="row">
             	<div class="form-group col-sm-8">
-              		<label for="menu-title" class="control-label">Menu Title</label>
+              		<label for="menu-title" class="control-label">Mehjnu Title</label>
               		<input type="text" class="form-control" maxlength="15" name="menu_title" value="{$minisitepage.menu_title}">
             	</div>
             	<div class="form-group col-sm-8">
@@ -101,8 +101,10 @@
         </div>
 
   	</div>
-
+	  <div class="row">
+		<div class="col-md-12">
     <input type="submit" class="btn btn-success" value="Save">
+	</div></div>
 </form> 
 
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
@@ -126,6 +128,12 @@
     	</div>
   	</div>
 </div>
+<div class="row">
+	<div class="col-md-12">
+	  <div class="layout_prtle">Page Preview</div>
+	  <iframe id="minisite_preview" class="" width="100%" height="1200px" style="overflow:auto;background-color:#fff" scrolling="yes" src="{$scope.url}{$minisitepage.slug}"></iframe>
+	</div>
+  </div>
 
 
 <script type="text/javascript">
