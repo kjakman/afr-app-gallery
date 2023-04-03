@@ -311,6 +311,22 @@ function bstArtistFormatter(value, row, index) {
   if(!value) return '';
   return '<span class="artist" name="artist" data-col="artist" data-value='+row.id+' style="cursor: default;" >'+g_artists[value]+'</span>';
 }
+function bstArtistFormatter1(value, row, index) {
+
+  var getData;
+$.ajax({ url: "/ajax.php?oper=find_name",
+  type: "POST",
+  async: false,
+  data: {
+    type : "find-name",
+    typeid : row.artist_id,
+  },
+  success:function(response_data_json) {
+    getData = response_data_json;
+ }
+}); 
+return(getData);
+}
 
 function bstPriceOptionFormatter(value, row, index) { 
   var print_val = value ? value : "[Untitled]";

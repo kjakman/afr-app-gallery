@@ -1,0 +1,250 @@
+
+1) upload excel format -  csv would be fine.
+2) badges details - this is a default static badge provided by the TAC to the companies registered, if a company owns any badges then we will give some points to that company, so based on that the registered company will be listed at the top.
+3) chat details live chat or like a manual type - it should be like a form and if we are sending any messages then it will be notified to the admin.
+4) campaign  - Monisha Devi Monisha will explain in detail.
+5) email template - for now we can continue with the duplicate text.
+6) details to be added to the registration page - filters - we need to add the same fields to the registration that are all required in the filters.
+7) review email send or not - The company should receive an email if they got a new review.
+8) review to the own company - this is not allowed.
+9) blog management fields - for now we have to set it as a static page with Title, description, and image fields.
+
+10) Bulk upload process:
+
+Company name,company URL,email,
+
+11)
+
+
+
+Adminpanel:
+
+Registered userlist section
+
+
+Usermanagemet menu   
+======> =========>
+
+ name of businesss ,	
+ username,
+ email,
+ contactnumber ,
+ Date of registration (Sort option) ,
+ o Registration Type (sort option)
+ Self
+ Admin 
+o Verification Status: (Sort option)
+ Verified
+ Email sent 
+
+Action
+
+Edit Delete block/unblock
+
+
+Other options in the List view page
+o Filters 
+o Bulk Upload  (which file need to uploaded CSV or excel)
+
+Bulkuploadprocess:
+==================
+
+Once bulk uploaded the users email and temporary password with mail send to that email id 
+they will login with temporary email id and password 
+On bulk upload, the list view should display the status as Email Sent / Verified
+This will allow the Admin to upload single user
+The process of adding a single user will also be the same as the Bulk user
+upload
+
+
+
+Another adminpanel process:
+============================
+
+
+
+Email and password with login
+
+
+forget password and change password option needed in adminpanel
+
+
+
+dashboard menu:
+===============
+ Users (Count)
+ Membership (Count)
+ Total requests made in the platform (Count)
+ When the admin click on the Count, they will be redirected to the respective
+management section 
+
+
+My Profile:
+===========
+o This section allow the admin to manage their profile information
+o View profile info
+o Change password 
+
+
+Notification:
+=============
+o The admin panel will have a notification bell icon, which will highlight the admin with
+any notifications received
+ When the admin click on the Notification icon, this will be a drop down which
+will list all the notifications
+ The admin click on the Notification and get redirected to the respective
+module
+
+Hero Banner Management:
+=======================
+o This section allow the admin to view and manage the images / slides in the Hero
+Banner
+o Option to upload image / video
+ Note: With limited size
+o Option to change the slide timer
+
+User Management:
+=================
+o This section allow the admin to manage the users registration
+ View list
+ Filter / Sort view list
+ Click to View details
+ Block / Unblock
+ Flag if any report is made 
+
+
+Membership Management:
+======================
+o This section will allow the Admin to update the Status of the Users who have
+purchased Membership
+o Note: The users will not have an option in the front end to purchase any membership.
+The admin will contact the Users offline and offer them the membership fee and the
+payment will be processed offline
+o This will help the users to get their name listed in the Top during the search
+
+
+Service Management:
+===================
+o This section will allow the admin to view and manage the Services list offered in the
+platform
+ View list
+ Add list
+ Edit
+ Delete
+
+
+Report management: (DOUBT)
+==================
+o This will list all the reports posted by the users
+ View reports
+ Click to view details
+ Respond to the report, which will be notified to the concerned users via email 
+
+
+
+Campaigns: (DOUBT)
+==========
+o This section will allow the admin to send any campaign letters / invites to the users of
+the app
+ View campaigns
+ Add a new campaign
+ Edit campaign
+ Delete Campaign
+o The admin can send the campaigns to all the users / by services / location 
+
+
+Blog management:
+================
+
+o This section will allow the admin to manage the Blogs
+ View list
+ Add a new Blog
+ Edit
+ Delete
+ Hide blog
+
+Reports:
+=========
+o This section allow the admin to generate reports and download reports to CSV / PDF
+o Reports list to be discussed. 
+
+
+
+  
+
+
+                              USERPANEL:
+                              ==========
+
+
+     Register process 
+
+         ||||||||||||||---------> guest users
+
+                       ----------> Registered users
+
+       
+Login Menu:
+===========
+     
+   Manual login:
+   ============
+ Email
+ Password
+
+
+ Social Media Login:
+	======================
+ Linked in
+ Facebook
+ Google   
+
+
+
+ Forgot password:
+ ================
+ The signin page will have Forgot Password? Hyper
+link
+ This will allow the user to reset their password
+ The user will be prompted to enter their registered
+email
+ An email with password reset link will be shared with
+the user
+ The user can click on the password reset link to
+create a new password 
+
+
+Important flow for guest user (!authid process)and (auth id) erntha register process :
+============== ======================================================================
+Guest user just visit the website chat click redirect to login page
+
+
+register user access all review and chat process enables
+
+
+
+Important flow for Dropdown search process:
+========= ================================
+
+Register page la 3 rd step la Services list panitu dropdown la  === adminpanel la ernthu kamiknm 
+
+company details(6 fields like title ,description,ceo and founder name,min.projectsize,avg.hourlyrate,employees count,location,website link) insert pna tha user panel la show pana crct ah vrm  
+
+
+
+services primary key ah company table la erkura foreign key ah save pananum
+
+
+so entha service choose pnrnglo company table la passpani  all data eduthu show pananum.
+
+
+
+next athula tag vachu filter pannaum 
+
+
+
+
+Doubt:
+
+
+Filter process  and location ,

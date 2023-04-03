@@ -10,13 +10,13 @@
   <th data-field="actions" data-formatter="bstCollectionActionFormatter">Actions</th>
   {/if}
   <!--th data-field="id" data-sortable="true" data-formatter="bstIDFormatter">ID</th-->
-  <th data-field="title_image" data-formatter="bstTitleImageFormatter1">Image</th>
+  <th data-field="title_image" data-formatter="bstTitleImageFormatter">Image</th>
   {if ($shared_status == 0)}
   <th data-field="title" data-sortable="true" data-formatter="bstTitleFormatter">Title</th>
   <th data-field="artist_id" data-sortable="true" data-formatter="bstArtistFormatter">Artist</th>
   {elseif ($shared_status == 1)}
   <th data-field="title">Title</th>
-  <th data-field="artist_id" data-sortable="true" data-formatter="bstArtistFormatter">Shared by</th>
+  <th data-field="artist_id" data-sortable="true" data-formatter="bstArtistFormatter1">Shared by</th>
   {/if}
   {if ($shared_status == 0)}
   <th data-field="created" data-sortable="true" data-formatter="bstDateFormatter">Created</th>
