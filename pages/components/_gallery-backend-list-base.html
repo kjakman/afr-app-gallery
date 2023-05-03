@@ -3,7 +3,8 @@
 {$page_id = $scope.page_id}
 {$user_id = $scope.user_id}
 {$folders = $scope.folderlist}
-{$media_type=$scope.media_type}
+{$folders = $scope.folderlist}
+{$shared_exp_status=$scope.shared_exp}
 {block name="table"}
   <div id="toolbar" class="">
     {if ((0 && !$scope.add_to) || (0 && !$scope.add_to_profile))}
@@ -71,8 +72,12 @@
     <a href="#" class="btn btn-sm btn-warning text-white" id="sel_show">Show</a>
     <a href="#" class="btn btn-sm btn-warning text-white" id="sel_clear">Clear</a>
     <!-- <a href="#" id="sel_del">Delete</a> -->
-    <a href="#" class="btn btn-sm btn-warning text-white" id="sel_del" data-toggle="modal" data-target="#del_modals">Delete</a> 
-    Selected (<span id="sel_count1">0</span>)
+     {if ($shared_exp_status == 1)}
+     Selected (<span id="sel_count1">0</span>)
+     {else}
+         <a href="#" class="btn btn-sm btn-warning text-white" id="sel_del" data-toggle="modal" data-target="#del_modals">Delete</a> 
+         Selected (<span id="sel_count1">0</span>)
+     {/if}
   </div>
   
   <table class="table" id="table"

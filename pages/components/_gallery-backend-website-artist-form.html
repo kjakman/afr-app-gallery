@@ -88,7 +88,8 @@
           {$rows = []}
           {$rows[] = ["Name", "Created", "Age", "City", "Country","Action"]}
           {foreach from=$artists item=artist key=val}
-            {$rows[] = [$artist.display_name, $artist.created, $artist.age, $artist.city, $artist.country, "<a href='/backend/profile/{$artist.id}/edit?_pv=viewartistpage&site_id={$minisite.id|default:$id}&page_id={$page_id}&user_id={$minisite.user_id}' class='ajax-loader' data-target='#subview-container'><button  class='btn btn-xs btn-success'> <i class='glyphicon glyphicon-pencil'></i></button></a>
+            {$rows[] = [$artist.display_name, $artist.created, $artist.age, $artist.city, $artist.country, "
+            <!-- <a href='/backend/profile/{$artist.id}/edit?_pv=viewartistpage&site_id={$minisite.id|default:$id}&page_id={$page_id}&user_id={$minisite.user_id}' class='ajax-loader' data-target='#subview-container'><button  class='btn btn-xs btn-success'> <i class='glyphicon glyphicon-pencil'></i></button></a> -->
             <button id='soft_delete' class='btn btn-xs btn-danger delete' data-value='{$artist.id}' data-primary='1' data-page = '{$page_id}'> <i class='glyphicon glyphicon-trash'></i></button>"]}                   
           {/foreach}  
           <label>List Of Primary Artists</label>
@@ -150,7 +151,8 @@
           {$rows = []}
           {$rows[] = ["Name", "Created", "Age", "City", "Country","Action"]}
           {foreach from=$artists1 item=artist key=val}
-            {$rows[] = [$artist.display_name, $artist.created, $artist.age, $artist.city, $artist.country, "<a href='/backend/profile/{$artist.id}/edit?_pv=viewartistpage&site_id={$minisite.id|default:$id}&page_id={$page_id}&user_id={$minisite.user_id}' class='ajax-loader' data-target='#subview-container'><button  class='btn btn-xs btn-success'> <i class='glyphicon glyphicon-pencil'></i></button></a>
+            {$rows[] = [$artist.display_name, $artist.created, $artist.age, $artist.city, $artist.country, "
+            <!-- <a href='/backend/profile/{$artist.id}/edit?_pv=viewartistpage&site_id={$minisite.id|default:$id}&page_id={$page_id}&user_id={$minisite.user_id}' class='ajax-loader' data-target='#subview-container'><button  class='btn btn-xs btn-success'> <i class='glyphicon glyphicon-pencil'></i></button></a> -->
             <button id='soft_delete' class='btn btn-xs btn-danger delete' data-value='{$artist.id}' data-page = '{$page_id}' data-primary='0'> <i class='glyphicon glyphicon-trash'></i></button>"]}                   
           {/foreach}                                            
           <label>List Of Secondary Artists</label>
