@@ -69,6 +69,7 @@
     });
     
     function saveOrder() {
+      let rand_num = Math.random() * 10;
       var order_id = new Array();
       $('tbody#sortable-row tr').each(function() {
       order_id.push($(this).attr("id"));
@@ -80,7 +81,8 @@
         data: {
           oper: "submit-order",
           val: order_id,
-          obj_type: "minisite_page"
+          obj_type: "minisite_page",
+          rand_num: rand_num,
         },
       });
     }

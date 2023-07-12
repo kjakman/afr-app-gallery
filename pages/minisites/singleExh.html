@@ -13,38 +13,22 @@
   {* $collection.event|dump *} 
 {if ($collection.id)}  
   <div class="row detail-page-row">
-    
-    <div class="col-md-4 col-sm-10  artist-subnav-container">
+    <div class="col-md-3 col-sm-12 text-left artist-subnav-container">
       <div class="artist-sub-nav">
         {if ($collection.slug)}
-          <!-- <h3 class="sub-nav-header artist-sub-nav-header">  -->
-            <aside class="col-sm-20">
-            <h1 class="black">
-              <div class="small-text">
-                {if ($collection.start_date && $collection.end_date)}
-                  {{"include": "_gallery-collection-date.html"}}
-                {/if}
-                
-                {if ($collection.event)}
-                  {$event = $collection.event}
-                  {{"include": "_gallery-collection-event.html"}}
-                {/if}
-              </div>
-              <br>
-            {$artist_ids = $collection.artist_ids|@json_decode}
-					{foreach from=$artist_ids item=$artist_id}
-						{$profile = $artist_id|get_user:1}
-						{{"include": "_gallery-artist-information.html"}}
-					{/foreach}
-            <!-- <br><br>
-            <a href="{$basepath}/{$page_slug}/{$collection.slug}">{$collection.title|default:"Untitled"}</a> -->
+          <h1 class="sub-nav-header artist-sub-nav-header"> 
+            {foreach from=$artist_ids item=$artist_id}
+              {$artist_name[] = $artist_id|displayname}
+            {/foreach}
+            {$artist_name[0]}
+            <br><br>
+            <a href="{$basepath}/{$page_slug}/{$collection.slug}">{$collection.title|default:"Untitled"}</a>
           </h1>
-        </aside>
-          <!-- <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
-            <li><a href="{$basepath}/{$page_slug}/{$collection.slug}/images"       class="">Images</a></li>
-            <li><a href="{$basepath}/{$page_slug}/{$collection.slug}/location"    class="">Location</a></li>
-            <li><a href="{$basepath}/{$page}/{$slug}/publications" class="">Publications</a></li>
-          </ul> -->
+            <ul class="hidden-sm-down sub-nav-ul artist-sub-nav-ul">
+              <li><a href="{$basepath}/{$page_slug}/{$collection.slug}/images"       class="">Images</a></li>
+              <li><a href="{$basepath}/{$page_slug}/{$collection.slug}/location"    class="">Location</a></li>
+              <!--li><a href="{$basepath}/{$page}/{$slug}/publications" class="">Publications</a></li-->
+            </ul>
         {/if}
         </p>
         <!-- mobile layout -->
@@ -61,11 +45,18 @@
           </div>
         </div>
       </div>
-
       <br>
-     
+      <div class="small-text">
+        {if ($collection.start_date && $collection.end_date)}
+          {{"include": "_gallery-collection-date.html"}}
+        {/if}
+        
+        {if ($collection.event)}
+          {$event = $collection.event}
+          {{"include": "_gallery-collection-event.html"}}
+        {/if}
+      </div>
     </div>
- 
     
     <div class="col-md-8 col-sm-12 detail-text">
       {if ($subview == 'images')}
@@ -95,12 +86,7 @@
         </div>
       
       {else}
-      <div class="profileinfo"> 
-        <div class="gallery-artwork-detail">
-      <article class="row mt20">
-        <section class="col-sm-20 mr20" style="text-align: center;">
-        <div class="hover_style no-padding">
-          <figure class="effect-{$ms.art_animation}">
+        <div class="image-container-max-height">
           {if ($collection.slug)} 
             {if ($collection.video_status==1 && $collection.video!=null)}
                     
@@ -126,23 +112,11 @@
                 <img src="/img/artist/default.jpg" alt="" /><br />
            {/if}
           {/if}
-        </figure>
         </div>
-      </section>
-      </article>
-    </div>
-  </div>
         <br />
-        <article class="row mt40">
-          <div class="gap gap-small"></div>
-          {if ($collection.description)}
-            <div class="exbdtl_desc">
-              <div class="col-sm-6"><h3>About "{$collection.title}"</h3></div>
-              <div class="col-sm-12"><p>{$collection.description}</p></div>
-            </div>
-          {/if}
-          <div class="gap"></div>
-        </article>
+        <div style="max-width: 700px; top: -80px;text-align: justify;" class="mx-auto text-secondary summernote_editor_output">
+         {$collection.description}
+        </div>
         <p>&nbsp;</p>
       {/if}
     </div>

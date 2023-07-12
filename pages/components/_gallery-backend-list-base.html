@@ -78,7 +78,23 @@
          <a href="#" class="btn btn-sm btn-warning text-white" id="sel_del" data-toggle="modal" data-target="#del_modals">Delete</a> 
          Selected (<span id="sel_count1">0</span>)
      {/if}
+     <div style="visibility:hidden">thala</div>
+     <div>
+  {if ($scope.media_type == 'media')}
+        {foreach from=$folders item=folder}
+            <a href="#" id="sel_add_folder" class="btn btn-sm btn-warning text-white" data-page = "{$page_id}" data-user = "{$user_id}" data-target_id="{$folder.id}">Add to {$folder.filename}</a>
+
+        {/foreach}
+    {elseif ($media_type=='media_folder')}
+
+        
+    {else}
+      
+    {/if}
   </div>
+  </div>
+  <!-- {dump($scope.media_type)} -->
+  
   
   <table class="table" id="table"
      data-toggle="table" 

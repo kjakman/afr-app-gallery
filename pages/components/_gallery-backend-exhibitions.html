@@ -9,14 +9,13 @@
   {if ($shared_status == 0)}
   <th data-field="actions" data-formatter="bstCollectionActionFormatter">Actions</th>
   {/if}
-  <!--th data-field="id" data-sortable="true" data-formatter="bstIDFormatter">ID</th-->
   <th data-field="title_image" data-formatter="bstTitleImageFormatter">Image</th>
   {if ($shared_status == 0)}
   <th data-field="title" data-sortable="true" data-formatter="bstTitleFormatter">Title</th>
   <th data-field="artist_id" data-sortable="true" data-formatter="bstArtistFormatter">Artist</th>
   {elseif ($shared_status == 1)}
   <th data-field="title">Title</th>
-  <th data-field="artist_id" data-sortable="true" data-formatter="bstArtistFormatter1">Shared by</th>
+  <th data-field="artist_id" data-formatter="bstArtistFormatter1">Shared by</th>
   {/if}
   {if ($shared_status == 0)}
   <th data-field="created" data-sortable="true" data-formatter="bstDateFormatter">Created</th>
@@ -27,7 +26,7 @@
   <th data-field="location" data-sortable="true" data-formatter="bstLocationFormatter">Location</th> 
   <th data-field="active" data-sortable="true" data-formatter="bstPublishedFormatter" data-filter-control="select" data-filter-data="var:active">Published</th>
   {elseif ($shared_status == 1)}
-  <th data-field="active" data-sortable="true" data-formatter="bstPublishedFormatter1" data-filter-control="select" data-filter-data="var:active">Published</th>
+  <!-- <th data-field="active" data-sortable="true" data-formatter="bstPublishedFormatter1" data-filter-control="select" data-filter-data="var:active">Published</th> -->
   {/if}
 
 <script type="text/javascript">

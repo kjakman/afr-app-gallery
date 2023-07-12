@@ -955,7 +955,7 @@ ol, ul {line-height: 28px;margin-bottom: 15px;}
 .fixed-table-body thead {background: #87bd41;}
 .fixed-table-body thead tr {border: 0;}
 .fixed-table-body thead tr th {border: 0;padding: 10px 8px !important;}
-.fixed-table-body thead tr th .fht-cell {display: none;}
+/*.fixed-table-body thead tr th .fht-cell {display: none;}*/
 .fixed-table-body thead tr th .th-inner {color: #fff;}
 body .fixed-table-toolbar{padding-left: 0;}
 body#page_backend .table.table-hover tr td {padding: 15px !Important;border: 0;border-bottom: 1px solid #e5e5e5;}

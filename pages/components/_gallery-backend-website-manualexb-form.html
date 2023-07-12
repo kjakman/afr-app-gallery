@@ -109,6 +109,7 @@
       
     function saveOrder() {
       var order_id = new Array();
+      let rand_num = Math.random() * 10;
       $('tbody#sortable-row tr').each(function() {
       order_id.push($(this).attr("id"));
       });
@@ -118,7 +119,8 @@
         data: {
           oper: "submit-order",
           val: order_id,
-          obj_type: "exhibition_map"
+          obj_type: "exhibition_map",
+          rand_num: rand_num,
         },
       });
     }

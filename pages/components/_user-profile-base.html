@@ -38,7 +38,7 @@
     {/if}
 {/if}
 {if isset($scope.u_id)}
-<a style="background-color: #87bd41; color: #f1f1f1; font-size: x-large; font-weight: bold" target="_blank" href="https://laravel-vpatina.dci.in/user-network/{$scope.u_id}/networks">Share Profile</a>
+<a style="background-color: #87bd41; color: #f1f1f1; font-size: x-large; font-weight: bold" target="_blank" href="https://dev2.vpatina.com/user-network/{base64_encode($scope.u_id)}/networks">Share Profile</a>
 {/if}
 {$picture = $scope.profile.photo|photo:'big'}
 {$title = "`$scope.profile.display_name`"}

@@ -33,6 +33,7 @@
       </tr>
     </thead>
     <tbody id= "sortable-row">
+      
       {foreach $images as $image} 
         <tr id= "{$image.id}">
           {$media = (array)find_object('media', ['id' => $image.media_id])}
@@ -89,6 +90,7 @@
     });
     
   function saveOrder() {
+    let rand_num = Math.random() * 10;
     var order_id = new Array();
     $('tbody#sortable-row tr').each(function() {
     order_id.push($(this).attr("id"));
@@ -99,13 +101,15 @@
       data: {
         oper: "submit-order",
         val: order_id,
-        obj_type: "media_collection_map"
+        obj_type: "media_collection_map",
+        rand_num: rand_num,
       },
     });
   }
 
   function save_status(id) {
-    var status = "#status" + id;;
+    let rand_num1 = Math.random() * 10;
+    var status = "#status" + id;
     var value = $(status).val();
     //alert(value);
     $.ajax({ url: "/ajax.php",
@@ -115,6 +119,7 @@
         type : value,
         obj_id : id,
         dedit: "1",
+        rand_num: rand_num1,
       },
     });    
   }

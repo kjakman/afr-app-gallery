@@ -43,10 +43,10 @@
   </div><br>
   {/if}
   {if (!$vault)}    
-    <p style="font-size: 20px !important; font-weight: bold;">Media Folder (Capacity: {$count} of {$limit} storage limit used)</p><span>Maximum file size 10mb - supported file types jpg, jpeg, png</span>
+    <p style="font-size: 20px !important; font-weight: bold;">Media Folder (Capacity: {$count} of {$limit} storage limit used)</p><b><span>Maximum recommended file size 1mb - supported file types jpg, jpeg, png</span></b>
   {else}
     <p style="font-size: 20px !important; font-weight: bold;">Media Files (Capacity: {$count} of {$limit} storage limit used)</p>
-    <span>Maximum file size 10mb - supported file types jpg, jpeg, png</span>
+    <b><span>Maximum recommended file size 1mb - supported file types jpg, jpeg, png</span></b>
   {/if}      
 {/block}
 <div class="media_table_wrap"></div>
