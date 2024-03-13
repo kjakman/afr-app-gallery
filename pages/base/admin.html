@@ -1,7 +1,7 @@
 {{"extend": "base/index.html"}}
 
 {block name=body}
-
+{$p = '/backend'}
 
 <style>
 
@@ -21,7 +21,7 @@
           <span class="d-inline-block logoname">vPatina</span>
       </a>
           <div class="dropdown  webUserIcon" style="float: right; margin-right:10px;">
-            <a href="#" class=" dropdown-toggle" type="button" data-toggle="dropdown">
+            <!-- <a href="#" class=" dropdown-toggle" type="button" data-toggle="dropdown">
             <img
               src="data:image/jpeg;base64,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"
               alt="Avatar" class="avatar dropdown-toggle" data-toggle="dropdown" style="margin-right: 0px !important;">
@@ -31,7 +31,21 @@
               <li><a href="#">Edit Profile</a></li>
               <li><a href="#">Subscription</a></li>
               <li><a  href="?act=logout">Logout <i class="glyphicon glyphicon-log-out"></i></a></li>
+            </ul> -->
+             <li >
+          <div class="dropdown">
+            <img class="adminImg dropdown-toggle" src="{$user|userphoto:'tiny'}" alt="{$user.display_name}" data-toggle="dropdown">
+
+            <ul class="dropdown-menu">
+              <li><a href="{$p}/ACsettings/{$user.id}/edit/basic?_pv=1" data-target="#subview-container" class="ajax-loader">Edit Profile</a></li>
+              <li><a href="{$p}/ACsettings/{$user.id}/edit/subscription?_pv=1" class="ajax-loader" data-target="#subview-container">Subscription</a></li>
+              <li><a  href="?act=logout">Logout <i class="glyphicon glyphicon-log-out" style="color:#87bd41  ;"></i></a></li>
             </ul>
+          </div>
+        </li>
+        
+
+        <li class="mobileside"><a href="?act=logout"><i class="glyphicon glyphicon-log-out"></i> </a></li>
           </div>
           
         <ul class="dropdown-menu">
@@ -47,13 +61,22 @@
     <div class="collapse navbar-collapse left-sideBar" id="myNavbar">
       <ul class="nav navbar-nav left-side">
 
-        <li><a href="#">Quick Start & Tutorials</a></li>
-        <li><a href="#">Profile / App</a></li>
-        <li><a href="#">Artist / Contacts</a></li>
-        <li><a href="#">Artworks</a></li>
-        <li><a href="#">Exhibition</a></li>
-        <li><a href="#">Media / Bulk Uploads</a></li>
-        <li><a href="#">Website Builder</a></li>
+        <li id="nav_section_tips" class="class-filter{if ($scope.section =='tutorial')} active{/if}"><a href="{$p}/tutorial"></i><img class="icon_img d-inline-block" src="https://new.vpatina.dci.in/img/graduation.svg" alt=""> Quick Start & Tutorials</a></li>
+
+        <li id="nav_section_acsetting" class="class-filter{if ($scope.section =='ACsettings')} active{/if}"><a class="ajax-loader" href="{$p}/ACsettings/{$user.id}/edit/basic?_pv=1" data-target="#subview-container"></i><img class="icon_img d-inline-block" src="https://new.vpatina.dci.in/img/user.svg" alt=""> Profile / App </a></li>
+
+         <li id="nav_section_artwork" class="class-filter{if ($scope.section =='artwork')} active{/if}"><a href="{$p}/artworks" id="gbe_artworks_link"></i>Artworks <i class="pull-right hidden-xs showopacity fa fa-paint-brush"></i></a></li>
+
+         <li id="nav_section_exhibition" class="class-filter{if ($scope.section =='exhibition')} active{/if}"><a href="{$p}/exhibitions"></i><img class="icon_img d-inline-block" src="https://new.vpatina.dci.in/img/exhibitions.svg" alt=""> Exhibitions</a></li>
+
+         <li id="nav_section_vault" class="class-filter{if ($scope.section =='vault')} active{/if}"><a href="{$p}/vaults"></i><img class="icon_img d-inline-block" src="https://new.vpatina.dci.in/img/media.svg" alt=""> Media / Bulk Uploads</a></li>
+
+         <li id="nav_section_website" class="class-filter{if ($scope.section =='website')} active{/if}"><a href="{$p}/websites"></i>Website Builder<i class="pull-right hidden-xs showopacity fa fa-cog"></i></a></li>
+        <!-- <li><a href="#">Artist / Contacts</a></li>
+        <li><a href="/backend/artworks">Artworks</a></li>
+        <li><a href="/backend/exhibitions">Exhibition</a></li>
+        <li><a href="/backend/vaults">Media / Bulk Uploads</a></li>
+        <li><a href="#">Website Builder</a></li> -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
